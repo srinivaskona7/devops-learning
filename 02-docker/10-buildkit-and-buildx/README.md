@@ -4,11 +4,32 @@
 
 ## Why care
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-10-buildkit-and-buildx-README-1-57b06953.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-10-buildkit-and-buildx-README-1-57b06953.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-10-buildkit-and-buildx-README-1-57b06953.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Old[Legacy builder] -->|sequential, no cache mounts| L1[slow]
   BK[BuildKit] -->|parallel DAG, cache mounts, secrets, multi-arch| Fast[fast + features]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 | Feature | Legacy | BuildKit |
 |---------|--------|----------|

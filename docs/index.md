@@ -6,6 +6,21 @@
 
 ## Learning Journey
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-index-1-7d6ac99c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-index-1-7d6ac99c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-index-1-7d6ac99c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[01 Linux] --> B[02 Docker]
@@ -18,6 +33,12 @@ flowchart LR
     H --> I[09 Terraform]
     I --> J[10 Projects]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Modules
 

@@ -21,16 +21,30 @@ docker images go-hello:1.0
 
 ## Layer structure
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../../assets/diagrams/02-docker-03-images-and-dockerfile-examples-02-multistage-README-1-0beedb08.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../../assets/diagrams/02-docker-03-images-and-dockerfile-examples-02-multistage-README-1-0beedb08.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
-  subgraph build_stage[build stage - golang:1.23-alpine]
-    B1[go mod download] --> B2[go build -> /out/app]
+  subgraph build_stage["build stage — golang:1.23-alpine"]
+    B1["go mod download"] --> B2["go build -o /out/app"]
   end
-  subgraph runtime[runtime - scratch]
-    R1[ca-certificates.crt] --> R2[/app binary]
+  subgraph runtime["runtime — scratch"]
+    R1["ca-certificates.crt"] --> R2["app binary"]
   end
-  build_stage -.discarded.-> runtime
+  build_stage -. discarded .-> runtime
 ```
+
+</details>
+
+</details>
 
 Only the *final stage* ships. The build toolchain (~300 MB of Go) stays behind.
 

@@ -8,6 +8,21 @@ When something is "slow" or "stuck," 90% of the answer lives in `ps`, `top`, or 
 
 ## 🌳 Process lifecycle
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-03-processes-README-1-dc37dc58.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-03-processes-README-1-dc37dc58.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-03-processes-README-1-dc37dc58.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant P as Parent
@@ -24,6 +39,12 @@ sequenceDiagram
     P->>K: wait() / reap
     Note over C: Zombie until reaped
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Concepts
 

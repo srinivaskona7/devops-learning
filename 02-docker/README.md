@@ -13,6 +13,21 @@
 
 ## The Journey
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/02-docker-README-1-dcee6938.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/02-docker-README-1-dcee6938.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/02-docker-README-1-dcee6938.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[01 Concepts] --> B[02 Install + Hello]
@@ -26,6 +41,12 @@ flowchart LR
   I --> J[10 BuildKit/buildx]
   J --> K[11 Production]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Index
 

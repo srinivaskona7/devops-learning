@@ -8,6 +8,21 @@ The previous nine topics taught you the system. This one teaches you how to inte
 
 ## 🩺 Triage flow
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-10-troubleshooting-README-1-9d94d476.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-10-troubleshooting-README-1-9d94d476.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-10-troubleshooting-README-1-9d94d476.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     START([Alert]) --> Q1{Service up?}
@@ -30,6 +45,12 @@ flowchart TB
     DF --> FIX
     STR --> FIX
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Concepts
 

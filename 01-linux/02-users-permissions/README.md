@@ -8,6 +8,21 @@ Every file, process, socket, and namespace is owned. Auth bugs, data leaks, and 
 
 ## 🔐 The permission model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-02-users-permissions-README-1-84433dbb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-02-users-permissions-README-1-84433dbb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-02-users-permissions-README-1-84433dbb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     U[User UID] -->|owns| F[File]
@@ -17,6 +32,12 @@ flowchart LR
     F -->|3 special| S["setuid · setgid · sticky"]
     SUDO[/etc/sudoers/] -.->|grants| ROOT[(uid 0 root)]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Concepts
 

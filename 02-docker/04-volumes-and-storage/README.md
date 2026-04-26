@@ -4,6 +4,21 @@
 
 ## Three storage modes
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-04-volumes-and-storage-README-1-b0f3452a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-04-volumes-and-storage-README-1-b0f3452a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-04-volumes-and-storage-README-1-b0f3452a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   C[Container]
@@ -11,6 +26,12 @@ flowchart LR
   C -->|named volume| V[Docker-managed: /var/lib/docker/volumes/myvol]
   C -->|tmpfs| T[Host RAM]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 | Mode | Where data lives | Use for |
 |------|------------------|---------|

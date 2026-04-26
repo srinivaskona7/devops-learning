@@ -14,9 +14,9 @@
 
 [![Linux](https://img.shields.io/badge/Linux-Bash%20%26%20Systemd-FCC624?logo=linux&logoColor=black)](./01-linux)
 [![Docker](https://img.shields.io/badge/Docker-Containers-2496ED?logo=docker&logoColor=white)](./02-docker)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-Core%20%26%20Advanced-326CE5?logo=kubernetes&logoColor=white)](./03-kubernetes-core)
-[![Helm](https://img.shields.io/badge/Helm-Charts-0F1689?logo=helm&logoColor=white)](./06-helm)
-[![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&logoColor=white)](./09-terraform)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-Core%20%26%20Advanced-326CE5?logo=kubernetes&logoColor=white)](./03-kubernetes)
+[![Helm](https://img.shields.io/badge/Helm-Charts-0F1689?logo=helm&logoColor=white)](./04-helm)
+[![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&logoColor=white)](./07-terraform)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 </div>
@@ -29,45 +29,66 @@ Learn-by-doing DevOps repo — **Linux -> Docker -> Kubernetes -> Helm -> Monito
 
 ## Learning Journey
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="assets/diagrams/README-1-391817a9.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="assets/diagrams/README-1-391817a9.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="assets/diagrams/README-1-391817a9.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[01 Linux] --> B[02 Docker]
-    B --> C[03 K8s Core]
-    C --> D[04 K8s Strategies]
-    D --> E[05 K8s Advanced]
-    E --> F[06 Helm]
-    F --> G[07 Monitoring]
-    G --> H[08 Security]
-    H --> I[09 Terraform]
-    I --> J[10 Projects]
+    B --> C[03 Kubernetes]
+    C --> D[04 Helm]
+    D --> E[05 Monitoring]
+    E --> F[06 Security]
+    F --> G[07 Terraform]
+    G --> H[08 Projects]
+    subgraph K8s [03 Kubernetes]
+      direction TB
+      C1[01 Core]
+      C2[02 Strategies]
+      C3[03 Advanced]
+    end
     style A fill:#FCC624,stroke:#333,color:#000
     style B fill:#2496ED,stroke:#333,color:#fff
     style C fill:#326CE5,stroke:#333,color:#fff
-    style D fill:#326CE5,stroke:#333,color:#fff
-    style E fill:#326CE5,stroke:#333,color:#fff
-    style F fill:#0F1689,stroke:#333,color:#fff
-    style G fill:#E6522C,stroke:#333,color:#fff
-    style H fill:#C0392B,stroke:#333,color:#fff
-    style I fill:#7B42BC,stroke:#333,color:#fff
-    style J fill:#27AE60,stroke:#333,color:#fff
+    style D fill:#0F1689,stroke:#333,color:#fff
+    style E fill:#E6522C,stroke:#333,color:#fff
+    style F fill:#C0392B,stroke:#333,color:#fff
+    style G fill:#7B42BC,stroke:#333,color:#fff
+    style H fill:#27AE60,stroke:#333,color:#fff
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Folder Index
 
-| # | Folder | Topic | Skill Level | Est. Hours |
-|---|--------|-------|-------------|-----------|
+| # | Folder | Topic | Skill | Hours |
+|---|--------|-------|-------|------:|
 | 01 | [`01-linux`](./01-linux) | Linux fundamentals, bash, systemd, networking | Beginner | 12 |
 | 02 | [`02-docker`](./02-docker) | Containers, images, Compose, registries | Beginner | 10 |
-| 03 | [`03-kubernetes-core`](./03-kubernetes-core) | Pods, Deployments, Services, ConfigMaps | Intermediate | 16 |
-| 04 | [`04-kubernetes-strategies`](./04-kubernetes-strategies) | Rolling, blue/green, canary, GitOps | Intermediate | 12 |
-| 05 | [`05-kubernetes-advanced`](./05-kubernetes-advanced) | Operators, CRDs, HPA/VPA, networking | Advanced | 18 |
-| 06 | [`06-helm`](./06-helm) | Charts, templating, releases, repos | Intermediate | 8 |
-| 07 | [`07-monitoring`](./07-monitoring) | Prometheus, Grafana, Loki, OpenTelemetry | Intermediate | 12 |
-| 08 | [`08-security`](./08-security) | RBAC, NetworkPolicy, Pod Security, secrets | Advanced | 10 |
-| 09 | [`09-terraform`](./09-terraform) | IaC, modules, state, providers | Intermediate | 14 |
-| 10 | [`10-projects`](./10-projects) | End-to-end capstone projects | Advanced | 20+ |
+| 03 | [`03-kubernetes`](./03-kubernetes) | Core (pods/svc/deploy) + Strategies (rolling/canary/B-G) + Advanced (CRDs/mesh/changelog) | Intermediate→Advanced | 46 |
+| 04 | [`04-helm`](./04-helm) | Charts, templating, releases, repos | Intermediate | 8 |
+| 05 | [`05-monitoring`](./05-monitoring) | Prometheus, Grafana, Loki, OpenTelemetry | Intermediate | 12 |
+| 06 | [`06-security`](./06-security) | RBAC, NetworkPolicy, PSA, secrets, supply chain | Advanced | 10 |
+| 07 | [`07-terraform`](./07-terraform) | IaC, modules, state, AWS/GCP/K8s providers | Intermediate | 14 |
+| 08 | [`08-projects`](./08-projects) | End-to-end capstone projects | Advanced | 20+ |
 
-**Total: ~130 hours of structured learning**
+**Each subfolder ships a `README.md` (theory + lab) and a `commands.md` (quick pickup state).** Drop into any folder, read both, and continue.
 
 ## How to Use This Repo
 

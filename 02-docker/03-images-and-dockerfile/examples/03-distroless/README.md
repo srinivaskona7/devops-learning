@@ -23,17 +23,31 @@ docker exec -it <id> sh
 
 ## Layer structure
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../../assets/diagrams/02-docker-03-images-and-dockerfile-examples-03-distroless-README-1-ee10f4a9.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../../assets/diagrams/02-docker-03-images-and-dockerfile-examples-03-distroless-README-1-ee10f4a9.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
-  subgraph build[build - node:20-alpine]
-    B1[npm ci --omit=dev]
+  subgraph build["build stage — node:20-alpine"]
+    B1["npm ci --omit=dev"]
   end
-  subgraph runtime[gcr.io/distroless/nodejs20-debian12:nonroot]
-    R1[node runtime]
-    R2[/app code copied from build]
-    R3[runs as uid 65532 nonroot]
+  subgraph runtime["runtime — gcr.io/distroless/nodejs20-debian12:nonroot"]
+    R1["node runtime"]
+    R2["app code copied from build"]
+    R3["runs as uid 65532 nonroot"]
   end
 ```
+
+</details>
+
+</details>
 
 ## Why bother
 - Smaller (~150 MB vs ~400 MB for `node:20`)

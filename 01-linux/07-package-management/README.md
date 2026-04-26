@@ -8,6 +8,21 @@ Installs, upgrades, dependency hell, and supply-chain provenance all flow throug
 
 ## 🌐 The big three (plus brew)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-07-package-management-README-1-8247cb1c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-07-package-management-README-1-8247cb1c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-07-package-management-README-1-8247cb1c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Debian / Ubuntu] -->|apt + dpkg| DEB[.deb packages]
@@ -16,6 +31,12 @@ flowchart LR
     D[macOS / Linux] -->|brew| BOTTLE[bottles + formulae]
     E[Universal] -->|snap / flatpak| SANDBOX[sandboxed apps]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Concepts
 

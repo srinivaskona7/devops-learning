@@ -8,6 +8,21 @@ Knowing where logs, configs, and binaries live is the difference between a 30-se
 
 ## 🗺️ FHS at a glance
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-01-filesystem-README-1-07cf1851.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-01-filesystem-README-1-07cf1851.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-01-filesystem-README-1-07cf1851.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     root["/"] --> bin[/bin · core binaries/]
@@ -24,6 +39,12 @@ flowchart TB
     var --> log[/var/log/]
     usr --> ulocal[/usr/local · admin-installed/]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Concepts
 

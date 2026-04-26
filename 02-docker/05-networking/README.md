@@ -4,6 +4,21 @@
 
 ## The drivers
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-05-networking-README-1-5f1bc694.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-05-networking-README-1-5f1bc694.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-05-networking-README-1-5f1bc694.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   subgraph host[Host]
@@ -20,6 +35,12 @@ flowchart LR
   br_user -.veth.-> C4[Container D user-defined]
   eth0 -.shared.-> C5[Container E host network]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 | Driver | What it does | When to use |
 |--------|--------------|-------------|
@@ -106,6 +127,21 @@ docker run --rm alpine ping -c1 host.docker.internal
 
 ## Network drivers in one diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-05-networking-README-2-b4f8874e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-05-networking-README-2-b4f8874e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-05-networking-README-2-b4f8874e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   subgraph bridge_default[bridge default]
@@ -121,6 +157,12 @@ flowchart TB
     NC[Container has only loopback]
   end
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Gotchas
 

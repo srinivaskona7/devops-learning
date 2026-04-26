@@ -4,6 +4,21 @@
 
 ## The model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-06-compose-README-1-75ca6057.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-06-compose-README-1-75ca6057.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-06-compose-README-1-75ca6057.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   Project[compose.yaml project] --> SVC[services]
@@ -16,6 +31,12 @@ flowchart TB
   S1 --> NETS
   S2 --> VOLS
 ```
+
+</details>
+
+</details>
+
+</details>
 
 Compose v2 ships with Docker Engine — invoke as `docker compose` (space, not hyphen).
 

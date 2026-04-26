@@ -4,6 +4,21 @@
 
 ## Containers vs VMs
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-1-c2c628e7.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-1-c2c628e7.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-1-c2c628e7.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   subgraph VMs
@@ -19,6 +34,12 @@ flowchart TB
   end
 ```
 
+</details>
+
+</details>
+
+</details>
+
 | | VM | Container |
 |---|----|-----------|
 | Boot | seconds–minutes | milliseconds |
@@ -30,6 +51,21 @@ flowchart TB
 ## How isolation actually works (Linux)
 
 A container is just a Linux process with some kernel features wrapped around it:
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-2-f9978ece.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-2-f9978ece.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-2-f9978ece.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -45,6 +81,12 @@ flowchart LR
   NS -->|user| UID[uid/gid mapping]
   CG --> RES[CPU/mem/IO limits]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ### Namespaces — *what the process can see*
 - `mnt` — own filesystem mounts
@@ -74,6 +116,21 @@ Docker, containerd, podman, CRI-O all implement these. An image you build with D
 
 An image is an ordered stack of read-only filesystem layers + a JSON config. Each Dockerfile instruction *can* create a layer.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-3-1d08ec7e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-3-1d08ec7e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-3-1d08ec7e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   L4[Layer 4: COPY app.py] --> L3
@@ -82,6 +139,12 @@ flowchart TB
   L1[Layer 1: debian:12-slim base]
   CONT[Container] -.->|R/W layer on top| L4
 ```
+
+</details>
+
+</details>
+
+</details>
 
 When you start a container, Docker stacks all read-only layers and adds a thin **read-write layer** on top (copy-on-write). Stop the container → R/W layer is discarded unless committed.
 

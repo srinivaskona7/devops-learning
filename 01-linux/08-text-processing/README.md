@@ -8,16 +8,30 @@ Half of operations work is "find the lines that say X, extract field Y, count by
 
 ## 🔗 The pipeline mindset
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-08-text-processing-README-1-d13c5088.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-08-text-processing-README-1-d13c5088.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
-    LOG[(access.log)] --> GREP[grep 500]
-    GREP --> AWK[awk '{print $7}']
-    AWK --> SORT[sort]
-    SORT --> UNIQ[uniq -c]
-    UNIQ --> SORT2[sort -rn]
-    SORT2 --> HEAD[head -10]
-    HEAD --> OUT([Top 10 URLs<br/>returning 500])
+    LOG[("access.log")] --> GREP["grep 500"]
+    GREP --> AWK["awk print field 7"]
+    AWK --> SORT["sort"]
+    SORT --> UNIQ["uniq -c"]
+    UNIQ --> SORT2["sort -rn"]
+    SORT2 --> HEAD["head -10"]
+    HEAD --> OUT(["Top 10 URLs<br/>returning 500"])
 ```
+
+</details>
+
+</details>
 
 ## Concepts
 

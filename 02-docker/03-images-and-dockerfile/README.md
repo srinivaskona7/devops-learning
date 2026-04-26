@@ -4,6 +4,21 @@
 
 ## The instructions you'll actually use
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-03-images-and-dockerfile-README-1-00992a55.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-03-images-and-dockerfile-README-1-00992a55.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-03-images-and-dockerfile-README-1-00992a55.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   FROM[FROM base image] --> ARG[ARG build-time vars]
@@ -17,6 +32,12 @@ flowchart TB
   HEALTHCHECK --> ENTRYPOINT[ENTRYPOINT exec form]
   ENTRYPOINT --> CMD[CMD default args]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 | Instruction | Purpose | Creates layer? |
 |-------------|---------|----------------|

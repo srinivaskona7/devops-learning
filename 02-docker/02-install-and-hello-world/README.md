@@ -41,6 +41,21 @@ docker info | head -20
 
 ## First container
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-02-install-and-hello-world-README-1-befa66bd.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-02-install-and-hello-world-README-1-befa66bd.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-02-install-and-hello-world-README-1-befa66bd.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
   participant U as User
@@ -57,6 +72,12 @@ sequenceDiagram
   D-->>CLI: stdout
   CLI-->>U: "Hello from Docker!"
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ```bash
 docker run hello-world

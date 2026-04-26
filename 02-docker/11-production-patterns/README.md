@@ -4,6 +4,21 @@
 
 ## The 12-factor checklist for containers
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-11-production-patterns-README-1-48a8816d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-11-production-patterns-README-1-48a8816d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-11-production-patterns-README-1-48a8816d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   A[I. Codebase: one repo per image] --> B[II. Deps explicit + isolated]
@@ -18,6 +33,12 @@ flowchart TB
   J --> K[XI. Logs to stdout/stderr]
   K --> L[XII. Admin tasks as one-off processes]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Pattern 1 — Init system (`tini`) for proper signal handling
 
@@ -147,11 +168,32 @@ db_pw = open("/run/secrets/db-password").read().strip()
 
 ## Pattern 9 — Build/release/run separation
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-11-production-patterns-README-2-92292169.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-11-production-patterns-README-2-92292169.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-11-production-patterns-README-2-92292169.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Build[Build: source -> image] --> Release[Release: image + config -> immutable artifact]
   Release --> Run[Run: execute the artifact]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 Same image runs in dev, staging, prod. Only **env config** differs. Never rebuild for prod.
 

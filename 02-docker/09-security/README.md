@@ -4,6 +4,21 @@
 
 ## The hardening checklist
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-09-security-README-1-41522feb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-09-security-README-1-41522feb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-09-security-README-1-41522feb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   A[Pick a minimal base] --> B[Pin by digest, not :latest]
@@ -14,6 +29,12 @@ flowchart TB
   F --> G[Inject secrets via BuildKit --mount=type=secret]
   G --> H[Verify signature in admission]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## 1. Non-root USER
 

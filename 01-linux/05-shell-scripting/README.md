@@ -8,6 +8,21 @@ Cron jobs, CI pipelines, init scripts, container entrypoints — they're all bas
 
 ## 🔁 Anatomy of a robust script
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-05-shell-scripting-README-1-01681d6a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-05-shell-scripting-README-1-01681d6a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-05-shell-scripting-README-1-01681d6a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     A[Shebang #!/usr/bin/env bash] --> B[set -euo pipefail<br/>IFS=$'\n\t']
@@ -18,6 +33,12 @@ flowchart TB
     F --> G[main entrypoint]
     G --> H{Exit 0 / non-zero}
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Concepts
 

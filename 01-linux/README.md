@@ -4,6 +4,21 @@
 
 ## 🗺️ Learning Roadmap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/01-linux-README-1-1b82f297.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/01-linux-README-1-1b82f297.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/01-linux-README-1-1b82f297.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     A[01 Filesystem<br/>FHS, inodes, mounts] --> B[02 Users & Permissions<br/>uid, gid, sudo]
@@ -20,6 +35,12 @@ flowchart TB
     style A fill:#e1f5ff
     style K fill:#d4edda
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## 📚 Index
 

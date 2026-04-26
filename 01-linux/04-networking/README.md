@@ -8,17 +8,31 @@ Microservices, containers, and clouds are 90% networking. Reading `ip`, `ss`, an
 
 ## 🧭 The path of a packet
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-04-networking-README-1-079d1c73.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-04-networking-README-1-079d1c73.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     APP[App] --> SOCK[Socket]
     SOCK --> TCP[TCP/UDP]
-    TCP --> IP[IP layer<br/>routing table]
-    IP --> NF[netfilter<br/>iptables/nftables]
+    TCP --> IP["IP layer<br/>routing table"]
+    IP --> NF["netfilter<br/>iptables/nftables"]
     NF --> NIC[Interface eth0]
-    NIC --> WIRE[((Network))]
+    NIC --> WIRE((Network))
     WIRE --> NIC2[Remote NIC]
-    NIC2 --> DNS[(DNS resolver<br/>/etc/resolv.conf)]
+    NIC2 --> DNS[("DNS resolver<br/>/etc/resolv.conf")]
 ```
+
+</details>
+
+</details>
 
 ## Concepts
 

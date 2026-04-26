@@ -8,6 +8,21 @@ In production every long-running process is a systemd unit. Knowing how to write
 
 ## 🧩 Unit relationships
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-06-systemd-README-1-6e208a06.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-06-systemd-README-1-6e208a06.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/01-linux-06-systemd-README-1-6e208a06.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     BOOT([boot]) --> default[default.target]
@@ -21,6 +36,12 @@ flowchart LR
     D -. logs .-> J
     J -.-> CLI[journalctl]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 ## Concepts
 

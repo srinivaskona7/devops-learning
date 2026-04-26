@@ -20,6 +20,21 @@ curl localhost:5000
 
 ## Layer structure
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../../assets/diagrams/02-docker-03-images-and-dockerfile-examples-01-basic-README-1-ff4a001d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../../assets/diagrams/02-docker-03-images-and-dockerfile-examples-01-basic-README-1-ff4a001d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../../assets/diagrams/02-docker-03-images-and-dockerfile-examples-01-basic-README-1-ff4a001d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   L1[python:3.12-slim base ~80MB] --> L2[LABEL metadata]
@@ -32,5 +47,11 @@ flowchart TB
   L8 --> L9[USER appuser]
   L9 --> L10[EXPOSE / HEALTHCHECK / ENTRYPOINT]
 ```
+
+</details>
+
+</details>
+
+</details>
 
 Change `app.py` → only L8+ rebuild. Change `requirements.txt` → L6+ rebuild.

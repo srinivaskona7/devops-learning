@@ -4,6 +4,21 @@
 
 ## The big three (and a private option)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-07-registries-README-1-dd31d4a2.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-07-registries-README-1-dd31d4a2.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/02-docker-07-registries-README-1-dd31d4a2.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Dev[docker push] --> R{Registry}
@@ -13,6 +28,12 @@ flowchart LR
   R --> PRIV[Self-hosted<br/>registry:2]
   K8s[Kubernetes / docker pull] --> R
 ```
+
+</details>
+
+</details>
+
+</details>
 
 | Registry | Hostname prefix | Auth |
 |----------|-----------------|------|
