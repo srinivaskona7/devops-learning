@@ -14,17 +14,7 @@ Helm packages, versions, installs, and upgrades Kubernetes apps using reusable t
 ## Architecture (Helm 3)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/04-helm-README-1-d77aa1db.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/04-helm-README-1-d77aa1db.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/04-helm-README-1-d77aa1db.svg" alt="diagram" /></p>
+<p align="center"><img src="../assets/diagrams/04-helm-README-1-d77aa1db.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -39,11 +29,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 Helm 3 is **client-only**: no Tiller, no cluster-side component. Release metadata is stored as a `Secret` in the release namespace.
 
 ## Install (one-liner)

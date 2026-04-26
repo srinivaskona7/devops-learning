@@ -12,16 +12,6 @@ With Ingress: one LB → one Ingress controller → routed to many services by h
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-08-ingress-README-1-c179247f.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-08-ingress-README-1-c179247f.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   USER[User] -->|HTTPS| LB[Cloud LB / NodePort]
@@ -32,10 +22,58 @@ flowchart LR
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Ingress is L7 HTTP routing — one external entry point that fans out to many backend Services by hostname or URL path, optionally terminating TLS. Implemented by an Ingress Controller (nginx, Traefik, ALB, etc.).
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: hello-ingress
+      annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+    spec:
+      ingressClassName: nginx
+      rules:
+        - host: hello.local
+          http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: hello-app
+                    port:
+                      number: 80
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f ingress.yaml
+    kubectl get ingress hello-ingress
+    kubectl describe ingress hello-ingress | tail -15
+    curl -H "Host: hello.local" http://localhost/
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    ingress.networking.k8s.io/hello-ingress created
+
+    NAME            CLASS   HOSTS         ADDRESS     PORTS   AGE
+    hello-ingress   nginx   hello.local   localhost   80      6s
+
+    Rules:
+      Host         Path  Backends
+      ----         ----  --------
+      hello.local
+                   /     hello-app:80 (10.244.1.5:8080,10.244.2.4:8080)
+
+    Hello, world!
+    Version: 1.0.0
+    ```
 
 ## Ingress vs Gateway API
 

@@ -25,17 +25,7 @@ End-to-end labs that combine everything from `01-linux` through `09-terraform` i
 ## Learning path
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/08-projects-README-1-4f2cda9f.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/08-projects-README-1-4f2cda9f.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/08-projects-README-1-4f2cda9f.svg" alt="diagram" /></p>
+<p align="center"><img src="../assets/diagrams/08-projects-README-1-4f2cda9f.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -51,11 +41,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Skill matrix
 
 | Folder reference | Used by projects |

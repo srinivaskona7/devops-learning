@@ -18,17 +18,7 @@ Pick the strategy that matches your **risk tolerance**, **infra maturity** and *
 ## Decision tree
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-02-strategies-decision-matrix-1-b45df308.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-02-strategies-decision-matrix-1-b45df308.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-02-strategies-decision-matrix-1-b45df308.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/03-kubernetes-02-strategies-decision-matrix-1-b45df308.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -52,11 +42,6 @@ flowchart TD
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Cheat sheet
 
 - **You just want it deployed:** Rolling Update.

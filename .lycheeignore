@@ -1,0 +1,15 @@
+# Local / private hosts
+^https?://localhost(:\d+)?(/.*)?$
+^https?://127\.0\.0\.1(:\d+)?(/.*)?$
+^https?://0\.0\.0\.0(:\d+)?(/.*)?$
+
+# Placeholder / example domains
+^https?://([a-z0-9-]+\.)?example\.com(/.*)?$
+^https?://example\.github\.io(/.*)?$
+.*<your-org>.*
+.*<your-username>.*
+.*YOUR_ORG.*
+
+# Diagram render services (offline / rate-limited)
+^https?://kroki\.io(/.*)?$
+^https?://mermaid\.ink(/.*)?$

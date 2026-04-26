@@ -5,12 +5,7 @@ Kubernetes ships secure-by-default for most settings — but distros, managed pr
 ## What to harden
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-09-cluster-hardening-README-1-a761e43e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-09-cluster-hardening-README-1-a761e43e.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/06-security-09-cluster-hardening-README-1-a761e43e.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -34,9 +29,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
 ## kube-bench
 
 [Aqua kube-bench](https://github.com/aquasecurity/kube-bench) runs the CIS checks for you. Single binary or DaemonSet.

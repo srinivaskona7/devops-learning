@@ -13,16 +13,6 @@ Knowing where logs, configs, and binaries live is the difference between a 30-se
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-01-filesystem-README-1-07cf1851.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-01-filesystem-README-1-07cf1851.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
     root["/"] --> bin[/bin · core binaries/]
@@ -41,10 +31,36 @@ flowchart TB
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    The Linux filesystem is a single rooted tree (`/`) governed by the FHS. Devices, processes, and configs are all surfaced as files, so one set of tools (`ls`, `stat`, `cat`) inspects everything from a disk to a running PID.
 
-</details>
+=== ":material-file-code-outline: Snippet"
+    ```bash
+    # Standard layout you can rely on
+    /etc        # system config
+    /var/log    # logs
+    /proc/<pid> # live process info
+    /dev/sda    # block device file
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    pwd
+    ls -lah /etc
+    stat /etc/hosts
+    df -hT
+    findmnt
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    File: /etc/hosts
+    Size: 220   Blocks: 8   IO Block: 4096 regular file
+    Inode: 12345  Links: 1
+    Access: (0644/-rw-r--r--)  Uid: (0/root)  Gid: (0/root)
+    ```
 
 ## Concepts
 

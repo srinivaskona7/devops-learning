@@ -13,16 +13,6 @@ Every `kubectl apply` is a chain reaction across 6+ components. When a pod gets 
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-01-architecture-README-1-e65dcd0c.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-01-architecture-README-1-e65dcd0c.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   subgraph CP["CONTROL PLANE"]
@@ -55,22 +45,52 @@ flowchart TB
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Kubernetes is a control loop. The API server is the front door, etcd is the source of truth, controllers reconcile desired vs actual state, and kubelets on each node make it real. Knowing which component owns which transition is the key to fast debugging.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    # A minimal Pod — the smallest unit the architecture schedules
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: hello
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    # See the control plane
+    kubectl get pods -n kube-system
+    # See the nodes (kubelet + runtime live here)
+    kubectl get nodes -o wide
+    # Watch a pod move through the scheduling pipeline
+    kubectl apply -f hello.yaml
+    kubectl get pod hello -w
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    NAME                                 READY   STATUS    RESTARTS   AGE
+    kube-apiserver-kind-control-plane    1/1     Running   0          12m
+    etcd-kind-control-plane              1/1     Running   0          12m
+    kube-scheduler-kind-control-plane    1/1     Running   0          12m
+    kube-controller-manager-...          1/1     Running   0          12m
+
+    NAME    READY   STATUS              RESTARTS   AGE
+    hello   0/1     Pending             0          0s
+    hello   0/1     ContainerCreating   0          1s
+    hello   1/1     Running             0          3s
+    ```
 
 ## Pod creation sequence
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-01-architecture-README-2-7701d44e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-01-architecture-README-2-7701d44e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
 
 <!-- mermaid:rendered -->
 <p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-01-architecture-README-2-7701d44e.svg" alt="diagram" /></p>
@@ -100,11 +120,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Component cheat-sheet
 
 ### Control plane

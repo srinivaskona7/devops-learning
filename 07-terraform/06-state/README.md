@@ -17,17 +17,7 @@ Terraform's **state** maps your config to real-world resources. It's a JSON file
 ## State locking — why it matters
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-06-state-README-1-acc9e8d0.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-06-state-README-1-acc9e8d0.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-06-state-README-1-acc9e8d0.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-06-state-README-1-acc9e8d0.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -51,11 +41,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 Without locking, two `apply`s in parallel can corrupt state.
 
 ## Backend types

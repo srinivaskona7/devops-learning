@@ -3,17 +3,7 @@
 ## Precedence (lowest → highest)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-06-values-and-overrides-README-1-bb403d12.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-06-values-and-overrides-README-1-bb403d12.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-06-values-and-overrides-README-1-bb403d12.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-06-values-and-overrides-README-1-bb403d12.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -26,11 +16,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 > Right-most wins. `--set` always overrides `-f`.
 
 ## Multi-Environment Pattern

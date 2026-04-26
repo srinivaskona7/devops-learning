@@ -34,17 +34,7 @@ helm env       # paths Helm uses (cache, config, data)
 ## Repository Configuration
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-02-install-README-1-9a93f4f9.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-02-install-README-1-9a93f4f9.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-02-install-README-1-9a93f4f9.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-02-install-README-1-9a93f4f9.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -57,11 +47,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ### Add common repos
 ```bash
 helm repo add bitnami https://charts.bitnami.com/bitnami

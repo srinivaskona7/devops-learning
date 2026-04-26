@@ -28,17 +28,7 @@ There is a window (seconds to minutes depending on startup time) where **no pods
 ## Pod transition
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-01-recreate-README-1-6c35dbf7.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-01-recreate-README-1-6c35dbf7.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-01-recreate-README-1-6c35dbf7.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-01-recreate-README-1-6c35dbf7.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -59,11 +49,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Files
 
 - [`deployment.yaml`](./deployment.yaml) — annotated Deployment with `strategy.type: Recreate`

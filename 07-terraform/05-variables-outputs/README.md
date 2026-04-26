@@ -56,17 +56,7 @@ Outputs are visible after `apply` and are how **modules expose values to callers
 6. `TF_VAR_<name>` environment variable
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-05-variables-outputs-README-1-01a47cbc.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-05-variables-outputs-README-1-01a47cbc.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-05-variables-outputs-README-1-01a47cbc.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-05-variables-outputs-README-1-01a47cbc.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -81,11 +71,6 @@ flowchart TD
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Files in this chapter
 - [variables.tf](variables.tf) — declarations
 - [outputs.tf](outputs.tf) — outputs

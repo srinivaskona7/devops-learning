@@ -25,17 +25,7 @@
 ## Pod transition
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-03-blue-green-README-1-4db99354.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-03-blue-green-README-1-4db99354.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-03-blue-green-README-1-4db99354.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-03-blue-green-README-1-4db99354.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -58,10 +48,44 @@ sequenceDiagram
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Two full deployments (blue and green) run in parallel. The Service selector decides which color users hit. Cutover is one `kubectl patch` away, and rollback is the same patch in reverse — instant, no rebuild required.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: hello-bg
+    spec:
+      selector:
+        app: hello-bg
+        color: blue          # flip to green for cutover
+      ports:
+        - port: 80
+          targetPort: 8080
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f deployment-blue.yaml -f deployment-green.yaml -f service.yaml
+    # cutover blue -> green
+    kubectl patch svc hello-bg -p '{"spec":{"selector":{"app":"hello-bg","color":"green"}}}'
+    # rollback
+    kubectl patch svc hello-bg -p '{"spec":{"selector":{"app":"hello-bg","color":"blue"}}}'
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    service/hello-bg patched
+    $ kubectl get svc hello-bg -o jsonpath='{.spec.selector.color}'
+    green
+    $ kubectl get endpoints hello-bg
+    NAME       ENDPOINTS                                   AGE
+    hello-bg   10.244.1.5:8080,10.244.1.6:8080,10.244.2.4:8080   3m
+    ```
 
 ## Files
 

@@ -26,11 +26,6 @@ docker images go-hello:1.0
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../../assets/diagrams/02-docker-03-images-and-dockerfile-examples-02-multistage-README-1-0beedb08.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   subgraph build_stage["build stage — golang:1.23-alpine"]
@@ -43,9 +38,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
 Only the *final stage* ships. The build toolchain (~300 MB of Go) stays behind.
 
 ## Try changing it

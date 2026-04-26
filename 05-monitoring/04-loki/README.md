@@ -5,17 +5,7 @@ Loki is "Prometheus for logs": it indexes only **labels**, not the log content. 
 ## Architecture
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-04-loki-README-1-d43d7b94.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-04-loki-README-1-d43d7b94.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-04-loki-README-1-d43d7b94.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-04-loki-README-1-d43d7b94.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -53,11 +43,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Loki vs ELK (Elastic)
 
 | | Loki | ELK |

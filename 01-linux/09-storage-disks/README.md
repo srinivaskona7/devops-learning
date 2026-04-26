@@ -13,16 +13,6 @@ A full disk takes everything down — databases, logs, even SSH login. LVM lets 
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-09-storage-disks-README-1-6e2b3a0a.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-09-storage-disks-README-1-6e2b3a0a.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
     APP[Applications] --> FS[Filesystem<br/>ext4 / xfs / btrfs]
@@ -34,11 +24,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Concepts
 
 - **Block device** — disk or virtual disk: `/dev/sda`, `/dev/nvme0n1`, `/dev/vda`.

@@ -35,17 +35,7 @@ IaC means describing your infrastructure (servers, networks, databases, IAM, K8s
 ## High-level workflow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/07-terraform-README-1-8db28dad.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/07-terraform-README-1-8db28dad.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/07-terraform-README-1-8db28dad.svg" alt="diagram" /></p>
+<p align="center"><img src="../assets/diagrams/07-terraform-README-1-8db28dad.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -62,11 +52,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ---
 
 ## Course Map

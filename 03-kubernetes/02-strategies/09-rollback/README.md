@@ -29,17 +29,7 @@ You can:
 ## Pod transition (rollback = a new RollingUpdate to the old image)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-09-rollback-README-1-ae9488c2.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-09-rollback-README-1-ae9488c2.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-09-rollback-README-1-ae9488c2.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-09-rollback-README-1-ae9488c2.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -58,10 +48,56 @@ sequenceDiagram
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Every Deployment keeps a revision history (size = `revisionHistoryLimit`). Rollback is a normal RollingUpdate that re-applies an older pod template. It only reverts the template — Secrets, ConfigMaps, and CRDs need their own rollback path.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: hello-rollback
+      annotations:
+        kubernetes.io/change-cause: "release v2.0 — bumped hello-app image"
+    spec:
+      replicas: 3
+      revisionHistoryLimit: 10        # keep 10 old ReplicaSets for undo
+      selector:
+        matchLabels: { app: hello-rollback }
+      template:
+        metadata:
+          labels: { app: hello-rollback }
+        spec:
+          containers:
+            - name: hello
+              image: gcr.io/google-samples/hello-app:2.0
+              ports: [{ containerPort: 8080 }]
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl rollout history deployment/hello-rollback
+    kubectl rollout undo    deployment/hello-rollback
+    kubectl rollout undo    deployment/hello-rollback --to-revision=3
+    kubectl rollout pause   deployment/hello-rollback
+    kubectl rollout resume  deployment/hello-rollback
+    kubectl rollout restart deployment/hello-rollback
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    $ kubectl rollout history deployment/hello-rollback
+    deployment.apps/hello-rollback
+    REVISION  CHANGE-CAUSE
+    1         release v1.0 — initial
+    2         release v2.0 — bumped hello-app image
+    $ kubectl rollout undo deployment/hello-rollback
+    deployment.apps/hello-rollback rolled back
+    $ kubectl rollout status deployment/hello-rollback
+    deployment "hello-rollback" successfully rolled out
+    ```
 
 ## Files
 

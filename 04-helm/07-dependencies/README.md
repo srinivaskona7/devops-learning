@@ -5,17 +5,7 @@
 A parent chart that bundles other charts. Useful for deploying a stack (app + db + cache) as one release.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-07-dependencies-README-1-15411ab8.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-07-dependencies-README-1-15411ab8.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-07-dependencies-README-1-15411ab8.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-07-dependencies-README-1-15411ab8.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -27,11 +17,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Declare Dependencies
 
 `Chart.yaml`:

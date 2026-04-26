@@ -5,17 +5,7 @@ Security is not a feature — it's a layered discipline. The CNCF defines the **
 ## The 4Cs
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/06-security-README-1-e1e0e5e2.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/06-security-README-1-e1e0e5e2.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/06-security-README-1-e1e0e5e2.svg" alt="diagram" /></p>
+<p align="center"><img src="../assets/diagrams/06-security-README-1-e1e0e5e2.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -38,11 +28,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | Layer | Concerns | Tools |
 |-------|----------|-------|
 | **Cloud** | IAM, network boundaries, KMS, audit logs | AWS IAM, GCP Org Policy, Azure PIM |

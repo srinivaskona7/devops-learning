@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-1-c2c628e7.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-1-c2c628e7.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   subgraph VMs
@@ -35,11 +25,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | | VM | Container |
 |---|----|-----------|
 | Boot | seconds–minutes | milliseconds |
@@ -48,19 +33,46 @@ flowchart TB
 | Isolation | hardware-virtualized | namespaces + cgroups |
 | Density | 10s/host | 100s–1000s/host |
 
+## Quick reference
+
+=== ":material-lightbulb-outline: Concept"
+    A container is just a Linux process wrapped in namespaces (what it can see) and cgroups (what it can use), running on the host kernel. Images are stacks of read-only layers defined by the OCI spec, so the same artifact runs under Docker, containerd, or podman.
+
+=== ":material-file-code-outline: Snippet"
+    ```yaml
+    # OCI image config (excerpt)
+    architecture: amd64
+    os: linux
+    rootfs:
+      type: layers
+      diff_ids:
+        - sha256:aaa...
+        - sha256:bbb...
+    config:
+      Cmd: ["nginx", "-g", "daemon off;"]
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    docker pull nginx:1.27-alpine
+    docker history nginx:1.27-alpine
+    docker run --rm -d --name demo nginx:1.27-alpine
+    docker exec demo ls -la /proc/1/ns
+    docker rm -f demo
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    IMAGE        CREATED       CREATED BY                          SIZE
+    <sha>        2 weeks ago   CMD ["nginx" "-g" "daemon off;"]    0B
+    lrwxrwxrwx ... mnt -> 'mnt:[4026532...]'
+    lrwxrwxrwx ... net -> 'net:[4026532...]'
+    lrwxrwxrwx ... pid -> 'pid:[4026532...]'
+    ```
+
 ## How isolation actually works (Linux)
 
 A container is just a Linux process with some kernel features wrapped around it:
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-2-f9978ece.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-2-f9978ece.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
 
 <!-- mermaid:rendered -->
 <p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-2-f9978ece.svg" alt="diagram" /></p>
@@ -83,11 +95,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ### Namespaces — *what the process can see*
 - `mnt` — own filesystem mounts
 - `pid` — own PID 1, can't see host processes
@@ -121,16 +128,6 @@ An image is an ordered stack of read-only filesystem layers + a JSON config. Eac
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-3-1d08ec7e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-01-concepts-README-3-1d08ec7e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   L4[Layer 4: COPY app.py] --> L3
@@ -141,11 +138,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 When you start a container, Docker stacks all read-only layers and adds a thin **read-write layer** on top (copy-on-write). Stop the container → R/W layer is discarded unless committed.
 
 ## Try it — see the layers

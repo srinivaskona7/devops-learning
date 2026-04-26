@@ -14,7 +14,7 @@ Flagger is the GitOps-native progressive-delivery controller. It:
 6. If thresholds pass for N intervals → promote. If they fail → rollback.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-08-progressive-delivery-flagger-README-1-7b5d9830.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-08-progressive-delivery-flagger-README-1-7b5d9830.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -1,17 +1,7 @@
 # 10 — Kubernetes Changelog (1.27 → 1.33)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-1-87a19f54.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-1-87a19f54.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-1-87a19f54.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-1-87a19f54.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -28,11 +18,6 @@ timeline
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## How to read a Kubernetes release
 
 1. **Release blog**: `https://kubernetes.io/blog/YYYY/MM/DD-kubernetes-vX-YY-release/` — narrative summary.
@@ -43,17 +28,7 @@ timeline
 ## SIG structure (who writes what)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-2-ff837745.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-2-ff837745.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-2-ff837745.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-2-ff837745.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -71,11 +46,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 Cadence: ~3 minor releases/year. Patch releases monthly (sometimes faster for CVEs).
 
 ## Index

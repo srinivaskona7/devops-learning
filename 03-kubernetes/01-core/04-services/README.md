@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-04-services-README-1-8740b46e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-04-services-README-1-8740b46e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   C[Client / other pod] -->|service-name:80| SVC[Service<br/>ClusterIP 10.96.x.y]
@@ -28,12 +18,53 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 Without a Service, you'd hardcode pod IPs. With one, you call `http://hello-app.default.svc.cluster.local` and traffic round-robins to healthy backends.
+
+## Quick reference
+
+=== ":material-lightbulb-outline: Concept"
+    A Service is a stable virtual IP plus DNS name that load-balances to a label-matched set of Pods. It decouples clients from ephemeral pod IPs and is the unit of east-west traffic in the cluster.
+
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: hello-app
+    spec:
+      type: ClusterIP
+      selector:
+        app: hello-app
+      ports:
+        - name: http
+          port: 80
+          targetPort: 8080
+          protocol: TCP
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f clusterip.yaml
+    kubectl get svc hello-app
+    kubectl get endpoints hello-app
+    kubectl run tmp --rm -it --image=curlimages/curl --restart=Never -- \
+      curl -s http://hello-app/
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    service/hello-app created
+
+    NAME        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+    hello-app   ClusterIP   10.96.142.18    <none>        80/TCP    3s
+
+    NAME        ENDPOINTS                                       AGE
+    hello-app   10.244.1.5:8080,10.244.1.7:8080,10.244.2.4:8080 5s
+
+    Hello, world!
+    Version: 1.0.0
+    Hostname: hello-app-7d4b9c8f6-x2k7p
+    ```
 
 ## Service types
 
@@ -52,16 +83,6 @@ Without a Service, you'd hardcode pod IPs. With one, you call `http://hello-app.
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-04-services-README-2-dfe774c2.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-04-services-README-2-dfe774c2.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   KP[kube-proxy] --> IPT[iptables<br/>random backend per conn]
@@ -70,11 +91,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Apply & observe
 
 ```bash

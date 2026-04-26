@@ -12,17 +12,7 @@
 ## Mental model
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-01-three-pillars-README-1-7bdf41a8.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-01-three-pillars-README-1-7bdf41a8.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-01-three-pillars-README-1-7bdf41a8.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-01-three-pillars-README-1-7bdf41a8.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -46,11 +36,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Metrics
 
 - **Counter** — monotonically increasing (requests, errors). Use `rate()` over it.

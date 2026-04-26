@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-06-storage-README-1-f6252cbf.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-06-storage-README-1-f6252cbf.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   POD[Pod] --> PVC[PersistentVolumeClaim<br/>'I want 10Gi RWO']
@@ -28,10 +18,48 @@ flowchart TB
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    A PersistentVolumeClaim is a pod's request for storage; a StorageClass dynamically provisions a matching PersistentVolume backed by a real disk. The PVC outlives the pod, so data survives restarts and rescheduling.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: data-pvc
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+      # storageClassName: standard   # omit to use cluster default
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl get storageclass
+    kubectl apply -f pvc.yaml
+    kubectl get pvc data-pvc
+    kubectl get pv
+    kubectl describe pvc data-pvc | tail -10
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    NAME       PROVISIONER             RECLAIMPOLICY  VOLUMEBINDINGMODE      AGE
+    standard   rancher.io/local-path   Delete         WaitForFirstConsumer   42m
+
+    persistentvolumeclaim/data-pvc created
+
+    NAME       STATUS   VOLUME            CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+    data-pvc   Bound    pvc-7a3f...c1     1Gi        RWO            standard       8s
+
+    NAME             CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM
+    pvc-7a3f...c1    1Gi        RWO            Delete           Bound    default/data-pvc
+    ```
 
 ## Volume types (in-pod, ephemeral)
 
@@ -43,16 +71,6 @@ flowchart TB
 | `downwardAPI` | Pod | Pod metadata as files |
 
 ## PV / PVC lifecycle
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-06-storage-README-2-cf12f5de.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-06-storage-README-2-cf12f5de.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
 
 <!-- mermaid:rendered -->
 <p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-06-storage-README-2-cf12f5de.svg" alt="diagram" /></p>
@@ -75,11 +93,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Access modes
 
 | Mode | Meaning |

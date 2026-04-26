@@ -1,17 +1,7 @@
 # 08 — Batch and AI Workloads
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-08-batch-and-ai-workloads-README-1-48611057.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-08-batch-and-ai-workloads-README-1-48611057.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-08-batch-and-ai-workloads-README-1-48611057.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-08-batch-and-ai-workloads-README-1-48611057.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -28,11 +18,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Native primitives
 - **Job**: run-to-completion pods. `completions`, `parallelism`, `backoffLimit`, `activeDeadlineSeconds`.
 - **CronJob**: cron-scheduled Jobs.

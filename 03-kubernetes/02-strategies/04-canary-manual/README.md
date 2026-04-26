@@ -25,17 +25,7 @@
 ## Pod transition
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-04-canary-manual-README-1-141306a7.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-04-canary-manual-README-1-141306a7.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-04-canary-manual-README-1-141306a7.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-04-canary-manual-README-1-141306a7.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -56,10 +46,44 @@ sequenceDiagram
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Two Deployments share one Service via a common label. Replica ratio approximates the traffic split (9 stable + 1 canary ~= 90/10). Promote by scaling canary up and stable down; abort by scaling canary to zero.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: hello-canary-app
+    spec:
+      selector:
+        app: hello-canary-app   # selects BOTH stable + canary pods
+      ports:
+        - port: 80
+          targetPort: 8080
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f deployment-stable.yaml -f deployment-canary.yaml -f service.yaml
+    kubectl get endpoints hello-canary-app
+    # promote
+    kubectl scale deploy hello-canary --replicas=10
+    kubectl scale deploy hello-stable --replicas=0
+    # abort
+    kubectl scale deploy hello-canary --replicas=0
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    NAME               ENDPOINTS                                                 AGE
+    hello-canary-app   10.244.1.5:8080,10.244.1.6:8080,10.244.1.7:8080 + 7 more  2m
+    $ for i in $(seq 1 50); do curl -s http://hello-canary-app/; done | sort | uniq -c
+      45 Hello, world! Version: 1.0.0
+       5 Hello, world! Version: 2.0.0
+    ```
 
 ## Files
 

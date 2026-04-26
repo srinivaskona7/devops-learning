@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-13-production-grade-deployment-README-1-8e23260a.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-13-production-grade-deployment-README-1-8e23260a.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   D[Deployment] --> P[Probes: startup, readiness, liveness]
@@ -40,10 +30,58 @@ flowchart TB
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    A production-grade workload bundles a Deployment with probes, resource limits, securityContext, anti-affinity, an HPA, a PodDisruptionBudget, and a NetworkPolicy. Kustomize composes them into one apply.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: policy/v1
+    kind: PodDisruptionBudget
+    metadata:
+      name: hello-prod
+    spec:
+      minAvailable: 2
+      selector:
+        matchLabels:
+          app: hello-prod
+    ---
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: hello-prod-default-deny
+    spec:
+      podSelector:
+        matchLabels: { app: hello-prod }
+      policyTypes: [Ingress, Egress]
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -k .
+    kubectl get all,pdb,hpa,networkpolicy -l app=hello-prod
+    kubectl get pods -l app=hello-prod -o wide
+    kubectl drain kind-worker --ignore-daemonsets --delete-emptydir-data
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    deployment.apps/hello-prod created
+    service/hello-prod created
+    poddisruptionbudget.policy/hello-prod created
+    horizontalpodautoscaler.autoscaling/hello-prod created
+    networkpolicy.networking.k8s.io/hello-prod-default-deny created
+
+    NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+    hello-prod       3/3     3            3           20s
+
+    NAME              MIN AVAILABLE   ALLOWED DISRUPTIONS   AGE
+    pdb/hello-prod    2               1                     20s
+
+    error: cannot delete Pods declare no controller (use --force):
+    evicting pod default/hello-prod-... (PDB violation)
+    ```
 
 ## What's in this folder
 

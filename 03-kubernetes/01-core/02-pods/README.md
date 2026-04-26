@@ -11,16 +11,6 @@ Containers are isolated. But sometimes two processes are so tightly coupled (app
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-02-pods-README-1-5bc0cf79.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-02-pods-README-1-5bc0cf79.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   subgraph POD["Pod (shares net + IPC + volumes)"]
@@ -35,22 +25,56 @@ flowchart LR
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    A Pod is the atomic scheduling unit in Kubernetes — one or more tightly-coupled containers that share a network namespace, IPC, and volumes. They live and die together on a single node.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: hello-world
+      labels:
+        app: hello-world
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: hello
+          image: gcr.io/google-samples/hello-app:1.0
+          ports:
+            - containerPort: 8080
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits:   { cpu: "200m", memory: "128Mi" }
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f 01-hello-world.yaml
+    kubectl get pod hello-world -w
+    kubectl describe pod hello-world | tail -20
+    kubectl logs hello-world
+    kubectl port-forward pod/hello-world 8080:8080
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    NAME          READY   STATUS              RESTARTS   AGE
+    hello-world   0/1     ContainerCreating   0          1s
+    hello-world   1/1     Running             0          4s
+
+    Events:
+      Type    Reason     Age   From               Message
+      ----    ------     ----  ----               -------
+      Normal  Scheduled  5s    default-scheduler  Assigned to kind-worker
+      Normal  Pulled     4s    kubelet            Image already present
+      Normal  Created    4s    kubelet            Created container hello
+      Normal  Started    4s    kubelet            Started container hello
+    ```
 
 ## Pod lifecycle
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-02-pods-README-2-62b373fa.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-02-pods-README-2-62b373fa.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
 
 <!-- mermaid:rendered -->
 <p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-02-pods-README-2-62b373fa.svg" alt="diagram" /></p>
@@ -70,11 +94,6 @@ stateDiagram-v2
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## The 3 manifests in this folder
 
 | File | Pattern | Use case |

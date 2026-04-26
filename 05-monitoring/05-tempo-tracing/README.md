@@ -15,17 +15,7 @@ A **trace** answers "where did the time go?" across services. It's a tree of **s
 ## Trace anatomy
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-1-707803d8.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-1-707803d8.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-1-707803d8.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-1-707803d8.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -51,25 +41,10 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Tempo architecture
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-2-2639ab54.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-2-2639ab54.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-2-2639ab54.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-2-2639ab54.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -87,11 +62,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Tempo vs Jaeger
 
 | | Tempo | Jaeger |

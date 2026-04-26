@@ -1,0 +1,25 @@
+// markdownlint-cli2 config
+// Docs: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+{
+  "default": true,
+
+  // Allow long lines (tables, mermaid, code samples)
+  "MD013": false,
+
+  // Allow inline HTML — we use <details>, <img>, <p align="center">
+  "MD033": false,
+
+  // Enforce blank lines around headings / lists / fenced blocks
+  "MD022": true,
+  "MD031": true,
+  "MD032": true,
+
+  // Require a language tag on fenced code blocks
+  "MD040": true,
+
+  // Allow duplicate headings under different parents (siblings_only)
+  "MD024": { "siblings_only": true },
+
+  // First line need not be a top-level heading (front-matter friendly)
+  "MD041": false
+}

@@ -13,17 +13,7 @@ OpenTelemetry is the **vendor-neutral standard** for instrumenting applications.
 ## SDK vs Collector
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-README-1-cde68aea.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-README-1-cde68aea.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-README-1-cde68aea.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-README-1-cde68aea.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -48,11 +38,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 **Rule:** apps speak only OTLP to a local collector. The collector handles routing, sampling, retries, and batching. Never let apps talk to backends directly.
 
 ## OTLP

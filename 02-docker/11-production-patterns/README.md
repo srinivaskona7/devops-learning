@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-11-production-patterns-README-1-48a8816d.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-11-production-patterns-README-1-48a8816d.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   A[I. Codebase: one repo per image] --> B[II. Deps explicit + isolated]
@@ -35,10 +25,42 @@ flowchart TB
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Production-grade containers obey the 12-factor app: stateless, configured by env, logging to stdout, with proper PID 1 signal handling, healthchecks, resource limits, and immutable pinned images. Build once, promote the same artifact through every environment.
 
-</details>
+=== ":material-file-code-outline: Manifest / Snippet"
+    ```yaml
+    # Dockerfile excerpt — production-ready runtime stage
+    FROM python:3.12.6-slim AS runtime
+    RUN groupadd --system --gid 10001 app && \
+        useradd  --system --uid 10001 --gid app --no-create-home app
+    USER app
+    EXPOSE 8080
+    HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
+      CMD wget -qO- http://localhost:8080/healthz || exit 1
+    STOPSIGNAL SIGTERM
+    ENTRYPOINT ["python", "-m", "gunicorn", "--bind=0.0.0.0:8080", "app:app"]
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    docker run -d --name api \
+      --init \
+      --restart unless-stopped \
+      --memory 512m --cpus 1.0 --pids-limit 200 \
+      -e DATABASE_URL=postgres://... \
+      -p 8080:8080 myapp:1.0
+    docker stop --time 30 api
+    docker ps --filter name=api
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    CONTAINER ID   IMAGE       STATUS                    PORTS
+    abc123def456   myapp:1.0   Up 2 minutes (healthy)    0.0.0.0:8080->8080/tcp
+    ```
 
 ## Pattern 1 — Init system (`tini`) for proper signal handling
 
@@ -173,16 +195,6 @@ db_pw = open("/run/secrets/db-password").read().strip()
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-11-production-patterns-README-2-92292169.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-11-production-patterns-README-2-92292169.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   Build[Build: source -> image] --> Release[Release: image + config -> immutable artifact]
@@ -190,11 +202,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 Same image runs in dev, staging, prod. Only **env config** differs. Never rebuild for prod.
 
 ## Pattern 10 — Pin EVERYTHING

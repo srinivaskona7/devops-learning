@@ -29,17 +29,7 @@ Two knobs control the pace:
 ## Pod transition (replicas=4, maxSurge=1, maxUnavailable=0)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-02-rolling-update-README-1-8cfdec7d.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-02-rolling-update-README-1-8cfdec7d.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-02-rolling-update-README-1-8cfdec7d.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-02-rolling-update-README-1-8cfdec7d.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -62,10 +52,55 @@ sequenceDiagram
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Rolling update replaces pods incrementally so the Service always has Ready endpoints. `maxSurge` controls extra pods above desired; `maxUnavailable` controls how many can go missing. Safest pairing: `maxSurge=1, maxUnavailable=0`.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: hello-rolling
+    spec:
+      replicas: 4
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 1
+          maxUnavailable: 0
+      selector:
+        matchLabels: { app: hello-rolling }
+      template:
+        metadata:
+          labels: { app: hello-rolling, version: v1 }
+        spec:
+          containers:
+            - name: hello
+              image: gcr.io/google-samples/hello-app:1.0
+              ports: [{ containerPort: 8080 }]
+              readinessProbe:
+                httpGet: { path: /, port: 8080 }
+                initialDelaySeconds: 2
+                periodSeconds: 2
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f deployment.yaml
+    kubectl set image deployment/hello-rolling hello=gcr.io/google-samples/hello-app:2.0
+    kubectl rollout status deployment/hello-rolling
+    kubectl get pods -L version --watch
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    Waiting for deployment "hello-rolling" rollout to finish: 1 out of 4 new replicas have been updated...
+    Waiting for deployment "hello-rolling" rollout to finish: 2 of 4 updated replicas are available...
+    Waiting for deployment "hello-rolling" rollout to finish: 3 of 4 updated replicas are available...
+    deployment "hello-rolling" successfully rolled out
+    ```
 
 ## Files
 

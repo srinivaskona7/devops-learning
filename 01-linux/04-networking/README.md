@@ -13,11 +13,6 @@ Microservices, containers, and clouds are 90% networking. Reading `ip`, `ss`, an
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-04-networking-README-1-079d1c73.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
     APP[App] --> SOCK[Socket]
@@ -31,8 +26,36 @@ flowchart LR
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Linux networking is layered: interfaces carry IPs, the kernel routes packets, sockets bind to ports, and DNS turns names into addresses. Each layer has a modern tool — `ip`, `ss`, `dig`, `curl` — and reading them fluently shortens any outage.
+
+=== ":material-file-code-outline: Snippet"
+    ```bash
+    # /etc/resolv.conf — DNS resolvers
+    nameserver 1.1.1.1
+    nameserver 8.8.8.8
+    search example.com
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    ip -br -c addr
+    ip route
+    ss -tulpn
+    dig +short example.com
+    curl -sI http://localhost:8080/
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    lo     UNKNOWN  127.0.0.1/8 ::1/128
+    eth0   UP       172.17.0.2/16
+    default via 172.17.0.1 dev eth0
+    tcp LISTEN 0 5  0.0.0.0:8080  0.0.0.0:*  users:(("python3",pid=42,fd=3))
+    HTTP/1.0 200 OK
+    ```
 
 ## Concepts
 

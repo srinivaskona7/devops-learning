@@ -5,17 +5,7 @@ Kubernetes RBAC has four object types. Understand them or you will grant `cluste
 ## Mental Model
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-01-rbac-deep-dive-README-1-71f83d6a.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-01-rbac-deep-dive-README-1-71f83d6a.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-01-rbac-deep-dive-README-1-71f83d6a.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/06-security-01-rbac-deep-dive-README-1-71f83d6a.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -42,11 +32,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Anatomy of a Rule
 
 ```yaml

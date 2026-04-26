@@ -3,17 +3,7 @@
 ## Validation Pipeline
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-11-best-practices-README-1-2813afdf.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-11-best-practices-README-1-2813afdf.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-11-best-practices-README-1-2813afdf.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-11-best-practices-README-1-2813afdf.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -27,11 +17,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Standard Labels (recommended K8s convention)
 
 Always emit these on every resource:

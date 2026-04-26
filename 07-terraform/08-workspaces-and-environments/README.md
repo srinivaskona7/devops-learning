@@ -63,17 +63,7 @@ inputs = { env = "prod", instance_type = "m5.large" }
 ## Decision flowchart
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-08-workspaces-and-environments-README-1-d106c0fd.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-08-workspaces-and-environments-README-1-d106c0fd.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-08-workspaces-and-environments-README-1-d106c0fd.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-08-workspaces-and-environments-README-1-d106c0fd.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -89,9 +79,4 @@ flowchart TD
 ```
 
 </details>
-
-</details>
-
-</details>
-
 See [examples.md](examples.md) for runnable workspace commands.

@@ -5,17 +5,7 @@ Prometheus is a **pull-based**, **dimensional** time-series database with a powe
 ## Architecture
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-README-1-d994fbdd.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-README-1-d994fbdd.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-README-1-d994fbdd.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-README-1-d994fbdd.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -51,11 +41,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Components
 
 | Component | Purpose | Image |

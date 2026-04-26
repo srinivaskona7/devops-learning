@@ -12,17 +12,7 @@ SLOs translate "the service must be reliable" into a number you can defend with 
 ## Mental model
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-09-slo-engineering-README-1-3c051af9.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-09-slo-engineering-README-1-3c051af9.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-09-slo-engineering-README-1-3c051af9.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-09-slo-engineering-README-1-3c051af9.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -37,11 +27,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Multi-window, multi-burn-rate alerts
 
 The Google SRE workbook recipe — fires fast on real outages, doesn't flap on noise.

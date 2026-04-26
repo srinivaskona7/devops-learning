@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-10-probes-and-health-README-1-080c41d3.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-10-probes-and-health-README-1-080c41d3.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   START([Container start]) --> SUP{Startup probe?}
@@ -33,16 +23,64 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | Probe | Failure action | Use for |
 |-------|----------------|---------|
 | **startupProbe** | Counted as liveness fail (kills container) | Slow-starting apps (JVM, ML). Disables others until pass. |
 | **readinessProbe** | Pod removed from Service Endpoints | Decide WHEN to send traffic |
 | **livenessProbe** | Container restarted | Detect deadlock / hung process |
+
+## Quick reference
+
+=== ":material-lightbulb-outline: Concept"
+    Probes let the kubelet decide if a container is starting, alive, or ready for traffic. Liveness restarts hung processes, readiness gates Service endpoints, and startup defers the other two for slow boots.
+
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: probes-demo
+    spec:
+      containers:
+        - name: app
+          image: gcr.io/google-samples/hello-app:1.0
+          ports:
+            - { name: http, containerPort: 8080 }
+          startupProbe:
+            httpGet: { path: /, port: http }
+            failureThreshold: 30
+            periodSeconds: 2
+          readinessProbe:
+            httpGet: { path: /, port: http }
+            periodSeconds: 5
+            failureThreshold: 2
+          livenessProbe:
+            exec:
+              command: ["sh", "-c", "test -f /tmp/healthy"]
+            periodSeconds: 5
+            failureThreshold: 3
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f probes-demo.yaml
+    kubectl get pod probes-demo -w
+    kubectl describe pod probes-demo | grep -A2 -E 'Liveness|Readiness|Startup'
+    kubectl exec probes-demo -- rm /tmp/healthy
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    NAME          READY   STATUS    RESTARTS   AGE
+    probes-demo   0/1     Running   0          3s
+    probes-demo   1/1     Running   0          12s
+
+    Liveness:   exec [sh -c test -f /tmp/healthy] delay=0s timeout=1s period=5s #success=1 #failure=3
+    Readiness:  http-get http://:http/ delay=0s timeout=1s period=5s #success=1 #failure=2
+    Startup:    http-get http://:http/ delay=0s timeout=1s period=2s #success=1 #failure=30
+
+    probes-demo   1/1     Running   1 (2s ago)   45s
+    ```
 
 ## Probe handlers
 

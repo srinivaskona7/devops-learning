@@ -15,17 +15,7 @@
 ## Release Lifecycle
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-01-concepts-README-1-28c40233.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-01-concepts-README-1-28c40233.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-01-concepts-README-1-28c40233.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-01-concepts-README-1-28c40233.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -54,11 +44,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Helm 3 vs Helm 2
 
 | Aspect | Helm 2 | Helm 3 |

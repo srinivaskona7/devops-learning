@@ -1,17 +1,7 @@
 # 11 — Troubleshooting Deep Dive
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-11-troubleshooting-deep-dive-README-1-f85db80e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-11-troubleshooting-deep-dive-README-1-f85db80e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-11-troubleshooting-deep-dive-README-1-f85db80e.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-11-troubleshooting-deep-dive-README-1-f85db80e.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -31,10 +21,50 @@ flowchart TD
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Triage starts with classifying the symptom (ImagePullBackOff, CrashLoop, OOMKilled, Pending, networking) then drilling into events and previous-container logs. Ephemeral containers (`kubectl debug`) attach a debugging toolbox to a running pod without rebuilding the image.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: netshoot
+      labels: { app: netshoot }
+    spec:
+      containers:
+        - name: netshoot
+          image: nicolaka/netshoot:latest
+          command: ["sleep", "infinity"]
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN", "NET_RAW"]
+      restartPolicy: Always
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl get events --sort-by=.lastTimestamp -A | tail -20
+    kubectl describe pod <pod>
+    kubectl logs <pod> --previous
+    kubectl debug -it <pod> --image=nicolaka/netshoot --target=<container>
+    kubectl debug node/<node> -it --image=busybox
+    kubectl top pod
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    LAST SEEN   TYPE      REASON             OBJECT             MESSAGE
+    32s         Warning   BackOff            pod/api-7d-abcde   Back-off restarting failed container
+    20s         Warning   Unhealthy          pod/api-7d-abcde   Readiness probe failed: HTTP 503
+    State:          Waiting
+      Reason:       CrashLoopBackOff
+    Last State:     Terminated
+      Reason:       OOMKilled
+      Exit Code:    137
+    ```
 
 ## Tooling
 

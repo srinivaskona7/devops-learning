@@ -13,11 +13,6 @@ Half of operations work is "find the lines that say X, extract field Y, count by
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-08-text-processing-README-1-d13c5088.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
     LOG[("access.log")] --> GREP["grep 500"]
@@ -30,8 +25,33 @@ flowchart LR
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Unix text tools (`grep`, `cut`, `sort`, `uniq`, `sed`, `awk`, `jq`) compose through pipes: each one transforms a stream and hands it off. The classic `grep | awk | sort | uniq -c | sort -rn` pipeline answers most "find the lines, count by field" questions in seconds.
+
+=== ":material-file-code-outline: Snippet"
+    ```bash
+    # Sample nginx access log line
+    10.0.0.1 - - [26/Apr/2026:10:00:01 +0000] "GET /api/users HTTP/1.1" 200 1532
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    awk '{print $1}' /tmp/access.log | sort | uniq -c | sort -rn
+    awk '$9==500 {print $7}' /tmp/access.log | sort | uniq -c | sort -rn | head -5
+    grep -c 'HTTP/2' /tmp/access.log
+    echo '{"items":[{"id":2,"name":"b"}]}' | jq -r '.items[].name'
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+       3 10.0.0.1
+       2 10.0.0.2
+       1 10.0.0.3
+       3 /api/orders
+    b
+    ```
 
 ## Concepts
 

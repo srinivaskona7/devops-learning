@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-06-compose-README-1-75ca6057.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-06-compose-README-1-75ca6057.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   Project[compose.yaml project] --> SVC[services]
@@ -33,12 +23,47 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 Compose v2 ships with Docker Engine — invoke as `docker compose` (space, not hyphen).
+
+## Quick reference
+
+=== ":material-lightbulb-outline: Concept"
+    Docker Compose declares a multi-container app — services, networks, volumes, secrets — in a single `compose.yaml`. One `docker compose up -d` builds the project network, starts dependencies in healthy order, and gives every service DNS by name.
+
+=== ":material-file-code-outline: Manifest / Snippet"
+    ```yaml
+    services:
+      web:
+        image: nginx:1.27-alpine
+        ports: ["8080:80"]
+        depends_on:
+          db: { condition: service_healthy }
+      db:
+        image: postgres:16
+        environment: { POSTGRES_PASSWORD: secret }
+        healthcheck:
+          test: ["CMD-SHELL", "pg_isready -U postgres"]
+          interval: 5s
+        volumes: [pgdata:/var/lib/postgresql/data]
+    volumes: { pgdata: {} }
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    docker compose up -d
+    docker compose ps
+    docker compose logs -f web
+    docker compose down -v
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    [+] Running 4/4
+     ✔ Network myapp_default     Created
+     ✔ Volume "myapp_pgdata"     Created
+     ✔ Container myapp-db-1      Healthy
+     ✔ Container myapp-web-1     Started
+    ```
 
 ## Anatomy
 

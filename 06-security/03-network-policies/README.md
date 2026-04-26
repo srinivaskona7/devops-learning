@@ -17,17 +17,7 @@ By default, **all pods can talk to all pods** in a Kubernetes cluster — a flat
 ## Decision Flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-03-network-policies-README-1-0d395d98.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-03-network-policies-README-1-0d395d98.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-03-network-policies-README-1-0d395d98.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/06-security-03-network-policies-README-1-0d395d98.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -41,11 +31,6 @@ flowchart TD
 ```
 
 </details>
-
-</details>
-
-</details>
-
 The trap: once *any* policy selects a pod for a direction, **everything else for that direction is denied** unless explicitly allowed. This is why default-deny + targeted allows is the right pattern.
 
 ## Selectors

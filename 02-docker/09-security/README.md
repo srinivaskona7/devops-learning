@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-09-security-README-1-41522feb.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-09-security-README-1-41522feb.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   A[Pick a minimal base] --> B[Pin by digest, not :latest]
@@ -31,10 +21,41 @@ flowchart TB
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Default Docker is convenient, not safe: containers run as root, with all caps, off floating tags. Hardening means a non-root `USER`, pinned digests, dropped capabilities, a read-only rootfs, vulnerability scans, and signed images.
 
-</details>
+=== ":material-file-code-outline: Manifest / Snippet"
+    ```yaml
+    # compose.yaml — hardened service
+    services:
+      api:
+        image: ghcr.io/me/myapi@sha256:abc...
+        user: "10001:10001"
+        read_only: true
+        tmpfs: [/tmp]
+        cap_drop: [ALL]
+        cap_add:  [NET_BIND_SERVICE]
+        security_opt: [no-new-privileges:true]
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    trivy image --severity HIGH,CRITICAL myapp:1.0
+    cosign sign --key cosign.key ghcr.io/me/myapp:1.0
+    cosign verify --key cosign.pub ghcr.io/me/myapp:1.0
+    docker run --read-only --cap-drop=ALL \
+      --security-opt no-new-privileges --user 65532:65532 myimg
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    myapp:1.0 (debian 12.5)
+    Total: 3 (HIGH: 2, CRITICAL: 1)
+    Verification for ghcr.io/me/myapp:1.0 --
+      - The signatures were verified against the specified public key
+    ```
 
 ## 1. Non-root USER
 

@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-11-rbac-README-1-333d51b0.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-11-rbac-README-1-333d51b0.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   SUB[Subject<br/>User / Group / ServiceAccount] --> RB[RoleBinding]
@@ -30,11 +20,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | Object | Scope | Pairs with |
 |--------|-------|------------|
 | **Role** | One namespace | RoleBinding |
@@ -42,19 +27,69 @@ flowchart LR
 | **RoleBinding** | One namespace | Role or ClusterRole |
 | **ClusterRoleBinding** | Cluster-wide | ClusterRole only |
 
+## Quick reference
+
+=== ":material-lightbulb-outline: Concept"
+    RBAC answers "who can do what, where". Subjects (User, Group, ServiceAccount) get verbs on resources via Role/ClusterRole, attached through RoleBinding/ClusterRoleBinding. Rules are additive and never deny.
+
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: app-reader
+      namespace: default
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+      namespace: default
+      name: configmap-reader
+    rules:
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get", "list", "watch"]
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: app-reader-binding
+      namespace: default
+    subjects:
+      - kind: ServiceAccount
+        name: app-reader
+        namespace: default
+    roleRef:
+      kind: Role
+      name: configmap-reader
+      apiGroup: rbac.authorization.k8s.io
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f rbac-example.yaml
+    kubectl auth can-i list configmaps --as=system:serviceaccount:default:app-reader
+    kubectl auth can-i delete pods --as=system:serviceaccount:default:app-reader
+    kubectl auth can-i --list --as=system:serviceaccount:default:app-reader -n default
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    serviceaccount/app-reader created
+    role.rbac.authorization.k8s.io/configmap-reader created
+    rolebinding.rbac.authorization.k8s.io/app-reader-binding created
+
+    yes
+    no
+
+    Resources                  Non-Resource URLs   Resource Names   Verbs
+    configmaps                  []                  []               [get list watch]
+    selfsubjectreviews.authn..  []                  []               [create]
+    ```
+
 ## ServiceAccount
 
 Workloads (pods) authenticate to the API server using a **ServiceAccount**. Every namespace has a `default` SA — but you should make purpose-specific ones.
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-11-rbac-README-2-c86a0a30.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-11-rbac-README-2-c86a0a30.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
 
 <!-- mermaid:rendered -->
 <p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-11-rbac-README-2-c86a0a30.svg" alt="diagram" /></p>
@@ -69,11 +104,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Apply & observe
 
 ```bash

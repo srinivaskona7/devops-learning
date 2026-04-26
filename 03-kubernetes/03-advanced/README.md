@@ -5,17 +5,7 @@ Advanced/extensibility topics for learners who already know core Kubernetes (pod
 ## Map
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-03-advanced-README-1-b3638fd0.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-03-advanced-README-1-b3638fd0.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-03-advanced-README-1-b3638fd0.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/03-kubernetes-03-advanced-README-1-b3638fd0.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -37,11 +27,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Index
 
 | # | Topic | Folder |

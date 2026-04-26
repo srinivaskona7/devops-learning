@@ -3,17 +3,7 @@
 ## C4 — Container view
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-02-three-tier-app-architecture-1-3335c0ba.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-02-three-tier-app-architecture-1-3335c0ba.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-02-three-tier-app-architecture-1-3335c0ba.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-02-three-tier-app-architecture-1-3335c0ba.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -46,11 +36,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Decisions
 
 | Decision | Why |
@@ -64,17 +49,7 @@ flowchart TB
 ## Request flow (sequence)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-02-three-tier-app-architecture-2-cfc3ca0c.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-02-three-tier-app-architecture-2-cfc3ca0c.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-02-three-tier-app-architecture-2-cfc3ca0c.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-02-three-tier-app-architecture-2-cfc3ca0c.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -95,11 +70,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Resource targets
 
 | Component | CPU req | Mem req | CPU lim | Mem lim |

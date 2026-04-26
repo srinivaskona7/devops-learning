@@ -11,16 +11,6 @@ Bare Pods don't self-heal across node failures. ReplicaSets keep N pods alive bu
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-03-deployments-README-1-f5d338e7.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-03-deployments-README-1-f5d338e7.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   D[Deployment<br/>nginx v2] --> RS2[ReplicaSet v2<br/>3 pods]
@@ -31,22 +21,59 @@ flowchart TB
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    A Deployment manages a ReplicaSet, which manages Pods. It gives you declarative replica count, rolling updates with surge/unavailability tuning, and one-command rollback to any prior revision.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: hello-app
+    spec:
+      replicas: 3
+      strategy:
+        type: RollingUpdate
+        rollingUpdate: { maxSurge: 1, maxUnavailable: 0 }
+      selector:
+        matchLabels: { app: hello-app }
+      template:
+        metadata:
+          labels: { app: hello-app }
+        spec:
+          containers:
+            - name: hello
+              image: gcr.io/google-samples/hello-app:1.0
+              ports: [{ containerPort: 8080 }]
+              readinessProbe:
+                httpGet: { path: /, port: 8080 }
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f deployment.yaml
+    kubectl rollout status deployment/hello-app
+    kubectl set image deployment/hello-app hello=gcr.io/google-samples/hello-app:2.0
+    kubectl rollout history deployment/hello-app
+    kubectl rollout undo deployment/hello-app
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    deployment.apps/hello-app created
+    Waiting for deployment "hello-app" rollout to finish: 1 of 3 updated...
+    deployment "hello-app" successfully rolled out
+
+    REVISION  CHANGE-CAUSE
+    1         <none>
+    2         kubectl set image deployment/hello-app hello=...:2.0
+
+    deployment.apps/hello-app rolled back
+    ```
 
 ## Rolling update mechanics
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-03-deployments-README-2-ccab5e59.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-03-deployments-README-2-ccab5e59.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
 
 <!-- mermaid:rendered -->
 <p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-03-deployments-README-2-ccab5e59.svg" alt="diagram" /></p>
@@ -72,11 +99,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 Tunable via `strategy.rollingUpdate.maxSurge` and `maxUnavailable`.
 
 ## Manifest walkthrough — `deployment.yaml`

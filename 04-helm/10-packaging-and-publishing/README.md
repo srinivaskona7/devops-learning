@@ -18,17 +18,7 @@ helm template ./hello-app | kubectl apply --dry-run=client -f -
 ## Classic HTTP Repository
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-10-packaging-and-publishing-README-1-aac87194.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-10-packaging-and-publishing-README-1-aac87194.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-10-packaging-and-publishing-README-1-aac87194.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-10-packaging-and-publishing-README-1-aac87194.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -42,11 +32,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ```bash
 mkdir -p charts/
 mv hello-app-0.1.0.tgz charts/

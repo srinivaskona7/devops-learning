@@ -28,11 +28,6 @@ docker exec -it <id> sh
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../../assets/diagrams/02-docker-03-images-and-dockerfile-examples-03-distroless-README-1-ee10f4a9.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   subgraph build["build stage — node:20-alpine"]
@@ -46,9 +41,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
 ## Why bother
 - Smaller (~150 MB vs ~400 MB for `node:20`)
 - No shell → many CVEs simply not exploitable

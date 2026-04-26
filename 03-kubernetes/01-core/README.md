@@ -17,16 +17,6 @@ Docker taught you containers. Kubernetes teaches you to run **fleets** of contai
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-01-core-README-1-e656a4ba.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-01-core-README-1-e656a4ba.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   subgraph CP["Control Plane (master)"]
@@ -65,24 +55,9 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ---
 
 ## The 13-topic learning path
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-01-core-README-2-e88ba7d5.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-01-core-README-2-e88ba7d5.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
 
 <!-- mermaid:rendered -->
 <p align="center"><img src="../../assets/diagrams/03-kubernetes-01-core-README-2-e88ba7d5.svg" alt="diagram" /></p>
@@ -107,11 +82,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ---
 
 ## Index

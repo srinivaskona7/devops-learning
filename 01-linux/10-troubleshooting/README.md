@@ -13,16 +13,6 @@ The previous nine topics taught you the system. This one teaches you how to inte
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-10-troubleshooting-README-1-9d94d476.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-10-troubleshooting-README-1-9d94d476.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
     START([Alert]) --> Q1{Service up?}
@@ -47,10 +37,37 @@ flowchart TB
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Triage starts with logs and resource saturation, then drills into a specific PID with `strace`, `lsof`, and `tcpdump`. Knowing which tool to reach for in the first 60 seconds is what turns a multi-hour outage into a 15-minute fix.
 
-</details>
+=== ":material-file-code-outline: Snippet"
+    ```bash
+    # The Brendan Gregg 60-second triage
+    uptime; dmesg -T | tail; vmstat 1 5
+    mpstat -P ALL 1 1; pidstat 1 1
+    iostat -xz 1 1; free -m
+    sar -n DEV 1 1; sar -n TCP,ETCP 1 1; top
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    journalctl -p err -b
+    lsof -i :8080
+    strace -p 42
+    tcpdump -i any -nn 'port 443' -c 20
+    fuser -v 9000/tcp
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    tcp LISTEN 0 5  0.0.0.0:9000  *:*  users:(("python3",pid=99,fd=3))
+    strace: Process 42 attached
+    read(0,                      <-- blocked here
+                         USER       PID  ACCESS COMMAND
+    9000/tcp:            root        99   F.... python3
+    ```
 
 ## Concepts
 

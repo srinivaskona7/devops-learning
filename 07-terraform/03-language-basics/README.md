@@ -15,17 +15,7 @@ HashiCorp Configuration Language (HCL2) is a declarative DSL. You describe *what
 ## Mermaid: how a configuration is evaluated
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-03-language-basics-README-1-9c7f537d.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-03-language-basics-README-1-9c7f537d.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-03-language-basics-README-1-9c7f537d.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-03-language-basics-README-1-9c7f537d.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -40,11 +30,6 @@ flowchart TD
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Looping: `count` vs `for_each`
 - `count = 3` → creates indexed resources (`aws_instance.web[0]`, `[1]`, `[2]`). Use for **identical** copies.
 - `for_each = toset([...])` or `for_each = { ... }` → creates keyed resources. Use when items have **different identities** (safer — adding/removing one item won't reshuffle the others).

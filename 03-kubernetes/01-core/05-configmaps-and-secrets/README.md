@@ -11,16 +11,6 @@ Hardcoded config = rebuild image for every env change. ConfigMaps + Secrets let 
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-05-configmaps-and-secrets-README-1-53f7d8b0.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-05-configmaps-and-secrets-README-1-53f7d8b0.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   IMG[Container image<br/>same in dev/staging/prod] --> POD[Pod]
@@ -29,10 +19,61 @@ flowchart LR
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    ConfigMaps hold non-sensitive key/value config; Secrets hold sensitive bytes (base64-encoded, optionally encrypted at rest). Both decouple per-environment values from your container image so the same image runs everywhere.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: app-config
+    data:
+      APP_ENV: "production"
+      APP_LOG_LEVEL: "info"
+      app.properties: |
+        server.port=8080
+        feature.dark-mode=true
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: db-credentials
+    type: Opaque
+    stringData:
+      username: appuser
+      password: s3cr3t-rotate-me
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f configmap.yaml -f secret.yaml -f pod-with-config.yaml
+    kubectl get cm,secret
+    kubectl exec app-with-config -- env | grep APP_
+    kubectl exec app-with-config -- cat /etc/config/app.properties
+    kubectl get secret db-credentials -o jsonpath='{.data.password}' | base64 -d
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    configmap/app-config created
+    secret/db-credentials created
+    pod/app-with-config created
+
+    NAME                          DATA   AGE
+    configmap/app-config          3      4s
+    secret/db-credentials         2      4s
+
+    APP_ENV=production
+    APP_LOG_LEVEL=info
+
+    server.port=8080
+    feature.dark-mode=true
+
+    s3cr3t-rotate-me
+    ```
 
 ## How they're consumed
 

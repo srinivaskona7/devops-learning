@@ -13,16 +13,6 @@ Cron jobs, CI pipelines, init scripts, container entrypoints — they're all bas
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-05-shell-scripting-README-1-01681d6a.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-05-shell-scripting-README-1-01681d6a.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
     A[Shebang #!/usr/bin/env bash] --> B[set -euo pipefail<br/>IFS=$'\n\t']
@@ -35,11 +25,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Concepts
 
 - **Shebang** — first line `#!/usr/bin/env bash` for portability.
@@ -50,6 +35,36 @@ flowchart TB
 - **Loops** — `for`, `while`, `until`.
 - **Functions** — `name() { ...; }` — return code only; capture stdout via `$(name)`.
 - **Trap** — run cleanup on signals or `EXIT`.
+
+## Quick reference
+
+=== ":material-lightbulb-outline: Concept"
+    A robust bash script starts with a portable shebang, enables strict mode, parses arguments with defaults, and installs a `trap` for cleanup. That harness turns a brittle one-liner into a script you can hand to cron or CI without fear.
+
+=== ":material-file-code-outline: Snippet"
+    ```bash
+    #!/usr/bin/env bash
+    set -euo pipefail
+    IFS=$'\n\t'
+    SRC="${1:?usage: $0 <src> <dest>}"
+    cleanup() { rm -rf "$TMP"; }
+    trap cleanup EXIT INT TERM
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    chmod +x backup.sh
+    shellcheck backup.sh
+    ./backup.sh /data /backups
+    echo $?
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    [10:00:01] archiving /data -> /backups/data-20260426-100001.tar.gz
+    [10:00:01] done: /backups/data-20260426-100001.tar.gz (4.0K)
+    0
+    ```
 
 ## Commands & syntax
 

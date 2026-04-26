@@ -11,16 +11,6 @@ Cloud clusters cost money and hide failure modes. Local clusters reproduce 95% o
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-00-cluster-setup-README-1-9c6e5a69.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-00-cluster-setup-README-1-9c6e5a69.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   subgraph Choose["Pick one local distro"]
@@ -35,11 +25,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Comparison
 
 | Tool | Best for | Multi-node | Speed | Notes |

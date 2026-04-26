@@ -1,17 +1,7 @@
 # Controller Reconcile Loop
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-01-crds-and-operators-controller-pattern-1-c682ec48.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-01-crds-and-operators-controller-pattern-1-c682ec48.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-01-crds-and-operators-controller-pattern-1-c682ec48.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-01-crds-and-operators-controller-pattern-1-c682ec48.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -40,11 +30,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Rules
 - **Idempotent**: same input -> same action, safe to retry.
 - **Level-triggered**, not edge-triggered: always reconcile from current state, never from the event payload.

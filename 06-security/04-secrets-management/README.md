@@ -12,17 +12,7 @@ Kubernetes Secrets are **base64-encoded, not encrypted**. By default they sit in
 ## Layers of defence
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-04-secrets-management-README-1-05379fe6.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-04-secrets-management-README-1-05379fe6.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-04-secrets-management-README-1-05379fe6.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/06-security-04-secrets-management-README-1-05379fe6.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -47,11 +37,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Approaches compared
 
 | Approach | Where secret lives | Rotation | Best for |

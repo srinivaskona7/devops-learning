@@ -5,17 +5,7 @@
 ## Flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-09-tests-README-1-9a7f8534.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-09-tests-README-1-9a7f8534.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-09-tests-README-1-9a7f8534.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-09-tests-README-1-9a7f8534.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -33,11 +23,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Layout
 
 ```

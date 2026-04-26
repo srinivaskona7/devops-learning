@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-08-image-optimization-README-1-d410da41.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-08-image-optimization-README-1-d410da41.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   A[ubuntu:24.04 ~78MB] --> B[debian:12-slim ~74MB]
@@ -28,11 +18,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 But **smaller isn't always better** — alpine uses musl (libc differences), distroless has no shell (no `docker exec sh`), scratch has no CA certs.
 
 ## The 5 levers

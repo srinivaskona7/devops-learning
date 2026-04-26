@@ -26,17 +26,7 @@ Argo Rollouts is a controller that:
 ## Pod & traffic transition (steps: 20 → 40 → 60 → 100)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-05-canary-argo-rollouts-README-1-81feb665.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-05-canary-argo-rollouts-README-1-81feb665.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-05-canary-argo-rollouts-README-1-81feb665.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-05-canary-argo-rollouts-README-1-81feb665.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -60,10 +50,70 @@ sequenceDiagram
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    `Rollout` (Argo CRD) replaces `Deployment` and adds stepped traffic shifting, pause gates, and SLI-driven analysis. Each step changes the canary weight, optionally pauses, and optionally runs a Prometheus AnalysisRun that aborts the rollout on regression.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout
+    metadata:
+      name: hello-rollout
+    spec:
+      replicas: 5
+      selector:
+        matchLabels: { app: hello-rollout }
+      template:
+        metadata:
+          labels: { app: hello-rollout, version: v1 }
+        spec:
+          containers:
+            - name: hello
+              image: gcr.io/google-samples/hello-app:1.0
+              ports: [{ containerPort: 8080 }]
+      strategy:
+        canary:
+          steps:
+            - setWeight: 20
+            - pause: { duration: 30s }
+            - analysis:
+                templates: [{ templateName: success-rate }]
+                args: [{ name: service-name, value: hello-rollout }]
+            - setWeight: 40
+            - pause: { duration: 30s }
+            - setWeight: 60
+            - pause: { duration: 30s }
+            - setWeight: 100
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f analysistemplate.yaml -f rollout.yaml
+    kubectl argo rollouts set image hello-rollout hello=gcr.io/google-samples/hello-app:2.0
+    kubectl argo rollouts get rollout hello-rollout --watch
+    kubectl argo rollouts promote hello-rollout
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    Name:            hello-rollout
+    Namespace:       default
+    Status:          Paused
+    Message:         CanaryPauseStep
+    Strategy:        Canary
+      Step:          1/8
+      SetWeight:     20
+      ActualWeight:  20
+    Images:          gcr.io/google-samples/hello-app:1.0 (stable)
+                     gcr.io/google-samples/hello-app:2.0 (canary)
+    Replicas:
+      Desired:       5
+      Current:       6
+      Updated:       1
+      Ready:         6
+    ```
 
 ## Files
 

@@ -5,17 +5,7 @@ PSA is the built-in admission controller that **replaced PodSecurityPolicy (PSP)
 ## The Three Profiles
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-02-pod-security-admission-README-1-f5d019e8.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-02-pod-security-admission-README-1-f5d019e8.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-02-pod-security-admission-README-1-f5d019e8.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/06-security-02-pod-security-admission-README-1-f5d019e8.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -32,11 +22,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | Profile | Use Case | Example Restrictions |
 |---------|----------|---------------------|
 | `privileged` | Trusted system workloads (CNI, CSI, log collectors) | None |

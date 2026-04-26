@@ -5,17 +5,7 @@
 ## Identity flow (SPIFFE)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-README-1-7fa9f8d6.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-README-1-7fa9f8d6.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-README-1-7fa9f8d6.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-README-1-7fa9f8d6.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -41,11 +31,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Building blocks
 
 | Concept | What it is |

@@ -8,17 +8,7 @@ Your first lab. **No cloud credentials needed** — we'll generate a random pet 
 ## The five commands you'll run forever
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-02-hello-world-README-1-e4f093d3.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-02-hello-world-README-1-e4f093d3.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-02-hello-world-README-1-e4f093d3.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-02-hello-world-README-1-e4f093d3.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -47,11 +37,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Run it
 ```bash
 cd 02-hello-world

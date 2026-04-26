@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-07-workloads-README-1-75a0c497.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-07-workloads-README-1-75a0c497.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TD
   Q[What are you running?] --> S{Stateless?}
@@ -32,10 +22,54 @@ flowchart TD
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Workload controllers wrap Pods with the right semantics: Deployment for stateless replicas, StatefulSet for ordered identity + storage, DaemonSet for one-per-node, Job for run-to-completion, CronJob for scheduled Jobs.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: batch/v1
+    kind: Job
+    metadata:
+      name: pi
+    spec:
+      completions: 1
+      parallelism: 1
+      backoffLimit: 4
+      ttlSecondsAfterFinished: 300
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: pi
+              image: perl:5.34
+              command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(200)"]
+              resources:
+                requests: { cpu: "100m", memory: "64Mi" }
+                limits:   { cpu: "500m", memory: "256Mi" }
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f job.yaml
+    kubectl get jobs,pods -l app=pi
+    kubectl logs -l app=pi
+    kubectl get cronjob,daemonset,statefulset -A
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    job.batch/pi created
+
+    NAME           STATUS     COMPLETIONS   DURATION   AGE
+    job.batch/pi   Complete   1/1           7s         12s
+
+    NAME            READY   STATUS      RESTARTS   AGE
+    pod/pi-x9k4z    0/1     Completed   0          12s
+
+    3.1415926535897932384626433832795028841971693993751058209749...
+    ```
 
 ## Comparison
 
@@ -54,16 +88,6 @@ flowchart TD
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-07-workloads-README-2-b5b4419d.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-07-workloads-README-2-b5b4419d.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   SS[StatefulSet 'db'] --> P0[db-0<br/>created first]
@@ -75,11 +99,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 Stable network identity: `db-0.cache.default.svc.cluster.local` (requires headless Service).
 
 ## Apply & observe

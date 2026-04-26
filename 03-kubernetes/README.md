@@ -3,17 +3,7 @@
 The Kubernetes track is split into three sub-modules. Walk them in order, or jump straight to the area you need.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/03-kubernetes-README-1-e5d7d823.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/03-kubernetes-README-1-e5d7d823.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/03-kubernetes-README-1-e5d7d823.svg" alt="diagram" /></p>
+<p align="center"><img src="../assets/diagrams/03-kubernetes-README-1-e5d7d823.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -27,11 +17,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | Sub-module | Audience | Hours | Pickup state |
 |------------|----------|------:|--------------|
 | [`01-core`](./01-core/) | New to K8s | 16 | `01-core/README.md` + `01-core/cheatsheet.md` |

@@ -1,0 +1,159 @@
+name: QA
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  mkdocs-strict:
+    name: mkdocs --strict
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: requirements.txt
+      - name: Install requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Build docs (strict)
+        run: mkdocs build --strict
+
+  markdownlint:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install markdownlint-cli2
+        run: npm install -g markdownlint-cli2@0.13.0
+      - name: Lint markdown
+        run: markdownlint-cli2 "**/*.md" "#node_modules" "#site"
+
+  link-check:
+    name: lychee link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --exclude-mail --accept 200,206,429 './**/*.md'
+          fail: true
+
+  kubeconform:
+    name: kubeconform (k8s 1.30)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install kubeconform
+        run: |
+          curl -sSL -o /tmp/kc.tar.gz https://github.com/yannh/kubeconform/releases/download/v0.6.7/kubeconform-linux-amd64.tar.gz
+          tar -xzf /tmp/kc.tar.gz -C /tmp
+          sudo mv /tmp/kubeconform /usr/local/bin/
+          kubeconform -v
+      - name: Discover and validate manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(find 03-kubernetes 04-helm 08-projects -type f \( -name "*.yaml" -o -name "*.yml" \) 2>/dev/null \
+            | grep -Ev '/(templates|charts|crds)/' \
+            | grep -Ev '/kustomize/(bases|overlays)/' || true)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No manifests to validate"; exit 0
+          fi
+          printf '%s\n' "${files[@]}"
+          kubeconform \
+            -kubernetes-version 1.30.0 \
+            -summary -strict -ignore-missing-schemas \
+            "${files[@]}"
+
+  helm-lint:
+    name: helm lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/setup-helm@v4
+        with:
+          version: v3.15.0
+      - name: Cache helm plugins
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/helm
+          key: ${{ runner.os }}-helm-${{ hashFiles('**/Chart.yaml') }}
+      - name: Lint all charts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t charts < <(find . -name Chart.yaml -not -path '*/charts/*' 2>/dev/null || true)
+          if [ "${#charts[@]}" -eq 0 ]; then
+            echo "No charts found"; exit 0
+          fi
+          fail=0
+          for c in "${charts[@]}"; do
+            dir="$(dirname "$c")"
+            echo "::group::helm lint $dir"
+            helm dependency update "$dir" || true
+            helm lint "$dir" || fail=1
+            echo "::endgroup::"
+          done
+          exit $fail
+
+  terraform-fmt-validate:
+    name: terraform fmt + validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.8.5"
+      - name: Cache terraform plugins
+        uses: actions/cache@v4
+        with:
+          path: ~/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-tf-${{ hashFiles('**/*.tf') }}
+      - name: terraform fmt -check (recursive)
+        run: terraform fmt -check -recursive
+      - name: terraform validate (per directory)
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p ~/.terraform.d/plugin-cache
+          export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+          mapfile -t dirs < <(find 07-terraform -type f -name "*.tf" -exec dirname {} \; 2>/dev/null | sort -u)
+          overall=0
+          for d in "${dirs[@]}"; do
+            soft=0
+            case "$d" in
+              *07-terraform/09-aws-examples*|*07-terraform/10-gcp-examples*)
+                soft=1 ;;
+            esac
+            echo "::group::terraform validate $d (soft=$soft)"
+            ( cd "$d" && terraform init -backend=false -input=false && terraform validate )
+            rc=$?
+            echo "::endgroup::"
+            if [ $rc -ne 0 ] && [ $soft -eq 0 ]; then
+              overall=1
+            fi
+          done
+          exit $overall
+
+  shellcheck:
+    name: shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run shellcheck
+        uses: ludeeus/action-shellcheck@2.0.0
+        with:
+          scandir: "./"
+          severity: warning

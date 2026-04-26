@@ -5,17 +5,7 @@
 ## Two Schools
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-12-helmfile-and-argocd-README-1-fed70fe7.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-12-helmfile-and-argocd-README-1-fed70fe7.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-12-helmfile-and-argocd-README-1-fed70fe7.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-12-helmfile-and-argocd-README-1-fed70fe7.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -28,11 +18,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | | Helmfile | ArgoCD |
 |---|---|---|
 | Model | Push (CLI from CI) | Pull (in-cluster controller) |

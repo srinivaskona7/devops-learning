@@ -118,17 +118,7 @@ terraform.rc
 ## Mermaid: production reference architecture
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-14-best-practices-README-1-e429803b.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-14-best-practices-README-1-e429803b.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-14-best-practices-README-1-e429803b.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-14-best-practices-README-1-e429803b.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -144,9 +134,5 @@ flowchart LR
     AP --> ST[(Remote State<br/>S3 + DynamoDB)]
     SCH[Nightly schedule] -->|drift detect| PL
 ```
-
-</details>
-
-</details>
 
 </details>

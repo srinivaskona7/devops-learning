@@ -13,16 +13,6 @@ In production every long-running process is a systemd unit. Knowing how to write
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-06-systemd-README-1-6e208a06.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-06-systemd-README-1-6e208a06.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
     BOOT([boot]) --> default[default.target]
@@ -38,10 +28,42 @@ flowchart LR
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    systemd is PID 1: it boots the host, supervises long-running services as `.service` units, schedules work via `.timer` units, and centralizes logs through journald. A unit file plus `systemctl` is how you put any binary into production on a modern Linux host.
 
-</details>
+=== ":material-file-code-outline: Snippet"
+    ```bash
+    # /etc/systemd/system/heartbeat.service
+    [Unit]
+    Description=Heartbeat demo service
+    After=network.target
+
+    [Service]
+    Type=simple
+    ExecStart=/usr/local/bin/heartbeat.sh
+    Restart=on-failure
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    systemctl daemon-reload
+    systemctl enable --now heartbeat.service
+    systemctl status heartbeat --no-pager
+    journalctl -u heartbeat -f
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    ● heartbeat.service - Heartbeat demo service
+       Loaded: loaded (/etc/systemd/system/heartbeat.service; enabled)
+       Active: active (running) since Sun 2026-04-26 10:00:00 UTC
+    Apr 26 10:00:01 host heartbeat.sh[42]: heartbeat at 2026-04-26T10:00:01+00:00
+    ```
 
 ## Concepts
 

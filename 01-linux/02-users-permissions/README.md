@@ -13,16 +13,6 @@ Every file, process, socket, and namespace is owned. Auth bugs, data leaks, and 
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-02-users-permissions-README-1-84433dbb.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-02-users-permissions-README-1-84433dbb.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
     U[User UID] -->|owns| F[File]
@@ -34,10 +24,34 @@ flowchart LR
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Linux enforces multi-user isolation via uid/gid plus a 9-bit `rwx` triplet for owner/group/other. `sudo` and three special bits (setuid, setgid, sticky) tune that model for shared directories and privilege elevation.
 
-</details>
+=== ":material-file-code-outline: Snippet"
+    ```bash
+    # /etc/passwd entry
+    alice:x:1000:1000::/home/alice:/bin/bash
+    # sudoers fragment (drop in /etc/sudoers.d/alice)
+    alice ALL=(root) NOPASSWD: /usr/bin/systemctl restart nginx
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    useradd -m -s /bin/bash alice
+    usermod -aG developers alice
+    chmod 2770 /srv/project
+    chown alice:developers report.txt
+    sudo -l
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    drwxrws--- 2 root developers 4096 Apr 26 10:00 /srv/project
+    uid=1000(alice) gid=1000(alice) groups=1000(alice),1001(developers)
+    User alice may run: (root) NOPASSWD: /usr/bin/systemctl restart nginx
+    ```
 
 ## Concepts
 

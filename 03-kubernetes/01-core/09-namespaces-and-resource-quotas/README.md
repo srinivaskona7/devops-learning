@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-09-namespaces-and-resource-quotas-README-1-e245d952.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-09-namespaces-and-resource-quotas-README-1-e245d952.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   subgraph CL[Cluster]
@@ -37,11 +27,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 Use cases:
 - Multi-tenant (per team / env / customer)
 - Scoped RBAC

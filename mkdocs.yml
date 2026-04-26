@@ -13,7 +13,9 @@ exclude_docs: |
 
 theme:
   name: material
+  custom_dir: overrides
   language: en
+  font: false
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -35,6 +37,8 @@ theme:
     - navigation.expand
     - navigation.top
     - navigation.indexes
+    - navigation.instant
+    - navigation.instant.prefetch
     - content.code.copy
     - content.code.annotate
     - content.tabs.link
@@ -43,15 +47,46 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
+extra:
+  comments_enabled: true
+  analytics:
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: Thanks for the feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >-
+            Thanks — please open an issue or PR to help improve it.
+
 extra_css:
   - docs/stylesheets/extra.css
+
+extra_javascript:
+  - docs/javascripts/extra.js
+  - docs/javascripts/progress.js
+  - docs/javascripts/palette.js
+  - docs/javascripts/killercoda.js
+  - docs/javascripts/copy-yaml.js
+  - docs/javascripts/pwa-register.js
 
 plugins:
   - same-dir
   - search
   - mermaid2
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+        remove_comments: true
 
 markdown_extensions:
+  - abbr
   - admonition
   - attr_list
   - md_in_html
@@ -69,7 +104,10 @@ markdown_extensions:
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      auto_append:
+        - docs/glossary.md
+  - pymdownx.smartsymbols
   - pymdownx.details
   - pymdownx.emoji
 
@@ -87,3 +125,4 @@ nav:
   - 06 Security: 06-security/README.md
   - 07 Terraform: 07-terraform/README.md
   - 08 Projects: 08-projects/README.md
+  - Glossary: docs/glossary.md

@@ -30,17 +30,7 @@ Learn-by-doing DevOps repo — **Linux -> Docker -> Kubernetes -> Helm -> Monito
 ## Learning Journey
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="assets/diagrams/README-1-391817a9.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="assets/diagrams/README-1-391817a9.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="assets/diagrams/README-1-391817a9.svg" alt="diagram" /></p>
+<p align="center"><img src="assets/diagrams/README-1-391817a9.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -70,11 +60,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Folder Index
 
 | # | Folder | Topic | Skill | Hours |

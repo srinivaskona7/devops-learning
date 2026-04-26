@@ -13,16 +13,6 @@ When something is "slow" or "stuck," 90% of the answer lives in `ps`, `top`, or 
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-03-processes-README-1-dc37dc58.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/01-linux-03-processes-README-1-dc37dc58.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 sequenceDiagram
     participant P as Parent
@@ -41,10 +31,35 @@ sequenceDiagram
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Every running program is a process owning a PID and parent PID, scheduled by the kernel and communicated with via signals. Mastering `ps`, `kill`, and `/proc` lets you inspect, prioritize, and gracefully stop anything on the box.
 
-</details>
+=== ":material-file-code-outline: Snippet"
+    ```bash
+    # Process states you'll see in `ps`/`top`
+    R  running          S  interruptible sleep
+    D  uninterruptible  Z  zombie
+    T  stopped          + foreground job
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    ps -eo pid,ppid,user,stat,pcpu,pmem,cmd --sort=-pcpu | head
+    sleep 600 & PID=$!
+    kill $PID            # SIGTERM
+    kill -9 $PID         # SIGKILL
+    nice -n 10 ./batch.sh
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    PID  PPID USER  STAT %CPU %MEM CMD
+     42     1 root  S     0.0  0.1 sleep 600
+    [1]+  Terminated   sleep 600
+    exit: 137   # 128 + signal 9 (SIGKILL)
+    ```
 
 ## Concepts
 

@@ -5,17 +5,7 @@ The build and release pipeline is now the highest-leverage attack surface (Solar
 ## SLSA Levels
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-08-supply-chain-README-1-8ccaed8e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-08-supply-chain-README-1-8ccaed8e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-08-supply-chain-README-1-8ccaed8e.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/06-security-08-supply-chain-README-1-8ccaed8e.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -32,11 +22,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | Level | Requirement |
 |-------|-------------|
 | L0 | None |
@@ -61,17 +46,7 @@ GitHub Actions + the [`slsa-github-generator`](https://github.com/slsa-framework
 ## A signed-and-attested release
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-08-supply-chain-README-2-4d28457f.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-08-supply-chain-README-2-4d28457f.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-08-supply-chain-README-2-4d28457f.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/06-security-08-supply-chain-README-2-4d28457f.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -96,11 +71,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Files
 - `github-actions-slsa.yaml` — full pipeline: build, SBOM, sign, SLSA provenance
 

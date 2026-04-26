@@ -5,17 +5,7 @@ Compliance frameworks aren't a list of K8s settings — they're control objectiv
 ## Framework landscape
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-12-compliance-README-1-ced70f2d.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-12-compliance-README-1-ced70f2d.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-12-compliance-README-1-ced70f2d.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/06-security-12-compliance-README-1-ced70f2d.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -37,11 +27,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## K8s control → framework mapping (selected)
 
 | K8s control | PCI-DSS | HIPAA | SOC 2 |

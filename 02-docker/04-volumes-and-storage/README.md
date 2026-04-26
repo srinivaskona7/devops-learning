@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-04-volumes-and-storage-README-1-b0f3452a.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-04-volumes-and-storage-README-1-b0f3452a.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   C[Container]
@@ -28,16 +18,52 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | Mode | Where data lives | Use for |
 |------|------------------|---------|
 | **bind mount** | Anywhere on host | dev (live-reload code), config files |
 | **named volume** | Managed by Docker | prod databases, anything portable |
 | **tmpfs** | Host RAM | secrets, scratch caches (Linux only) |
+
+## Quick reference
+
+=== ":material-lightbulb-outline: Concept"
+    A container's R/W layer dies with the container. To persist data, attach a **bind mount** (host path), a **named volume** (Docker-managed), or a **tmpfs** (RAM). Named volumes are the portable choice for production databases.
+
+=== ":material-file-code-outline: Manifest / Snippet"
+    ```yaml
+    # compose.yaml — Postgres on a named volume
+    services:
+      db:
+        image: postgres:16
+        environment:
+          POSTGRES_PASSWORD: secret
+        volumes:
+          - pgdata:/var/lib/postgresql/data
+    volumes:
+      pgdata:
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    docker volume create pgdata
+    docker run -d --name pg -e POSTGRES_PASSWORD=secret \
+      -v pgdata:/var/lib/postgresql/data postgres:16
+    docker volume ls
+    docker volume inspect pgdata
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    DRIVER    VOLUME NAME
+    local     pgdata
+    [
+      {
+        "Name": "pgdata",
+        "Mountpoint": "/var/lib/docker/volumes/pgdata/_data",
+        "Driver": "local"
+      }
+    ]
+    ```
 
 ## Bind mounts
 

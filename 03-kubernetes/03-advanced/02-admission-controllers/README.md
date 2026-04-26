@@ -3,17 +3,7 @@
 Admission controllers intercept API requests **after authentication/authorization** but **before persistence**. They can mutate or validate.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-02-admission-controllers-README-1-93d8b21f.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-02-admission-controllers-README-1-93d8b21f.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-02-admission-controllers-README-1-93d8b21f.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-02-admission-controllers-README-1-93d8b21f.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -30,10 +20,54 @@ flowchart LR
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    Admission controllers run inside the API server flow after authn/authz, before persistence. Mutating webhooks patch objects (defaults, sidecars); validating webhooks and CEL `ValidatingAdmissionPolicy` accept or reject. Kyverno and OPA Gatekeeper are the dominant policy engines.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: kyverno.io/v1
+    kind: ClusterPolicy
+    metadata:
+      name: require-labels
+    spec:
+      validationFailureAction: Enforce
+      background: true
+      rules:
+        - name: check-required-labels
+          match:
+            any:
+              - resources:
+                  kinds: [Pod, Deployment, StatefulSet]
+          validate:
+            message: "Labels 'app.kubernetes.io/name' and 'owner' are required."
+            pattern:
+              metadata:
+                labels:
+                  app.kubernetes.io/name: "?*"
+                  owner: "?*"
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f kyverno-policy.yaml
+    kubectl get clusterpolicy require-labels
+    # try a non-compliant pod
+    kubectl run test --image=nginx --dry-run=server -o yaml
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    clusterpolicy.kyverno.io/require-labels created
+    Error from server: admission webhook "validate.kyverno.svc-fail" denied the request:
+
+    resource Pod/default/test was blocked due to the following policies:
+
+    require-labels:
+      check-required-labels: 'validation error: Labels ''app.kubernetes.io/name''
+        and ''owner'' are required. rule check-required-labels failed at path /metadata/labels/'
+    ```
 
 ## Three flavors
 

@@ -3,17 +3,7 @@
 ## The standard flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-13-cicd-README-1-07ec4ad0.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-13-cicd-README-1-07ec4ad0.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-13-cicd-README-1-07ec4ad0.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-13-cicd-README-1-07ec4ad0.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -39,11 +29,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Auth: use OIDC, never long-lived keys
 
 ### AWS

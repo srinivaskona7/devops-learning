@@ -1,17 +1,7 @@
 # 07 — Stateful Workloads
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-07-stateful-workloads-README-1-65ab903c.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-07-stateful-workloads-README-1-65ab903c.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-07-stateful-workloads-README-1-65ab903c.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-07-stateful-workloads-README-1-65ab903c.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -29,11 +19,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## StatefulSet guarantees
 - **Stable network identity**: `pod-0`, `pod-1`, ... resolvable via the headless Service as `pod-0.svc.ns.svc.cluster.local`.
 - **Stable storage**: each pod gets its own PVC from `volumeClaimTemplates`; PVC survives pod restarts and even StatefulSet deletion (default).

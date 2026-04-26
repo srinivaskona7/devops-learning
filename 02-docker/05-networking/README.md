@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-05-networking-README-1-5f1bc694.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-05-networking-README-1-5f1bc694.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   subgraph host[Host]
@@ -37,11 +27,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | Driver | What it does | When to use |
 |--------|--------------|-------------|
 | `bridge` (default) | Each container on `docker0` bridge with NAT'd outbound | Single-host default |
@@ -50,6 +35,41 @@ flowchart LR
 | `none` | No networking at all | Batch jobs, fully isolated |
 | `overlay` | Multi-host (Swarm/multi-node) | Swarm clusters |
 | `macvlan` | Container gets its own MAC on physical net | Legacy apps needing real IPs |
+
+## Quick reference
+
+=== ":material-lightbulb-outline: Concept"
+    Each container has its own network namespace, glued together by Docker bridges. The default `bridge` has no DNS between containers — always create a **user-defined bridge** so services can resolve each other by name.
+
+=== ":material-file-code-outline: Manifest / Snippet"
+    ```yaml
+    # compose.yaml fragment — user-defined bridge with DNS
+    services:
+      api:    { image: myapi,    networks: [app-net] }
+      worker: { image: myworker, networks: [app-net] }
+    networks:
+      app-net:
+        driver: bridge
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    docker network create demo-net
+    docker run -d --name web --network demo-net nginx:1.27-alpine
+    docker run --rm --network demo-net alpine \
+      sh -c 'apk add --no-cache curl >/dev/null && curl -s http://web | head -1'
+    docker network inspect demo-net
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    <!DOCTYPE html>
+    "Subnet":  "172.18.0.0/16"
+    "Gateway": "172.18.0.1"
+    "Containers": {
+      "<id>": { "Name": "web", "IPv4Address": "172.18.0.2/16" }
+    }
+    ```
 
 ## The single most important rule
 
@@ -132,16 +152,6 @@ docker run --rm alpine ping -c1 host.docker.internal
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-05-networking-README-2-b4f8874e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-05-networking-README-2-b4f8874e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   subgraph bridge_default[bridge default]
@@ -159,11 +169,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Gotchas
 
 > ⚠️ Default bridge has **no automatic DNS**. Use user-defined networks. Always.

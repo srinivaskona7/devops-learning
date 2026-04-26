@@ -5,17 +5,7 @@ Install ArgoCD, configure the **app-of-apps** pattern, and manage everything dec
 ## What you'll build
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-03-gitops-with-argocd-README-1-30194717.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-03-gitops-with-argocd-README-1-30194717.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-03-gitops-with-argocd-README-1-30194717.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-03-gitops-with-argocd-README-1-30194717.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -31,11 +21,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Prerequisites
 - Working K8s cluster
 - `kubectl` access

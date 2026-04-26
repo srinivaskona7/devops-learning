@@ -5,17 +5,7 @@ The container image is your software supply chain in a tarball. Three pillars: *
 ## Threat flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-05-image-security-README-1-7b81e233.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-05-image-security-README-1-7b81e233.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-05-image-security-README-1-7b81e233.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/06-security-05-image-security-README-1-7b81e233.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -40,11 +30,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Build rules
 
 | Rule | Why |

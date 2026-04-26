@@ -67,17 +67,7 @@ terraform destroy
 ## Mermaid: typical AWS stack
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-09-aws-examples-README-1-ee3ef765.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-09-aws-examples-README-1-ee3ef765.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-09-aws-examples-README-1-ee3ef765.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-09-aws-examples-README-1-ee3ef765.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -99,9 +89,5 @@ flowchart LR
     S3[(S3 bucket)]
     EKS --> S3
 ```
-
-</details>
-
-</details>
 
 </details>

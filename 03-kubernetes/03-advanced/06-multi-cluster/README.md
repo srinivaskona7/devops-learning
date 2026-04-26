@@ -1,17 +1,7 @@
 # 06 — Multi-Cluster Kubernetes
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-06-multi-cluster-README-1-c28fab65.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-06-multi-cluster-README-1-c28fab65.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-06-multi-cluster-README-1-c28fab65.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-06-multi-cluster-README-1-c28fab65.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -24,11 +14,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Why multi-cluster
 - Blast-radius isolation, regulatory boundaries, geo proximity, heterogeneous infra (cloud + on-prem), team autonomy.
 

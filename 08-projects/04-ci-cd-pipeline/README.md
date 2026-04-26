@@ -5,17 +5,7 @@ Build a complete pipeline: lint → test → build image → Trivy scan → push
 ## What you'll build
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-04-ci-cd-pipeline-README-1-747100c3.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-04-ci-cd-pipeline-README-1-747100c3.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-04-ci-cd-pipeline-README-1-747100c3.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-04-ci-cd-pipeline-README-1-747100c3.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -33,11 +23,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Prerequisites
 - Project 01 (hello-world app + Dockerfile)
 - Project 03 (ArgoCD watching your manifests)

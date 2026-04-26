@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-03-images-and-dockerfile-README-1-00992a55.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-03-images-and-dockerfile-README-1-00992a55.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart TB
   FROM[FROM base image] --> ARG[ARG build-time vars]
@@ -34,11 +24,6 @@ flowchart TB
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | Instruction | Purpose | Creates layer? |
 |-------------|---------|----------------|
 | `FROM` | Base image | yes (the layers from base) |
@@ -53,6 +38,40 @@ flowchart TB
 | `ENTRYPOINT` | Fixed command | yes (metadata) |
 | `CMD` | Default args (or full cmd) | yes (metadata) |
 | `LABEL` | OCI metadata | yes (metadata) |
+
+## Quick reference
+
+=== ":material-lightbulb-outline: Concept"
+    A Dockerfile is a layered recipe: each instruction can produce a cacheable layer, and Docker reuses cached layers until something upstream changes. Ordering slow + stable steps before fast + churn-heavy ones is the single biggest lever for build speed.
+
+=== ":material-file-code-outline: Manifest / Snippet"
+    ```yaml
+    # ✅ Cache-friendly Python Dockerfile
+    FROM python:3.12-slim
+    WORKDIR /app
+    COPY requirements.txt .
+    RUN pip install --no-cache-dir -r requirements.txt
+    COPY . .
+    ENTRYPOINT ["python", "app.py"]
+    CMD ["--port", "8080"]
+    ```
+
+=== ":material-console: Command"
+    ```bash
+    docker build -t flask-hello:1.0 .
+    docker images flask-hello
+    docker run --rm -p 5000:5000 flask-hello:1.0
+    docker run --rm -i hadolint/hadolint < Dockerfile
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    [+] Building 12.3s (10/10) FINISHED
+     => => writing image sha256:...
+     => => naming to docker.io/library/flask-hello:1.0
+    REPOSITORY    TAG   IMAGE ID       CREATED    SIZE
+    flask-hello   1.0   abc123def456   10s ago    125MB
+    ```
 
 ## ENTRYPOINT vs CMD — the eternal confusion
 

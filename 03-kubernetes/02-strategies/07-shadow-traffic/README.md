@@ -27,7 +27,7 @@ You can now load-test, performance-profile, and bug-hunt v2 with **real producti
 ## Traffic flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-07-shadow-traffic-README-1-1d5bceeb.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-07-shadow-traffic-README-1-1d5bceeb.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 

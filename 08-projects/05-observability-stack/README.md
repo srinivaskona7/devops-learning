@@ -5,17 +5,7 @@ Deploy `kube-prometheus-stack`, Loki, and Tempo via Helm. Instrument a sample ap
 ## What you'll build
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-05-observability-stack-README-1-4f81af19.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-05-observability-stack-README-1-4f81af19.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-05-observability-stack-README-1-4f81af19.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-05-observability-stack-README-1-4f81af19.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -32,11 +22,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Prerequisites
 - K8s cluster with at least 4 vCPU / 8 GiB free
 - Helm — see [`../../06-helm/`](../../06-helm/)

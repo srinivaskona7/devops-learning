@@ -3,17 +3,7 @@
 ## Version skew policy (the rules)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-upgrade-guide-1-732cbe60.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-upgrade-guide-1-732cbe60.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-upgrade-guide-1-732cbe60.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-upgrade-guide-1-732cbe60.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -26,11 +16,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 - **kube-apiserver**: highest version in the control plane.
 - **kube-controller-manager / scheduler / CCM**: same minor as apiserver, may be one minor older during upgrade.
 - **kubelet / kube-proxy**: must not be newer than apiserver; up to **3 minors older** (relaxed in 1.28).

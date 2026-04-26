@@ -25,17 +25,7 @@ Achieved with Istio `VirtualService` (this demo) or Argo Rollouts' header matchi
 ## Traffic flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-06-ab-testing-README-1-b5fc78ff.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-06-ab-testing-README-1-b5fc78ff.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-06-ab-testing-README-1-b5fc78ff.svg" alt="diagram" /></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-06-ab-testing-README-1-b5fc78ff.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -58,10 +48,46 @@ sequenceDiagram
 ```
 
 </details>
+## Quick reference
 
-</details>
+=== ":material-lightbulb-outline: Concept"
+    A/B routing sends a named user segment (header, cookie, claim) to v2 while everyone else stays on v1. The split is deterministic, not percentage-based — perfect for beta cohorts and dogfooding.
 
-</details>
+=== ":material-file-code-outline: Manifest"
+    ```yaml
+    apiVersion: networking.istio.io/v1beta1
+    kind: VirtualService
+    metadata:
+      name: hello-ab
+    spec:
+      hosts: ["*"]
+      gateways: [mesh]
+      http:
+        - match:
+            - headers:
+                x-user: { exact: beta }
+          route:
+            - destination: { host: hello-v2, port: { number: 80 } }
+        - route:
+            - destination: { host: hello-v1, port: { number: 80 } }
+    ```
+
+=== ":material-console: kubectl"
+    ```bash
+    kubectl apply -f virtualservice.yaml
+    GW=$(kubectl -n istio-system get svc istio-ingressgateway \
+           -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    curl -s http://$GW/
+    curl -s -H "x-user: beta" http://$GW/
+    ```
+
+=== ":material-text-box-outline: Expected output"
+    ```text
+    $ curl -s http://$GW/
+    Hello, world! Version: 1.0.0  Hostname: hello-stable-7d9f-abcde
+    $ curl -s -H "x-user: beta" http://$GW/
+    Hello, world! Version: 2.0.0  Hostname: hello-canary-56b7-xyz12
+    ```
 
 ## Files
 

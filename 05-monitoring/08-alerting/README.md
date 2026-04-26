@@ -5,17 +5,7 @@ Prometheus **fires** alerts; Alertmanager **routes** them. Separation of concern
 ## Pipeline
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-08-alerting-README-1-2ad04b7e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-08-alerting-README-1-2ad04b7e.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-08-alerting-README-1-2ad04b7e.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-08-alerting-README-1-2ad04b7e.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -38,11 +28,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Concepts
 
 | Concept | Why |

@@ -9,16 +9,6 @@
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-10-buildkit-and-buildx-README-1-57b06953.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-10-buildkit-and-buildx-README-1-57b06953.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 flowchart LR
   Old[Legacy builder] -->|sequential, no cache mounts| L1[slow]
@@ -26,11 +16,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 | Feature | Legacy | BuildKit |
 |---------|--------|----------|
 | Parallel stages | ❌ | ✅ |

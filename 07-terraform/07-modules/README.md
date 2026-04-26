@@ -14,17 +14,7 @@ modules/vpc-stub/
 ## Module composition
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-07-modules-README-1-7883fc06.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-07-modules-README-1-7883fc06.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-07-modules-README-1-7883fc06.svg" alt="diagram" /></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-07-modules-README-1-7883fc06.svg" alt="diagram" / loading="lazy"></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -39,11 +29,6 @@ flowchart LR
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ## Sources
 
 | Source | Example |

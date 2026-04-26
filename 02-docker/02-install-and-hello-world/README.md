@@ -46,16 +46,6 @@ docker info | head -20
 
 <details><summary>Mermaid source</summary>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-02-install-and-hello-world-README-1-befa66bd.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
-<!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/02-docker-02-install-and-hello-world-README-1-befa66bd.svg" alt="diagram" /></p>
-
-<details><summary>Mermaid source</summary>
-
 ```mermaid
 sequenceDiagram
   participant U as User
@@ -74,11 +64,6 @@ sequenceDiagram
 ```
 
 </details>
-
-</details>
-
-</details>
-
 ```bash
 docker run hello-world
 # → Unable to find image 'hello-world:latest' locally
