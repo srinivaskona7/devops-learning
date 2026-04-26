@@ -1,0 +1,13 @@
+---
+# Service selects ONLY the shared label; track is intentionally not selected
+# so both Deployments contribute endpoints.
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-canary-app
+spec:
+  selector:
+    app: hello-canary-app   # picks pods from BOTH stable and canary
+  ports:
+    - port: 80
+      targetPort: 8080

@@ -1,0 +1,27 @@
+# Job: runs once to completion (computes pi to 200 places)
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+  labels:
+    app: pi
+    component: batch
+spec:
+  completions: 1                            # ← total successful pods needed
+  parallelism: 1                            # ← max pods running concurrently
+  backoffLimit: 4                           # ← retries before marking failed
+  ttlSecondsAfterFinished: 300              # ← auto-clean 5 min after completion
+  template:
+    metadata:
+      labels:
+        app: pi
+        component: batch
+    spec:
+      restartPolicy: Never                  # ← Jobs need Never or OnFailure
+      containers:
+        - name: pi
+          image: perl:5.34
+          command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(200)"]
+          resources:
+            requests: { cpu: "100m", memory: "64Mi" }
+            limits:   { cpu: "500m", memory: "256Mi" }

@@ -1,0 +1,12 @@
+apiVersion: v2
+name: three-tier
+description: Demo three-tier app — React frontend, Node backend, Postgres
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - demo
+  - three-tier
+  - postgres
+maintainers:
+  - name: Devops-learning

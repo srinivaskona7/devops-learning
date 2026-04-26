@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: demo
+  labels:
+    team: platform
+    env: dev
+    pod-security.kubernetes.io/enforce: baseline    # ← Pod Security Standards

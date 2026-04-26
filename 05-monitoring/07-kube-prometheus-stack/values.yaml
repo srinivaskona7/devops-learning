@@ -1,0 +1,103 @@
+# kube-prometheus-stack — sample overrides
+
+fullnameOverride: kps
+
+# ----- Prometheus -----
+prometheus:
+  prometheusSpec:
+    retention: 30d
+    retentionSize: 45GB
+    scrapeInterval: 30s
+    evaluationInterval: 30s
+    resources:
+      requests: { cpu: 500m, memory: 2Gi }
+      limits:   { cpu: 2,    memory: 8Gi }
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp3
+          accessModes: [ReadWriteOnce]
+          resources:
+            requests:
+              storage: 50Gi
+    # Pick up ServiceMonitors / PodMonitors from any namespace
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    # Remote write (e.g. to Mimir/Thanos receive)
+    # remoteWrite:
+    #   - url: http://mimir-distributor.mimir.svc:9009/api/v1/push
+
+# ----- Alertmanager -----
+alertmanager:
+  alertmanagerSpec:
+    resources:
+      requests: { cpu: 100m, memory: 256Mi }
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp3
+          accessModes: [ReadWriteOnce]
+          resources:
+            requests: { storage: 5Gi }
+  config:
+    route:
+      receiver: 'slack-default'
+      group_by: ['alertname', 'cluster', 'namespace']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 4h
+      routes:
+        - matchers: [severity = "critical"]
+          receiver: pagerduty
+          continue: true
+    receivers:
+      - name: 'slack-default'
+        slack_configs:
+          - api_url: 'https://hooks.slack.com/services/REPLACE/ME/PLEASE'
+            channel: '#alerts'
+            send_resolved: true
+            title: '{{ template "slack.title" . }}'
+            text:  '{{ template "slack.text"  . }}'
+      - name: pagerduty
+        pagerduty_configs:
+          - service_key: REPLACE_ME
+
+# ----- Grafana -----
+grafana:
+  adminPassword: change-me
+  defaultDashboardsTimezone: browser
+  persistence:
+    enabled: true
+    storageClassName: gp3
+    size: 10Gi
+  resources:
+    requests: { cpu: 100m, memory: 256Mi }
+  additionalDataSources:
+    - name: Loki
+      type: loki
+      url: http://loki.observability.svc:3100
+      access: proxy
+    - name: Tempo
+      type: tempo
+      url: http://tempo.observability.svc:3200
+      access: proxy
+  ingress:
+    enabled: false
+    # ingressClassName: nginx
+    # hosts: [grafana.example.com]
+
+# ----- Bundled exporters -----
+nodeExporter:
+  enabled: true
+kubeStateMetrics:
+  enabled: true
+prometheusOperator:
+  resources:
+    requests: { cpu: 100m, memory: 128Mi }
+
+# ----- Default rules -----
+defaultRules:
+  create: true
+  rules:
+    etcd: false        # disable if you don't run etcd metrics scrape

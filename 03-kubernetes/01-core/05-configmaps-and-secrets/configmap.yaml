@@ -1,0 +1,15 @@
+# ConfigMap with both literal keys and a file-style key
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  labels:
+    app: demo
+data:
+  APP_ENV: "production"            # ← used as env var
+  APP_LOG_LEVEL: "info"
+  app.properties: |                # ← used as a mounted file
+    server.port=8080
+    feature.dark-mode=true
+    cache.ttl=300
+# immutable: true                  # ← uncomment to lock; can't be edited after

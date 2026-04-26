@@ -1,0 +1,26 @@
+---
+# Istio VirtualService: header-based A/B routing.
+# - Requests with header "x-user: beta" -> hello-v2
+# - Everyone else                       -> hello-v1
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: hello-ab
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - mesh                       # in-mesh; add an Istio Gateway for external traffic
+  http:
+    - match:
+        - headers:
+            x-user:
+              exact: beta
+      route:
+        - destination:
+            host: hello-v2
+            port: { number: 80 }
+    - route:
+        - destination:
+            host: hello-v1
+            port: { number: 80 }

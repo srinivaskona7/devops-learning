@@ -1,0 +1,25 @@
+# Ingress: routes hello.local → hello-app Service
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-ingress
+  labels:
+    app: hello-app
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx              # ← REQUIRED in K8s 1.22+
+  rules:
+    - host: hello.local                # ← test with: curl -H "Host: hello.local" http://localhost/
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: hello-app        # ← from 04-services/clusterip.yaml
+                port:
+                  number: 80
+  # tls:                               # ← uncomment + create TLS Secret for HTTPS
+  #   - hosts: ["hello.local"]
+  #     secretName: hello-tls

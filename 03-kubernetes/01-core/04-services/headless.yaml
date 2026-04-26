@@ -1,0 +1,17 @@
+# Headless service — DNS returns pod IPs directly, no VIP
+# Used with StatefulSets and custom client-side load balancing
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-app-headless
+  labels:
+    app: hello-app
+    component: web
+spec:
+  clusterIP: None                  # ← THIS makes it headless
+  selector:
+    app: hello-app
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080

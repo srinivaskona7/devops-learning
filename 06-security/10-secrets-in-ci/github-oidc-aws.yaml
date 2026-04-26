@@ -1,0 +1,64 @@
+---
+# Two-part example:
+#   A) AWS IAM Role trust policy (apply via Terraform / CloudFormation / aws CLI)
+#   B) GitHub Actions workflow that assumes the role via OIDC — no static keys.
+#
+# ============================================================
+# A) IAM Role trust policy (JSON, embedded in YAML for reference)
+# ============================================================
+# Save as trust.json and:
+#   aws iam create-role --role-name gh-deploy-prod --assume-role-policy-document file://trust.json
+#   aws iam attach-role-policy --role-name gh-deploy-prod --policy-arn arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+#
+# trust.json:
+# {
+#   "Version": "2012-10-17",
+#   "Statement": [{
+#     "Effect": "Allow",
+#     "Principal": { "Federated": "arn:aws:iam::123456789012:oidc-provider/token.actions.githubusercontent.com" },
+#     "Action": "sts:AssumeRoleWithWebIdentity",
+#     "Condition": {
+#       "StringEquals": {
+#         "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+#       },
+#       "StringLike": {
+#         "token.actions.githubusercontent.com:sub": "repo:myorg/myapp:environment:production"
+#       }
+#     }
+#   }]
+# }
+#
+# ============================================================
+# B) GitHub Actions workflow
+# ============================================================
+name: deploy-prod
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  id-token: write       # required to fetch the OIDC token
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production         # gates + matches `:environment:production` in trust policy
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/gh-deploy-prod
+          role-session-name: gh-${{ github.run_id }}
+          aws-region: eu-central-1
+          # No aws-access-key-id / aws-secret-access-key !
+
+      - name: Verify identity
+        run: aws sts get-caller-identity
+
+      - name: Deploy
+        run: |
+          aws s3 sync ./build s3://my-prod-bucket/ --delete

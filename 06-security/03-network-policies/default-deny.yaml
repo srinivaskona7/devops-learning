@@ -1,0 +1,14 @@
+---
+# Default-deny ALL ingress and egress for the namespace.
+# This is the baseline — every other policy in the namespace becomes an allow-list.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: app-restricted
+spec:
+  podSelector: {}                  # all pods in this namespace
+  policyTypes:
+    - Ingress
+    - Egress
+  # No ingress / egress rules = deny all

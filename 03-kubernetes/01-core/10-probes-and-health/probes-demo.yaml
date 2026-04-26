@@ -1,0 +1,35 @@
+# All three probe types in one pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: probes-demo
+  labels:
+    app: probes-demo
+spec:
+  containers:
+    - name: app
+      image: gcr.io/google-samples/hello-app:1.0
+      ports:
+        - name: http
+          containerPort: 8080
+      command: ["sh", "-c"]
+      args:
+        - |
+          touch /tmp/healthy
+          /hello-app                          # ← original entrypoint
+      startupProbe:                           # ← gates the others until it passes
+        httpGet: { path: /, port: http }
+        failureThreshold: 30                  # ← up to 30 * 2s = 60s to start
+        periodSeconds: 2
+      readinessProbe:                         # ← controls Service traffic
+        httpGet: { path: /, port: http }
+        periodSeconds: 5
+        failureThreshold: 2
+      livenessProbe:                          # ← exec — kill container if file gone
+        exec:
+          command: ["sh", "-c", "test -f /tmp/healthy"]
+        periodSeconds: 5
+        failureThreshold: 3
+      resources:
+        requests: { cpu: "50m", memory: "64Mi" }
+        limits:   { cpu: "200m", memory: "128Mi" }

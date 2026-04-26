@@ -1,0 +1,26 @@
+# DaemonSet: one pod on every (matching) node
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-agent
+  labels:
+    app: node-agent
+    component: observability
+spec:
+  selector:
+    matchLabels: { app: node-agent }
+  template:
+    metadata:
+      labels:
+        app: node-agent
+        component: observability
+    spec:
+      tolerations:
+        - operator: Exists                    # ← run on ALL nodes including tainted
+      containers:
+        - name: agent
+          image: busybox:1.36
+          command: ["sh", "-c", "while true; do echo $(date) tick from $(hostname); sleep 30; done"]
+          resources:
+            requests: { cpu: "10m", memory: "16Mi" }
+            limits:   { cpu: "50m", memory: "32Mi" }

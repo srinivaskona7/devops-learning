@@ -1,0 +1,51 @@
+---
+# RollingUpdate strategy: incremental replacement, zero downtime.
+# Tuned for safety: always full capacity, one extra pod at a time.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-rolling
+  labels:
+    app: hello-rolling
+spec:
+  replicas: 4
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1            # add 1 extra pod above desired during update
+      maxUnavailable: 0      # never drop below desired count
+  selector:
+    matchLabels:
+      app: hello-rolling
+  template:
+    metadata:
+      labels:
+        app: hello-rolling
+        version: v1
+    spec:
+      containers:
+        - name: hello
+          image: gcr.io/google-samples/hello-app:1.0
+          ports:
+            - containerPort: 8080
+          readinessProbe:    # critical: prevents traffic to not-ready pods
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 2
+          resources:
+            requests: { cpu: 10m, memory: 16Mi }
+            limits:   { cpu: 100m, memory: 64Mi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-rolling
+spec:
+  selector:
+    app: hello-rolling
+  ports:
+    - port: 80
+      targetPort: 8080

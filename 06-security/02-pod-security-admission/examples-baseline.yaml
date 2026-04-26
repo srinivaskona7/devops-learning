@@ -1,0 +1,45 @@
+---
+# Baseline-tier namespace.
+# Baseline blocks the well-known privilege escalations (hostPath, hostNetwork,
+# privileged, etc.) but does NOT require runAsNonRoot or seccomp.
+# Useful as a stepping stone during migration.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: app-baseline
+  labels:
+    pod-security.kubernetes.io/enforce: baseline
+    pod-security.kubernetes.io/enforce-version: v1.30
+    pod-security.kubernetes.io/warn: restricted   # nudge devs toward restricted
+    pod-security.kubernetes.io/warn-version: v1.30
+---
+# A pod that PASSES baseline but would FAIL restricted (runs as root).
+apiVersion: v1
+kind: Pod
+metadata:
+  name: legacy-app
+  namespace: app-baseline
+spec:
+  containers:
+    - name: app
+      image: nginx:1.27-alpine
+      ports:
+        - containerPort: 80
+      resources:
+        requests: { cpu: 50m, memory: 64Mi }
+        limits:   { cpu: 200m, memory: 128Mi }
+---
+# A pod that VIOLATES baseline — kept here as a teaching example.
+# Uncomment to see the API server reject it with a PSA error.
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: bad-pod
+#   namespace: app-baseline
+# spec:
+#   hostNetwork: true            # baseline violation
+#   containers:
+#     - name: c
+#       image: busybox
+#       securityContext:
+#         privileged: true       # baseline violation
