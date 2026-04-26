@@ -1,0 +1,57 @@
+---
+# Tetragon TracingPolicy — observe AND block shell execs in untrusted namespaces.
+#
+# Prereq: Tetragon installed (helm install tetragon cilium/tetragon -n kube-system)
+#
+# Tetragon hooks the security_bprm_creds_from_file LSM hook. When a binary path
+# matches /bin/bash etc and the pod is in a matched namespace, the policy emits
+# an event AND issues SIGKILL — the exec never returns.
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicyNamespaced
+metadata:
+  name: block-shell-exec
+  namespace: production
+spec:
+  kprobes:
+    - call: "security_bprm_creds_from_file"
+      syscall: false
+      return: false
+      args:
+        - index: 0
+          type: "file"
+      selectors:
+        - matchArgs:
+            - index: 0
+              operator: "Equal"
+              values:
+                - "/bin/bash"
+                - "/bin/sh"
+                - "/usr/bin/bash"
+                - "/usr/bin/sh"
+                - "/bin/zsh"
+                - "/usr/bin/zsh"
+          matchActions:
+            - action: Sigkill          # <- enforcement
+---
+# Companion: detect (no kill) writes to /etc/shadow cluster-wide
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicy
+metadata:
+  name: detect-shadow-write
+spec:
+  kprobes:
+    - call: "security_file_open"
+      syscall: false
+      args:
+        - index: 0
+          type: "file"
+        - index: 1
+          type: "int"
+      selectors:
+        - matchArgs:
+            - index: 0
+              operator: "Equal"
+              values: ["/etc/shadow"]
+            - index: 1
+              operator: "Mask"
+              values: ["2"]            # O_RDWR | O_WRONLY  (write intent)

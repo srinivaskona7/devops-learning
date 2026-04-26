@@ -1,0 +1,40 @@
+# HPA: scale hello-app between 2 and 10 replicas, target CPU 50%
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hello-app
+  labels:
+    app: hello-app
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hello-app
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50         # ← target % of requests.cpu across pods
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 70
+  behavior:                              # ← K8s 1.18+; tune flapping
+    scaleUp:
+      stabilizationWindowSeconds: 0
+      policies:
+        - type: Percent
+          value: 100                     # ← may double pods
+          periodSeconds: 30
+    scaleDown:
+      stabilizationWindowSeconds: 300    # ← wait 5 min before scaling in
+      policies:
+        - type: Percent
+          value: 50
+          periodSeconds: 60

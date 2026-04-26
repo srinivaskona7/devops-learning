@@ -1,0 +1,78 @@
+/* DevOps Learning Lab — custom Material overrides */
+
+:root {
+  --md-primary-fg-color: #326CE5;
+  --md-accent-fg-color: #E6522C;
+}
+
+/* Gradient header banner */
+.md-header {
+  background: linear-gradient(90deg, #326CE5 0%, #7B42BC 50%, #E6522C 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.md-tabs {
+  background: linear-gradient(90deg, #2a5fcc 0%, #6a37a8 50%, #d04826 100%);
+}
+
+/* Hero h1 on landing pages */
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #326CE5, #7B42BC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Code block tweaks */
+.md-typeset code,
+.md-typeset pre > code {
+  font-family: "JetBrains Mono", "Fira Code", "SF Mono", Menlo, Consolas, monospace;
+  font-feature-settings: "calt" 1, "liga" 1;
+  font-size: 0.85em;
+}
+
+.md-typeset pre > code {
+  border-radius: 8px;
+  padding: 1em;
+  line-height: 1.55;
+}
+
+/* Inline code chip */
+.md-typeset :not(pre) > code {
+  background: rgba(50, 108, 229, 0.08);
+  border: 1px solid rgba(50, 108, 229, 0.18);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+[data-md-color-scheme="slate"] .md-typeset :not(pre) > code {
+  background: rgba(124, 162, 255, 0.12);
+  border-color: rgba(124, 162, 255, 0.25);
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--md-primary-fg-color);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Admonitions get a subtle lift */
+.md-typeset .admonition {
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Mermaid diagrams centered */
+.mermaid {
+  text-align: center;
+  margin: 1.5em 0;
+}

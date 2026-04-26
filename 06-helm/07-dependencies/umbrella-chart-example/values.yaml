@@ -1,0 +1,24 @@
+# Umbrella values: subchart overrides go under the dep name (or alias)
+
+# Subchart: postgresql (aliased as "db")
+db:
+  enabled: true
+  auth:
+    username: app
+    password: "changeme-please"
+    database: appdb
+  primary:
+    persistence:
+      enabled: true
+      size: 5Gi
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+
+# Your app values (would be a sibling subchart or local templates)
+app:
+  image:
+    repository: gcr.io/google-samples/hello-app
+    tag: "1.0"
+  replicaCount: 2

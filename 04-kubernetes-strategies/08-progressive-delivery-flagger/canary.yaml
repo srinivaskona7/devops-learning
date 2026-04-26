@@ -1,0 +1,43 @@
+---
+# Flagger Canary CR: drives a fully-automated progressive rollout.
+# Assumes: NGINX ingress, Prometheus at prometheus.monitoring:9090,
+# and an existing Deployment "hello" + Service "hello" + Ingress "hello".
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: hello
+spec:
+  provider: nginx
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hello
+  ingressRef:
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    name: hello
+  progressDeadlineSeconds: 600
+  service:
+    port: 80
+    targetPort: 8080
+  analysis:
+    interval: 30s
+    threshold: 5            # 5 failed checks -> rollback
+    maxWeight: 50           # cap canary weight at 50%
+    stepWeight: 10          # 10, 20, 30, 40, 50, then promote
+    metrics:
+      - name: request-success-rate
+        thresholdRange:
+          min: 99
+        interval: 1m
+      - name: request-duration
+        thresholdRange:
+          max: 500          # ms p99
+        interval: 1m
+    webhooks:
+      - name: load-test
+        type: rollout
+        url: http://flagger-loadtester.test/
+        timeout: 5s
+        metadata:
+          cmd: "hey -z 1m -q 10 -c 2 http://hello-canary/"

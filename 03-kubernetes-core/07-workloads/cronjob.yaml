@@ -1,0 +1,33 @@
+# CronJob: fires every minute
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-cron
+  labels:
+    app: hello-cron
+    component: batch
+spec:
+  schedule: "*/1 * * * *"                  # ← every minute (cron syntax)
+  timeZone: "Etc/UTC"                       # ← K8s 1.25+
+  concurrencyPolicy: Forbid                 # ← never overlap with previous run
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+  startingDeadlineSeconds: 60
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      ttlSecondsAfterFinished: 120
+      template:
+        metadata:
+          labels:
+            app: hello-cron
+            component: batch
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: hello
+              image: busybox:1.36
+              command: ["sh", "-c", "echo Hello from CronJob at $(date)"]
+              resources:
+                requests: { cpu: "10m", memory: "16Mi" }
+                limits:   { cpu: "50m", memory: "32Mi" }

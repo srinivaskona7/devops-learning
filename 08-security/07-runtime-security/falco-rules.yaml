@@ -1,0 +1,74 @@
+---
+# Falco custom rules — drop into /etc/falco/rules.d/ or via the Helm chart `customRules`.
+# Each rule has: condition (Falco DSL), output (formatted message), priority.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: falco-custom-rules
+  namespace: falco
+data:
+  custom-rules.yaml: |
+    # ----------------------------------------------------------------
+    # 1. Shell spawned in a production container
+    # ----------------------------------------------------------------
+    - macro: production_namespace
+      condition: k8s.ns.name in (production, prod, payments)
+
+    - rule: Shell in production container
+      desc: A shell was spawned inside a container in production
+      condition: >
+        spawned_process and container and production_namespace and
+        proc.name in (bash, sh, zsh, dash, ash, ksh)
+      output: >
+        Shell opened in prod container
+        (user=%user.name container=%container.name image=%container.image.repository
+         ns=%k8s.ns.name pod=%k8s.pod.name cmdline=%proc.cmdline parent=%proc.pname)
+      priority: WARNING
+      tags: [container, shell, mitre_execution]
+
+    # ----------------------------------------------------------------
+    # 2. Read of sensitive cloud metadata endpoints
+    # ----------------------------------------------------------------
+    - rule: Outbound to cloud metadata service
+      desc: Container connecting to 169.254.169.254 (AWS/GCP/Azure metadata)
+      condition: >
+        outbound and container and fd.sip = "169.254.169.254"
+      output: >
+        Container reached cloud metadata service
+        (container=%container.name image=%container.image.repository
+         ns=%k8s.ns.name pod=%k8s.pod.name proc=%proc.cmdline)
+      priority: CRITICAL
+      tags: [network, mitre_credential_access]
+
+    # ----------------------------------------------------------------
+    # 3. Write to system binary paths (drift / tampering)
+    # ----------------------------------------------------------------
+    - rule: Write below system binary dirs
+      desc: An attempt to write below /bin, /sbin, /usr/bin, /usr/sbin
+      condition: >
+        open_write and container and
+        (fd.directory in (/bin, /sbin, /usr/bin, /usr/sbin) or
+         fd.name startswith /usr/local/bin/)
+      output: >
+        File written below known system binary dir
+        (file=%fd.name container=%container.name image=%container.image.repository
+         ns=%k8s.ns.name pod=%k8s.pod.name proc=%proc.cmdline)
+      priority: ERROR
+      tags: [filesystem, mitre_persistence]
+
+    # ----------------------------------------------------------------
+    # 4. Mount of docker.sock or host root
+    # ----------------------------------------------------------------
+    - rule: Suspicious host mount
+      desc: A container has access to the host docker socket or host root
+      condition: >
+        container.start and (
+          container.mount.dest contains "/var/run/docker.sock" or
+          container.mount.source = "/" )
+      output: >
+        Container started with privileged host mount
+        (container=%container.name image=%container.image.repository
+         ns=%k8s.ns.name mount.source=%container.mount.source
+         mount.dest=%container.mount.dest)
+      priority: CRITICAL
+      tags: [container, mitre_privilege_escalation]

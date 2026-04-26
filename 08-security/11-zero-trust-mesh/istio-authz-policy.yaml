@@ -1,0 +1,65 @@
+---
+# Istio: STRICT mTLS for the whole namespace, then default-deny,
+# then explicit allow rules per service-to-service edge.
+#
+# Pre-req: namespace labelled `istio-injection=enabled` and istiod installed.
+
+# 1. Force mTLS for all workloads in the namespace.
+apiVersion: security.istio.io/v1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: payments
+spec:
+  mtls:
+    mode: STRICT
+---
+# 2. Default-deny everything not explicitly allowed below.
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: default-deny
+  namespace: payments
+spec:
+  {}                 # empty spec = deny all (since we add allow policies below)
+---
+# 3. Allow `web` (sa: web) to POST /api/v1/charge on `billing` (sa: billing).
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-web-to-billing
+  namespace: payments
+spec:
+  selector:
+    matchLabels:
+      app: billing
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            principals:
+              - "cluster.local/ns/payments/sa/web"   # SPIFFE-style identity
+      to:
+        - operation:
+            methods: ["POST"]
+            paths:   ["/api/v1/charge"]
+      when:
+        - key: request.headers[x-request-id]
+          notValues: [""]                            # require trace header
+---
+# 4. Allow Prometheus to scrape /metrics on every pod in the namespace.
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-prom-scrape
+  namespace: payments
+spec:
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            namespaces: ["monitoring"]
+      to:
+        - operation:
+            methods: ["GET"]
+            paths:   ["/metrics", "/stats/prometheus"]

@@ -1,0 +1,22 @@
+---
+# Allow ingress to pods labelled app=api on port 8080
+# from any pod in the namespace labelled name=ingress-nginx.
+# Requires the source namespace to have the label `name: ingress-nginx`.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-ingress-nginx
+  namespace: app-restricted
+spec:
+  podSelector:
+    matchLabels:
+      app: api
+  policyTypes: ["Ingress"]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: ingress-nginx
+      ports:
+        - protocol: TCP
+          port: 8080

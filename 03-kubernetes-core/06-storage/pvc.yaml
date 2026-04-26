@@ -1,0 +1,14 @@
+# PVC: requests 1Gi from the default StorageClass (kind ships 'standard')
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-pvc
+  labels:
+    app: demo
+spec:
+  accessModes:
+    - ReadWriteOnce                # ← one node mounts RW
+  resources:
+    requests:
+      storage: 1Gi
+  # storageClassName: standard     # ← omit to use cluster default

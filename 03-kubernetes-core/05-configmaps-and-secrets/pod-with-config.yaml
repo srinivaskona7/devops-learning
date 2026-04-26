@@ -1,0 +1,49 @@
+# Pod that consumes ConfigMap + Secret as both env vars and volume mounts
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-with-config
+  labels:
+    app: demo
+    component: config-consumer
+spec:
+  containers:
+    - name: app
+      image: nginx:1.27-alpine
+      ports:
+        - containerPort: 80
+      env:
+        - name: APP_ENV            # ← single key from ConfigMap
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: APP_ENV
+        - name: DB_USERNAME        # ← single key from Secret
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: username
+      envFrom:                     # ← bulk-load all keys as env vars
+        - configMapRef:
+            name: app-config
+      volumeMounts:
+        - name: config-vol         # ← mount file-style key as file
+          mountPath: /etc/config
+          readOnly: true
+        - name: secret-vol
+          mountPath: /etc/secrets
+          readOnly: true
+      resources:
+        requests: { cpu: "50m", memory: "64Mi" }
+        limits:   { cpu: "200m", memory: "128Mi" }
+  volumes:
+    - name: config-vol
+      configMap:
+        name: app-config
+        items:
+          - key: app.properties
+            path: app.properties
+    - name: secret-vol
+      secret:
+        secretName: db-credentials
+        defaultMode: 0400          # ← read-only for owner

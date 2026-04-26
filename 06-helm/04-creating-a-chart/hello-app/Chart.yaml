@@ -1,0 +1,17 @@
+apiVersion: v2
+name: hello-app
+description: A starter Helm chart for the Google Samples hello-app demo
+type: application
+version: 0.1.0
+appVersion: "1.0"
+icon: https://helm.sh/img/helm.svg
+keywords:
+  - demo
+  - hello
+  - learning
+maintainers:
+  - name: devops-learning
+    email: devops@example.com
+home: https://github.com/GoogleCloudPlatform/kubernetes-engine-samples
+sources:
+  - https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/hello-app

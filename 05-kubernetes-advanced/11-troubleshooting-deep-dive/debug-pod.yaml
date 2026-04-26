@@ -1,0 +1,27 @@
+# A long-lived "swiss army" pod for ad-hoc debugging.
+# Schedule it on the node you want to inspect with nodeName.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: netshoot
+  namespace: default
+  labels: { app: netshoot }
+spec:
+  hostNetwork: false   # set true to share node netns
+  containers:
+    - name: netshoot
+      image: nicolaka/netshoot:latest
+      command: ["sleep", "infinity"]
+      securityContext:
+        capabilities:
+          add: ["NET_ADMIN", "NET_RAW"]
+  restartPolicy: Always
+---
+# Common one-liners once you exec in:
+#   nslookup kubernetes.default
+#   curl -v http://my-svc.my-ns.svc.cluster.local
+#   dig +search my-svc
+#   tcpdump -ni any port 80
+#   ss -tnp
+#   iptables-save | less          # if hostNetwork true
+#   conntrack -L | head

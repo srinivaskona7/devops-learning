@@ -1,0 +1,24 @@
+# Taint a node:
+#   kubectl taint nodes gpu-node-1 dedicated=gpu:NoSchedule
+#
+# Pods without a matching toleration cannot land there.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gpu-pod
+spec:
+  tolerations:
+    - key: dedicated
+      operator: Equal
+      value: gpu
+      effect: NoSchedule
+    - key: node.kubernetes.io/not-ready
+      operator: Exists
+      effect: NoExecute
+      tolerationSeconds: 300
+  containers:
+    - name: cuda
+      image: nvidia/cuda:12.4.0-base-ubuntu22.04
+      resources:
+        limits:
+          nvidia.com/gpu: 1

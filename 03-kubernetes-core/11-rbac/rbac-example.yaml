@@ -1,0 +1,31 @@
+# SA + Role + RoleBinding: 'app-reader' SA can list/get configmaps in 'default' ns
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-reader
+  namespace: default
+automountServiceAccountToken: true
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role                                # ← namespaced
+metadata:
+  namespace: default
+  name: configmap-reader
+rules:
+  - apiGroups: [""]                       # ← "" = core API group
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch"]       # ← read-only
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: app-reader-binding
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: app-reader
+    namespace: default
+roleRef:
+  kind: Role
+  name: configmap-reader
+  apiGroup: rbac.authorization.k8s.io

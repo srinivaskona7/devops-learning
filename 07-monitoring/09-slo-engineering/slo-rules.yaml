@@ -1,0 +1,54 @@
+# Sloth-style SLO spec.
+# Compile with: sloth generate -i slo-rules.yaml -o slo-rules.generated.yaml
+# Drop the output into Prometheus rule_files.
+version: prometheus/v1
+service: checkout-svc
+labels:
+  team: payments
+  tier: critical
+
+slos:
+  # ---- Availability ----
+  - name: availability
+    objective: 99.9
+    description: 99.9% of HTTP requests succeed (non-5xx)
+    sli:
+      events:
+        error_query: |
+          sum(rate(http_requests_total{job="checkout-svc",status=~"5.."}[{{.window}}]))
+        total_query: |
+          sum(rate(http_requests_total{job="checkout-svc"}[{{.window}}]))
+    alerting:
+      name: CheckoutHighErrorRate
+      labels: { severity: page, team: payments }
+      annotations:
+        summary: "Checkout error budget burning fast"
+        runbook_url: "https://runbooks/checkout-errors"
+      page_alert:
+        labels: { severity: critical }
+      ticket_alert:
+        labels: { severity: warning }
+
+  # ---- Latency ----
+  - name: latency
+    objective: 99
+    description: 99% of HTTP requests served within 300ms
+    sli:
+      events:
+        error_query: |
+          sum(rate(http_request_duration_seconds_bucket{job="checkout-svc",le="0.3"}[{{.window}}]))
+            -
+          sum(rate(http_request_duration_seconds_count{job="checkout-svc"}[{{.window}}]))
+          # NOTE: Sloth wants "bad" events; invert for the "good < 300ms" bucket via a more idiomatic SLI in real use.
+        total_query: |
+          sum(rate(http_request_duration_seconds_count{job="checkout-svc"}[{{.window}}]))
+    alerting:
+      name: CheckoutHighLatency
+      labels: { severity: page, team: payments }
+      annotations:
+        summary: "Checkout p99 latency budget burning"
+        runbook_url: "https://runbooks/checkout-latency"
+      page_alert:
+        labels: { severity: critical }
+      ticket_alert:
+        labels: { severity: warning }

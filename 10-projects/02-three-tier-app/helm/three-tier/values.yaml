@@ -1,0 +1,28 @@
+replicaCount:
+  frontend: 2
+  backend: 2
+
+image:
+  frontend:
+    repository: nginx
+    tag: "1.27-alpine"
+  backend:
+    repository: ghcr.io/devops-learning/three-tier-backend
+    tag: "0.1.0"
+
+postgres:
+  image: postgres:16-alpine
+  user: appuser
+  database: appdb
+  password: "ChangeMe123!"
+  storage: 5Gi
+
+ingress:
+  enabled: true
+  className: nginx
+  host: app.local
+
+service:
+  frontendPort: 80
+  backendPort: 3000
+  postgresPort: 5432
