@@ -27,7 +27,6 @@ flowchart TB
 ```
 
 </details>
-
 ---
 
 ## The alert hierarchy

@@ -15,7 +15,7 @@ A **trace** answers "where did the time go?" across services. It's a tree of **s
 ## Trace anatomy
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-1-707803d8.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-1-707803d8.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -44,7 +44,7 @@ sequenceDiagram
 ## Tempo architecture
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-2-2639ab54.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-README-2-2639ab54.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -8,6 +8,11 @@ When an app hangs, fails silently, or "just does nothing", strace tells you what
 
 `ptrace(2)` is a kernel syscall that lets one process inspect/control another: read its memory, registers, single-step, stop on syscalls. `strace` uses `PTRACE_SYSCALL` to intercept every syscall entry and exit. Each interception is two context switches and a copy of arguments — substantial overhead.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-strace-and-ptrace-1-fba3b0d1.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   S["strace process<br/>tracer"] -->|ptrace ATTACH| T["target process<br/>tracee"]
@@ -22,6 +27,13 @@ flowchart LR
   S -->|prints line| OUT["stderr"]
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-strace-and-ptrace-2-04b3d2e1.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TD
   A["strace -p PID"] --> B["PTRACE_ATTACH<br/>or PTRACE_SEIZE"]
@@ -34,6 +46,8 @@ flowchart TD
   G --> D
   H["strace -d / Ctrl-C"] --> I["PTRACE_DETACH"]
 ```
+
+</details>
 
 ## Walkthrough
 

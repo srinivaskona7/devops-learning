@@ -6,6 +6,11 @@ In Kubernetes, every service gets a DNS name. Behind that simplicity sits CoreDN
 
 ## Mental Model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-service-discovery-and-coredns-1-544dae9e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Pod[Pod] -->|DNS query| Resolv[/etc/resolv.conf<br/>nameserver = kube-dns ClusterIP/]
@@ -16,6 +21,8 @@ flowchart LR
   Plugin --> F[forward plugin<br/>upstream resolver]
   Plugin --> C[cache plugin]
 ```
+
+</details>
 
 Every pod's `/etc/resolv.conf` points at the kube-dns ClusterIP (typically `10.96.0.10`). That ClusterIP fronts CoreDNS pods. CoreDNS handles the query through its plugin chain.
 
@@ -117,12 +124,19 @@ If the same pod queries `google.com`:
 
 A DaemonSet that runs a DNS cache on every node, listening on a link-local IP (typically `169.254.20.10`). Pods are configured (via kubelet `--cluster-dns`) to query this local cache first.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-service-discovery-and-coredns-2-3c27ba4c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Pod -->|169.254.20.10:53| NL[NodeLocal DNS<br/>per-node DaemonSet]
   NL -->|cache miss| CD[CoreDNS<br/>cluster service]
   NL -.cache hit.-> Pod
 ```
+
+</details>
 
 **Why use it:**
 - Eliminates conntrack entries for cluster DNS (UDP DNS through kube-proxy creates conntrack entries that fill the table at scale)

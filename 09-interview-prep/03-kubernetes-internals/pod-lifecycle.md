@@ -6,6 +6,11 @@ A Pod's life is a state machine. Each transition involves the kubelet, the runti
 
 ## Mental Model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-pod-lifecycle-1-3690f235.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   P[Pending] --> CC[ContainerCreating]
@@ -15,6 +20,8 @@ flowchart LR
   R --> T[Terminating]
   T --> Done[(removed)]
 ```
+
+</details>
 
 Phase is a *coarse* status. The real story lives in `pod.status.conditions` (PodScheduled, Initialized, ContainersReady, Ready) and `pod.status.containerStatuses[].state` (waiting/running/terminated).
 
@@ -132,6 +139,11 @@ readinessProbe:
 
 When you `kubectl delete pod`:
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-pod-lifecycle-2-78cb9d59.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
   participant API
@@ -147,6 +159,8 @@ sequenceDiagram
   Kubelet->>App: SIGKILL (if still running at deadline)
   Kubelet->>API: pod removed
 ```
+
+</details>
 
 Key params:
 

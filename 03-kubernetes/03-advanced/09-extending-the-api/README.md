@@ -3,7 +3,7 @@
 Three ways to add API surface:
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-09-extending-the-api-README-1-fb298c3a.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-09-extending-the-api-README-1-fb298c3a.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

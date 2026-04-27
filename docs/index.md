@@ -43,6 +43,11 @@ hide:
 
 ## :material-timeline-clock-outline: Learning path
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-index-1-e731f913.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A([01 Linux]) --> B([02 Docker])
@@ -58,6 +63,8 @@ flowchart LR
     class A,B,C,D,E,F,G base;
     class H,I cap;
 ```
+
+</details>
 
 ## :material-folder-multiple-outline: Browse modules { #folders }
 

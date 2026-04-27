@@ -15,7 +15,7 @@
 ## Release Lifecycle
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-01-concepts-README-1-28c40233.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-01-concepts-README-1-28c40233.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

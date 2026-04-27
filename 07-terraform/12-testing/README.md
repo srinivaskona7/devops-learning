@@ -3,7 +3,7 @@
 Five layers, run them in this order:
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-12-testing-README-1-44e2deed.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-12-testing-README-1-44e2deed.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

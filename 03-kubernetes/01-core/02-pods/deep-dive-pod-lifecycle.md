@@ -56,7 +56,6 @@ flowchart TB
 ```
 
 </details>
-
 Key 1.29+ rule: a "native sidecar" is an **init container with `restartPolicy: Always`**. The kubelet:
 1. Starts it in the init phase.
 2. Waits for its `startupProbe` (or readiness if no startup) to pass before starting the next init/main container.
@@ -98,7 +97,6 @@ sequenceDiagram
 ```
 
 </details>
-
 > **Critical race:** `terminationGracePeriodSeconds` starts at the DELETE call, not after preStop. If `preStop` sleeps 25s and grace is 30s, the app gets only 5s for SIGTERM cleanup. Size grace = preStop + app drain + buffer.
 
 ---

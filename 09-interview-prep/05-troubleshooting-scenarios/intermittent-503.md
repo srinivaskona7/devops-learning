@@ -129,6 +129,11 @@ srv.Shutdown(ctx)   // drains in-flight, closes idle keepalives
 
 ## Failure-mode sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-intermittent-503-1-76ae4007.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant C as Client
@@ -148,6 +153,8 @@ sequenceDiagram
     LB-->>C: 503
     Note over KP: iptables update arrives, problem stops
 ```
+
+</details>
 
 ---
 

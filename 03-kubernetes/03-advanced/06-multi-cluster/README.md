@@ -1,7 +1,7 @@
 # 06 — Multi-Cluster Kubernetes
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-06-multi-cluster-README-1-c28fab65.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-06-multi-cluster-README-1-c28fab65.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

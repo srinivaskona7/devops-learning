@@ -17,12 +17,19 @@ Kubernetes is not a container orchestrator — it's a declarative API for comput
 
 ## :material-map-marker-path: Roadmap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-03-kubernetes-1-86a25d5e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Core Primitives] --> B[Workload Strategies]
     B --> C[Advanced Topics]
     C --> D[Production-ready]
 ```
+
+</details>
 
 ## :material-grid: Modules { #start }
 

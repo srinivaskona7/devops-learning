@@ -48,7 +48,6 @@ stateDiagram-v2
 ```
 
 </details>
-
 ---
 
 ## Diagram 2 — The slow-startup trap (and the fix)
@@ -79,7 +78,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ---
 
 ## Handler types

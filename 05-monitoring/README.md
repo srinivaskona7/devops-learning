@@ -9,7 +9,7 @@ You cannot operate what you cannot see. Modern distributed systems fail in non-o
 ## Architecture (data flow)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/05-monitoring-README-1-ab894ed0.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../assets/diagrams/05-monitoring-README-1-ab894ed0.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

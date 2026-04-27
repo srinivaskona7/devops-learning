@@ -36,7 +36,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ### The stages (UEFI path)
 
 <!-- mermaid:rendered -->
@@ -62,7 +61,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ### File map
 
 ```

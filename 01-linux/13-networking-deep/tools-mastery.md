@@ -26,7 +26,6 @@ flowchart TB
 ```
 
 </details>
-
 ## tcpdump pipeline
 
 <!-- mermaid:rendered -->
@@ -45,7 +44,6 @@ flowchart LR
 ```
 
 </details>
-
 ## mtr vs traceroute
 
 <!-- mermaid:rendered -->
@@ -72,7 +70,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ---
 
 ## tcpdump

@@ -330,6 +330,11 @@ or shed by priority. Without backpressure, slow consumer = OOM somewhere upstrea
 
 ## Quick Diagram — Cell-Based Isolation
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-architect-qa-1-e5498a0e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   R[Router] --> C1[Cell 1]
@@ -340,7 +345,14 @@ flowchart LR
   C3 --> D3[DB 3]
 ```
 
+</details>
+
 ## Quick Diagram — Saga Compensation
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-architect-qa-2-1679254a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -350,3 +362,5 @@ flowchart LR
   C --> D[Done]
   B -->|fail| RA[Refund + Release]
 ```
+
+</details>

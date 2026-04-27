@@ -28,7 +28,6 @@ flowchart TB
 ```
 
 </details>
-
 ### How GUI vs CLI is selected
 
 There is no special "graphical install." The only difference is which target `default.target` symlinks to:
@@ -339,7 +338,6 @@ flowchart TB
 ```
 
 </details>
-
 ---
 
 ## Gotchas

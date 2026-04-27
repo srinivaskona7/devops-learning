@@ -26,7 +26,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ## TCP close (4-way) — TIME_WAIT vs CLOSE_WAIT
 
 <!-- mermaid:rendered -->
@@ -48,7 +47,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ## Congestion control — slow start to BBR
 
 <!-- mermaid:rendered -->
@@ -67,7 +65,6 @@ flowchart LR
 ```
 
 </details>
-
 ---
 
 ## Concepts

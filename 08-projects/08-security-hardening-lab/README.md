@@ -5,7 +5,7 @@ Apply CIS Kubernetes Benchmark, deploy Kyverno admission policies, scan with Tri
 ## What you'll build
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-08-security-hardening-lab-README-1-f032e707.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-08-security-hardening-lab-README-1-f032e707.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

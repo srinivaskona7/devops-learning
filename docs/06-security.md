@@ -17,6 +17,11 @@ Security in modern infrastructure is layered: identity, network, workload, suppl
 
 ## :material-map-marker-path: Roadmap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-06-security-1-d40e2d7d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[01 RBAC Deep Dive] --> B[02 Pod Security]
@@ -33,6 +38,8 @@ flowchart LR
     classDef sec fill:#fef2f2,stroke:#b91c1c,color:#1f2330,rx:8,ry:8;
     class A,B,C,D,E,F,G,H,I,J,K,L sec;
 ```
+
+</details>
 
 ## :material-grid: Modules { #start }
 

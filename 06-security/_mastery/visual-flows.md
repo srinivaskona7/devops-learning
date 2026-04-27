@@ -6,6 +6,11 @@
 
 ## 1. kubectl request — authn to authz to admission to etcd
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-1-e125d351.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   U[User]
@@ -15,6 +20,8 @@ flowchart LR
   ETC[etcd]
   U --> AN --> AZ --> AD --> ETC
 ```
+
+</details>
 
 The full path of any `kubectl apply`. Authn proves who you are (cert, token, OIDC). Authz checks RBAC. Admission validates and mutates. Then store.
 
@@ -35,6 +42,11 @@ kubectl get --raw /api/v1/namespaces/demo/pods --v=8
 
 ## 2. RBAC authorization decision
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-2-a9add294.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   REQ[Request]
@@ -44,6 +56,8 @@ flowchart LR
   D[Decision]
   REQ --> RB --> R --> V --> D
 ```
+
+</details>
 
 Every request maps to subject + verb + resource. RBAC walks every (Cluster)RoleBinding for the subject and unions the rules.
 
@@ -60,6 +74,11 @@ kubectl describe role pod-reader -n demo
 
 ## 3. Admission policy decision (Kyverno or Gatekeeper)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-3-2b2e51ea.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   AR[AdmissionReview]
@@ -69,6 +88,8 @@ flowchart LR
   ETC[etcd]
   AR --> POL --> EV --> RES --> ETC
 ```
+
+</details>
 
 API server sends AdmissionReview to webhook. Policy engine evaluates against rules. Allow/deny/mutate returned.
 
@@ -85,6 +106,11 @@ kubectl get validatingwebhookconfigurations
 
 ## 4. NetworkPolicy traffic decision
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-4-624bd74e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   SRC[Source Pod]
@@ -94,6 +120,8 @@ flowchart LR
   DST[Dest Pod]
   SRC --> CNI --> POL --> DEC --> DST
 ```
+
+</details>
 
 CNI evaluates ingress/egress rules per pod label. Default = allow if no policy targets the pod, deny if any policy selects it (without matching the rule).
 
@@ -110,6 +138,11 @@ kubectl exec -n demo client -- nc -zv backend 8080
 
 ## 5. Image signing flow (cosign keyless)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-5-fc5f3a57.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   DEV[CI Build]
@@ -119,6 +152,8 @@ flowchart LR
   SIG[Signed Image]
   DEV --> OIDC --> FUL --> CRT --> SIG
 ```
+
+</details>
 
 CI presents OIDC identity to Fulcio, gets a short-lived signing certificate, signs the image. Signature stored in registry next to image. Rekor logs the event for transparency.
 
@@ -134,6 +169,11 @@ cosign verify --certificate-identity-regexp=.*@company.com \
 
 ## 6. Image admission verification
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-6-eb0aeda7.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   POD[Pod Spec]
@@ -144,6 +184,8 @@ flowchart LR
   POD --> AD --> COS --> REG
   COS --> DEC
 ```
+
+</details>
 
 Sigstore policy controller (or Kyverno verifyImages) intercepts pod creates, fetches signature from registry, verifies against allowed identity, allows only if signed by expected builder.
 
@@ -157,6 +199,11 @@ kubectl run unsigned --image=docker.io/random/unverified
 
 ## 7. Secret pull from external store (External Secrets Operator)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-7-da2ee4d5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   ES[ExternalSecret]
@@ -166,6 +213,8 @@ flowchart LR
   POD[Pod]
   ES --> SS --> VLT --> K8S --> POD
 ```
+
+</details>
 
 ExternalSecret references a SecretStore which holds connection + auth to Vault/AWS SM/etc. ESO polls or watches, writes a native K8s Secret, pod consumes via volume.
 
@@ -180,6 +229,11 @@ vault kv get secret/demo/app
 
 ## 8. SPIFFE attestation flow
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-8-33877638.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   POD[Workload]
@@ -189,6 +243,8 @@ flowchart LR
   SVID[X509 SVID]
   POD --> AGT --> ATT --> SRV --> SVID
 ```
+
+</details>
 
 Agent on each node attests workload (via k8s_psat selector: namespace, SA, image). Server issues SVID. Workload uses SVID for mTLS or to authenticate to Vault, DB, mesh.
 
@@ -202,6 +258,11 @@ kubectl logs -n spire spire-server-0
 
 ## 9. OIDC token exchange (workload to AWS via IRSA)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-9-438c6430.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   POD[Pod with SA]
@@ -211,6 +272,8 @@ flowchart LR
   CRED[Temp Creds]
   POD --> TOK --> STS --> ROLE --> CRED
 ```
+
+</details>
 
 Pod has a projected SA token (audience = sts.amazonaws.com). SDK calls AssumeRoleWithWebIdentity, AWS validates token signature against cluster OIDC issuer JWKS, returns 1h credentials.
 
@@ -225,6 +288,11 @@ aws iam get-role --role-name eks-demo-app
 
 ## 10. Runtime detection alert pipeline
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-10-cd3394d3.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   K[Kernel Events]
@@ -234,6 +302,8 @@ flowchart LR
   SIEM[SIEM Alert]
   K --> EBP --> RU --> SK --> SIEM
 ```
+
+</details>
 
 Falco/Tetragon hooks kernel via eBPF, evaluates rules in userspace (Falco) or in-kernel (Tetragon), forwards to falcosidekick which routes to SIEM, Slack, PagerDuty.
 
@@ -254,6 +324,11 @@ curl -s http://falcosidekick:2801/healthz
 
 ## Combined trust chain (everything together)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-visual-flows-11-62549e1b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   SRC[Source]
@@ -264,6 +339,8 @@ flowchart LR
   MESH[Mesh]
   SRC --> CI --> REG --> AD --> POD --> MESH
 ```
+
+</details>
 
 End-to-end: code goes to CI, CI builds and signs image, registry stores image plus signature plus attestations, admission verifies signature and policy at deploy, pod runs with workload identity and mTLS via mesh.
 

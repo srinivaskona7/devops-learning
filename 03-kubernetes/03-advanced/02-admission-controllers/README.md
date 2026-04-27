@@ -3,7 +3,7 @@
 Admission controllers intercept API requests **after authentication/authorization** but **before persistence**. They can mutate or validate.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-02-admission-controllers-README-1-93d8b21f.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-02-admission-controllers-README-1-93d8b21f.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

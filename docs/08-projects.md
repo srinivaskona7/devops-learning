@@ -17,6 +17,11 @@ Eight end-to-end projects that stitch every prior module together. Build a hello
 
 ## :material-map-marker-path: Roadmap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-08-projects-1-89d6addd.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[01 Hello World E2E] --> B[02 GitOps ArgoCD]
@@ -29,6 +34,8 @@ flowchart LR
     classDef p fill:#ecfdf5,stroke:#059669,color:#1f2330,rx:8,ry:8;
     class A,B,C,D,E,F,G,H p;
 ```
+
+</details>
 
 ## :material-grid: Modules { #start }
 

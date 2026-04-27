@@ -17,6 +17,11 @@ Linux is the substrate of modern infra. Master the filesystem, the process tree,
 
 ## :material-map-marker-path: Roadmap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-01-linux-1-c6f795de.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Filesystem] --> B[Users and Permissions]
@@ -29,6 +34,8 @@ flowchart LR
     H --> I[Storage and Disks]
     I --> J[Troubleshooting]
 ```
+
+</details>
 
 ## :material-grid: Modules { #start }
 

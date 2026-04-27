@@ -129,6 +129,11 @@ livenessProbe:
 
 ## Failure-mode sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-slow-pod-startup-1-b9092f8d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant S as Scheduler
@@ -151,6 +156,8 @@ sequenceDiagram
     App-->>K: readiness 200
     Note over K: total: 4 minutes
 ```
+
+</details>
 
 ---
 

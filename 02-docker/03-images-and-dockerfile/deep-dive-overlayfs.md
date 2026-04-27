@@ -77,7 +77,6 @@ flowchart TB
 ```
 
 </details>
-
 ---
 
 ## Read, write, delete — the three operations
@@ -113,7 +112,6 @@ sequenceDiagram
 ```
 
 </details>
-
 Implication: the **first write** to a 5 GB file copies 5 GB before the write returns. Subsequent writes are fast. This is why benchmarks of "first write" inside containers look terrible.
 
 ### Delete — whiteouts

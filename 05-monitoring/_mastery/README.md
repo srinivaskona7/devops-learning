@@ -13,6 +13,11 @@ Index for the Monitoring & Observability mastery track. Covers metrics, logs, tr
 
 ## Topic organization
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-README-1-4a738099.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Observability] --> B[Metrics]
@@ -23,7 +28,14 @@ flowchart LR
     D --> E
 ```
 
+</details>
+
 ## Telemetry stack at a glance
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-README-2-72caa052.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -34,7 +46,14 @@ flowchart LR
     PR --> GR[Grafana]
 ```
 
+</details>
+
 ## Recommended reading order
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-README-3-35976354.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -43,6 +62,8 @@ flowchart LR
     R3 --> R4[Build a lab]
     R4 --> R5[Reread architect-qa]
 ```
+
+</details>
 
 ## What lives where (parent folder map)
 
@@ -78,6 +99,11 @@ flowchart LR
 
 ## The four golden signals
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-README-4-01f85998.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     S[Signals] --> L[Latency]
@@ -85,6 +111,8 @@ flowchart LR
     S --> E[Errors]
     S --> U[Saturation]
 ```
+
+</details>
 
 ## RED vs USE vs Four Golden Signals
 
@@ -118,6 +146,11 @@ flowchart LR
 
 ## Cost levers (most impactful first)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-README-5-32a5f672.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     C[Cost] --> X1[Drop labels]
@@ -127,7 +160,14 @@ flowchart LR
     C --> X5[Compress storage]
 ```
 
+</details>
+
 ## SLO loop
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-README-6-55417f59.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -137,6 +177,8 @@ flowchart LR
     R --> P[Post-mortem]
     P --> M
 ```
+
+</details>
 
 ## Anti-patterns to avoid
 
@@ -230,6 +272,11 @@ Every alert should link to a runbook with these sections:
 
 ## Maturity model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-README-7-d0abdf0e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     L1[Logs only] --> L2[Add Metrics]
@@ -237,6 +284,8 @@ flowchart LR
     L3 --> L4[Add SLOs]
     L4 --> L5[Cost Controlled]
 ```
+
+</details>
 
 | Stage | Signal | Pain when missing |
 |-------|--------|-------------------|

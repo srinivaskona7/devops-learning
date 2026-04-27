@@ -6,6 +6,11 @@ Classic `docker build` was sequential and dumb: it walked the Dockerfile line by
 
 ## Architecture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-buildkit-dag-1-b87b6ad4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     subgraph frontends[Frontends produce LLB]
@@ -28,6 +33,13 @@ flowchart TB
     OUT --> FS[rootfs to local dir]
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-buildkit-dag-2-46a8086a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[FROM golang AS build] --> B[COPY go.mod]
@@ -38,6 +50,8 @@ flowchart LR
     F[FROM alpine] --> G[COPY --from=build /app /app]
     E --> G
 ```
+
+</details>
 
 D and C run in parallel. F runs in parallel with the entire build chain.
 

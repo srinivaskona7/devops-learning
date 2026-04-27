@@ -6,6 +6,11 @@ System design interviews aren't about knowing every cloud product. They're about
 
 ## The 6-Step Framework
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-README-1-2396b3b3.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   R[1. Requirements] --> C[2. Capacity]
@@ -14,6 +19,8 @@ flowchart LR
   H --> D[5. Deep Dive]
   D --> T[6. Tradeoffs & Followups]
 ```
+
+</details>
 
 Time budget for a 45-min interview:
 - Requirements: 5 min
@@ -100,6 +107,11 @@ State why — "tweets are append-only, denormalized, fits Cassandra; users are r
 
 Draw the boxes. Use mermaid.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-README-2-dc0af58e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   C[Clients] --> CDN
@@ -115,6 +127,8 @@ flowchart LR
   Tweet --> DB[(Cassandra)]
   Auth --> Users[(Postgres)]
 ```
+
+</details>
 
 Cover the major flows:
 - **Write path** (post tweet)

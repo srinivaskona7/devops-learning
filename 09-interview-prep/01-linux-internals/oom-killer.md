@@ -8,6 +8,11 @@ Production memory exhaustion is one of the most common SRE incidents. Every resp
 
 Linux overcommits memory. `malloc()` returns a non-NULL pointer for memory the kernel hasn't actually backed. The accounting moment is page-fault time — when a process touches a page, the kernel must give it real RAM. If RAM is gone and reclaim (page cache eviction, swap) cannot free enough, the kernel calls the OOM killer.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-oom-killer-1-a76ac498.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TD
   A["allocation request<br/>brk, mmap"] --> B{"enough free RAM?"}
@@ -21,11 +26,20 @@ flowchart TD
   K --> L["dmesg: Out of memory:<br/>Killed process PID name"]
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-oom-killer-2-5eba69d3.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   G["global pressure<br/>system-wide OOM"] --> SK["scans all tasks"]
   CG["cgroup memory.max hit"] --> CK["scans only that cgroup<br/>v2: kill whole group if<br/>memory.oom.group=1"]
 ```
+
+</details>
 
 ## OOM score calculation
 

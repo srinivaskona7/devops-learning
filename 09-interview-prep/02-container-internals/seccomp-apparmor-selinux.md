@@ -6,6 +6,11 @@ Namespaces and cgroups isolate **resources**. They do not stop a process from ca
 
 ## Architecture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-seccomp-apparmor-selinux-1-85cd93ba.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     proc[container process] -->|syscall| seccomp[seccomp-bpf filter<br/>kernel-level allowlist]
@@ -16,6 +21,13 @@ flowchart TB
     caps -.->|denied| err2[EPERM]
     lsm -.->|denied| err3[EACCES, audit log]
 ```
+
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-seccomp-apparmor-selinux-2-ad4a78b1.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -28,6 +40,8 @@ flowchart LR
     end
     L1 --> L2 --> L3 --> L4 --> L5
 ```
+
+</details>
 
 ## Mental Model
 

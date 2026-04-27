@@ -5,7 +5,7 @@
 ## Identity flow (SPIFFE)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-README-1-7fa9f8d6.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-README-1-7fa9f8d6.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -3,7 +3,7 @@
 ## Version skew policy (the rules)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-upgrade-guide-1-732cbe60.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-upgrade-guide-1-732cbe60.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

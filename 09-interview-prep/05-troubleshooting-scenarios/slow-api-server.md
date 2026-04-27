@@ -141,6 +141,11 @@ spec:
 
 ## Failure-mode sequence (slow webhook)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-slow-api-server-1-386d4881.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant U as kubectl
@@ -158,6 +163,8 @@ sequenceDiagram
     Note over API,W: every Pod create blocks for 5s
     Note over API: queue fills, p99 climbs, 429s appear
 ```
+
+</details>
 
 ---
 

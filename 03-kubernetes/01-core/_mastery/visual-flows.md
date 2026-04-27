@@ -6,6 +6,11 @@
 
 The scheduler picks a node for a pending Pod.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-1-5c7d3fb6.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Pod Pending] --> B[Scheduler]
@@ -15,11 +20,18 @@ flowchart LR
     E --> F[Kubelet Starts Pod]
 ```
 
+</details>
+
 Notes: Filter eliminates nodes that cannot fit (resources, taints, affinity). Score ranks remaining nodes (least loaded, image locality). Binding writes the chosen node into the Pod spec.
 
 ## Flow 2 — kubectl apply Path
 
 What happens when you apply a YAML.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-2-0e146a28.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -30,11 +42,18 @@ flowchart LR
     E --> F[Resources Created]
 ```
 
+</details>
+
 Notes: Authentication checks who you are. Authorization (RBAC) checks what you can do. Admission webhooks mutate or validate. etcd is the source of truth.
 
 ## Flow 3 — Service Routing to Backend
 
 How traffic reaches a Pod via a Service.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-3-11ac7d50.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -44,11 +63,18 @@ flowchart LR
     D --> E[Backend Pod]
 ```
 
+</details>
+
 Notes: kube-proxy programs iptables (or IPVS) to DNAT the VIP to a real pod IP. Endpoints (or EndpointSlices) keep the live list updated.
 
 ## Flow 4 — ConfigMap into Env
 
 How a ConfigMap value lands in the container's environment.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-4-6b7620ac.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -58,11 +84,18 @@ flowchart LR
     D --> E[App Reads VAR]
 ```
 
+</details>
+
 Notes: Env vars are evaluated at container start. Changes to the ConfigMap do not propagate to running containers via env (only via mounted volumes).
 
 ## Flow 5 — PVC Binding
 
 How a PVC becomes a usable mounted volume.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-5-a53ae88f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -73,11 +106,18 @@ flowchart LR
     E --> F[Pod Mount]
 ```
 
+</details>
+
 Notes: Dynamic provisioning is triggered by the StorageClass. The CSI driver creates the underlying disk. Binding is exclusive (one PVC to one PV).
 
 ## Flow 6 — Deployment Rollout
 
 How a Deployment performs a rolling update.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-6-4278359c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -88,11 +128,18 @@ flowchart LR
     E --> F[Rollout Complete]
 ```
 
+</details>
+
 Notes: Surge and maxUnavailable control concurrency. ReadinessProbe must pass before old replicas are removed. Old ReplicaSets are kept for rollback.
 
 ## Flow 7 — RBAC Check
 
 How an API request is authorized.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-7-ad293d56.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -102,11 +149,18 @@ flowchart LR
     D --> E[Allow or Deny]
 ```
 
+</details>
+
 Notes: Multiple authorizers can be chained (RBAC, Node, Webhook). First allow wins. Default is deny.
 
 ## Flow 8 — HPA Scale-Up
 
 How the Horizontal Pod Autoscaler reacts to load.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-8-e0ea02f0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -117,11 +171,18 @@ flowchart LR
     E --> F[More Pods Run]
 ```
 
+</details>
+
 Notes: Default sync period is 15s. Scale-up is fast, scale-down has a stabilization window (5 min default) to avoid flapping.
 
 ## Flow 9 — Pod Termination
 
 What happens when you delete a Pod.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-9-fd25ca6c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -132,11 +193,18 @@ flowchart LR
     E --> F[SIGKILL if Needed]
 ```
 
+</details>
+
 Notes: Default grace period is 30s. Endpoints removal happens in parallel; in-flight traffic may still hit the pod briefly.
 
 ## Flow 10 — Image Pull
 
 How a container image arrives on a node.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-10-7da6b64c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -147,11 +215,18 @@ flowchart LR
     E --> F[Container Started]
 ```
 
+</details>
+
 Notes: Image pull policy `IfNotPresent` is default for tagged images, `Always` for `:latest`. Use imagePullSecrets for private registries.
 
 ## Flow 11 — Liveness Probe Failure
 
 What happens when liveness fails repeatedly.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-11-22906d5c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -162,11 +237,18 @@ flowchart LR
     E --> F[New Container Up]
 ```
 
+</details>
+
 Notes: Restart policy `Always` is default for Deployments. Backoff is exponential capped at 5 min. Excessive restarts mark Pod CrashLoopBackOff.
 
 ## Flow 12 — Ingress Request Path
 
 How an external HTTPS request reaches a Pod.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-01-core-_mastery-visual-flows-12-2b76a43f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -175,6 +257,8 @@ flowchart LR
     C --> D[Service]
     D --> E[Backend Pod]
 ```
+
+</details>
 
 Notes: TLS terminates at the Ingress Controller (or LB). Host and path rules pick the backend Service. Service then routes to a Pod.
 

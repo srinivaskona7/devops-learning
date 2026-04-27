@@ -8,6 +8,11 @@ Kubernetes deletion is not a single atomic operation — it's a multi-phase prot
 
 ## Mental model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-finalizers-and-gc-1-b50bceeb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     D[kubectl delete] --> S{has<br/>finalizers?}
@@ -19,6 +24,8 @@ flowchart LR
     C -- no --> X[API server removes object]
     X --> GC[GC reconciles owners<br/>cascades to children]
 ```
+
+</details>
 
 Deletion is **cooperative**. The API server sets a tombstone-in-progress (`deletionTimestamp`); finalizer-owners do their cleanup; when the last finalizer is removed, the object actually disappears.
 

@@ -6,6 +6,11 @@ Multi-tenancy in Kubernetes is a spectrum. From "share a namespace" to "share ab
 
 ## Mental Model — Soft vs Hard Tenancy
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-multi-tenancy-models-1-f4a36702.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   T[Trust level] --> Soft[Soft tenancy<br/>same org, mutually trusting]
@@ -16,6 +21,8 @@ flowchart LR
   Hard --> Cluster[Cluster-per-tenant]
   Hard --> Sandboxed[gVisor/Kata + strict policy]
 ```
+
+</details>
 
 - **Soft tenancy** — internal teams, you accept that a malicious team COULD break out. Goal: prevent accidents, fair resource sharing, RBAC isolation.
 - **Hard tenancy** — paying customers running untrusted code (think a SaaS platform). Goal: prevent intentional breakouts, strict resource isolation, no cross-tenant data leak even with kernel exploits.
@@ -97,6 +104,11 @@ metadata:
 
 vCluster runs an entire control plane (k3s/k8s in a pod) inside a host namespace. Tenants get full cluster-admin inside their virtual cluster. Workloads still run on the host's nodes (synced via syncer).
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-multi-tenancy-models-2-dbc02a45.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Host[Host Cluster] --> NS1[ns: tenant-a]
@@ -106,6 +118,8 @@ flowchart LR
   Host --> NS2[ns: tenant-b]
   NS2 --> VCB[vCluster B]
 ```
+
+</details>
 
 **Wins:**
 - Tenants get full cluster admin (CRDs, cluster-scoped resources, custom controllers)

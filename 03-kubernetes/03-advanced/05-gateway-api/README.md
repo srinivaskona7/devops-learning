@@ -3,7 +3,7 @@
 Gateway API is the successor to Ingress: role-oriented (infra / cluster ops / app dev), portable across implementations, and richer (header-based routing, traffic split, gRPC, TCP/UDP/TLS routes).
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-05-gateway-api-README-1-0bb3ff51.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-05-gateway-api-README-1-0bb3ff51.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

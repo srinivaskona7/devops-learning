@@ -5,7 +5,7 @@ Grafana is the **query and visualization** layer. It connects to many time-serie
 ## Architecture
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-03-grafana-README-1-7d28c0cd.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-03-grafana-README-1-7d28c0cd.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

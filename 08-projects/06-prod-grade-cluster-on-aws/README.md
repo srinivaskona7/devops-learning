@@ -5,7 +5,7 @@ Stand up a real EKS cluster with Terraform: VPC, managed node groups, addons (vp
 ## What you'll build
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-06-prod-grade-cluster-on-aws-README-1-f64c200b.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-06-prod-grade-cluster-on-aws-README-1-f64c200b.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

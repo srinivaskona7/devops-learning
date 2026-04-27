@@ -57,6 +57,11 @@ Envoy speaks **xDS** (gRPC discovery): LDS (listeners), RDS (routes), CDS (clust
 
 ## 4. High-Level Design
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-a-service-mesh-1-9afa2948.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   CRD[CRDs in K8s API] --> CP[Control Plane<br/>Istiod]
@@ -70,6 +75,8 @@ flowchart LR
   Sidecar1 --> METRICS[Prometheus]
   Sidecar1 --> TRACES[Tempo]
 ```
+
+</details>
 
 ### Data path
 1. App A makes plain HTTP `GET orders.svc/foo`
@@ -102,6 +109,11 @@ Single binary that combines:
 - Galley (config validation)
 - Sidecar injector (mutating webhook on pod create)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-a-service-mesh-2-3ec56a20.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   K[K8s API watches<br/>Services, Endpoints, CRDs] --> Pilot
@@ -109,6 +121,8 @@ flowchart LR
   CA[Citadel CA] -->|SDS| Sidecars
   Webhook[Mutating Webhook] -->|inject sidecar| New_Pods
 ```
+
+</details>
 
 Run 3+ replicas for HA. Stateless — backed by etcd via API server.
 
@@ -171,12 +185,19 @@ Two models:
 
 **Multi-primary:** Istiod in each cluster, shared root CA. Each cluster's services exposed to others via Gateway. More HA, more complex.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-a-service-mesh-3-aeda33aa.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Cluster A] -->|east-west GW| B[Cluster B]
   CAroot[Shared root CA] --> CAa[Citadel A]
   CAroot --> CAb[Citadel B]
 ```
+
+</details>
 
 Cilium ClusterMesh: peers eBPF-based, no gateways needed (pod IPs routable across clusters).
 

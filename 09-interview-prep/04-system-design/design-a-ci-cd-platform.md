@@ -69,6 +69,11 @@ runners(id pk, org_id [null=shared], labels, last_seen, capacity)
 
 ## 4. High-Level Design
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-a-ci-cd-platform-1-5e866cd9.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Dev[Developer push] --> VCS[GitHub webhook]
@@ -84,6 +89,8 @@ flowchart LR
   ENG --> DB[(Postgres)]
   ENG --> NOTIFY[Notifications<br/>Slack/email/status]
 ```
+
+</details>
 
 ### Write path (pipeline trigger)
 1. GitHub sends webhook to `/v1/webhooks/github`
@@ -113,6 +120,11 @@ Two runner pools:
 
 **Self-hosted:** customer registers a runner agent that long-polls our queue. Auth via signed token. Jobs only dispatched if labels match and the org owns the runner.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-a-ci-cd-platform-2-c8e10ad5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
   Engine->>Queue: job (labels: linux, node20)
@@ -124,6 +136,8 @@ sequenceDiagram
   Runner->>S3: push artifact
   Runner->>Engine: result + exit code
 ```
+
+</details>
 
 ### Autoscaling Runners
 

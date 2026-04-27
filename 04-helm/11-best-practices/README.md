@@ -3,7 +3,7 @@
 ## Validation Pipeline
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-11-best-practices-README-1-2813afdf.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-11-best-practices-README-1-2813afdf.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -14,7 +14,7 @@ Helm packages, versions, installs, and upgrades Kubernetes apps using reusable t
 ## Architecture (Helm 3)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../assets/diagrams/04-helm-README-1-d77aa1db.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../assets/diagrams/04-helm-README-1-d77aa1db.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -11,6 +11,11 @@ Three independent problems:
 2. **Integrity** — has this artifact been tampered with? (cryptographic signing)
 3. **Authenticity** — who signed it, and can I verify without trusting them long-term? (Sigstore: short-lived OIDC-issued certs + transparency log)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-05-image-security-deep-dive-supply-chain-slsa-1-1119a483.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Source code] --> B[CI builder]
@@ -25,6 +30,8 @@ flowchart LR
     I --> D
 ```
 
+</details>
+
 ## SLSA Levels
 
 SLSA v1.0 has progressive Build Track levels. Each level adds requirements on the build process, NOT the artifact itself.
@@ -38,12 +45,19 @@ SLSA v1.0 has progressive Build Track levels. Each level adds requirements on th
 
 L4 was in early SLSA drafts (hermetic, reproducible builds) but is removed from v1.0 — may return as a separate track.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-05-image-security-deep-dive-supply-chain-slsa-2-9ca27847.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     L0[L0: nothing] --> L1[L1: provenance exists]
     L1 --> L2[L2: signed by hosted builder]
     L2 --> L3[L3: isolated, non-forgeable]
 ```
+
+</details>
 
 ## in-toto Attestations
 
@@ -82,6 +96,11 @@ Predicates can be SLSA Provenance, SBOM (CycloneDX/SPDX), VEX (vulnerability dis
 
 Traditional code signing requires managing long-lived private keys (HSMs, key rotation, theft risk). Sigstore inverts this: identity proven via OIDC at sign-time, ephemeral cert issued for the signing operation only, all signatures recorded in a public transparency log.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-05-image-security-deep-dive-supply-chain-slsa-3-d0b923d3.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant CI as GitHub Actions
@@ -102,6 +121,8 @@ sequenceDiagram
     CI->>REG: Push image + signature + cert + log entry
     Note over CI: Ephemeral key discarded
 ```
+
+</details>
 
 | Component | Role |
 |-----------|------|
@@ -170,6 +191,11 @@ This refuses to admit any pod whose image isn't signed AND whose SLSA provenance
 
 ## End-to-end pipeline
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-05-image-security-deep-dive-supply-chain-slsa-4-47a9850c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     A[Developer push] --> B[GitHub Actions]
@@ -183,6 +209,8 @@ flowchart TB
     I --> J[Admission controller<br/>cosign / Kyverno verify]
     J --> K[Pod runs]
 ```
+
+</details>
 
 ## Common Interview Questions
 

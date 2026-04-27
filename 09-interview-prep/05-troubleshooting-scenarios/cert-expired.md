@@ -152,6 +152,11 @@ Then `caBundle` injection via `cert-manager.io/inject-ca-from` annotation.
 
 ## Failure-mode sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-cert-expired-1-c5ba9b28.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant T as Time
@@ -169,6 +174,8 @@ sequenceDiagram
     Note over CTRL: node-controller marks NotReady after 40s
     Note over CTRL: after 5min: NoExecute taint, evict pods
 ```
+
+</details>
 
 ---
 

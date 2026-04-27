@@ -1,7 +1,7 @@
 # 08 — Batch and AI Workloads
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-08-batch-and-ai-workloads-README-1-48611057.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-08-batch-and-ai-workloads-README-1-48611057.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

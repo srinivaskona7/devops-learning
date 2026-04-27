@@ -25,7 +25,7 @@ Achieved with Istio `VirtualService` (this demo) or Argo Rollouts' header matchi
 ## Traffic flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-06-ab-testing-README-1-b5fc78ff.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-06-ab-testing-README-1-b5fc78ff.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

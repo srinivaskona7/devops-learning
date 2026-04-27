@@ -12,6 +12,11 @@ State is a JSON document mapping `resource address → real-world ID + attribute
 3. **Diffs** to produce a plan.
 4. **Applies** the plan, then **writes** new state.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-06-state-deep-dive-state-internals-1-37e75516.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[HCL config] --> B[terraform plan]
@@ -25,6 +30,8 @@ flowchart LR
     H --> I[Write new state]
     I --> C
 ```
+
+</details>
 
 ## State Schema
 
@@ -74,6 +81,11 @@ flowchart LR
 
 ## Lineage and Serial
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-06-state-deep-dive-state-internals-2-0d19f649.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant E1 as Engineer A
@@ -87,6 +99,8 @@ sequenceDiagram
     B-->>E2: ERROR: serial mismatch — refresh
 ```
 
+</details>
+
 - **Serial** mismatch = you fetched state, someone else wrote a newer version. Refuse the write.
 - **Lineage** mismatch = you're trying to push state from a totally different lineage (e.g. someone re-init'd from scratch and overwrote). Refuse to prevent obliterating history.
 
@@ -95,6 +109,11 @@ State **locking** prevents the race in the first place; serial/lineage is a seco
 ## Drift Detection
 
 Drift = "real-world state diverged from what TF last wrote." Causes: console clicks, other tools, broken automations, manual `aws cli` interventions.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-06-state-deep-dive-state-internals-3-b1ab3557.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -107,9 +126,16 @@ flowchart LR
     F -->|differ| H[Plan: revert change]
 ```
 
+</details>
+
 `terraform plan -refresh-only` reports drift WITHOUT proposing config changes — useful for daily drift dashboards.
 
 ## Remote Backends and Locking
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-06-state-deep-dive-state-internals-4-abcc1b7b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -122,6 +148,8 @@ flowchart LR
     G --> H[Write state to S3<br/>versioned object]
     H --> I[Release lock: DeleteItem]
 ```
+
+</details>
 
 ### S3 + DynamoDB backend
 

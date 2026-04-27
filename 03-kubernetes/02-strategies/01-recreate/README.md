@@ -28,7 +28,7 @@ There is a window (seconds to minutes depending on startup time) where **no pods
 ## Pod transition
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-01-recreate-README-1-6c35dbf7.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-01-recreate-README-1-6c35dbf7.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

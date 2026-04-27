@@ -16,7 +16,7 @@ http_requests_total{method="GET", status="200", path="/api/users/125"}
 If you put `user_id` in `path`, you get one series **per user**. Million users = million series. Prometheus dies.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-10-cost-and-cardinality-README-1-988d52a4.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-10-cost-and-cardinality-README-1-988d52a4.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

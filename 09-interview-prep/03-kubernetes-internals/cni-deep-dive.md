@@ -6,6 +6,11 @@ The Container Network Interface (CNI) is the contract between the kubelet and th
 
 ## Mental Model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-cni-deep-dive-1-2a0e75a0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   K[kubelet] -->|ADD<br/>netns,ifname| C[CNI binary chain]
@@ -16,6 +21,8 @@ flowchart LR
   P1 --> R[veth pair + IPAM]
   R --> Pod[(Pod netns)]
 ```
+
+</details>
 
 When kubelet creates a pod sandbox, it invokes CNI plugins listed in `/etc/cni/net.d/` in order. Each plugin is a binary in `/opt/cni/bin/` that reads JSON from stdin (containing the pod's netns path, container ID, ifname) and writes JSON to stdout.
 
@@ -96,6 +103,11 @@ When a `NetworkPolicy` is created, Felix translates selectors to ipsets and emit
 
 Cilium attaches eBPF programs at multiple hook points: tc ingress/egress on each veth, XDP on the NIC, socket-level for service translation.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-cni-deep-dive-2-be394e60.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   P[Pod socket] -->|connect| S[socket-level eBPF<br/>service LB]
@@ -103,6 +115,8 @@ flowchart LR
   V -->|policy verdict| N[NIC XDP eBPF]
   N --> Net[network]
 ```
+
+</details>
 
 Service translation happens at `connect()` time — the socket is rewritten directly to a backend pod IP. No NAT, no conntrack pollution, no kube-proxy.
 

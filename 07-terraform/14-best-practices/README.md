@@ -118,7 +118,7 @@ terraform.rc
 ## Mermaid: production reference architecture
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-14-best-practices-README-1-e429803b.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-14-best-practices-README-1-e429803b.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

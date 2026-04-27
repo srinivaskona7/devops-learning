@@ -7,7 +7,7 @@ Modern runtime tools use **eBPF** — kernel-level observation without kernel mo
 ## Detection flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-07-runtime-security-README-1-61f558a0.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/06-security-07-runtime-security-README-1-61f558a0.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

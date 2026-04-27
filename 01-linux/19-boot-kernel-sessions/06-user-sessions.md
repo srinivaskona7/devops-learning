@@ -28,7 +28,6 @@ flowchart LR
 ```
 
 </details>
-
 ### The login chain via SSH
 
 <!-- mermaid:rendered -->
@@ -47,7 +46,6 @@ flowchart LR
 ```
 
 </details>
-
 ### The four bash invocation modes (the table you'll memorize)
 
 | Mode | Triggered by | Sources at startup | Used for |

@@ -72,7 +72,6 @@ flowchart LR
 ```
 
 </details>
-
 The deeper you go on the chain, the more invasive (and the more truthful) the tool gets. Start at the top, walk down only as needed.
 
 ---
@@ -105,7 +104,6 @@ sequenceDiagram
 ```
 
 </details>
-
 Reference: [Linux Performance Analysis in 60 Seconds](http://www.brendangregg.com/Articles/Netflix_Linux_Perf_Analysis_60s.pdf)
 
 ---

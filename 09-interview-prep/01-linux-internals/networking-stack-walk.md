@@ -8,6 +8,11 @@ When a packet is dropped, slow, NATed wrong, or a service mesh sidecar mangles i
 
 A packet enters via a NIC ring buffer (DMA from hardware), the driver raises a soft interrupt (NAPI), the kernel runs it through netfilter hooks, optionally tracks connection state (conntrack), routes it, hands it to a socket, and the app `read()`s it. Egress is the same in reverse.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-networking-stack-walk-1-6d4f7125.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   NIC["NIC<br/>RX ring buffer<br/>DMA from wire"] --> IRQ["hardware IRQ"]
@@ -23,6 +28,13 @@ flowchart LR
   NF5 --> TX["TX ring buffer"]
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-networking-stack-walk-2-0ce538bf.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   APP2["app write or sendmsg"] --> SB2["socket send buffer"]
@@ -33,6 +45,8 @@ flowchart LR
   QD --> TX2["TX ring buffer"]
   TX2 --> NIC2["NIC out to wire"]
 ```
+
+</details>
 
 ## Walkthrough — ingress in detail
 

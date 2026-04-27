@@ -18,7 +18,7 @@ Hooks let you inject manifests at specific points in a release lifecycle.
 ## Lifecycle
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-08-hooks-README-1-bc5b5bb4.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-08-hooks-README-1-bc5b5bb4.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

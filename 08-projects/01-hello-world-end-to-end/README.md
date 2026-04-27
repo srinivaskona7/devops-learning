@@ -5,7 +5,7 @@ Containerize a Python Flask app, push it to GHCR, deploy to Kubernetes, and expo
 ## What you'll build
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-01-hello-world-end-to-end-README-1-83daa3b4.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-01-hello-world-end-to-end-README-1-83daa3b4.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

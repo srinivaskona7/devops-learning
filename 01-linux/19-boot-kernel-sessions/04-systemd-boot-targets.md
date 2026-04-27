@@ -66,7 +66,6 @@ flowchart BT
 ```
 
 </details>
-
 Read upward: a target on top **wants** everything below it to be already active.
 
 ### File map
@@ -137,7 +136,6 @@ flowchart TB
 ```
 
 </details>
-
 ### Boot analysis
 
 ```bash

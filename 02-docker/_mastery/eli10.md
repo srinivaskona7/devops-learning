@@ -40,7 +40,6 @@ flowchart TB
 ```
 
 </details>
-
 ### Demo it yourself
 ```bash
 docker run -d --name web nginx
@@ -86,7 +85,6 @@ flowchart TB
 ```
 
 </details>
-
 ### Demo it yourself
 ```bash
 docker pull nginx
@@ -148,7 +146,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Demo it yourself
 ```bash
 # Make a "container" by hand using just the kernel
@@ -208,7 +205,6 @@ flowchart TB
 ```
 
 </details>
-
 ### Demo it yourself
 ```bash
 docker run -d --name limited --memory=100m --cpus=0.5 nginx
@@ -266,7 +262,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Demo it yourself
 ```bash
 docker network ls
@@ -323,7 +318,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Demo it yourself
 ```bash
 docker volume create mydata
@@ -374,7 +368,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Demo it yourself
 ```bash
 mkdir demo && cd demo
@@ -426,7 +419,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Demo every step
 ```bash
 docker run -d --name full -p 8080:80 --memory=256m nginx

@@ -68,7 +68,7 @@ kind delete cluster --name tf-demo
 ## Mermaid: how the providers compose
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-11-kubernetes-provider-README-1-c7c7d57d.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-11-kubernetes-provider-README-1-c7c7d57d.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

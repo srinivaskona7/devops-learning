@@ -14,6 +14,11 @@ more than memorizing template syntax.
 
 ## Folder organization
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-README-1-c14f1ab4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[README] --> B[architect-qa]
@@ -23,6 +28,8 @@ flowchart LR
   C --> F[Concepts]
   D --> G[Diagrams]
 ```
+
+</details>
 
 ## Files in this folder
 
@@ -64,6 +71,11 @@ If you are an experienced engineer joining a Helm-heavy org:
 
 When asked "should we use X with Helm?", apply this order:
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-README-2-ff36d5fc.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Need] --> B{Stateful?}
@@ -72,6 +84,8 @@ flowchart LR
   D -->|Yes| E[Helm]
   D -->|No| F[Kustomize]
 ```
+
+</details>
 
 ## What this folder is NOT
 

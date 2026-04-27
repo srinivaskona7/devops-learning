@@ -8,6 +8,11 @@ systemd owns PID 1 on essentially every modern Linux distro. It manages services
 
 Everything is a **unit**. Units have a type (`.service`, `.socket`, `.timer`, `.mount`, `.target`, `.slice`, `.scope`, `.path`, `.device`). systemd reads unit files, builds a dependency graph, and starts units in parallel respecting ordering.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-systemd-internals-1-740abede.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TD
   K["kernel boot<br/>execs /sbin/init -> systemd"] --> SD["systemd PID 1"]
@@ -18,6 +23,13 @@ flowchart TD
   SLICE --> J["stdout stderr captured<br/>by journald"]
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-systemd-internals-2-9f8a55d0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   CL["client connect<br/>to /run/foo.sock"] --> SS["foo.socket unit<br/>holds the listener"]
@@ -25,6 +37,8 @@ flowchart LR
   ACT --> APP["app inherits fd 3<br/>via LISTEN_FDS env"]
   APP --> CL
 ```
+
+</details>
 
 ## Unit anatomy
 

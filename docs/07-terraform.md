@@ -17,6 +17,11 @@ Terraform is the lingua franca of cloud provisioning. This module covers the ful
 
 ## :material-map-marker-path: Roadmap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-07-terraform-1-f8d96303.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[01 Install] --> B[02 Providers]
@@ -35,6 +40,8 @@ flowchart LR
     classDef tf fill:#f5f3ff,stroke:#7c3aed,color:#1f2330,rx:8,ry:8;
     class A,B,C,D,E,F,G,H,I,J,K,L,M,N tf;
 ```
+
+</details>
 
 ## :material-grid: Modules { #start }
 

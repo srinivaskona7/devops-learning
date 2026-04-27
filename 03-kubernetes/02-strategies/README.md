@@ -32,7 +32,7 @@ See [decision-matrix.md](./decision-matrix.md) for detailed selection guidance.
 ## Risk vs Complexity Map
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-02-strategies-README-1-9178a661.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/03-kubernetes-02-strategies-README-1-9178a661.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -61,7 +61,7 @@ quadrantChart
 ## How releases progress over time
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/03-kubernetes-02-strategies-README-2-0dde0740.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/03-kubernetes-02-strategies-README-2-0dde0740.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

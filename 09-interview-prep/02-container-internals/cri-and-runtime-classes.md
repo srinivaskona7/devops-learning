@@ -6,6 +6,11 @@ Kubernetes does not run containers — it asks a **CRI (Container Runtime Interf
 
 ## Architecture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-cri-and-runtime-classes-1-1f927432.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     kubelet[kubelet] -->|CRI gRPC<br/>RuntimeService + ImageService| sock{/var/run/cri.sock}
@@ -22,6 +27,13 @@ flowchart TB
     GVISOR -.-> sentry[Sentry<br/>filters all syscalls]
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-cri-and-runtime-classes-2-6af9a5e4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     PodSpec[Pod with<br/>runtimeClassName: kata] --> kubelet
@@ -31,6 +43,8 @@ flowchart LR
     lookup --> shim[start kata shim]
     shim --> vm[boot microVM<br/>start container]
 ```
+
+</details>
 
 ## Mental Model
 

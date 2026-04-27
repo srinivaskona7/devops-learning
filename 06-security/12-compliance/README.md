@@ -5,7 +5,7 @@ Compliance frameworks aren't a list of K8s settings — they're control objectiv
 ## Framework landscape
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-12-compliance-README-1-ced70f2d.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/06-security-12-compliance-README-1-ced70f2d.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

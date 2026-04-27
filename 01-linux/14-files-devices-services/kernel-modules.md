@@ -30,7 +30,6 @@ flowchart LR
 ```
 
 </details>
-
 ## Tools you must know
 
 | Tool | What it does | When to use |

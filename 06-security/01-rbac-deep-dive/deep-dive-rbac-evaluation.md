@@ -8,6 +8,11 @@ Every API request to kube-apiserver is authorized by RBAC (when enabled, which i
 
 RBAC is **purely additive, deny-by-default**. There's no Deny rule. The api-server checks every authorization module in order; the FIRST module that returns "allow" or "deny" wins. RBAC's answer is always either `allow` (if any rule matches) or `no opinion` (defer to the next authorizer). If no module allows, the request is denied.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-01-rbac-deep-dive-deep-dive-rbac-evaluation-1-ecb70510.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     REQ[Request] --> AUTHN[Authentication]
@@ -20,7 +25,14 @@ flowchart LR
     style RBAC fill:#bbf
 ```
 
+</details>
+
 ## The Four Resources
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-01-rbac-deep-dive-deep-dive-rbac-evaluation-2-15f74088.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -33,6 +45,8 @@ flowchart LR
     CR -.bound by.-> CRB
 ```
 
+</details>
+
 | Combination | Effect |
 |-------------|--------|
 | Role + RoleBinding | Permissions in ONE namespace |
@@ -41,6 +55,11 @@ flowchart LR
 | Role + ClusterRoleBinding | INVALID — api-server rejects |
 
 ## Evaluation Algorithm
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-01-rbac-deep-dive-deep-dive-rbac-evaluation-3-8e136532.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -59,6 +78,8 @@ sequenceDiagram
         RBAC-->>API: no opinion
     end
 ```
+
+</details>
 
 The api-server effectively computes:
 ```
@@ -165,6 +186,11 @@ aggregationRule:
 rules: []   # auto-populated by controller; do NOT manually edit
 ```
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-01-rbac-deep-dive-deep-dive-rbac-evaluation-4-e682daeb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[ClusterRole<br/>aggregationRule:<br/>label X] --> B[Controller]
@@ -173,6 +199,8 @@ flowchart LR
     D --> E[Write into target ClusterRole.rules]
     F[Add new operator-CR<br/>with label X] --> B
 ```
+
+</details>
 
 The aggregation controller reconciles continuously — installing a new operator that labels a ClusterRole correctly automatically extends `view`/`edit`/`admin`.
 

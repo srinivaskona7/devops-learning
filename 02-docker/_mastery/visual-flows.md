@@ -29,7 +29,6 @@ flowchart LR
 ```
 
 </details>
-
 Steps in detail:
 1. CLI sends Dockerfile + build context to BuildKit (stripped by `.dockerignore`).
 2. BuildKit parses Dockerfile into a DAG of LLB (low-level builder) operations.
@@ -66,7 +65,6 @@ flowchart LR
 ```
 
 </details>
-
 Steps:
 1. Resolve registry from image name (default `docker.io`).
 2. Hit `/v2/` endpoint; get 401 with WWW-Authenticate; fetch token.
@@ -99,7 +97,6 @@ flowchart LR
 ```
 
 </details>
-
 Steps:
 1. Resolve tag to digest via manifest fetch.
 2. For multi-arch index, pick platform-matching manifest.
@@ -131,7 +128,6 @@ flowchart LR
 ```
 
 </details>
-
 Steps:
 1. Image present? If not, pull (flow #3).
 2. overlay2 mount: lowerdirs (image layers) + upperdir (writable) + workdir.
@@ -164,7 +160,6 @@ flowchart LR
 ```
 
 </details>
-
 Steps:
 1. Find container by name/ID, get host PID of init process.
 2. Open `/proc/<pid>/ns/*` file descriptors for all namespaces.
@@ -197,7 +192,6 @@ flowchart LR
 ```
 
 </details>
-
 Steps:
 1. For each LLB vertex, BuildKit computes a content hash of inputs (instruction text, source digests, mount contents, parent vertex hash).
 2. Look up hash in local cache, then registry cache (if `--cache-from`), then GHA/S3.
@@ -228,7 +222,6 @@ flowchart TB
 ```
 
 </details>
-
 How it works:
 1. Layers stored in `/var/lib/docker/overlay2/<id>/diff/` keyed by content hash.
 2. Image manifest references layers by digest.
@@ -261,7 +254,6 @@ flowchart LR
 ```
 
 </details>
-
 Steps:
 1. Packet arrives at host on port 8080.
 2. iptables PREROUTING chain hits Docker's DOCKER chain.
@@ -301,7 +293,6 @@ flowchart LR
 ```
 
 </details>
-
 Steps:
 1. Parse `-v` or `--mount` syntax (named volume vs bind vs tmpfs).
 2. For named volume: ensure exists in `/var/lib/docker/volumes/`, create if not.
@@ -335,7 +326,6 @@ flowchart LR
 ```
 
 </details>
-
 Steps:
 1. `docker stop` sends API request with stop signal (default SIGTERM) and timeout (default 10s).
 2. dockerd forwards to containerd, which tells the shim.
@@ -384,7 +374,6 @@ flowchart TB
 ```
 
 </details>
-
 Docker is glue. The kernel is the engine. Every flow above ends in the kernel doing the actual work — namespaces, cgroups, overlayfs, iptables, signals. When you debug, debug the kernel layer; the daemon layer is rarely lying to you.
 
 ---

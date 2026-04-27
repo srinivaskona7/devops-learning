@@ -8,6 +8,11 @@ Kubernetes is not an orchestration engine that *issues commands*. It is a **set 
 
 ## Mental model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-control-loop-pattern-1-14be2621.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Watch API server<br/>desired state] --> B[Local cache<br/>informer]
@@ -18,6 +23,8 @@ flowchart LR
     F --> A
     E --> A
 ```
+
+</details>
 
 The loop is **infinite**. It does not run "on event" — it runs continuously, *triggered* by events but *not depending* on them.
 
@@ -80,6 +87,11 @@ Three rules:
 
 Between the informer (which receives watch events) and the reconciler sits a **work queue**. This is where production-grade backoff lives.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-control-loop-pattern-2-043fb7cc.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     W[Watch events] --> H[Event handler<br/>extracts key]
@@ -90,6 +102,8 @@ flowchart LR
     R -- Result.RequeueAfter --> Q
     R -- success --> DONE[Forget key]
 ```
+
+</details>
 
 Key properties of `workqueue.RateLimitingInterface`:
 

@@ -1,7 +1,7 @@
 # 11 — Troubleshooting Deep Dive
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-11-troubleshooting-deep-dive-README-1-f85db80e.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-11-troubleshooting-deep-dive-README-1-f85db80e.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

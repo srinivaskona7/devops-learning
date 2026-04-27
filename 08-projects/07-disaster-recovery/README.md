@@ -5,7 +5,7 @@ Practice losing things. Back up cluster state with Velero, snapshot etcd, run in
 ## What you'll build
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-07-disaster-recovery-README-1-48440f26.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-07-disaster-recovery-README-1-48440f26.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

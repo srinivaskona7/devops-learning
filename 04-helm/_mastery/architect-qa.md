@@ -323,6 +323,11 @@ broken the deploy hangs forever. Set `--timeout` and have a rollback plan.
 
 ## Decision matrix summary
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-architect-qa-1-48777d39.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Need] --> B{Shared?}
@@ -331,6 +336,8 @@ flowchart LR
   D --> E{Bundle?}
   E -->|Yes| F[Umbrella]
 ```
+
+</details>
 
 ## Closing principle
 

@@ -8,6 +8,11 @@ Every `helm install`, `upgrade`, and `rollback` is a state transition. Helm 3 ha
 
 A Helm release is just a sequence of immutable, base64-gzipped manifest snapshots stored as Secrets. Each `helm upgrade` appends a new revision Secret; nothing is ever mutated in place. Rollback = re-apply an older snapshot and append a new revision pointing at it.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-01-concepts-deep-dive-release-storage-1-d94de1ab.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[helm install nginx] --> B[Render templates]
@@ -20,7 +25,14 @@ flowchart LR
     H --> I[Secret ...nginx.v3<br/>same manifests as v1]
 ```
 
+</details>
+
 ## Storage Layout
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-01-concepts-deep-dive-release-storage-2-444ece34.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart TB
@@ -30,6 +42,8 @@ flowchart TB
     S1 --> D1[data.release = base64<br/>gzip JSON snapshot]
     D1 --> M1[chart + values + manifest +<br/>hooks + status + info]
 ```
+
+</details>
 
 Each Secret carries labels Helm queries on:
 
@@ -94,6 +108,11 @@ Older Secrets are pruned automatically once `--history-max` is exceeded. **Prune
 
 Rollback mechanics:
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-01-concepts-deep-dive-release-storage-3-75d99610.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant U as User
@@ -109,6 +128,8 @@ sequenceDiagram
     H->>K: CREATE secret ...api.v3 (status=deployed,<br/>manifest copied from v1)
     H->>K: PATCH secret ...api.v2 (status=superseded)
 ```
+
+</details>
 
 Rollback never modifies an old Secret — it creates a NEW revision that happens to contain v1's manifest. This preserves audit trail.
 

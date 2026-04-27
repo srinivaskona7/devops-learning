@@ -3,7 +3,7 @@
 Thanos extends Prometheus with **infinite retention**, **global query**, and **deduplication** across HA pairs.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-10-cost-and-cardinality-thanos-architecture-1-cd6cb4c4.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-10-cost-and-cardinality-thanos-architecture-1-cd6cb4c4.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

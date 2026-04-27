@@ -142,6 +142,11 @@ helm upgrade web ./chart
 
 ## Failure-mode sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-helm-stuck-1-4944433e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant U as User
@@ -161,6 +166,8 @@ sequenceDiagram
     API-->>H: status=pending-upgrade
     H-->>U: Error: another operation in progress
 ```
+
+</details>
 
 ---
 

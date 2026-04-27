@@ -14,6 +14,11 @@ multi-region cloud patterns, capacity math, and platform engineering at scale.
 
 ## Org Chart
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-README-1-2d9d95e0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   ROOT[Mastery Architect] --> SD[System Design]
@@ -23,6 +28,8 @@ flowchart LR
   CL --> CM[cloud-mastery]
   ROOT --> EL[eli10 basics]
 ```
+
+</details>
 
 ## How to Use
 
@@ -52,6 +59,11 @@ flowchart LR
 
 ## Quick-Reference Decision Matrix
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-README-2-48fc064c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Q[Need consistency?] --> S[Strong: SQL or Spanner]
@@ -59,12 +71,21 @@ flowchart LR
   Q --> C[CRDT: Riak or Redis CRDTs]
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-README-3-376e2b0b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   T[Traffic shape?] --> B[Bursty: serverless]
   T --> S[Steady: containers or VMs]
   T --> P[Predictable peaks: reserved + autoscale]
 ```
+
+</details>
 
 ## Anti-Patterns Catalog
 
@@ -119,6 +140,11 @@ flowchart LR
 
 ## Architect Mindset
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-README-4-58feb67d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   R[Requirements] --> NF[NFRs: latency, cost, RPO]
@@ -127,6 +153,8 @@ flowchart LR
   D --> O[Operability check]
   O --> R
 ```
+
+</details>
 
 The loop never closes — every design decision feeds back into requirements clarification.
 

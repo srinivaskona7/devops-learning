@@ -5,7 +5,7 @@ Deploy `kube-prometheus-stack`, Loki, and Tempo via Helm. Instrument a sample ap
 ## What you'll build
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-05-observability-stack-README-1-4f81af19.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-05-observability-stack-README-1-4f81af19.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -12,7 +12,7 @@
 ## Mental model
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-01-three-pillars-README-1-7bdf41a8.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-01-three-pillars-README-1-7bdf41a8.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

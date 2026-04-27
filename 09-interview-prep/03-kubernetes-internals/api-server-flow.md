@@ -8,6 +8,11 @@ The API server is the *only* component that talks to etcd. Every other component
 
 ## High-level pipeline
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-api-server-flow-1-9244e225.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     C[Client<br/>kubectl/controller] --> TLS[TLS handshake]
@@ -22,6 +27,8 @@ flowchart LR
     ETCD --> RESP[Response to client]
     ETCD -.notify.-> WATCH[WATCH streams<br/>controllers/kubelets]
 ```
+
+</details>
 
 Order is **fixed**. You cannot put authn after authz, you cannot run validating before mutating, you cannot bypass admission for a built-in resource.
 

@@ -31,6 +31,11 @@ Two phases:
 
 ## Diagram 1 — The Scheduling Framework extension points
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-03-scheduling-deep-dive-scheduler-framework-1-ac382b11.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     Q[ActiveQ<br/>BackoffQ<br/>UnschedulableQ] --> SS[Sort]
@@ -46,6 +51,8 @@ flowchart LR
     PB --> B[Bind]
     B --> PostB[PostBind]
 ```
+
+</details>
 
 | Extension point | Purpose | Built-in example |
 |---|---|---|
@@ -65,6 +72,11 @@ flowchart LR
 ---
 
 ## Diagram 2 — Lifecycle of a single pod
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-03-scheduling-deep-dive-scheduler-framework-2-25ed9682.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -90,6 +102,8 @@ sequenceDiagram
         N->>N: kubelet starts the pod
     end
 ```
+
+</details>
 
 ---
 

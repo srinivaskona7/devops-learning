@@ -5,7 +5,7 @@ Frontend (React/nginx) + Backend (Node/Express) + Postgres database, packaged as
 ## What you'll build
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-02-three-tier-app-README-1-06afb25b.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-02-three-tier-app-README-1-06afb25b.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

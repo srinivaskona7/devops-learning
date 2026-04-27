@@ -40,6 +40,11 @@ Range queries evaluate the SAME expression at each step. Inside that expression,
 
 ## Lookback Delta
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-deep-dive-promql-execution-2-0651db5b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant Q as Eval at t
@@ -50,6 +55,8 @@ sequenceDiagram
         Q->>Q: series considered "stale" → no value
     end
 ```
+
+</details>
 
 The default lookback delta is **5 minutes**. If a series hasn't reported within 5m of eval time, it's omitted. This is why short-lived pods or scrape gaps cause "missing data" in graphs. Adjust with `--query.lookback-delta=10m` (rarely advisable — usually fix the scrape gap instead).
 
@@ -65,6 +72,11 @@ For counters only. All three handle counter resets (a drop to lower value = rese
 | `irate(c[5m])` | Per-second rate using ONLY the last two samples in the window | High-resolution graphs of volatile signals |
 | `increase(c[5m])` | Total increase over the window (= rate * window seconds) | "How many events happened?" |
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-deep-dive-promql-execution-3-ff9a3faa.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Counter samples<br/>over 5m] --> B[rate]
@@ -74,6 +86,8 @@ flowchart LR
     C --> F[reactive, noisy on slow scrapes]
     D --> G[total = rate * window]
 ```
+
+</details>
 
 **Trap:** If your range `[5m]` doesn't contain at least 2 samples, `rate` returns nothing. Range MUST be ≥ 4× scrape_interval as a rule of thumb.
 
@@ -108,6 +122,11 @@ histogram_quantile(0.95, sum(rate(http_request_duration_seconds[5m])))
 
 Note: no `_bucket` suffix, no `by (le)`. The function works directly on the native histogram series.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-deep-dive-promql-execution-4-d71f1747.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Classic] --> B[N counter series<br/>_bucket+_sum+_count]
@@ -117,6 +136,8 @@ flowchart LR
     F --> G[Auto-resized buckets, base ~1.1]
     G --> H[Higher resolution, less storage]
 ```
+
+</details>
 
 ## Annotated query walkthrough
 

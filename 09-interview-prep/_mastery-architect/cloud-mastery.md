@@ -240,6 +240,11 @@ Rarely. Adds complexity for theoretical resilience to a multi-decade-rare provid
 
 ## Decision Frameworks
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-cloud-mastery-1-5e2952fe.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   W[Workload type?] --> EV[Event driven]
@@ -250,6 +255,13 @@ flowchart LR
   BU --> SE[Serverless]
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-cloud-mastery-2-62dd37ae.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   D[Data type?] --> RE[Relational]
@@ -259,6 +271,8 @@ flowchart LR
   KV --> DD[DynamoDB or Firestore]
   AN --> BQ[BigQuery or Snowflake]
 ```
+
+</details>
 
 ## Anti-Patterns (Cloud Edition)
 

@@ -6,6 +6,11 @@ Helm templates aren't YAML — they're Go `text/template` programs that emit YAM
 
 ## Mental Model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-05-templating-deep-dive-template-internals-1-0789b0c1.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[values.yaml +<br/>--set / -f overrides] --> B[merged values]
@@ -18,6 +23,8 @@ flowchart LR
     H --> I[K8s manifests]
     I --> J[kubectl apply via Helm]
 ```
+
+</details>
 
 The engine knows nothing about YAML — it produces a text stream that must be valid YAML AFTER rendering. A stray space at column 0 invalidates the whole file.
 
@@ -34,6 +41,11 @@ Every template has these top-level objects:
 | `.Capabilities` | API versions available, K8s version |
 | `.Template` | Name + BasePath of the current template |
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-05-templating-deep-dive-template-internals-2-deb96c72.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     R[Root context .] --> V[.Values]
@@ -45,6 +57,8 @@ flowchart TB
     V --> S2[.Values.resources]
     style R fill:#f9f,stroke:#333
 ```
+
+</details>
 
 ## Walkthrough — annotated template
 
@@ -204,6 +218,11 @@ Returns empty during `helm template` (no cluster context) — write defensive ch
 
 ## Execution flow
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-05-templating-deep-dive-template-internals-4-3cdcdc0a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant CLI as helm install
@@ -220,6 +239,8 @@ sequenceDiagram
     E->>E: Sort by Kind (CRDs, NS, Secret, ConfigMap, ...Deployment)
     E->>K: Apply via 3-way merge
 ```
+
+</details>
 
 The Kind sort order is hard-coded in Helm and ensures CRDs/Namespaces exist before resources that reference them. Hooks bypass this and run in `helm.sh/hook` weight order.
 

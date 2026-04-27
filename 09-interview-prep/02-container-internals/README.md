@@ -8,6 +8,11 @@ This module breaks the runtime stack into 5 sub-topics. Read them in order — e
 
 ## Sub-topic Map
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-README-1-f555757c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[01 runc / containerd / dockerd<br/>daemon hierarchy] --> B[02 Image Layer Internals<br/>overlayfs + CAS]
@@ -17,6 +22,8 @@ flowchart LR
     C --> B
     E --> A
 ```
+
+</details>
 
 ## Files in this module
 

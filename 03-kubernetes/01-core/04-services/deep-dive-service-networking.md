@@ -48,7 +48,6 @@ flowchart LR
 ```
 
 </details>
-
 The "Random/round-robin selection" step is what differs across modes:
 
 | Mode | Mechanism | Scale | Status |
@@ -117,7 +116,6 @@ flowchart TB
 ```
 
 </details>
-
 Service types are **layered**:
 
 - `ClusterIP` — the base. A virtual IP routable only inside the cluster.

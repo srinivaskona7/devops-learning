@@ -34,7 +34,7 @@ helm env       # paths Helm uses (cache, config, data)
 ## Repository Configuration
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-02-install-README-1-9a93f4f9.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-02-install-README-1-9a93f4f9.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -139,6 +139,11 @@ spec:
 
 ## Failure-mode sequence (ndots fan-out)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-dns-resolution-failures-1-c7ec5e27.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant App
@@ -163,6 +168,8 @@ sequenceDiagram
     Cache-->>App: 142.250.x.x
     Note over App: 4x latency vs ndots:1
 ```
+
+</details>
 
 ---
 

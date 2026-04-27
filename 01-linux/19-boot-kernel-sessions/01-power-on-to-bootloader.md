@@ -70,7 +70,6 @@ flowchart LR
 ```
 
 </details>
-
 - **PK** (Platform Key): owner of the firmware. Usually the OEM. Without it, secure boot is in setup mode.
 - **KEK** (Key Exchange Key): trusted to update db/dbx. Microsoft's KEK is on virtually every consumer board.
 - **db**: allowed signatures (Microsoft signs `shim`, distros sign `grub` and `vmlinuz`).

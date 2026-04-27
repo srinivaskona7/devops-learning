@@ -38,6 +38,11 @@
 
 ## The universal diagnostic loop
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-README-1-1e44b4ad.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Reproduce]
@@ -49,6 +54,8 @@ flowchart LR
     F --> G[Verify]
     G --> H[Prevent<br/>guardrail]
 ```
+
+</details>
 
 ---
 

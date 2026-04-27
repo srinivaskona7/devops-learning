@@ -6,6 +6,11 @@ kube-proxy turns Service abstractions into actual packet routing. The mode you p
 
 ## Mental Model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-kube-proxy-modes-1-c3500b39.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   C[Client pod] -->|dial ClusterIP:80| K[kernel netfilter]
@@ -19,6 +24,8 @@ flowchart LR
   NFT --> Pod
   EBPF --> Pod
 ```
+
+</details>
 
 A Service has a virtual ClusterIP. kube-proxy watches Services and Endpoints from the API server and programs the kernel so packets to that VIP land on a real pod IP.
 

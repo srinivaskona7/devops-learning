@@ -32,7 +32,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ## Character vs block devices
 
 ```bash

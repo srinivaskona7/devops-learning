@@ -27,7 +27,7 @@ You can now load-test, performance-profile, and bug-hunt v2 with **real producti
 ## Traffic flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-07-shadow-traffic-README-1-1d5bceeb.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-07-shadow-traffic-README-1-1d5bceeb.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -47,7 +47,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ## Files
 
 - [`virtualservice-mirror.yaml`](./virtualservice-mirror.yaml) — Istio VirtualService with `mirror` and `mirrorPercentage`

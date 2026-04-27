@@ -21,6 +21,11 @@ you install the chart.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-1-79197d8e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Chart folder] --> B[templates]
@@ -28,6 +33,8 @@ flowchart LR
   A --> D[Chart.yaml]
   B --> E[Filled YAML]
 ```
+
+</details>
 
 **Helm steps:**
 
@@ -48,6 +55,11 @@ answer is. You override only what you want to change.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-2-f5240e97.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Defaults] --> C[Final values]
@@ -55,6 +67,8 @@ flowchart LR
   C --> D[Templates]
   D --> E[YAML]
 ```
+
+</details>
 
 **Helm steps:**
 
@@ -76,6 +90,11 @@ two releases living side by side.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-3-fa41f8c4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Chart] --> B[helm install]
@@ -83,6 +102,8 @@ flowchart LR
   B --> D[Release two]
   C --> E[In cluster]
 ```
+
+</details>
 
 **Helm steps:**
 
@@ -102,6 +123,11 @@ history so you can see what changed.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-4-c381a1ca.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Install] --> B[Rev 1]
@@ -110,6 +136,8 @@ flowchart LR
   D --> E[Upgrade]
   E --> F[Rev 3]
 ```
+
+</details>
 
 **Helm steps:**
 
@@ -130,12 +158,19 @@ re-applies the YAML from that revision.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-5-ec894ef1.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Rev 3 broken] --> B[Rollback]
   B --> C[Rev 4]
   C --> D[Like Rev 2]
 ```
+
+</details>
 
 **Helm steps:**
 
@@ -156,12 +191,19 @@ after the main event.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-6-1407c459.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Pre-install] --> B[Install]
   B --> C[Post-install]
   C --> D[Done]
 ```
+
+</details>
 
 **Helm steps:**
 
@@ -181,6 +223,11 @@ chart files (`.tgz`).
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-7-b0b3470d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Add repo] --> B[Search]
@@ -188,6 +235,8 @@ flowchart LR
   C --> D[Install]
   D --> E[In cluster]
 ```
+
+</details>
 
 **Helm steps:**
 
@@ -207,6 +256,11 @@ downloads them into a `charts/` folder and installs them together.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-8-c9a083f4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[My chart] --> B[Postgres dep]
@@ -214,6 +268,8 @@ flowchart LR
   B --> D[Installed]
   C --> D
 ```
+
+</details>
 
 **Helm steps:**
 
@@ -234,6 +290,11 @@ by itself but it is also part of the big build.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-9-0fe70b02.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Parent] --> B[Sub one]
@@ -241,6 +302,8 @@ flowchart LR
   B --> D[Installed]
   C --> D
 ```
+
+</details>
 
 ---
 
@@ -254,6 +317,11 @@ through the templating engine and out comes a real YAML file.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-10-ad45f23c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Template] --> B[Engine]
@@ -261,6 +329,8 @@ flowchart LR
   B --> D[YAML]
   D --> E[Apply]
 ```
+
+</details>
 
 ---
 
@@ -275,12 +345,19 @@ Use it to print URLs, credentials, and next steps.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-11-1e17afa7.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Install done] --> B[Render NOTES]
   B --> C[Print to user]
   C --> D[User reads]
 ```
+
+</details>
 
 ---
 
@@ -294,6 +371,11 @@ values, bad YAML, unused templates.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-12-edcf1923.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Chart] --> B[helm lint]
@@ -301,6 +383,8 @@ flowchart LR
   C -->|Yes| D[Fix]
   C -->|No| E[Ship]
 ```
+
+</details>
 
 ---
 
@@ -314,6 +398,11 @@ upload the `.tgz` to a repo so others can install it.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-13-6592ca39.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Chart folder] --> B[helm package]
@@ -321,6 +410,8 @@ flowchart LR
   C --> D[helm push]
   D --> E[Registry]
 ```
+
+</details>
 
 ---
 
@@ -335,6 +426,11 @@ can push and pull charts from any OCI registry.
 
 **Diagram:**
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-eli10-14-5260be34.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Chart] --> B[Push OCI]
@@ -342,6 +438,8 @@ flowchart LR
   B --> D[Registry]
   D --> E[Pull anywhere]
 ```
+
+</details>
 
 ---
 

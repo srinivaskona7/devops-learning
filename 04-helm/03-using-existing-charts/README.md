@@ -5,7 +5,7 @@ The fastest way to get value from Helm: install community charts.
 ## Lifecycle Commands
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-03-using-existing-charts-README-1-c60d2925.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-03-using-existing-charts-README-1-c60d2925.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

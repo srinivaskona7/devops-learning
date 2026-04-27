@@ -17,6 +17,11 @@ Docker is the unit of deployment for the modern stack. This track goes from `doc
 
 ## :material-map-marker-path: Roadmap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-02-docker-1-115f8cf0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Concepts] --> B[Images]
@@ -30,6 +35,8 @@ flowchart LR
     I --> J[Observability]
     J --> K[Production Patterns]
 ```
+
+</details>
 
 ## :material-grid: Modules { #start }
 

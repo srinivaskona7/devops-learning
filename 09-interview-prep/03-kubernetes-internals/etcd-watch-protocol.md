@@ -10,6 +10,11 @@ Most "weird Kubernetes bugs" trace back to etcd: split-brain after network parti
 
 etcd is a **strongly-consistent, replicated, MVCC key-value store with a streaming watch API**. Three pillars:
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-etcd-watch-protocol-1-32205029.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     R[Raft consensus<br/>leader+followers] --> M[MVCC store<br/>append-only revisions]
@@ -17,11 +22,18 @@ flowchart LR
     M --> C[Compaction<br/>reclaim old revisions]
 ```
 
+</details>
+
 - **Raft** ensures every committed write is durable on a majority of nodes. No write is acknowledged until a quorum has it.
 - **MVCC** stores each write as a new revision. Old revisions remain readable until compacted.
 - **Watch** streams revision-ordered events to clients, enabling Kubernetes' level-triggered controllers.
 
 ## Raft consensus
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-etcd-watch-protocol-2-37815026.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -34,6 +46,8 @@ flowchart LR
     CMT --> APP[Apply to state machine]
     APP --> R[Respond to client]
 ```
+
+</details>
 
 Properties:
 - **Quorum** = `(N/2) + 1`. For N=3, quorum=2. For N=5, quorum=3.
@@ -63,6 +77,11 @@ Kubernetes exposes etcd's revision as `metadata.resourceVersion` on every object
 
 Watch is a **gRPC bidirectional stream**. Client sends a `WatchRequest` (key range + start revision), server streams `WatchResponse` events forever.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-etcd-watch-protocol-3-d356da57.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant Client as Client (informer)
@@ -80,6 +99,8 @@ sequenceDiagram
     API-->>Client: 410 Gone (resourceVersion too old)
     Client->>API: LIST then re-WATCH from new rv
 ```
+
+</details>
 
 Key behaviors:
 - Events are **ordered by revision** within a watch.

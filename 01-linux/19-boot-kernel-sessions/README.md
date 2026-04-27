@@ -46,7 +46,6 @@ flowchart TB
 ```
 
 </details>
-
 ---
 
 ## Files map (phase ↔ files ↔ binaries ↔ commands)

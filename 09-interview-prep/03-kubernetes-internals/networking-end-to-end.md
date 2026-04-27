@@ -16,6 +16,11 @@ What happens between the syscall and the response landing back?
 
 ## End-to-End Sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-networking-end-to-end-1-820e0ab3.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
   participant App as App in Pod A
@@ -38,6 +43,8 @@ sequenceDiagram
   Kernel->>Kernel: conntrack reverse NAT<br/>src rewritten to 10.96.10.5:80
   Kernel-->>App: socket reads bytes
 ```
+
+</details>
 
 ---
 

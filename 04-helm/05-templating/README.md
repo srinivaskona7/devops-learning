@@ -5,7 +5,7 @@ Helm uses **Go templates** + the **sprig** function library + a few Helm-specifi
 ## Render Pipeline
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-05-templating-README-1-5a501a7e.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-05-templating-README-1-5a501a7e.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -133,6 +133,11 @@ kubectl drain <node> --ignore-daemonsets --delete-emptydir-data
 
 ## Failure-mode sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-disk-pressure-eviction-1-81646be4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant App as Pod
@@ -152,6 +157,8 @@ sequenceDiagram
     Note over FS: nodefs.available=25%
     K->>API: condition cleared, taint removed
 ```
+
+</details>
 
 ---
 

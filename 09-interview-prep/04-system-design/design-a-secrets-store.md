@@ -78,6 +78,11 @@ audit_log(id pk, ts, identity_id, op, path, success, request_id, ip, ...)
 
 ## 4. High-Level Design
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-a-secrets-store-1-0b6ba673.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   C[Client app] -->|JWT/SPIFFE| API[API Gateway]
@@ -92,6 +97,8 @@ flowchart LR
   AUD --> S3[(S3 immutable)]
   AUD --> SIEM[SIEM]
 ```
+
+</details>
 
 ### Write path
 1. Client sends `POST /v1/secret/data/foo` with JWT

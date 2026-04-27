@@ -11,6 +11,11 @@ goes wrong.
 
 The most important flow. Understand this and most other flows are obvious.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-visual-flows-1-e2c89df9.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[helm install] --> B[Load chart]
@@ -19,6 +24,8 @@ flowchart LR
   D --> E[Apply to cluster]
   E --> F[Save release]
 ```
+
+</details>
 
 **Trigger:** `helm install my-app ./mychart -f values.yaml`
 
@@ -44,6 +51,11 @@ with existing objects.
 Upgrades are diffs applied carefully. The dangerous part is what counts as
 "the same resource".
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-visual-flows-2-b19b07df.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[helm upgrade] --> B[Load new chart]
@@ -52,6 +64,8 @@ flowchart LR
   D --> E[Apply diff]
   E --> F[New revision]
 ```
+
+</details>
 
 **Trigger:** `helm upgrade my-app ./mychart -f values.yaml`
 
@@ -76,6 +90,11 @@ hook ordering breaks.
 
 Rollback is just an upgrade targeting an old revision. Same merge logic.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-visual-flows-3-81d479be.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[helm rollback] --> B[Load old revision]
@@ -84,6 +103,8 @@ flowchart LR
   D --> E[Apply]
   E --> F[New revision]
 ```
+
+</details>
 
 **Trigger:** `helm rollback my-app 5`
 
@@ -106,6 +127,11 @@ hooks that no longer succeed; secrets rotated since revision 5.
 
 Removal is mostly straightforward but hooks and CRDs make it tricky.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-visual-flows-4-6c72bebb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[helm uninstall] --> B[Run pre-delete]
@@ -114,6 +140,8 @@ flowchart LR
   D --> E[Remove release]
   E --> F[Done]
 ```
+
+</details>
 
 **Trigger:** `helm uninstall my-app`
 
@@ -133,6 +161,11 @@ chart, anything created by hooks without delete annotations.
 
 Publishing a chart to an OCI registry. Looks just like pushing an image.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-visual-flows-5-7e1e94a1.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[helm package] --> B[Make tgz]
@@ -141,6 +174,8 @@ flowchart LR
   D --> E[OCI registry]
   E --> F[Tagged]
 ```
+
+</details>
 
 **Trigger:** `helm package ./mychart && helm push mychart-1.0.0.tgz oci://registry.example.com/charts`
 
@@ -161,6 +196,11 @@ artifacts; chart name collides with an image name in the same repo path.
 
 Pulling and installing from OCI. The reverse of push.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-visual-flows-6-a35c1b6b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[helm pull oci] --> B[Download tgz]
@@ -169,6 +209,8 @@ flowchart LR
   D --> E[helm install]
   E --> F[In cluster]
 ```
+
+</details>
 
 **Trigger:** `helm install my-app oci://registry.example.com/charts/mychart --version 1.0.0`
 
@@ -188,6 +230,11 @@ flowchart LR
 
 Subcharts are downloaded into the parent's `charts/` folder before install.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-visual-flows-7-53c136ae.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Chart yaml deps] --> B[helm dep update]
@@ -196,6 +243,8 @@ flowchart LR
   D --> E[Charts folder]
   E --> F[Lock file]
 ```
+
+</details>
 
 **Trigger:** `helm dependency update ./mychart`
 
@@ -219,6 +268,11 @@ network blocked; OCI auth missing for one of the deps.
 
 The order in which hooks fire during an install or upgrade.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-visual-flows-8-ead7b24f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[pre-install] --> B[Install]
@@ -227,6 +281,8 @@ flowchart LR
   D --> E[pre-delete]
   E --> F[post-delete]
 ```
+
+</details>
 
 **Trigger:** Any chart install with annotated hook resources.
 
@@ -272,6 +328,11 @@ specific node, and naming it is half the fix.
 
 ## Quick mental model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/04-helm-_mastery-visual-flows-9-b86d4e2a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Chart] --> B[Render]
@@ -280,6 +341,8 @@ flowchart LR
   D --> E[Upgrade]
   E --> F[Rollback]
 ```
+
+</details>
 
 Everything else is detail. Charts get rendered, manifests get applied,
 releases get tracked, and history gives you a way back.

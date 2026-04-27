@@ -8,6 +8,11 @@ Zero-trust architectures need workload identity that doesn't depend on network l
 
 Every workload gets a **SPIFFE ID** (a URI like `spiffe://acme.com/payments/api`). The platform proves what the workload is via **attestation** (k8s pod metadata, AWS instance identity doc, etc.), and SPIRE issues a short-lived **SVID** (SPIFFE Verifiable Identity Document) — either x509 (for mTLS) or JWT (for API calls). Workloads consume SVIDs over a local Unix socket — they never see private keys cross the network.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-deep-dive-spiffe-spire-1-9d63604e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Workload] -->|asks for SVID via Workload API| B[SPIRE Agent<br/>per node]
@@ -18,6 +23,8 @@ flowchart LR
     A -->|use SVID for mTLS| D[Other workload]
     D -->|verify SVID against trust bundle| D
 ```
+
+</details>
 
 ## SPIFFE Identity
 
@@ -42,6 +49,11 @@ Trust domains are equivalent to a CA's authority — workloads in the same trust
 
 Both are short-lived (typical default: 1 hour for x509, 5 min for JWT) and rotated automatically by SPIRE Agent before expiry.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-deep-dive-spiffe-spire-2-d5c0b314.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[x509-SVID] --> B[Cert with SPIFFE ID<br/>in SAN URI]
@@ -51,7 +63,14 @@ flowchart LR
     E --> G[JWKS to verify<br/>from Workload API]
 ```
 
+</details>
+
 ## SPIRE Architecture
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-deep-dive-spiffe-spire-3-bcb918e3.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart TB
@@ -64,6 +83,8 @@ flowchart TB
     W3[Workload C] -->|Workload API socket| A2
 ```
 
+</details>
+
 | Component | Role |
 |-----------|------|
 | **SPIRE Server** | Root CA for the trust domain. Holds registration entries (rules: "if X, issue SPIFFE ID Y"). Signs SVIDs. |
@@ -72,6 +93,11 @@ flowchart TB
 | **Registration Entries** | Rules in Server's datastore: selectors (k8s label, AWS instance tag, Unix UID) → SPIFFE ID to issue. |
 
 ## Two-Stage Attestation
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-deep-dive-spiffe-spire-4-21661bb4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -96,6 +122,8 @@ sequenceDiagram
     A-->>W: SVID material
 ```
 
+</details>
+
 The two-stage model means: a compromised workload cannot impersonate another, because the AGENT (not the workload) proves identity using kernel-level data the workload can't forge (PID → cgroup → k8s pod → labels).
 
 ## Annotated Registration Entry
@@ -115,6 +143,11 @@ spire-server entry create \
 Selectors are AND'd within an entry. A workload must satisfy ALL selectors for the entry to apply. Multiple entries can apply — workload gets multiple SVIDs.
 
 ## mTLS Without Secrets
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-11-zero-trust-mesh-deep-dive-spiffe-spire-5-fa8da4f5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -136,6 +169,8 @@ sequenceDiagram
     B->>B: Verify + extract SPIFFE ID + authorize
     A->>B: HTTP/2 traffic
 ```
+
+</details>
 
 Both sides authenticate AND authorize on SPIFFE ID, not on IP/hostname. Trust bundle is auto-rotated by the agent — if SPIRE Server rotates its CA, agents fetch the new bundle and push to workloads BEFORE old certs expire.
 

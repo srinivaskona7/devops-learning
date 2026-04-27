@@ -49,7 +49,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ---
 
 ## The four PAM phases

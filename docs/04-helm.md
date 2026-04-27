@@ -17,6 +17,11 @@ Helm turns a sprawling pile of YAML into versioned, parameterized, reusable rele
 
 ## :material-map-marker-path: Roadmap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-04-helm-1-417c9547.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Concepts] --> B[Chart Anatomy]
@@ -31,6 +36,8 @@ flowchart LR
     J --> K[Helmfile]
     K --> L[Argo CD GitOps]
 ```
+
+</details>
 
 ## :material-grid: Modules { #start }
 

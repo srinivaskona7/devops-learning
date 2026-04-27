@@ -6,6 +6,11 @@ Container images are not files — they are stacks of immutable tarballs joined 
 
 ## Architecture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-image-layer-internals-1-31b9c2e3.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     subgraph image[Image: nginx:1.27]
@@ -27,6 +32,13 @@ flowchart TB
     work -.-> merged
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-image-layer-internals-2-d82b7e9e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[container reads<br/>/etc/nginx/nginx.conf] --> B{exists in upper?}
@@ -37,6 +49,8 @@ flowchart LR
     G[container writes<br/>/etc/nginx/nginx.conf] --> H[copy_up:<br/>copy file from lower to upper]
     H --> I[modify in upper]
 ```
+
+</details>
 
 ## Mental Model
 

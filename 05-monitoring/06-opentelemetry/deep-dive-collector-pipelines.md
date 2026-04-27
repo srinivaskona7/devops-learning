@@ -8,6 +8,11 @@ The OTel Collector is the universal telemetry router — receivers in, processor
 
 A Collector is a pipeline of **components**: receivers accept data in some protocol, processors transform/filter/sample it, exporters send it onward. Pipelines are typed (`traces`, `metrics`, `logs`) and the same data type flows through one pipeline per signal.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-deep-dive-collector-pipelines-1-374289c0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     R1[OTLP receiver] --> P1[memory_limiter]
@@ -20,6 +25,8 @@ flowchart LR
     P4 --> E2[OTLP exporter to vendor]
 ```
 
+</details>
+
 ## Component Categories
 
 | Component | Role | Examples |
@@ -31,6 +38,11 @@ flowchart LR
 | Connector | Cross-pipeline (one pipeline's exporter is another's receiver) | spanmetrics, servicegraph, forward |
 
 ## Pipeline Topology
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-deep-dive-collector-pipelines-2-f86513db.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart TB
@@ -45,11 +57,18 @@ flowchart TB
     end
 ```
 
+</details>
+
 Each pipeline is independent. The same receiver/exporter/processor instance CAN be referenced from multiple pipelines (config-level reuse).
 
 ## Processor Order — the rule
 
 Processors execute **in the order listed** in the pipeline. Order is load-bearing.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-deep-dive-collector-pipelines-3-baaade40.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -59,6 +78,8 @@ flowchart LR
     D --> E[batch<br/>LAST always]
     E --> F[Exporters]
 ```
+
+</details>
 
 | Position | Why |
 |----------|-----|
@@ -154,6 +175,11 @@ service:
 
 ## Tail Sampling Specifics
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-deep-dive-collector-pipelines-4-d94235dc.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant R as Receiver
@@ -173,12 +199,19 @@ sequenceDiagram
     end
 ```
 
+</details>
+
 **Critical constraints:**
 - Tail sampling needs ALL spans of a trace at the same Collector instance. Behind a load balancer, you must use a **trace-ID-aware load balancer** (e.g. `loadbalancing` exporter in front of a sampling-tier Collector).
 - Memory cost: `decision_wait * spans/sec * span_size`. A 10s wait at 50k spans/sec ≈ several GB.
 - `decision_wait` must be ≥ longest expected trace duration. Otherwise root span arrives after the decision and is orphaned.
 
 ## Two-tier Collector pattern
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-deep-dive-collector-pipelines-5-49f7ff85.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -190,6 +223,8 @@ flowchart LR
     S1 --> X[Tempo / vendor]
     S2 --> X
 ```
+
+</details>
 
 The agent tier adds resource enrichment and forwards. The sampling tier shards by trace ID so each trace's spans land on a single instance for tail sampling decisions.
 

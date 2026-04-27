@@ -5,7 +5,7 @@ Policy engines run in the **admission chain** — every API write hits them befo
 ## Admission flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-06-policy-as-code-README-1-eecc4a79.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/06-security-06-policy-as-code-README-1-eecc4a79.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

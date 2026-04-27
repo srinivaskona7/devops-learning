@@ -8,6 +8,11 @@
 
 Every file read populates page cache. Every write goes to a page cache page first (marked dirty), then writeback flushes it to disk asynchronously. Free memory = wasted memory; the kernel reclaims clean pages on demand.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-page-cache-and-swap-1-50f342a4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TD
   A["read syscall"] --> B{"page in cache?"}
@@ -17,6 +22,13 @@ flowchart TD
   E["write syscall"] --> F["mark page dirty<br/>in page cache"]
   F --> G["writeback thread later<br/>flushes to disk"]
 ```
+
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-page-cache-and-swap-2-c12d6942.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -29,6 +41,8 @@ flowchart LR
   SW -->|yes| SO["swap out to disk or zram"]
   SW -->|no| OOM["OOM killer"]
 ```
+
+</details>
 
 ## Reading `free -h`
 

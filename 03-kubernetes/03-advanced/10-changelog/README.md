@@ -1,7 +1,7 @@
 # 10 — Kubernetes Changelog (1.27 → 1.33)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-1-87a19f54.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-1-87a19f54.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 
@@ -28,7 +28,7 @@ timeline
 ## SIG structure (who writes what)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-2-ff837745.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-10-changelog-README-2-ff837745.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

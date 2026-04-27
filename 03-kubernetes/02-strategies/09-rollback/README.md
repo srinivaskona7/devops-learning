@@ -29,7 +29,7 @@ You can:
 ## Pod transition (rollback = a new RollingUpdate to the old image)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-09-rollback-README-1-ae9488c2.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-09-rollback-README-1-ae9488c2.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

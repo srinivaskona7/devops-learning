@@ -8,6 +8,11 @@ Modules are the unit of reuse in Terraform — but unversioned modules pulled fr
 
 `source` tells Terraform WHERE to fetch the module. `version` tells Terraform WHICH version to fetch. `version` only works for Registry sources — for git/http/local sources, the version is encoded in the ref/URL itself. Registry pinning gives you SemVer constraint solving; ref pinning is exact-or-bust.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-07-modules-deep-dive-module-versioning-1-318faaae.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[module block] --> B{source type}
@@ -20,6 +25,8 @@ flowchart LR
     E --> I[downloaded zip/tar]
     F --> J[directly used]
 ```
+
+</details>
 
 ## Source Address Forms
 
@@ -68,6 +75,11 @@ module "vpc" {
 
 **Recommended pattern for production consumers:** `~> 5.1` — accept any 5.x patch/minor (bug fixes, additive features) but never auto-upgrade to 6.x (breaking changes).
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-07-modules-deep-dive-module-versioning-2-10f8135f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[~> 5.1] --> B[5.1.0 ✓]
@@ -78,6 +90,8 @@ flowchart LR
     F --> H[5.1.7 ✓]
     F --> I[5.2.0 ✗]
 ```
+
+</details>
 
 ## Git Ref Pinning
 
@@ -103,6 +117,11 @@ module "experimental" {
 | Commit SHA (`abc1234`) | Exactly that commit, forever | Maximum determinism. Verbose. |
 | Branch (`main`, `develop`) | Whatever HEAD is at fetch time | NEVER for production. Creates "spooky action at a distance" — a colleague's merge changes your plan. |
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-07-modules-deep-dive-module-versioning-3-2525df53.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[ref=tag] --> B[Resolved at .terraform init]
@@ -111,6 +130,8 @@ flowchart LR
     E[ref=branch] --> F[Re-resolved at every init]
     F --> G[Today's plan ≠ tomorrow's plan]
 ```
+
+</details>
 
 ## .terraform.lock.hcl
 
@@ -188,6 +209,11 @@ resource "aws_security_group" "app" {
 
 ## Versioning Strategy for Module Authors
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-07-modules-deep-dive-module-versioning-4-c136a2d0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Add input variable<br/>with default] --> B[Minor bump]
@@ -199,6 +225,8 @@ flowchart LR
     J[Remove output] --> H
     K[Force resource replacement] --> H
 ```
+
+</details>
 
 Treat module inputs/outputs like a public API. Anything that could break a consumer's plan = MAJOR. Any backward-compatible addition = MINOR. Bug fix = PATCH.
 

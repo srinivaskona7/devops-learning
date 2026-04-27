@@ -5,7 +5,7 @@
 ## Two Schools
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-12-helmfile-and-argocd-README-1-fed70fe7.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-12-helmfile-and-argocd-README-1-fed70fe7.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

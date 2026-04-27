@@ -25,7 +25,7 @@
 ## Pod transition
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-04-canary-manual-README-1-141306a7.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-04-canary-manual-README-1-141306a7.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -3,7 +3,7 @@
 A service mesh adds L7 traffic management, mTLS, and telemetry **without code changes**, by injecting a data plane next to (or under) every workload.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-04-service-mesh-README-1-0451a54c.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-04-service-mesh-README-1-0451a54c.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

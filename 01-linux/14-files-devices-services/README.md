@@ -77,7 +77,6 @@ flowchart LR
 ```
 
 </details>
-
 **Key insight:** `/proc` and `/sys` files don't exist on disk. When you `cat /proc/meminfo`, the kernel **synthesizes** the contents on the fly from its internal data structures. That is why these files always show the current state and why their size is `0` in `ls -l`.
 
 ## Subtopic Map
@@ -131,7 +130,6 @@ flowchart TB
 ```
 
 </details>
-
 > **Gotcha:** `/proc/<pid>/` disappears the instant the process exits. Tools that race with process death (`ps`, `lsof`) will sometimes show "no such file" errors — this is normal, not a bug.
 
 > **20-year tip:** Before you `strace` or `gdb`, just `ls -l /proc/<pid>/{cwd,exe,fd}`. Half of all "what is this process doing" questions are answered there in 2 seconds.

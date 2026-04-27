@@ -31,7 +31,7 @@ provider "google" {
 ## Mermaid: GCP project structure
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-10-gcp-examples-README-1-089e9386.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-10-gcp-examples-README-1-089e9386.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -8,6 +8,11 @@ Ten small mermaid flowcharts, each focused on one decision moment. Read top to b
 
 The core of every controller: observe, compare, act, repeat.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-1-ed2c612a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Watch CR] --> B[Read Spec]
@@ -17,6 +22,8 @@ flowchart LR
     D --> F[Take Action]
     F --> A
 ```
+
+</details>
 
 Notes:
 - Level-triggered. Missed events are fine because the next loop re-reads.
@@ -29,6 +36,11 @@ Notes:
 
 What happens between kubectl apply and etcd write.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-2-7e21f699.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[kubectl apply] --> B[Auth check]
@@ -37,6 +49,8 @@ flowchart LR
     D --> E[Validating Webhooks]
     E --> F[etcd write]
 ```
+
+</details>
 
 Notes:
 - Mutating runs before Validating.
@@ -49,6 +63,11 @@ Notes:
 
 Where extension points fire as a Pod becomes a binding.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-3-645d53f2.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[New Pod] --> B[PreFilter]
@@ -57,6 +76,8 @@ flowchart LR
     D --> E[Reserve]
     E --> F[Bind]
 ```
+
+</details>
 
 Notes:
 - Filter eliminates nodes; Score ranks the survivors.
@@ -69,6 +90,11 @@ Notes:
 
 How a Pod gains a proxy without code changes.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-4-579734e8.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Pod created] --> B[API Server]
@@ -77,6 +103,8 @@ flowchart LR
     D --> E[Scheduler binds]
     E --> F[Pod runs with proxy]
 ```
+
+</details>
 
 Notes:
 - Webhook reads namespace label like istio-injection enabled.
@@ -89,6 +117,11 @@ Notes:
 
 How a request flows through the modern Gateway API.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-5-b8196671.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Client] --> B[Gateway listener]
@@ -97,6 +130,8 @@ flowchart LR
     D --> E[Service]
     E --> F[Pod]
 ```
+
+</details>
 
 Notes:
 - Gateway is the L4 entry, owned by the platform.
@@ -109,6 +144,11 @@ Notes:
 
 A packet meets an in-kernel program before it reaches userspace.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-6-d4d4fc69.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Packet arrives NIC] --> B[tc ingress hook]
@@ -117,6 +157,8 @@ flowchart LR
     C --> E[Modify]
     C --> F[Drop]
 ```
+
+</details>
 
 Notes:
 - tc hook runs early, before iptables.
@@ -129,6 +171,11 @@ Notes:
 
 The day-2 dance an operator performs.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-7-79c94084.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[CR applied] --> B[Provision]
@@ -137,6 +184,8 @@ flowchart LR
     D --> E{Event}
     E --> F[Reconcile]
 ```
+
+</details>
 
 Notes:
 - Events include scale, upgrade, node failure, backup window.
@@ -149,6 +198,11 @@ Notes:
 
 How a client in cluster A reaches a Pod in cluster B.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-8-a9a4f021.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Client cluster A] --> B[Local Service]
@@ -156,6 +210,8 @@ flowchart LR
     C --> D[Remote Service B]
     D --> E[Remote Pod]
 ```
+
+</details>
 
 Notes:
 - East-west gateway terminates and re-establishes mTLS.
@@ -168,6 +224,11 @@ Notes:
 
 How two CRD versions coexist on the wire.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-9-cbcd0f63.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Client v1 read] --> B[API Server]
@@ -175,6 +236,8 @@ flowchart LR
     C --> D[Conversion Webhook]
     D --> E[v1 response]
 ```
+
+</details>
 
 Notes:
 - Storage version is single; served versions can be many.
@@ -187,6 +250,11 @@ Notes:
 
 How a Pod claims a GPU through structured DRA.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-10-33cc2666.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Pod with claim] --> B[Scheduler reads claim]
@@ -195,6 +263,8 @@ flowchart LR
     D --> E[Node prepares device]
     E --> F[Pod starts]
 ```
+
+</details>
 
 Notes:
 - Claim is allocated before Pod is bound to a node.
@@ -233,6 +303,11 @@ Each flow models the moment a decision is made. The arrows are not always the on
 
 ## Mental model recap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-visual-flows-11-6dda6607.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Spec] --> B[Controller]
@@ -240,5 +315,7 @@ flowchart LR
     C --> D[Status]
     D --> A
 ```
+
+</details>
 
 Every advanced Kubernetes pattern is some elaboration of this loop. CRDs add a new Spec type. Operators add a new Controller. Webhooks gate the Spec entering the loop. Mesh and gateway shape how the World responds. Multi-cluster fans the loop across boundaries. eBPF makes the World faster.

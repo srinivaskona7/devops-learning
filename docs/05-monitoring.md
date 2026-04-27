@@ -17,6 +17,11 @@ Observability is not three dashboards — it's the discipline of asking arbitrar
 
 ## :material-map-marker-path: Roadmap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-05-monitoring-1-51441021.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Three Pillars] --> B[Metrics with Prometheus]
@@ -29,6 +34,8 @@ flowchart LR
     H --> I[Incident Response]
     I --> J[Cost and Cardinality]
 ```
+
+</details>
 
 ## :material-grid: Modules { #start }
 

@@ -10,6 +10,11 @@ Misunderstanding the scheduler causes pods to "stick in Pending" with no obvious
 
 The scheduler is a **two-phase pipeline per Pod**:
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-scheduler-scoring-1-81a33011.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     Q[Scheduling queue<br/>activeQ priorityQ] --> F[Filter phase<br/>predicates]
@@ -20,6 +25,8 @@ flowchart LR
     R --> B[Bind<br/>POST /binding]
     B --> Q
 ```
+
+</details>
 
 - **Filter phase** = "is this node *able* to run the pod?" Boolean. Yes/no.
 - **Score phase** = "*how good* is this node?" 0-100 per plugin, weighted, summed.
@@ -133,6 +140,11 @@ n1 wins.
 
 ## Walkthrough: where does Pod foo land?
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-scheduler-scoring-2-da359afb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant U as User
@@ -154,6 +166,8 @@ sequenceDiagram
     API-->>K: WATCH Pod bound to me
     K->>K: Pull image, start sandbox, start containers
 ```
+
+</details>
 
 If Filter returns zero feasible nodes, **PostFilter** fires. The default-preemption plugin looks for lower-priority pods on candidate nodes whose eviction would make this pod schedulable, and issues a deletion with a grace period. The pod returns to the queue and tries again next cycle.
 

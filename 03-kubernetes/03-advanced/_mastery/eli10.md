@@ -14,6 +14,11 @@ A CRD teaches the Kubernetes API server a new kind of object. After you install 
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-1-9f232a09.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[You] --> B[Install CRD]
@@ -21,6 +26,8 @@ flowchart LR
     C --> D[New kind Dragon]
     D --> E[kubectl get dragons]
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -46,6 +53,11 @@ An operator is a controller that watches a custom resource and takes care of the
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-2-c37f365e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[You write Spec] --> B[CR object]
@@ -54,6 +66,8 @@ flowchart LR
     D --> E[Fixes the world]
     E --> B
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -79,6 +93,11 @@ An admission webhook checks every object before it is saved in the cluster. Vali
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-3-ec7efa01.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[kubectl apply] --> B[API Server]
@@ -86,6 +105,8 @@ flowchart LR
     C --> D[Validating Webhook]
     D --> E[etcd save]
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -111,6 +132,11 @@ A service mesh wraps each pod with a tiny helper called a sidecar. The sidecars 
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-4-c819ae2e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[App A] --> B[Sidecar A]
@@ -119,6 +145,8 @@ flowchart LR
     E[Control Plane] --> B
     E --> C
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -144,6 +172,11 @@ Gateway API splits responsibility: platform team owns the Gateway, app teams own
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-5-f7b64f29.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Visitor] --> B[Gateway]
@@ -152,6 +185,8 @@ flowchart LR
     C --> E[api Service]
     D --> F[web Service]
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -177,6 +212,11 @@ Dynamic Resource Allocation lets pods claim devices like GPUs through structured
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-6-3aae5eb6.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Pod requests claim] --> B[ResourceClaim]
@@ -184,6 +224,8 @@ flowchart LR
     C --> D[Device assigned]
     D --> E[Pod starts]
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -209,6 +251,11 @@ eBPF runs tiny safe programs inside the Linux kernel. In Kubernetes it powers fa
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-7-91300f8d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Packet arrives] --> B[eBPF program]
@@ -217,6 +264,8 @@ flowchart LR
     C --> E[Drop]
     C --> F[Modify]
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -242,6 +291,11 @@ Multi-cluster Kubernetes runs workloads across several clusters for blast-radius
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-8-2c8690f3.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Principal Git] --> B[Cluster US]
@@ -249,6 +303,8 @@ flowchart LR
     A --> D[Cluster Asia]
     B --> E[Workloads]
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -274,6 +330,11 @@ The scheduler decides which node a pod runs on. Plugins extend this decision wit
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-9-d314fb6a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[New Pod] --> B[Filter plugins]
@@ -282,6 +343,8 @@ flowchart LR
     D --> E[Best Node]
     E --> F[Bind]
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -306,6 +369,11 @@ Every controller in Kubernetes runs a reconciliation loop: observe current state
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-10-90b65239.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Desired State] --> B[Compare]
@@ -315,6 +383,8 @@ flowchart LR
     D --> F[Act]
     F --> C
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -340,6 +410,11 @@ A mutating webhook adds a sidecar container to your pod at admission time. You d
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-11-1927b21b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Pod manifest] --> B[API Server]
@@ -347,6 +422,8 @@ flowchart LR
     C --> D[Pod plus Sidecar]
     D --> E[Scheduler]
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -371,6 +448,11 @@ ValidatingAdmissionPolicy uses CEL expressions inline in the API server. No webh
 
 ### Picture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-eli10-12-13d6a12c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[kubectl apply] --> B[API Server]
@@ -379,6 +461,8 @@ flowchart LR
     D --> E[Save]
     D --> F[Reject]
 ```
+
+</details>
 
 ### Try it
 ```bash

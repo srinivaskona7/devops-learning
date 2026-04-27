@@ -144,6 +144,11 @@ resources:
 
 ## Failure-mode sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-memory-leak-1-176331e2.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant App
@@ -163,6 +168,8 @@ sequenceDiagram
     K->>K: restart per restartPolicy
     Note over App: clock resets, leak resumes
 ```
+
+</details>
 
 ---
 

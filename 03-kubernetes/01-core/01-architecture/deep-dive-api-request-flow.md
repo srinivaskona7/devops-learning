@@ -72,7 +72,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ---
 
 ## Diagram 2 — APF (API Priority & Fairness) flow control
@@ -96,7 +95,6 @@ flowchart LR
 ```
 
 </details>
-
 Key objects:
 - `FlowSchema` — matches a request to a priority level (subject, resource, verb).
 - `PriorityLevelConfiguration` — defines concurrency shares and queueing strategy.

@@ -26,6 +26,11 @@ The wrong choice burns 30%+ of cluster CPU and adds 1–5 ms tail latency per ho
 
 ## Diagram 1 — The three architectures
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-04-service-mesh-deep-dive-istio-vs-linkerd-vs-cilium-1-d0b7586d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     subgraph Sidecar [Sidecar model: Istio classic, Linkerd]
@@ -47,9 +52,16 @@ flowchart TB
     end
 ```
 
+</details>
+
 ---
 
 ## Diagram 2 — Control plane comparison
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-04-service-mesh-deep-dive-istio-vs-linkerd-vs-cilium-2-5d2fe4dc.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -67,6 +79,8 @@ flowchart LR
         AGENT -.L7.-> ENVOY[Envoy DS]
     end
 ```
+
+</details>
 
 ---
 

@@ -9,6 +9,11 @@
 
 What happens when you run init on a fresh directory.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-visual-flows-1-9989bfb7.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Run init] --> B[Read versions.tf]
@@ -17,6 +22,8 @@ flowchart LR
     D --> E[Create .terraform dir]
     E --> F[Ready to plan]
 ```
+
+</details>
 
 ### What each step does
 - **Read versions.tf**: parse required_providers and required_version
@@ -38,6 +45,11 @@ flowchart LR
 
 What happens when you ask for a plan.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-visual-flows-2-058328e2.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Run plan] --> B[Read state]
@@ -46,6 +58,8 @@ flowchart LR
     D --> E[Print changes]
     E --> F[Optional save tfplan]
 ```
+
+</details>
 
 ### Reading the plan output
 - `+` create
@@ -64,6 +78,11 @@ flowchart LR
 
 What happens when you commit the plan.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-visual-flows-3-4b1a3ebf.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Run apply] --> B[Acquire lock]
@@ -72,6 +91,8 @@ flowchart LR
     D --> E[Update state]
     E --> F[Release lock]
 ```
+
+</details>
 
 ### What can go wrong mid-apply
 - API throttling: Terraform retries, eventually fails — re-run
@@ -90,6 +111,11 @@ failure to see the new state.
 
 What happens when you tear down everything.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-visual-flows-4-12d8c73d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Run destroy] --> B[Acquire lock]
@@ -98,6 +124,8 @@ flowchart LR
     D --> E[Empty state]
     E --> F[Release lock]
 ```
+
+</details>
 
 ### Safety checklist before destroy
 1. Are you in the right workspace?
@@ -116,6 +144,11 @@ because subnets, route tables, and gateways depend on it.
 
 How concurrent runs are prevented.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-visual-flows-5-c4eeff22.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[User A starts apply] --> B[Acquire lock]
@@ -123,6 +156,8 @@ flowchart LR
     D[User B starts apply] --> E[Lock denied wait]
     C --> F[Apply finishes release lock]
 ```
+
+</details>
 
 ### Lock backends
 - **S3 + DynamoDB**: DynamoDB table holds the lock row
@@ -140,6 +175,11 @@ Never force-unlock an active apply — state corruption guaranteed.
 
 How CI gets ephemeral creds without long-lived keys.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-visual-flows-6-afb7d7ca.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[GitHub Workflow] --> B[Request OIDC token]
@@ -148,6 +188,8 @@ flowchart LR
     D --> E[Return temp creds]
     E --> F[Terraform runs]
 ```
+
+</details>
 
 ### Trust policy essentials
 - Federated principal: `token.actions.githubusercontent.com`
@@ -167,6 +209,11 @@ flowchart LR
 
 How a root config consumes a module that consumes resources.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-visual-flows-7-a4410651.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Root main.tf] --> B[Module vpc]
@@ -175,6 +222,8 @@ flowchart LR
     C --> E[Resources cluster nodegroups]
     C --> B
 ```
+
+</details>
 
 ### Composition rules
 - Root passes inputs in, reads outputs out — no other coupling
@@ -198,6 +247,11 @@ module "vpc" {
 
 How drift is found and surfaced.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-visual-flows-8-17cb30ac.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Cron job] --> B[Run plan refresh]
@@ -206,6 +260,8 @@ flowchart LR
     D --> E[Emit metric alert]
     E --> F[Human triages]
 ```
+
+</details>
 
 ### What `refresh` actually does
 Reads every resource from the provider API and updates the in-memory state
@@ -223,6 +279,11 @@ to match. It does **not** change cloud resources. Use `terraform plan
 
 ## The Whole Lifecycle in One View
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-visual-flows-9-6b811aef.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Init] --> B[Plan]
@@ -231,6 +292,8 @@ flowchart LR
     D --> B
     C --> E[Destroy]
 ```
+
+</details>
 
 You spend 90% of your career in the Plan -> Apply -> Drift loop. Init
 happens once per directory per machine. Destroy happens rarely and

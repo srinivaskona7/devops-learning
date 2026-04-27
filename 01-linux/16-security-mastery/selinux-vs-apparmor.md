@@ -31,7 +31,6 @@ flowchart TB
 ```
 
 </details>
-
 <!-- mermaid:rendered -->
 <p align="center"><img src="../../assets/diagrams/01-linux-16-security-mastery-selinux-vs-apparmor-2-359ef5ff.svg" alt="diagram" /></p>
 
@@ -52,7 +51,6 @@ flowchart LR
 ```
 
 </details>
-
 ---
 
 ## DAC vs MAC — the one-paragraph contrast

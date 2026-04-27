@@ -26,12 +26,19 @@ wishlist into actions.
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-1-c53f64f6.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[You] --> B[Wishlist .tf]
     B --> C[Terraform Robot]
     C --> D[Cloud Toys]
 ```
+
+</details>
 
 ### Steps
 1. Write a `main.tf` file
@@ -54,6 +61,11 @@ downloads them.
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-2-788789e1.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Wishlist] --> B[Provider AWS]
@@ -61,6 +73,8 @@ flowchart LR
     B --> D[AWS Toys]
     C --> E[GCP Toys]
 ```
+
+</details>
 
 ### Steps
 1. Add a `provider "aws" {}` block
@@ -82,12 +96,19 @@ You give it a type (`aws_s3_bucket`) and a local name (`my_bucket`).
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-3-e3cf8d9a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Wishlist] --> B[Resource Bucket]
     A --> C[Resource Server]
     A --> D[Resource Database]
 ```
+
+</details>
 
 ### Steps
 1. Write `resource "aws_s3_bucket" "my_bucket" {}`
@@ -110,6 +131,11 @@ tries to buy everything again.
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-4-f1bc2ef7.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Robot] --> B[Buys Toys]
@@ -117,6 +143,8 @@ flowchart LR
     B --> D[Receipt State]
     D --> A
 ```
+
+</details>
 
 ### Steps
 1. After `apply`, Terraform writes `terraform.tfstate`
@@ -139,6 +167,11 @@ difference. Plus signs = create. Minus signs = destroy. Tilde = change.
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-5-59257ae6.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Wishlist] --> C[Compare]
@@ -146,6 +179,8 @@ flowchart LR
     C --> D[Plan +/-/~]
     D --> E[You Approve]
 ```
+
+</details>
 
 ### Steps
 1. Run `terraform plan`
@@ -167,12 +202,19 @@ change, or delete resources, then writes the new state.
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-6-17ccf3d5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Plan] --> B[Apply]
     B --> C[Cloud Changes]
     B --> D[New Receipt]
 ```
+
+</details>
 
 ### Steps
 1. Run `terraform apply tfplan`
@@ -195,12 +237,19 @@ A module is a folder of `.tf` files you can reuse. You give it inputs
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-7-b3bcb56d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Inputs] --> B[Module Castle Kit]
     B --> C[Resources Walls Roof]
     B --> D[Outputs URL]
 ```
+
+</details>
 
 ### Steps
 1. Find or write a module folder
@@ -222,12 +271,19 @@ useful for tearing down test environments. It's terrifying in production.
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-8-c95abd38.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Wishlist] --> B[Destroy]
     B --> C[Cloud Empties]
     B --> D[Empty Receipt]
 ```
+
+</details>
 
 ### Steps
 1. Run `terraform plan -destroy` first
@@ -250,12 +306,19 @@ Set them via `.tfvars` files, environment variables, or CLI flags.
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-9-af7d85fb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Sticky Note region=eu] --> B[Resource 1]
     A --> C[Resource 2]
     A --> D[Resource 3]
 ```
+
+</details>
 
 ### Steps
 1. Add `variable "region" { default = "eu-west-1" }`
@@ -277,12 +340,19 @@ configs or humans can read them.
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-10-56f0c152.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Apply Done] --> B[Outputs Note]
     B --> C[Human Reads]
     B --> D[Other Config Reads]
 ```
+
+</details>
 
 ### Steps
 1. Add `output "url" { value = aws_lb.main.dns_name }`
@@ -304,12 +374,19 @@ PR previews. Risky for prod-vs-staging because the code path is identical.
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-11-33e9274e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[One Wishlist] --> B[Box dev]
     A --> C[Box staging]
     A --> D[Box prod]
 ```
+
+</details>
 
 ### Steps
 1. `terraform workspace new dev`
@@ -332,6 +409,11 @@ console clicks, autoscalers, or other tools. Detect with `terraform plan`.
 
 ### Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-12-06602701.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Receipt] --> C[Compare]
@@ -339,6 +421,8 @@ flowchart LR
     C --> D[Drift Found]
     D --> E[Fix Code or Cloud]
 ```
+
+</details>
 
 ### Steps
 1. Run `terraform plan` regularly (daily in CI)
@@ -350,6 +434,11 @@ flowchart LR
 
 ## The Whole Story in One Diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-eli10-13-5aa11b73.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[You Write Wishlist] --> B[Terraform Init]
@@ -358,6 +447,8 @@ flowchart LR
     D --> E[State Receipt]
     E --> C
 ```
+
+</details>
 
 You loop forever between editing the wishlist and applying changes. The
 receipt keeps you honest. The plan keeps you safe. The robot does the work.

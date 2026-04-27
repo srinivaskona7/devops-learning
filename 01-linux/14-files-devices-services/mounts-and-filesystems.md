@@ -139,7 +139,6 @@ flowchart TB
 ```
 
 </details>
-
 ## tmpfs — RAM-backed filesystem
 
 ```bash

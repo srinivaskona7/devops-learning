@@ -17,7 +17,7 @@ By default, **all pods can talk to all pods** in a Kubernetes cluster — a flat
 ## Decision Flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-03-network-policies-README-1-0d395d98.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/06-security-03-network-policies-README-1-0d395d98.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -29,7 +29,7 @@ Two knobs control the pace:
 ## Pod transition (replicas=4, maxSurge=1, maxUnavailable=0)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-02-rolling-update-README-1-8cfdec7d.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-02-rolling-update-README-1-8cfdec7d.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

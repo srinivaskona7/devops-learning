@@ -34,7 +34,6 @@ flowchart TB
 ```
 
 </details>
-
 Each layer assumes the layer above it failed. That is the entire idea.
 
 ---
@@ -84,7 +83,6 @@ flowchart LR
 ```
 
 </details>
-
 ---
 
 ## Files in this Folder

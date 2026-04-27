@@ -21,7 +21,6 @@ flowchart TB
 ```
 
 </details>
-
 ## How to Use
 
 | If you are... | Read |
@@ -46,7 +45,6 @@ flowchart LR
 ```
 
 </details>
-
 ## Index
 
 ### architect-qa.md

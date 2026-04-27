@@ -32,6 +32,11 @@ Comprehensive Kubernetes and cloud-native security learning track. Covers identi
 
 ## Org chart
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-README-1-d7c68015.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TD
   CISO[CISO]
@@ -44,6 +49,8 @@ flowchart TD
   CISO --> COMP
   CISO --> IR
 ```
+
+</details>
 
 ## Learning path
 
@@ -66,6 +73,11 @@ flowchart TD
 
 ## Defense-in-depth model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-README-2-efe489dd.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   P[Perimeter]
@@ -76,6 +88,8 @@ flowchart LR
   P --> N --> W --> D
   I --> W
 ```
+
+</details>
 
 ## Quick command reference
 
@@ -128,6 +142,11 @@ vault kv list secret/app
 
 ## Trust boundaries
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-README-3-602987d5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   USR[User]
@@ -138,6 +157,8 @@ flowchart LR
   USR --> API --> ETC
   API --> KUB --> POD
 ```
+
+</details>
 
 ## Compliance crosswalk
 

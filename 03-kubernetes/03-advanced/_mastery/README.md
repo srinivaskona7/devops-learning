@@ -12,6 +12,11 @@ Architect-level pack for Kubernetes extension, multi-cluster, mesh, and gateway 
 
 ## How the advanced topics fit together
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-README-1-02e61132.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[User Intent] --> B[API Server]
@@ -20,6 +25,8 @@ flowchart LR
     D --> E[Controllers and Operators]
     E --> F[Workload Plane]
 ```
+
+</details>
 
 ## Reading order
 
@@ -38,6 +45,11 @@ flowchart LR
 
 ## Topic map
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-README-2-7df75713.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Extension] --> B[CRDs]
@@ -47,6 +59,8 @@ flowchart LR
     E --> G[Service Mesh]
     E --> H[eBPF]
 ```
+
+</details>
 
 ## Cross-links to base content
 
@@ -71,6 +85,11 @@ flowchart LR
 
 ## When to reach for what
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-README-3-af1b2532.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[New Need] --> B{Type}
@@ -81,6 +100,8 @@ flowchart LR
     D --> G[CRD]
     E --> H[Admission Webhook]
 ```
+
+</details>
 
 ## Common pitfalls
 
@@ -147,6 +168,11 @@ cat visual-flows.md | less
 
 ## Decision frameworks at a glance
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-_mastery-README-4-217f9db5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Need new API] --> B{Stateful}
@@ -156,6 +182,8 @@ flowchart LR
     E --> F[CEL]
     E --> G[Webhook]
 ```
+
+</details>
 
 ## Glossary of acronyms
 

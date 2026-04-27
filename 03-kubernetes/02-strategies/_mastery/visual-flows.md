@@ -10,6 +10,11 @@ each diagram is a "snapshot" of one phase.
 
 A 4-pod Deployment swapping v1 to v2 with maxSurge 1, maxUnavailable 0.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-1-dba78039.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Start[Start: 4x v1] --> S1[Add 1x v2<br/>now 5 pods]
@@ -18,6 +23,8 @@ flowchart LR
   S3 --> S4[Kill 1x v1<br/>continue]
   S4 --> Done[End: 4x v2]
 ```
+
+</details>
 
 **What is moving:** ReplicaSet count. Old RS scales down, new RS scales up,
 in lockstep, controlled by surge / unavailable settings.
@@ -28,6 +35,11 @@ in lockstep, controlled by surge / unavailable settings.
 
 Two ReplicaSets exist simultaneously. The Service points to one at a time.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-2-93065f83.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   U[Users] --> Svc[Service<br/>selector: blue]
@@ -36,6 +48,8 @@ flowchart LR
   Wait --> Flip[Patch selector to green]
   Flip --> Done[Service now routes to Green]
 ```
+
+</details>
 
 **What is moving:** A label-selector edit on the Service. Pod count stays
 constant; only the routing flips. Rollback = flip the label back.
@@ -46,6 +60,11 @@ constant; only the routing flips. Rollback = flip the label back.
 
 Argo Rollouts moving traffic 0 -> 10 -> 50 -> 100.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-3-f88fcb49.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Start[100 percent stable<br/>0 percent canary] --> Step1[90 / 10]
@@ -54,6 +73,8 @@ flowchart LR
   Step2 --> Analyse2[AnalysisRun<br/>checks SLIs]
   Analyse2 --> Done[0 / 100]
 ```
+
+</details>
 
 **What is moving:** Weights in the TrafficRouting resource (Istio
 VirtualService, SMI TrafficSplit, or NGINX canary annotation). Pods stay
@@ -65,6 +86,11 @@ running on both sides until promotion completes.
 
 Real users hit stable. A copy of each request goes to shadow.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-4-bf14ef4b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   U[User Request] --> Mesh[Sidecar Proxy]
@@ -73,6 +99,8 @@ flowchart LR
   Shadow --> Drop[Response dropped]
   Stable --> User2[User receives]
 ```
+
+</details>
 
 **What is moving:** A `mirror` directive in the VirtualService. The proxy
 duplicates the request; only the original path returns to the user.
@@ -83,6 +111,11 @@ duplicates the request; only the original path returns to the user.
 
 Routes are decided per-request based on a header value.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-5-520c463e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   U[Request] --> GW[Gateway]
@@ -91,6 +124,8 @@ flowchart LR
   Match -->|group-b| B[Variant B]
   Match -->|none| Default[Default Stable]
 ```
+
+</details>
 
 **What is moving:** Nothing on the cluster after setup. The router
 evaluates each request and picks a destination subset based on rules.
@@ -102,6 +137,11 @@ Experiments are observed via downstream analytics.
 
 Two full clusters. A global load balancer steers traffic.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-6-b614bf6a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Users[Global Users] --> GLB[Global Load Balancer]
@@ -110,6 +150,8 @@ flowchart LR
   Flip[Update GLB weights] --> GLB
   C2 --> Ready[Pre-validated via synthetics]
 ```
+
+</details>
 
 **What is moving:** GLB backend weights (or weighted DNS records). A single
 config change at the edge swings all global traffic between clusters.
@@ -120,6 +162,11 @@ config change at the edge swings all global traffic between clusters.
 
 Argo Rollouts AnalysisRun fails — rollout reverses.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-7-a0f054ac.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Step[Step 3: 50 percent] --> Analyse[AnalysisRun<br/>queries Prometheus]
@@ -128,6 +175,8 @@ flowchart LR
   Decision -->|Fail| Abort[Abort: shift back to stable]
   Abort --> Stable[100 percent stable v1]
 ```
+
+</details>
 
 **What is moving:** The AnalysisRun executes metric queries. On failure,
 Argo flips traffic back to stable and scales the canary RS down. On
@@ -139,6 +188,11 @@ success, it advances to the next step in the strategy spec.
 
 Real-world rolling: probes, PDB, and HPA all engage simultaneously.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-8-0108886f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   Trigger[kubectl set image] --> RS[New ReplicaSet created]
@@ -149,6 +203,8 @@ flowchart TB
   PDB -->|No| Wait[Block until safe]
 ```
 
+</details>
+
 **What is moving:** ReplicaSet controller, kubelet probes, PDB controller,
 and optionally HPA all coordinate. The PDB acts as a brake — if too few
 pods would remain ready, the rollout pauses until availability returns.
@@ -156,6 +212,11 @@ pods would remain ready, the rollout pauses until availability returns.
 ---
 
 ## Bonus: lifecycle of a single pod during rolling update
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-9-550e6935.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -166,6 +227,8 @@ flowchart LR
   Ready --> Serve[Receives traffic]
 ```
 
+</details>
+
 **What is moving:** Pod phase transitions. A new pod is "Ready" only after
 all probes pass; only then does the Service endpoint controller add it to
 the active pool. Old pods enter `Terminating` phase, drained via
@@ -175,12 +238,19 @@ preStop hook + terminationGracePeriodSeconds.
 
 ## Flow comparison: traffic shape over time
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-10-61863058.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   R[Rolling: gradual<br/>pod swap] --> O1[Mixed v1 plus v2<br/>during window]
   B[Blue Green: instant<br/>flip] --> O2[100 percent v1 then<br/>100 percent v2]
   C[Canary: stepped<br/>weights] --> O3[1 then 10 then 50<br/>then 100 percent v2]
 ```
+
+</details>
 
 ---
 
@@ -215,6 +285,11 @@ flowchart LR
 A second Service (the preview Service) lets you test green before flipping
 the active Service.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-11-cb855ba4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Active[Active Service] --> Blue[Blue v1 Pods]
@@ -222,6 +297,8 @@ flowchart LR
   Tester[QA + synthetics] --> Preview
   Promote[Promote command] --> Flip[Active points to Green]
 ```
+
+</details>
 
 **What is moving:** Two Services with different selectors. The Rollout
 controller swaps both selectors when promoted. The preview Service is the
@@ -233,6 +310,11 @@ secret weapon — full smoke testing on green before any user is touched.
 
 Flagger watches metrics each interval and auto-aborts on breach.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-12-0ee6222a.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Start[Canary deployed] --> Step[Increase 10 percent]
@@ -242,11 +324,18 @@ flowchart LR
   Gate -->|No| Rollback[Auto rollback to primary]
 ```
 
+</details>
+
 ---
 
 ## Flow 11 — Database-backward-compat dance
 
 The danger zone — schema must serve both versions during the rollout.
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-13-bab83921.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -255,6 +344,8 @@ flowchart LR
   DB --> Both[Both versions happy]
   Cleanup[Drop col_a after v1 gone] --> DB
 ```
+
+</details>
 
 **What is moving:** Two-phase migration. Add new column, deploy code that
 writes both, deploy code that reads new, then drop old. Never combine
@@ -267,6 +358,11 @@ schema change with code change in one rollout.
 An Experiment runs a temporary canary purely for measurement, separate
 from the user-facing rollout.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-visual-flows-14-b1c70936.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Stable[Stable RS] --> Users[Users]
@@ -275,6 +371,8 @@ flowchart LR
   Metric --> Verdict{Pass?}
   Verdict -->|Yes| Promote[Allow real rollout]
 ```
+
+</details>
 
 ---
 

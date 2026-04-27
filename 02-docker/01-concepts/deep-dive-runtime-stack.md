@@ -60,7 +60,6 @@ flowchart TB
 ```
 
 </details>
-
 Note: in Kubernetes, `dockerd` is gone (deprecated and removed in v1.24+). kubelet talks **directly** to containerd over the CRI socket. The stack underneath is identical.
 
 ---

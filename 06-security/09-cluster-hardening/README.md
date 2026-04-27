@@ -5,7 +5,7 @@ Kubernetes ships secure-by-default for most settings — but distros, managed pr
 ## What to harden
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-09-cluster-hardening-README-1-a761e43e.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/06-security-09-cluster-hardening-README-1-a761e43e.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

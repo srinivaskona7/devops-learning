@@ -7,6 +7,11 @@
 
 ## Folder Org Chart
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-_mastery-README-1-94ed7512.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TD
     A[Terraform Mastery] --> B[README.md]
@@ -17,6 +22,8 @@ flowchart TD
     D --> G[kid-friendly analogies]
     E --> H[8 mermaid diagrams]
 ```
+
+</details>
 
 ---
 

@@ -12,7 +12,7 @@ Kubernetes Secrets are **base64-encoded, not encrypted**. By default they sit in
 ## Layers of defence
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-04-secrets-management-README-1-05379fe6.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/06-security-04-secrets-management-README-1-05379fe6.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

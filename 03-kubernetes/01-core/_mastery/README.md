@@ -19,7 +19,6 @@ flowchart TB
 ```
 
 </details>
-
 ## File Map
 
 | File | Audience | Purpose |
@@ -46,7 +45,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Architect track
 Read `architect-qa.md`. Each question is grouped by topic: multi-tenancy, etcd, control-plane HA, scheduler tuning, pod density, networking, storage, namespaces, GitOps. Use as interview prep or design-review checklist.
 
@@ -88,7 +86,6 @@ flowchart LR
 ```
 
 </details>
-
 ## Conventions
 
 - All mermaid diagrams use simple `flowchart LR` or `flowchart TB`.

@@ -12,6 +12,11 @@ If one kid loses theirs, the others still have it. The teacher can ask any kid f
 **Real:** Data is copied across multiple servers (called replicas). If one server dies,
 others still have the data. Reads can hit any replica for speed.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-1-de7f77fc.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   T[Teacher write] --> P[Primary]
@@ -19,6 +24,8 @@ flowchart LR
   P --> R2[Replica 2]
   P --> R3[Replica 3]
 ```
+
+</details>
 
 **Snippet:**
 ```bash
@@ -37,6 +44,11 @@ Sam has all the cars, Lin has all the puzzles. To find a toy, you ask the right 
 **Real:** Data is split (sharded) across servers based on a key. Each server only stores its
 slice. To find data, the router computes which shard to ask.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-2-a11645b5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   C[Client] --> RT[Router]
@@ -44,6 +56,8 @@ flowchart LR
   RT --> S2[Shard I-P]
   RT --> S3[Shard Q-Z]
 ```
+
+</details>
 
 **Snippet:**
 ```python
@@ -61,6 +75,11 @@ minutes — not all at the exact same second. Eventually everyone knows.
 **Real:** A change made on one server takes a tiny bit of time to spread to the others.
 For a moment, different servers may show different answers. Eventually they all agree.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-3-3ededfa8.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   W[Write to N1] --> N1[Node 1 fresh]
@@ -69,6 +88,8 @@ flowchart LR
   N2 --> OK[All agree]
   N3 --> OK
 ```
+
+</details>
 
 **Snippet:**
 ```bash
@@ -88,6 +109,11 @@ to count. Majority wins. Even if 2 kids are absent, the vote is still valid.
 **Real:** A quorum is the minimum number of nodes that must agree before an operation is
 considered done. For 5 nodes, quorum = 3 (majority). Survives 2 failures.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-4-047feec1.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   W[Write request] --> N1[Node 1 yes]
@@ -97,6 +123,8 @@ flowchart LR
   W --> N5[Node 5 down]
   N3 --> OK[Quorum reached - commit]
 ```
+
+</details>
 
 **Snippet:**
 ```yaml
@@ -115,6 +143,11 @@ Every 5 minutes one kid checks if it's fixed. If yes, everyone uses it again.
 **Real:** When a downstream service keeps failing, the client stops calling it for a cooldown
 period. Saves resources and gives the broken thing time to recover. Periodically retries.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-5-62e630da.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[App] --> CB[Circuit Breaker]
@@ -122,6 +155,8 @@ flowchart LR
   CB -->|open| F[Fail fast]
   CB -->|half-open| T[Test 1 call]
 ```
+
+</details>
 
 **Snippet:**
 ```python
@@ -143,6 +178,11 @@ decides who runs which leg. If the captain leaves, the team votes for a new capt
 **Real:** In a cluster, one node is chosen to be the leader (handles all writes or makes
 decisions). If the leader dies, the others run an election to pick a new one.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-6-ff5c131f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   N1[Node 1 leader] --> Y[Serves writes]
@@ -151,6 +191,8 @@ flowchart LR
   X --> N3[Node 3 candidate]
   N2 --> NL[Node 2 new leader]
 ```
+
+</details>
 
 **Snippet:**
 ```bash
@@ -168,6 +210,11 @@ so each line stays short. No one line gets all the kids.
 **Real:** A load balancer spreads incoming requests across multiple servers so no single
 server gets overwhelmed. Common strategies: round-robin, least-connections, hash-based.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-7-adb713ce.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   C[Clients] --> LB[Load Balancer]
@@ -175,6 +222,8 @@ flowchart LR
   LB --> S2[Server 2]
   LB --> S3[Server 3]
 ```
+
+</details>
 
 **Snippet:**
 ```nginx
@@ -196,6 +245,11 @@ kitchen every time. Faster to grab from the drawer (cache) than the kitchen (dat
 **Real:** Frequently-read data is stored close to the consumer (in memory) so we don't
 have to hit the slow database every time. Cache hit = fast; cache miss = fetch and store.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-8-d3f587d5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[App] --> C[Cache check]
@@ -204,6 +258,8 @@ flowchart LR
   DB --> ST[Store in cache]
   ST --> R
 ```
+
+</details>
 
 **Snippet:**
 ```python
@@ -225,6 +281,11 @@ in a line. Cooks pick up tickets one at a time and make the food. You don't wait
 **Real:** Producers send messages to a queue. Consumers pick them up and process them
 asynchronously. Decouples sender from receiver; smooths bursts.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-9-34aae525.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   P1[Producer] --> Q[Queue]
@@ -232,6 +293,8 @@ flowchart LR
   Q --> C1[Consumer 1]
   Q --> C2[Consumer 2]
 ```
+
+</details>
 
 **Snippet:**
 ```bash
@@ -249,12 +312,19 @@ lady says "no, come back tomorrow". Stops one greedy kid eating all the cookies.
 **Real:** Limit how many requests a client can make per time window. Protects the system
 from abuse and noisy neighbors. Common: token bucket, leaky bucket, fixed window.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-10-24f5ab17.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   C[Client] --> RL[Rate Limiter]
   RL -->|under limit| API[API]
   RL -->|over limit| R[429 reject]
 ```
+
+</details>
 
 **Snippet:**
 ```python
@@ -273,6 +343,11 @@ every neighborhood. Closer = faster ice cream. The factory only makes new flavor
 **Real:** A Content Delivery Network caches static content at edge locations close to users.
 Origin server only handles cache misses and dynamic content.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-11-00c6ca88.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   U1[User EU] --> E1[Edge Frankfurt]
@@ -280,6 +355,8 @@ flowchart LR
   E1 -->|miss| O[Origin]
   E2 -->|miss| O
 ```
+
+</details>
 
 **Snippet:**
 ```bash
@@ -297,6 +374,11 @@ Then 2 minutes. Then 4. You don't keep banging — you give them time to come.
 **Real:** When a request fails, retry after a delay that grows (exponential backoff) plus
 randomness (jitter) to avoid all clients retrying at the same instant.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-12-eb46bb04.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   T[Try] -->|fail| W1[Wait 1s]
@@ -305,6 +387,8 @@ flowchart LR
   W2 --> T3[Try 3]
   T3 -->|ok| OK[Done]
 ```
+
+</details>
 
 **Snippet:**
 ```python
@@ -324,12 +408,19 @@ doesn't raise their hand for 3 minutes, the teacher marks them absent.
 **Real:** Nodes periodically send "I'm alive" signals to a coordinator. Missing N consecutive
 heartbeats marks the node as dead and triggers failover.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-13-64beb74f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   N[Node] -->|every 5s| M[Monitor]
   M -->|3 missed| D[Mark dead]
   D --> F[Failover]
 ```
+
+</details>
 
 **Snippet:**
 ```bash
@@ -350,12 +441,19 @@ The button only registers once. Same outcome whether you press it once or many.
 **Real:** An operation is idempotent if doing it multiple times has the same effect as
 doing it once. Critical for retries — without it, retries cause duplicates.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-14-16d5827e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   R1[Request id-42] --> S[Server]
   R2[Retry id-42] --> S
   S -->|same id seen| OK[Return cached result]
 ```
+
+</details>
 
 **Snippet:**
 ```bash
@@ -375,12 +473,19 @@ read the same chapter (replication). Group A reads ch.1, group B ch.2, group C c
 **Real:** Real systems combine both: shard for horizontal scale, replicate each shard
 for fault tolerance. A 9-node cluster might have 3 shards x 3 replicas.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-_mastery-architect-eli10-15-dc3e1df8.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   D[Data] --> SA[Shard A x3 replicas]
   D --> SB[Shard B x3 replicas]
   D --> SC[Shard C x3 replicas]
 ```
+
+</details>
 
 **Snippet:**
 ```yaml

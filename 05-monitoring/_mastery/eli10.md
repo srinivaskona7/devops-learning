@@ -34,12 +34,19 @@ Metrics are numbers a computer measures and saves with a timestamp. Examples:
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-eli10-1-2066591d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     APP[Your App] --> N1[Number]
     N1 --> DB[Time Database]
     DB --> CHART[Chart]
 ```
+
+</details>
 
 ### A real query (PromQL)
 ```
@@ -64,6 +71,11 @@ Logs are text lines a program writes when something happens. Each line has a tim
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-eli10-2-fe44e0bc.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     APP[App] --> LINE[Diary Line]
@@ -71,6 +83,8 @@ flowchart LR
     SHIPPER --> STORE[Log Store]
     STORE --> SEARCH[Search Box]
 ```
+
+</details>
 
 ### A real query (LogQL)
 ```
@@ -94,6 +108,11 @@ When a user clicks "buy", their request travels through the website, the cart se
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-eli10-3-6a8ca248.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     USER[User Click] --> WEB[Web]
@@ -101,6 +120,8 @@ flowchart LR
     CART --> PAY[Payment]
     PAY --> MAIL[Email]
 ```
+
+</details>
 
 ### A real query (TraceQL)
 ```
@@ -122,6 +143,11 @@ A dashboard is a screen with many charts (made from metrics, logs, traces). Engi
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-eli10-4-6bacb196.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     M[Metrics] --> DASH[Dashboard]
@@ -129,6 +155,8 @@ flowchart LR
     T[Traces] --> DASH
     DASH --> EYES[Engineer Eyes]
 ```
+
+</details>
 
 ### A real query (PromQL on a dashboard panel)
 ```
@@ -150,6 +178,11 @@ An alert rule is a math expression that, when true for long enough, sends a noti
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-eli10-5-68beb8d1.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     METRIC[Metric] --> RULE[Alert Rule]
@@ -157,6 +190,8 @@ flowchart LR
     AM --> PAGE[Pager]
     PAGE --> HUMAN[Human]
 ```
+
+</details>
 
 ### A real query (PromQL alert)
 ```
@@ -189,6 +224,11 @@ The 1 day per 10 you can skip = your error budget. If you skip 2 days in a row, 
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-eli10-6-447a25e0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     P[Promise 999] --> M[Measure SLI]
@@ -197,6 +237,8 @@ flowchart LR
     D --> OK[Ship Features]
     D --> STOP[Stop and Fix]
 ```
+
+</details>
 
 ### A real query (PromQL SLO)
 ```
@@ -218,11 +260,18 @@ Don't put `user_id` or `request_id` as a metric label. Put it in a log line inst
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-eli10-7-ebcc246c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     GOOD[Service Status] --> FREEZER[Fits]
     BAD[User ID Label] --> EXPLODE[Boom]
 ```
+
+</details>
 
 ---
 
@@ -238,12 +287,19 @@ Tail sampling > head sampling. Decide AFTER you see how the request went.
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-eli10-8-bab5425c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     REQ[Requests] --> COLL[Collector Wait]
     COLL --> KEEP[Keep Errors]
     COLL --> DROP[Drop Boring]
 ```
+
+</details>
 
 ---
 
@@ -258,11 +314,18 @@ Most observability picks pull for long-living things and push for short-lived (a
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-eli10-9-db3577ef.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     PULL[Prometheus] -->|asks| TARGET1[App]
     APP2[App] -->|sends| PUSH[Receiver]
 ```
+
+</details>
 
 ---
 
@@ -275,6 +338,11 @@ That's federation: a top-level Prometheus pulls aggregated metrics from many low
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-_mastery-eli10-10-93ec22de.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     P1[Prom A] --> TOP[Global Prom]
@@ -282,6 +350,8 @@ flowchart LR
     P3[Prom C] --> TOP
     TOP --> BOARD[Dashboard]
 ```
+
+</details>
 
 ---
 

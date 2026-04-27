@@ -77,7 +77,7 @@ resource "aws_s3_bucket" "us_logs" {
 ## Mermaid: provider resolution flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-04-providers-README-1-240e76c8.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-04-providers-README-1-240e76c8.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

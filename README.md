@@ -27,10 +27,65 @@
 
 Learn-by-doing DevOps repo — **Linux -> Docker -> Kubernetes -> Helm -> Monitoring -> Security -> Terraform**. Each folder is a self-contained module with theory, runnable labs, and a checkpoint exercise. Progress sequentially or jump in anywhere.
 
-## Learning Journey
+## The Complete Picture
+
+> Hand-drawn, Excalidraw-style master map. Click to zoom; edit the mermaid source in the collapsible below, then drop it into [excalidraw.com](https://excalidraw.com) → Library → **Mermaid to Excalidraw** to remix.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="assets/diagrams/README-1-391817a9.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="assets/diagrams/README-1-882d0039.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
+```mermaid
+---
+config:
+  look: handDrawn
+  theme: neutral
+---
+flowchart LR
+  YOU((You))
+  subgraph FOUND [Foundations]
+    direction TB
+    L[01 Linux<br/>files · procs · net · systemd]
+    D[02 Docker<br/>images · compose · buildx]
+  end
+  subgraph K8S [03 Kubernetes]
+    direction TB
+    KC[01 Core<br/>pods · svc · pvc · rbac]
+    KS[02 Strategies<br/>rolling · canary · blue-green]
+    KA[03 Advanced<br/>CRDs · mesh · changelog]
+  end
+  subgraph PLAT [Platform layer]
+    direction TB
+    H[04 Helm]
+    M[05 Monitoring<br/>Prom · Grafana · OTel]
+    S[06 Security<br/>RBAC · PSA · NetPol · SLSA]
+  end
+  subgraph IAC [Infrastructure]
+    direction TB
+    T[07 Terraform<br/>AWS · GCP · K8s]
+    P[08 Projects<br/>end-to-end capstones]
+  end
+  IP{{09 Interview Prep<br/>architect Q&A · ELI10 · deep dives}}
+
+  YOU --> L --> D --> KC
+  KC --> KS --> KA
+  KA --> H
+  H --> M
+  M --> S
+  S --> T
+  T --> P
+  P -. mastery .-> IP
+  KA -. mastery .-> IP
+  S -. mastery .-> IP
+```
+
+</details>
+
+## Learning Journey (linear)
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="assets/diagrams/README-2-391817a9.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

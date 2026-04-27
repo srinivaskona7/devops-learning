@@ -13,7 +13,7 @@ OpenTelemetry is the **vendor-neutral standard** for instrumenting applications.
 ## SDK vs Collector
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-README-1-cde68aea.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-06-opentelemetry-README-1-cde68aea.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

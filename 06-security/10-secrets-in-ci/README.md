@@ -5,7 +5,7 @@ The old way: store an AWS access key as a GitHub secret. The new way: **OIDC fed
 ## OIDC trust flow
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/06-security-10-secrets-in-ci-README-1-5ba0c163.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/06-security-10-secrets-in-ci-README-1-5ba0c163.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

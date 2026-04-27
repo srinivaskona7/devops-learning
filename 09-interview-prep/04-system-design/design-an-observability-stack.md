@@ -83,6 +83,11 @@ Indexed by labels (service, level), full-text on message body.
 
 ## 4. High-Level Design
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-an-observability-stack-1-3bd6b34b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Apps -->|OTLP| AGT[OTel Collector<br/>per node DaemonSet]
@@ -99,6 +104,8 @@ flowchart LR
   ALERT[Alertmanager] --> PD[PagerDuty]
   MIM --> ALERT
 ```
+
+</details>
 
 Two-tier collection:
 - **Per-node DaemonSet collector** — scrapes /metrics, tails container logs, receives OTLP from local pods
@@ -126,6 +133,11 @@ Find which metrics have the most series. Often points to runaway labels.
 
 ### Metrics Architecture (Mimir style)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-an-observability-stack-2-e489de57.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   RW[remote-write] --> Distrib[Distributor]
@@ -137,6 +149,8 @@ flowchart LR
   Q[Querier] --> Ing
   Q --> S3
 ```
+
+</details>
 
 - Distributor: hashes series → 3 ingesters (replication factor 3)
 - Ingester: 2h chunks in memory + WAL on disk

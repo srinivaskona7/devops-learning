@@ -143,6 +143,11 @@ Pod evicted from NotReady node + rescheduled elsewhere + original node returns. 
 
 ## Failure-mode sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-network-partition-1-2f6a3cd5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant Net as Network
@@ -166,6 +171,8 @@ sequenceDiagram
     E3->>E2: catch up via Raft log
     E3->>E3: rejoin as follower
 ```
+
+</details>
 
 ---
 

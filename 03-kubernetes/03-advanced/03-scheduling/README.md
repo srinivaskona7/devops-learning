@@ -3,7 +3,7 @@
 The kube-scheduler picks a node for each unscheduled pod via filter (predicates) and score (priorities) plugins.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-03-scheduling-README-1-9dc2f1fe.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-03-scheduling-README-1-9dc2f1fe.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

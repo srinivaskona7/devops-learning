@@ -6,6 +6,11 @@ The Container Storage Interface (CSI) replaced in-tree volume drivers and turned
 
 ## Mental Model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-storage-csi-flow-1-c99045ac.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   P[PVC] --> Prov[external-provisioner<br/>watches PVCs]
@@ -19,6 +24,8 @@ flowchart LR
   Kube -->|NodeStageVolume<br/>NodePublishVolume| CSI2[CSI Node Plugin DaemonSet]
   CSI2 --> Mount[mount in pod]
 ```
+
+</details>
 
 There are two CSI plugin instances per driver:
 - **Controller plugin** (Deployment/StatefulSet) — handles volume lifecycle (create, delete, attach, detach, snapshot)
@@ -84,6 +91,11 @@ The CSI driver vendor only writes the controller and node plugins. Sidecars are 
 
 ## Volume Lifecycle States
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-storage-csi-flow-2-c80a296b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Pending] --> B[Available]
@@ -92,6 +104,8 @@ flowchart LR
   D --> E[Failed]
   D --> F[Deleted]
 ```
+
+</details>
 
 - **Pending** — being provisioned
 - **Available** — provisioned, no PVC bound

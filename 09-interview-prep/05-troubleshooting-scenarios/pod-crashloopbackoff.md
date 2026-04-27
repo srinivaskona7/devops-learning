@@ -126,6 +126,11 @@ env:
 
 ## Failure-mode sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-pod-crashloopbackoff-1-335e65cd.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant U as User
@@ -144,6 +149,8 @@ sequenceDiagram
     App-->>CR: exit 1
     Note over K: status: CrashLoopBackOff
 ```
+
+</details>
 
 ---
 

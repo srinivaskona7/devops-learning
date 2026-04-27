@@ -1,7 +1,7 @@
 # 07 — Stateful Workloads
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-07-stateful-workloads-README-1-65ab903c.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-07-stateful-workloads-README-1-65ab903c.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

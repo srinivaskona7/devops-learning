@@ -12,6 +12,11 @@
 
 ## Topic Map
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/09-interview-prep-README-1-7656d89b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[01 Linux Internals] --> B[02 Container Internals]
@@ -23,6 +28,8 @@ flowchart LR
     D --> F[06 Question Banks]
     E --> F
 ```
+
+</details>
 
 ## Folder Index
 

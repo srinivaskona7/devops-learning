@@ -8,6 +8,11 @@ If two replicas of the deployment controller both reconcile the same Deployment,
 
 ## Mental model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-leader-election-1-89842636.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     R1[Replica 1] -- try acquire --> L[(Lease object<br/>holderIdentity + renewTime)]
@@ -18,6 +23,8 @@ flowchart LR
     R2 -- standby polling --> L
     R3 -- standby polling --> L
 ```
+
+</details>
 
 The Lease is the source of truth. Whoever atomically updates it with their identity and a fresh `renewTime` is leader. The leader must keep renewing; if it dies, a follower notices the stale renewTime and takes over.
 
@@ -90,6 +97,11 @@ Three timing parameters that confuse everyone:
 
 ## Failover sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-leader-election-2-933c71b1.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant L as Leader pod-A
@@ -107,6 +119,8 @@ sequenceDiagram
     F->>F: OnStartedLeading
     F->>API: Now I renew every 2s
 ```
+
+</details>
 
 Key points:
 - The CAS (compare-and-swap on `resourceVersion`) ensures only one follower can take over. The losers see 409 Conflict and retry next cycle.

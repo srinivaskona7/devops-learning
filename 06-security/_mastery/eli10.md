@@ -13,6 +13,11 @@ Imagine a school. The art teacher has a key to the art room. The science teacher
 RBAC (Role-Based Access Control) gives each person or robot a small set of permissions. A "Role" is the keyring. A "RoleBinding" hands the keyring to someone.
 
 ### Diagram
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-eli10-1-2b3fa7a4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   U[User]
@@ -21,6 +26,8 @@ flowchart LR
   K[API Resources]
   U --> RB --> R --> K
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -49,6 +56,11 @@ You're at lunch. You have a rule: only kids from your class can sit at your tabl
 NetworkPolicy says: "pods with this label can receive traffic only from pods with that label, on these ports." Without one, every pod talks to every pod.
 
 ### Diagram
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-eli10-2-461dc4e6.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   F[Frontend]
@@ -56,6 +68,8 @@ flowchart LR
   D[Database]
   F --> B --> D
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -104,6 +118,11 @@ Your diary has a tiny lock. You write your feelings inside. Your sister can see 
 A Secret holds passwords or tokens. K8s base64-encodes it (not secure!) and stores it. Encryption-at-rest in etcd is the real lock.
 
 ### Diagram
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-eli10-3-c80d1cb5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   P[Pod]
@@ -112,6 +131,8 @@ flowchart LR
   K[KMS]
   P --> V --> S --> K
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -138,6 +159,11 @@ Two friends in a club have a secret handshake. When one walks up, they do the ha
 mTLS (mutual TLS) means both server and client show certificates. The server proves it's the real server. The client proves it's an allowed client. A service mesh does this for every pod-to-pod call automatically.
 
 ### Diagram
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-eli10-4-3efd68e0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Pod A]
@@ -146,6 +172,8 @@ flowchart LR
   B[Pod B]
   A --> SA --> SB --> B
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -177,6 +205,11 @@ A nightclub has a bouncer. Before you go in, the bouncer checks your ID, your sh
 A ValidatingWebhook says yes/no to every API request. A MutatingWebhook can change the request before it's stored. OPA Gatekeeper and Kyverno are popular bouncers.
 
 ### Diagram
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-eli10-5-cf76a2a2.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   K[kubectl apply]
@@ -185,6 +218,8 @@ flowchart LR
   ETC[etcd]
   K --> API --> W --> ETC
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -228,6 +263,11 @@ You buy cookies at the store. The bag has a special seal. If someone opened it a
 SLSA (Supply-chain Levels for Software Artifacts) attaches signed proof (provenance) to every build. You can verify "this image was built by our trusted CI from this source commit, nothing else."
 
 ### Diagram
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-eli10-6-29a4bcc2.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   S[Source]
@@ -238,6 +278,8 @@ flowchart LR
   S --> CI --> IMG --> REG
   CI --> PROV --> REG
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -270,6 +312,11 @@ The playground has rules. No running with scissors. No climbing the fence. No br
 Pod Security Admission has three levels: privileged (anything goes — woodshop), baseline (no scissors), restricted (no scissors, no matches, helmet on). Apply per namespace.
 
 ### Diagram
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-eli10-7-1bafd0af.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   NS[Namespace]
@@ -278,6 +325,8 @@ flowchart LR
   POD[Pod]
   NS --> L --> PSA --> POD
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -302,6 +351,11 @@ A food inspector visits the bakery and checks every batch for problems before it
 Trivy or Grype scans container images for known vulnerable libraries (CVEs). You run it in CI to fail bad builds and at runtime to find new problems in already-deployed images.
 
 ### Diagram
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-eli10-8-40c2494f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   IMG[Image]
@@ -311,6 +365,8 @@ flowchart LR
   IMG --> SC --> REP
   DB --> SC
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -333,6 +389,11 @@ At a big office, every worker wears a badge. The badge has their name, what team
 SPIFFE gives each workload a verifiable identity (SVID), like `spiffe://company/ns/payments/sa/api`. SPIRE issues and rotates these automatically.
 
 ### Diagram
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-eli10-9-b1f7c65e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   W[Workload]
@@ -342,6 +403,8 @@ flowchart LR
   W --> AG --> SR
   SR --> ID --> W
 ```
+
+</details>
 
 ### Try it
 ```bash
@@ -362,6 +425,11 @@ Your house has motion sensors. If someone breaks a window or sneaks in at night,
 Falco watches every process, file, and network event in your cluster. Rules say "alert if someone runs a shell inside a container."
 
 ### Diagram
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-_mastery-eli10-10-bc132293.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   K[Kernel]
@@ -371,6 +439,8 @@ flowchart LR
   K --> F --> AL
   R --> F
 ```
+
+</details>
 
 ### Try it
 ```bash

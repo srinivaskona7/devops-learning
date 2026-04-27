@@ -8,6 +8,11 @@ Long-lived AWS access keys in GitHub secrets are the #1 cloud-credential leak ve
 
 OIDC federation is a triangle: the CI provider issues a JWT proving "this run is X by Y on Z", the cloud trusts that issuer's public keys, and a trust policy says "I'll mint creds IF the JWT's claims match these conditions." No shared secret — only public-key verification.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-13-cicd-deep-dive-oidc-flow-1-e608a76f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[CI workflow run] --> B[Request JWT from CI OIDC issuer]
@@ -19,7 +24,14 @@ flowchart LR
     G --> H[terraform apply]
 ```
 
+</details>
+
 ## Sequence — GitHub Actions to AWS
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-13-cicd-deep-dive-oidc-flow-2-929216ef.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -40,7 +52,14 @@ sequenceDiagram
     TF->>STS: API calls with temporary creds
 ```
 
+</details>
+
 ## The OIDC Trust Triangle
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-13-cicd-deep-dive-oidc-flow-3-cbfef3c3.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart TB
@@ -51,6 +70,8 @@ flowchart TB
     C -->|checks claim conditions| C
     C -->|issues creds| D
 ```
+
+</details>
 
 | Side | What it knows | What it does |
 |------|--------------|--------------|
@@ -167,6 +188,11 @@ This requires manual approval in GitHub UI before the JWT is issued at all.
 
 ## GCP Workload Identity Federation
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/07-terraform-13-cicd-deep-dive-oidc-flow-4-37dfea5e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant W as Workflow
@@ -183,6 +209,8 @@ sequenceDiagram
     SA-->>W: Short-lived SA credentials
     W->>W: terraform apply
 ```
+
+</details>
 
 GCP uses a two-step exchange: JWT → federated token → impersonated SA token. Trust is defined on a Workload Identity Pool + Provider with **attribute conditions**:
 

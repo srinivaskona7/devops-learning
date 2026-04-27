@@ -1,7 +1,7 @@
 # Controller Reconcile Loop
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-01-crds-and-operators-controller-pattern-1-c682ec48.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-01-crds-and-operators-controller-pattern-1-c682ec48.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

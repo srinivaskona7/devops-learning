@@ -25,7 +25,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Try it live
 ```bash
 kubectl run mypod --image=nginx
@@ -58,7 +57,6 @@ flowchart TB
 ```
 
 </details>
-
 ### Try it live
 ```bash
 kubectl create deployment web --image=nginx --replicas=5
@@ -91,7 +89,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Try it live
 ```bash
 kubectl expose deploy/web --port=80 --target-port=80
@@ -123,7 +120,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Try it live
 ```bash
 kubectl create configmap appcfg --from-literal=COLOR=blue
@@ -155,7 +151,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Try it live
 ```bash
 kubectl create secret generic dbpw --from-literal=PASSWORD=s3cret
@@ -187,7 +182,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Try it live
 ```bash
 kubectl get sc
@@ -229,7 +223,6 @@ flowchart LR
 ```
 
 </details>
-
 ### Try it live
 ```bash
 kubectl get ingressclass
@@ -278,7 +271,6 @@ flowchart TB
 ```
 
 </details>
-
 ### Try it live
 ```bash
 kubectl create namespace dev
@@ -311,7 +303,6 @@ flowchart TB
 ```
 
 </details>
-
 ### Try it live
 ```bash
 kubectl get nodes -o wide

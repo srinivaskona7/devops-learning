@@ -26,7 +26,7 @@ Argo Rollouts is a controller that:
 ## Pod & traffic transition (steps: 20 → 40 → 60 → 100)
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-05-canary-argo-rollouts-README-1-81feb665.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-05-canary-argo-rollouts-README-1-81feb665.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

@@ -71,7 +71,6 @@ flowchart TB
 ```
 
 </details>
-
 ### How root gets mounted
 
 The `root=` kernel parameter is the input. Three resolution paths:

@@ -22,6 +22,11 @@ traffic splits and SLO-gated canaries.
 
 ## Strategy taxonomy (org chart)
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-README-1-0883656c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   Root[K8s Rollout Strategies]
@@ -34,6 +39,8 @@ flowchart TB
   Progressive --> AB[A B Testing]
   Progressive --> Shadow[Shadow Mirror]
 ```
+
+</details>
 
 ---
 
@@ -53,6 +60,11 @@ flowchart TB
 
 ## Mental model: three families
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-README-2-1e38045c.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Family 1<br/>Replace pods<br/>in place] --> A1[Rolling]
@@ -61,6 +73,8 @@ flowchart LR
   C --> C2[A B]
   C --> C3[Shadow]
 ```
+
+</details>
 
 ---
 
@@ -179,6 +193,11 @@ matches reality, then aim one row higher per quarter.
 
 ## Where this fits in the broader platform
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-README-3-7d4e92a4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Code[Code commit] --> CI[CI build + scan]
@@ -188,6 +207,8 @@ flowchart LR
   Strat --> Cluster[Kubernetes cluster]
   Cluster --> Obs[Observability + SLOs]
 ```
+
+</details>
 
 The strategies in this folder live in the `Strat` box. They consume from
 GitOps and feed into observability. Without good observability upstream,

@@ -17,6 +17,11 @@ Six focused tracks for senior platform and SRE interviews: kernel-level Linux, c
 
 ## :material-map-marker-path: Roadmap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../assets/diagrams/docs-interview-prep-1-bc7e2aa2.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[01 Linux Internals] --> B[02 Container Internals]
@@ -27,6 +32,8 @@ flowchart LR
     classDef ip fill:#eef2ff,stroke:#6366f1,color:#1f2330,rx:8,ry:8;
     class A,B,C,D,E,F ip;
 ```
+
+</details>
 
 ## :material-grid: Modules { #start }
 

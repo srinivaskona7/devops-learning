@@ -8,6 +8,11 @@
 
 A `NetworkPolicy` is a declarative statement: "for pods matching X, allow only Y traffic". The CNI controller watches these objects and configures the data plane (iptables, ipset, eBPF maps) on every node so the kernel enforces the rule on every packet. The api-server NEVER sees a packet — enforcement is fully decentralized.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-03-network-policies-deep-dive-cni-enforcement-1-e23c11a8.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[NetworkPolicy YAML] --> B[kube-apiserver]
@@ -21,6 +26,8 @@ flowchart LR
     H -->|allow| I[forward]
     H -->|deny| J[drop]
 ```
+
+</details>
 
 ## Default Behavior — open until you close it
 
@@ -114,6 +121,11 @@ This single character of indentation flips the semantics — the most common Net
 
 ## How Calico Translates Policies
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-03-network-policies-deep-dive-cni-enforcement-2-496e6ba0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[NetworkPolicy] --> B[Calico Felix agent<br/>per node]
@@ -124,6 +136,8 @@ flowchart LR
     D2 --> E
 ```
 
+</details>
+
 Felix on each node:
 1. Watches NetworkPolicies + Pods.
 2. Computes which pods on THIS node match each policy's selector.
@@ -133,6 +147,11 @@ Felix on each node:
 Because rules use ipsets (kernel hash data structure), thousands of pod IPs match in O(1) — much faster than a long iptables chain.
 
 ## How Cilium Translates Policies
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-03-network-policies-deep-dive-cni-enforcement-3-3194f349.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -145,6 +164,8 @@ flowchart LR
     G -->|allow| H[continue]
     G -->|deny| I[drop + log to ringbuf]
 ```
+
+</details>
 
 Cilium assigns each unique label set a numeric **security identity**. Policies become entries in eBPF maps keyed by `(src_identity, dst_identity, dst_port, protocol)`. The eBPF program does a single map lookup per packet — far cheaper than iptables chain traversal at scale.
 
@@ -161,6 +182,11 @@ Mitigation: avoid hostNetwork unless required (system DaemonSets like ingress-ng
 
 ## Egress to External — DNS is the trap
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/06-security-03-network-policies-deep-dive-cni-enforcement-4-47142eb9.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[App pod] -->|DNS query<br/>UDP/53| B[kube-dns]
@@ -168,6 +194,8 @@ flowchart LR
     A -->|HTTPS to 1.2.3.4| C[External]
     style B fill:#fdb
 ```
+
+</details>
 
 A NetworkPolicy egress rule of `to: ipBlock: cidr: 1.2.3.4/32` works ONLY if the IP is stable. Most SaaS APIs rotate IPs across many CIDRs.
 

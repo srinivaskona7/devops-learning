@@ -48,7 +48,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ---
 
 ## Auditd — the kernel audit subsystem

@@ -8,6 +8,11 @@ Every Prometheus performance issue, OOM, and "queries are slow" alert traces bac
 
 Prometheus TSDB is a **write-optimized, append-only time series store** with a hot in-memory "head" and immutable on-disk "blocks" compacted in the background. Every metric+label combination is a unique series; series are written to a WAL for crash recovery and into per-series chunks (~120 samples each). Chunks flush to a 2h block; blocks compact into bigger blocks (max ~10% of retention).
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-deep-dive-tsdb-internals-1-16b7ff80.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Scrape sample] --> B[Head block in-RAM]
@@ -17,6 +22,8 @@ flowchart LR
     E -->|compaction| F[Larger merged block]
     F -->|retention| G[Deleted]
 ```
+
+</details>
 
 ## Storage Layout on Disk
 
@@ -49,6 +56,11 @@ flowchart TB
 
 The head holds the last ~3h of data in memory + memory-mapped chunks. Memory cost ≈ `active_series * ~3KB` (rule of thumb). 1M active series ≈ 3GB head RAM, plus query and index overhead.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-deep-dive-tsdb-internals-3-9ad9e95e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant T as Target
@@ -66,6 +78,8 @@ sequenceDiagram
     H->>W: truncate WAL up to checkpoint
 ```
 
+</details>
+
 ### Chunk lifecycle
 
 1. Series gets a new chunk every 120 samples OR every 2h, whichever first.
@@ -74,6 +88,11 @@ sequenceDiagram
 4. WAL is checkpointed and old segments deleted.
 
 ## Compaction
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-deep-dive-tsdb-internals-4-c13f5fdd.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 flowchart LR
@@ -86,6 +105,8 @@ flowchart LR
     F[Block 6h] --> M2
     M2 --> G[Block 18h]
 ```
+
+</details>
 
 Compaction merges adjacent blocks, deduplicates samples, removes tombstoned data, and rebuilds the index. Max block size is `min(31d, 10% of retention)`. Compaction is CPU/IO heavy — schedule retention with this in mind.
 
@@ -141,6 +162,11 @@ storage:
 
 ## Query Path
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-02-prometheus-deep-dive-tsdb-internals-5-bf45e764.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant U as PromQL query
@@ -155,6 +181,8 @@ sequenceDiagram
     E->>E: apply rate() per series
     E-->>U: instant vector result
 ```
+
+</details>
 
 ## Common Interview Questions
 

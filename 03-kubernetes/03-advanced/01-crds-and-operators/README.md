@@ -3,7 +3,7 @@
 CustomResourceDefinitions extend the Kubernetes API with new object kinds. An **operator** is a CRD plus a controller that reconciles the desired state.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-01-crds-and-operators-README-1-be3be120.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-03-advanced-01-crds-and-operators-README-1-be3be120.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

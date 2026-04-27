@@ -8,6 +8,11 @@ A distributed trace is only as good as its propagation. If a service drops the `
 
 A trace is a DAG of spans. Propagation = passing the **trace identity** + **immediate parent span ID** + **sampling decision** + arbitrary **baggage** across every network hop. Without propagation, the receiving service starts a brand-new trace.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-deep-dive-trace-context-propagation-1-7b233443.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Frontend<br/>traceparent: 00-T1-S1-01] --> B[API<br/>parent=S1, new span S2]
@@ -18,6 +23,8 @@ flowchart LR
     style B fill:#bbf
     style C fill:#bbf
 ```
+
+</details>
 
 All five spans share `T1` (the trace ID) and form a parent/child tree.
 
@@ -38,6 +45,11 @@ traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
 | parent-id | 8 | The span ID of the IMMEDIATE caller (this becomes the child's parent) |
 | trace-flags | 1 | Bit 0 = "sampled". `01` = recorded, `00` = not recorded |
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-deep-dive-trace-context-propagation-2-8905fbb4.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Service A<br/>generates traceparent] --> B[HTTP request<br/>header set]
@@ -47,6 +59,8 @@ flowchart LR
     E --> F[Inject NEW traceparent<br/>parent-id=this span's id]
     F --> G[Outbound HTTP to Service C]
 ```
+
+</details>
 
 ## Tracestate — vendor-specific extensions
 
@@ -71,12 +85,19 @@ Free-form key/value pairs that propagate alongside the trace context to ALL down
 
 ## Parent vs Follows-From — span links
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-deep-dive-trace-context-propagation-3-f9d50642.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[Span A: enqueue job] -->|parent-of| B[Span B: process job<br/>synchronous response]
     A -.->|follows-from| C[Span C: async background job<br/>kicked off later]
     style C fill:#fdb
 ```
+
+</details>
 
 | Relationship | When |
 |--------------|------|
@@ -86,6 +107,11 @@ flowchart LR
 In OpenTelemetry, this is `SpanLink` with attributes — used heavily for batch processors that consume N upstream messages into one downstream span.
 
 ## Sampling decisions
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/05-monitoring-05-tempo-tracing-deep-dive-trace-context-propagation-4-abdf686d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -98,6 +124,8 @@ sequenceDiagram
     A->>D: traceparent: 00-T-S2-01
     Note over E,D: Decision is consistent across the trace
 ```
+
+</details>
 
 ### Sampler types
 

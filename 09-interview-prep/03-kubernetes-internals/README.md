@@ -8,6 +8,11 @@ Most candidates can recite `kubectl` commands. Few can explain what happens betw
 
 ## Map of sub-topics
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-README-1-5319644f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
     A[kubectl apply] --> B[api-server-flow]
@@ -26,6 +31,8 @@ flowchart LR
     H -.service routing.-> N[kube-proxy-modes]
     B -.flow control.-> O[apf-priority-fairness]
 ```
+
+</details>
 
 ## File index
 

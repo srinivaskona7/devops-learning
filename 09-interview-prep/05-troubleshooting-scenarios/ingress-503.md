@@ -127,6 +127,11 @@ curl -v -H 'Host: test.local' http://localhost/
 
 ## Failure-mode sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-ingress-503-1-fd58620e.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant C as Client
@@ -147,6 +152,8 @@ sequenceDiagram
     Note over Ing: proxy_read_timeout=60s, gives up
     Ing-->>LB: 504 (or 503)
 ```
+
+</details>
 
 ---
 

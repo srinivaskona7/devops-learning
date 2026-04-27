@@ -41,7 +41,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ### udev — turning kernel uevents into device nodes
 
 When the kernel discovers a device (USB stick plugged, NVMe found, virtio-blk attached), it emits a **uevent** on a netlink socket. `systemd-udevd` reads that, applies rules from `/lib/udev/rules.d/` and `/etc/udev/rules.d/`, and:

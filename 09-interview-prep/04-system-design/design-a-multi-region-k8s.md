@@ -59,6 +59,11 @@ infra/
 
 ## 4. High-Level Design
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-a-multi-region-k8s-1-250de8cd.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   U[User] -->|GeoDNS / Anycast| GLB[Global LB]
@@ -71,6 +76,8 @@ flowchart LR
   GitOps --> K2
   GitOps --> K3
 ```
+
+</details>
 
 ### Active-active vs active-passive
 
@@ -98,6 +105,11 @@ Real-world: usually **active-active for stateless** and **active-passive for sta
 
 **Layer 3 — Edge proxy** at each PoP that can also reroute to other regions if local region's apps are unhealthy.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-a-multi-region-k8s-2-4c48daf3.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
   User->>DNS: myapp.com?
@@ -108,6 +120,8 @@ sequenceDiagram
   EU Cluster-->>Edge: response
   Edge-->>User: response
 ```
+
+</details>
 
 ### Multi-Cluster Manifest Distribution
 

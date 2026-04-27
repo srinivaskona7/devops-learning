@@ -49,7 +49,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ---
 
 ## /etc/passwd — the public ledger

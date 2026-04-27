@@ -5,7 +5,7 @@ Build a complete pipeline: lint → test → build image → Trivy scan → push
 ## What you'll build
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/08-projects-04-ci-cd-pipeline-README-1-747100c3.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/08-projects-04-ci-cd-pipeline-README-1-747100c3.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

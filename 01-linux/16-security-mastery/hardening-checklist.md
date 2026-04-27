@@ -33,7 +33,6 @@ flowchart TB
 ```
 
 </details>
-
 <!-- mermaid:rendered -->
 <p align="center"><img src="../../assets/diagrams/01-linux-16-security-mastery-hardening-checklist-2-d259e29e.svg" alt="diagram" /></p>
 
@@ -63,7 +62,6 @@ flowchart LR
 ```
 
 </details>
-
 ---
 
 ## Tier 1 — Non-negotiable

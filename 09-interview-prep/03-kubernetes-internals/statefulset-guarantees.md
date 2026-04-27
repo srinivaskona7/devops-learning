@@ -6,6 +6,11 @@ StatefulSets exist because not every workload is a fungible cattle pod. Database
 
 ## Mental Model
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-statefulset-guarantees-1-d1ab4bb0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   S[StatefulSet] --> P0[pod-0]
@@ -18,6 +23,8 @@ flowchart LR
   P1 -.bound.-> V1[(PVC pod-1)]
   P2 -.bound.-> V2[(PVC pod-2)]
 ```
+
+</details>
 
 Each pod has a stable, ordinal name (`<sts>-0`, `<sts>-1`, …) and a stable DNS name through a headless Service.
 
@@ -90,6 +97,11 @@ spec:
 
 ## Walkthrough — Cassandra StatefulSet
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-03-kubernetes-internals-statefulset-guarantees-2-ba56fb4f.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
   participant API
@@ -108,6 +120,8 @@ sequenceDiagram
   SC->>API: create cassandra-1 (only now!)
   Note over SC: repeat...
 ```
+
+</details>
 
 If `cassandra-0` never goes Ready, `cassandra-1` is never created. This is a feature, not a bug — but it can mask why your StatefulSet stalled.
 

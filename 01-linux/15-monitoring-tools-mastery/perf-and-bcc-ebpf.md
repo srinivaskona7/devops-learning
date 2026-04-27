@@ -25,7 +25,6 @@ flowchart LR
 ```
 
 </details>
-
 ---
 
 ## perf — the universal Linux profiler

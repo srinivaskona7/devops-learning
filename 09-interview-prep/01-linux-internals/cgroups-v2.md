@@ -8,6 +8,11 @@ Every container runtime, every Kubernetes pod limit, every systemd service slice
 
 cgroups v2 is a single tree of directories under `/sys/fs/cgroup/`. Each directory is a "cgroup". Files inside the directory are knobs (limits) and meters (usage). Processes are placed by writing PIDs into `cgroup.procs`. Controllers (cpu, memory, io, pids) are enabled per-subtree via `cgroup.subtree_control`.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-cgroups-v2-1-aed3c30b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TD
   A["/ root cgroup"] --> B["system.slice (systemd)"]
@@ -19,6 +24,13 @@ flowchart TD
   B --> H["docker.service<br/>cgroup.procs"]
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-cgroups-v2-2-edd223ae.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   P["Process<br/>pid=1234"] -->|written to| PR["cgroup.procs"]
@@ -26,6 +38,8 @@ flowchart LR
   CG --> CTL["cpu, memory, io,<br/>pids controllers"]
   CTL -->|enforce| K["kernel scheduler<br/>and allocator"]
 ```
+
+</details>
 
 Key insight v1 vs v2: v1 had separate hierarchies per controller (a process could be in different cgroups for cpu vs memory). v2 has ONE hierarchy — every controller applies to the same group. Simpler, fewer footguns.
 

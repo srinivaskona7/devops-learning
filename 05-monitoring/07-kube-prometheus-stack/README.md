@@ -5,7 +5,7 @@ The **kube-prometheus-stack** is the de facto monitoring bundle for Kubernetes. 
 ## What's in the box
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/05-monitoring-07-kube-prometheus-stack-README-1-39081e9f.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/05-monitoring-07-kube-prometheus-stack-README-1-39081e9f.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

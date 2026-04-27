@@ -33,7 +33,6 @@ flowchart TB
 ```
 
 </details>
-
 <!-- mermaid:rendered -->
 <p align="center"><img src="../../assets/diagrams/01-linux-16-security-mastery-file-permissions-deep-2-4916bf0e.svg" alt="diagram" /></p>
 
@@ -55,7 +54,6 @@ flowchart LR
 ```
 
 </details>
-
 ---
 
 ## Mode bits — the basics, properly

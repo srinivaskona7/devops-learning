@@ -60,7 +60,7 @@ terraform -version
 - **Vim/Neovim:** `hashivim/vim-terraform` plugin.
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-01-install-README-1-a73f3bc3.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-01-install-README-1-a73f3bc3.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

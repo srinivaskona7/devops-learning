@@ -23,6 +23,11 @@ then moves on to the next. Users never see the app go down.
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-eli10-1-8c2c4d80.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   A[Old Pod 1] --> X[Replace]
@@ -31,6 +36,8 @@ flowchart LR
   X --> N1[New Pod 1]
   X --> N2[New Pod 2]
 ```
+
+</details>
 
 ### How to do it
 ```bash
@@ -65,12 +72,19 @@ You change the Service selector to flip traffic.
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-eli10-2-db6d5797.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Users[Users] --> Door[Service]
   Door --> Blue[Blue Pods v1]
   Door -.flip.-> Green[Green Pods v2]
 ```
+
+</details>
 
 ### How to do it
 ```bash
@@ -109,6 +123,11 @@ version. You measure: are users happy? Are errors low? Slowly increase to
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-eli10-3-33f6e845.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Users[Users] --> Split[Traffic Split]
@@ -117,6 +136,8 @@ flowchart LR
   Canary --> Check[Metrics OK?]
   Check -->|Yes| Promote[Increase to 10 percent]
 ```
+
+</details>
 
 ### How to do it (Argo Rollouts)
 ```bash
@@ -153,6 +174,11 @@ for learning.
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-eli10-4-c9cff94b.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Users[Users] --> Router[Header Router]
@@ -161,6 +187,8 @@ flowchart LR
   A --> Stats[Compare Behaviour]
   B --> Stats
 ```
+
+</details>
 
 ### How to do it (Istio)
 ```yaml
@@ -203,6 +231,11 @@ load without risk to users.
 
 ### Simple diagram
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-eli10-5-e614e4cb.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Users[Users] --> Stable[Stable v1]
@@ -210,6 +243,8 @@ flowchart LR
   Users -.mirror.-> Shadow[Shadow v2]
   Shadow --> Trash[Discard response]
 ```
+
+</details>
 
 ### How to do it (Istio)
 ```yaml
@@ -250,6 +285,11 @@ http:
 
 ## One more analogy to tie it together
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../../assets/diagrams/03-kubernetes-02-strategies-_mastery-eli10-6-1dd3dc35.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
   Q[New cookie ready!]
@@ -260,6 +300,8 @@ flowchart TB
   R -->|Too scared| Sh[Shadow: bake but hide]
   R -->|Want data| AB[A B: two flavours, measure]
 ```
+
+</details>
 
 ---
 

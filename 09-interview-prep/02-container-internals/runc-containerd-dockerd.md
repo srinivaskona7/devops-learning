@@ -6,6 +6,11 @@
 
 ## Architecture
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-runc-containerd-dockerd-1-780d51f9.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TB
     user[docker CLI<br/>or kubelet] -->|REST / gRPC| dockerd[dockerd<br/>build, network, volume API]
@@ -16,6 +21,13 @@ flowchart TB
     runc -->|clone+unshare| proc[container process<br/>PID 1 in new namespaces]
     shim -.->|reaps zombies, holds stdio| proc
 ```
+
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-02-container-internals-runc-containerd-dockerd-2-c0b1ac2d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
 
 ```mermaid
 sequenceDiagram
@@ -38,6 +50,8 @@ sequenceDiagram
     P->>P: nginx -g daemon off
     Note over S,P: shim stays alive,<br/>owns stdio + reaps PID 1
 ```
+
+</details>
 
 ## Mental Model
 

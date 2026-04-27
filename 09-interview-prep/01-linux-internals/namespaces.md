@@ -8,6 +8,11 @@ Containers are not a kernel feature. They are a userspace convention built from 
 
 A namespace is a kernel data structure that wraps a global resource (mount table, PID space, network stack, ...) so the processes inside see their own private copy. A process belongs to exactly one namespace of each type, identified by inode under `/proc/<pid>/ns/`.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-namespaces-1-bc0d0dd0.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   H["Host kernel<br/>shared single instance"] --> N1["mnt ns A<br/>own / and mount table"]
@@ -18,12 +23,21 @@ flowchart LR
   N3 --> P1
 ```
 
+</details>
+
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-01-linux-internals-namespaces-2-d5c565c5.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart TD
   S["clone or unshare syscall"] --> F["new namespace created"]
   F --> M["/proc/PID/ns/&lt;type&gt;<br/>inode identifies it"]
   M --> J["nsenter --target PID --all<br/>joins existing namespaces"]
 ```
+
+</details>
 
 ## The 8 namespaces (as of kernel 5.6+)
 

@@ -30,7 +30,7 @@ mychart/
 ## Lifecycle
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/04-helm-04-creating-a-chart-README-1-c17b9c4d.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/04-helm-04-creating-a-chart-README-1-c17b9c4d.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 

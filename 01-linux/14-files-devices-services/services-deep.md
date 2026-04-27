@@ -98,7 +98,6 @@ flowchart LR
 ```
 
 </details>
-
 | Type | When it's "up" | Use for |
 |------|----------------|---------|
 | `simple` (default) | as soon as exec runs | most foreground daemons |

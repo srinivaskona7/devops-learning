@@ -175,6 +175,11 @@ etcdctl snapshot restore /backup/etcd.snap --name cp1 \
 
 ## Failure-mode sequence
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-05-troubleshooting-scenarios-upgrade-broke-everything-1-96a6b69d.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
     participant U as User
@@ -191,6 +196,8 @@ sequenceDiagram
     CRD-->>API: failed calling webhook
     API-->>U: Internal error: conversion webhook for example.com/v1 failed
 ```
+
+</details>
 
 ---
 

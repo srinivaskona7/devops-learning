@@ -77,6 +77,11 @@ Logs/metrics: not in the relational DB. Logs → Loki / S3, metrics → Mimir / 
 
 ## 4. High-Level Design
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-a-container-platform-1-b1c87556.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 flowchart LR
   Dev[Developer] -->|git push| GH[Git Receiver]
@@ -96,6 +101,8 @@ flowchart LR
   API --> PG[(Postgres metadata)]
   API --> SEC[Secrets Service<br/>Vault]
 ```
+
+</details>
 
 ### Write path (deploy)
 1. Developer pushes to `git@platform.com:user/app.git`
@@ -120,6 +127,11 @@ flowchart LR
 
 **Pattern:** dedicated K8s namespace per build, ephemeral pods running BuildKit.
 
+<!-- mermaid:rendered -->
+<p align="center"><img src="../../assets/diagrams/09-interview-prep-04-system-design-design-a-container-platform-2-0e8b32ac.svg" alt="diagram" /></p>
+
+<details><summary>Mermaid source</summary>
+
 ```mermaid
 sequenceDiagram
   GH->>SQS: build job (app_id, sha, repo_url)
@@ -129,6 +141,8 @@ sequenceDiagram
   Build->>SQS: build done event
   Worker->>API: update build status
 ```
+
+</details>
 
 - BuildKit cache mount → S3 (per-app, per-language)
 - Buildpacks (Heroku style) detect framework, no Dockerfile needed

@@ -29,7 +29,6 @@ sequenceDiagram
 ```
 
 </details>
-
 ### The signal table you must know
 
 | # | Name | Default | Catchable | When the kernel sends it |
@@ -116,7 +115,6 @@ sequenceDiagram
 ```
 
 </details>
-
 Two common failure modes:
 
 1. **PID 1 is `bash -c "myapp"`** — bash does not forward signals; your app never gets `SIGTERM`. Fix: `exec myapp` so the binary becomes PID 1, or use `tini`/`dumb-init`.

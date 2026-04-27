@@ -15,7 +15,7 @@ HashiCorp Configuration Language (HCL2) is a declarative DSL. You describe *what
 ## Mermaid: how a configuration is evaluated
 
 <!-- mermaid:rendered -->
-<p align="center"><img src="../../assets/diagrams/07-terraform-03-language-basics-README-1-9c7f537d.svg" alt="diagram" / loading="lazy"></p>
+<p align="center"><img src="../../assets/diagrams/07-terraform-03-language-basics-README-1-9c7f537d.svg" alt="diagram" /></p>
 
 <details><summary>Mermaid source</summary>
 
