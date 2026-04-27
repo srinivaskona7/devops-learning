@@ -1,0 +1,146 @@
+---
+# ServiceMonitor — tells Prometheus which services to scrape
+# Every service using the golden-path template gets one of these.
+# The platform Prometheus is configured with serviceMonitorSelector: {}
+# which picks up all ServiceMonitors cluster-wide.
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: payment-service
+  namespace: payment
+  labels:
+    app: payment-service
+    team: payments
+    platform.vantapay.io/monitored: "true"
+    # This label must match Prometheus operator's serviceMonitorSelector
+    monitoring: platform
+spec:
+  selector:
+    matchLabels:
+      app: payment-service
+  namespaceSelector:
+    matchNames:
+      - payment
+  endpoints:
+    - port: metrics          # must match Service port name
+      path: /metrics
+      interval: 15s
+      scrapeTimeout: 10s
+      scheme: http
+      # If service uses mTLS from application level (not Istio):
+      # tlsConfig:
+      #   insecureSkipVerify: false
+      #   caFile: /etc/prometheus/certs/ca.crt
+      relabelings:
+        - sourceLabels: [__meta_kubernetes_pod_label_version]
+          targetLabel: version
+        - sourceLabels: [__meta_kubernetes_namespace]
+          targetLabel: namespace
+        - sourceLabels: [__meta_kubernetes_pod_name]
+          targetLabel: pod
+      metricRelabelings:
+        # Drop high-cardinality labels that bloat TSDB
+        - sourceLabels: [__name__]
+          regex: "go_.*"
+          action: drop
+---
+# PrometheusRule — SLO recording rules and alert rules for payment-service
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: payment-service-slo
+  namespace: payment
+  labels:
+    app: payment-service
+    platform.vantapay.io/slo-tier: gold
+    monitoring: platform
+spec:
+  groups:
+    - name: payment-service.recording
+      interval: 30s
+      rules:
+        # Request rate
+        - record: job:http_requests:rate5m
+          expr: |
+            sum(rate(http_requests_total{job="payment-service"}[5m])) by (job, namespace, status_code)
+
+        # Error rate (5xx / total)
+        - record: job:http_error_rate:rate5m
+          expr: |
+            sum(rate(http_requests_total{job="payment-service", status_code=~"5.."}[5m])) by (job, namespace)
+            /
+            sum(rate(http_requests_total{job="payment-service"}[5m])) by (job, namespace)
+
+        # p95 latency
+        - record: job:http_request_duration_p95:5m
+          expr: |
+            histogram_quantile(0.95,
+              sum(rate(http_request_duration_seconds_bucket{job="payment-service"}[5m])) by (le, job, namespace)
+            )
+
+        # SLO compliance ratio (1h window)
+        - record: job:slo_availability:ratio1h
+          expr: |
+            1 - (
+              sum(rate(http_requests_total{job="payment-service", status_code=~"5.."}[1h]))
+              /
+              sum(rate(http_requests_total{job="payment-service"}[1h]))
+            )
+
+    - name: payment-service.alerts
+      rules:
+        # High error rate — immediate page
+        - alert: PaymentServiceHighErrorRate
+          expr: |
+            job:http_error_rate:rate5m{job="payment-service"} > 0.005
+          for: 2m
+          labels:
+            severity: critical
+            team: payments
+            slo_tier: gold
+          annotations:
+            summary: "payment-service error rate {{ $value | humanizePercentage }}"
+            description: "Error rate has exceeded 0.5% for 2 minutes. Gold SLO is 0.1%. Runbook: https://runbooks.vantapay.io/payment-high-error-rate"
+            runbook_url: "https://runbooks.vantapay.io/payment-high-error-rate"
+            dashboard_url: "https://grafana.vantapay.io/d/payment-service"
+
+        # p95 latency breach
+        - alert: PaymentServiceHighLatency
+          expr: |
+            job:http_request_duration_p95:5m{job="payment-service"} > 0.150
+          for: 5m
+          labels:
+            severity: warning
+            team: payments
+            slo_tier: gold
+          annotations:
+            summary: "payment-service p95 latency {{ $value | humanizeDuration }}"
+            description: "p95 latency has exceeded 150ms for 5 minutes. Gold SLO target is 150ms."
+
+        # Error budget burn rate (fast burn — 1h window)
+        - alert: PaymentServiceSLOBurnRateFast
+          expr: |
+            (
+              1 - job:slo_availability:ratio1h{job="payment-service"}
+            ) > 14.4 * (1 - 0.999)
+          for: 2m
+          labels:
+            severity: critical
+            team: payments
+          annotations:
+            summary: "payment-service burning error budget at 14.4x rate"
+            description: "At this burn rate, the monthly error budget will be exhausted in ~5 hours. Immediate action required."
+
+        # Error budget burn rate (slow burn — 6h window)
+        - alert: PaymentServiceSLOBurnRateSlow
+          expr: |
+            (
+              1 - job:slo_availability:ratio1h{job="payment-service"}
+            ) > 6 * (1 - 0.999)
+          for: 15m
+          labels:
+            severity: warning
+            team: payments
+          annotations:
+            summary: "payment-service burning error budget at 6x rate"
+            description: "At this burn rate, the monthly error budget will be exhausted in ~12 hours."

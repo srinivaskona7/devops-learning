@@ -1,0 +1,103 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Argo Rollouts — initial Rollout v1 (rolling strategy, 5-step manual pause)
+#
+# Purpose: Establish baseline. Five steps with a manual pause between each batch
+# so operators can inspect metrics before proceeding.
+# ═══════════════════════════════════════════════════════════════════════════════
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: demo-app
+  namespace: progressive
+  labels:
+    app: demo-app
+    version: v1
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port:   "8080"
+        prometheus.io/path:   "/metrics"
+    spec:
+      # Non-root security context — matches Dockerfile USER nonroot.
+      securityContext:
+        runAsNonRoot: true
+        runAsUser:    65532
+        fsGroup:      65532
+      containers:
+        - name: demo-app
+          image: demo-app:v1
+          imagePullPolicy: IfNotPresent
+          env:
+            - name:  VERSION
+              value: "v1"
+            - name:  BAD_WEIGHT
+              value: "0.0"
+          ports:
+            - name:          http
+              containerPort: 8080
+              protocol:      TCP
+          resources:
+            requests:
+              cpu:    "50m"
+              memory: "64Mi"
+            limits:
+              cpu:    "200m"
+              memory: "128Mi"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds:       5
+            failureThreshold:    3
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds:       15
+
+  # ── Strategy: rolling with 5 manual-pause steps ────────────────────────────
+  strategy:
+    canary:
+      # Stable service receives traffic while canary steps execute.
+      stableService: demo-app-stable
+      canaryService: demo-app-canary
+      steps:
+        # Step 1 — 20% canary traffic, pause and inspect.
+        - setWeight: 20
+        - pause: {}          # manual: operator runs `kubectl argo rollouts promote demo-app`
+
+        # Step 2 — 40%.
+        - setWeight: 40
+        - pause: {}
+
+        # Step 3 — 60%.
+        - setWeight: 60
+        - pause: {}
+
+        # Step 4 — 80%.
+        - setWeight: 80
+        - pause: {}
+
+        # Step 5 — 100% — full cutover.
+        - setWeight: 100
+
+      # Traffic is routed via Istio VirtualService weights.
+      trafficRouting:
+        istio:
+          virtualService:
+            name: demo-app-vs
+            routes:
+              - primary
+
+  # Keep the last 3 replicaSet revisions for quick rollback.
+  revisionHistoryLimit: 3

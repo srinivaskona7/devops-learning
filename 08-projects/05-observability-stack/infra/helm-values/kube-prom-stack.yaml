@@ -1,0 +1,142 @@
+# kube-prometheus-stack Helm values
+# Deploys: Prometheus Operator, Prometheus, Alertmanager, Grafana, node-exporter, kube-state-metrics
+
+grafana:
+  enabled: true
+  adminPassword: "obs-demo-secret"
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: false
+  grafana.ini:
+    feature_toggles:
+      enable: "tempoSearch,tempoBackendSearch,tempoApmTable,correlations,traceToMetrics"
+  sidecar:
+    dashboards:
+      enabled: true
+      searchNamespace: ALL
+      label: grafana_dashboard
+    datasources:
+      enabled: true
+      searchNamespace: ALL
+      label: grafana_datasource
+  additionalDataSources:
+    - name: Tempo
+      type: tempo
+      access: proxy
+      url: http://tempo:3100
+      uid: tempo
+      jsonData:
+        tracesToMetrics:
+          datasourceUid: prometheus
+          spanStartTimeShift: -1h
+          spanEndTimeShift: 1h
+          filterByTraceID: true
+          filterBySpanID: false
+          tags:
+            - key: service.name
+              value: service_name
+        tracesToLogs:
+          datasourceUid: loki
+          filterByTraceID: true
+          filterBySpanID: false
+          tags:
+            - key: service.name
+              value: service_name
+        serviceMap:
+          datasourceUid: prometheus
+        nodeGraph:
+          enabled: true
+        lokiSearch:
+          datasourceUid: loki
+    - name: Loki
+      type: loki
+      access: proxy
+      url: http://loki:3100
+      uid: loki
+      jsonData:
+        derivedFields:
+          - datasourceName: Tempo
+            datasourceUid: tempo
+            matcherRegex: '"trace_id":"([a-f0-9]+)"'
+            name: TraceID
+            url: "$${__value.raw}"
+
+prometheus:
+  enabled: true
+  prometheusSpec:
+    # Accept all ServiceMonitors across all namespaces
+    serviceMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}
+    podMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelector: {}
+    # Enable remote-write receiver for OTel Collector
+    enableRemoteWriteReceiver: true
+    remoteWriteDashboards: true
+    retention: 15d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+    resources:
+      requests:
+        cpu: 200m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 2Gi
+    # SLO alerting rules
+    additionalAlertingRules: []
+
+alertmanager:
+  enabled: true
+  alertmanagerSpec:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 128Mi
+
+prometheus-node-exporter:
+  enabled: true
+
+kube-state-metrics:
+  enabled: true
+
+# Default Grafana dashboards
+defaultRules:
+  create: true
+  rules:
+    alertmanager: true
+    etcd: false
+    configReloaders: true
+    general: true
+    k8s: true
+    kubeApiserverAvailability: true
+    kubeApiserverBurnrate: true
+    kubeApiserverHistogram: true
+    kubeApiserverSlos: true
+    kubeControllerManager: false
+    kubelet: true
+    kubeProxy: false
+    kubePrometheusGeneral: true
+    kubePrometheusNodeRecording: true
+    kubernetesApps: true
+    kubernetesResources: true
+    kubernetesStorage: true
+    kubernetesSystem: true
+    kubeSchedulerAlerting: false
+    kubeSchedulerRecording: false
+    kubeStateMetrics: true
+    network: true
+    node: true
+    nodeExporterAlerting: true
+    nodeExporterRecording: true
+    prometheus: true
+    prometheusOperator: true

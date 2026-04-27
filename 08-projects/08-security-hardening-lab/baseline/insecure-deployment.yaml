@@ -1,0 +1,110 @@
+# baseline/insecure-deployment.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# INTENTIONALLY INSECURE — DO NOT USE IN PRODUCTION
+# This file is the starting point of the Security Hardening Lab.
+# Every commented flaw maps to a hardening step in README.md.
+# ─────────────────────────────────────────────────────────────────────────────
+
+---
+# FLAW 1: Namespace has no Pod Security Admission labels → permissive by default
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: insecure-workloads
+  # Missing: pod-security.kubernetes.io/enforce label
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: insecure-app
+  namespace: insecure-workloads
+  labels:
+    app: insecure-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: insecure-app
+  template:
+    metadata:
+      labels:
+        app: insecure-app
+    spec:
+      # FLAW 2: ServiceAccount with cluster-admin rights (see insecure-rbac.yaml)
+      serviceAccountName: insecure-sa
+
+      # FLAW 3: Service account token auto-mounted into every pod
+      # automountServiceAccountToken: true is the default — not disabled here
+
+      # FLAW 4: No securityContext at pod level
+      # Missing: runAsNonRoot, seccompProfile, fsGroup
+
+      containers:
+        - name: app
+          # FLAW 5: Image referenced by mutable tag, not immutable digest
+          # An attacker who controls the registry can swap :latest silently
+          image: nginx:latest
+
+          ports:
+            - containerPort: 80
+
+          # FLAW 6: No resource requests or limits
+          # A runaway process can starve all other pods on the node
+          # Missing: resources.requests and resources.limits
+
+          securityContext:
+            # FLAW 7: Running as root (UID 0)
+            runAsUser: 0
+            runAsNonRoot: false
+
+            # FLAW 8: Privilege escalation allowed
+            # A binary with setuid bit can escalate from any UID to root
+            allowPrivilegeEscalation: true
+
+            # FLAW 9: Privileged container — direct host kernel access
+            privileged: true
+
+            # FLAW 10: All Linux capabilities retained (none dropped)
+            # Defaults include CAP_NET_ADMIN, CAP_SYS_PTRACE, etc.
+            # Missing: capabilities.drop: ["ALL"]
+
+          # FLAW 11: Writable root filesystem
+          # An attacker can install tools, modify configs, persist backdoors
+          # Missing: readOnlyRootFilesystem: true
+
+          # FLAW 12: Secrets exposed as plaintext environment variables
+          # Visible in `kubectl describe pod`, process /proc/1/environ, crash dumps
+          env:
+            - name: DB_PASSWORD
+              value: "hunter2"                  # NEVER do this
+            - name: API_SECRET_KEY
+              value: "sk-prod-abc123-supersecret"  # NEVER do this
+
+      # FLAW 13: No NetworkPolicy → pod can reach any other pod or external IP
+      # (NetworkPolicy is a separate resource; absence means allow-all)
+
+      # FLAW 14: HostPath volume mount exposes the node filesystem
+      volumes:
+        - name: host-data
+          hostPath:
+            path: /var/lib  # DANGER: arbitrary node path accessible inside container
+
+      # (container volumeMount referencing host-data would be equally dangerous)
+
+---
+# FLAW 15: NodePort service exposes the app on every node IP
+# Should be ClusterIP with an Ingress + TLS termination
+apiVersion: v1
+kind: Service
+metadata:
+  name: insecure-app
+  namespace: insecure-workloads
+spec:
+  selector:
+    app: insecure-app
+  type: NodePort        # FLAW: NodePort; prefer ClusterIP + Ingress
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080   # FLAW: static NodePort bypasses Ingress auth

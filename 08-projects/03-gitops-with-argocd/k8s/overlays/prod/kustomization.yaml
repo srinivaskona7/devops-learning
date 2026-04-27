@@ -1,0 +1,72 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+  - pdb.yaml
+
+namespace: api-prod
+
+# Production runs 3 replicas — satisfies the PDB minAvailable: 2 constraint
+# and allows one pod to be drained/updated at a time without service impact.
+replicas:
+  - name: url-shortener-api
+    count: 3
+
+images:
+  - name: url-shortener-api
+    newName: ghcr.io/YOUR-ORG/url-shortener-api
+    newTag: "v1.0.0"
+
+configMapGenerator:
+  - name: url-shortener-config
+    behavior: merge
+    literals:
+      - APP_ENV=prod
+      - LOG_LEVEL=warn
+      - SHORT_DOMAIN=short.example.com
+
+commonLabels:
+  environment: prod
+
+patches:
+  # Production resource limits — sized for real workload traffic.
+  # CPU limit 2x the request leaves headroom for burst without OOMKill.
+  - target:
+      kind: Deployment
+      name: url-shortener-api
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: "200m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+
+  # Production rolling update: never drop below 2 available pods
+  # (aligns with PDB minAvailable: 2)
+  - target:
+      kind: Deployment
+      name: url-shortener-api
+    patch: |-
+      - op: replace
+        path: /spec/strategy/rollingUpdate/maxUnavailable
+        value: 0
+      - op: replace
+        path: /spec/strategy/rollingUpdate/maxSurge
+        value: 1
+
+  # Tighten the readiness probe for production — faster traffic routing
+  - target:
+      kind: Deployment
+      name: url-shortener-api
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/readinessProbe/periodSeconds
+        value: 5
+      - op: replace
+        path: /spec/template/spec/containers/0/readinessProbe/failureThreshold
+        value: 3

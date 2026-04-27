@@ -1,0 +1,59 @@
+# scanners/trivy-config.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Trivy configuration for CI pipeline image scanning.
+# Run: trivy image --config scanners/trivy-config.yaml IMAGE_REF
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Exit code 1 causes the CI pipeline to fail when HIGH or CRITICAL vulns are found
+exit-code: 1
+
+# Scan configuration
+severity:
+  - HIGH
+  - CRITICAL
+
+# Scan types to run
+scan:
+  # Vulnerability scanning (OS packages + language-specific)
+  vuln: true
+  # Secret scanning (API keys, tokens, passwords in the image layers)
+  secret: true
+  # Misconfiguration scanning (Dockerfile best practices)
+  misconfig: true
+  # License compliance
+  license: true
+
+# Output format: table for humans, json for CI artifact storage
+format: table
+
+# Fail if any secrets are found in the image (no exceptions)
+secret:
+  config: .trivysecret.yaml
+
+# Vulnerability database
+db:
+  # Use the Java database for accurate JVM CVE detection
+  java-db-repository: ghcr.io/aquasecurity/trivy-java-db
+
+# Ignore specific CVEs that have been triaged and accepted with business justification
+# Add entries here ONLY with documented business justification and review date
+# ignorefile: .trivyignore
+
+# Timeout for slow image pulls
+timeout: 10m0s
+
+# Cache directory (used to speed up repeated scans in CI)
+cache:
+  dir: /tmp/trivy-cache
+  ttl: 12h
+
+# Image scanning options
+image:
+  # Remove intermediate containers after scanning
+  removed-pkgs: false
+
+# Output: write JSON report as CI artifact alongside table output
+output: ""
+
+# Quiet mode: suppress progress bar in CI logs (set to false for local use)
+quiet: false

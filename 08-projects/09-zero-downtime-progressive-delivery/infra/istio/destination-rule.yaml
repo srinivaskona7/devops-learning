@@ -1,0 +1,58 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Istio DestinationRule
+#
+# Defines the two subsets (stable + canary) that the VirtualService routes to.
+# Circuit-breaker settings prevent cascading failures if a canary pod becomes
+# overwhelmed: after 5 consecutive 5xx responses the pod is ejected for 30s.
+# ═══════════════════════════════════════════════════════════════════════════════
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: demo-app-dr
+  namespace: progressive
+  labels:
+    app: demo-app
+spec:
+  host: demo-app
+
+  # Mutual TLS within the mesh — zero-trust pod-to-pod.
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+
+    # Connection pool: limits concurrent requests to prevent thundering herd.
+    connectionPool:
+      tcp:
+        maxConnections: 100
+      http:
+        http1MaxPendingRequests:  100
+        http2MaxRequests:         1000
+
+    # Outlier detection — automatic circuit breaker.
+    # If a pod returns 5xx on 5 consecutive calls, eject it for 30s.
+    outlierDetection:
+      consecutiveGatewayErrors: 5
+      interval:                 10s
+      baseEjectionTime:         30s
+      maxEjectionPercent:       50   # never eject more than half the pool
+      splitExternalLocalOriginErrors: true
+
+  subsets:
+    - name: stable
+      labels:
+        app: demo-app
+        # Argo Rollouts adds this label automatically to stable pods.
+        rollouts-pod-template-hash: stable
+
+    - name: canary
+      labels:
+        app: demo-app
+        rollouts-pod-template-hash: canary
+      # Canary gets a tighter connection pool — protect stable from spillover.
+      trafficPolicy:
+        connectionPool:
+          tcp:
+            maxConnections: 20
+          http:
+            http1MaxPendingRequests: 20
+            http2MaxRequests:        200

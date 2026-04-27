@@ -1,0 +1,172 @@
+# =============================================================================
+# infra/velero/schedule.yaml
+#
+# Two schedules:
+#   1. daily-full        — daily at 01:00 UTC, full backup of all production
+#                          namespaces + PVCs via restic, TTL 30 days
+#   2. incremental-15min — every 15 minutes, partial backup (changed objects
+#                          only), PVC skipped for speed, TTL 2 days
+#
+# The secondary cluster's Velero reads these backups from the replicated
+# S3 bucket (BackupStorageLocation points at us-west-2 copy).
+#
+# Apply: kubectl apply -f infra/velero/schedule.yaml
+# Check: velero schedule get
+# =============================================================================
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: daily-full
+  namespace: velero
+  labels:
+    app.kubernetes.io/name: velero
+    dr.example.com/schedule-type: full
+    dr.example.com/cluster: primary
+  annotations:
+    # Human-readable description for runbook reference
+    dr.example.com/description: "Daily full backup — namespaces + PVCs via restic"
+    dr.example.com/rpo-contribution: "15min (incremental covers intra-day)"
+spec:
+  # Run at 01:00 UTC every day
+  # Choose a low-traffic window; 01:00 UTC = 20:00 EST (previous evening)
+  schedule: "0 1 * * *"
+
+  # Template for each Backup object created by this schedule
+  template:
+    # ── Scope ────────────────────────────────────────────────────────────────
+    # Back up all namespaces EXCEPT system namespaces and the velero namespace
+    # itself (backing up velero can cause restore confusion)
+    excludedNamespaces:
+      - kube-system
+      - kube-public
+      - kube-node-lease
+      - velero
+      - cert-manager    # stateless — re-deploy is faster than restore
+      - monitoring      # Prometheus data is ephemeral; Grafana config is in Git
+
+    # Include all resource types including CRDs and cluster-scoped resources
+    includeClusterResources: true
+
+    # ── Storage ──────────────────────────────────────────────────────────────
+    storageLocation: default
+    volumeSnapshotLocations:
+      - default
+
+    # Use restic (now node-agent) for PVC content backup
+    # This backs up PVC data byte-for-byte regardless of storage class
+    defaultVolumesToFsBackup: true
+
+    # ── Retention ────────────────────────────────────────────────────────────
+    # Keep daily full backups for 30 days
+    ttl: 720h
+
+    # ── Hooks ────────────────────────────────────────────────────────────────
+    # Pre-backup hook: quiesce application writes for 5 seconds
+    # This ensures a consistent snapshot of in-flight transactions
+    hooks:
+      resources:
+        - name: postgres-quiesce
+          includedNamespaces:
+            - production
+          labelSelector:
+            matchLabels:
+              app: postgres
+          pre:
+            - exec:
+                container: postgres
+                command:
+                  - /bin/bash
+                  - -c
+                  - |
+                    # Flush dirty pages and create a checkpoint.
+                    # This reduces WAL replay time during restore.
+                    psql -U postgres -c "CHECKPOINT;"
+                onError: Fail
+                timeout: 30s
+
+    # ── Labels ───────────────────────────────────────────────────────────────
+    # Labels are applied to each Backup object for querying
+    metadata:
+      labels:
+        dr.example.com/schedule: daily-full
+        dr.example.com/type: full
+
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: incremental-15min
+  namespace: velero
+  labels:
+    app.kubernetes.io/name: velero
+    dr.example.com/schedule-type: incremental
+    dr.example.com/cluster: primary
+  annotations:
+    dr.example.com/description: "15-minute partial backup — K8s objects only (no PVC)"
+    dr.example.com/rpo-contribution: "15min for K8s object state"
+spec:
+  # Run every 15 minutes
+  # Velero backs up all objects; restic skips unchanged blocks (content-addressed)
+  schedule: "*/15 * * * *"
+
+  template:
+    excludedNamespaces:
+      - kube-system
+      - kube-public
+      - kube-node-lease
+      - velero
+      - cert-manager
+      - monitoring
+
+    includeClusterResources: true
+
+    storageLocation: default
+
+    # Skip PVC restic backup in incremental — too slow for 15-min cadence
+    # PVCs are covered by the daily full + WAL-G for Postgres data
+    defaultVolumesToFsBackup: false
+
+    # Keep incremental backups for 2 days (192 snapshots maximum)
+    ttl: 48h
+
+    metadata:
+      labels:
+        dr.example.com/schedule: incremental-15min
+        dr.example.com/type: incremental
+
+---
+# BackupStorageLocation for the SECONDARY cluster.
+# Apply this manifest on the SECONDARY cluster only.
+# It points Velero at the CRR-replicated bucket in us-west-2.
+#
+# Apply on secondary: kubectl apply -f infra/velero/schedule.yaml --context=secondary
+apiVersion: velero.io/v1
+kind: BackupStorageLocation
+metadata:
+  name: default
+  namespace: velero
+  annotations:
+    dr.example.com/description: >
+      Secondary BSL — reads from CRR replica of primary backup bucket.
+      Velero syncs backup metadata every 60s; secondary sees new backups
+      within ~75s of them being written on primary.
+spec:
+  provider: aws
+  default: true
+  # Phase indicates whether this BSL is available; Velero sets this automatically
+  # Available | Unavailable | Unknown
+  objectStorage:
+    bucket: dr-velero-secondary-backup   # CRR destination bucket
+    prefix: velero
+  config:
+    region: us-west-2
+    s3ForcePathStyle: "false"
+
+  # How often Velero validates this location by listing backup objects
+  validationFrequency: 60s
+
+  # accessMode: ReadOnly prevents the secondary from accidentally writing
+  # new backups that overwrite primary data during normal operation.
+  # Change to ReadWrite ONLY during a DR event when primary is gone.
+  accessMode: ReadOnly

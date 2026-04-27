@@ -1,0 +1,49 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Flagger MetricTemplates
+#
+# Flagger references these templates by name from the Canary spec.
+# They isolate the PromQL from the Canary CRD for reusability.
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ── Template 1: HTTP success rate ────────────────────────────────────────────
+apiVersion: flagger.app/v1beta1
+kind: MetricTemplate
+metadata:
+  name: prometheus-success-rate
+  namespace: progressive
+spec:
+  provider:
+    type:    prometheus
+    address: http://prometheus-operated.monitoring.svc.cluster.local:9090
+  query: |
+    100 * sum(
+      rate(http_requests_total{
+        kubernetes_pod_name=~"{{ target }}-[0-9a-z]+-[0-9a-z]+",
+        code!~"5.."
+      }[{{ interval }}])
+    )
+    / sum(
+      rate(http_requests_total{
+        kubernetes_pod_name=~"{{ target }}-[0-9a-z]+-[0-9a-z]+"
+      }[{{ interval }}])
+    )
+
+---
+# ── Template 2: p95 latency (milliseconds) ──────────────────────────────────
+apiVersion: flagger.app/v1beta1
+kind: MetricTemplate
+metadata:
+  name: prometheus-p95-duration
+  namespace: progressive
+spec:
+  provider:
+    type:    prometheus
+    address: http://prometheus-operated.monitoring.svc.cluster.local:9090
+  query: |
+    histogram_quantile(0.95,
+      sum(
+        rate(http_request_duration_seconds_bucket{
+          kubernetes_pod_name=~"{{ target }}-[0-9a-z]+-[0-9a-z]+"
+        }[{{ interval }}])
+      ) by (le)
+    ) * 1000

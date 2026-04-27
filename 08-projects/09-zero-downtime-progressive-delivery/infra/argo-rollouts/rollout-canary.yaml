@@ -1,0 +1,125 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Argo Rollouts — automated canary with AnalysisRun gates
+#
+# Traffic progresses 20 → 40 → 60 → 80 → 100% ONLY if Prometheus success-rate
+# stays above 99 % for each 5-minute analysis window. One failed analysis
+# triggers an immediate automatic rollback to stable.
+# ═══════════════════════════════════════════════════════════════════════════════
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: demo-app-canary
+  namespace: progressive
+  labels:
+    app: demo-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port:   "8080"
+        prometheus.io/path:   "/metrics"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser:    65532
+        fsGroup:      65532
+      containers:
+        - name: demo-app
+          # Tag is updated by the CI pipeline: demo-app:v2
+          image: demo-app:v2
+          imagePullPolicy: IfNotPresent
+          env:
+            - name:  VERSION
+              value: "v2"
+            - name:  BAD_WEIGHT
+              value: "0.0"   # Set to "0.3" in `make bad-deploy` to trigger rollback
+          ports:
+            - name:          http
+              containerPort: 8080
+          resources:
+            requests:
+              cpu:    "50m"
+              memory: "64Mi"
+            limits:
+              cpu:    "200m"
+              memory: "128Mi"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds:       5
+            failureThreshold:    3
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds:       15
+
+  strategy:
+    canary:
+      stableService: demo-app-stable
+      canaryService: demo-app-canary
+
+      trafficRouting:
+        istio:
+          virtualService:
+            name: demo-app-vs
+            routes:
+              - primary
+
+      # ── Automated analysis gates ──────────────────────────────────────────
+      # Each `analysis` step runs the AnalysisTemplate for 5 minutes before
+      # traffic advances. A Failure result halts and rolls back automatically.
+      analysis:
+        templates:
+          - templateName: success-rate
+        startingStep: 1          # run analysis from the very first step
+        args:
+          - name:  service-name
+            value: demo-app-canary
+
+      steps:
+        - setWeight: 20
+        - analysis:
+            templates:
+              - templateName: success-rate
+            args:
+              - name:  service-name
+                value: demo-app-canary
+
+        - setWeight: 40
+        - analysis:
+            templates:
+              - templateName: success-rate
+            args:
+              - name:  service-name
+                value: demo-app-canary
+
+        - setWeight: 60
+        - analysis:
+            templates:
+              - templateName: success-rate
+            args:
+              - name:  service-name
+                value: demo-app-canary
+
+        - setWeight: 80
+        - analysis:
+            templates:
+              - templateName: success-rate
+            args:
+              - name:  service-name
+                value: demo-app-canary
+
+        - setWeight: 100
+
+  revisionHistoryLimit: 3

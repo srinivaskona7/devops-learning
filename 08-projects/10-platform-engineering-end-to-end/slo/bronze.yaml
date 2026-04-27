@@ -1,0 +1,82 @@
+---
+# Bronze SLO tier — 99.0% availability, p95 < 500ms
+# Appropriate for: internal tools, batch processors, non-critical APIs
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: slo-bronze
+  namespace: monitoring
+  labels:
+    monitoring: platform
+    platform.vantapay.io/slo-tier: bronze
+spec:
+  groups:
+    - name: slo.bronze.recording
+      interval: 30s
+      rules:
+        # Availability over rolling 30-day window (approximated as 30*24*60m)
+        - record: slo:availability:ratio_30d
+          labels:
+            tier: bronze
+          expr: |
+            avg_over_time(
+              (1 - rate(http_requests_total{slo_tier="bronze", status_code=~"5.."}[5m])
+                   /
+                   rate(http_requests_total{slo_tier="bronze"}[5m])
+              )[30d:5m]
+            )
+
+        # Error budget: bronze target is 99.0% → 1% error budget → 432 min/month allowed
+        - record: slo:error_budget_remaining:ratio
+          labels:
+            tier: bronze
+          expr: |
+            1 - (
+              (1 - slo:availability:ratio_30d{tier="bronze"})
+              / (1 - 0.990)
+            )
+
+    - name: slo.bronze.alerts
+      rules:
+        # Fast burn: 1h window, 14.4× rate → budget exhausted in 5h
+        - alert: SLOBronzeFastBurn
+          expr: |
+            rate(http_requests_total{slo_tier="bronze", status_code=~"5.."}[1h])
+            /
+            rate(http_requests_total{slo_tier="bronze"}[1h])
+            > 14.4 * (1 - 0.990)
+          for: 2m
+          labels:
+            severity: critical
+            tier: bronze
+          annotations:
+            summary: "{{ $labels.job }} burning bronze error budget at 14.4× rate"
+            description: "At this rate, the 30-day error budget will be exhausted in < 5 hours."
+            runbook_url: "https://runbooks.vantapay.io/slo-burn-rate"
+
+        # Slow burn: 6h window, 6× rate → budget exhausted in ~12h
+        - alert: SLOBronzeSlowBurn
+          expr: |
+            rate(http_requests_total{slo_tier="bronze", status_code=~"5.."}[6h])
+            /
+            rate(http_requests_total{slo_tier="bronze"}[6h])
+            > 6 * (1 - 0.990)
+          for: 15m
+          labels:
+            severity: warning
+            tier: bronze
+          annotations:
+            summary: "{{ $labels.job }} burning bronze error budget at 6× rate"
+
+        # p95 latency breach
+        - alert: SLOBronzeLatencyBreach
+          expr: |
+            histogram_quantile(0.95,
+              sum(rate(http_request_duration_seconds_bucket{slo_tier="bronze"}[5m])) by (le, job)
+            ) > 0.500
+          for: 5m
+          labels:
+            severity: warning
+            tier: bronze
+          annotations:
+            summary: "{{ $labels.job }} p95 latency {{ $value | humanizeDuration }} exceeds bronze SLO (500ms)"

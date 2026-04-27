@@ -1,0 +1,254 @@
+# =============================================================================
+# infra/dns/route53-failover.yaml
+#
+# ExternalDNS-compatible annotation manifest for Route53 failover routing.
+#
+# Architecture:
+#   - Primary record: us-east-1 ALB, weight=100, health check on /healthz
+#   - Secondary record: us-west-2 ALB, weight=0 (becomes 100 during failover)
+#   - ExternalDNS watches Service objects and syncs LB IPs to Route53
+#   - Health check failure: 3 probes × 10s = 30s to detect → Route53 flips
+#
+# Two Services are created: one in each cluster.
+# Apply primary manifest on primary cluster context.
+# Apply secondary manifest on secondary cluster context.
+#
+# ExternalDNS setup: https://kubernetes-sigs.github.io/external-dns/
+#
+# TTL management (critical for RTO):
+#   - Normal TTL: 300s (5 min)
+#   - Pre-drill TTL: 60s — lower this 30 min before any planned DR event
+#   - Change via: kubectl annotate svc/app-primary external-dns.alpha.kubernetes.io/ttl=60
+# =============================================================================
+
+# ─── PRIMARY CLUSTER SERVICE ─────────────────────────────────────────────────
+# Apply on: kubectl --context=primary apply -f infra/dns/route53-failover.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-primary
+  namespace: production
+  labels:
+    app.kubernetes.io/name: app
+    dr.example.com/region: us-east-1
+    dr.example.com/role: primary
+  annotations:
+    # ExternalDNS: create/maintain this DNS record
+    external-dns.alpha.kubernetes.io/hostname: "api.example.com"
+
+    # TTL: 300s normal, reduced to 60s before drills
+    external-dns.alpha.kubernetes.io/ttl: "300"
+
+    # Route53 weighted routing policy
+    # weight=100 means this record receives all traffic in normal operation
+    external-dns.alpha.kubernetes.io/aws-weight: "100"
+
+    # Route53 health check — ExternalDNS creates this health check automatically
+    # when the annotation is present. The health check polls /healthz every 10s.
+    # 3 consecutive failures = record marked UNHEALTHY = failover triggers.
+    external-dns.alpha.kubernetes.io/aws-health-check-id: ""   # auto-created
+    external-dns.alpha.kubernetes.io/aws-failover: "PRIMARY"
+
+    # Set identifier for weighted routing group
+    # Both primary and secondary must share the same set-identifier group name
+    external-dns.alpha.kubernetes.io/aws-set-identifier: "api-failover-group"
+
+    # Health check configuration (evaluated by Route53)
+    # Path: application must return 200 from /healthz
+    # Region: health check probes originate from multiple AWS edge locations
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: "/healthz"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "10"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "5"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-healthy-threshold: "2"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-unhealthy-threshold: "3"
+
+    # NLB for TCP-level health checks in addition to HTTP
+    service.beta.kubernetes.io/aws-load-balancer-type: "external"
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+    version: stable
+  ports:
+    - name: https
+      port: 443
+      targetPort: 8443
+      protocol: TCP
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+
+---
+# Route53 Health Check resource (managed by ExternalDNS or applied directly)
+# This object documents the health check settings for the primary endpoint.
+# ExternalDNS creates the actual Route53 health check; this is for reference.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: route53-health-check-config
+  namespace: production
+  labels:
+    dr.example.com/component: dns-failover
+data:
+  # Primary health check configuration
+  # ExternalDNS reads these to configure Route53
+  primary.fqdn: "api.example.com"
+  primary.region: "us-east-1"
+  primary.healthcheck.path: "/healthz"
+  primary.healthcheck.port: "443"
+  primary.healthcheck.protocol: "HTTPS"
+  primary.healthcheck.interval: "10"
+  primary.healthcheck.failure.threshold: "3"
+
+  # Secondary health check configuration
+  secondary.fqdn: "api.example.com"
+  secondary.region: "us-west-2"
+  secondary.healthcheck.path: "/healthz"
+  secondary.healthcheck.port: "443"
+  secondary.healthcheck.protocol: "HTTPS"
+  secondary.healthcheck.interval: "10"
+  secondary.healthcheck.failure.threshold: "3"
+
+  # DNS TTL strategy
+  # IMPORTANT: Lower ttl.predrll value BEFORE any planned failover test
+  ttl.normal: "300"
+  ttl.predrill: "60"
+  ttl.active_dr: "30"
+
+  # Propagation expectations (informational)
+  propagation.ttl60: "~90 seconds for 95% of clients"
+  propagation.ttl300: "~360 seconds for 95% of clients"
+
+---
+# ─── SECONDARY CLUSTER SERVICE ───────────────────────────────────────────────
+# Apply on: kubectl --context=secondary apply -f infra/dns/route53-failover.yaml
+#
+# IMPORTANT: The secondary service uses weight=0 during normal operation.
+# ExternalDNS on the secondary cluster will upsert Route53 with the secondary
+# ALB IP, but Route53 will not route traffic there while weight=0.
+#
+# During failover, Route53 automatically switches because the PRIMARY record
+# becomes UNHEALTHY — Route53 stops routing to it and all traffic hits secondary.
+# Do NOT manually change weight during automated failover.
+#
+# Manual override (use only if Route53 health check automation fails):
+#   aws route53 change-resource-record-sets --hosted-zone-id ZXXXXX \
+#     --change-batch file://dns-failover-override.json
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-secondary
+  namespace: production
+  labels:
+    app.kubernetes.io/name: app
+    dr.example.com/region: us-west-2
+    dr.example.com/role: secondary
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: "api.example.com"
+    external-dns.alpha.kubernetes.io/ttl: "300"
+
+    # Weight=0 during normal operation.
+    # ExternalDNS will CREATE this record in Route53 but Route53 will not
+    # route traffic to it unless the primary health check fails.
+    external-dns.alpha.kubernetes.io/aws-weight: "0"
+
+    external-dns.alpha.kubernetes.io/aws-failover: "SECONDARY"
+    external-dns.alpha.kubernetes.io/aws-set-identifier: "api-failover-group"
+
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: "/healthz"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-interval: "10"
+    service.beta.kubernetes.io/aws-load-balancer-healthcheck-timeout: "5"
+    service.beta.kubernetes.io/aws-load-balancer-type: "external"
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+
+    # Annotation for runbook: indicates this service belongs to DR secondary
+    dr.example.com/activate-command: |
+      kubectl annotate svc app-secondary \
+        external-dns.alpha.kubernetes.io/aws-weight=100 \
+        --overwrite --context=secondary
+    dr.example.com/deactivate-command: |
+      kubectl annotate svc app-secondary \
+        external-dns.alpha.kubernetes.io/aws-weight=0 \
+        --overwrite --context=secondary
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+    version: stable
+  ports:
+    - name: https
+      port: 443
+      targetPort: 8443
+      protocol: TCP
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+
+---
+# ExternalDNS Deployment — install on BOTH clusters
+# (abbreviated — full values at https://kubernetes-sigs.github.io/external-dns/)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: external-dns
+  namespace: kube-system
+  labels:
+    app.kubernetes.io/name: external-dns
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: external-dns
+  template:
+    metadata:
+      labels:
+        app: external-dns
+    spec:
+      serviceAccountName: external-dns
+      containers:
+        - name: external-dns
+          image: registry.k8s.io/external-dns/external-dns:v0.14.2
+          args:
+            - --source=service
+            - --source=ingress
+            - --domain-filter=example.com
+            - --provider=aws
+            - --aws-zone-type=public
+            # Sync interval — how often ExternalDNS reconciles Route53
+            # Lower value = faster DNS updates, higher Route53 API cost
+            - --interval=30s
+            # Policy: upsert-only prevents ExternalDNS from deleting records
+            # it didn't create. Use 'sync' for full control.
+            - --policy=upsert-only
+            - --aws-batch-change-size=1000
+            - --log-format=json
+            - --log-level=info
+          env:
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: route53-health-check-config
+                  key: primary.region
+          resources:
+            requests:
+              cpu: 50m
+              memory: 50Mi
+            limits:
+              cpu: 200m
+              memory: 100Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65534
+            capabilities:
+              drop:
+                - ALL

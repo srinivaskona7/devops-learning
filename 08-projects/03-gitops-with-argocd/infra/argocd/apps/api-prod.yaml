@@ -1,0 +1,60 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: api-prod
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app.kubernetes.io/part-of: url-shortener
+    environment: prod
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+
+  source:
+    # EDIT THIS: replace with your fork URL
+    repoURL: https://github.com/YOUR-ORG/Devops-learning.git
+    targetRevision: main
+    path: 08-projects/03-gitops-with-argocd/k8s/overlays/prod
+    kustomize:
+      images:
+        - url-shortener-api=ghcr.io/YOUR-ORG/url-shortener-api:v1.0.0
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: api-prod
+
+  syncPolicy:
+    automated:
+      # Production uses selfHeal but NOT automated prune.
+      # Pruning in production requires a deliberate human decision (PR + review).
+      # To prune manually: argocd app sync api-prod --prune
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+      # RespectIgnoreDifferences is critical for PDB — HPA may temporarily
+      # violate minAvailable during a node drain; we do not want Argo CD
+      # to revert that.
+      - RespectIgnoreDifferences=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 30s
+        factor: 2
+        maxDuration: 10m
+
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas
+    # Ignore PDB status fields that are cluster-managed
+    - group: policy
+      kind: PodDisruptionBudget
+      jsonPointers:
+        - /status

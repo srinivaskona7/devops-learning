@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: url-shortener-api
+  labels:
+    app: url-shortener-api
+    app.kubernetes.io/name: url-shortener-api
+    app.kubernetes.io/component: api
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  # ClusterIP is sufficient for intra-cluster traffic.
+  # The prod overlay or an Ingress object exposes this externally.
+  type: ClusterIP
+  selector:
+    app: url-shortener-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP

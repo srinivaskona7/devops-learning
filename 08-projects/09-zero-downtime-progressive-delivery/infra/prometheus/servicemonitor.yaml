@@ -1,0 +1,38 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Prometheus ServiceMonitor
+#
+# Tells the Prometheus Operator which pods to scrape.
+# Selects all pods with label app=demo-app in the `progressive` namespace.
+# ═══════════════════════════════════════════════════════════════════════════════
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: demo-app
+  namespace: progressive
+  labels:
+    # Must match the Prometheus Operator's serviceMonitorSelector.
+    release: kps   # kube-prometheus-stack Helm release name
+spec:
+  selector:
+    matchLabels:
+      app: demo-app
+  namespaceSelector:
+    matchNames:
+      - progressive
+  endpoints:
+    - port:     http
+      path:     /metrics
+      interval: 15s
+      # Label the scraped metrics with the pod's rollout revision for easy
+      # per-canary-step analysis in Grafana.
+      relabelings:
+        - sourceLabels: [__meta_kubernetes_pod_label_rollouts_pod_template_hash]
+          targetLabel:  rollout_hash
+        - sourceLabels: [__meta_kubernetes_pod_label_app]
+          targetLabel:  app
+        - sourceLabels: [__meta_kubernetes_namespace]
+          targetLabel:  namespace
+        - sourceLabels: [__meta_kubernetes_pod_name]
+          targetLabel:  kubernetes_pod_name
+        - sourceLabels: [__meta_kubernetes_service_name]
+          targetLabel:  kubernetes_service_name

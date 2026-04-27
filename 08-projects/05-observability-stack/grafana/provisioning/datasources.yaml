@@ -1,0 +1,82 @@
+apiVersion: 1
+
+datasources:
+  # ── Prometheus ────────────────────────────────────────────────────────────
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus-operated:9090
+    uid: prometheus
+    isDefault: true
+    jsonData:
+      timeInterval: "15s"
+      exemplarTraceIdDestinations:
+        - name: trace_id
+          datasourceUid: tempo
+          urlDisplayLabel: "View in Tempo"
+      prometheusType: Prometheus
+      prometheusVersion: "2.50.0"
+      incrementalQuerying: true
+      incrementalQueryOverlapWindow: "10m"
+
+  # ── Loki ─────────────────────────────────────────────────────────────────
+  - name: Loki
+    type: loki
+    access: proxy
+    url: http://loki:3100
+    uid: loki
+    jsonData:
+      maxLines: 1000
+      derivedFields:
+        # Extract trace_id from structured log and link to Tempo
+        - datasourceName: Tempo
+          datasourceUid: tempo
+          matcherRegex: '"trace_id":"([a-f0-9]{32})"'
+          name: TraceID
+          url: "${__value.raw}"
+        - datasourceName: Tempo
+          datasourceUid: tempo
+          matcherRegex: 'trace_id=([a-f0-9]{32})'
+          name: TraceID
+          url: "${__value.raw}"
+
+  # ── Tempo ─────────────────────────────────────────────────────────────────
+  - name: Tempo
+    type: tempo
+    access: proxy
+    url: http://tempo:3100
+    uid: tempo
+    jsonData:
+      # Traces → Metrics: click a span → open Prometheus with exemplar
+      tracesToMetrics:
+        datasourceUid: prometheus
+        spanStartTimeShift: "-1h"
+        spanEndTimeShift: "1h"
+        filterByTraceID: true
+        filterBySpanID: false
+        tags:
+          - key: service.name
+            value: service_name
+        queries:
+          - name: "Request rate"
+            query: >-
+              sum(rate(demo_requests_total{service_name="$${__tags.service_name}"}[5m]))
+          - name: "Error rate"
+            query: >-
+              sum(rate(http_errors_total{service_name="$${__tags.service_name}"}[5m]))
+      # Traces → Logs: click a span → jump to Loki
+      tracesToLogs:
+        datasourceUid: loki
+        filterByTraceID: true
+        filterBySpanID: true
+        tags:
+          - key: service.name
+            value: service_name
+      serviceMap:
+        datasourceUid: prometheus
+      nodeGraph:
+        enabled: true
+      search:
+        hide: false
+      lokiSearch:
+        datasourceUid: loki

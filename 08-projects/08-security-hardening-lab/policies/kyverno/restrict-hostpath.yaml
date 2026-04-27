@@ -1,0 +1,91 @@
+# policies/kyverno/restrict-hostpath.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Blocks containers that mount host filesystem paths via hostPath volumes.
+# Maps to: CIS Kubernetes Benchmark 5.2.12
+# STRIDE:  Information Disclosure (I), Tampering (T), Elevation of Privilege (E)
+# ─────────────────────────────────────────────────────────────────────────────
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: restrict-hostpath
+  annotations:
+    policies.kyverno.io/title: Restrict HostPath Volumes
+    policies.kyverno.io/category: Pod Security
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/subject: Pod, Volume
+    policies.kyverno.io/description: >-
+      hostPath volumes mount directories from the underlying node's filesystem
+      into the container. This breaks the container isolation boundary and allows
+      containers to read sensitive host files (/etc/shadow, kubelet credentials,
+      Docker socket), modify host configuration, or escape the container entirely
+      by writing to /proc or /sys. This policy blocks all hostPath volumes.
+      Use emptyDir, PersistentVolumeClaim, or projected volumes instead.
+    cis-benchmark: "5.2.12"
+    mitre-attack: "T1611 — Escape to Host"
+spec:
+  validationFailureAction: Enforce
+  background: true
+
+  rules:
+    # ── Rule 1: Block any hostPath volume definition ──────────────────────────
+    - name: deny-hostpath-volumes
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          hostPath volumes are not allowed. They expose the node filesystem
+          to the container and break isolation. Use emptyDir or a
+          PersistentVolumeClaim instead. Violates CIS 5.2.12.
+        deny:
+          conditions:
+            any:
+              - key: "{{ request.object.spec.volumes[].hostPath | length(@) }}"
+                operator: GreaterThan
+                value: 0
+
+    # ── Rule 2: Block host network ────────────────────────────────────────────
+    - name: deny-host-network
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          hostNetwork: true allows the container to see and send traffic on the
+          host network interface, bypassing NetworkPolicy. Not allowed.
+          Violates CIS 5.2.4.
+        pattern:
+          spec:
+            "=(hostNetwork)": false
+
+    # ── Rule 3: Block host PID namespace ─────────────────────────────────────
+    - name: deny-host-pid
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          hostPID: true allows the container to see all processes on the node,
+          enabling ptrace injection and credential theft from other processes.
+          Not allowed. Violates CIS 5.2.2.
+        pattern:
+          spec:
+            "=(hostPID)": false
+
+    # ── Rule 4: Block host IPC namespace ─────────────────────────────────────
+    - name: deny-host-ipc
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          hostIPC: true allows the container to access the host's shared memory
+          and semaphores. Not allowed. Violates CIS 5.2.3.
+        pattern:
+          spec:
+            "=(hostIPC)": false

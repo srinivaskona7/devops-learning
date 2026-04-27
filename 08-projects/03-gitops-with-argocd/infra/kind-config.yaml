@@ -1,0 +1,52 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+
+# 3-node cluster: 1 control-plane + 2 workers
+# Maps host ports so the Argo CD UI is reachable via port-forward
+# and the URL-shortener API is reachable on 30080 (NodePort).
+nodes:
+  - role: control-plane
+    # Label the control-plane node so workloads can be
+    # placed here if workers are at capacity (local dev only).
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+    extraPortMappings:
+      # Argo CD UI — maps to port-forward target 8080→443
+      - containerPort: 443
+        hostPort: 8443
+        protocol: TCP
+      # URL-shortener NodePort (api-prod Service)
+      - containerPort: 30080
+        hostPort: 30080
+        protocol: TCP
+      # Argo CD gRPC (CLI uses this)
+      - containerPort: 8080
+        hostPort: 8080
+        protocol: TCP
+
+  - role: worker
+    # Worker 1: api-dev + part of api-prod
+    labels:
+      topology.kubernetes.io/zone: zone-a
+
+  - role: worker
+    # Worker 2: api-staging + part of api-prod
+    labels:
+      topology.kubernetes.io/zone: zone-b
+
+# Use a recent stable Kubernetes version that matches
+# the Argo CD compatibility matrix (Argo CD 2.12 supports K8s 1.27–1.31)
+# Pin to avoid surprises on kind upgrades.
+# kind node image: kindest/node:v1.31.0
+# To override: kind create cluster --image kindest/node:v1.31.0 ...
+
+networking:
+  # Disable kube-proxy's IPTables mode — use iptables-nft (better on macOS Lima)
+  kubeProxyMode: "iptables"
+  # Pod CIDR — default is fine for local dev; no overlap with host network
+  podSubnet: "10.244.0.0/16"
+  serviceSubnet: "10.96.0.0/12"

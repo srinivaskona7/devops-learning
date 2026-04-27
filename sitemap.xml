@@ -13,6 +13,10 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/01-linux/commands/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/01-linux/01-filesystem/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
@@ -393,6 +397,10 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/02-docker/commands/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/02-docker/01-concepts/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
@@ -553,6 +561,10 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/03-kubernetes/01-core/commands/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/03-kubernetes/01-core/00-cluster-setup/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
@@ -709,6 +721,10 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/03-kubernetes/02-strategies/commands/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/03-kubernetes/02-strategies/decision-matrix/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
@@ -810,6 +826,10 @@
     </url>
     <url>
          <loc>https://example.github.io/Devops-learning/03-kubernetes/03-advanced/cheatsheet/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/03-kubernetes/03-advanced/commands/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
@@ -977,6 +997,10 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/04-helm/commands/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/04-helm/01-concepts/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
@@ -1113,6 +1137,10 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/05-monitoring/commands/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/05-monitoring/01-three-pillars/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
@@ -1246,6 +1274,10 @@
     </url>
     <url>
          <loc>https://example.github.io/Devops-learning/06-security/cheatsheet/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/06-security/commands/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
@@ -1409,6 +1441,10 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/07-terraform/commands/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/07-terraform/01-install/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
@@ -1569,7 +1605,15 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/01-hello-world-end-to-end/architecture/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/08-projects/01-hello-world-end-to-end/commands/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/01-hello-world-end-to-end/tests/qa-plan/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
@@ -1585,7 +1629,15 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/02-three-tier-app/tests/qa-plan/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/08-projects/03-gitops-with-argocd/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/03-gitops-with-argocd/architecture/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
@@ -1597,7 +1649,19 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/03-gitops-with-argocd/tests/qa-plan/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/08-projects/04-ci-cd-pipeline/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/04-ci-cd-pipeline/SECURITY/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/04-ci-cd-pipeline/architecture/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
@@ -1605,7 +1669,15 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/04-ci-cd-pipeline/tests/qa-plan/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/08-projects/05-observability-stack/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/05-observability-stack/architecture/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
@@ -1617,7 +1689,19 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/05-observability-stack/tests/qa-plan/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/08-projects/06-prod-grade-cluster-on-aws/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/06-prod-grade-cluster-on-aws/COST/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/06-prod-grade-cluster-on-aws/architecture/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
@@ -1629,7 +1713,15 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/06-prod-grade-cluster-on-aws/tests/qa-plan/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/08-projects/07-disaster-recovery/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/07-disaster-recovery/architecture/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
@@ -1641,7 +1733,27 @@
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/07-disaster-recovery/runbooks/DR_DRILL_CHECKLIST/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/07-disaster-recovery/runbooks/POST_INCIDENT/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/07-disaster-recovery/runbooks/REGION_FAILOVER/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/07-disaster-recovery/tests/qa-plan/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
          <loc>https://example.github.io/Devops-learning/08-projects/08-security-hardening-lab/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/08-security-hardening-lab/architecture/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
@@ -1650,6 +1762,66 @@
     </url>
     <url>
          <loc>https://example.github.io/Devops-learning/08-projects/08-security-hardening-lab/commands/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/08-security-hardening-lab/runbooks/INCIDENT_RESPONSE/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/08-security-hardening-lab/tests/qa-plan/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/09-zero-downtime-progressive-delivery/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/09-zero-downtime-progressive-delivery/architecture/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/09-zero-downtime-progressive-delivery/tests/qa-plan/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/10-platform-engineering-end-to-end/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/10-platform-engineering-end-to-end/COST/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/10-platform-engineering-end-to-end/SCORECARD/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/10-platform-engineering-end-to-end/architecture/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/10-platform-engineering-end-to-end/runbooks/chaos-drill/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/10-platform-engineering-end-to-end/runbooks/incident-response/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/10-platform-engineering-end-to-end/runbooks/onboard-new-service/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/10-platform-engineering-end-to-end/runbooks/rotate-secrets/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/10-platform-engineering-end-to-end/runbooks/upgrade-platform/</loc>
+         <lastmod>2026-04-27</lastmod>
+    </url>
+    <url>
+         <loc>https://example.github.io/Devops-learning/08-projects/10-platform-engineering-end-to-end/tests/qa-plan/</loc>
          <lastmod>2026-04-27</lastmod>
     </url>
     <url>
