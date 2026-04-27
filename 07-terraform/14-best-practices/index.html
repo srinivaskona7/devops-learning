@@ -61,7 +61,7 @@
 </span><span id=__span-4-28><a href=#__codelineno-4-28 id=__codelineno-4-28 name=__codelineno-4-28></a># Ignore CLI configuration files
 </span><span id=__span-4-29><a href=#__codelineno-4-29 id=__codelineno-4-29 name=__codelineno-4-29></a>.terraformrc
 </span><span id=__span-4-30><a href=#__codelineno-4-30 id=__codelineno-4-30 name=__codelineno-4-30></a>terraform.rc
-</span></code></pre></div> <h2 id=mermaid-production-reference-architecture>Mermaid: production reference architecture<a class=headerlink href=#mermaid-production-reference-architecture title="Permanent link">¶</a></h2> <p align=center><a class=glightbox data-desc-position=bottom data-height=auto data-type=image data-width=100% href=../../assets/diagrams/07-terraform-14-best-practices-README-1-e429803b.svg><img alt=diagram loading=lazy src=../../assets/diagrams/07-terraform-14-best-practices-README-1-e429803b.svg></a></p> <details><summary>Mermaid source</summary> <pre class=mermaid><code>flowchart LR
+</span></code></pre></div> <h2 id=mermaid-production-reference-architecture>Mermaid: production reference architecture<a class=headerlink href=#mermaid-production-reference-architecture title="Permanent link">¶</a></h2> <p align=center><a class=glightbox data-desc-position=bottom data-height=auto data-type=image data-width=100% href=../../assets/diagrams/07-terraform-14-best-practices-README-1-e429803b.svg><img alt=diagram src=../../assets/diagrams/07-terraform-14-best-practices-README-1-e429803b.svg></a></p> <details><summary>Mermaid source</summary> <pre class=mermaid><code>flowchart LR
     Dev[Developer] --&gt;|PR| GH[GitHub]
     GH --&gt;|webhook| GA[GitHub Actions]
     GA --&gt;|fmt/validate/tflint/tfsec| QG{Quality<br>Gates}

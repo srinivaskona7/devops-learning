@@ -13,7 +13,7 @@
 </span><span id=__span-0-3><a href=#__codelineno-0-3 id=__codelineno-0-3 name=__codelineno-0-3></a>├── variables.tf   # inputs
 </span><span id=__span-0-4><a href=#__codelineno-0-4 id=__codelineno-0-4 name=__codelineno-0-4></a>├── outputs.tf     # outputs
 </span><span id=__span-0-5><a href=#__codelineno-0-5 id=__codelineno-0-5 name=__codelineno-0-5></a>└── README.md      # how to use it
-</span></code></pre></div> <h2 id=module-composition>Module composition<a class=headerlink href=#module-composition title="Permanent link">¶</a></h2> <p align=center><a class=glightbox data-desc-position=bottom data-height=auto data-type=image data-width=100% href=../../assets/diagrams/07-terraform-07-modules-README-1-7883fc06.svg><img alt=diagram loading=lazy src=../../assets/diagrams/07-terraform-07-modules-README-1-7883fc06.svg></a></p> <details><summary>Mermaid source</summary> <pre class=mermaid><code>flowchart LR
+</span></code></pre></div> <h2 id=module-composition>Module composition<a class=headerlink href=#module-composition title="Permanent link">¶</a></h2> <p align=center><a class=glightbox data-desc-position=bottom data-height=auto data-type=image data-width=100% href=../../assets/diagrams/07-terraform-07-modules-README-1-7883fc06.svg><img alt=diagram src=../../assets/diagrams/07-terraform-07-modules-README-1-7883fc06.svg></a></p> <details><summary>Mermaid source</summary> <pre class=mermaid><code>flowchart LR
     R[Root config] --&gt; N[module.network<br>terraform-aws-modules/vpc/aws]
     R --&gt; K[module.eks<br>terraform-aws-modules/eks/aws]
     R --&gt; A[module.app<br>./modules/app]
