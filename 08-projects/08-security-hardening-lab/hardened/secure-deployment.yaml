@@ -1,0 +1,266 @@
+# hardened/secure-deployment.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Fully hardened workload.
+# Every control here maps directly to a flaw in baseline/insecure-deployment.yaml
+# and to a CIS Kubernetes Benchmark check.
+# ─────────────────────────────────────────────────────────────────────────────
+
+---
+# FIX 1: PSA restricted profile enforced at namespace level
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+  labels:
+    # Reject any pod that violates the restricted profile (CIS 5.2.1)
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+    # Warn + audit give visibility without hard blocking during migration
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/audit: restricted
+
+---
+# FIX 2–3: LimitRange prevents resource starvation even without per-pod limits
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: default-limits
+  namespace: production
+spec:
+  limits:
+    - type: Container
+      default:
+        cpu: "500m"
+        memory: "256Mi"
+      defaultRequest:
+        cpu: "100m"
+        memory: "64Mi"
+      max:
+        cpu: "2"
+        memory: "1Gi"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secure-app
+  namespace: production
+  labels:
+    app: secure-app
+    version: "1.0.0"
+    security.hardened: "true"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: secure-app
+  template:
+    metadata:
+      labels:
+        app: secure-app
+    spec:
+      # FIX 4: Least-privilege ServiceAccount (defined in secure-rbac.yaml)
+      serviceAccountName: secure-sa
+
+      # FIX 5: Do not auto-mount the SA token unless the pod calls the API server
+      automountServiceAccountToken: false
+
+      # FIX 6: Pod-level security context
+      securityContext:
+        # Run all containers as non-root UID 1000
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        # Prevent privilege escalation via setuid/setgid binaries on shared volumes
+        fsGroup: 1000
+        # Seccomp restricts the syscall surface — RuntimeDefault covers >99% of workloads
+        seccompProfile:
+          type: RuntimeDefault
+
+      containers:
+        - name: app
+          # FIX 7: Image pinned by immutable SHA256 digest, not a mutable tag.
+          # Kyverno policy require-image-digest enforces this at admission.
+          image: ghcr.io/org/secure-app@sha256:a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2
+
+          ports:
+            - containerPort: 8080
+              name: http
+
+          # FIX 8: Explicit resource limits (CIS 5.2.11)
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+
+          securityContext:
+            # FIX 9: Non-root user (CIS 5.2.6)
+            runAsNonRoot: true
+            runAsUser: 1000
+
+            # FIX 10: Block privilege escalation (CIS 5.2.5)
+            allowPrivilegeEscalation: false
+
+            # FIX 11: Not privileged (CIS 5.2.1)
+            privileged: false
+
+            # FIX 12: Drop ALL Linux capabilities; add back only what is needed (CIS 5.2.7)
+            capabilities:
+              drop:
+                - ALL
+              # add: ["NET_BIND_SERVICE"]  # uncomment only if binding port < 1024
+
+            # FIX 13: Read-only root filesystem prevents attacker from installing tools
+            readOnlyRootFilesystem: true
+
+            # FIX 14: Seccomp at container level (belt and suspenders with pod level)
+            seccompProfile:
+              type: RuntimeDefault
+
+          # FIX 15: Secrets come from Kubernetes Secrets created by External Secrets Operator
+          # (sourced from Vault — never plaintext in yaml)
+          envFrom:
+            - secretRef:
+                name: app-secrets   # created by ExternalSecret CR → Vault
+
+          # FIX 16: Writable temp directories via emptyDir, not the root FS
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: cache
+              mountPath: /app/cache
+
+          # FIX 17: Liveness and readiness probes (availability + early crash detection)
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+
+      volumes:
+        - name: tmp
+          emptyDir: {}
+        - name: cache
+          emptyDir: {}
+        # FIX 18: No hostPath volumes (CIS 5.2.12)
+        # Kyverno policy restrict-hostpath enforces this at admission
+
+      # FIX 19: Pod anti-affinity for HA (spread across nodes)
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                    app: secure-app
+
+---
+# FIX 20: ClusterIP (not NodePort) — external access via Ingress + TLS only
+apiVersion: v1
+kind: Service
+metadata:
+  name: secure-app
+  namespace: production
+spec:
+  selector:
+    app: secure-app
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      name: http
+
+---
+# FIX 21: NetworkPolicy — default deny all ingress and egress for the namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: production
+spec:
+  podSelector: {}        # applies to ALL pods in namespace
+  policyTypes:
+    - Ingress
+    - Egress
+
+---
+# FIX 22: Explicit allow — frontend → backend HTTP (8080)
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend-to-backend
+  namespace: production
+spec:
+  podSelector:
+    matchLabels:
+      app: secure-app    # this policy applies to the backend pods
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: frontend    # only the frontend pod can reach the backend
+      ports:
+        - protocol: TCP
+          port: 8080
+
+---
+# FIX 23: Explicit allow — backend → DNS (port 53) for service discovery
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-dns-egress
+  namespace: production
+spec:
+  podSelector:
+    matchLabels:
+      app: secure-app
+  policyTypes:
+    - Egress
+  egress:
+    - ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+
+---
+# External Secret — pulls DB credentials from Vault, creates k8s Secret
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: app-secrets
+  namespace: production
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: vault-backend
+    kind: SecretStore
+  target:
+    name: app-secrets
+    creationPolicy: Owner
+  data:
+    - secretKey: DB_PASSWORD
+      remoteRef:
+        key: secret/production/app
+        property: db_password
+    - secretKey: API_SECRET_KEY
+      remoteRef:
+        key: secret/production/app
+        property: api_secret_key

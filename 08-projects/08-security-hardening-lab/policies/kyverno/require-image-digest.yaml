@@ -1,0 +1,88 @@
+# policies/kyverno/require-image-digest.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Blocks any pod that references an image by mutable tag rather than immutable digest.
+# Maps to: SLSA L2 — artifact integrity; CIS 5.5.1
+# STRIDE:  Spoofing (S), Tampering (T)
+# ─────────────────────────────────────────────────────────────────────────────
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-image-digest
+  annotations:
+    policies.kyverno.io/title: Require Image Digest
+    policies.kyverno.io/category: Supply Chain Security
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/subject: Pod, Container
+    policies.kyverno.io/description: >-
+      Container images referenced by mutable tags (e.g. :latest, :v1.2) can be
+      silently replaced in the registry. An attacker who controls the registry
+      (or MITMs the pull) can substitute a malicious image without changing the
+      pod spec. Digest references (sha256:...) are cryptographically bound to the
+      exact image layers and cannot be forged. This policy requires all images to
+      include a sha256 digest, either as the sole reference or appended with @.
+    cis-benchmark: "5.5.1"
+    slsa-requirement: "L2 — Artifact integrity"
+spec:
+  validationFailureAction: Enforce
+  background: true
+
+  rules:
+    # ── Rule 1: Application containers ───────────────────────────────────────
+    - name: require-digest-containers
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          Image must be referenced by digest (@sha256:...).
+          Mutable tags like :latest or :v1.2 are not allowed.
+          Example: ghcr.io/org/app@sha256:a1b2c3...
+          Violates SLSA L2 and CIS 5.5.1.
+        foreach:
+          - list: "request.object.spec.containers"
+            pattern:
+              image: "*@sha256:*"
+
+    # ── Rule 2: Init containers ───────────────────────────────────────────────
+    - name: require-digest-init-containers
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      preconditions:
+        any:
+          - key: "{{ request.object.spec.initContainers[] | length(@) }}"
+            operator: GreaterThanOrEquals
+            value: 1
+      validate:
+        message: >-
+          Init container image must be referenced by digest (@sha256:...).
+          Violates SLSA L2 and CIS 5.5.1.
+        foreach:
+          - list: "request.object.spec.initContainers"
+            pattern:
+              image: "*@sha256:*"
+
+    # ── Rule 3: Ephemeral containers (kubectl debug) ──────────────────────────
+    # Note: ephemeral containers are allowed in debug scenarios but still
+    # should reference digests to prevent supply chain substitution
+    - name: require-digest-ephemeral-containers
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      preconditions:
+        any:
+          - key: "{{ request.object.spec.ephemeralContainers[] | length(@) }}"
+            operator: GreaterThanOrEquals
+            value: 1
+      validate:
+        message: >-
+          Ephemeral container image must be referenced by digest (@sha256:...).
+          Violates SLSA L2 and CIS 5.5.1.
+        foreach:
+          - list: "request.object.spec.ephemeralContainers"
+            pattern:
+              image: "*@sha256:*"

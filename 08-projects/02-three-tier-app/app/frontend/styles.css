@@ -1,0 +1,318 @@
+/* ------------------------------------------------------------------
+   URL Shortener — frontend/styles.css
+   Clean, minimal, no frameworks.
+   ------------------------------------------------------------------ */
+
+/* ---- Reset + tokens ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0f1117;
+  --surface:   #1a1d27;
+  --border:    #2a2d3e;
+  --accent:    #6366f1;
+  --accent-h:  #818cf8;
+  --text:      #e2e8f0;
+  --muted:     #64748b;
+  --danger:    #f87171;
+  --success:   #34d399;
+  --radius:    10px;
+  --font:      'Inter', system-ui, -apple-system, sans-serif;
+  --mono:      'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Header ---- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.badge {
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 0.2em 0.75em;
+}
+
+/* ---- Main ---- */
+main {
+  flex: 1;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  width: 100%;
+}
+
+/* ---- Hero ---- */
+.hero {
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent-h);
+}
+
+.hero .sub {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* ---- Cards ---- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- Form ---- */
+.form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.input-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.input-row input {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.95rem;
+  padding: 0.65rem 0.9rem;
+  outline: none;
+  transition: border-color 0.15s;
+  font-family: var(--mono);
+}
+
+.input-row input:focus {
+  border-color: var(--accent);
+}
+
+.input-row input::placeholder {
+  color: var(--muted);
+}
+
+button[type="submit"],
+.refresh-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+
+button[type="submit"]:hover,
+.refresh-btn:hover {
+  background: var(--accent-h);
+}
+
+button[type="submit"]:active,
+.refresh-btn:active {
+  transform: scale(0.97);
+}
+
+/* ---- Result ---- */
+.result {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+}
+
+.result.hidden { display: none; }
+
+.result-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.result a {
+  flex: 1;
+  color: var(--accent-h);
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.result a:hover { text-decoration: underline; }
+
+.copy-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.2em 0.5em;
+  transition: border-color 0.15s;
+}
+
+.copy-btn:hover { border-color: var(--accent); }
+
+/* ---- Error ---- */
+.error {
+  margin-top: 0.75rem;
+  color: var(--danger);
+  font-size: 0.88rem;
+}
+
+.error.hidden { display: none; }
+
+/* ---- Links table ---- */
+.links-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.links-header h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.refresh-btn {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.8rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+tbody tr:hover { background: rgba(99, 102, 241, 0.05); }
+
+td a {
+  color: var(--accent-h);
+  font-family: var(--mono);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+td a:hover { text-decoration: underline; }
+
+.target-cell {
+  color: var(--muted);
+  font-size: 0.82rem;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hits {
+  font-family: var(--mono);
+  color: var(--success);
+  font-size: 0.85rem;
+}
+
+.ts {
+  color: var(--muted);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 1.5rem;
+}
+
+/* ---- Footer ---- */
+footer {
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 520px) {
+  .input-row { flex-direction: column; }
+  .target-cell { max-width: 140px; }
+  .ts { display: none; }
+}

@@ -1,0 +1,96 @@
+# docker-compose.yml — URL Shortener three-tier stack
+#
+# Services:
+#   db        postgres:16-alpine        — data tier
+#   api       python:3.12-slim (custom) — logic tier
+#   nginx     nginx:1.27-alpine         — presentation / reverse-proxy tier
+#   adminer   adminer:4                 — optional DB GUI (not published to host)
+#
+# Run:
+#   cp .env.example .env && make up
+
+services:
+
+  # ── Data tier ─────────────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    container_name: shortener-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER:     shortener
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB:       shortener
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - shortener-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shortener -d shortener"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+  # ── Logic tier ────────────────────────────────────────────────────────────
+  api:
+    build:
+      context: ../app/api
+      dockerfile: Dockerfile
+    container_name: shortener-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://shortener:${POSTGRES_PASSWORD}@db:5432/shortener
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - shortener-net
+    # api intentionally does NOT publish a port to the host.
+    # all external traffic enters through nginx.
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:8000/healthz')\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # ── Presentation tier ─────────────────────────────────────────────────────
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: shortener-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ../app/frontend:/usr/share/nginx/html:ro
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - shortener-net
+
+  # ── Optional DB GUI ───────────────────────────────────────────────────────
+  adminer:
+    image: adminer:4
+    container_name: shortener-adminer
+    restart: unless-stopped
+    # NOTE: not published to host — access via: docker exec shortener-adminer ...
+    # or add "ports: - '8081:8080'" to .env for local dev convenience.
+    depends_on:
+      - db
+    networks:
+      - shortener-net
+
+# ── Named volumes ──────────────────────────────────────────────────────────
+volumes:
+  pgdata:
+    name: shortener-pgdata
+
+# ── Networks ───────────────────────────────────────────────────────────────
+networks:
+  shortener-net:
+    name: shortener-net
+    driver: bridge

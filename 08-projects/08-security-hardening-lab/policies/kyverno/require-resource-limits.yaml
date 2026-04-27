@@ -1,0 +1,77 @@
+# policies/kyverno/require-resource-limits.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Blocks any container that does not declare explicit CPU and memory limits.
+# Maps to: CIS Kubernetes Benchmark 5.2.11
+# STRIDE:  Denial of Service (D)
+# ─────────────────────────────────────────────────────────────────────────────
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-resource-limits
+  annotations:
+    policies.kyverno.io/title: Require CPU and Memory Limits
+    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Pod, Container
+    policies.kyverno.io/description: >-
+      Containers without resource limits can consume all CPU or memory on a node,
+      causing a Denial of Service for all other workloads on that node.
+      This policy requires every container to set resources.limits.cpu and
+      resources.limits.memory.
+    cis-benchmark: "5.2.11"
+    slsa-level: "L2"
+spec:
+  validationFailureAction: Enforce
+  background: true
+
+  rules:
+    # ── Rule 1: Application containers ───────────────────────────────────────
+    - name: check-container-resource-limits
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          Every container must specify resources.limits.cpu and
+          resources.limits.memory. Missing limits allow node resource exhaustion.
+          Violates CIS 5.2.11.
+        foreach:
+          - list: "request.object.spec.containers"
+            pattern:
+              resources:
+                limits:
+                  # Both must be present and non-empty
+                  memory: "?*"
+                  cpu: "?*"
+                requests:
+                  # Requests must also be set (prevents OOMKill from 0-request pods)
+                  memory: "?*"
+                  cpu: "?*"
+
+    # ── Rule 2: Init containers ───────────────────────────────────────────────
+    - name: check-init-container-resource-limits
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      preconditions:
+        any:
+          - key: "{{ request.object.spec.initContainers[] | length(@) }}"
+            operator: GreaterThanOrEquals
+            value: 1
+      validate:
+        message: >-
+          Every init container must specify resources.limits.cpu and
+          resources.limits.memory. Violates CIS 5.2.11.
+        foreach:
+          - list: "request.object.spec.initContainers"
+            pattern:
+              resources:
+                limits:
+                  memory: "?*"
+                  cpu: "?*"
+                requests:
+                  memory: "?*"
+                  cpu: "?*"

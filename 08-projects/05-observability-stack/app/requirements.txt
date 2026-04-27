@@ -1,0 +1,17 @@
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+prometheus-client==0.20.0
+
+# OpenTelemetry SDK
+opentelemetry-sdk==1.24.0
+opentelemetry-api==1.24.0
+
+# OTel auto-instrumentation
+opentelemetry-instrumentation-fastapi==0.45b0
+opentelemetry-instrumentation-logging==0.45b0
+
+# OTLP exporters (gRPC)
+opentelemetry-exporter-otlp-proto-grpc==1.24.0
+
+# Semantic conventions
+opentelemetry-semantic-conventions==0.45b0

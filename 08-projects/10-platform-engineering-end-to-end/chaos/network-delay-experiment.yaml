@@ -1,0 +1,82 @@
+---
+# NetworkChaos — inject network delay
+# Simulates: inter-datacenter latency, network congestion, slow downstream
+# Validates: timeout handling, retry logic, circuit breaker behavior,
+#            p95 latency stays within SLO despite network degradation
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: payment-service-network-delay
+  namespace: chaos-mesh
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/experiment-type: network-delay
+    platform.vantapay.io/target: payment-service
+spec:
+  action: delay
+  mode: all                       # apply to all matched pods simultaneously
+  selector:
+    namespaces:
+      - payment
+    labelSelectors:
+      app: payment-service
+  delay:
+    latency: "100ms"              # add 100ms to every packet
+    correlation: "25"             # 25% correlation between consecutive delays
+    jitter: "20ms"                # ±20ms jitter for realism
+  direction: to                   # delay inbound traffic (simulates slow client/upstream)
+  duration: "300s"                # run for 5 minutes
+  scheduler:
+    cron: "0 3 * * 2"            # every Tuesday 03:00 UTC
+---
+# NetworkChaos — packet loss (simulates unreliable network segment)
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: payment-service-packet-loss
+  namespace: chaos-mesh
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/experiment-type: packet-loss
+    platform.vantapay.io/target: payment-service
+spec:
+  action: loss
+  mode: all
+  selector:
+    namespaces:
+      - payment
+    labelSelectors:
+      app: payment-service
+  loss:
+    loss: "5"                     # 5% packet loss
+    correlation: "10"             # 10% correlation
+  direction: to
+  duration: "120s"
+  scheduler:
+    cron: "0 3 * * 3"            # every Wednesday 03:00 UTC
+---
+# NetworkChaos — bandwidth limit (simulates constrained link)
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: payment-service-bandwidth
+  namespace: chaos-mesh
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/experiment-type: bandwidth
+    platform.vantapay.io/target: payment-service
+spec:
+  action: bandwidth
+  mode: all
+  selector:
+    namespaces:
+      - payment
+    labelSelectors:
+      app: payment-service
+  bandwidth:
+    rate: "1mbps"                 # throttle to 1Mbps (simulates congested network)
+    limit: 100
+    buffer: 10000
+  direction: to
+  duration: "60s"
+  # No scheduler — run on demand only (bandwidth experiments are destructive)

@@ -1,0 +1,180 @@
+---
+# Gold SLO tier — 99.9% availability, p95 < 150ms
+# Appropriate for: payment processing, authentication, fraud detection —
+# any service where degradation directly impacts revenue or customer trust
+#
+# Gold SLO implies:
+# - Error budget: 43.8 min/month
+# - Canary gate: error rate < 0.1%, p95 < 150ms
+# - Burn rate alerts: multi-window (1h + 6h) multi-burn-rate
+# - On-call: PagerDuty immediate escalation
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: slo-gold
+  namespace: monitoring
+  labels:
+    monitoring: platform
+    platform.vantapay.io/slo-tier: gold
+spec:
+  groups:
+    - name: slo.gold.recording
+      interval: 30s
+      rules:
+        # Short-window availability (used for canary gating)
+        - record: slo:availability:ratio_5m
+          labels:
+            tier: gold
+          expr: |
+            1 - (
+              rate(http_requests_total{slo_tier="gold", status_code=~"5.."}[5m])
+              /
+              rate(http_requests_total{slo_tier="gold"}[5m])
+            )
+
+        # Long-window availability (30 days — SLO reporting)
+        - record: slo:availability:ratio_30d
+          labels:
+            tier: gold
+          expr: |
+            avg_over_time(
+              slo:availability:ratio_5m{tier="gold"}[30d:5m]
+            )
+
+        # Error budget remaining (0–1 ratio)
+        - record: slo:error_budget_remaining:ratio
+          labels:
+            tier: gold
+          expr: |
+            1 - (
+              (1 - slo:availability:ratio_30d{tier="gold"})
+              / (1 - 0.999)
+            )
+
+        # Error budget consumed (absolute minutes this month)
+        - record: slo:error_budget_consumed_minutes:30d
+          labels:
+            tier: gold
+          expr: |
+            (1 - slo:error_budget_remaining:ratio{tier="gold"}) * 43.8
+
+        # p95 latency (pre-computed for canary gate efficiency)
+        - record: slo:p95_latency_seconds:5m
+          labels:
+            tier: gold
+          expr: |
+            histogram_quantile(0.95,
+              sum(rate(http_request_duration_seconds_bucket{slo_tier="gold"}[5m])) by (le, job, namespace)
+            )
+
+        # Canary gate recording rule — boolean: 1=pass, 0=fail
+        # Argo Rollouts AnalysisTemplate queries this; value must be 1 for promotion
+        - record: slo:canary_gate:gold
+          expr: |
+            (
+              (
+                rate(http_requests_total{slo_tier="gold", status_code=~"5.."}[5m])
+                /
+                rate(http_requests_total{slo_tier="gold"}[5m])
+              ) < 0.001
+            ) * (
+              histogram_quantile(0.95,
+                sum(rate(http_request_duration_seconds_bucket{slo_tier="gold"}[5m])) by (le, job)
+              ) < 0.150
+            )
+
+    - name: slo.gold.alerts
+      rules:
+        # PAGE IMMEDIATELY: 14.4× burn rate in 1h → 5h until budget exhaustion
+        - alert: SLOGoldFastBurn
+          expr: |
+            (
+              rate(http_requests_total{slo_tier="gold", status_code=~"5.."}[1h])
+              /
+              rate(http_requests_total{slo_tier="gold"}[1h])
+            ) > 14.4 * (1 - 0.999)
+          for: 2m
+          labels:
+            severity: critical
+            tier: gold
+            pagerduty_policy: immediate
+          annotations:
+            summary: "CRITICAL: {{ $labels.job }} gold SLO fast burn"
+            description: |
+              Error rate: {{ $value | humanizePercentage }}
+              Gold target: 0.1% (99.9% availability)
+              At this burn rate: error budget exhausted in < 5 hours.
+              Action: Immediately investigate and consider rolling back.
+            runbook_url: "https://runbooks.vantapay.io/slo-gold-fast-burn"
+            dashboard_url: "https://grafana.vantapay.io/d/slo-gold"
+
+        # PAGE: 14.4× over 5m (ultra-fast burn — spike detection)
+        - alert: SLOGoldCatastrophicFailure
+          expr: |
+            (
+              rate(http_requests_total{slo_tier="gold", status_code=~"5.."}[5m])
+              /
+              rate(http_requests_total{slo_tier="gold"}[5m])
+            ) > 0.10
+          for: 1m
+          labels:
+            severity: critical
+            tier: gold
+            pagerduty_policy: immediate
+          annotations:
+            summary: "CATASTROPHIC: {{ $labels.job }} error rate > 10%"
+            description: "Error rate is {{ $value | humanizePercentage }}. Immediate rollback recommended. Do not wait for confirmation."
+            runbook_url: "https://runbooks.vantapay.io/incident-response"
+
+        # WARNING: 6× burn rate over 6h → 12h until exhaustion
+        - alert: SLOGoldSlowBurn
+          expr: |
+            (
+              rate(http_requests_total{slo_tier="gold", status_code=~"5.."}[6h])
+              /
+              rate(http_requests_total{slo_tier="gold"}[6h])
+            ) > 6 * (1 - 0.999)
+          for: 15m
+          labels:
+            severity: warning
+            tier: gold
+          annotations:
+            summary: "{{ $labels.job }} gold SLO slow burn"
+            description: "Sustained elevated error rate. Budget exhaustion in ~12h. Investigate root cause."
+
+        # p95 latency breach (gold: 150ms)
+        - alert: SLOGoldLatencyBreach
+          expr: |
+            slo:p95_latency_seconds:5m{tier="gold"} > 0.150
+          for: 5m
+          labels:
+            severity: critical
+            tier: gold
+          annotations:
+            summary: "{{ $labels.job }} p95 {{ $value | humanizeDuration }} exceeds gold SLO (150ms)"
+            description: "p95 latency has exceeded 150ms for 5 minutes. This is a gold SLO breach."
+
+        # Error budget < 10% remaining — advance warning
+        - alert: SLOGoldErrorBudgetLow
+          expr: |
+            slo:error_budget_remaining:ratio{tier="gold"} < 0.10
+          for: 30m
+          labels:
+            severity: warning
+            tier: gold
+          annotations:
+            summary: "{{ $labels.job }} gold error budget < 10% remaining"
+            description: "Only {{ $value | humanizePercentage }} of the 30-day error budget remains. No new risky changes this sprint."
+
+        # Error budget exhausted — escalate
+        - alert: SLOGoldErrorBudgetExhausted
+          expr: |
+            slo:error_budget_remaining:ratio{tier="gold"} <= 0
+          for: 5m
+          labels:
+            severity: critical
+            tier: gold
+          annotations:
+            summary: "{{ $labels.job }} gold error budget EXHAUSTED"
+            description: "The 30-day error budget is fully consumed. Freeze non-critical changes immediately. Follow the error budget freeze runbook."
+            runbook_url: "https://runbooks.vantapay.io/error-budget-freeze"

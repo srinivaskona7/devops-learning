@@ -1,0 +1,45 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Istio VirtualService — traffic splitting for canary/blue-green
+#
+# Argo Rollouts updates the `weight` fields automatically as each step executes.
+# You never edit this file manually during a deploy.
+# ═══════════════════════════════════════════════════════════════════════════════
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: demo-app-vs
+  namespace: progressive
+  labels:
+    app: demo-app
+spec:
+  hosts:
+    - demo-app
+    - demo-app.progressive.svc.cluster.local
+  gateways:
+    - istio-system/ingressgateway
+    - mesh   # also applies to in-cluster east-west traffic
+  http:
+    # ── Named route "primary" — referenced by rollout-canary.yaml ──────────
+    - name: primary
+      route:
+        # stable receives N% traffic; canary receives (100-N)%.
+        # Argo Rollouts patches these weights at each step.
+        - destination:
+            host: demo-app-stable
+            port:
+              number: 8080
+          weight: 100   # initial: 100% stable
+        - destination:
+            host: demo-app-canary
+            port:
+              number: 8080
+          weight: 0     # initial: 0% canary
+
+      # Retry policy: retry on 5xx exactly once with a 1s timeout.
+      retries:
+        attempts:        1
+        perTryTimeout:   1s
+        retryOn:         "5xx,reset,connect-failure,retriable-4xx"
+
+      # Timeout for the entire request.
+      timeout: 5s

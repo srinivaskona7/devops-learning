@@ -1,0 +1,84 @@
+---
+# StressChaos — CPU stress
+# Simulates: CPU-intensive traffic spike, runaway goroutine, GC pause storm
+# Validates: HPA scales out in time, p95 stays within SLO, throttling behavior
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  name: payment-service-cpu-stress
+  namespace: chaos-mesh
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/experiment-type: cpu-stress
+    platform.vantapay.io/target: payment-service
+spec:
+  mode: one                       # stress one pod at a time
+  selector:
+    namespaces:
+      - payment
+    labelSelectors:
+      app: payment-service
+  stressors:
+    cpu:
+      workers: 2                  # 2 worker goroutines burning CPU
+      load: 80                    # target 80% CPU utilization
+      options:
+        - "-c 2"                  # stress-ng: 2 CPU stressors
+        - "--cpu-method all"      # cycle through all CPU stress methods
+  duration: "300s"                # 5 minutes of stress
+  scheduler:
+    cron: "0 3 * * 4"            # every Thursday 03:00 UTC
+---
+# StressChaos — memory stress
+# Simulates: memory leak, cache thrashing, OOM-adjacent pressure
+# Validates: OOMKilled → restart → recovery; HPA memory-based scaling
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  name: payment-service-memory-stress
+  namespace: chaos-mesh
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/experiment-type: memory-stress
+    platform.vantapay.io/target: payment-service
+spec:
+  mode: one
+  selector:
+    namespaces:
+      - payment
+    labelSelectors:
+      app: payment-service
+  stressors:
+    memory:
+      workers: 4
+      size: "256MB"               # allocate 256MB of memory per worker
+      options:
+        - "--vm-hang 0"           # keep memory allocated (don't release)
+  duration: "120s"
+  # No scheduler — run manually; OOM experiments need careful observation
+---
+# IOChaos — disk I/O stress (for services with local state)
+# Simulates: slow disk, high I/O wait, log rotation pressure
+apiVersion: chaos-mesh.org/v1alpha1
+kind: IOChaos
+metadata:
+  name: payment-service-io-delay
+  namespace: chaos-mesh
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/experiment-type: io-delay
+    platform.vantapay.io/target: payment-service
+spec:
+  action: latency
+  mode: one
+  selector:
+    namespaces:
+      - payment
+    labelSelectors:
+      app: payment-service
+  volumePath: /tmp               # inject delay on /tmp writes (log/temp files)
+  path: /tmp/*
+  delay: "50ms"                  # add 50ms to every I/O operation
+  percent: 50                    # affect 50% of I/O calls
+  duration: "120s"
+  # No scheduler — run on demand

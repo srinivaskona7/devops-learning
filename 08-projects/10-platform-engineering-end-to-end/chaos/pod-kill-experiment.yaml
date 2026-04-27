@@ -1,0 +1,58 @@
+---
+# PodChaos — kill one random pod in the payment namespace
+# Validates: Kubernetes rescheduling, HPA, readiness probe wiring,
+#            zero dropped requests during pod kill under load
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: payment-service-pod-kill
+  namespace: chaos-mesh
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/experiment-type: pod-kill
+    platform.vantapay.io/target: payment-service
+spec:
+  action: pod-kill
+  mode: one                     # kill exactly one pod at a time
+  selector:
+    namespaces:
+      - payment
+    labelSelectors:
+      app: payment-service
+      # Only kill canary pods if you want to test canary resilience:
+      # rollouts-pod-template-hash: canary
+  gracePeriod: 0                # immediate kill, not graceful shutdown
+
+  # Scheduler: run this experiment daily at 03:00 UTC
+  # Remove scheduler for on-demand (manual) experiments
+  scheduler:
+    cron: "@daily"              # equivalent to "0 3 * * *" UTC
+
+  # Duration: the experiment is active for 30 seconds
+  # After 30 seconds, chaos-mesh stops generating new kills
+  duration: "30s"
+---
+# PodChaos — kill-failure (container failure, not pod eviction)
+# Tests container restart policy and liveness probe behavior
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: payment-service-container-kill
+  namespace: chaos-mesh
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/experiment-type: container-kill
+    platform.vantapay.io/target: payment-service
+spec:
+  action: container-kill
+  mode: one
+  selector:
+    namespaces:
+      - payment
+    labelSelectors:
+      app: payment-service
+  containerNames:
+    - payment-service             # target only the app container, not istio-proxy
+  duration: "60s"
+  scheduler:
+    cron: "0 4 * * 1"           # every Monday 04:00 UTC

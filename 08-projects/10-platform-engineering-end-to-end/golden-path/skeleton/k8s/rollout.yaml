@@ -1,0 +1,274 @@
+---
+# Argo Rollouts Rollout — replaces Deployment for canary support
+# The platform standard: all services use Rollouts, never plain Deployments
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: ${{values.name}}
+  namespace: ${{values.team}}
+  labels:
+    app: ${{values.name}}
+    version: "0.0.1"
+    team: ${{values.team}}
+    platform.vantapay.io/slo-tier: ${{values.slo_tier}}
+  annotations:
+    rollouts.argoproj.io/revision: "1"
+spec:
+  replicas: ${{values.replicas}}
+  selector:
+    matchLabels:
+      app: ${{values.name}}
+  template:
+    metadata:
+      labels:
+        app: ${{values.name}}
+        version: "0.0.1"
+        team: ${{values.team}}
+        slo_tier: ${{values.slo_tier}}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "${{values.port}}"
+        prometheus.io/path: "/metrics"
+        # Force pod restart when secret changes (ESO updates this hash)
+        secret-hash: "placeholder"
+    spec:
+      # Platform security baseline (required by Kyverno policies)
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        fsGroup: 65532
+        seccompProfile:
+          type: RuntimeDefault
+
+      serviceAccountName: ${{values.name}}
+
+      containers:
+        - name: ${{values.name}}
+          image: ghcr.io/vantapay/${{values.name}}:0.0.1
+          imagePullPolicy: Always
+
+          ports:
+            - name: http
+              containerPort: ${{values.port}}
+              protocol: TCP
+            - name: metrics
+              containerPort: ${{values.port}}
+              protocol: TCP
+
+          env:
+            - name: SERVICE_NAME
+              value: "${{values.name}}"
+            - name: SLO_TIER
+              value: "${{values.slo_tier}}"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://otel-collector.monitoring.svc.cluster.local:4317"
+            - name: PORT
+              value: "${{values.port}}"
+
+          # Secrets injected from Vault via External Secrets
+          envFrom:
+            - secretRef:
+                name: ${{values.name}}-secrets
+
+          resources:
+            requests:
+              cpu: ${{values.cpu_request}}
+              memory: ${{values.memory_request}}
+            limits:
+              cpu: ${{values.cpu_limit}}
+              memory: ${{values.memory_limit}}
+
+          # Platform-required probes (enforced by Kyverno)
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 5
+
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            failureThreshold: 3
+            timeoutSeconds: 5
+
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            failureThreshold: 30
+            periodSeconds: 10
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+
+      volumes:
+        - name: tmp
+          emptyDir: {}
+
+      terminationGracePeriodSeconds: 30
+
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: ${{values.name}}
+
+  strategy:
+    canary:
+      # Istio-based traffic management
+      canaryService: ${{values.name}}-canary
+      stableService: ${{values.name}}-stable
+      trafficRouting:
+        istio:
+          virtualService:
+            name: ${{values.name}}
+            routes:
+              - primary
+          destinationRule:
+            name: ${{values.name}}
+            canarySubsetName: canary
+            stableSubsetName: stable
+
+      # SLO gate — AnalysisTemplate defines the Prometheus query
+      analysis:
+        startingStep: 1           # start analysis from step 1 (10% weight)
+        templates:
+          - templateName: slo-${{values.slo_tier}}-gate
+        args:
+          - name: service
+            value: ${{values.name}}
+          - name: namespace
+            value: ${{values.team}}
+
+      steps:
+        - setWeight: 10
+        - pause: {duration: 5m}   # SLO analysis runs during pause
+        - setWeight: 25
+        - pause: {duration: 5m}
+        - setWeight: 50
+        - pause: {duration: 5m}
+        - setWeight: 100
+
+      maxSurge: "25%"
+      maxUnavailable: 0
+
+  revisionHistoryLimit: 5
+---
+# Services — stable and canary (Argo Rollouts manages these)
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${{values.name}}-stable
+  namespace: ${{values.team}}
+  labels:
+    app: ${{values.name}}
+    service-type: stable
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 9090
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
+  selector:
+    app: ${{values.name}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${{values.name}}-canary
+  namespace: ${{values.team}}
+  labels:
+    app: ${{values.name}}
+    service-type: canary
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 9090
+      targetPort: metrics
+      protocol: TCP
+      name: metrics
+  selector:
+    app: ${{values.name}}
+---
+# HPA — autoscale based on CPU (and optionally custom metrics)
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ${{values.name}}
+  namespace: ${{values.team}}
+  labels:
+    app: ${{values.name}}
+    team: ${{values.team}}
+spec:
+  scaleTargetRef:
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout
+    name: ${{values.name}}
+  minReplicas: ${{values.replicas}}
+  maxReplicas: 20
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 75
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 30
+      policies:
+        - type: Pods
+          value: 2
+          periodSeconds: 30
+    scaleDown:
+      stabilizationWindowSeconds: 300   # 5 minute cooldown before scale-down
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 60
+---
+# ServiceAccount — follows least-privilege principle
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ${{values.name}}
+  namespace: ${{values.team}}
+  labels:
+    app: ${{values.name}}
+    team: ${{values.team}}
+  annotations:
+    # If using IAM roles for service accounts (IRSA on EKS):
+    # eks.amazonaws.com/role-arn: arn:aws:iam::123456789:role/${{values.name}}
+    platform.vantapay.io/managed-by: golden-path

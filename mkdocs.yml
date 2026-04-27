@@ -124,16 +124,54 @@ markdown_extensions:
 
 nav:
   - Home: README.md
-  - 01 Linux: 01-linux/README.md
-  - 02 Docker: 02-docker/README.md
-  - 03 Kubernetes:
-      - Overview: 03-kubernetes/README.md
-      - Core: 03-kubernetes/01-core/README.md
-      - Strategies: 03-kubernetes/02-strategies/README.md
-      - Advanced: 03-kubernetes/03-advanced/README.md
-  - 04 Helm: 04-helm/README.md
-  - 05 Monitoring: 05-monitoring/README.md
-  - 06 Security: 06-security/README.md
-  - 07 Terraform: 07-terraform/README.md
-  - 08 Projects: 08-projects/README.md
+
+  - Foundations:
+      - 01 Linux:
+          - Overview: 01-linux/README.md
+          - Commands: 01-linux/commands.md
+      - 02 Docker:
+          - Overview: 02-docker/README.md
+          - Commands: 02-docker/commands.md
+
+  - Kubernetes:
+      - 03 Core:
+          - Overview: 03-kubernetes/01-core/README.md
+          - Commands: 03-kubernetes/01-core/commands.md
+      - 03 Strategies:
+          - Overview: 03-kubernetes/02-strategies/README.md
+          - Commands: 03-kubernetes/02-strategies/commands.md
+      - 03 Advanced:
+          - Overview: 03-kubernetes/03-advanced/README.md
+          - Commands: 03-kubernetes/03-advanced/commands.md
+
+  - Platform:
+      - 04 Helm:
+          - Overview: 04-helm/README.md
+          - Commands: 04-helm/commands.md
+      - 05 Monitoring:
+          - Overview: 05-monitoring/README.md
+          - Commands: 05-monitoring/commands.md
+      - 06 Security:
+          - Overview: 06-security/README.md
+          - Commands: 06-security/commands.md
+      - 07 Terraform:
+          - Overview: 07-terraform/README.md
+          - Commands: 07-terraform/commands.md
+
+  - Projects:
+      - Overview: 08-projects/README.md
+      - P01 · Hello World Docker: 08-projects/01-hello-world-end-to-end/README.md
+      - P02 · Three-Tier App: 08-projects/02-three-tier-app/README.md
+      - P03 · GitOps with Argo CD: 08-projects/03-gitops-with-argocd/README.md
+      - P04 · CI/CD Pipeline: 08-projects/04-ci-cd-pipeline/README.md
+      - P05 · Observability Stack: 08-projects/05-observability-stack/README.md
+      - P06 · Prod EKS on AWS: 08-projects/06-prod-grade-cluster-on-aws/README.md
+      - P07 · Disaster Recovery: 08-projects/07-disaster-recovery/README.md
+      - P08 · Security Hardening: 08-projects/08-security-hardening-lab/README.md
+      - P09 · Zero-Downtime Delivery: 08-projects/09-zero-downtime-progressive-delivery/README.md
+      - P10 · Platform Engineering: 08-projects/10-platform-engineering-end-to-end/README.md
+
+  - Interview Prep:
+      - Overview: 09-interview-prep/README.md
+
   - Glossary: docs/glossary.md

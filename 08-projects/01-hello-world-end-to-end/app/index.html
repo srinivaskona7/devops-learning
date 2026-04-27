@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>DevOps Learning Lab — Hello World on Docker</title>
+  <meta name="description" content="A production-shaped static site served by Nginx inside a hardened Docker container. Multi-stage build · non-root · read-only rootfs." />
+
+  <!-- Preconnect to Google Fonts CDN for fast font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;600&display=swap"
+  />
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <!-- Inline SVG favicon — no extra file needed -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%23f472b6'/></linearGradient></defs><rect width='64' height='64' rx='14' fill='url(%23g)'/><text x='50%' y='58%' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='38' fill='white'>h</text></svg>" />
+</head>
+<body>
+
+  <!-- Animated aurora gradient — purely decorative -->
+  <div class="aurora" aria-hidden="true"></div>
+
+  <main class="shell">
+
+    <!-- ── Hero ─────────────────────────────────────────── -->
+    <header class="hero">
+      <p class="eyebrow">
+        <span class="dot" aria-hidden="true"></span>
+        container live · port 8080 · nginx:alpine
+      </p>
+
+      <h1>
+        Ship your <em>first container</em>.<br />
+        Look — it actually works.
+      </h1>
+
+      <p class="lede">
+        You just built a multi-stage Docker image, started it as a non-root user
+        on a read-only filesystem, and served this page through a hardened Nginx.
+        That's the full production contract — in one coffee break.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn primary" href="https://github.com/devops-learning-lab" target="_blank" rel="noopener noreferrer">
+          Explore the repo
+        </a>
+        <a class="btn ghost" href="#modules">Browse all modules</a>
+      </div>
+    </header>
+
+    <!-- ── Stats row ─────────────────────────────────────── -->
+    <section class="facts" aria-label="Key metrics">
+      <article class="fact">
+        <div class="fact-num">&lt;&thinsp;10<span>MB</span></div>
+        <div class="fact-label">final image size</div>
+      </article>
+      <article class="fact">
+        <div class="fact-num">101<span>UID</span></div>
+        <div class="fact-label">non-root worker</div>
+      </article>
+      <article class="fact">
+        <div class="fact-num">0<span>writes</span></div>
+        <div class="fact-label">read-only rootfs</div>
+      </article>
+      <article class="fact">
+        <div class="fact-num">&lt;&thinsp;50<span>ms</span></div>
+        <div class="fact-label">p95 latency target</div>
+      </article>
+    </section>
+
+    <!-- ── Stack strip ────────────────────────────────────── -->
+    <section class="logos" aria-label="Technologies used in this project">
+      <p class="logos-caption">Built with</p>
+      <ul class="logo-strip">
+        <li>
+          <!-- Docker whale -->
+          <svg viewBox="0 0 24 24" aria-label="Docker" role="img">
+            <path fill="currentColor" d="M13.98 11.09h2.12v2.12h-2.12zm-2.69 0h2.12v2.12h-2.12zm-2.68 0h2.12v2.12H8.61zm-2.68 0h2.12v2.12H5.93zm2.68-2.69h2.12v2.12H8.61zm2.68 0h2.12v2.12h-2.12zm2.69 0h2.12v2.12h-2.12zm-2.69-2.69h2.12v2.12h-2.12zm10.73 4.88c-.07-.05-.66-.5-1.92-.5-.33 0-.68.03-1.02.09-.25-1.71-1.66-2.54-1.72-2.58l-.34-.2-.23.32c-.29.45-.5.96-.62 1.49-.24 1-.09 1.94.4 2.74-.59.33-1.55.41-1.75.41H1.53c-.42 0-.76.34-.76.76 0 1.42.23 2.84.69 4.18.53 1.48 1.31 2.57 2.33 3.24 1.14.74 3 1.16 5.1 1.16.95 0 1.9-.08 2.84-.26 1.3-.24 2.55-.69 3.7-1.33 0 0 1.9-.05 1.9-.05 0 0 .42-.49.42-.49.42-.49 1.15-1.4 1.93-2.85.22-.4.44-.84.64-1.29.1-.24.2-.48.28-.73.88-.03 1.6-.28 2.13-.74.62-.53.78-1.21.81-1.38l.08-.49-.43-.32z"/>
+          </svg>
+          <span>Docker</span>
+        </li>
+        <li>
+          <!-- Nginx N -->
+          <svg viewBox="0 0 24 24" aria-label="Nginx" role="img">
+            <path fill="currentColor" d="M12 .5 2 6.25v11.5L12 23.5l10-5.75V6.25L12 .5zm5.5 15.75a.75.75 0 0 1-1.5 0V9.7l-7.5 8.43a.75.75 0 0 1-1.32-.5V7.75a.75.75 0 0 1 1.5 0v6.65l7.5-8.43a.75.75 0 0 1 1.32.5v9.78z"/>
+          </svg>
+          <span>Nginx</span>
+        </li>
+        <li>
+          <!-- Alpine mountain -->
+          <svg viewBox="0 0 24 24" aria-label="Alpine Linux" role="img">
+            <path fill="currentColor" d="m5.9 14.93 4.1-4.1 2.2 2.2 5-5 4.3 4.3v4.57L12 22.9 5.9 19.5zM12 1.1 2 6.25v8.11L7.9 8.43 12 12.55l2.2-2.2 5 5.03V6.25z"/>
+          </svg>
+          <span>Alpine</span>
+        </li>
+        <li>
+          <!-- HTML5 shield -->
+          <svg viewBox="0 0 24 24" aria-label="HTML5" role="img">
+            <path fill="currentColor" d="M1.5 0h21l-1.91 21.56L11.98 24l-8.6-2.44L1.5 0zm7.73 19.9L12 20.67l2.77-.77.32-3.56H9.52l-.17-1.88h7.48l.09-1.01H8.5L7.91 7.1h8.91l.09-1.01H7.08l-.31-3.54h10.46l-.09 1.01H7.94l.2 2.29h9.03l-.63 7.06h-4.84l-.15 1.69h4.85l-.24 2.7z"/>
+          </svg>
+          <span>HTML</span>
+        </li>
+        <li>
+          <!-- CSS3 shield -->
+          <svg viewBox="0 0 24 24" aria-label="CSS3" role="img">
+            <path fill="currentColor" d="M1.5 0h21l-1.91 21.56L11.98 24l-8.6-2.44L1.5 0zm6.4 5.1.31 3.54h9.04l-.12 1.48H8.46l.32 3.55h6.85l-.26 2.84-3.38.92-3.38-.92-.22-2.43H5.6l.41 4.78 5.97 1.63 5.97-1.63.78-8.71H8.05z"/>
+          </svg>
+          <span>CSS</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ── Learning modules ───────────────────────────────── -->
+    <section class="modules" id="modules">
+      <h2>DevOps <em>Learning Lab</em> — all modules</h2>
+      <p class="modules-sub">Eight modules, forty skills, one end-to-end mental model.</p>
+
+      <div class="module-grid">
+
+        <a class="module-card" href="https://github.com/devops-learning-lab/01-linux">
+          <div class="mc-icon">🐧</div>
+          <div class="mc-body">
+            <strong>01 · Linux & Shell</strong>
+            <span>processes · signals · namespaces · cgroups</span>
+          </div>
+          <div class="mc-tag">foundation</div>
+        </a>
+
+        <a class="module-card active" href="#" aria-current="page">
+          <div class="mc-icon">🐳</div>
+          <div class="mc-body">
+            <strong>02 · Docker</strong>
+            <span>images · layers · compose · registries</span>
+          </div>
+          <div class="mc-tag mc-tag--active">you are here</div>
+        </a>
+
+        <a class="module-card" href="https://github.com/devops-learning-lab/03-kubernetes">
+          <div class="mc-icon">☸️</div>
+          <div class="mc-body">
+            <strong>03 · Kubernetes</strong>
+            <span>pods · deployments · services · ingress</span>
+          </div>
+          <div class="mc-tag">orchestration</div>
+        </a>
+
+        <a class="module-card" href="https://github.com/devops-learning-lab/04-helm">
+          <div class="mc-icon">⎈</div>
+          <div class="mc-body">
+            <strong>04 · Helm</strong>
+            <span>charts · values · templating · rollbacks</span>
+          </div>
+          <div class="mc-tag">packaging</div>
+        </a>
+
+        <a class="module-card" href="https://github.com/devops-learning-lab/05-monitoring">
+          <div class="mc-icon">📊</div>
+          <div class="mc-body">
+            <strong>05 · Monitoring</strong>
+            <span>Prometheus · Grafana · alerting · SLOs</span>
+          </div>
+          <div class="mc-tag">observability</div>
+        </a>
+
+        <a class="module-card" href="https://github.com/devops-learning-lab/06-cicd">
+          <div class="mc-icon">🔄</div>
+          <div class="mc-body">
+            <strong>06 · CI/CD</strong>
+            <span>GitHub Actions · ArgoCD · GitOps</span>
+          </div>
+          <div class="mc-tag">automation</div>
+        </a>
+
+        <a class="module-card" href="https://github.com/devops-learning-lab/07-terraform">
+          <div class="mc-icon">🏗️</div>
+          <div class="mc-body">
+            <strong>07 · Terraform</strong>
+            <span>IaC · state · modules · workspaces</span>
+          </div>
+          <div class="mc-tag">infrastructure</div>
+        </a>
+
+        <a class="module-card" href="https://github.com/devops-learning-lab/08-security">
+          <div class="mc-icon">🔒</div>
+          <div class="mc-body">
+            <strong>08 · Security</strong>
+            <span>RBAC · network policies · secrets · SAST</span>
+          </div>
+          <div class="mc-tag">hardening</div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ── What to try next ───────────────────────────────── -->
+    <section class="next">
+      <h2>What to try <em>next</em></h2>
+      <ol class="steps">
+        <li>
+          <strong>Probe the headers.</strong>
+          <code>curl -I http://localhost:8080/</code> — confirm
+          <code>X-Frame-Options</code>, <code>X-Content-Type-Options</code>, and the absent Nginx version string.
+        </li>
+        <li>
+          <strong>Break the rootfs.</strong>
+          <code>docker exec hello touch /bad</code> — the read-only filesystem refuses the write.
+          That's your security control working.
+        </li>
+        <li>
+          <strong>Load test it.</strong>
+          <code>make perf</code> — 50 virtual users for 2 minutes. Watch p95 hover under 50 ms.
+        </li>
+        <li>
+          <strong>Ship it.</strong>
+          Tag <code>ghcr.io/you/hello-world:0.1.0</code>, push, and pull from another machine.
+          Same bytes. Same behaviour. That's immutable delivery.
+        </li>
+      </ol>
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────────── -->
+    <footer class="foot">
+      <p>
+        Served by Nginx · built in a multi-stage Dockerfile · running as
+        <code>uid=101</code> on a read-only filesystem.
+        &nbsp;·&nbsp;
+        <a href="https://github.com/devops-learning-lab" target="_blank" rel="noopener noreferrer">DevOps Learning Lab</a>
+        · Project 01
+      </p>
+    </footer>
+
+  </main>
+</body>
+</html>

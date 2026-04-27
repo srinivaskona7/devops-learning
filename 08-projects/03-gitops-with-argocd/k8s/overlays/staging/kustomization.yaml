@@ -1,0 +1,44 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+namespace: api-staging
+
+# Staging runs 2 replicas — enough to exercise the PodAntiAffinity spread
+# and validate rolling updates without the full prod resource cost.
+replicas:
+  - name: url-shortener-api
+    count: 2
+
+images:
+  - name: url-shortener-api
+    newName: ghcr.io/YOUR-ORG/url-shortener-api
+    newTag: "v1.0.0"
+
+configMapGenerator:
+  - name: url-shortener-config
+    behavior: merge
+    literals:
+      - APP_ENV=staging
+      - LOG_LEVEL=info
+
+commonLabels:
+  environment: staging
+
+patches:
+  # Staging resource limits: tighter than prod but looser than dev
+  - target:
+      kind: Deployment
+      name: url-shortener-api
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
+          limits:
+            cpu: "300m"
+            memory: "192Mi"

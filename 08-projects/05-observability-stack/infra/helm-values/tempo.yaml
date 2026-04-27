@@ -1,0 +1,84 @@
+# Tempo — single-binary mode, local filesystem storage (kind/k3d dev environment)
+tempo:
+  reportingEnabled: false
+  repository: grafana/tempo
+  tag: "2.4.2"
+
+  storage:
+    trace:
+      backend: local
+      local:
+        path: /var/tempo/traces
+      wal:
+        path: /var/tempo/wal
+
+  global_overrides:
+    defaults:
+      ingestion:
+        rate_limit_bytes: 15_000_000
+        burst_size_bytes: 20_000_000
+        max_traces_per_user: 100_000
+      search:
+        max_duration: "0s"
+
+  server:
+    http_listen_port: 3100
+    grpc_listen_port: 9095
+
+  distributor:
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: "0.0.0.0:4317"
+          http:
+            endpoint: "0.0.0.0:4318"
+      zipkin: null
+      jaeger: null
+
+  ingester:
+    max_block_duration: 5m
+
+  compactor:
+    compaction:
+      block_retention: 48h
+
+  querier:
+    max_concurrent_queries: 20
+    frontend_worker:
+      frontend_address: "tempo-query-frontend:9095"
+
+  metrics_generator:
+    enabled: true
+    storage:
+      path: /var/tempo/generator
+      remote_write:
+        - url: http://prometheus-operated:9090/api/v1/write
+          send_exemplars: true
+
+  query_frontend:
+    search:
+      max_duration: "168h"
+
+  memberlist:
+    abort_if_cluster_join_fails: false
+
+tempoQuery:
+  enabled: false
+
+serviceMonitor:
+  enabled: true
+  labels:
+    release: kube-prom-stack
+
+persistence:
+  enabled: true
+  size: 10Gi
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi

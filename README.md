@@ -1,217 +1,215 @@
 <!-- markdownlint-disable MD033 MD041 -->
-<div align="center">
 
-```
-   ____             ___              _                          _              _          _      
-  |  _ \  _____   _/ _ \ _ __  ___  | |    ___  __ _ _ __ _ __ (_)_ __   __ _ | |    __ _| |__   
-  | | | |/ _ \ \ / / | | | '_ \/ __| | |   / _ \/ _` | '__| '_ \| | '_ \ / _` || |   / _` | '_ \  
-  | |_| |  __/\ V /| |_| | |_) \__ \ | |__|  __/ (_| | |  | | | | | | | | (_| || |__| (_| | |_) | 
-  |____/ \___| \_/  \___/| .__/|___/ |_____\___|\__,_|_|  |_| |_|_|_| |_|\__, ||_____\__,_|_.__/  
-                         |_|                                             |___/                    
-```
+<div class="hero" markdown>
 
-# DevOps Learning Lab
-
-[![Linux](https://img.shields.io/badge/Linux-Bash%20%26%20Systemd-FCC624?logo=linux&logoColor=black)](./01-linux)
-[![Docker](https://img.shields.io/badge/Docker-Containers-2496ED?logo=docker&logoColor=white)](./02-docker)
-[![Kubernetes](https://img.shields.io/badge/Kubernetes-Core%20%26%20Advanced-326CE5?logo=kubernetes&logoColor=white)](./03-kubernetes)
-[![Helm](https://img.shields.io/badge/Helm-Charts-0F1689?logo=helm&logoColor=white)](./04-helm)
-[![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?logo=terraform&logoColor=white)](./07-terraform)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+<h1>DevOps <em>Learning</em> Lab</h1>
+<p class="tagline">Ten modules. Ten projects. One engineer, shaped for production.</p>
+<a class="cta primary" href="01-linux/README.md">Start learning →</a>
+<a class="cta secondary" href="08-projects/README.md">Jump to projects</a>
 
 </div>
 
 ---
 
-## Mission
+## 🗺️ Curriculum map
 
-Learn-by-doing DevOps repo — **Linux -> Docker -> Kubernetes -> Helm -> Monitoring -> Security -> Terraform**. Each folder is a self-contained module with theory, runnable labs, and a checkpoint exercise. Progress sequentially or jump in anywhere.
+<div class="hub" markdown>
 
-## The Complete Picture
+<a class="tile lead" href="03-kubernetes/01-core/README.md" markdown>
+<span class="num">03</span>
+<h3>Kubernetes</h3>
+<p class="muted">Core · Strategies · Advanced — the heart of the curriculum. Pods to operators, rolling to GitOps.</p>
+<span class="tag">46 h · intermediate → expert</span>
+</a>
 
-> Hand-drawn, Excalidraw-style master map. Click to zoom; edit the mermaid source in the collapsible below, then drop it into [excalidraw.com](https://excalidraw.com) → Library → **Mermaid to Excalidraw** to remix.
+<a class="tile top" href="01-linux/README.md" markdown>
+<span class="num">01–02</span>
+<h3>Foundations</h3>
+<p class="muted">Linux internals, bash, systemd, Docker layers, BuildKit, Compose.</p>
+<span class="tag">22 h · beginner → intermediate</span>
+</a>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="assets/diagrams/README-1-882d0039.svg" alt="diagram" /></p>
+<a class="tile mid-l" href="04-helm/README.md" markdown>
+<span class="num">04–07</span>
+<h3>Platform layer</h3>
+<p class="muted">Helm, Prometheus/Grafana/OTel, Security (SLSA L3), Terraform EKS.</p>
+<span class="tag">44 h · intermediate → expert</span>
+</a>
 
-<details><summary>Mermaid source</summary>
+<a class="tile mid-r" href="08-projects/README.md" markdown>
+<span class="num">08</span>
+<h3>10 Projects</h3>
+<p class="muted">Docker → GitOps → Progressive delivery → Platform engineering.</p>
+<span class="tag">80+ h · beginner → expert</span>
+</a>
 
-```mermaid
+</div>
+
 ---
-config:
-  look: handDrawn
-  theme: neutral
+
+## 🛤️ Learning path
+
+<div class="roadmap" markdown>
+
+<div class="stop" data-step="1" markdown>
+#### 01 · Linux fundamentals
+Filesystem, processes, signals, bash, systemd, networking, disk, troubleshooting.
+<span class="level beginner">beginner</span> — 12 h — [Open →](01-linux/README.md)
+</div>
+
+<div class="stop" data-step="2" markdown>
+#### 02 · Docker
+Images, Dockerfile, multi-stage, BuildKit, volumes, networks, Compose, security.
+<span class="level beginner">beginner</span> — 10 h — [Open →](02-docker/README.md)
+</div>
+
+<div class="stop" data-step="3" markdown>
+#### 03a · Kubernetes Core
+Cluster architecture, pods, deployments, services, ingress, RBAC, probes.
+<span class="level intermediate">intermediate</span> — 16 h — [Open →](03-kubernetes/01-core/README.md)
+</div>
+
+<div class="stop" data-step="4" markdown>
+#### 03b · Kubernetes Strategies
+Recreate, rolling, blue-green, canary, A/B, shadow, feature flags, Flagger, Argo Rollouts.
+<span class="level intermediate">intermediate</span> — 12 h — [Open →](03-kubernetes/02-strategies/README.md)
+</div>
+
+<div class="stop" data-step="5" markdown>
+#### 03c · Kubernetes Advanced
+CRDs, operators, HPA/VPA, PDB, admission controllers, service mesh, multi-cluster, eBPF/Cilium.
+<span class="level advanced">advanced</span> — 18 h — [Open →](03-kubernetes/03-advanced/README.md)
+</div>
+
+<div class="stop" data-step="6" markdown>
+#### 04 · Helm
+Charts, templating, values precedence, hooks, helmfile, sealed-secrets.
+<span class="level intermediate">intermediate</span> — 8 h — [Open →](04-helm/README.md)
+</div>
+
+<div class="stop" data-step="7" markdown>
+#### 05 · Monitoring & Observability
+Prometheus, PromQL, Grafana, Loki, Tempo, OTel SDK + Collector, SLO math, cardinality.
+<span class="level intermediate">intermediate</span> — 12 h — [Open →](05-monitoring/README.md)
+</div>
+
+<div class="stop" data-step="8" markdown>
+#### 06 · Security
+STRIDE, RBAC, PSA, NetworkPolicy, SBOM, cosign, SLSA, OPA/Kyverno, Falco, IR playbook.
+<span class="level advanced">advanced</span> — 10 h — [Open →](06-security/README.md)
+</div>
+
+<div class="stop" data-step="9" markdown>
+#### 07 · Terraform
+Providers, state, modules, workspaces, drift, CI/CD for IaC, testing (terratest, checkov).
+<span class="level intermediate">intermediate</span> — 14 h — [Open →](07-terraform/README.md)
+</div>
+
+<div class="stop" data-step="10" markdown>
+#### 08 · 10 Projects
+Docker hello-world → three-tier Compose → GitOps → CI/CD → observability → EKS → DR → security hardening → zero-downtime → platform engineering.
+<span class="level expert">expert</span> — 80+ h — [Open →](08-projects/README.md)
+</div>
+
+</div>
+
 ---
-flowchart LR
-  YOU((You))
-  subgraph FOUND [Foundations]
-    direction TB
-    L[01 Linux<br/>files · procs · net · systemd]
-    D[02 Docker<br/>images · compose · buildx]
-  end
-  subgraph K8S [03 Kubernetes]
-    direction TB
-    KC[01 Core<br/>pods · svc · pvc · rbac]
-    KS[02 Strategies<br/>rolling · canary · blue-green]
-    KA[03 Advanced<br/>CRDs · mesh · changelog]
-  end
-  subgraph PLAT [Platform layer]
-    direction TB
-    H[04 Helm]
-    M[05 Monitoring<br/>Prom · Grafana · OTel]
-    S[06 Security<br/>RBAC · PSA · NetPol · SLSA]
-  end
-  subgraph IAC [Infrastructure]
-    direction TB
-    T[07 Terraform<br/>AWS · GCP · K8s]
-    P[08 Projects<br/>end-to-end capstones]
-  end
-  IP{{09 Interview Prep<br/>architect Q&A · ELI10 · deep dives}}
 
-  YOU --> L --> D --> KC
-  KC --> KS --> KA
-  KA --> H
-  H --> M
-  M --> S
-  S --> T
-  T --> P
-  P -. mastery .-> IP
-  KA -. mastery .-> IP
-  S -. mastery .-> IP
-```
+## 🔬 How each module teaches
 
-</details>
+Every concept in this repo uses the same six-stage pattern:
 
-## Learning Journey (linear)
+<div class="flow" markdown>
 
-<!-- mermaid:rendered -->
-<p align="center"><img src="assets/diagrams/README-2-391817a9.svg" alt="diagram" /></p>
+<div class="state before" markdown>
+##### 🧭 Reason
+Why this exists. The real problem it solves. A production incident that made it necessary.
+</div>
 
-<details><summary>Mermaid source</summary>
+<div class="arrow">→</div>
 
-```mermaid
-flowchart LR
-    A[01 Linux] --> B[02 Docker]
-    B --> C[03 Kubernetes]
-    C --> D[04 Helm]
-    D --> E[05 Monitoring]
-    E --> F[06 Security]
-    F --> G[07 Terraform]
-    G --> H[08 Projects]
-    subgraph K8s [03 Kubernetes]
-      direction TB
-      C1[01 Core]
-      C2[02 Strategies]
-      C3[03 Advanced]
-    end
-    style A fill:#FCC624,stroke:#333,color:#000
-    style B fill:#2496ED,stroke:#333,color:#fff
-    style C fill:#326CE5,stroke:#333,color:#fff
-    style D fill:#0F1689,stroke:#333,color:#fff
-    style E fill:#E6522C,stroke:#333,color:#fff
-    style F fill:#C0392B,stroke:#333,color:#fff
-    style G fill:#7B42BC,stroke:#333,color:#fff
-    style H fill:#27AE60,stroke:#333,color:#fff
-```
+<div class="state during" markdown>
+##### 🧠 Thinking
+Mental model + mermaid diagram. Build the map before you run the commands.
+</div>
 
-</details>
-## Folder Index
+<div class="arrow">→</div>
 
-| # | Folder | Topic | Skill | Hours |
-|---|--------|-------|-------|------:|
-| 01 | [`01-linux`](./01-linux) | Linux fundamentals, bash, systemd, networking | Beginner | 12 |
-| 02 | [`02-docker`](./02-docker) | Containers, images, Compose, registries | Beginner | 10 |
-| 03 | [`03-kubernetes`](./03-kubernetes) | Core (pods/svc/deploy) + Strategies (rolling/canary/B-G) + Advanced (CRDs/mesh/changelog) | Intermediate→Advanced | 46 |
-| 04 | [`04-helm`](./04-helm) | Charts, templating, releases, repos | Intermediate | 8 |
-| 05 | [`05-monitoring`](./05-monitoring) | Prometheus, Grafana, Loki, OpenTelemetry | Intermediate | 12 |
-| 06 | [`06-security`](./06-security) | RBAC, NetworkPolicy, PSA, secrets, supply chain | Advanced | 10 |
-| 07 | [`07-terraform`](./07-terraform) | IaC, modules, state, AWS/GCP/K8s providers | Intermediate | 14 |
-| 08 | [`08-projects`](./08-projects) | End-to-end capstone projects | Advanced | 20+ |
+<div class="state after" markdown>
+##### ⚡ → 🔮 → ✅ → 🌍
+Execute · Simulate · Output · Real-world use case at Netflix, Stripe, Cloudflare…
+</div>
 
-**Each subfolder ships a `README.md` (theory + lab) and a `commands.md` (quick pickup state).** Drop into any folder, read both, and continue.
+</div>
 
-## How to Use This Repo
+---
+
+## 📦 10 Projects — beginner → expert
+
+<div class="metrics" markdown>
+<span class="m"><b>P01</b> Static site · Docker</span>
+<span class="m"><b>P02</b> Three-tier Compose</span>
+<span class="m"><b>P03</b> GitOps · Argo CD</span>
+<span class="m"><b>P04</b> CI/CD · GitHub Actions</span>
+<span class="m"><b>P05</b> Observability · OTel</span>
+<span class="m"><b>P06</b> Prod EKS · Terraform</span>
+<span class="m"><b>P07</b> Disaster Recovery · Velero</span>
+<span class="m"><b>P08</b> Security · SLSA L2</span>
+<span class="m"><b>P09</b> Zero-downtime · Argo Rollouts</span>
+<span class="m"><b>P10</b> Platform Engineering · Backstage</span>
+</div>
+
+Every project ships: a runnable app, architecture diagram, Makefile (`make up / test / perf / down`), a QA engineer's test plan, and a k6 performance benchmark. Projects P05–P10 include zero-downtime verification — traffic runs during the upgrade and the test suite proves 0% error rate.
+
+[Browse all projects →](08-projects/README.md)
+
+---
+
+## 🎯 Interview prep
+
+Ten architect-level scenarios — from "walk me through `kubectl apply`" to "design a multi-region active-active SaaS" — each with a structured answer framework, a mock interview transcript, and a mermaid diagram you can draw on a whiteboard.
+
+[Open interview prep →](09-interview-prep/README.md)
+
+---
+
+## Quick start
 
 ```bash
-# 1. Clone the repo
+# Clone
 git clone https://github.com/<your-org>/Devops-learning.git
 cd Devops-learning
 
-# 2. Pick a folder (start at 01-linux if new)
-cd 01-linux
+# Install toolchain (macOS)
+brew install docker kind kubectl helm terraform
 
-# 3. Read its README and follow the labs in order
-$EDITOR README.md
-
-# 4. Run the labs in your local environment
-#    Each lab is self-contained with setup + teardown
-```
-
-## Prerequisites
-
-Install the core toolchain for your OS before starting module 02.
-
-### macOS (Homebrew)
-
-```bash
-brew install --cask docker
-brew install kind minikube kubectl helm terraform
-```
-
-### Linux (Debian/Ubuntu)
-
-```bash
-# Docker
-curl -fsSL https://get.docker.com | sh
-# kubectl
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-# kind
-go install sigs.k8s.io/kind@latest
-# minikube
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-sudo install minikube-linux-amd64 /usr/local/bin/minikube
-# helm
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-# terraform
-sudo apt-get install -y gnupg software-properties-common
-wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-sudo apt update && sudo apt install terraform
-```
-
-### Windows (winget / Chocolatey)
-
-```powershell
-winget install -e --id Docker.DockerDesktop
-winget install -e --id Kubernetes.kubectl
-winget install -e --id Helm.Helm
-winget install -e --id Hashicorp.Terraform
-choco install kind minikube
-```
-
-### Verify
-
-```bash
-docker --version && kubectl version --client && helm version && terraform version && kind --version
-```
-
-## Documentation Site
-
-This repo publishes a full docs site via **MkDocs Material** at `https://<your-org>.github.io/Devops-learning/`.
-
-Build locally:
-
-```bash
+# Run the docs site locally
 pip install -r requirements.txt
-mkdocs serve     # http://localhost:8000
-mkdocs build     # static output to ./site
+mkdocs serve   # http://localhost:8000
+
+# Jump into any project
+cd 08-projects/01-hello-world-end-to-end
+make up && make test && make perf && make down
 ```
+
+## Folder index
+
+| # | Folder | Topic | Level | Hours |
+|---|--------|-------|-------|------:|
+| 01 | [`01-linux`](./01-linux) | Linux fundamentals, bash, systemd, networking | Beginner | 12 |
+| 02 | [`02-docker`](./02-docker) | Containers, images, Compose, registries, security | Beginner | 10 |
+| 03 | [`03-kubernetes`](./03-kubernetes) | Core + Strategies + Advanced | Intermediate → Expert | 46 |
+| 04 | [`04-helm`](./04-helm) | Charts, templating, releases, helmfile | Intermediate | 8 |
+| 05 | [`05-monitoring`](./05-monitoring) | Prometheus, Grafana, Loki, Tempo, OTel, SLO | Intermediate | 12 |
+| 06 | [`06-security`](./06-security) | RBAC, NetworkPolicy, PSA, SBOM, cosign, Falco | Advanced | 10 |
+| 07 | [`07-terraform`](./07-terraform) | IaC, modules, state, AWS/GCP/K8s providers | Intermediate | 14 |
+| 08 | [`08-projects`](./08-projects) | 10 end-to-end capstone projects | Beginner → Expert | 80+ |
+| 09 | [`09-interview-prep`](./09-interview-prep) | Architect Q&A, ELI10, deep dives | Advanced | — |
 
 ## Contributing
 
-PRs welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) for the lab format and folder convention. TL;DR: add labs as numbered subfolders, include a Mermaid diagram for any concept over 50 LOC, and keep examples runnable in kind/minikube.
+PRs welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md). TL;DR: follow the 6-stage teaching pattern, include a mermaid diagram for any concept, keep all examples runnable in kind/minikube.
 
 ## License
 
-[MIT](./LICENSE) (c) 2026 DevOps Learning Lab Contributors.
+[MIT](./LICENSE) © 2026 DevOps Learning Lab Contributors.

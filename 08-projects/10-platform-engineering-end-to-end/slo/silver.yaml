@@ -1,0 +1,108 @@
+---
+# Silver SLO tier — 99.5% availability, p95 < 300ms
+# Appropriate for: customer-facing APIs with acceptable degradation,
+# partner integrations, background payment processing
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: slo-silver
+  namespace: monitoring
+  labels:
+    monitoring: platform
+    platform.vantapay.io/slo-tier: silver
+spec:
+  groups:
+    - name: slo.silver.recording
+      interval: 30s
+      rules:
+        # Availability over rolling 30-day window
+        - record: slo:availability:ratio_30d
+          labels:
+            tier: silver
+          expr: |
+            avg_over_time(
+              (1 - rate(http_requests_total{slo_tier="silver", status_code=~"5.."}[5m])
+                   /
+                   rate(http_requests_total{slo_tier="silver"}[5m])
+              )[30d:5m]
+            )
+
+        # Error budget: silver target 99.5% → 0.5% budget → 216 min/month
+        - record: slo:error_budget_remaining:ratio
+          labels:
+            tier: silver
+          expr: |
+            1 - (
+              (1 - slo:availability:ratio_30d{tier="silver"})
+              / (1 - 0.995)
+            )
+
+        # Error budget consumed (absolute minutes)
+        - record: slo:error_budget_consumed_minutes:30d
+          labels:
+            tier: silver
+          expr: |
+            (1 - slo:error_budget_remaining:ratio{tier="silver"}) * 216
+
+    - name: slo.silver.alerts
+      rules:
+        # Fast burn (critical): 14.4× over 1h → 5h until exhaustion
+        - alert: SLOSilverFastBurn
+          expr: |
+            (
+              rate(http_requests_total{slo_tier="silver", status_code=~"5.."}[1h])
+              /
+              rate(http_requests_total{slo_tier="silver"}[1h])
+            ) > 14.4 * (1 - 0.995)
+          for: 2m
+          labels:
+            severity: critical
+            tier: silver
+          annotations:
+            summary: "{{ $labels.job }} burning silver SLO error budget at critical rate"
+            description: "Error rate is {{ $value | humanizePercentage }}. Silver target is 0.5%. Budget exhaustion in < 5h at this rate."
+            runbook_url: "https://runbooks.vantapay.io/slo-burn-rate"
+            dashboard_url: "https://grafana.vantapay.io/d/slo-silver"
+
+        # Slow burn (warning): 6× over 6h → 12h until exhaustion
+        - alert: SLOSilverSlowBurn
+          expr: |
+            (
+              rate(http_requests_total{slo_tier="silver", status_code=~"5.."}[6h])
+              /
+              rate(http_requests_total{slo_tier="silver"}[6h])
+            ) > 6 * (1 - 0.995)
+          for: 15m
+          labels:
+            severity: warning
+            tier: silver
+          annotations:
+            summary: "{{ $labels.job }} slow burn on silver SLO"
+            description: "Budget exhaustion in ~12h at this rate. Review recent changes."
+
+        # p95 breach
+        - alert: SLOSilverLatencyBreach
+          expr: |
+            histogram_quantile(0.95,
+              sum(rate(http_request_duration_seconds_bucket{slo_tier="silver"}[5m])) by (le, job)
+            ) > 0.300
+          for: 5m
+          labels:
+            severity: warning
+            tier: silver
+          annotations:
+            summary: "{{ $labels.job }} p95 latency {{ $value | humanizeDuration }} breaches silver SLO (300ms)"
+
+        # Canary SLO gate — used by Argo Rollouts AnalysisTemplate
+        # This recording rule is queried by the AnalysisRun during canary
+        - record: slo:canary_gate:silver
+          expr: |
+            (
+              rate(http_requests_total{slo_tier="silver", status_code=~"5.."}[5m])
+              /
+              rate(http_requests_total{slo_tier="silver"}[5m])
+            ) < 0.005
+            and
+            histogram_quantile(0.95,
+              sum(rate(http_request_duration_seconds_bucket{slo_tier="silver"}[5m])) by (le, job)
+            ) < 0.300

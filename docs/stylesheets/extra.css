@@ -3,7 +3,36 @@
    Animations CSS-only, respects prefers-reduced-motion.
    ========================================================================= */
 
+/* =========================================================================
+   TYPOGRAPHY — curated variable-font stack
+   - Bricolage Grotesque : display + headings  (variable, opsz + wdth)
+   - Instrument Sans     : body                (studio-crisp, distinct)
+   - Fraunces            : serif accents       (variable, SOFT + WONK)
+   - JetBrains Mono      : code                (ligatures, tab-width)
+   Loaded via Google Fonts with `display=swap` for zero FOUT blocking.
+   ========================================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&display=swap');
+
 :root {
+  /* ----- type stacks ------------------------------------------------ */
+  --dl-font-display: "Bricolage Grotesque", "Inter Tight", system-ui, sans-serif;
+  --dl-font-body:    "Instrument Sans", "Bricolage Grotesque", system-ui, sans-serif;
+  --dl-font-serif:   "Fraunces", "Instrument Serif", Georgia, serif;
+  --dl-font-mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* ----- Material font hooks --------------------------------------- */
+  --md-text-font:  var(--dl-font-body);
+  --md-code-font:  var(--dl-font-mono);
+
+  /* ----- fluid type scale (clamp) ---------------------------------- */
+  --dl-fs-hero:  clamp(2.2rem, 1.4rem + 3.5vw, 3.6rem);
+  --dl-fs-h1:    clamp(1.8rem, 1.3rem + 2.0vw, 2.4rem);
+  --dl-fs-h2:    clamp(1.4rem, 1.1rem + 1.2vw, 1.85rem);
+  --dl-fs-h3:    clamp(1.15rem, 1.0rem + 0.5vw, 1.35rem);
+  --dl-fs-body:  0.96rem;
+  --dl-fs-small: 0.82rem;
+
+  /* ----- color + radius + motion ----------------------------------- */
   --md-primary-fg-color: #6366f1;
   --md-accent-fg-color:  #f59e0b;
 
@@ -27,6 +56,112 @@
   --dl-shadow-lg:    0 10px 40px rgba(99,102,241,0.18);
   --dl-ease:         cubic-bezier(.22,.61,.36,1);
 }
+
+/* ---------- global typographic feature defaults -------------------- */
+html, body, .md-typeset {
+  font-family: var(--dl-font-body);
+  font-feature-settings: "ss01", "ss02", "cv01", "cv11", "kern", "liga";
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.md-typeset { font-size: var(--dl-fs-body); line-height: 1.65; }
+
+/* ---------- headings: Bricolage with optical sizing ---------------- */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6,
+.md-header__title {
+  font-family: var(--dl-font-display);
+  font-feature-settings: "ss01", "ss02", "kern";
+  font-variation-settings: "wdth" 96, "opsz" 48;
+  letter-spacing: -0.018em;
+  line-height: 1.15;
+  color: var(--dl-fg);
+}
+.md-typeset h1 { font-size: var(--dl-fs-h1); font-weight: 700; font-variation-settings: "wdth" 92, "opsz" 72; }
+.md-typeset h2 { font-size: var(--dl-fs-h2); font-weight: 650; font-variation-settings: "wdth" 96, "opsz" 36; margin-top: 2.2rem; }
+.md-typeset h3 { font-size: var(--dl-fs-h3); font-weight: 600; font-variation-settings: "wdth" 98, "opsz" 24; }
+.md-typeset h4 { font-weight: 600; letter-spacing: -0.01em; }
+
+/* elegant section lead-in — first letter of h2 gets a subtle serif drop */
+.md-typeset h2::first-letter {
+  font-family: var(--dl-font-serif);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 500;
+  font-style: italic;
+  color: var(--dl-indigo);
+  padding-right: 0.04em;
+}
+
+/* ---------- body paragraphs: comfortable reading ------------------- */
+.md-typeset p {
+  line-height: 1.72;
+  hyphens: auto;
+}
+.md-typeset p > strong { font-weight: 650; color: var(--dl-fg); }
+
+/* blockquotes → Fraunces italic with optical sizing */
+.md-typeset blockquote {
+  font-family: var(--dl-font-serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 96, "SOFT" 50, "WONK" 1;
+  font-size: 1.12em;
+  line-height: 1.5;
+  color: var(--dl-fg);
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(180deg, var(--dl-indigo), var(--dl-mint)) 1;
+  padding: 0.4em 0 0.4em 1.2em;
+  margin: 1.6em 0;
+}
+.md-typeset blockquote::before {
+  content: "“";
+  font-family: var(--dl-font-serif);
+  font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 400;
+  font-size: 2.4em;
+  line-height: 0;
+  vertical-align: -0.3em;
+  color: var(--dl-indigo);
+  margin-right: 0.08em;
+}
+
+/* ---------- monospace: JetBrains with ligatures -------------------- */
+.md-typeset code,
+.md-typeset pre,
+.md-typeset kbd {
+  font-family: var(--dl-font-mono);
+  font-feature-settings: "calt", "liga", "zero", "ss02";
+  font-variant-ligatures: contextual;
+}
+.md-typeset pre code { font-size: 0.86em; line-height: 1.55; letter-spacing: -0.005em; }
+
+/* ---------- tables: tabular figures, Bricolage headers ------------- */
+.md-typeset table:not([class]) { font-variant-numeric: tabular-nums lining-nums; }
+.md-typeset table:not([class]) th {
+  font-family: var(--dl-font-display);
+  font-weight: 650;
+  font-variation-settings: "wdth" 96, "opsz" 24;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+/* ---------- small-caps utility class ------------------------------- */
+.dl-smallcaps {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--dl-fg-muted);
+}
+
+/* ---------- dark mode heading contrast ----------------------------- */
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3 { color: #f1f3fb; }
+[data-md-color-scheme="slate"] .md-typeset h2::first-letter { color: var(--dl-indigo-soft); }
+[data-md-color-scheme="slate"] .md-typeset blockquote { color: #e8eaf2; }
 
 [data-md-color-scheme="slate"] {
   --dl-bg:           #1a1d29;
@@ -96,22 +231,42 @@ html { scroll-behavior: smooth; }
   100% { transform: translate3d(-1%, 2%, 0) scale(1); }
 }
 .hero h1 {
-  font-size: 2.6rem;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-family: var(--dl-font-display);
+  font-size: var(--dl-fs-hero);
+  font-weight: 750;
+  font-variation-settings: "wdth" 90, "opsz" 96;
+  line-height: 1.02;
+  letter-spacing: -0.032em;
   margin: 0 0 0.6rem;
   background: linear-gradient(120deg, var(--dl-indigo), var(--dl-mint) 60%, var(--dl-peach));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+.hero h1 em,
+.hero h1 .accent {
+  font-family: var(--dl-font-serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1, "wght" 400;
+  background: linear-gradient(120deg, var(--dl-peach), var(--dl-rose));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding: 0 0.06em;
+}
 .hero p.tagline {
-  font-size: 1.1rem;
-  max-width: 38rem;
+  font-family: var(--dl-font-serif);
+  font-variation-settings: "opsz" 32, "SOFT" 60, "wght" 400;
+  font-style: italic;
+  font-size: 1.22rem;
+  line-height: 1.4;
+  max-width: 40rem;
   color: var(--dl-fg-muted);
   margin: 0 0 1.4rem;
 }
 .hero .cta {
+  font-family: var(--dl-font-display);
+  font-variation-settings: "wdth" 94, "opsz" 18;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -119,6 +274,7 @@ html { scroll-behavior: smooth; }
   margin-right: 0.6rem;
   border-radius: 999px;
   font-weight: 600;
+  letter-spacing: -0.005em;
   text-decoration: none;
   transition: transform 220ms var(--dl-ease), box-shadow 220ms var(--dl-ease), background 220ms;
   cursor: pointer;
@@ -706,4 +862,430 @@ html { scroll-behavior: smooth; }
   .md-content img[src*="assets/diagrams/"]:hover {
     transform: none;
   }
+}
+
+/* ==========================================================================
+   LEARN-BY-DOING PATTERN COMPONENTS
+   Reason · Thinking · Execution · Simulation · Output · Real-world use case
+   Designed for spatial composition: asymmetric, overlapping, diagonal flow
+   with atmospheric gradient backdrops (no solid-color panels).
+   ========================================================================== */
+
+/* ---- Concept card: the teaching unit ---------------------------------- */
+.md-typeset .concept {
+  position: relative;
+  margin: 2.2rem 0;
+  padding: 1.6rem 1.8rem 1.4rem;
+  border-radius: var(--dl-radius-lg);
+  border: 1px solid var(--dl-border);
+  background:
+    radial-gradient(1200px 240px at -10% -40%, rgba(99,102,241,0.12), transparent 60%),
+    radial-gradient(800px 300px at 110% 120%, rgba(16,185,129,0.10), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.55));
+  backdrop-filter: blur(4px);
+  box-shadow: var(--dl-shadow-sm);
+  transition: box-shadow 280ms var(--dl-ease), transform 280ms var(--dl-ease);
+}
+[data-md-color-scheme="slate"] .md-typeset .concept {
+  background:
+    radial-gradient(1200px 240px at -10% -40%, rgba(99,102,241,0.28), transparent 60%),
+    radial-gradient(800px 300px at 110% 120%, rgba(16,185,129,0.16), transparent 55%),
+    linear-gradient(180deg, rgba(35,39,53,0.82), rgba(35,39,53,0.60));
+}
+.md-typeset .concept:hover { box-shadow: var(--dl-shadow-md); transform: translateY(-2px); }
+.md-typeset .concept > h3:first-child,
+.md-typeset .concept > h2:first-child {
+  margin-top: 0;
+  font-family: var(--dl-font-display);
+  font-variation-settings: "wdth" 92, "opsz" 48;
+  letter-spacing: -0.02em;
+}
+.md-typeset .concept::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 4px;
+  border-radius: var(--dl-radius-lg) 0 0 var(--dl-radius-lg);
+  background: linear-gradient(180deg, var(--dl-indigo), var(--dl-mint) 50%, var(--dl-peach));
+}
+
+/* ---- Stage header chips (reason / thinking / exec / sim / output / use) */
+.md-typeset .stage {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.25rem 0.7rem;
+  margin: 1.2rem 0 0.4rem;
+  border-radius: 999px;
+  font-family: var(--dl-font-display);
+  font-variation-settings: "wdth" 94, "opsz" 16;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.md-typeset .stage.reason    { background: linear-gradient(120deg, #6366f1, #818cf8); }
+.md-typeset .stage.thinking  { background: linear-gradient(120deg, #8b5cf6, #c084fc); }
+.md-typeset .stage.execution { background: linear-gradient(120deg, #f59e0b, #fbbf24); color: #1f2330; }
+.md-typeset .stage.simulation{ background: linear-gradient(120deg, #06b6d4, #22d3ee); }
+.md-typeset .stage.output    { background: linear-gradient(120deg, #10b981, #34d399); }
+.md-typeset .stage.usecase   { background: linear-gradient(120deg, #f472b6, #fb7185); }
+
+/* ---- Flow visualizer: before → during → after ------------------------- */
+.md-typeset .flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 0.8rem;
+  align-items: stretch;
+  margin: 1.4rem 0;
+}
+.md-typeset .flow .state {
+  position: relative;
+  padding: 1rem 1.1rem 1.1rem;
+  border-radius: var(--dl-radius-md);
+  border: 1px solid var(--dl-border);
+  background: linear-gradient(160deg, rgba(99,102,241,0.04), rgba(16,185,129,0.04));
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.md-typeset .flow .state h5 {
+  margin: 0 0 0.4rem;
+  font-family: var(--dl-font-display);
+  font-variation-settings: "wdth" 94, "opsz" 18;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dl-fg-muted);
+}
+.md-typeset .flow .state.before { border-left: 3px solid var(--dl-fg-muted); }
+.md-typeset .flow .state.during { border-left: 3px solid var(--dl-peach); animation: dl-pulse 2.4s ease-in-out infinite; }
+.md-typeset .flow .state.after  { border-left: 3px solid var(--dl-mint); }
+.md-typeset .flow .arrow {
+  align-self: center;
+  font-family: var(--dl-font-display);
+  font-size: 1.6rem;
+  color: var(--dl-indigo);
+  opacity: 0.7;
+}
+@keyframes dl-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.0); }
+  50%     { box-shadow: 0 0 0 6px rgba(245,158,11,0.18); }
+}
+@media (max-width: 820px) {
+  .md-typeset .flow {
+    grid-template-columns: 1fr;
+  }
+  .md-typeset .flow .arrow { transform: rotate(90deg); justify-self: center; }
+}
+
+/* diff pill inside state cards */
+.md-typeset .diff-add  { color: var(--dl-mint); font-family: var(--dl-font-mono); }
+.md-typeset .diff-del  { color: #ef4444;       font-family: var(--dl-font-mono); text-decoration: line-through; }
+.md-typeset .diff-mod  { color: var(--dl-peach); font-family: var(--dl-font-mono); }
+
+/* ---- Simulation terminal: "what you'll see" --------------------------- */
+.md-typeset .sim {
+  position: relative;
+  margin: 1.2rem 0;
+  border-radius: var(--dl-radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(148,163,255,0.25);
+  background: linear-gradient(180deg, #0f1222 0%, #151832 100%);
+  color: #e8eaf2;
+  box-shadow: var(--dl-shadow-md);
+  font-family: var(--dl-font-mono);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+.md-typeset .sim::before {
+  content: "◉ ◉ ◉   simulation — what you'll see";
+  display: block;
+  padding: 0.45rem 0.9rem;
+  font-family: var(--dl-font-display);
+  font-variation-settings: "wdth" 94, "opsz" 14;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c7d2fe;
+  background: rgba(99,102,241,0.18);
+  border-bottom: 1px solid rgba(148,163,255,0.15);
+}
+.md-typeset .sim pre,
+.md-typeset .sim code {
+  background: transparent !important;
+  color: inherit !important;
+  border: 0;
+  margin: 0;
+  padding: 0.9rem 1.1rem;
+}
+.md-typeset .sim .prompt { color: var(--dl-mint); }
+.md-typeset .sim .comment { color: #9aa0b3; font-style: italic; }
+.md-typeset .sim .cursor::after {
+  content: "▊";
+  color: var(--dl-mint);
+  animation: dl-blink 1s step-end infinite;
+}
+@keyframes dl-blink { 50% { opacity: 0; } }
+
+/* ---- Roadmap track: numbered stations along a curve ------------------- */
+.md-typeset .roadmap {
+  position: relative;
+  margin: 2rem 0;
+  padding: 1.4rem 1rem;
+}
+.md-typeset .roadmap::before {
+  content: "";
+  position: absolute;
+  left: 2.4rem;
+  top: 0; bottom: 0;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--dl-indigo), var(--dl-mint) 40%, var(--dl-peach) 70%, var(--dl-rose));
+  opacity: 0.5;
+}
+.md-typeset .roadmap .stop {
+  position: relative;
+  margin: 0 0 1.2rem 4rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--dl-radius-md);
+  border: 1px solid var(--dl-border);
+  background: var(--dl-bg-alt);
+  transition: transform 220ms var(--dl-ease), box-shadow 220ms var(--dl-ease);
+}
+.md-typeset .roadmap .stop::before {
+  content: attr(data-step);
+  position: absolute;
+  left: -3.4rem;
+  top: 0.6rem;
+  width: 2.2rem; height: 2.2rem;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--dl-font-display);
+  font-variation-settings: "wdth" 92, "opsz" 18;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--dl-indigo), var(--dl-mint));
+  box-shadow: 0 0 0 4px var(--dl-bg-alt), 0 0 0 5px var(--dl-border);
+}
+.md-typeset .roadmap .stop:hover {
+  transform: translateX(4px);
+  box-shadow: var(--dl-shadow-md);
+}
+.md-typeset .roadmap .stop h4 {
+  margin: 0 0 0.2rem;
+  font-family: var(--dl-font-display);
+  font-variation-settings: "wdth" 94, "opsz" 22;
+}
+.md-typeset .roadmap .stop p {
+  margin: 0;
+  color: var(--dl-fg-muted);
+  font-size: 0.92rem;
+}
+
+/* ---- Real-world use case callout -------------------------------------- */
+.md-typeset .usecase-card {
+  position: relative;
+  margin: 1.2rem 0;
+  padding: 1.1rem 1.4rem 1.1rem 3.2rem;
+  border-radius: var(--dl-radius-md);
+  background:
+    radial-gradient(500px 200px at 0% 0%, rgba(244,114,182,0.14), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.55));
+  border: 1px solid var(--dl-border);
+  font-family: var(--dl-font-serif);
+  font-variation-settings: "opsz" 24, "SOFT" 50, "wght" 400;
+  font-style: italic;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--dl-fg);
+}
+[data-md-color-scheme="slate"] .md-typeset .usecase-card {
+  background:
+    radial-gradient(500px 200px at 0% 0%, rgba(244,114,182,0.22), transparent 60%),
+    linear-gradient(180deg, rgba(35,39,53,0.82), rgba(35,39,53,0.60));
+  color: #e8eaf2;
+}
+.md-typeset .usecase-card::before {
+  content: "🌍";
+  position: absolute;
+  left: 1rem; top: 1.1rem;
+  font-size: 1.5rem;
+  filter: grayscale(0.1);
+}
+.md-typeset .usecase-card strong {
+  font-family: var(--dl-font-display);
+  font-style: normal;
+  font-variation-settings: "wdth" 94, "opsz" 18;
+  font-weight: 650;
+  color: var(--dl-indigo);
+}
+
+/* ---- Home hub: asymmetric depth hub ----------------------------------- */
+.md-typeset .hub {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1.1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  margin: 2rem 0;
+  isolation: isolate;
+}
+.md-typeset .hub::before,
+.md-typeset .hub::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  filter: blur(60px);
+  opacity: 0.55;
+}
+.md-typeset .hub::before {
+  top: -80px; left: -40px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99,102,241,0.55), transparent 70%);
+}
+.md-typeset .hub::after {
+  bottom: -80px; right: -40px;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16,185,129,0.45), transparent 70%);
+}
+.md-typeset .hub .tile {
+  position: relative;
+  padding: 1.2rem 1.3rem 1.3rem;
+  border-radius: var(--dl-radius-lg);
+  border: 1px solid var(--dl-border);
+  background: linear-gradient(160deg, rgba(255,255,255,0.88), rgba(255,255,255,0.62));
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 320ms var(--dl-ease),
+    box-shadow 320ms var(--dl-ease),
+    border-color 320ms var(--dl-ease);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+[data-md-color-scheme="slate"] .md-typeset .hub .tile {
+  background: linear-gradient(160deg, rgba(35,39,53,0.88), rgba(35,39,53,0.55));
+}
+.md-typeset .hub .tile:hover {
+  transform: translateY(-4px) rotate(-0.4deg);
+  box-shadow: var(--dl-shadow-lg);
+  border-color: var(--dl-indigo);
+}
+.md-typeset .hub .tile.lead   { grid-column: 1 / 2; grid-row: 1 / 3; transform: translateY(0.4rem); }
+.md-typeset .hub .tile.top    { grid-column: 2 / 4; grid-row: 1 / 2; transform: translateY(-0.4rem) rotate(0.3deg); }
+.md-typeset .hub .tile.mid-l  { grid-column: 2 / 3; grid-row: 2 / 3; }
+.md-typeset .hub .tile.mid-r  { grid-column: 3 / 4; grid-row: 2 / 3; transform: translateY(0.6rem) rotate(-0.3deg); }
+.md-typeset .hub .tile .num {
+  font-family: var(--dl-font-display);
+  font-variation-settings: "wdth" 82, "opsz" 144, "wght" 750;
+  font-size: 2.6rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--dl-indigo), var(--dl-mint));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.md-typeset .hub .tile h3 {
+  margin: 0;
+  font-family: var(--dl-font-display);
+  font-variation-settings: "wdth" 96, "opsz" 36;
+  font-size: 1.3rem;
+}
+.md-typeset .hub .tile .muted {
+  color: var(--dl-fg-muted);
+  font-size: 0.88rem;
+}
+.md-typeset .hub .tile .tag {
+  display: inline-block;
+  padding: 0.12rem 0.55rem;
+  font-family: var(--dl-font-mono);
+  font-size: 0.7rem;
+  border-radius: 999px;
+  background: rgba(99,102,241,0.12);
+  color: var(--dl-indigo);
+  margin-top: 0.2rem;
+  width: fit-content;
+}
+@media (max-width: 900px) {
+  .md-typeset .hub { grid-template-columns: 1fr; }
+  .md-typeset .hub .tile { grid-column: 1 / -1 !important; grid-row: auto !important; transform: none !important; }
+}
+
+/* ---- Atmosphere depth: floating orbs behind body ---------------------- */
+.md-typeset .ambient {
+  position: relative;
+  padding: 1.4rem 0;
+}
+.md-typeset .ambient::before,
+.md-typeset .ambient::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  filter: blur(80px);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.md-typeset .ambient::before {
+  top: -60px; left: 10%;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(99,102,241,0.45), transparent 65%);
+}
+.md-typeset .ambient::after {
+  bottom: -60px; right: 8%;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(244,114,182,0.35), transparent 65%);
+}
+
+/* ---- Project rubric pill (beginner / intermediate / advanced / expert) */
+.md-typeset .level {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.6rem;
+  font-family: var(--dl-font-display);
+  font-variation-settings: "wdth" 94, "opsz" 14;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+.md-typeset .level.beginner     { background: rgba(16,185,129,0.14); color: #047857; }
+.md-typeset .level.intermediate { background: rgba(99,102,241,0.14); color: #4338ca; }
+.md-typeset .level.advanced     { background: rgba(245,158,11,0.16); color: #b45309; }
+.md-typeset .level.expert       { background: rgba(244,114,182,0.18); color: #be185d; }
+[data-md-color-scheme="slate"] .md-typeset .level.beginner     { color: #6ee7b7; }
+[data-md-color-scheme="slate"] .md-typeset .level.intermediate { color: #c7d2fe; }
+[data-md-color-scheme="slate"] .md-typeset .level.advanced     { color: #fcd34d; }
+[data-md-color-scheme="slate"] .md-typeset .level.expert       { color: #fbcfe8; }
+
+/* ---- QA/perf mini-badge row ------------------------------------------ */
+.md-typeset .metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.8rem 0 1.2rem;
+}
+.md-typeset .metrics .m {
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--dl-radius-sm);
+  background: linear-gradient(160deg, rgba(99,102,241,0.08), rgba(16,185,129,0.08));
+  border: 1px solid var(--dl-border);
+  font-family: var(--dl-font-mono);
+  font-size: 0.78rem;
+  color: var(--dl-fg);
+}
+.md-typeset .metrics .m b {
+  font-family: var(--dl-font-display);
+  font-weight: 650;
+  color: var(--dl-indigo);
+  margin-right: 0.3rem;
 }

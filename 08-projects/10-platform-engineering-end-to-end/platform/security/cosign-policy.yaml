@@ -1,0 +1,110 @@
+---
+# Cosign ClusterImagePolicy — image verification via Sigstore/Cosign
+# This uses the Policy Controller (part of Sigstore) to verify
+# that images match the expected signature.
+#
+# Installation: helm install policy-controller sigstore/policy-controller
+#
+# This policy is SEPARATE from the Kyverno policy above.
+# Using both provides defense-in-depth:
+# - Kyverno: broad policy enforcement (labels, resources, probes)
+# - Cosign Policy Controller: dedicated supply chain enforcement
+apiVersion: policy.sigstore.dev/v1beta1
+kind: ClusterImagePolicy
+metadata:
+  name: platform-image-policy
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/component: supply-chain-security
+spec:
+  images:
+    # All Vanta Pay images must be signed
+    - glob: "ghcr.io/vantapay/**"
+
+  authorities:
+    # Keyless signing via GitHub Actions OIDC
+    - keyless:
+        url: https://fulcio.sigstore.dev
+        identities:
+          # Only accept signatures from the platform CI pipeline
+          - issuer: https://token.actions.githubusercontent.com
+            subject: "https://github.com/vantapay/*/workflows/build-and-sign.yaml@refs/heads/main"
+          # Also accept from tagged releases
+          - issuer: https://token.actions.githubusercontent.com
+            subjectRegExp: "https://github.com/vantapay/.*/workflows/build-and-sign.yaml@refs/tags/v.*"
+      ctlog:
+        url: https://rekor.sigstore.dev
+        # Require the signature to be logged in Rekor transparency log
+        # This provides auditability — every signature is publicly verifiable
+
+    # Fallback: key-based signing for emergency use (break-glass)
+    # Key stored in Vault, only used when OIDC is unavailable
+    # - key:
+    #     kms: "vault://vault.vault.svc.cluster.local:8200/transit/keys/cosign-platform"
+
+  policy:
+    # Require SBOM attestation
+    - type: https://spdx.dev/Document
+      data: |
+        package main
+        import future.keywords
+        # Allow any valid SPDX SBOM
+        default allow := true
+
+    # Enforce: no critical CVEs in the vulnerability scan attestation
+    # (Enable once grype attestation is wired in CI)
+    # - type: https://cosign.sigstore.dev/attestation/vuln/v1
+    #   data: |
+    #     package main
+    #     import future.keywords
+    #     default allow := false
+    #     allow if {
+    #       input.predicate.scanner.result.criticalCount == 0
+    #     }
+---
+# ImageVerificationPolicy — Kyverno-native alternative
+# Keep both: if one admission webhook is degraded, the other still enforces.
+apiVersion: kyverno.io/v2beta1
+kind: ClusterPolicy
+metadata:
+  name: cosign-verify-images-strict
+  annotations:
+    policies.kyverno.io/title: Cosign Strict Image Verification
+    policies.kyverno.io/category: Supply Chain Security
+    policies.kyverno.io/severity: critical
+    policies.kyverno.io/description: >-
+      Defense-in-depth: Kyverno-native Cosign verification.
+      Works alongside the Sigstore Policy Controller.
+    platform.vantapay.io/policy-owner: security-team
+spec:
+  validationFailureAction: Enforce
+  background: false
+  rules:
+    - name: verify-signature-and-attestation
+      match:
+        any:
+          - resources:
+              kinds: ["Pod"]
+              namespaces:
+                - "payment"
+                - "fraud"
+                - "auth"
+      verifyImages:
+        - imageReferences:
+            - "ghcr.io/vantapay/*"
+          skipImageReferences:
+            # Allow platform infrastructure images without signature
+            # (third-party: prometheus, grafana, etc.)
+            - "ghcr.io/vantapay/platform-infra/*"
+          attestors:
+            - count: 1
+              entries:
+                - keyless:
+                    subject: "https://github.com/vantapay/*"
+                    issuer: "https://token.actions.githubusercontent.com"
+                    additionalExtensions:
+                      githubWorkflowTrigger: push
+                      githubWorkflowName: build-and-sign
+          mutateDigest: true    # replaces tag with digest (immutable reference)
+          verifyDigest: true
+          required: true

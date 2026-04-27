@@ -1,0 +1,93 @@
+# hardened/secure-rbac.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Least-privilege RBAC for the production workload.
+# Principle: grant ONLY the verbs and resources the application actually uses.
+# Use `kubectl auth can-i` to verify after applying.
+# ─────────────────────────────────────────────────────────────────────────────
+
+---
+# ServiceAccount: named, labeled, owned, token auto-mount disabled
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: secure-sa
+  namespace: production
+  labels:
+    app: secure-app
+    # Owner label for RBAC audit trail
+    managed-by: platform-team
+  annotations:
+    # Document why this SA exists and what it is allowed to do
+    description: "ServiceAccount for the secure-app workload. Read-only access to its own ConfigMap."
+
+# HARDENING: disable automatic API token mounting
+# Pods using this SA will not receive a mounted /var/run/secrets/kubernetes.io/serviceaccount token
+# unless explicitly opted in via spec.automountServiceAccountToken: true
+automountServiceAccountToken: false
+
+---
+# Role: namespace-scoped, minimum required permissions only
+# This SA only needs to read its own ConfigMap for feature flags
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: secure-app-role
+  namespace: production
+  labels:
+    app: secure-app
+rules:
+  # Allow reading only the specific ConfigMap this app uses
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    resourceNames: ["secure-app-config"]    # restrict to named resource
+    verbs: ["get", "watch"]
+  # Allow reading its own pod status (for health checks via Downward API)
+  - apiGroups: [""]
+    resources: ["pods"]
+    resourceNames: []
+    verbs: ["get"]
+  # Allow reading Endpoints for service discovery if needed
+  # Remove this rule if the app uses DNS only
+  - apiGroups: [""]
+    resources: ["endpoints"]
+    resourceNames: ["secure-app"]
+    verbs: ["get", "list"]
+
+---
+# RoleBinding: binds the Role to the ServiceAccount in the same namespace only
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: secure-app-rolebinding
+  namespace: production
+  labels:
+    app: secure-app
+subjects:
+  - kind: ServiceAccount
+    name: secure-sa
+    namespace: production
+roleRef:
+  kind: Role
+  name: secure-app-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# Verification commands (run after applying):
+#
+# Should return "no" for all dangerous verbs:
+#   kubectl auth can-i '*' '*' \
+#     --as=system:serviceaccount:production:secure-sa
+#   → no
+#
+#   kubectl auth can-i delete pods \
+#     --as=system:serviceaccount:production:secure-sa -n production
+#   → no
+#
+#   kubectl auth can-i get secrets \
+#     --as=system:serviceaccount:production:secure-sa -n production
+#   → no
+#
+# Should return "yes" for allowed verbs on the named ConfigMap:
+#   kubectl auth can-i get configmaps/secure-app-config \
+#     --as=system:serviceaccount:production:secure-sa -n production
+#   → yes

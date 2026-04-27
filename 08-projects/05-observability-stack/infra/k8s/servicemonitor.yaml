@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: obs-demo
+  namespace: obs-demo
+  labels:
+    # Must match kube-prom-stack's serviceMonitorSelector
+    release: kube-prom-stack
+spec:
+  selector:
+    matchLabels:
+      app: obs-demo
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
+      scrapeTimeout: 10s
+  namespaceSelector:
+    matchNames:
+      - obs-demo

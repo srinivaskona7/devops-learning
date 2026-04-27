@@ -1,0 +1,101 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Argo Rollouts — Blue-Green strategy
+#
+# Two full replica-sets run simultaneously. The active service receives 100% of
+# production traffic. The preview service receives 0% until operator promotion.
+# autoPromotionEnabled: false means no traffic shifts until a human (or CI job)
+# runs `kubectl argo rollouts promote demo-app-bluegreen`.
+# ═══════════════════════════════════════════════════════════════════════════════
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: demo-app-bluegreen
+  namespace: progressive
+  labels:
+    app: demo-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port:   "8080"
+        prometheus.io/path:   "/metrics"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser:    65532
+        fsGroup:      65532
+      containers:
+        - name: demo-app
+          image: demo-app:v2
+          imagePullPolicy: IfNotPresent
+          env:
+            - name:  VERSION
+              value: "v2"
+            - name:  BAD_WEIGHT
+              value: "0.0"
+          ports:
+            - name:          http
+              containerPort: 8080
+          resources:
+            requests:
+              cpu:    "50m"
+              memory: "64Mi"
+            limits:
+              cpu:    "200m"
+              memory: "128Mi"
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 3
+            periodSeconds:       5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds:       15
+
+  strategy:
+    blueGreen:
+      # activeService receives 100% of production traffic.
+      activeService: demo-app-active
+
+      # previewService is the green slot — functional but receives 0% traffic
+      # until promotion. QA engineers run smoke tests against this service.
+      previewService: demo-app-preview
+
+      # Manual promotion gate — operator inspects preview before cutover.
+      autoPromotionEnabled: false
+
+      # How long to wait before allowing promotion after readiness passes.
+      autoPromotionSeconds: 0
+
+      # Run AnalysisRun against preview before allowing promotion.
+      prePromotionAnalysis:
+        templates:
+          - templateName: success-rate
+        args:
+          - name:  service-name
+            value: demo-app-preview
+
+      # Run AnalysisRun after promotion to confirm active is healthy.
+      postPromotionAnalysis:
+        templates:
+          - templateName: success-rate
+        args:
+          - name:  service-name
+            value: demo-app-active
+
+      # Keep the old blue replicaSet running for 5 minutes post-promotion
+      # to allow instant rollback if needed.
+      scaleDownDelaySeconds: 300
+
+  revisionHistoryLimit: 3

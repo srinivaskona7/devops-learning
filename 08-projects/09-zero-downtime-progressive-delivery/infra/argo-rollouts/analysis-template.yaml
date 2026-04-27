@@ -1,0 +1,56 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# AnalysisTemplate — HTTP success-rate SLO gate
+#
+# The rollout controller runs this template at each canary step.
+# Pass criteria:  success_rate > 0.99  sustained for 5 minutes (10 × 30s samples).
+# Failure action: Argo Rollouts marks the AnalysisRun as Failed → automatic rollback.
+# ═══════════════════════════════════════════════════════════════════════════════
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate
+  namespace: progressive
+spec:
+  # Arguments are injected by the Rollout at runtime.
+  args:
+    - name: service-name
+
+  metrics:
+    # ── Primary SLO: HTTP success rate ──────────────────────────────────────
+    - name: success-rate
+      # Evaluate every 30 s, require 10 consecutive passes before promoting.
+      interval:         30s
+      count:            10
+      # Fail immediately if any single measurement drops below threshold.
+      failureCondition: "result[0] < 0.99"
+      # If Prometheus returns no data (e.g., service not scraped yet), retry.
+      inconclusiveLimit: 3
+      provider:
+        prometheus:
+          address: http://prometheus-operated.monitoring.svc.cluster.local:9090
+          query: |
+            sum(rate(http_requests_total{
+              code=~"2..",
+              kubernetes_service_name="{{args.service-name}}"
+            }[2m]))
+            /
+            sum(rate(http_requests_total{
+              kubernetes_service_name="{{args.service-name}}"
+            }[2m]))
+
+    # ── Secondary gate: p95 latency ─────────────────────────────────────────
+    - name: p95-latency
+      interval:         30s
+      count:            10
+      # Fail if p95 exceeds 200 ms.
+      failureCondition: "result[0] > 0.200"
+      inconclusiveLimit: 3
+      provider:
+        prometheus:
+          address: http://prometheus-operated.monitoring.svc.cluster.local:9090
+          query: |
+            histogram_quantile(0.95,
+              sum(rate(http_request_duration_seconds_bucket{
+                kubernetes_service_name="{{args.service-name}}"
+              }[2m])) by (le)
+            )

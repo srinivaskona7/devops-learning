@@ -1,0 +1,84 @@
+---
+# PeerAuthentication — enforce mTLS STRICT across all namespaces
+# This is the cluster-wide default. Individual namespaces can override
+# to PERMISSIVE during migration, but must return to STRICT.
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: istio-system   # mesh-wide when placed in root namespace
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/component: security
+spec:
+  mtls:
+    mode: STRICT
+---
+# PeerAuthentication — payment namespace override (redundant but explicit)
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: payment
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+    platform.vantapay.io/component: security
+spec:
+  mtls:
+    mode: STRICT
+---
+# AuthorizationPolicy — deny all traffic by default in payment namespace
+# Services must explicitly allow ingress via AuthorizationPolicy allow rules
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: deny-all
+  namespace: payment
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+spec:
+  {}   # empty spec = deny all
+
+---
+# AuthorizationPolicy — allow payment-service to receive traffic from:
+# - istio-ingressgateway (external user traffic)
+# - fraud-service (internal service call)
+# - prometheus (scraping metrics)
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-payment-service
+  namespace: payment
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+spec:
+  selector:
+    matchLabels:
+      app: payment-service
+  rules:
+    # Allow ingress gateway to reach payment-service
+    - from:
+        - source:
+            principals:
+              - cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account
+      to:
+        - operation:
+            methods: ["GET", "POST", "PUT", "PATCH"]
+            paths: ["/api/*", "/healthz", "/readyz", "/metrics"]
+    # Allow fraud-service to call payment-service
+    - from:
+        - source:
+            principals:
+              - cluster.local/ns/fraud/sa/fraud-service
+      to:
+        - operation:
+            methods: ["POST"]
+            paths: ["/api/verify-payment"]
+    # Allow Prometheus scraping
+    - from:
+        - source:
+            namespaces: ["monitoring"]
+      to:
+        - operation:
+            methods: ["GET"]
+            paths: ["/metrics"]

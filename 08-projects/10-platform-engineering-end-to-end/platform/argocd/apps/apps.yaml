@@ -1,0 +1,190 @@
+---
+# delivery-app — Argo Rollouts + application workloads
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: delivery-app
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: platform
+    platform.vantapay.io/slice: delivery
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/vantapay/platform-gitops
+    targetRevision: main
+    path: manifests/delivery
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: payment
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 5m
+  revisionHistoryLimit: 10
+---
+# observability-app — Prometheus, Grafana, Loki, Tempo, OTel Collector
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: observability-app
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: platform
+    platform.vantapay.io/slice: observability
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/vantapay/platform-gitops
+    targetRevision: main
+    path: manifests/observability
+    helm:
+      valueFiles:
+        - values.yaml
+        - values-prod.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+        factor: 2
+        maxDuration: 5m
+  ignoreDifferences:
+    - group: apps
+      kind: StatefulSet
+      jsonPointers:
+        - /spec/volumeClaimTemplates
+---
+# security-app — Kyverno policies, Cosign policy, External Secrets, Vault
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: security-app
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: platform
+    platform.vantapay.io/slice: security
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/vantapay/platform-gitops
+    targetRevision: main
+    path: manifests/security
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kyverno
+  syncPolicy:
+    automated:
+      prune: false    # never auto-prune security policies
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 30s
+        factor: 2
+        maxDuration: 10m
+---
+# platform-app — Istio, cert-manager, Backstage, Argo CD itself
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: platform-app
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: platform
+    platform.vantapay.io/slice: platform-infra
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/vantapay/platform-gitops
+    targetRevision: main
+    path: manifests/platform-infra
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - RespectIgnoreDifferences=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 30s
+        factor: 2
+        maxDuration: 10m
+  ignoreDifferences:
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      jqPathExpressions:
+        - .webhooks[].clientConfig.caBundle
+    - group: admissionregistration.k8s.io
+      kind: MutatingWebhookConfiguration
+      jqPathExpressions:
+        - .webhooks[].clientConfig.caBundle
+---
+# chaos-app — Chaos Mesh experiments and schedules
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chaos-app
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: platform
+    platform.vantapay.io/slice: reliability
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/vantapay/platform-gitops
+    targetRevision: main
+    path: manifests/chaos
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: chaos-mesh
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 30s
+        factor: 2
+        maxDuration: 5m
