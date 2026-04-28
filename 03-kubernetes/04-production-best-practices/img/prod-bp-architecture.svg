@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" font-family="system-ui, sans-serif">
+  <defs>
+    <filter id="shadow-a" x="-2%" y="-2%" width="104%" height="104%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.08"/>
+    </filter>
+    <style>
+      text { fill: currentColor; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="720" rx="16" fill="none" stroke="currentColor" stroke-opacity="0.12" stroke-width="1.5"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="currentColor">Kubernetes Production Best Practices -- Page Architecture</text>
+  <line x1="60" y1="50" x2="900" y2="50" stroke="currentColor" stroke-opacity="0.15" stroke-width="1"/>
+
+  <!-- ===== SECTION 1: Application Development (Green) ===== -->
+  <rect x="20" y="62" width="300" height="570" rx="12" fill="#16a34a" fill-opacity="0.07" stroke="#16a34a" stroke-width="1.8" filter="url(#shadow-a)"/>
+  <rect x="20" y="62" width="300" height="36" rx="12" fill="#16a34a" fill-opacity="0.18"/>
+  <text x="170" y="86" text-anchor="middle" font-size="15" font-weight="700" fill="#15803d">Section 1: Application Development</text>
+  <rect x="230" y="72" width="80" height="20" rx="10" fill="#16a34a" fill-opacity="0.25"/>
+  <text x="270" y="87" text-anchor="middle" font-size="11" font-weight="600" fill="#15803d">30 items</text>
+
+  <!-- Items -->
+  <text x="36" y="120" font-size="13" font-weight="600" fill="#166534">Health Checks</text>
+  <text x="280" y="120" text-anchor="end" font-size="12" fill="#16a34a" font-weight="500">(4)</text>
+  <rect x="36" y="126" width="268" height="1" fill="#16a34a" fill-opacity="0.15"/>
+
+  <text x="36" y="146" font-size="13" font-weight="600" fill="#166534">Apps Independent</text>
+  <text x="280" y="146" text-anchor="end" font-size="12" fill="#16a34a" font-weight="500">(2)</text>
+  <rect x="36" y="152" width="268" height="1" fill="#16a34a" fill-opacity="0.15"/>
+
+  <text x="36" y="172" font-size="13" font-weight="600" fill="#166534">Graceful Shutdown</text>
+  <text x="280" y="172" text-anchor="end" font-size="12" fill="#16a34a" font-weight="500">(4)</text>
+  <rect x="36" y="178" width="268" height="1" fill="#16a34a" fill-opacity="0.15"/>
+
+  <text x="36" y="198" font-size="13" font-weight="600" fill="#166534">Fault Tolerance</text>
+  <text x="280" y="198" text-anchor="end" font-size="12" fill="#16a34a" font-weight="500">(3)</text>
+  <rect x="36" y="204" width="268" height="1" fill="#16a34a" fill-opacity="0.15"/>
+
+  <text x="36" y="224" font-size="13" font-weight="600" fill="#166534">Resources</text>
+  <text x="280" y="224" text-anchor="end" font-size="12" fill="#16a34a" font-weight="500">(6)</text>
+  <rect x="36" y="230" width="268" height="1" fill="#16a34a" fill-opacity="0.15"/>
+
+  <text x="36" y="250" font-size="13" font-weight="600" fill="#166534">Tagging</text>
+  <text x="280" y="250" text-anchor="end" font-size="12" fill="#16a34a" font-weight="500">(3)</text>
+  <rect x="36" y="256" width="268" height="1" fill="#16a34a" fill-opacity="0.15"/>
+
+  <text x="36" y="276" font-size="13" font-weight="600" fill="#166534">Logging</text>
+  <text x="280" y="276" text-anchor="end" font-size="12" fill="#16a34a" font-weight="500">(2)</text>
+  <rect x="36" y="282" width="268" height="1" fill="#16a34a" fill-opacity="0.15"/>
+
+  <text x="36" y="302" font-size="13" font-weight="600" fill="#166534">Scaling</text>
+  <text x="280" y="302" text-anchor="end" font-size="12" fill="#16a34a" font-weight="500">(4)</text>
+  <rect x="36" y="308" width="268" height="1" fill="#16a34a" fill-opacity="0.15"/>
+
+  <text x="36" y="328" font-size="13" font-weight="600" fill="#166534">Config &amp; Secrets</text>
+  <text x="280" y="328" text-anchor="end" font-size="12" fill="#16a34a" font-weight="500">(2)</text>
+
+  <!-- ===== SECTION 2: Governance (Orange) ===== -->
+  <rect x="330" y="62" width="300" height="570" rx="12" fill="#ea580c" fill-opacity="0.07" stroke="#ea580c" stroke-width="1.8" filter="url(#shadow-a)"/>
+  <rect x="330" y="62" width="300" height="36" rx="12" fill="#ea580c" fill-opacity="0.18"/>
+  <text x="480" y="86" text-anchor="middle" font-size="15" font-weight="700" fill="#c2410c">Section 2: Governance</text>
+  <rect x="540" y="72" width="80" height="20" rx="10" fill="#ea580c" fill-opacity="0.25"/>
+  <text x="580" y="87" text-anchor="middle" font-size="11" font-weight="600" fill="#c2410c">16 items</text>
+
+  <text x="346" y="120" font-size="13" font-weight="600" fill="#9a3412">Namespace Limits</text>
+  <text x="590" y="120" text-anchor="end" font-size="12" fill="#ea580c" font-weight="500">(2)</text>
+  <rect x="346" y="126" width="268" height="1" fill="#ea580c" fill-opacity="0.15"/>
+
+  <text x="346" y="146" font-size="13" font-weight="600" fill="#9a3412">Pod Security</text>
+  <text x="530" y="146" text-anchor="end" font-size="12" fill="#ea580c" font-weight="500">(6)</text>
+  <!-- STALE badge -->
+  <rect x="540" y="134" width="60" height="18" rx="9" fill="#dc2626" fill-opacity="0.15" stroke="#dc2626" stroke-width="1"/>
+  <text x="570" y="147" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">STALE</text>
+  <rect x="346" y="152" width="268" height="1" fill="#ea580c" fill-opacity="0.15"/>
+
+  <text x="346" y="172" font-size="13" font-weight="600" fill="#9a3412">Network Policies</text>
+  <text x="590" y="172" text-anchor="end" font-size="12" fill="#ea580c" font-weight="500">(2)</text>
+  <rect x="346" y="178" width="268" height="1" fill="#ea580c" fill-opacity="0.15"/>
+
+  <text x="346" y="198" font-size="13" font-weight="600" fill="#9a3412">RBAC</text>
+  <text x="590" y="198" text-anchor="end" font-size="12" fill="#ea580c" font-weight="500">(3)</text>
+  <rect x="346" y="204" width="268" height="1" fill="#ea580c" fill-opacity="0.15"/>
+
+  <text x="346" y="224" font-size="13" font-weight="600" fill="#9a3412">Custom Policies</text>
+  <text x="590" y="224" text-anchor="end" font-size="12" fill="#ea580c" font-weight="500">(3)</text>
+
+  <!-- ===== SECTION 3: Cluster Config (Blue) ===== -->
+  <rect x="640" y="62" width="300" height="570" rx="12" fill="#2563eb" fill-opacity="0.07" stroke="#2563eb" stroke-width="1.8" filter="url(#shadow-a)"/>
+  <rect x="640" y="62" width="300" height="36" rx="12" fill="#2563eb" fill-opacity="0.18"/>
+  <text x="790" y="86" text-anchor="middle" font-size="15" font-weight="700" fill="#1d4ed8">Section 3: Cluster Config</text>
+  <rect x="850" y="72" width="80" height="20" rx="10" fill="#2563eb" fill-opacity="0.25"/>
+  <text x="890" y="87" text-anchor="middle" font-size="11" font-weight="600" fill="#1d4ed8">9 items</text>
+  <!-- WIP badge -->
+  <rect x="650" y="72" width="44" height="20" rx="10" fill="#f59e0b" fill-opacity="0.25" stroke="#f59e0b" stroke-width="1"/>
+  <text x="672" y="87" text-anchor="middle" font-size="10" font-weight="700" fill="#b45309">WIP</text>
+
+  <text x="656" y="120" font-size="13" font-weight="600" fill="#1e40af">Approved Config</text>
+  <text x="900" y="120" text-anchor="end" font-size="12" fill="#2563eb" font-weight="500">(3)</text>
+  <rect x="656" y="126" width="268" height="1" fill="#2563eb" fill-opacity="0.15"/>
+
+  <text x="656" y="146" font-size="13" font-weight="600" fill="#1e40af">Authentication</text>
+  <text x="900" y="146" text-anchor="end" font-size="12" fill="#2563eb" font-weight="500">(1)</text>
+  <rect x="656" y="152" width="268" height="1" fill="#2563eb" fill-opacity="0.15"/>
+
+  <text x="656" y="172" font-size="13" font-weight="600" fill="#1e40af">RBAC Cluster</text>
+  <text x="900" y="172" text-anchor="end" font-size="12" fill="#2563eb" font-weight="500">(1)</text>
+  <rect x="656" y="178" width="268" height="1" fill="#2563eb" fill-opacity="0.15"/>
+
+  <text x="656" y="198" font-size="13" font-weight="600" fill="#1e40af">Logging Setup</text>
+  <text x="900" y="198" text-anchor="end" font-size="12" fill="#2563eb" font-weight="500">(4)</text>
+
+  <!-- ===== Score Badge ===== -->
+  <rect x="300" y="660" width="360" height="44" rx="22" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.2" stroke-width="1.5"/>
+  <text x="380" y="688" text-anchor="middle" font-size="26" font-weight="800" fill="#ea580c">7/10</text>
+  <text x="540" y="687" text-anchor="middle" font-size="16" font-weight="500" fill="currentColor" fill-opacity="0.7">Solid but aging</text>
+
+  <!-- Connecting lines between sections (decorative) -->
+  <line x1="320" y1="347" x2="330" y2="347" stroke="currentColor" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="630" y1="347" x2="640" y2="347" stroke="currentColor" stroke-opacity="0.2" stroke-width="1.5" stroke-dasharray="4 3"/>
+</svg>
