@@ -14,7 +14,7 @@ This is the single most-asked Kubernetes architecture interview topic.
 
 Pipeline order (memorize this):
 
-```
+```text
 HTTP request
   → APF (priority & fairness queueing)
   → Authentication      (who are you?)
@@ -87,10 +87,10 @@ APF replaces the old `--max-requests-inflight` flag (GA in 1.29). It prevents a 
 flowchart LR
     R[Incoming Request] --> FS{FlowSchema<br/>match?}
     FS -->|matches| PL[PriorityLevelConfiguration]
-    PL --> Q[Per-flow queue<br/>shuffle-sharded]
+    PL --> Q["Per-flow queue<br/>shuffle-sharded"]
     Q --> D{Concurrency<br/>shares available?}
     D -->|yes| H[Handler chain]
-    D -->|no| W[Wait or 429<br/>Too Many Requests]
+    D -->|no| W["Wait or 429<br/>Too Many Requests"]
     H --> RESP[Response]
 ```
 

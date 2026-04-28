@@ -41,7 +41,7 @@ GitHub Actions / GitLab CI / CircleCI scale problems. Build farm, runners, secre
 ## 3. API & Data Model
 
 ### API
-```
+```text
 POST /v1/orgs/:org/repos/:repo/pipelines    {ref, inputs}    -> {pipeline_id}
 GET  /v1/pipelines/:id                                       -> {status, jobs[]}
 GET  /v1/jobs/:id/logs                       (SSE)           -> log stream
@@ -53,7 +53,7 @@ GET  /v1/artifacts/:id                                       -> binary
 ```
 
 ### Data model
-```
+```text
 orgs(id pk, plan, billing_id)
 repos(id pk, org_id, name, vcs_id)
 pipelines(id pk, repo_id, ref, sha, status, started_at, finished_at, trigger)
@@ -80,14 +80,14 @@ flowchart LR
   VCS --> ING[Webhook Ingester]
   ING --> ENG[Pipeline Engine]
   ENG --> Q[Job Queue]
-  Q --> Runner1[Runner pool A<br/>shared K8s]
+  Q --> Runner1["Runner pool A<br/>shared K8s"]
   Q --> Runner2[Self-hosted runners]
   Runner1 --> ART[Artifact Store S3]
   Runner1 --> CACHE[Cache S3]
   Runner1 --> REG[Image Registry]
   Runner1 --> LOG[Log Pipeline]
   ENG --> DB[(Postgres)]
-  ENG --> NOTIFY[Notifications<br/>Slack/email/status]
+  ENG --> NOTIFY["Notifications<br/>Slack/email/status"]
 ```
 
 </details>

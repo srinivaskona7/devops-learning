@@ -53,7 +53,7 @@ sequenceDiagram
 
 ## /etc/passwd — the public ledger
 
-```
+```text
 alice:x:1001:1001:Alice Kim,,,:/home/alice:/bin/bash
 ```
 
@@ -76,7 +76,7 @@ ls -l /etc/passwd
 
 ## /etc/shadow — the secret ledger
 
-```
+```text
 alice:$6$rounds=656000$saltsalt$hashhashhash...:19838:0:99999:7:::
 ```
 
@@ -106,7 +106,7 @@ sudo passwd -u alice         # unlock
 
 ## /etc/group
 
-```
+```bash
 wheel:x:10:alice,bob
 docker:x:999:alice
 ```
@@ -127,7 +127,7 @@ The single most powerful and dangerous config file on a Linux box. **Always edit
 
 ### Structure
 
-```
+```bash
 # Defaults
 Defaults    env_reset
 Defaults    mail_badpass
@@ -156,7 +156,7 @@ deploy          ALL=(www-data) NOPASSWD: /usr/bin/git pull
 
 ### The user spec line, decoded
 
-```
+```text
 who      where = (run-as)        [tag1: tag2:] command
 ADMINS   WEBSERVERS=(OPS)        NOPASSWD:    SVC_RESTART
 ```
@@ -169,7 +169,7 @@ ADMINS   WEBSERVERS=(OPS)        NOPASSWD:    SVC_RESTART
 
 ### NOPASSWD — read this twice
 
-```
+```bash
 deploy ALL=(root) NOPASSWD: /bin/systemctl restart myapp
 ```
 
@@ -193,7 +193,7 @@ deploy ALL=(www-data) NOPASSWD: /usr/bin/rsync --delete /opt/release/ /var/www/
 
 ### Defaults to always set
 
-```
+```bash
 Defaults env_reset                    # wipe env, only keep whitelist
 Defaults secure_path="/sbin:/bin:..." # ignore caller's PATH
 Defaults use_pty                      # forces pty -> sudoreplay works
@@ -211,7 +211,7 @@ Defaults mailto="security@example.com"
 
 The right pattern: small, named bundles of fully-specified commands.
 
-```
+```bash
 Cmnd_Alias NGINX_OPS = \
     /bin/systemctl reload nginx, \
     /bin/systemctl restart nginx, \
@@ -290,7 +290,7 @@ sudo visudo -f /etc/sudoers.d/10-deploy
 ```
 
 Contents:
-```
+```bash
 Cmnd_Alias DEPLOY_OPS = \
     /bin/systemctl reload nginx, \
     /bin/systemctl restart nginx, \

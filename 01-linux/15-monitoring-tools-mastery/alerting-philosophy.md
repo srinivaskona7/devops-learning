@@ -17,12 +17,12 @@ The two laws of useful alerting:
 ```mermaid
 flowchart TB
     subgraph Bad
-        A1[Disk 80% full] -->|page| B1[Engineer logs in,<br/>looks, ignores]
-        A2[CPU > 90%] -->|page| B2[Engineer logs in,<br/>looks, ignores]
+        A1[Disk 80% full] -->|page| B1["Engineer logs in,<br/>looks, ignores"]
+        A2[CPU > 90%] -->|page| B2["Engineer logs in,<br/>looks, ignores"]
     end
     subgraph Good
-        C1[p99 latency > SLO] -->|page| D1[Engineer follows runbook,<br/>fixes user-visible issue]
-        C2[Error rate > error budget burn] -->|page| D2[Engineer prioritizes,<br/>halts deploys]
+        C1[p99 latency > SLO] -->|page| D1["Engineer follows runbook,<br/>fixes user-visible issue"]
+        C2[Error rate > error budget burn] -->|page| D2["Engineer prioritizes,<br/>halts deploys"]
     end
 ```
 

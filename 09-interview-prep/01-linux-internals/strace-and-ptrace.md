@@ -61,7 +61,7 @@ strace -f -e trace=openat,connect,read,write -o app.trace ./myapp
 ```
 
 Sample output:
-```
+```text
 openat(AT_FDCWD, "/etc/resolv.conf", O_RDONLY|O_CLOEXEC) = 3
 read(3, "nameserver 1.1.1.1\n", 4096) = 19
 connect(4, {sa_family=AF_INET, sin_port=htons(53), sin_addr=inet_addr("1.1.1.1")}, 16) = 0

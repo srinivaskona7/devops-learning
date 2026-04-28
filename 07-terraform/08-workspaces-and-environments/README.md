@@ -33,7 +33,7 @@ locals {
 
 ## 2. Directory-per-env (recommended for prod)
 
-```
+```bash
 infra/
 ├── modules/
 │   ├── network/
@@ -71,7 +71,7 @@ inputs = { env = "prod", instance_type = "m5.large" }
 flowchart TD
     A[How many envs?] -->|1-2, single team| W[Workspaces]
     A -->|3+, prod-grade| B{Different cloud accounts<br/>per env?}
-    B -->|Yes| D[Directory-per-env<br/>or Terragrunt]
+    B -->|Yes| D["Directory-per-env<br/>or Terragrunt"]
     B -->|No| D
     D --> C{>5 envs<br/>or many regions?}
     C -->|Yes| T[Terragrunt]

@@ -126,7 +126,7 @@ make verify
 ```
 
 **Expected output:**
-```
+```text
   [1] HTTP error rate
   Measured : 0.0000%
   Target   : 0.0000%

@@ -11,7 +11,7 @@
 
 ```mermaid
 flowchart LR
-  C[Client / other pod] -->|service-name:80| SVC[Service<br/>ClusterIP 10.96.x.y]
+  C[Client / other pod] -->|service-name:80| SVC["Service<br/>ClusterIP 10.96.x.y"]
   SVC -.kube-proxy.- P1[Pod 10.244.1.5]
   SVC -.kube-proxy.- P2[Pod 10.244.2.7]
   SVC -.kube-proxy.- P3[Pod 10.244.1.9]
@@ -85,9 +85,9 @@ Without a Service, you'd hardcode pod IPs. With one, you call `http://hello-app.
 
 ```mermaid
 flowchart LR
-  KP[kube-proxy] --> IPT[iptables<br/>random backend per conn]
-  KP --> IPVS[IPVS<br/>real LB algorithms]
-  KP --> NFT[nftables<br/>newer, faster]
+  KP[kube-proxy] --> IPT["iptables<br/>random backend per conn"]
+  KP --> IPVS["IPVS<br/>real LB algorithms"]
+  KP --> NFT["nftables<br/>newer, faster"]
 ```
 
 </details>
@@ -120,7 +120,7 @@ kubectl get endpointslices -l kubernetes.io/service-name=hello-app
 
 ## DNS
 
-```
+```text
 <service>.<namespace>.svc.cluster.local
 hello-app.default.svc.cluster.local → ClusterIP 10.96.x.y
 ```

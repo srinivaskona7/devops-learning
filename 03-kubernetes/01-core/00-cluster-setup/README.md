@@ -14,10 +14,10 @@ Cloud clusters cost money and hide failure modes. Local clusters reproduce 95% o
 ```mermaid
 flowchart TB
   subgraph Choose["Pick one local distro"]
-    K[kind<br/>K8s in Docker]
-    M[minikube<br/>VM-based]
-    K3[k3d<br/>k3s in Docker]
-    DD[Docker Desktop K8s<br/>built-in]
+    K["kind<br/>K8s in Docker"]
+    M["minikube<br/>VM-based"]
+    K3["k3d<br/>k3s in Docker"]
+    DD["Docker Desktop K8s<br/>built-in"]
   end
   Choose --> KCTL[kubectl CLI]
   KCTL --> API[kube-apiserver]
@@ -80,7 +80,7 @@ kubectl config current-context             # kind-kind
 ```
 
 Expected:
-```
+```text
 NAME                 STATUS   ROLES           AGE   VERSION
 kind-control-plane   Ready    control-plane   45s   v1.30.x
 kind-worker          Ready    <none>          30s   v1.30.x

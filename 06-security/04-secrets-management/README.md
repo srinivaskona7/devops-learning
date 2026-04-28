@@ -20,17 +20,17 @@ Kubernetes Secrets are **base64-encoded, not encrypted**. By default they sit in
 flowchart LR
     Dev[Developer] -->|writes| Manifest
     subgraph CI[CI / GitOps]
-        ESO[ExternalSecret CR<br/>or SealedSecret]
+        ESO["ExternalSecret CR<br/>or SealedSecret"]
     end
     Manifest --> ESO
     ESO --> K8s[Cluster]
     subgraph Cluster
-        ESOOp[External Secrets<br/>Operator]
+        ESOOp["External Secrets<br/>Operator"]
         Sec[(Secret)]
         Pod
     end
     K8s --> ESOOp
-    ESOOp -->|pulls cleartext| Vault[Vault / AWS SM /<br/>GCP SM / Azure KV]
+    ESOOp -->|pulls cleartext| Vault["Vault / AWS SM /<br/>GCP SM / Azure KV"]
     ESOOp -->|materialises| Sec
     Sec -->|mount or env| Pod
     Sec -.encrypted at rest.-> KMS[KMS / EncryptionConfig]

@@ -27,7 +27,7 @@ Mastery is six things:
 flowchart LR
     A[Linux Admin Mastery] --> B[Daily Driver Tasks]
     A --> C[Performance Tuning]
-    A --> D[Service Mastery<br/>systemd]
+    A --> D["Service Mastery<br/>systemd"]
     A --> E[Boot &amp; Init]
     A --> F[Backup &amp; Restore]
     A --> G[Automation Patterns]
@@ -122,7 +122,7 @@ A senior admin always asks: **at which layer does the symptom live?** A failing 
 
 ## Quick reference card
 
-```
+```bash
 # show me the truth about a host
 hostnamectl                       # identity
 timedatectl                       # time + sync state

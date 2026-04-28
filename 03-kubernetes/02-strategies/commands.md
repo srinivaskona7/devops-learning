@@ -458,7 +458,7 @@ kubectl get deployment <name> \
 
 ## Strategy comparison — one-liner recall
 
-```
+```bash
 Recreate:      kubectl patch deploy X -p '{"spec":{"strategy":{"type":"Recreate"}}}'
 RollingUpdate: kubectl patch deploy X -p '{"spec":{"strategy":{"rollingUpdate":{"maxSurge":2,"maxUnavailable":0}}}}'
 Blue-Green:    kubectl patch svc X -p '{"spec":{"selector":{"slot":"green"}}}'

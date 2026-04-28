@@ -13,10 +13,10 @@ Helm templates aren't YAML — they're Go `text/template` programs that emit YAM
 
 ```mermaid
 flowchart LR
-    A[values.yaml +<br/>--set / -f overrides] --> B[merged values]
+    A["values.yaml +<br/>--set / -f overrides"] --> B[merged values]
     B --> C[Go text/template engine]
     D[templates/*.yaml] --> C
-    E[_helpers.tpl<br/>define blocks] --> C
+    E["_helpers.tpl<br/>define blocks"] --> C
     F[sprig funcs] --> C
     C --> G[rendered YAML stream]
     G --> H[YAML parser]

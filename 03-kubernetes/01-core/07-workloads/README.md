@@ -90,9 +90,9 @@ flowchart TD
 
 ```mermaid
 flowchart LR
-  SS[StatefulSet 'db'] --> P0[db-0<br/>created first]
-  SS --> P1[db-1<br/>after db-0 Ready]
-  SS --> P2[db-2<br/>after db-1 Ready]
+  SS[StatefulSet 'db'] --> P0["db-0<br/>created first"]
+  SS --> P1["db-1<br/>after db-0 Ready"]
+  SS --> P2["db-2<br/>after db-1 Ready"]
   P0 --> PV0[(data-db-0)]
   P1 --> PV1[(data-db-1)]
   P2 --> PV2[(data-db-2)]

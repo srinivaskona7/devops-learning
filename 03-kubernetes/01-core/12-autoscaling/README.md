@@ -11,10 +11,10 @@
 
 ```mermaid
 flowchart TB
-  HPA[HPA<br/>Horizontal Pod Autoscaler] -->|adds pods| WL[Workload]
-  VPA[VPA<br/>Vertical Pod Autoscaler] -->|resizes containers| WL
+  HPA["HPA<br/>Horizontal Pod Autoscaler"] -->|adds pods| WL[Workload]
+  VPA["VPA<br/>Vertical Pod Autoscaler"] -->|resizes containers| WL
   CA[Cluster Autoscaler] -->|adds nodes| CL[Cluster]
-  KEDA[KEDA<br/>event-driven] -->|adds pods on queue depth, etc.| WL
+  KEDA["KEDA<br/>event-driven"] -->|adds pods on queue depth, etc.| WL
 ```
 
 </details>

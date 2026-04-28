@@ -15,12 +15,13 @@ The classic builder evaluated a Dockerfile linearly: one instruction at a time, 
 3. The **solver** walks the DAG, runs independent vertices in **parallel**, and consults a content-addressable cache.
 4. Outputs are produced and optionally exported (image, tar, local files, registry).
 
-```
-Dockerfile  --[dockerfile frontend]-->  LLB DAG  --[solver]-->  result
-                                            |
-                                            +---> cache lookup (local + remote)
-                                            +---> parallel execution
-                                            +---> export (image, oci, local, registry)
+```mermaid
+flowchart LR
+    DF[Dockerfile] -->|dockerfile frontend| DAG[LLB DAG]
+    DAG -->|solver| R[result]
+    DAG --> CL["cache lookup\nlocal + remote"]
+    DAG --> PE[parallel execution]
+    DAG --> EX["export\nimage / oci / local / registry"]
 ```
 
 ---
@@ -34,12 +35,12 @@ Dockerfile  --[dockerfile frontend]-->  LLB DAG  --[solver]-->  result
 
 ```mermaid
 flowchart LR
-    DF[Dockerfile<br/>or HCL or Buildpack] --> FE[Frontend<br/>e.g. dockerfile.v0]
-    FE --> LLB[LLB DAG<br/>vertices + edges]
+    DF["Dockerfile<br/>or HCL or Buildpack"] --> FE["Frontend<br/>e.g. dockerfile.v0"]
+    FE --> LLB["LLB DAG<br/>vertices + edges"]
     LLB --> SOL[BuildKit solver]
-    SOL --> CL[Local cache<br/>content addressable]
-    SOL --> CR[Registry cache<br/>type=registry mode=max]
-    SOL --> EX[Executor<br/>runc OCI worker]
+    SOL --> CL["Local cache<br/>content addressable"]
+    SOL --> CR["Registry cache<br/>type=registry mode=max"]
+    SOL --> EX["Executor<br/>runc OCI worker"]
     EX --> OUT[Output]
     OUT --> IMG[Image to dockerd]
     OUT --> TAR[OCI tarball]

@@ -2,7 +2,7 @@
 
 Every module page MUST follow this 6-stage teaching loop for **each concept**:
 
-```
+```text
 Reason → Thinking → Execution → Simulation → Output → Real-world use case
 ```
 
@@ -120,7 +120,7 @@ root cause: 100k reads/sec
 
 ## 2. <Next concept>
 ... (repeat the 6-stage pattern)
-```
+```text
 
 ---
 
@@ -154,7 +154,7 @@ XX-<name>/
   lab-01-<topic>/        ← hands-on lab (optional, for long modules)
     README.md
     <scripts>
-```
+```bash
 
 ## Commands.md format
 

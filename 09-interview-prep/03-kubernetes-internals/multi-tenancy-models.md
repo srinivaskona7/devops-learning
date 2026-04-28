@@ -13,9 +13,9 @@ Multi-tenancy in Kubernetes is a spectrum. From "share a namespace" to "share ab
 
 ```mermaid
 flowchart LR
-  T[Trust level] --> Soft[Soft tenancy<br/>same org, mutually trusting]
-  T --> Hard[Hard tenancy<br/>untrusted, hostile]
-  Soft --> NS[Namespaces + RBAC<br/>+ ResourceQuota]
+  T[Trust level] --> Soft["Soft tenancy<br/>same org, mutually trusting"]
+  T --> Hard["Hard tenancy<br/>untrusted, hostile"]
+  Soft --> NS["Namespaces + RBAC<br/>+ ResourceQuota"]
   Soft --> HNS[Hierarchical NS]
   Hard --> VC[vCluster]
   Hard --> Cluster[Cluster-per-tenant]
@@ -77,7 +77,7 @@ spec:
 
 Namespaces gain parent-child relationships. Policies (RBAC, NetworkPolicy, ResourceQuota) propagate from parent to children.
 
-```
+```text
 team-orders (parent)
 ├── orders-dev
 ├── orders-staging
@@ -112,7 +112,7 @@ vCluster runs an entire control plane (k3s/k8s in a pod) inside a host namespace
 ```mermaid
 flowchart LR
   Host[Host Cluster] --> NS1[ns: tenant-a]
-  NS1 --> VCA[vCluster A<br/>API server pod<br/>+ syncer]
+  NS1 --> VCA["vCluster A<br/>API server pod<br/>+ syncer"]
   VCA --> VW[virtual workloads]
   VW -->|synced as real pods| Host
   Host --> NS2[ns: tenant-b]

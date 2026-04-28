@@ -22,8 +22,8 @@ HashiCorp Configuration Language (HCL2) is a declarative DSL. You describe *what
 ```mermaid
 flowchart TD
     A[Parse .tf files] --> B[Build resource graph]
-    B --> C[Resolve variables<br/>locals, data sources]
-    C --> D[Evaluate expressions<br/>for/for_each/dynamic]
+    B --> C["Resolve variables<br/>locals, data sources"]
+    C --> D["Evaluate expressions<br/>for/for_each/dynamic"]
     D --> E[Compute desired state]
     E --> F[Diff vs current state]
     F --> G[Plan output]

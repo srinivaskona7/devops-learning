@@ -7,7 +7,7 @@ This is the canonical "what actually happens when a pod calls another pod's serv
 ## The Question
 
 Pod A on Node 1 runs:
-```
+```bash
 curl http://orders.shop.svc.cluster.local
 ```
 What happens between the syscall and the response landing back?

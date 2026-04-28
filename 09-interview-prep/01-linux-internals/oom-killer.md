@@ -45,7 +45,7 @@ flowchart LR
 
 Modern kernels (`mm/oom_kill.c`, function `oom_badness`):
 
-```
+```text
 points = (process_RSS + process_swap + pgtables) / total_pages * 1000
 points += oom_score_adj * 10   // operator override
 ```

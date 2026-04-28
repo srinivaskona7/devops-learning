@@ -38,7 +38,7 @@ Use this runbook when **all** of the following are true:
 
 ## Decision tree
 
-```
+```text
 Primary region unresponsive?
   ├─ YES for < 5 min → Wait. Transient network issues are common.
   ├─ YES for 5-10 min → Escalate, prepare failover, do NOT execute yet.
@@ -412,7 +412,7 @@ make verify-rto-rpo
 
 ## STEP 13 — Notify stakeholders (T+13:00)
 
-```
+```text
 STATUS: Service restored in secondary region (us-west-2)
 Primary region: us-east-1 — OFFLINE (AWS incident in progress)
 Secondary region: us-west-2 — SERVING TRAFFIC

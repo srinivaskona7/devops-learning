@@ -75,7 +75,7 @@ flowchart LR
 - `files` → `/etc/hosts`. `dns` → glibc resolver via `/etc/resolv.conf`. `resolve` → systemd-resolved over D-Bus or 127.0.0.53.
 
 ### `/etc/resolv.conf`
-```
+```text
 nameserver 8.8.8.8
 nameserver 1.1.1.1
 search corp.example.com example.com

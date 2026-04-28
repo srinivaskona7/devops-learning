@@ -38,10 +38,10 @@ Two phases:
 
 ```mermaid
 flowchart LR
-    Q[ActiveQ<br/>BackoffQ<br/>UnschedulableQ] --> SS[Sort]
+    Q["ActiveQ<br/>BackoffQ<br/>UnschedulableQ"] --> SS[Sort]
     SS --> PF[PreFilter]
     PF --> F[Filter]
-    F --> PoF[PostFilter<br/>preemption]
+    F --> PoF["PostFilter<br/>preemption"]
     PoF --> PreS[PreScore]
     PreS --> SC[Score]
     SC --> NS[NormalizeScore]

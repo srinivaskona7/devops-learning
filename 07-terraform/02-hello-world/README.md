@@ -52,7 +52,7 @@ terraform destroy    # type 'yes'
 2. A `local_file` resource that writes `hello.txt` on disk.
 
 ## What you'll see on disk after apply
-```
+```bash
 .terraform/                      ← provider plugins (don't commit)
 .terraform.lock.hcl              ← provider version lockfile (DO commit)
 hello.txt                        ← the file we created

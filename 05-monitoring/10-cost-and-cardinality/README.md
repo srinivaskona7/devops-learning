@@ -6,7 +6,7 @@ The single biggest reason monitoring bills explode (and Prometheus OOMs) is **la
 
 Each **unique combination of labels** for a metric is one **time series**. Prometheus stores one chunk per series, so:
 
-```
+```text
 http_requests_total{method="GET", status="200", path="/api/users/123"}
 http_requests_total{method="GET", status="200", path="/api/users/124"}
 http_requests_total{method="GET", status="200", path="/api/users/125"}
@@ -22,9 +22,9 @@ If you put `user_id` in `path`, you get one series **per user**. Million users =
 
 ```mermaid
 flowchart LR
-    A[Raw metric<br/>http_requests_total] --> B{Labels?}
-    B -->|method, status<br/>~ 50 combos| OK[Healthy:<br/>50 series]
-    B -->|+ path with user_id<br/>~ 1M combos| BAD[Disaster:<br/>1M series, OOM]
+    A["Raw metric<br/>http_requests_total"] --> B{Labels?}
+    B -->|method, status<br/>~ 50 combos| OK["Healthy:<br/>50 series"]
+    B -->|+ path with user_id<br/>~ 1M combos| BAD["Disaster:<br/>1M series, OOM"]
 ```
 
 </details>

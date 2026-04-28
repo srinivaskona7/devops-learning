@@ -10,29 +10,12 @@
 
 Three layers, each replaceable:
 
-```
-+--------------------+  user-facing API, image build, networking, volumes
-|       dockerd      |  (a.k.a. moby engine)
-+--------------------+
-           | gRPC over /run/docker/containerd/containerd.sock
-           v
-+--------------------+  container lifecycle, image pull/push, snapshots
-|     containerd     |  (CNCF graduated)
-+--------------------+
-           | exec containerd-shim-runc-v2 per container
-           v
-+--------------------+  one shim PER container, decouples from containerd
-| containerd-shim    |
-+--------------------+
-           | exec runc create / start
-           v
-+--------------------+  OCI runtime: clone3, set namespaces, pivot_root, exec
-|        runc        |  (or crun, kata-runtime, gVisor runsc, ...)
-+--------------------+
-           v
-+--------------------+
-|  container PID 1   |
-+--------------------+
+```mermaid
+flowchart TD
+    D["dockerd\nuser-facing API, image build, networking, volumes"] -->|"gRPC / containerd.sock"| C["containerd\ncontainer lifecycle, image pull/push, snapshots"]
+    C -->|"exec containerd-shim-runc-v2 per container"| S["containerd-shim\none shim per container"]
+    S -->|"exec runc create / start"| R["runc\nOCI: clone3, namespaces, pivot_root\n(or crun, kata, gVisor runsc)"]
+    R --> P1[container PID 1]
 ```
 
 Each arrow is a process boundary. `runc` is short-lived — it sets up the container and then `exec`s the user's process, exiting itself. The **shim** is the one that stays around.
@@ -50,8 +33,8 @@ Each arrow is a process boundary. `runc` is short-lived — it sets up the conta
 flowchart TB
     CLI[docker CLI] -->|REST over unix socket| D[dockerd]
     D -->|gRPC| C[containerd]
-    C -->|exec| S1[containerd-shim-runc-v2<br/>container A]
-    C -->|exec| S2[containerd-shim-runc-v2<br/>container B]
+    C -->|exec| S1["containerd-shim-runc-v2<br/>container A"]
+    C -->|exec| S2["containerd-shim-runc-v2<br/>container B"]
     S1 -->|exec runc create| R1[runc - exits after setup]
     R1 --> P1[container A PID 1]
     S2 -->|exec runc create| R2[runc - exits after setup]
@@ -148,7 +131,7 @@ The **Open Container Initiative** publishes three specs:
 
 A container "bundle" passed to runc is just a directory:
 
-```
+```text
 bundle/
 ├── config.json         # OCI runtime spec - command, env, mounts, namespaces, caps
 └── rootfs/             # the container's root filesystem

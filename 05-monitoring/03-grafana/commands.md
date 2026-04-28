@@ -47,7 +47,7 @@ curl -sG -u admin:admin \
 
 ### Panel queries to memorise
 
-```
+```text
 RPS:           sum(rate(http_requests_total[5m]))
 Error %:       100 * <error ratio recording rule>
 Top-N noisy:   topk(10, sum by (service)(rate(http_requests_total[5m])))
@@ -57,7 +57,7 @@ Live logs:     {namespace="$ns",pod="$pod"}    # LogQL
 
 ### Variables
 
-```
+```text
 namespace = label_values(kube_pod_info, namespace)
 pod       = label_values(kube_pod_info{namespace="$namespace"}, pod)
 ```
@@ -97,7 +97,7 @@ curl -s -u admin:admin http://localhost:3000/api/dashboards/uid/<UID> | jq .dash
 docker restart grafana
 ```
 
-```
+```text
 Never click your way to a dashboard in production. Provision YAML/JSON.
 provisioning/datasources/  -> backends
 provisioning/dashboards/   -> JSON loader

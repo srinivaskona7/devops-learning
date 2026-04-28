@@ -46,13 +46,13 @@
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Reproduce]
-    B --> C[Hypothesize<br/>5 candidates]
-    C --> D[Diagnose<br/>cheapest first]
+    B --> C["Hypothesize<br/>5 candidates"]
+    C --> D["Diagnose<br/>cheapest first"]
     D --> E{Root cause?}
     E -->|No| C
     E -->|Yes| F[Fix]
     F --> G[Verify]
-    G --> H[Prevent<br/>guardrail]
+    G --> H["Prevent<br/>guardrail"]
 ```
 
 </details>

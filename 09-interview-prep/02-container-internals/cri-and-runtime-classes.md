@@ -14,17 +14,17 @@ Kubernetes does not run containers — it asks a **CRI (Container Runtime Interf
 ```mermaid
 flowchart TB
     kubelet[kubelet] -->|CRI gRPC<br/>RuntimeService + ImageService| sock{/var/run/cri.sock}
-    sock --> CD[containerd<br/>+ cri plugin]
+    sock --> CD["containerd<br/>+ cri plugin"]
     sock --> CO[CRI-O]
     CD --> SHIM_RUNC[shim-runc-v2]
     CD --> SHIM_KATA[shim-kata-v2]
     CD --> SHIM_GVISOR[shim-runsc]
-    SHIM_RUNC --> RUNC[runc<br/>shared kernel]
-    SHIM_KATA --> KATA[kata-runtime<br/>lightweight VM<br/>QEMU/Firecracker]
-    SHIM_GVISOR --> GVISOR[runsc<br/>user-space kernel<br/>syscall interception]
-    KATA -.-> guest[guest kernel<br/>per pod]
-    RUNC -.-> hostk[host kernel<br/>shared]
-    GVISOR -.-> sentry[Sentry<br/>filters all syscalls]
+    SHIM_RUNC --> RUNC["runc<br/>shared kernel"]
+    SHIM_KATA --> KATA["kata-runtime<br/>lightweight VM<br/>QEMU/Firecracker"]
+    SHIM_GVISOR --> GVISOR["runsc<br/>user-space kernel<br/>syscall interception"]
+    KATA -.-> guest["guest kernel<br/>per pod"]
+    RUNC -.-> hostk["host kernel<br/>shared"]
+    GVISOR -.-> sentry["Sentry<br/>filters all syscalls"]
 ```
 
 </details>
@@ -36,12 +36,12 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    PodSpec[Pod with<br/>runtimeClassName: kata] --> kubelet
+    PodSpec["Pod with<br/>runtimeClassName: kata"] --> kubelet
     kubelet --> CRI[CRI gRPC RunPodSandbox]
     CRI --> containerd
     containerd --> lookup{lookup runtime<br/>handler 'kata'}
     lookup --> shim[start kata shim]
-    shim --> vm[boot microVM<br/>start container]
+    shim --> vm["boot microVM<br/>start container"]
 ```
 
 </details>

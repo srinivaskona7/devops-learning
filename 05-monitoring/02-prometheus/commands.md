@@ -118,7 +118,7 @@ curl -X POST http://localhost:9090/-/reload         # hot reload
 curl -s localhost:9090/api/v1/targets | jq '.data.activeTargets[].health' | sort | uniq -c
 ```
 
-```
+```text
 Pull beats push for long-running services.
 Pushgateway is for short-lived/batch jobs ONLY.
 Cardinality kills you, not volume.

@@ -113,7 +113,7 @@ COPY --from=builder /build \
 | `STOPSIGNAL SIGQUIT` | Nginx drains open connections gracefully before exiting. |
 
 **Final image:**
-```
+```text
 nginx:alpine base layer  ~8.5 MB
 html + css layer           ~12 KB
 ──────────────────────────────────
@@ -189,7 +189,7 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=2s --retries=3 \
 
 A container registry is a versioned artifact store. The workflow maps to git push/pull:
 
-```
+```bash
 docker build → docker tag → docker push → docker pull (anywhere)
 ```
 

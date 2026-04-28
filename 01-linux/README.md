@@ -64,6 +64,40 @@ Two schedulers, one decision tree. Pick the right one, always.
 
 ---
 
+<div class="grid cards" markdown>
+
+-   :material-folder-network:{ .lg .middle } **Filesystem Hierarchy**
+
+    ---
+    Everything is a file. `/proc`, `/sys`, `/dev` expose kernel state as files — not just storage.
+
+    [:octicons-arrow-right-24: Deep dive](#filesystem-paths-inodes-hardlinks-symlinks-mounts)
+
+-   :material-account-lock:{ .lg .middle } **Users & Permissions**
+
+    ---
+    Nine permission bits + setuid/setgid/sticky. `sudo` is just a setuid binary that checks `/etc/sudoers`.
+
+    [:octicons-arrow-right-24: Deep dive](#permissions-ugoa-setuid-setgid-sticky-acls)
+
+-   :material-cog-sync:{ .lg .middle } **Processes & Signals**
+
+    ---
+    Every process is a `task_struct`. Signals are async notifications. PID 1 reaps orphans.
+
+    [:octicons-arrow-right-24: Deep dive](#processes-signals-fork-exec-kill-9-vs-15-zombies)
+
+-   :material-network:{ .lg .middle } **Networking Stack**
+
+    ---
+    Packets traverse NIC → IRQ → netfilter → TCP stack → socket buffer. Every layer is observable.
+
+    [:octicons-arrow-right-24: Deep dive](#networking-ip-ss-tcpdump-iptablesnftables-dns)
+
+</div>
+
+---
+
 ## 1. Filesystem & paths — inodes, hardlinks, symlinks, mounts
 
 <div class="concept" markdown>
@@ -202,12 +236,11 @@ flowchart LR
 - **ACLs** — when POSIX triads run out of expressiveness ("Alice read-only, Bob write"), `setfacl` is the escape hatch.
 - The **umask** subtracts from the default mode at creation time; `0022` gives `755` dirs and `644` files.
 
+!!! prod-danger "3 AM Anti-Pattern"
+    **Never run `chmod -R 777` on application directories or system paths.**
+    This removes all permission separation — any process, including malware or a compromised dependency, can read, write, and execute everything under that path. A deploy script that "makes it work" with `chmod -R 777 /opt/app` leaves credentials world-readable. Recovery from a production breach caused by this is a full incident, not a hotfix.
+
 <span class="stage execution">Execution</span>
-
-**Run it yourself.**
-
-```bash
-# setgid in action: team folder
 mkdir /srv/team && chgrp staff /srv/team && chmod 2775 /srv/team
 ls -ld /srv/team                        # drwxrwsr-x — note the 's'
 sudo -u alice touch /srv/team/alice.txt
@@ -359,8 +392,10 @@ EOF
 chmod +x /tmp/zombie.sh
 /tmp/zombie.sh &
 sleep 32
-ps -eo pid,ppid,stat,cmd | grep -E 'Z|defunct'
+ps -eo pid,ppid,stat,cmd | grep -E 'Z|defunct' # (1)!
 ```
+
+1. `ps -eo` — select exact output columns: pid, ppid, stat (process state), cmd (full command). `Z` state = zombie; `defunct` appears in the cmd field. Pipe to grep to isolate zombie processes.
 
 <span class="stage simulation">Simulation — what you'll see</span>
 
@@ -830,7 +865,24 @@ du -xhd 1 /var | sort -h | tail
 lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINT,TYPE
 
 # Live I/O per device (needs sysstat): install it first if missing
-apt-get install -y sysstat
+```
+
+=== ":material-ubuntu: Ubuntu / Debian"
+    ```bash
+    sudo apt-get install -y sysstat
+    ```
+
+=== ":material-redhat: RHEL / Fedora"
+    ```bash
+    sudo dnf install -y sysstat
+    ```
+
+=== ":material-arch: Arch"
+    ```bash
+    sudo pacman -S sysstat
+    ```
+
+```bash
 iostat -xz 1 3
 
 # Who is causing the I/O (inside container: need SYS_PTRACE)?

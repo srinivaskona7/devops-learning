@@ -49,14 +49,14 @@ done
 ## 5. Explore in Grafana
 
 ### Metrics (Prometheus)
-```
+```text
 sum by (http_status_code) (
   rate(http_server_request_duration_seconds_count{service_name="hello-world"}[1m])
 )
 ```
 
 ### Logs (Loki)
-```
+```json
 {service_name="hello-world"} |= "GET /"
 ```
 

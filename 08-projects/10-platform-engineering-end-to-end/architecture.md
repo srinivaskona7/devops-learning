@@ -9,12 +9,12 @@ This document traces every data path, control plane interaction, and failure mod
 ```mermaid
 flowchart LR
     ENG[Engineer] -->|1. git push| PR[Pull Request]
-    PR -->|2. CI triggered| CI_BUILD[Build + Test<br/>GitHub Actions]
-    CI_BUILD -->|3. image built| TRIVY[Trivy scan<br/>no critical CVEs]
-    TRIVY -->|4. scan pass| COSIGN_SIGN[cosign sign --keyless<br/>OIDC token from GHA]
-    COSIGN_SIGN -->|5. push signed image| REGISTRY[OCI Registry<br/>ghcr.io]
-    COSIGN_SIGN -->|6. update image tag| GITOPS_PR[GitOps repo PR<br/>auto-merged by bot]
-    GITOPS_PR -->|7. ArgoCD detects diff| ARGOCD[Argo CD<br/>sync]
+    PR -->|2. CI triggered| CI_BUILD["Build + Test<br/>GitHub Actions"]
+    CI_BUILD -->|3. image built| TRIVY["Trivy scan<br/>no critical CVEs"]
+    TRIVY -->|4. scan pass| COSIGN_SIGN["cosign sign --keyless<br/>OIDC token from GHA"]
+    COSIGN_SIGN -->|5. push signed image| REGISTRY["OCI Registry<br/>ghcr.io"]
+    COSIGN_SIGN -->|6. update image tag| GITOPS_PR["GitOps repo PR<br/>auto-merged by bot"]
+    GITOPS_PR -->|7. ArgoCD detects diff| ARGOCD["Argo CD<br/>sync"]
 ```
 
 **Key decisions:**
@@ -29,7 +29,7 @@ flowchart LR
 ```mermaid
 flowchart TB
     subgraph ArgoCD["Argo CD Control Plane"]
-        AOA[app-of-apps<br/>root Application] -->|owns| DELAPP[delivery-app<br/>Application]
+        AOA["app-of-apps<br/>root Application"] -->|owns| DELAPP["delivery-app<br/>Application"]
         AOA -->|owns| OBSAPP[observability-app]
         AOA -->|owns| SECAPP[security-app]
         AOA -->|owns| PLATAPP[platform-app]
@@ -38,10 +38,10 @@ flowchart TB
 
     subgraph Rollout["Argo Rollouts — payment-service"]
         DELAPP -->|syncs| ROLLOUTOBJ[Rollout object]
-        ROLLOUTOBJ -->|step 1: weight 10| CANARY[Canary pods<br/>1 replica]
-        ROLLOUTOBJ -->|maintains| STABLE[Stable pods<br/>2 replicas]
-        CANARY -->|creates| ANALYSISRUN[AnalysisRun<br/>every 60s]
-        ANALYSISRUN -->|queries| PROM[Prometheus<br/>error_rate + p95]
+        ROLLOUTOBJ -->|step 1: weight 10| CANARY["Canary pods<br/>1 replica"]
+        ROLLOUTOBJ -->|maintains| STABLE["Stable pods<br/>2 replicas"]
+        CANARY -->|creates| ANALYSISRUN["AnalysisRun<br/>every 60s"]
+        ANALYSISRUN -->|queries| PROM["Prometheus<br/>error_rate + p95"]
         ANALYSISRUN -->|5× pass → weight 25| STEP2[Weight 25%]
         STEP2 -->|5× pass → weight 50| STEP3[Weight 50%]
         STEP3 -->|5× pass → weight 100| PROMOTED[Promoted ✔]
@@ -92,10 +92,10 @@ flowchart TB
 
         subgraph Networking["Istio Service Mesh"]
             direction LR
-            PILOT[istiod<br/>control plane] -->|xDS config| ENVOY1[Envoy sidecar<br/>payment-service]
-            PILOT -->|xDS config| ENVOY2[Envoy sidecar<br/>fraud-service]
+            PILOT["istiod<br/>control plane"] -->|xDS config| ENVOY1["Envoy sidecar<br/>payment-service"]
+            PILOT -->|xDS config| ENVOY2["Envoy sidecar<br/>fraud-service"]
             ENVOY1 <-->|mTLS 1.3| ENVOY2
-            IG[Istio Ingress<br/>Gateway] -->|TLS termination| ENVOY1
+            IG["Istio Ingress<br/>Gateway"] -->|TLS termination| ENVOY1
         end
     end
 ```
@@ -117,30 +117,30 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph Instrumentation["Service Instrumentation"]
-        SVC[Service<br/>Go/Python/Node] -->|OTLP gRPC| COLLECTOR
+        SVC["Service<br/>Go/Python/Node"] -->|OTLP gRPC| COLLECTOR
         ENVOY[Envoy sidecar] -->|access log| COLLECTOR
     end
 
     subgraph COLLECTOR["OTel Collector (DaemonSet)"]
         direction TB
-        RECV[OTLP receiver<br/>:4317] --> PROC[Batch processor<br/>+ resource detector]
-        PROC --> EXP1[Prometheus exporter<br/>remote_write]
-        PROC --> EXP2[Loki exporter<br/>HTTP push]
-        PROC --> EXP3[OTLP exporter<br/>→ Tempo]
+        RECV["OTLP receiver<br/>:4317"] --> PROC["Batch processor<br/>+ resource detector"]
+        PROC --> EXP1["Prometheus exporter<br/>remote_write"]
+        PROC --> EXP2["Loki exporter<br/>HTTP push"]
+        PROC --> EXP3["OTLP exporter<br/>→ Tempo"]
     end
 
     subgraph Backends
-        PROM_TSDB[(Prometheus TSDB<br/>30d retention)]
-        LOKI_STORE[(Loki<br/>S3/minio 90d)]
-        TEMPO_STORE[(Tempo<br/>S3/minio 7d)]
+        PROM_TSDB["(Prometheus TSDB<br/>30d retention)"]
+        LOKI_STORE["(Loki<br/>S3/minio 90d)"]
+        TEMPO_STORE["(Tempo<br/>S3/minio 7d)"]
     end
 
     subgraph Grafana["Grafana (unified)"]
         DS_PROM[Prometheus datasource]
         DS_LOKI[Loki datasource]
         DS_TEMPO[Tempo datasource]
-        DASH[Service dashboard<br/>RED + USE + SLO]
-        ALERTS[Alert rules<br/>+ Alertmanager]
+        DASH["Service dashboard<br/>RED + USE + SLO"]
+        ALERTS["Alert rules<br/>+ Alertmanager"]
         DS_PROM --> DASH
         DS_LOKI --> DASH
         DS_TEMPO --> DASH
@@ -181,7 +181,7 @@ flowchart TB
 
     subgraph Admission["Admission Control"]
         REGISTRY -->|image ref| DEPLOY[kubectl apply]
-        DEPLOY --> KYVER_WEBHOOK[Kyverno webhook<br/>validating]
+        DEPLOY --> KYVER_WEBHOOK["Kyverno webhook<br/>validating"]
         KYVER_WEBHOOK -->|cosign verify| SIG_CHECK{signature valid?}
         SIG_CHECK -->|no| REJECT[Reject admission ✗]
         SIG_CHECK -->|yes| POLICY_CHECK{all policies pass?}
@@ -190,10 +190,10 @@ flowchart TB
     end
 
     subgraph Secrets["Secrets Management"]
-        VAULT_SRV[HashiCorp Vault] -->|dynamic secret lease| ESO_CTRL[External Secrets<br/>Operator controller]
+        VAULT_SRV[HashiCorp Vault] -->|dynamic secret lease| ESO_CTRL["External Secrets<br/>Operator controller"]
         ESO_CTRL -->|creates/rotates| K8S_SEC[Kubernetes Secret]
         K8S_SEC -->|envFrom| POD_ENV[Pod environment]
-        VAULT_SRV -->|PKI cert| MTLS_CERT[mTLS certificate<br/>(via Istio CA)]
+        VAULT_SRV -->|PKI cert| MTLS_CERT["mTLS certificate<br/>(via Istio CA)"]
     end
 ```
 
@@ -217,20 +217,20 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph Experiments["Chaos Mesh Experiments"]
-        SCHED[CronChaos<br/>schedule: daily 03:00 UTC] -->|spawns| E1[PodChaos<br/>pod-kill]
-        SCHED -->|spawns| E2[NetworkChaos<br/>100ms delay]
-        SCHED -->|spawns| E3[StressChaos<br/>CPU 80%]
+        SCHED["CronChaos<br/>schedule: daily 03:00 UTC"] -->|spawns| E1["PodChaos<br/>pod-kill"]
+        SCHED -->|spawns| E2["NetworkChaos<br/>100ms delay"]
+        SCHED -->|spawns| E3["StressChaos<br/>CPU 80%"]
     end
 
     subgraph Observation["Concurrent Observation"]
-        K6_RUNNER[k6 load generator<br/>500 VUs] -->|measures| METRICS[p95 latency<br/>error rate<br/>throughput]
-        PROM_QUERY[Prometheus<br/>alerting] -->|SLO breach?| NOTIFY[PagerDuty alert]
+        K6_RUNNER["k6 load generator<br/>500 VUs"] -->|measures| METRICS["p95 latency<br/>error rate<br/>throughput"]
+        PROM_QUERY["Prometheus<br/>alerting"] -->|SLO breach?| NOTIFY[PagerDuty alert]
     end
 
     subgraph Recovery["Platform Recovery Mechanisms"]
-        E1 -->|pod terminated| KUBE_SCHED[Kubernetes reschedules<br/>in ~10s]
-        E2 -->|packets delayed| RETRY[Client retry<br/>with exponential backoff]
-        E3 -->|CPU throttled| HPA[HPA scales out<br/>within 60s]
+        E1 -->|pod terminated| KUBE_SCHED["Kubernetes reschedules<br/>in ~10s"]
+        E2 -->|packets delayed| RETRY["Client retry<br/>with exponential backoff"]
+        E3 -->|CPU throttled| HPA["HPA scales out<br/>within 60s"]
     end
 
     Experiments --> Observation
@@ -239,7 +239,7 @@ flowchart LR
 
 **Hypothesis format** (per game day):
 
-```
+```text
 Hypothesis: "When 1 of 3 payment-service pods is killed,
              p95 latency will remain below 150ms (gold SLO)
              and error rate will remain 0%
@@ -271,7 +271,7 @@ Result:        PASS — hypothesis confirmed
 
 ## Network topology
 
-```
+```ini
 External traffic
        │
        ▼
@@ -294,7 +294,7 @@ Internal (service mesh):
 
 ## Data flow — secret injection
 
-```
+```text
 1. CI/CD writes: vault kv put secret/payment-service/db-password value=<generated>
 2. ExternalSecret controller polls Vault every 3600s (or on-demand)
 3. ESO creates/updates Kubernetes Secret: payment-service-db
@@ -312,7 +312,7 @@ Internal (service mesh):
 
 ## Deployment topology diagram
 
-```
+```text
 kind cluster (local) or EKS cluster (cloud)
 │
 ├── Node 1 (control-plane)

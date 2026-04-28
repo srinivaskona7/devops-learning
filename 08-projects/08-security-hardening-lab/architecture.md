@@ -6,22 +6,22 @@ The diagram maps every component to its threat category and the defensive contro
 
 ```mermaid
 flowchart TB
-    DEV[Developer<br/>Workstation] -->|git push SHA-pinned| SCM[Source Control<br/>GitHub/GitLab]
-    SCM -->|webhook trigger| CI[CI Runner<br/>GitHub Actions]
+    DEV["Developer<br/>Workstation"] -->|git push SHA-pinned| SCM["Source Control<br/>GitHub/GitLab"]
+    SCM -->|webhook trigger| CI["CI Runner<br/>GitHub Actions"]
 
     subgraph SupplyChain["Supply Chain Layer — SLSA L2"]
         CI -->|docker build --no-cache| BUILD[Image Build]
         BUILD -->|trivy scan --exit-code 1| TRIVYGATE{HIGH/CRIT?}
         TRIVYGATE -->|no vulns| PUSH[Push to Registry]
         TRIVYGATE -->|found| FAIL([Pipeline FAIL])
-        PUSH -->|cosign sign keyless| SIGSTORE[Sigstore<br/>Fulcio + Rekor]
+        PUSH -->|cosign sign keyless| SIGSTORE["Sigstore<br/>Fulcio + Rekor"]
         PUSH -->|syft -o cyclonedx-json| SBOM[SBOM File]
-        SBOM -->|cosign attest| REG[(OCI Registry<br/>ghcr.io)]
+        SBOM -->|cosign attest| REG["(OCI Registry<br/>ghcr.io)"]
     end
 
     subgraph Cluster["Kubernetes Cluster"]
         subgraph Admission["Admission Control Layer"]
-            REG -->|kubectl apply| API[API Server<br/>kube-apiserver]
+            REG -->|kubectl apply| API["API Server<br/>kube-apiserver"]
             API -->|ValidatingWebhook| KYV[Kyverno Engine]
             KYV --> P1[require-non-root]
             KYV --> P2[require-resource-limits]
@@ -34,28 +34,28 @@ flowchart TB
 
         subgraph WorkloadLayer["Workload Layer"]
             SCHED --> NODE[Worker Node]
-            NODE --> POD[Pod<br/>UID 1000, read-only FS]
+            NODE --> POD["Pod<br/>UID 1000, read-only FS"]
         end
 
         subgraph SecretsLayer["Secrets Layer"]
-            VAULT[(HashiCorp Vault<br/>AppRole Auth)] -->|lease| ESO[External Secrets<br/>Operator]
+            VAULT["(HashiCorp Vault<br/>AppRole Auth)"] -->|lease| ESO["External Secrets<br/>Operator"]
             ESO -->|k8s Secret| POD
         end
 
         subgraph NetworkLayer["Network Layer"]
             POD -->|NetworkPolicy allow| SVC[ClusterIP Service]
             SVC --> DB[(Database)]
-            NP[NetworkPolicy<br/>default-deny-all] -.->|blocks all else| POD
+            NP["NetworkPolicy<br/>default-deny-all"] -.->|blocks all else| POD
         end
 
         subgraph RuntimeLayer["Runtime Detection Layer"]
             POD -->|syscalls via eBPF| FALCO[Falco Agent]
-            FALCO -->|alert stream| OUTPUT[Alert Output<br/>stdout / gRPC / Slack]
+            FALCO -->|alert stream| OUTPUT["Alert Output<br/>stdout / gRPC / Slack"]
         end
     end
 
     subgraph Audit["Audit Layer"]
-        API -->|audit log| AUDITLOG[Audit Log<br/>JSON to S3/GCS]
+        API -->|audit log| AUDITLOG["Audit Log<br/>JSON to S3/GCS"]
         FALCO --> AUDITLOG
         SIGSTORE --> AUDITLOG
     end
@@ -86,12 +86,12 @@ flowchart LR
 ```mermaid
 flowchart LR
     subgraph Threats["STRIDE Threats"]
-        S[Spoofing<br/>fake image]
-        T[Tampering<br/>write /etc in container]
-        R[Repudiation<br/>no build provenance]
-        I[Information Disclosure<br/>secret in env var]
-        D[Denial of Service<br/>unbounded CPU]
-        E[Elevation of Privilege<br/>setuid in container]
+        S["Spoofing<br/>fake image"]
+        T["Tampering<br/>write /etc in container"]
+        R["Repudiation<br/>no build provenance"]
+        I["Information Disclosure<br/>secret in env var"]
+        D["Denial of Service<br/>unbounded CPU"]
+        E["Elevation of Privilege<br/>setuid in container"]
     end
 
     subgraph Controls["Defensive Controls"]

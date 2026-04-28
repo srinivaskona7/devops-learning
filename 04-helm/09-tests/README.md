@@ -25,7 +25,7 @@ sequenceDiagram
 </details>
 ## Layout
 
-```
+```text
 mychart/
 └── templates/
     └── tests/

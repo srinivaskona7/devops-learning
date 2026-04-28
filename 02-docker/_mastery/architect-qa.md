@@ -264,14 +264,14 @@ Shared registry cache + identical cache key + different base image → wrong lay
 ## Section 11: Debugging Toolkit
 
 ### Q57. Container won't start, no logs — first three commands?
-```
+```bash
 docker inspect <id> --format '{{.State.Error}}'
 docker events --since 5m | grep <id>
 journalctl -u docker -n 200
 ```
 
 ### Q58. Inspecting a running container's namespaces?
-```
+```bash
 nsenter -t $(docker inspect -f '{{.State.Pid}}' <id>) -a
 ```
 Gives you a shell in the container's namespaces from the host. Works even if the container has no shell (scratch).

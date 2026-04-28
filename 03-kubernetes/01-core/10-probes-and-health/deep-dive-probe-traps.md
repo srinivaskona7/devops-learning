@@ -145,7 +145,7 @@ Three different endpoints — `/started`, `/ready`, `/live` — so the app can a
 
 `terminationGracePeriodSeconds` (TGPS) timeline:
 
-```
+```text
 t=0        DELETE pod
            ├── readiness probe stopped immediately
            ├── pod removed from EndpointSlice (eventual)

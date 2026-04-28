@@ -12,7 +12,7 @@
 ```mermaid
 flowchart LR
   START([Container start]) --> SUP{Startup probe?}
-  SUP -->|present| SP[Startup Probe<br/>defers other probes until success]
+  SUP -->|present| SP["Startup Probe<br/>defers other probes until success"]
   SUP -->|absent| RL[Liveness + Readiness start immediately]
   SP --> RL
   RL --> READY{Readiness?}

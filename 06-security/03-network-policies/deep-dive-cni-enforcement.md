@@ -16,10 +16,10 @@ A `NetworkPolicy` is a declarative statement: "for pods matching X, allow only Y
 ```mermaid
 flowchart LR
     A[NetworkPolicy YAML] --> B[kube-apiserver]
-    B --> C[CNI controller<br/>per node]
+    B --> C["CNI controller<br/>per node"]
     C --> D[Render rules]
-    D --> E1[iptables / ipset<br/>Calico iptables mode]
-    D --> E2[eBPF programs<br/>Cilium / Calico eBPF]
+    D --> E1["iptables / ipset<br/>Calico iptables mode"]
+    D --> E2["eBPF programs<br/>Cilium / Calico eBPF"]
     D --> E3[ipvs rules]
     F[Pod packet] --> G[kernel netfilter or eBPF]
     G --> H{rule match?}
@@ -128,11 +128,11 @@ This single character of indentation flips the semantics — the most common Net
 
 ```mermaid
 flowchart LR
-    A[NetworkPolicy] --> B[Calico Felix agent<br/>per node]
+    A[NetworkPolicy] --> B["Calico Felix agent<br/>per node"]
     B --> C[Compute policy graph]
-    C --> D1[ipset: list of pod IPs<br/>matching label selector]
-    C --> D2[iptables chain<br/>jump to ipset match]
-    D1 --> E[netfilter PREROUTING /<br/>FORWARD evaluates per packet]
+    C --> D1["ipset: list of pod IPs<br/>matching label selector"]
+    C --> D2["iptables chain<br/>jump to ipset match"]
+    D1 --> E["netfilter PREROUTING /<br/>FORWARD evaluates per packet"]
     D2 --> E
 ```
 
@@ -155,10 +155,10 @@ Because rules use ipsets (kernel hash data structure), thousands of pod IPs matc
 
 ```mermaid
 flowchart LR
-    A[NetworkPolicy /<br/>CiliumNetworkPolicy] --> B[Cilium agent<br/>per node]
-    B --> C[Identity model:<br/>label set → numeric identity]
-    C --> D[eBPF policy map<br/>src_id × dst_id × port → verdict]
-    D --> E[eBPF program<br/>attached at tc / cgroup]
+    A["NetworkPolicy /<br/>CiliumNetworkPolicy"] --> B["Cilium agent<br/>per node"]
+    B --> C["Identity model:<br/>label set → numeric identity"]
+    C --> D["eBPF policy map<br/>src_id × dst_id × port → verdict"]
+    D --> E["eBPF program<br/>attached at tc / cgroup"]
     F[Pod packet] --> E
     E --> G{map lookup}
     G -->|allow| H[continue]
@@ -189,7 +189,7 @@ Mitigation: avoid hostNetwork unless required (system DaemonSets like ingress-ng
 
 ```mermaid
 flowchart LR
-    A[App pod] -->|DNS query<br/>UDP/53| B[kube-dns]
+    A[App pod] -->|DNS query / UDP/53| B[kube-dns]
     B -->|resolves api.stripe.com<br/>to 1.2.3.4| A
     A -->|HTTPS to 1.2.3.4| C[External]
     style B fill:#fdb

@@ -250,7 +250,7 @@ Key facts:
 - Default values are `maxSurge: 25%`, `maxUnavailable: 25%` — fine for most apps. High-traffic services should use `maxUnavailable: 0` to guarantee full capacity.
 
 Math:
-```
+```text
 minimum available = replicas - maxUnavailable
 maximum running   = replicas + maxSurge
 ```

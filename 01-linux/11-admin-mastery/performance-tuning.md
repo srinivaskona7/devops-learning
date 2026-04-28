@@ -45,14 +45,14 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    A[/proc/sys/] --> B[vm.*<br/>memory mgmt]
-    A --> C[net.core.*<br/>socket layer]
-    A --> D[net.ipv4.*<br/>TCP/IP]
-    A --> E[fs.*<br/>VFS limits]
-    A --> F[kernel.*<br/>scheduler / pids]
+    A[/proc/sys/] --> B["vm.*<br/>memory mgmt"]
+    A --> C["net.core.*<br/>socket layer"]
+    A --> D["net.ipv4.*<br/>TCP/IP"]
+    A --> E["fs.*<br/>VFS limits"]
+    A --> F["kernel.*<br/>scheduler / pids"]
 
     B --> B1[swappiness]
-    B --> B2[dirty_ratio<br/>dirty_background_ratio]
+    B --> B2["dirty_ratio<br/>dirty_background_ratio"]
     B --> B3[overcommit_memory]
     B --> B4[min_free_kbytes]
 
@@ -281,7 +281,7 @@ numastat -p $(pgrep -f my-app)
 
 ## Walkthrough: a real "the API is slow" investigation
 
-```
+```bash
 $ uptime
  15:42:11 up 47 days,  3:21,  2 users,  load average: 8.42, 6.18, 4.05
 # load > cores -> contention somewhere
@@ -321,7 +321,7 @@ $ vmstat 1 5
 
 ## Walkthrough: connection refused under load
 
-```
+```bash
 # Symptom: nginx logs show "connection refused" under burst
 $ ss -lnt | grep :443
 LISTEN 511    4096        *:443        *:*

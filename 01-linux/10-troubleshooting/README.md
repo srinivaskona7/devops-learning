@@ -16,9 +16,9 @@ The previous nine topics taught you the system. This one teaches you how to inte
 ```mermaid
 flowchart TB
     START([Alert]) --> Q1{Service up?}
-    Q1 -- no --> SYSD[systemctl status<br/>journalctl -u]
+    Q1 -- no --> SYSD["systemctl status<br/>journalctl -u"]
     Q1 -- yes --> Q2{Errors in logs?}
-    Q2 -- yes --> LOG[journalctl -p err<br/>tail -f /var/log/...]
+    Q2 -- yes --> LOG["journalctl -p err<br/>tail -f /var/log/..."]
     Q2 -- no --> Q3{CPU / Mem / IO?}
     Q3 -- CPU --> TOP[top / htop / pidstat]
     Q3 -- IO --> IO[iostat / iotop / dstat]

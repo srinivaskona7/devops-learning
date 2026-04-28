@@ -43,7 +43,7 @@ flowchart LR
 
 ## Registry Address Format
 
-```
+```text
 [<HOSTNAME>/]<NAMESPACE>/<NAME>/<PROVIDER>
                                   ^
                           NOT the provider in YOUR config —
@@ -216,12 +216,12 @@ resource "aws_security_group" "app" {
 
 ```mermaid
 flowchart LR
-    A[Add input variable<br/>with default] --> B[Minor bump]
+    A["Add input variable<br/>with default"] --> B[Minor bump]
     C[Add output] --> B
     D[Add resource] --> B
     E[Bug fix, no API change] --> F[Patch bump]
     G[Remove input] --> H[Major bump]
-    I[Change input default<br/>that affects existing infra] --> H
+    I["Change input default<br/>that affects existing infra"] --> H
     J[Remove output] --> H
     K[Force resource replacement] --> H
 ```

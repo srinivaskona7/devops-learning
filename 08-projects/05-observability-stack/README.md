@@ -109,7 +109,7 @@ The nested `db-query` span appears as a child in Tempo, showing exactly where th
 
 The app sends one OTLP stream. The Collector splits it three ways:
 
-```
+```text
 App ──OTLP gRPC──► Collector ──► Tempo      (traces)
                             ──► Loki       (logs)
                             ──► Prometheus (metrics, with exemplars)
@@ -143,7 +143,7 @@ The `transform/add_exemplars` processor is the bridge between Pillar 1 (metrics)
 
 ### Full pipeline
 
-```
+```text
 receivers:  otlp (gRPC 4317 + HTTP 4318)
 processors: memory_limiter → resource → batch
 exporters:
@@ -200,7 +200,7 @@ The `release: kube-prom-stack` label tells the Prometheus Operator to include th
 
 The `LoggingInstrumentor` patches Python's `logging` formatter to emit:
 
-```
+```text
 2024-01-15 12:34:56,789 INFO [obs-demo] [trace_id=4bf92f3577b34da6 span_id=00f067aa0ba902b7] slow endpoint: simulating DB query
 ```
 
@@ -243,7 +243,7 @@ This regex extracts the `trace_id` from every log line and renders it as a hyper
 
 Each trace is a tree of spans. For a `/slow` request the tree looks like:
 
-```
+```text
 GET /slow  [2.1s]
   └─ slow-handler  [2.1s]
        ├─ db-query  [2.0s]    ← manual child span
@@ -252,7 +252,7 @@ GET /slow  [2.1s]
 
 ### TraceQL queries
 
-```
+```bash
 # All slow spans > 1.5s
 { .http.target = "/slow" && duration > 1.5s }
 

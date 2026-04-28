@@ -38,7 +38,7 @@ Single-region clusters die when the region dies. For revenue-critical workloads 
 This is infra, not an app — "API" here = the platform API + GitOps repo structure.
 
 ### Repo layout
-```
+```bash
 infra/
   base/                       # shared K8s manifests
     apps/checkout/...
@@ -72,7 +72,7 @@ flowchart LR
   GLB -->|APAC| K3[K8s ap-southeast-1]
   K1 -.replicate.-> K2
   K2 -.replicate.-> K3
-  GitOps[GitOps Hub<br/>Argo CD] --> K1
+  GitOps["GitOps Hub<br/>Argo CD"] --> K1
   GitOps --> K2
   GitOps --> K3
 ```

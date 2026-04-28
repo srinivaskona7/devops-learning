@@ -2,7 +2,7 @@
 
 > systemd is not just an init system. It is a process supervisor, a logger, a timer, a network manager, a mount manager, and your new co-worker.
 
-```
+```text
    ┌─────────────────────────────────────────────────────────────┐
    │                    UNIT TYPES                               │
    │  .service   long-running daemon                             │
@@ -173,7 +173,7 @@ journalctl --grep='timeout' -u nginx
 
 ### Priority levels (`-p`)
 
-```
+```text
 0 emerg  1 alert  2 crit  3 err  4 warning  5 notice  6 info  7 debug
 ```
 
@@ -234,7 +234,7 @@ systemd-run --uid=svc-user -- /opt/app/bin --flag  # 6. run by hand same way
 
 ## ★ If you remember nothing else ★
 
-```
+```bash
 1.  systemctl edit <unit>          — drop-ins, never edit vendor files.
 2.  systemctl daemon-reload        — after EVERY manual file edit.
 3.  journalctl -u <unit> -f        — your tail -f.

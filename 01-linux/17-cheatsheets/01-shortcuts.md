@@ -2,7 +2,7 @@
 
 > Your hands should keep up with your brain. If they don't, you're typing too much.
 
-```
+```bash
  +------------------------------------------------------------+
  |  CURSOR        EDIT          HISTORY        PROCESS        |
  |  ------        ----          -------        -------        |
@@ -137,7 +137,7 @@ cd -                  # toggle between $PWD and $OLDPWD (simpler alt)
 
 ## ★ If you remember nothing else ★
 
-```
+```text
 1.  Ctrl+R                — search history. always.
 2.  Alt+.                 — last arg of previous command.
 3.  Ctrl+A / Ctrl+E       — start / end of line.

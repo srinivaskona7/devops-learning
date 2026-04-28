@@ -27,7 +27,7 @@ A subdirectory becomes the **mountpoint**; whatever was there before is hidden u
 
 ## `/etc/fstab` field-by-field
 
-```
+```bash
 # <device>                                        <mount>   <type>  <options>                <dump> <pass>
 UUID=8f2e-99ba-4c01-a1e9-...                      /         ext4    defaults,noatime,errors=remount-ro 0 1
 UUID=4ab2-1cde                                    /boot     ext2    defaults                  0 2
@@ -73,7 +73,7 @@ A bad fstab entry can fail boot. Always test with `mount -a` after editing — i
 
 A typical hardened `/tmp`:
 
-```
+```text
 tmpfs   /tmp   tmpfs   rw,nosuid,nodev,noexec,size=2G,mode=1777   0 0
 ```
 

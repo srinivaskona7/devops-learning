@@ -102,7 +102,7 @@ visudo -f /etc/sudoers.d/alice          # safely edit (syntax-checks on save)
 
 ### Reading `ls -l`
 
-```
+```text
 -rwxr-x---  1 alice developers 4096 Apr 26 10:00 script.sh
 │└┬┘└┬┘└┬┘  │ └─┬─┘ └────┬───┘
 │ │  │  │   │   │        └─ group

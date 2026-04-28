@@ -49,7 +49,7 @@ Read the cosign log. No long-lived key, no KMS bill — the runner's OIDC token 
 
 GitHub Actions runs jobs in parallel by default when there are no `needs:` links. This pipeline exploits that deliberately.
 
-```
+```text
 push / PR
     │
     ├── lint ──────────────────────────────────────────────────────────┐
@@ -194,7 +194,7 @@ Traditional image signing requires a private key — stored as a secret, rotated
 
 How it works:
 
-```
+```text
 GitHub runner
     │
     ├── requests OIDC token from GitHub's OIDC provider
@@ -242,7 +242,7 @@ Every PR gets a live URL. The mechanism:
 4. Posts the URL as a PR comment via `gh pr comment`
 5. `pr-cleanup.yml` workflow fires on `pull_request` → `closed` and runs `infra/preview/cleanup.sh`
 
-```
+```text
 PR opened   → namespace pr-42 created   → comment: "Preview: https://pr-42.preview.example.com"
 PR updated  → new image deployed to pr-42 namespace
 PR closed   → namespace pr-42 deleted   → comment: "Preview cleaned up"

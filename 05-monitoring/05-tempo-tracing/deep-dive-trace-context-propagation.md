@@ -15,10 +15,10 @@ A trace is a DAG of spans. Propagation = passing the **trace identity** + **imme
 
 ```mermaid
 flowchart LR
-    A[Frontend<br/>traceparent: 00-T1-S1-01] --> B[API<br/>parent=S1, new span S2]
-    B --> C[Auth<br/>parent=S2, new span S3]
-    B --> D[DB<br/>parent=S2, new span S4]
-    C --> E[Cache<br/>parent=S3, new span S5]
+    A["Frontend<br/>traceparent: 00-T1-S1-01"] --> B["API<br/>parent=S1, new span S2"]
+    B --> C["Auth<br/>parent=S2, new span S3"]
+    B --> D["DB<br/>parent=S2, new span S4"]
+    C --> E["Cache<br/>parent=S3, new span S5"]
     style A fill:#bbf
     style B fill:#bbf
     style C fill:#bbf
@@ -30,7 +30,7 @@ All five spans share `T1` (the trace ID) and form a parent/child tree.
 
 ## The W3C Traceparent Header
 
-```
+```text
 traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
              ^^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^ ^^
              |  |                                |                |
@@ -52,11 +52,11 @@ traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
 
 ```mermaid
 flowchart LR
-    A[Service A<br/>generates traceparent] --> B[HTTP request<br/>header set]
+    A["Service A<br/>generates traceparent"] --> B["HTTP request<br/>header set"]
     B --> C[Service B receives]
     C --> D[Extract trace-id, parent-id]
-    D --> E[Create new span with<br/>same trace-id, parent=parent-id, new span-id]
-    E --> F[Inject NEW traceparent<br/>parent-id=this span's id]
+    D --> E["Create new span with<br/>same trace-id, parent=parent-id, new span-id"]
+    E --> F["Inject NEW traceparent<br/>parent-id=this span's id"]
     F --> G[Outbound HTTP to Service C]
 ```
 
@@ -64,7 +64,7 @@ flowchart LR
 
 ## Tracestate — vendor-specific extensions
 
-```
+```text
 tracestate: vendor1=value1,vendor2=value2,otel=...
 ```
 
@@ -72,7 +72,7 @@ Comma-separated key=value list. Vendors append entries; max 32 entries / 512 cha
 
 ## Baggage — application-level context
 
-```
+```text
 baggage: userId=alice,tenant=acme,featureFlag=v2
 ```
 
@@ -92,8 +92,8 @@ Free-form key/value pairs that propagate alongside the trace context to ALL down
 
 ```mermaid
 flowchart LR
-    A[Span A: enqueue job] -->|parent-of| B[Span B: process job<br/>synchronous response]
-    A -.->|follows-from| C[Span C: async background job<br/>kicked off later]
+    A[Span A: enqueue job] -->|parent-of| B["Span B: process job<br/>synchronous response"]
+    A -.->|follows-from| C["Span C: async background job<br/>kicked off later"]
     style C fill:#fdb
 ```
 

@@ -41,7 +41,7 @@ flowchart LR
 
 ## Request path — 7 hops of a GET /
 
-```
+```bash
 1. curl http://localhost:8080/
    └─ TCP SYN to host port 8080
 
@@ -74,7 +74,7 @@ flowchart LR
 
 ## Layer-by-layer image anatomy
 
-```
+```text
 hello-world:0.1.0
 ├── layer 1  nginx:1.27-alpine-slim base        ~8.5 MB
 │            (nginx binary, alpine libc, ssl, pcre)

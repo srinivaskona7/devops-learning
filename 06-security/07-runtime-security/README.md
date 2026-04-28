@@ -13,14 +13,14 @@ Modern runtime tools use **eBPF** — kernel-level observation without kernel mo
 
 ```mermaid
 flowchart LR
-    Syscall[Container syscall<br/>file open / exec / connect] --> eBPF[eBPF probe]
+    Syscall["Container syscall<br/>file open / exec / connect"] --> eBPF[eBPF probe]
     eBPF --> Engine[Falco / Tetragon engine]
     Engine -->|matches rule| Event[Alert event]
     Event --> Sink1[stdout / file]
     Event --> Sink2[Falcosidekick]
     Sink2 --> SIEM[Splunk / Loki / S3]
     Sink2 --> SOAR[PagerDuty / Slack]
-    Tetragon -->|optional| Block[Kill process / SIGKILL<br/>via TracingPolicy enforcement]
+    Tetragon -->|optional| Block["Kill process / SIGKILL<br/>via TracingPolicy enforcement"]
 ```
 
 </details>

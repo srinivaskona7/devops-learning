@@ -36,7 +36,7 @@ Each pod has a stable, ordinal name (`<sts>-0`, `<sts>-1`, …) and a stable DNS
 
 Pod hostname = `<sts-name>-<ordinal>`. With a headless Service named `<svc>`:
 
-```
+```text
 <sts>-0.<svc>.<ns>.svc.cluster.local
 <sts>-1.<svc>.<ns>.svc.cluster.local
 ```

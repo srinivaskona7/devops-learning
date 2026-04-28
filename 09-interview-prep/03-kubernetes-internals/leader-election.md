@@ -15,7 +15,7 @@ If two replicas of the deployment controller both reconcile the same Deployment,
 
 ```mermaid
 flowchart LR
-    R1[Replica 1] -- try acquire --> L[(Lease object<br/>holderIdentity + renewTime)]
+    R1[Replica 1] -- try acquire --> L["(Lease object<br/>holderIdentity + renewTime)"]
     R2[Replica 2] -- try acquire --> L
     R3[Replica 3] -- try acquire --> L
     L -- I am leader --> R1

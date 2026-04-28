@@ -75,7 +75,7 @@ RPO and RTO are contracts, not aspirations. Derive them from first principles be
 
 ### RTO budget breakdown (target: 15 min)
 
-```
+```text
 Detection (CloudWatch alarm → PagerDuty)    ≤  2 min
 Runbook decision (automated health check)   ≤  1 min
 Velero restore trigger → pods Running       ≤  6 min
@@ -90,7 +90,7 @@ Total                                       = 15 min
 
 WAL segments ship to S3 every **10 seconds** via `archive_command`. Network latency to cross-region S3 is ≤ 20 ms (same-continent). Worst case:
 
-```
+```text
 WAL segment interval        10 s
 WAL flush to S3 latency      < 1 s
 S3 replication lag           ≤ 15 s  (async, measured p99)

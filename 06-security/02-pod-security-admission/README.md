@@ -13,9 +13,9 @@ PSA is the built-in admission controller that **replaced PodSecurityPolicy (PSP)
 flowchart LR
     Pod[Pod spec] --> Admission{PSA Controller}
     Admission -->|reads ns labels| NS[Namespace labels]
-    NS --> P[privileged<br/>no restrictions]
-    NS --> B[baseline<br/>block known privilege escalations]
-    NS --> R[restricted<br/>hardened, current best practice]
+    NS --> P["privileged<br/>no restrictions"]
+    NS --> B["baseline<br/>block known privilege escalations"]
+    NS --> R["restricted<br/>hardened, current best practice"]
     Admission -->|enforce| Allow[Pod created]
     Admission -->|warn / audit| Log[Logged but allowed]
     Admission -->|enforce: violation| Deny[Pod rejected]
@@ -40,7 +40,7 @@ Set independently via labels — common pattern is `warn=restricted, audit=restr
 
 ## Namespace Label Format
 
-```
+```text
 pod-security.kubernetes.io/<mode>: <profile>
 pod-security.kubernetes.io/<mode>-version: <k8s-version>   # pin profile version
 ```

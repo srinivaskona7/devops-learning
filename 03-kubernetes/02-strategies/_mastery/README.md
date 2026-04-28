@@ -67,9 +67,9 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-  A[Family 1<br/>Replace pods<br/>in place] --> A1[Rolling]
-  B[Family 2<br/>Two full stacks<br/>switch traffic] --> B1[Blue Green]
-  C[Family 3<br/>Split traffic<br/>by percentage] --> C1[Canary]
+  A["Family 1<br/>Replace pods<br/>in place"] --> A1[Rolling]
+  B["Family 2<br/>Two full stacks<br/>switch traffic"] --> B1[Blue Green]
+  C["Family 3<br/>Split traffic<br/>by percentage"] --> C1[Canary]
   C --> C2[A B]
   C --> C3[Shadow]
 ```

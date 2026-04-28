@@ -59,7 +59,7 @@ kubectl run kube-hunter --rm -it --image=aquasec/kube-hunter:latest -- --pod
 
 ## API server flags (production)
 
-```
+```text
 --anonymous-auth=false
 --authorization-mode=Node,RBAC
 --audit-log-path=/var/log/audit.log

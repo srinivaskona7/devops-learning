@@ -9,10 +9,10 @@
 
 ```mermaid
 flowchart LR
-    A[Chart defaults<br/>values.yaml] --> B[Parent chart values<br/>umbrella overrides subchart]
+    A["Chart defaults<br/>values.yaml"] --> B["Parent chart values<br/>umbrella overrides subchart"]
     B --> C[-f file1.yaml]
-    C --> D[-f file2.yaml<br/>later -f wins]
-    D --> E[--set key=val<br/>highest]
+    C --> D["-f file2.yaml<br/>later -f wins"]
+    D --> E["--set key=val<br/>highest"]
 ```
 
 </details>
@@ -20,7 +20,7 @@ flowchart LR
 
 ## Multi-Environment Pattern
 
-```
+```text
 mychart/
 ├── values.yaml          # baseline / dev defaults
 ├── values-dev.yaml

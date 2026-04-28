@@ -46,7 +46,7 @@ flowchart LR
 
 ## Reading `free -h`
 
-```
+```text
               total        used        free      shared  buff/cache   available
 Mem:           62Gi        12Gi       1.2Gi       512Mi        49Gi        49Gi
 Swap:           8Gi       2.1Gi       5.9Gi

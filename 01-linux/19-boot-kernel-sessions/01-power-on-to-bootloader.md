@@ -34,7 +34,7 @@
 
 The ESP is a small (typically 100–500 MB) FAT32 partition that holds boot-time files. The kernel mounts it at `/boot/efi`. **It must be FAT32** — UEFI firmware does not include drivers for ext4/xfs/btrfs.
 
-```
+```text
 /boot/efi/                                 (mount point)
 └── EFI/
     ├── BOOT/

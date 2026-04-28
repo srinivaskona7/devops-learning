@@ -9,7 +9,7 @@
 
 ## Upgrade sequencing (critical — must follow this order)
 
-```
+```text
 1. cert-manager          (Istio depends on it for TLS)
 2. Kyverno               (admission controller — upgrade in permissive mode)
 3. Istio (istiod first)  (control plane before data plane)

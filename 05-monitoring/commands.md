@@ -324,7 +324,7 @@ python3 -c "sli=0.99937; slo=0.999; print(f'{(sli-slo)/(1-slo)*100:.1f}% budget 
 
 ## Decision tree · which signal do you need?
 
-```
+```text
 "Is it broken?"           → Metrics  (Prometheus)
 "Why is it broken?"       → Logs     (Loki)
 "Where in the stack?"     → Traces   (Tempo / Jaeger)

@@ -21,7 +21,7 @@ Use exemplars to jump from a metric chart to a representative trace, then to log
 
 ### Q3. How do you find the worst offender of cardinality?
 
-```
+```text
 topk(10, count by (__name__)({__name__=~".+"}))
 ```
 or `prometheus_tsdb_symbol_table_size_bytes`, or the `/api/v1/status/tsdb` endpoint which lists `seriesCountByMetricName` and `labelValueCountByLabelName`.
@@ -121,7 +121,7 @@ Yes. Each unique label combination becomes a stream, and each stream has its own
 
 ### Q19. LogQL example for error rate per service.
 
-```
+```text
 sum by (service) (
   rate({env="prod"} |= "ERROR" [5m])
 )

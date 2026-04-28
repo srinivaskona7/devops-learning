@@ -234,7 +234,7 @@ flowchart LR
 
 Argo Rollouts needs **two Kubernetes Services** pointing at the same app:
 
-```
+```text
 demo-app-stable  →  selector: app=demo-app, rollouts-pod-template-hash=<stable-hash>
 demo-app-canary  →  selector: app=demo-app, rollouts-pod-template-hash=<canary-hash>
 ```

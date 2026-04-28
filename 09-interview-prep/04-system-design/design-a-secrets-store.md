@@ -40,7 +40,7 @@ A central service that holds secrets, controls who can read them, audits every a
 ## 3. API & Data Model
 
 ### API
-```
+```text
 POST  /v1/auth/login                        -> {token, ttl}
 GET   /v1/secret/data/:path                 -> {data, version, metadata}
 POST  /v1/secret/data/:path  {data}         -> {version}
@@ -54,7 +54,7 @@ GET   /v1/sys/audit                         -> stream
 ```
 
 ### Data model
-```
+```text
 secrets(
   path pk, current_version,
   metadata jsonb,
@@ -92,7 +92,7 @@ flowchart LR
   CORE --> ENC[Envelope Encryption]
   ENC --> KMS[(HSM-backed KMS)]
   CORE --> DB[(Postgres replicated)]
-  CORE --> DYN[Dynamic Engine<br/>DB / Cloud / PKI]
+  CORE --> DYN["Dynamic Engine<br/>DB / Cloud / PKI"]
   API --> AUD[Audit Pipeline]
   AUD --> S3[(S3 immutable)]
   AUD --> SIEM[SIEM]
@@ -133,7 +133,7 @@ flowchart LR
 
 Don't encrypt every secret directly with the master key (would require KMS call per read).
 
-```
+```text
 plaintext --AES-256-GCM with DEK--> ciphertext
 DEK --AES wrap with KEK--> wrapped DEK
 KEK lives in HSM, never leaves

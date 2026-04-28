@@ -45,7 +45,7 @@ sudo perf top --call-graph dwarf # show callers
 ```
 
 You'll see something like:
-```
+```text
   18.42%  myapp   [.] hot_function
   12.10%  [kernel] [k] _raw_spin_lock
    8.33%  myapp   [.] memcpy_avx2

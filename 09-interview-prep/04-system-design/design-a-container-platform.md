@@ -47,7 +47,7 @@ Bottleneck candidates: build farm, log ingestion, edge ingress.
 ## 3. API & Data Model
 
 ### API (developer-facing)
-```
+```text
 POST   /v1/apps                  {name, region}                -> {app_id, git_url}
 POST   /v1/apps/:id/env          {key, value, secret: bool}    -> 204
 POST   /v1/apps/:id/scale        {replicas, plan}              -> {deployment_id}
@@ -59,7 +59,7 @@ POST   /v1/apps/:id/addons       {kind: postgres, plan}        -> {addon_id, con
 
 ### Data model
 
-```
+```text
 users(id pk, email, plan, created_at)
 teams(id pk, name)
 team_members(team_id, user_id, role)
@@ -86,20 +86,20 @@ Logs/metrics: not in the relational DB. Logs → Loki / S3, metrics → Mimir / 
 flowchart LR
   Dev[Developer] -->|git push| GH[Git Receiver]
   GH --> BR[Build Router]
-  BR --> BF[Build Farm<br/>Buildpacks/BuildKit pods]
+  BR --> BF["Build Farm<br/>Buildpacks/BuildKit pods"]
   BF --> REG[Image Registry]
   BF --> DC[Deploy Controller]
   DC --> K8s[Kubernetes Cluster]
   K8s --> P[App Pods]
   P --> SM[Service Mesh]
-  SM --> ING[Edge Ingress<br/>Envoy]
+  SM --> ING["Edge Ingress<br/>Envoy"]
   Dev -->|HTTPS| ING
   ING --> P
-  P --> LOG[Log Pipeline<br/>Vector to Loki]
-  P --> MET[Metrics<br/>Prometheus to Mimir]
+  P --> LOG["Log Pipeline<br/>Vector to Loki"]
+  P --> MET["Metrics<br/>Prometheus to Mimir"]
   Dev -->|dashboard| API[Platform API]
   API --> PG[(Postgres metadata)]
-  API --> SEC[Secrets Service<br/>Vault]
+  API --> SEC["Secrets Service<br/>Vault"]
 ```
 
 </details>

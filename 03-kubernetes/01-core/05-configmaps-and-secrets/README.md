@@ -13,9 +13,9 @@ Hardcoded config = rebuild image for every env change. ConfigMaps + Secrets let 
 
 ```mermaid
 flowchart LR
-  IMG[Container image<br/>same in dev/staging/prod] --> POD[Pod]
-  CM[ConfigMap<br/>per-env config] -->|env var or file| POD
-  SEC[Secret<br/>per-env credentials] -->|env var or file| POD
+  IMG["Container image<br/>same in dev/staging/prod"] --> POD[Pod]
+  CM["ConfigMap<br/>per-env config"] -->|env var or file| POD
+  SEC["Secret<br/>per-env credentials"] -->|env var or file| POD
 ```
 
 </details>

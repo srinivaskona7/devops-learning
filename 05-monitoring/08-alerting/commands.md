@@ -79,7 +79,7 @@ docker logs -f alertmanager | grep -iE 'error|notify|silence'
 
 ### Severity convention
 
-```
+```text
 critical -> page now      -> PagerDuty + Slack
 warning  -> next biz hour -> Slack
 info     -> dashboard     -> none
@@ -99,7 +99,7 @@ amtool config routes show --config.file=alertmanager.yaml
 curl -X POST http://localhost:9093/-/reload
 ```
 
-```
+```text
 Prometheus FIRES alerts. Alertmanager ROUTES them.
 Group by alertname,cluster,namespace -> one incident = one message.
 Inhibition: NodeDown suppresses dependent PodNotReady noise.

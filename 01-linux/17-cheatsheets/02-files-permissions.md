@@ -2,7 +2,7 @@
 
 > Permission denied isn't an error. It's a question: "are you sure you should be doing this?"
 
-```
+```text
    MODE BITS — 16 bits, displayed as 4 octal digits
 
    ┌─────────┬─────────────────────────────────────────┐
@@ -82,7 +82,7 @@ chgrp devs file
 
 ## 5. umask — the inverse mask
 
-```
+```text
 File default = 0666 & ~umask
 Dir  default = 0777 & ~umask
 
@@ -191,7 +191,7 @@ diff <(cd /a && find . -printf '%m %p\n' | sort) \
 
 ## ★ If you remember nothing else ★
 
-```
+```bash
 1.  4=r 2=w 1=x.  Add them.  640 = rw- r-- ---
 2.  chmod -R u+rwX,go+rX  fixes broken tarballs.
 3.  find -perm -4000 -type f   audits setuid binaries.

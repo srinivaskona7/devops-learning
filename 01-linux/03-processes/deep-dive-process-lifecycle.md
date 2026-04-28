@@ -10,21 +10,12 @@ Every container, every systemd unit, every shell pipeline ultimately maps to the
 
 A Linux process is a `task_struct` in the kernel with a PID, a parent (`ppid`), open file descriptors, a memory map, credentials, and a state. It does not start "from scratch" — it is always **cloned** from a parent and then **overlaid** with a new program image.
 
-```
-parent process
-    |
-    | fork()  -->  child gets a copy of address space (COW)
-    |
-    +--- child process (same code, different PID)
-              |
-              | exec("/bin/ls")  -->  replace memory image
-              |                       PID stays the same
-              v
-         ls runs ... exits with status code
-              |
-              | becomes a "zombie" until parent calls wait()
-              v
-         reaped --> task_struct freed
+```mermaid
+flowchart TD
+    P[Parent process] -->|"fork: COW copy of address space"| C["Child process\nsame code, new PID"]
+    C -->|"exec: replace memory image\nPID stays the same"| R[Program runs]
+    R -->|exit with status code| Z["Zombie\nawaiting wait()"]
+    Z -->|"parent calls wait()"| F["Reaped\ntask_struct freed"]
 ```
 
 Three states matter most in practice:

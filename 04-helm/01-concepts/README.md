@@ -61,7 +61,7 @@ sequenceDiagram
 
 ## Mental Model
 
-```
+```text
 Chart (recipe) + Values (ingredients) → Manifests → Release (running dish)
 ```
 

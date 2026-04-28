@@ -148,7 +148,7 @@ docker run --rm -i hadolint/hadolint < Dockerfile
 
 ## .dockerignore — don't ship your `.git` folder
 
-```
+```bash
 .git
 .gitignore
 node_modules

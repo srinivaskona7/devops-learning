@@ -17,7 +17,7 @@ flowchart LR
     end
 
     subgraph Agents
-        PT[Promtail / Alloy<br/>DaemonSet]
+        PT["Promtail / Alloy<br/>DaemonSet"]
     end
 
     subgraph LokiCluster

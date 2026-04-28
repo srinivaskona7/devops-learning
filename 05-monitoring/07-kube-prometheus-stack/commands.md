@@ -115,7 +115,7 @@ kubectl get servicemonitor -A -o jsonpath='{range .items[*]}{.metadata.name}{"\t
 # -> if release label != selector value, operator ignores it.
 ```
 
-```
+```text
 Operator + CRDs = declarative monitoring. Edit ServiceMonitor, not prometheus.yml.
 release: kps label is the #1 reason "my metrics aren't appearing".
 Bundle = Prometheus + Alertmanager + Grafana + node-exporter + kube-state-metrics + Operator + ~30 alerts/dashboards.

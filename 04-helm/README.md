@@ -179,10 +179,10 @@ versioned, rollback-safe
 
 ```mermaid
 flowchart TB
-  C[Chart.yaml<br/>identity + version] --> CH[chart package]
-  V[values.yaml<br/>default knobs] --> CH
-  T[templates/*.yaml<br/>K8s manifests with Go template markers] --> CH
-  H[templates/_helpers.tpl<br/>reusable macros] --> T
+  C["Chart.yaml<br/>identity + version"] --> CH[chart package]
+  V["values.yaml<br/>default knobs"] --> CH
+  T["templates/*.yaml<br/>K8s manifests with Go template markers"] --> CH
+  H["templates/_helpers.tpl<br/>reusable macros"] --> T
   CH --> R{{helm render}}
   R --> M[rendered YAML → kubectl apply]
   style CH fill:#cffafe,stroke:#0891b2
@@ -194,6 +194,21 @@ flowchart TB
 - `templates/` — Kubernetes manifests with Go template placeholders (`{{ .Values.image.tag }}`).
 - `_helpers.tpl` — named templates (functions) reused across manifests; file name starts with underscore so Helm skips rendering it as a manifest.
 - `NOTES.txt` — markdown printed after `helm install`; use it for "how do I reach my app" hints.
+
+<div class="file-tree" markdown>
+
+📦 **mychart/**  
+┣ 📜 `Chart.yaml` — chart metadata (name, version, appVersion)  
+┣ 📜 `values.yaml` — default configuration values  
+┣ 📂 **templates/**  
+┃ ┣ 📜 `deployment.yaml` — rendered with `{{ .Values.* }}`  
+┃ ┣ 📜 `service.yaml`  
+┃ ┣ 📜 `_helpers.tpl` — named templates & helper macros  
+┃ ┗ 📜 `NOTES.txt` — post-install user instructions  
+┣ 📂 **charts/** — packaged chart dependencies  
+┗ 📜 `.helmignore` — files excluded from packaging
+
+</div>
 
 <span class="stage execution">⚡ Execution</span>
 
@@ -287,9 +302,9 @@ scaffold: Chart.yaml + values.yaml + templates/
 
 ```mermaid
 flowchart LR
-  V[values.yaml<br/>user input] --> CTX[Template Context<br/>.Values .Release .Chart]
-  H[_helpers.tpl<br/>define blocks] --> CTX
-  CTX --> ENG[Go template engine<br/>+ Sprig 120 functions]
+  V["values.yaml<br/>user input"] --> CTX["Template Context<br/>.Values .Release .Chart"]
+  H["_helpers.tpl<br/>define blocks"] --> CTX
+  CTX --> ENG["Go template engine<br/>+ Sprig 120 functions"]
   ENG --> P1[Pipe: {{ .Values.x | default y | quote }}]
   ENG --> P2[Range: {{ range .Values.list }}]
   ENG --> P3[If/else: {{ if .Values.enabled }}]
@@ -431,9 +446,9 @@ rendered YAML always identical shape
 
 ```mermaid
 flowchart LR
-  A[1. Chart defaults<br/>values.yaml in chart] --> B[2. -f values-prod.yaml<br/>first file]
-  B --> C[3. -f secrets.yaml<br/>second file]
-  C --> D[4. --set image.tag=v4.2.1<br/>CLI override]
+  A["1. Chart defaults<br/>values.yaml in chart"] --> B["2. -f values-prod.yaml<br/>first file"]
+  B --> C["3. -f secrets.yaml<br/>second file"]
+  C --> D["4. --set image.tag=v4.2.1<br/>CLI override"]
   D --> E[Final merged values]
   style A fill:#fef3c7
   style B fill:#fde68a
@@ -448,6 +463,28 @@ flowchart LR
 - `--set-string` forces a value to string (useful for tags like `1.0`, which would otherwise be parsed as float).
 - `--set-file key=path` reads a file's content into a key — used for TLS certs inline.
 - Inspect final merged values with `helm get values <release> --all`.
+
+=== ":material-file-document: values.yaml (base)"
+    ```yaml
+    image:
+      repository: myapp
+      tag: latest
+      pullPolicy: IfNotPresent
+    replicaCount: 1
+    ```
+
+=== ":material-file-cog: values-prod.yaml (override)"
+    ```yaml
+    image:
+      tag: v1.2.3
+      pullPolicy: Always
+    replicaCount: 5
+    ```
+
+=== ":material-console: --set (inline)"
+    ```bash
+    helm upgrade myapp ./chart --set image.tag=v1.2.3,replicaCount=5
+    ```
 
 <span class="stage execution">⚡ Execution</span>
 
@@ -543,7 +580,7 @@ stored in release Secret
 
 ```mermaid
 flowchart TB
-  U[Umbrella chart<br/>Chart.yaml] -->|depends on| P[postgresql<br/>bitnami 13.x]
+  U["Umbrella chart<br/>Chart.yaml"] -->|depends on| P["postgresql<br/>bitnami 13.x"]
   U -->|depends on alias: cache-primary| R1[redis]
   U -->|depends on alias: cache-replica<br/>condition: cache-replica.enabled| R2[redis]
   U -->|depends on tags: [monitoring]| PM[prometheus]
@@ -698,8 +735,24 @@ stateDiagram-v2
 
 ```bash
 # 1) Install
-helm upgrade --install myapp . --set image.tag=v1 --atomic --wait
+helm upgrade --install myapp . \  # (1)!
+  --namespace production \               # (2)!
+  --create-namespace \                   # (3)!
+  --set image.tag=v1 \                  # (4)!
+  --atomic \                             # (5)!
+  --wait \                               # (6)!
+  --timeout 5m0s                         # (7)!
+```
 
+1. `upgrade --install` — idempotent: installs on first run, upgrades on subsequent runs. Preferred over `helm install`.
+2. `--namespace` — Helm release scope. Releases with the same name in different namespaces are independent.
+3. `--create-namespace` — creates the namespace if it doesn't exist. Safe to use always.
+4. `--set` — inline value override. Takes precedence over `--values` files.
+5. `--atomic` — rolls back automatically if the deployment fails. Essential for CI/CD pipelines.
+6. `--wait` — blocks until all pods, PVCs, Services, and minimum Pods of a Deployment are in a ready state.
+7. `--timeout` — how long to wait for hooks and pod readiness before considering the release failed.
+
+```bash
 # 2) Upgrade to a bad tag (will crashloop)
 helm upgrade --install myapp . --set image.tag=does-not-exist --atomic --wait || true
 
@@ -927,11 +980,11 @@ Job deleted (hook-succeeded)
 
 ```mermaid
 flowchart LR
-  PR[chart PR] --> L[helm lint<br/>syntax, schema]
-  L -->|pass| T[helm template --debug<br/>rendering, values]
-  T -->|pass| I[helm install --dry-run<br/>kube-apiserver validation]
+  PR[chart PR] --> L["helm lint<br/>syntax, schema"]
+  L -->|pass| T["helm template --debug<br/>rendering, values"]
+  T -->|pass| I["helm install --dry-run<br/>kube-apiserver validation"]
   I -->|pass| D[helm upgrade --atomic]
-  D --> HT[helm test<br/>runtime smoke tests]
+  D --> HT["helm test<br/>runtime smoke tests"]
   HT -->|fail| R[auto rollback]
   HT -->|pass| ok[deployed]
   style L fill:#fef3c7
@@ -1052,12 +1105,12 @@ green pipeline, shipped with confidence
 ```mermaid
 flowchart LR
   subgraph SOPS_path[Pattern A: SOPS + helm-secrets]
-    G[Git repo<br/>values-prod.enc.yaml] -->|sops decrypt| D1[plaintext in memory]
+    G["Git repo<br/>values-prod.enc.yaml"] -->|sops decrypt| D1[plaintext in memory]
     D1 --> H1[helm upgrade --install]
     H1 --> K1[(cluster Secret)]
   end
   subgraph ESO_path[Pattern B: External Secrets]
-    Chart[chart: ExternalSecret CR<br/>refs: db/password] --> H2[helm upgrade]
+    Chart["chart: ExternalSecret CR<br/>refs: db/password"] --> H2[helm upgrade]
     H2 --> ESO[External Secrets Operator in cluster]
     ESO -->|fetch live| V[AWS Secrets Manager / Vault]
     V --> ESO
@@ -1412,6 +1465,10 @@ flowchart LR
 - **AP4 · No `--atomic` in CI** → half-applied upgrades leave releases in `pending-upgrade` state, blocking future deploys. Fix: every CI job uses `helm upgrade --install --atomic --wait --timeout 10m`.
 - **AP5 · `helm test` never runs** → you only find out the chart is broken in prod. Fix: CI runs `kind create cluster && helm install + helm test` on every PR.
 
+!!! prod-danger "The `--set` Sprawl Anti-Pattern"
+    **Never manage production config entirely via `--set` flags.**
+    `--set` values aren't tracked in git, aren't auditable, and are lost after a `helm rollback`. Always commit environment-specific values to a `values-<env>.yaml` file under version control.
+
 <span class="stage execution">⚡ Execution</span>
 
 ```bash
@@ -1511,7 +1568,7 @@ flowchart LR
 
 **Quiz yourself.** Cover the answers. Write your response first. Then uncover.
 
-```
+```bash
 1. Why can't you just use `kubectl apply -f deploy/`?
 2. Name the four files in a minimal chart and what each does.
 3. What's the difference between {{ include "labels" . }} and {{ template "labels" . }}?

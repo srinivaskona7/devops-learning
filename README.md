@@ -111,6 +111,34 @@ Docker hello-world → three-tier Compose → GitOps → CI/CD → observability
 <span class="level expert">expert</span> — 80+ h — [Open →](08-projects/README.md)
 </div>
 
+<div class="stop" data-step="11" markdown>
+#### 10 · Python & Bash Scripting
+50 real-world automation examples · Bash foundations to advanced · Python to PhD level · All key DevOps libs covered.
+<span class="level intermediate">intermediate</span> — [Open →](10-scripting/README.md)
+</div>
+
+<div class="stop" data-step="12" markdown>
+#### 11 · 20 Trending DevOps Tools
+Basics to PhD per tool · 30 examples each · Mermaid architecture diagrams. GitHub Actions, Argo CD, Ansible, Vault, Istio, Falco, Karpenter, OTel and more.
+<span class="level intermediate">intermediate → expert</span> — [Open →](11-devops-tools/README.md)
+</div>
+
+<div class="stop" data-step="13" markdown>
+#### 12 · Go for DevOps
+Go foundations → concurrency → client-go → Docker SDK → Operators · 30 examples · From hello world to writing K8s controllers.
+<span class="level advanced">advanced</span> — [Open →](12-golang/README.md)
+</div>
+
+<div class="stop" data-step="14" markdown>
+#### 13 · Kubernetes Operators
+Build CRDs and operators from scratch — 10 real-world operator projects, RBAC, webhooks, testing
+</div>
+
+<div class="stop" data-step="15" markdown>
+#### 14 · OPA & Kyverno
+Policy as Code — shift compliance left with Gatekeeper, Rego, Kyverno · 10 policy projects
+</div>
+
 </div>
 
 ---
@@ -205,6 +233,11 @@ make up && make test && make perf && make down
 | 07 | [`07-terraform`](./07-terraform) | IaC, modules, state, AWS/GCP/K8s providers | Intermediate | 14 |
 | 08 | [`08-projects`](./08-projects) | 10 end-to-end capstone projects | Beginner → Expert | 80+ |
 | 09 | [`09-interview-prep`](./09-interview-prep) | Architect Q&A, ELI10, deep dives | Advanced | — |
+| 10 | [`10-scripting`](./10-scripting) | Python & Bash — 50 automation examples, DevOps libs | Intermediate | — |
+| 11 | [`11-devops-tools`](./11-devops-tools) | 20 trending tools — basics to PhD, 30 examples each | Intermediate → Expert | — |
+| 12 | [`12-golang`](./12-golang) | Go for DevOps — foundations, client-go, operators, CLI | Advanced | — |
+| 13 | [`13-operators`](./13-operators) | Kubernetes Operators & CRDs | Advanced → Expert | 20 hrs |
+| 14 | [`14-policy-as-code`](./14-policy-as-code) | OPA & Kyverno — Policy as Code | Intermediate → Expert | 16 hrs |
 
 ## Contributing
 

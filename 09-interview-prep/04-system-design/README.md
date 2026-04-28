@@ -68,7 +68,7 @@ Convert requirements to numbers. Ballpark, not exact.
 - 1 ms = "in-memory cache hit", 10 ms = "DB hit", 100 ms = "cross-region", 1 s = "user notices"
 
 **Formula:**
-```
+```text
 Storage/day = item_size × write_rate × seconds_per_day
 RPS = active_users × requests_per_user / seconds_per_day
 Bandwidth = avg_response_size × RPS
@@ -84,7 +84,7 @@ Define the contract before the architecture.
 
 **API:** REST or gRPC, list 4-6 key endpoints. Show request/response shapes.
 
-```
+```text
 POST /v1/tweets        body: {text, media[]}    -> {tweet_id, created_at}
 GET  /v1/users/:id/timeline?cursor=...&limit=50 -> {tweets[], next_cursor}
 POST /v1/follow        body: {target_user_id}   -> 204
@@ -92,7 +92,7 @@ POST /v1/follow        body: {target_user_id}   -> 204
 
 **Data model:** entities and their relationships. Relational? Document? Wide-column?
 
-```
+```text
 users(id pk, handle unique, name, created_at)
 tweets(id pk, user_id fk, text, created_at, media_ids[])
 follows(follower_id fk, followee_id fk, created_at) pk(both)

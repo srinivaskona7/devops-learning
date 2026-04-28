@@ -8,7 +8,7 @@ helm create mychart
 
 ## Anatomy
 
-```
+```bash
 mychart/
 ├── Chart.yaml          # metadata: name, version, appVersion, dependencies
 ├── values.yaml         # default config values

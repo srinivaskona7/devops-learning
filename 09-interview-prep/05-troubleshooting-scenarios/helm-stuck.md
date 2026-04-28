@@ -1,7 +1,7 @@
 # Helm Stuck
 
 > **Symptom**
-> ```
+> ```bash
 > $ helm upgrade myapp ./chart
 > Error: UPGRADE FAILED: another operation (install/upgrade/rollback) is in progress
 > ```

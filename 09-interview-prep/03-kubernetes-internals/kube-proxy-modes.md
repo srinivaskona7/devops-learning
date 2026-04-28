@@ -35,7 +35,7 @@ A Service has a virtual ClusterIP. kube-proxy watches Services and Endpoints fro
 
 **How it works:** kube-proxy generates one chain per service (`KUBE-SVC-<hash>`) and one chain per endpoint (`KUBE-SEP-<hash>`). The service chain uses statistical matching to round-robin across endpoints.
 
-```
+```text
 -A KUBE-SVC-XYZ -m statistic --mode random --probability 0.33 -j KUBE-SEP-A
 -A KUBE-SVC-XYZ -m statistic --mode random --probability 0.50 -j KUBE-SEP-B
 -A KUBE-SVC-XYZ -j KUBE-SEP-C
@@ -50,7 +50,7 @@ A Service has a virtual ClusterIP. kube-proxy watches Services and Endpoints fro
 
 **How it works:** Uses the Linux IPVS (IP Virtual Server) module — a purpose-built L4 load balancer in the kernel. Service VIPs are added as `dummy0` interface addresses; backends are programmed as ipvs destinations.
 
-```
+```text
 ipvsadm -L -n
 TCP  10.96.0.10:53 rr
   -> 10.244.1.5:53    Masq    1
@@ -68,7 +68,7 @@ TCP  10.96.0.10:53 rr
 
 **How it works:** Like iptables mode but uses the modern nftables backend, which is a single unified table with native sets and maps.
 
-```
+```text
 nft list table ip kube-proxy
 table ip kube-proxy {
   map service-ips {

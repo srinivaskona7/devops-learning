@@ -16,8 +16,8 @@ Prometheus TSDB is a **write-optimized, append-only time series store** with a h
 ```mermaid
 flowchart LR
     A[Scrape sample] --> B[Head block in-RAM]
-    B --> C[Per-series chunk<br/>~120 samples]
-    B --> D[WAL append<br/>fsync per group]
+    B --> C["Per-series chunk<br/>~120 samples"]
+    B --> D["WAL append<br/>fsync per group"]
     C -->|every 2h| E[Persistent block on disk]
     E -->|compaction| F[Larger merged block]
     F -->|retention| G[Deleted]

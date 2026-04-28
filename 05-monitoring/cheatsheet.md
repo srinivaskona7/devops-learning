@@ -46,7 +46,7 @@ sum by (level) (rate({app="api"} | json [5m]))
 
 ## TraceQL
 
-```
+```json
 { resource.service.name = "checkout-svc" && duration > 500ms && status = error }
 ```
 
@@ -100,7 +100,7 @@ kubectl -n monitoring exec -it alertmanager-kps-0 -c alertmanager -- amtool conf
 
 ## Decision tree
 
-```
+```text
 Need to ask "is this broken?"   -> Metrics  (Prometheus)
 Need to ask "what was the error?"-> Logs    (Loki)
 Need to ask "where in the stack?"-> Traces  (Tempo)

@@ -26,7 +26,7 @@ docker run --rm \
 
 ### k8s deployment patterns
 
-```
+```text
 Sidecar    -> per-pod, lowest latency, per-app sampling
 DaemonSet  -> per-node, default for k8s, picks up host metrics
 Gateway    -> cluster service, tail sampling, multi-tenant routing
@@ -57,7 +57,7 @@ open http://localhost:55679/debug/tracez            # zpages extension (live spa
 
 ### Semantic conventions to use (don't invent your own)
 
-```
+```text
 service.name, service.version, deployment.environment
 http.request.method, http.response.status_code, url.path
 db.system, db.statement, messaging.system
@@ -91,7 +91,7 @@ otelcol-contrib validate --config=config.yaml         # lint
 curl -s localhost:8888/metrics | grep otelcol_exporter_send_failed_spans_total
 ```
 
-```
+```text
 Apps speak OTLP to a LOCAL collector. Never let apps talk to backends directly.
 OTLP -> 4317 (gRPC, preferred) | 4318 (HTTP/protobuf)
 Use semantic conventions verbatim — that's how shared dashboards work.

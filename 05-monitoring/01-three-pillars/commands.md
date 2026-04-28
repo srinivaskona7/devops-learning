@@ -70,7 +70,7 @@ sum(rate({app="api"} |= "error" [5m]))            # error rps from logs
 
 ### Traces (TraceQL)
 
-```
+```json
 { resource.service.name="checkout-svc" && status=error }
 { duration > 500ms }
 ```
@@ -111,7 +111,7 @@ histogram_quantile(0.95, sum by (le)(rate(X_bucket[5m])))
 histogram_quantile(0.99, sum by (le)(rate(X_bucket[5m])))
 ```
 
-```
+```text
 RED  -> services  (Rate, Errors, Duration)
 USE  -> resources (Utilization, Saturation, Errors)
 4 Golden Signals -> Latency, Traffic, Errors, Saturation

@@ -42,7 +42,7 @@ Monthly cost estimates for dev and production configurations. All prices are AWS
 
 ## Cost breakdown by category
 
-```
+```text
 Dev (~$250/month)
   Control plane: 29%  ████████████████████████████▌
   Compute:       39%  ███████████████████████████████████████

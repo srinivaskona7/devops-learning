@@ -164,7 +164,7 @@ This strategy is identical to the Docker Hub official image tagging convention a
 
 ## Cache Architecture
 
-```
+```bash
 GHA Cache store (10 GB limit per repo)
 ├── go-<os>-<go.sum hash>          ← Go modules + build cache
 │   ├── ~/go/pkg/mod/
@@ -187,7 +187,7 @@ GHA Cache store (10 GB limit per repo)
 
 ## Security Gate Policy
 
-```
+```text
 Image build output
     │
     ├── CRITICAL CVEs (fixable) ────── BLOCK pipeline, fail job exit 1

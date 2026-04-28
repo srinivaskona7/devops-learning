@@ -38,8 +38,8 @@ flowchart LR
 flowchart LR
     R[Role: namespaced]
     CR[ClusterRole: cluster-wide]
-    RB[RoleBinding<br/>binds Role OR ClusterRole<br/>scope: one namespace]
-    CRB[ClusterRoleBinding<br/>binds ClusterRole only<br/>scope: cluster-wide]
+    RB["RoleBinding<br/>binds Role OR ClusterRole<br/>scope: one namespace"]
+    CRB["ClusterRoleBinding<br/>binds ClusterRole only<br/>scope: cluster-wide"]
     R -.bound by.-> RB
     CR -.bound by.-> RB
     CR -.bound by.-> CRB
@@ -82,7 +82,7 @@ sequenceDiagram
 </details>
 
 The api-server effectively computes:
-```
+```text
 permissions(user, namespace) =
     rules_from(ClusterRoleBindings_for_user)        # cluster-wide
     ∪
@@ -193,11 +193,11 @@ rules: []   # auto-populated by controller; do NOT manually edit
 
 ```mermaid
 flowchart LR
-    A[ClusterRole<br/>aggregationRule:<br/>label X] --> B[Controller]
-    B --> C[Find all ClusterRoles<br/>with label X]
+    A["ClusterRole<br/>aggregationRule:<br/>label X"] --> B[Controller]
+    B --> C["Find all ClusterRoles<br/>with label X"]
     C --> D[Union their rules]
     D --> E[Write into target ClusterRole.rules]
-    F[Add new operator-CR<br/>with label X] --> B
+    F["Add new operator-CR<br/>with label X"] --> B
 ```
 
 </details>

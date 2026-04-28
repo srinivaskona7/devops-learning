@@ -15,7 +15,7 @@ Every workload gets a **SPIFFE ID** (a URI like `spiffe://acme.com/payments/api`
 
 ```mermaid
 flowchart LR
-    A[Workload] -->|asks for SVID via Workload API| B[SPIRE Agent<br/>per node]
+    A[Workload] -->|asks for SVID via Workload API| B["SPIRE Agent<br/>per node"]
     B -->|attest workload<br/>UID, k8s labels, etc| B
     B -->|already attested by SPIRE Server| C[SPIRE Server]
     C -->|signs SVID matching<br/>registration entry| B
@@ -28,7 +28,7 @@ flowchart LR
 
 ## SPIFFE Identity
 
-```
+```text
 spiffe://<trust-domain>/<workload-path>
         e.g. spiffe://acme.com/ns/prod/sa/payments-api
 ```
@@ -56,11 +56,11 @@ Both are short-lived (typical default: 1 hour for x509, 5 min for JWT) and rotat
 
 ```mermaid
 flowchart LR
-    A[x509-SVID] --> B[Cert with SPIFFE ID<br/>in SAN URI]
+    A[x509-SVID] --> B["Cert with SPIFFE ID<br/>in SAN URI"]
     A --> C[Private key]
-    A --> D[Trust bundle<br/>chain to SPIRE Server's CA]
-    E[JWT-SVID] --> F[JWT: sub=SPIFFE ID,<br/>aud=target service]
-    E --> G[JWKS to verify<br/>from Workload API]
+    A --> D["Trust bundle<br/>chain to SPIRE Server's CA"]
+    E[JWT-SVID] --> F["JWT: sub=SPIFFE ID,<br/>aud=target service"]
+    E --> G["JWKS to verify<br/>from Workload API"]
 ```
 
 </details>
@@ -74,10 +74,10 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    SS[SPIRE Server<br/>1+ replicas, central CA] --> DS[(Datastore<br/>Postgres/MySQL/SQLite)]
-    SS --- KS[KeyManager<br/>disk / AWS KMS / HSM]
-    A1[SPIRE Agent<br/>node 1] -.attested.-> SS
-    A2[SPIRE Agent<br/>node 2] -.attested.-> SS
+    SS["SPIRE Server<br/>1+ replicas, central CA"] --> DS["(Datastore<br/>Postgres/MySQL/SQLite)"]
+    SS --- KS["KeyManager<br/>disk / AWS KMS / HSM"]
+    A1["SPIRE Agent<br/>node 1"] -.attested.-> SS
+    A2["SPIRE Agent<br/>node 2"] -.attested.-> SS
     W1[Workload A] -->|Workload API socket| A1
     W2[Workload B] -->|Workload API socket| A1
     W3[Workload C] -->|Workload API socket| A2

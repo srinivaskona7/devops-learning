@@ -66,7 +66,7 @@ Each phase has its own stack of modules. Order matters.
 
 ## A line in `/etc/pam.d/<service>` decoded
 
-```
+```text
 auth    required       pam_unix.so      try_first_pass nullok
 ^       ^              ^                ^
 |       |              |                module-specific args
@@ -122,7 +122,7 @@ The cardinal rule: **`requisite` is "fail-fast deny," `sufficient` is "succeed-f
 
 ## A real `/etc/pam.d/sshd` (Ubuntu 24.04, annotated)
 
-```
+```bash
 # Account lockout: 5 fails -> 15min lock. Must be FIRST in auth stack.
 auth     required   pam_faillock.so   preauth silent deny=5 unlock_time=900
 
@@ -161,7 +161,7 @@ session  optional   pam_systemd.so
 
 ### Lock account after N failed SSH logins (RHEL 8+ / Ubuntu 22.04+)
 
-```
+```bash
 # /etc/pam.d/sshd  (use faillock, not pam_tally2 -- deprecated)
 auth        required      pam_faillock.so preauth silent deny=5 unlock_time=900 even_deny_root
 auth        sufficient    pam_unix.so try_first_pass
@@ -178,7 +178,7 @@ sudo faillock --user alice --reset
 ### Password complexity
 
 `/etc/security/pwquality.conf`:
-```
+```text
 minlen = 14
 minclass = 3        # need 3 of: upper, lower, digit, special
 maxrepeat = 3
@@ -193,7 +193,7 @@ remember = 5        # combined with pam_unix remember=N
 ```
 
 Hooked in `/etc/pam.d/common-password`:
-```
+```text
 password requisite pam_pwquality.so retry=3
 password required  pam_unix.so      use_authtok sha512 shadow remember=5 rounds=656000
 ```
@@ -201,20 +201,20 @@ password required  pam_unix.so      use_authtok sha512 shadow remember=5 rounds=
 ### Limit who can SSH in
 
 `/etc/security/access.conf`:
-```
+```text
 + : root : 192.168.10.0/24
 + : (admins) : ALL
 - : ALL : ALL
 ```
 
 In `/etc/pam.d/sshd`:
-```
+```text
 account required pam_access.so
 ```
 
 ### Prevent service accounts from interactive login
 
-```
+```bash
 # /etc/pam.d/login
 auth required pam_succeed_if.so uid >= 1000 quiet_success
 ```

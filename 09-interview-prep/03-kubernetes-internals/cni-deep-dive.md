@@ -13,7 +13,7 @@ The Container Network Interface (CNI) is the contract between the kubelet and th
 
 ```mermaid
 flowchart LR
-  K[kubelet] -->|ADD<br/>netns,ifname| C[CNI binary chain]
+  K[kubelet] -->|ADD: netns,ifname| C[CNI binary chain]
   C --> P1[plugin: bridge/ipvlan]
   C --> P2[plugin: portmap]
   C --> P3[plugin: bandwidth]
@@ -74,7 +74,7 @@ Each plugin's stdout becomes stdin for the next. If any returns non-zero, the po
 
 Each node gets a /24 subnet from a central pool stored in etcd (or k8s API). Default backend is VXLAN — the kernel encapsulates pod-to-pod traffic in UDP 8472 and decapsulates on the other side.
 
-```
+```text
 Pod A (10.244.1.5) -> cni0 bridge -> flannel.1 (VXLAN) -> eth0 (UDP) -> remote node
 ```
 
@@ -91,7 +91,7 @@ Two key daemons per node:
 
 In BGP mode, packets are routed natively. Policy is enforced via iptables `cali-*` chains. Calico can also run in eBPF dataplane mode, replacing kube-proxy.
 
-```
+```text
 Pod A -> caliXXXXX veth -> kernel route table -> eth0 (BGP-advertised) -> remote
 ```
 
@@ -110,7 +110,7 @@ Cilium attaches eBPF programs at multiple hook points: tc ingress/egress on each
 
 ```mermaid
 flowchart LR
-  P[Pod socket] -->|connect| S[socket-level eBPF<br/>service LB]
+  P[Pod socket] -->|connect| S["socket-level eBPF<br/>service LB"]
   S -->|rewrite to backend| V[veth tc egress eBPF]
   V -->|policy verdict| N[NIC XDP eBPF]
   N --> Net[network]

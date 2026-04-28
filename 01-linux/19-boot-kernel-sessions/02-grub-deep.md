@@ -63,7 +63,7 @@ sequenceDiagram
 </details>
 ### File map
 
-```
+```text
 /etc/default/grub                 ← top-level knobs (timeout, default, cmdline)
 /etc/grub.d/                      ← scripts that produce menu entries
   ├── 00_header                   ← timeout, gfxmode
@@ -88,7 +88,7 @@ sequenceDiagram
 
 Never edit `/boot/grub2/grub.cfg` by hand. It is generated:
 
-```
+```text
 /etc/default/grub      \
                         }-->  grub2-mkconfig  -->  /boot/grub2/grub.cfg
 /etc/grub.d/*          /

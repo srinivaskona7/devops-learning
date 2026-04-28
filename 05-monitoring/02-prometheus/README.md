@@ -12,18 +12,18 @@ Prometheus is a **pull-based**, **dimensional** time-series database with a powe
 ```mermaid
 flowchart LR
     subgraph Targets
-        APP[App<br/>:8080/metrics]
-        NODE[node_exporter<br/>:9100/metrics]
-        KSM[kube-state-metrics<br/>:8080/metrics]
-        PG[Pushgateway<br/>:9091]
+        APP["App<br/>:8080/metrics"]
+        NODE["node_exporter<br/>:9100/metrics"]
+        KSM["kube-state-metrics<br/>:8080/metrics"]
+        PG["Pushgateway<br/>:9091"]
     end
 
     BATCH[Short-lived job] -->|push| PG
 
     subgraph PrometheusServer
-        SD[Service Discovery<br/>k8s/file/consul]
+        SD["Service Discovery<br/>k8s/file/consul"]
         SCRAPE[Scrape loop]
-        TSDB[(Local TSDB<br/>15d retention)]
+        TSDB["(Local TSDB<br/>15d retention)"]
         RULES[Rule evaluator]
     end
 

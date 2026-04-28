@@ -20,15 +20,15 @@ OpenTelemetry is the **vendor-neutral standard** for instrumenting applications.
 ```mermaid
 flowchart LR
     subgraph App[Your App]
-        SDK[OTel SDK<br/>auto + manual instrumentation]
+        SDK["OTel SDK<br/>auto + manual instrumentation"]
     end
 
     SDK -->|OTLP gRPC :4317| COL[OTel Collector]
 
     subgraph COL[OTel Collector]
-        REC[Receivers<br/>otlp, prometheus, ...]
-        PROC[Processors<br/>batch, memory_limiter, tail_sampling, attributes]
-        EXP[Exporters<br/>prometheus, otlphttp, loki, ...]
+        REC["Receivers<br/>otlp, prometheus, ..."]
+        PROC["Processors<br/>batch, memory_limiter, tail_sampling, attributes"]
+        EXP["Exporters<br/>prometheus, otlphttp, loki, ..."]
         REC --> PROC --> EXP
     end
 

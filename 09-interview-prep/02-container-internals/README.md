@@ -15,10 +15,10 @@ This module breaks the runtime stack into 5 sub-topics. Read them in order — e
 
 ```mermaid
 flowchart LR
-    A[01 runc / containerd / dockerd<br/>daemon hierarchy] --> B[02 Image Layer Internals<br/>overlayfs + CAS]
-    B --> C[03 BuildKit DAG<br/>LLB + parallel cache]
-    A --> D[04 seccomp / AppArmor / SELinux<br/>LSM hardening]
-    A --> E[05 CRI + RuntimeClasses<br/>Kubernetes plug-in point]
+    A["01 runc / containerd / dockerd<br/>daemon hierarchy"] --> B["02 Image Layer Internals<br/>overlayfs + CAS"]
+    B --> C["03 BuildKit DAG<br/>LLB + parallel cache"]
+    A --> D["04 seccomp / AppArmor / SELinux<br/>LSM hardening"]
+    A --> E["05 CRI + RuntimeClasses<br/>Kubernetes plug-in point"]
     C --> B
     E --> A
 ```

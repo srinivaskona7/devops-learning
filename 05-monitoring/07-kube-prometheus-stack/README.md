@@ -12,7 +12,7 @@ The **kube-prometheus-stack** is the de facto monitoring bundle for Kubernetes. 
 ```mermaid
 flowchart TB
     subgraph Operator
-        OP[Prometheus Operator<br/>watches CRDs]
+        OP["Prometheus Operator<br/>watches CRDs"]
     end
 
     subgraph CRDs
@@ -31,11 +31,11 @@ flowchart TB
     PROM -->|reads| PR
 
     subgraph Workloads
-        GRAF[Grafana<br/>Deployment]
-        NODE[node-exporter<br/>DaemonSet]
-        KSM[kube-state-metrics<br/>Deployment]
-        PSRV[Prometheus<br/>StatefulSet]
-        ASRV[Alertmanager<br/>StatefulSet]
+        GRAF["Grafana<br/>Deployment"]
+        NODE["node-exporter<br/>DaemonSet"]
+        KSM["kube-state-metrics<br/>Deployment"]
+        PSRV["Prometheus<br/>StatefulSet"]
+        ASRV["Alertmanager<br/>StatefulSet"]
     end
 
     PROM --> PSRV

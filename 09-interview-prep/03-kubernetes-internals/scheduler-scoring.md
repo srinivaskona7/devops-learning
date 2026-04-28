@@ -17,12 +17,12 @@ The scheduler is a **two-phase pipeline per Pod**:
 
 ```mermaid
 flowchart LR
-    Q[Scheduling queue<br/>activeQ priorityQ] --> F[Filter phase<br/>predicates]
-    F -- feasible nodes --> S[Score phase<br/>priorities]
+    Q["Scheduling queue<br/>activeQ priorityQ"] --> F["Filter phase<br/>predicates"]
+    F -- feasible nodes --> S["Score phase<br/>priorities"]
     S --> N[Normalize + weight]
-    N --> P[Pick highest score<br/>tiebreak random]
+    N --> P["Pick highest score<br/>tiebreak random"]
     P --> R[Reserve + Permit]
-    R --> B[Bind<br/>POST /binding]
+    R --> B["Bind<br/>POST /binding"]
     B --> Q
 ```
 

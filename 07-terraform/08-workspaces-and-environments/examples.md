@@ -24,7 +24,7 @@ terraform apply -var-file="envs/$(terraform workspace show).tfvars"
 ```
 
 ## Directory-per-env layout
-```
+```bash
 infra/
 ├── modules/
 │   └── app/

@@ -44,6 +44,8 @@ theme:
     - content.tabs.link
     - search.suggest
     - search.highlight
+    - toc.follow
+    - content.tooltips
   icon:
     repo: fontawesome/brands/github
 
@@ -120,7 +122,12 @@ markdown_extensions:
         - docs/glossary.md
   - pymdownx.smartsymbols
   - pymdownx.details
-  - pymdownx.emoji
+  - pymdownx.critic
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
   - Home: README.md
@@ -170,6 +177,74 @@ nav:
       - P08 · Security Hardening: 08-projects/08-security-hardening-lab/README.md
       - P09 · Zero-Downtime Delivery: 08-projects/09-zero-downtime-progressive-delivery/README.md
       - P10 · Platform Engineering: 08-projects/10-platform-engineering-end-to-end/README.md
+
+  - Scripting:
+      - 10 Python & Bash:
+          - Overview: 10-scripting/README.md
+          - Bash Foundations: 10-scripting/01-bash-foundations.md
+          - Bash Advanced: 10-scripting/02-bash-advanced.md
+          - Python Foundations: 10-scripting/03-python-foundations.md
+          - Python DevOps Libs: 10-scripting/04-python-devops-libs.md
+          - Challenges Q&A: 10-scripting/05-challenges-qna.md
+          - Commands: 10-scripting/commands.md
+
+  - DevOps Tools:
+      - 11 Trending Tools:
+          - Overview: 11-devops-tools/README.md
+          - GitHub Actions: 11-devops-tools/01-github-actions.md
+          - Jenkins: 11-devops-tools/02-jenkins.md
+          - Argo CD: 11-devops-tools/03-argocd.md
+          - Ansible: 11-devops-tools/04-ansible.md
+          - Vault: 11-devops-tools/05-vault.md
+          - Prometheus & Grafana: 11-devops-tools/06-prometheus-grafana.md
+          - ELK Stack: 11-devops-tools/07-elk-stack.md
+          - Istio: 11-devops-tools/08-istio.md
+          - Trivy: 11-devops-tools/09-trivy.md
+          - Crossplane: 11-devops-tools/10-crossplane.md
+          - Flux CD: 11-devops-tools/11-flux.md
+          - Tekton: 11-devops-tools/12-tekton.md
+          - Falco: 11-devops-tools/13-falco.md
+          - Karpenter: 11-devops-tools/14-karpenter.md
+          - Velero: 11-devops-tools/15-velero.md
+          - cert-manager: 11-devops-tools/16-cert-manager.md
+          - External Secrets: 11-devops-tools/17-external-secrets.md
+          - OpenTelemetry: 11-devops-tools/18-opentelemetry.md
+          - Chaos Mesh: 11-devops-tools/19-chaos-mesh.md
+          - Backstage: 11-devops-tools/20-backstage.md
+          - Commands: 11-devops-tools/commands.md
+
+  - Go Language:
+      - 12 Go for DevOps:
+          - Overview: 12-golang/README.md
+          - Go Foundations: 12-golang/01-go-foundations.md
+          - Concurrency: 12-golang/02-go-concurrency.md
+          - Kubernetes Client: 12-golang/03-go-kubernetes-client.md
+          - Docker SDK: 12-golang/04-go-docker-sdk.md
+          - Operators: 12-golang/05-go-operators.md
+          - CLI Tools: 12-golang/06-go-cli-tools.md
+          - Commands: 12-golang/commands.md
+
+  - Operators & CRDs:
+      - 13 Kubernetes Operators:
+          - Overview: 13-operators/README.md
+          - CRD Fundamentals: 13-operators/01-crd-fundamentals.md
+          - Operator Foundations: 13-operators/02-operator-foundations.md
+          - RBAC & Security: 13-operators/03-rbac-and-security.md
+          - controller-runtime: 13-operators/04-controller-runtime.md
+          - Operator Patterns: 13-operators/05-operator-patterns.md
+          - 10 Operator Projects: 13-operators/06-operator-projects.md
+          - Commands: 13-operators/commands.md
+
+  - Policy as Code:
+      - 14 OPA & Kyverno:
+          - Overview: 14-policy-as-code/README.md
+          - OPA Foundations: 14-policy-as-code/01-opa-foundations.md
+          - OPA + Kubernetes: 14-policy-as-code/02-opa-kubernetes.md
+          - OPA Advanced: 14-policy-as-code/03-opa-advanced.md
+          - Kyverno Foundations: 14-policy-as-code/04-kyverno-foundations.md
+          - Kyverno Advanced: 14-policy-as-code/05-kyverno-advanced.md
+          - 10 Policy Projects: 14-policy-as-code/06-policy-projects.md
+          - Commands: 14-policy-as-code/commands.md
 
   - Interview Prep:
       - Overview: 09-interview-prep/README.md

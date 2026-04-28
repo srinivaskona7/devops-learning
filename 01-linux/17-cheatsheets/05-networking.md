@@ -2,7 +2,7 @@
 
 > Half of all "application bugs" are network bugs in disguise. Learn to prove it.
 
-```
+```bash
    ┌──────────────────────────────────────────────────────────────┐
    │  LAYER          TOOL              ASKS THE QUESTION          │
    ├─────────────────┼──────────────────┼────────────────────────┤
@@ -101,7 +101,7 @@ nslookup example.com                 # if dig isn't installed
 
 ### Read the answer block
 
-```
+```text
 ;; ANSWER SECTION:
 example.com.    300    IN    A    93.184.216.34
                  ^TTL  class type   value
@@ -174,7 +174,7 @@ tcpdump -i eth0 -s 0 port 443                   # snaplen 0 = full packet
 
 ### The 5 expressions you'll write the most
 
-```
+```text
 host 10.0.0.5
 src host 10.0.0.5
 dst port 443
@@ -208,7 +208,7 @@ firewall-cmd --list-all
 
 ## 9. The "is it the network?" decision tree
 
-```
+```bash
 ping host?
   ├─ no → ip route get <ip>; arp; check L1 (ethtool)
   └─ yes
@@ -247,7 +247,7 @@ sysctl net.ipv4.tcp_max_tw_buckets     # cap
 
 ## ★ If you remember nothing else ★
 
-```
+```bash
 1.  ss -tlnp        — what's listening, who owns the port.
 2.  ip route get X  — exactly which route/iface a packet would take.
 3.  dig +short / dig +trace — answer / full chain.

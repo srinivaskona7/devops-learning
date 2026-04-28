@@ -10,15 +10,12 @@
 
 `vmlinuz` is **not** a raw kernel — it's a self-extracting compressed image (called `bzImage` on x86). Layout (high level):
 
-```
-┌──────────────────────────────┐
-│ Real-mode setup code (16-bit)│  <- legacy stub, talks to BIOS for early printk
-├──────────────────────────────┤
-│ Decompressor stub (32/64-bit)│  <- decompresses the rest into memory
-├──────────────────────────────┤
-│ Compressed kernel (gzip/xz/  │  <- the actual ELF kernel image
-│  zstd/lz4 — see CONFIG)      │
-└──────────────────────────────┘
+```mermaid
+flowchart TD
+    A["Real-mode setup code — 16-bit\nlegacy stub, early printk via BIOS"]
+    B["Decompressor stub — 32/64-bit\ndecompresses the rest into memory"]
+    C["Compressed kernel — gzip/xz/zstd/lz4\nthe actual ELF kernel image"]
+    A --- B --- C
 ```
 
 The decompressor:
@@ -36,7 +33,7 @@ Why this exists: the kernel can't read your LVM volume group. The kernel can't d
 
 ### What's inside an initramfs (typical)
 
-```
+```text
 /init                   → script (or systemd) that does the work
 /bin/, /sbin/           → busybox or selected binaries
 /lib/modules/<ver>/     → only the modules needed for THIS hardware
@@ -89,7 +86,7 @@ CPU microcode patches load **before** kernel modules to mitigate hardware bugs (
 - **From inside initramfs**: dracut bundles microcode into the main initramfs. Default on Fedora.
 
 Verify:
-```
+```bash
 dmesg | grep microcode
 # → microcode: sig=0x806ec, pf=0x80, revision=0xf4
 # → microcode: Microcode Update Driver: v2.2.

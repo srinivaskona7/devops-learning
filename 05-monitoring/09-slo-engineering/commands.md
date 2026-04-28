@@ -52,7 +52,7 @@ kubectl -n monitoring port-forward svc/pyrra 9099
 
 ### Multi-window, multi-burn-rate alert thresholds
 
-```
+```text
 Page    14.4x   long=1h   short=5m    burn budget in 2 days
 Page     6x     long=6h   short=30m   burn budget in 5 days
 Ticket   3x     long=24h  short=2h    burn budget in 10 days
@@ -115,7 +115,7 @@ sloth validate -i slo-rules.yaml
 sloth generate -i slo-rules.yaml | yq '.groups[].name'
 ```
 
-```
+```text
 SLI  = good / total                  (the measurement)
 SLO  = target over a window           (e.g. 99.9% / 28d)
 EB   = 1 - SLO                       (0.1% ~= 40m 19s/month)

@@ -5,27 +5,27 @@
 ```mermaid
 flowchart LR
   subgraph Developer
-    D[Engineer<br/>laptop]
+    D["Engineer<br/>laptop"]
   end
 
   subgraph GitHub
-    PR[Pull Request<br/>review + merge]
-    Main[main branch<br/>k8s/overlays/*/]
+    PR["Pull Request<br/>review + merge"]
+    Main["main branch<br/>k8s/overlays/*/"]
   end
 
   subgraph CI ["GitHub Actions — push-based CI"]
-    Lint[Lint +<br/>kustomize build]
+    Lint["Lint +<br/>kustomize build"]
     Test[Unit tests]
-    Docker[Docker build<br/>+ push to registry]
-    TagBump[Commit: bump<br/>image tag in overlay]
+    Docker["Docker build<br/>+ push to registry"]
+    TagBump["Commit: bump<br/>image tag in overlay"]
     Lint --> Test --> Docker --> TagBump
   end
 
   subgraph ArgoCD ["Argo CD — pull-based GitOps controller"]
-    Poller[Git poller<br/>every 3 min]
-    Diff[Diff engine:<br/>desired vs live]
-    Sync[Sync executor:<br/>kubectl apply]
-    HealthCheck[Health assessor:<br/>Deployment · Service · PDB]
+    Poller["Git poller<br/>every 3 min"]
+    Diff["Diff engine:<br/>desired vs live"]
+    Sync["Sync executor:<br/>kubectl apply"]
+    HealthCheck["Health assessor:<br/>Deployment · Service · PDB"]
     Poller --> Diff --> Sync --> HealthCheck
   end
 
@@ -34,9 +34,9 @@ flowchart LR
       API[kube-apiserver]
     end
     subgraph Workers
-      NS1[api-dev<br/>1 replica]
-      NS2[api-staging<br/>2 replicas]
-      NS3[api-prod<br/>3 replicas + PDB]
+      NS1["api-dev<br/>1 replica"]
+      NS2["api-staging<br/>2 replicas"]
+      NS3["api-prod<br/>3 replicas + PDB"]
     end
     ESO[External Secrets Operator]
     ESO -->|reads SecretStore| FV[fake-vault sidecar]
@@ -133,7 +133,7 @@ flowchart TB
 ```mermaid
 flowchart TB
   subgraph Git ["git: infra/argocd/"]
-    RootYAML[app-of-apps.yaml<br/>Application CRD]
+    RootYAML["app-of-apps.yaml<br/>Application CRD"]
     AppsDir["apps/
     api-dev.yaml
     api-staging.yaml
@@ -141,7 +141,7 @@ flowchart TB
   end
 
   subgraph ArgoNS ["argocd namespace"]
-    RootApp[Application: root-app<br/>watches infra/argocd/apps/]
+    RootApp["Application: root-app<br/>watches infra/argocd/apps/"]
     ChildDev[Application: api-dev]
     ChildStag[Application: api-staging]
     ChildProd[Application: api-prod]
@@ -248,7 +248,7 @@ sequenceDiagram
 
 ## Node layout (kind cluster)
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │  kind cluster: gitops-lab                                       │
 │                                                                 │

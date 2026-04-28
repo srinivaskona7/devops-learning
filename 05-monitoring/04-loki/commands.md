@@ -103,7 +103,7 @@ logcli query '{namespace="prod"} |= "panic"' --since=24h
 curl -s localhost:3100/loki/api/v1/labels | jq '.data | length'
 ```
 
-```
+```text
 Index labels only. NEVER label by user_id / request_id / trace_id — keep them in the line, parse with | json.
 Aim for < 100k active streams per tenant.
 Promtail still works; new deployments -> Grafana Alloy.

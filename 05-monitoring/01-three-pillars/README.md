@@ -19,10 +19,10 @@
 ```mermaid
 flowchart TB
     User((User request)) --> App
-    App -->|emits| M[Metrics<br/>http_requests_total]
-    App -->|emits| L[Logs<br/>level=error msg=...]
-    App -->|emits| T[Traces<br/>span: db.query 230ms]
-    App -->|emits| E[Events<br/>deploy v1.2.3]
+    App -->|emits| M["Metrics<br/>http_requests_total"]
+    App -->|emits| L["Logs<br/>level=error msg=..."]
+    App -->|emits| T["Traces<br/>span: db.query 230ms"]
+    App -->|emits| E["Events<br/>deploy v1.2.3"]
 
     M --> Q{Question}
     L --> Q

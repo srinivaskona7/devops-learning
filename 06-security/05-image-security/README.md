@@ -24,7 +24,7 @@ flowchart LR
     Vuln4[Typosquat] -.wrong image.-> K8s
 
     Sign[cosign sign] --> Img
-    Verify[admission policy<br/>cosign verify] -.blocks unsigned.-> K8s
+    Verify["admission policy<br/>cosign verify"] -.blocks unsigned.-> K8s
     Scan[trivy / grype] -.fails build.-> Build
     SBOM[syft SBOM] -.attached to.-> Img
 ```

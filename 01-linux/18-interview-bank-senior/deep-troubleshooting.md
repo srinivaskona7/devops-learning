@@ -6,7 +6,7 @@
 
 ## How to read each scenario
 
-```
+```text
 SCENARIO   — the symptom as the user sees it
 WHY HARD   — why a junior gets stuck
 DIAGNOSIS  — ordered tree of investigations

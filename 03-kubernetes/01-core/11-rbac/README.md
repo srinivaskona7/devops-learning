@@ -11,10 +11,10 @@
 
 ```mermaid
 flowchart LR
-  SUB[Subject<br/>User / Group / ServiceAccount] --> RB[RoleBinding]
-  RB --> ROLE[Role<br/>verbs + resources]
+  SUB["Subject<br/>User / Group / ServiceAccount"] --> RB[RoleBinding]
+  RB --> ROLE["Role<br/>verbs + resources"]
   SUB2[Subject] --> CRB[ClusterRoleBinding]
-  CRB --> CROLE[ClusterRole<br/>cluster-wide verbs]
+  CRB --> CROLE["ClusterRole<br/>cluster-wide verbs"]
   RB -.namespaced.-> NS[Namespace]
   CRB -.cluster-wide.-> CL[Cluster]
 ```
@@ -99,8 +99,8 @@ Workloads (pods) authenticate to the API server using a **ServiceAccount**. Ever
 ```mermaid
 flowchart LR
   POD[Pod] -->|projected token| API[kube-apiserver]
-  POD -.uses.- SA[ServiceAccount<br/>app-sa]
-  SA -->|RoleBinding| R[Role<br/>read configmaps]
+  POD -.uses.- SA["ServiceAccount<br/>app-sa"]
+  SA -->|RoleBinding| R["Role<br/>read configmaps"]
 ```
 
 </details>

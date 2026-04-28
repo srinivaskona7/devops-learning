@@ -2,7 +2,7 @@
 
 > When the pager goes off, don't randomly grep. Walk the tree.
 
-```
+```text
    ┌──────────────────────────────────────────────────────────────┐
    │  THE 60-SECOND TRIAGE (Brendan Gregg's USE checklist)        │
    │                                                              │
@@ -30,7 +30,7 @@
 
 ```mermaid
 flowchart TD
-    Start([System is slow]) --> Triage[Run the 60s triage<br/>uptime · vmstat · iostat · free · sar]
+    Start([System is slow]) --> Triage["Run the 60s triage<br/>uptime · vmstat · iostat · free · sar"]
 
     Triage --> Q1{Load avg<br/>>> CPU count?}
 
@@ -38,7 +38,7 @@ flowchart TD
     Q1 -- no  --> Q5{IOwait %wa<br/>high?}
 
     Q2 -- "%us high (user)" --> CPU_user[App is CPU-bound]
-    Q2 -- "%sy high (kernel)" --> CPU_sys[Kernel-heavy:<br/>syscalls / context-switch]
+    Q2 -- "%sy high (kernel)" --> CPU_sys["Kernel-heavy:<br/>syscalls / context-switch"]
     Q2 -- "%wa high"          --> Q5
 
     CPU_user --> CPUtools["pidstat 1<br/>top -H -p PID<br/>perf top<br/>flamegraph"]
@@ -49,7 +49,7 @@ flowchart TD
 
     Q6 --> IOtools["iotop -oPa<br/>biolatency · biosnoop (bcc)<br/>blktrace<br/>fio for baseline"]
 
-    Q3 -- "swap used / si,so>0" --> MEM_swap[Swapping<br/>=> something is over memory]
+    Q3 -- "swap used / si,so>0" --> MEM_swap["Swapping<br/>=> something is over memory"]
     Q3 -- "available low<br/>but no swap"  --> MEM_cache[Cache reclaim pressure]
     Q3 -- ok                  --> Q4{Network<br/>retransmits?<br/>sar -n ETCP 1}
 
@@ -57,7 +57,7 @@ flowchart TD
     MEM_cache --> MEMtools
 
     Q4 -- "retransmits / errors" --> NETtools["ss -ti  (per-socket retrans)<br/>tcpdump for the offender<br/>ethtool -S eth0<br/>nstat / sar -n TCP,ETCP"]
-    Q4 -- "no, but latency"      --> APP[App-layer:<br/>logs, traces, queues]
+    Q4 -- "no, but latency"      --> APP["App-layer:<br/>logs, traces, queues"]
 
     APP --> APPtools["journalctl -u app -p warning..err<br/>app metrics + traces<br/>dependency latencies (DB? cache? upstream?)"]
 
@@ -176,7 +176,7 @@ journalctl -u myapp -p warning..err --since '15 min ago'
 
 ## ★ If you remember nothing else ★
 
-```
+```text
 1.  ALWAYS run the 60-second triage first. It tells you the WHICH subsystem.
 2.  CPU: %us/%sy/%wa from vmstat tells you CPU-bound vs kernel vs IO.
 3.  Memory: si/so > 0 = swapping = something is too big. Find it with rss sort.

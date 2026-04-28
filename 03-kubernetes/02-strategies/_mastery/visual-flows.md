@@ -17,10 +17,10 @@ A 4-pod Deployment swapping v1 to v2 with maxSurge 1, maxUnavailable 0.
 
 ```mermaid
 flowchart LR
-  Start[Start: 4x v1] --> S1[Add 1x v2<br/>now 5 pods]
-  S1 --> S2[Kill 1x v1<br/>now 4 pods]
-  S2 --> S3[Add 1x v2<br/>now 5 pods]
-  S3 --> S4[Kill 1x v1<br/>continue]
+  Start[Start: 4x v1] --> S1["Add 1x v2<br/>now 5 pods"]
+  S1 --> S2["Kill 1x v1<br/>now 4 pods"]
+  S2 --> S3["Add 1x v2<br/>now 5 pods"]
+  S3 --> S4["Kill 1x v1<br/>continue"]
   S4 --> Done[End: 4x v2]
 ```
 
@@ -42,9 +42,9 @@ Two ReplicaSets exist simultaneously. The Service points to one at a time.
 
 ```mermaid
 flowchart LR
-  U[Users] --> Svc[Service<br/>selector: blue]
-  Svc --> B[Blue RS v1<br/>4 pods]
-  G[Green RS v2<br/>4 pods] -.idle.-> Wait[Pre-warm]
+  U[Users] --> Svc["Service<br/>selector: blue"]
+  Svc --> B["Blue RS v1<br/>4 pods"]
+  G["Green RS v2<br/>4 pods"] -.idle.-> Wait[Pre-warm]
   Wait --> Flip[Patch selector to green]
   Flip --> Done[Service now routes to Green]
 ```
@@ -67,10 +67,10 @@ Argo Rollouts moving traffic 0 -> 10 -> 50 -> 100.
 
 ```mermaid
 flowchart LR
-  Start[100 percent stable<br/>0 percent canary] --> Step1[90 / 10]
-  Step1 --> Analyse1[AnalysisRun<br/>checks SLIs]
+  Start["100 percent stable<br/>0 percent canary"] --> Step1[90 / 10]
+  Step1 --> Analyse1["AnalysisRun<br/>checks SLIs"]
   Analyse1 --> Step2[50 / 50]
-  Step2 --> Analyse2[AnalysisRun<br/>checks SLIs]
+  Step2 --> Analyse2["AnalysisRun<br/>checks SLIs"]
   Analyse2 --> Done[0 / 100]
 ```
 
@@ -94,8 +94,8 @@ Real users hit stable. A copy of each request goes to shadow.
 ```mermaid
 flowchart LR
   U[User Request] --> Mesh[Sidecar Proxy]
-  Mesh --> Stable[Stable v1<br/>responds to user]
-  Mesh -.mirror copy.-> Shadow[Shadow v2<br/>processes silently]
+  Mesh --> Stable["Stable v1<br/>responds to user"]
+  Mesh -.mirror copy.-> Shadow["Shadow v2<br/>processes silently"]
   Shadow --> Drop[Response dropped]
   Stable --> User2[User receives]
 ```
@@ -145,8 +145,8 @@ Two full clusters. A global load balancer steers traffic.
 ```mermaid
 flowchart LR
   Users[Global Users] --> GLB[Global Load Balancer]
-  GLB -->|100 percent| C1[Cluster Blue<br/>region us-east]
-  GLB -.0 percent.-> C2[Cluster Green<br/>region us-west]
+  GLB -->|100 percent| C1["Cluster Blue<br/>region us-east"]
+  GLB -.0 percent.-> C2["Cluster Green<br/>region us-west"]
   Flip[Update GLB weights] --> GLB
   C2 --> Ready[Pre-validated via synthetics]
 ```
@@ -169,7 +169,7 @@ Argo Rollouts AnalysisRun fails — rollout reverses.
 
 ```mermaid
 flowchart LR
-  Step[Step 3: 50 percent] --> Analyse[AnalysisRun<br/>queries Prometheus]
+  Step[Step 3: 50 percent] --> Analyse["AnalysisRun<br/>queries Prometheus"]
   Analyse --> Decision{p99 latency OK?<br/>error rate OK?}
   Decision -->|Pass| Promote[Promote to 100 percent]
   Decision -->|Fail| Abort[Abort: shift back to stable]
@@ -223,7 +223,7 @@ flowchart LR
   Pending[Pending] --> Init[Init containers]
   Init --> Start[Container start]
   Start --> Startup[startupProbe]
-  Startup --> Ready[readinessProbe<br/>passes]
+  Startup --> Ready["readinessProbe<br/>passes"]
   Ready --> Serve[Receives traffic]
 ```
 
@@ -245,9 +245,9 @@ preStop hook + terminationGracePeriodSeconds.
 
 ```mermaid
 flowchart LR
-  R[Rolling: gradual<br/>pod swap] --> O1[Mixed v1 plus v2<br/>during window]
-  B[Blue Green: instant<br/>flip] --> O2[100 percent v1 then<br/>100 percent v2]
-  C[Canary: stepped<br/>weights] --> O3[1 then 10 then 50<br/>then 100 percent v2]
+  R["Rolling: gradual<br/>pod swap"] --> O1["Mixed v1 plus v2<br/>during window"]
+  B["Blue Green: instant<br/>flip"] --> O2["100 percent v1 then<br/>100 percent v2"]
+  C["Canary: stepped<br/>weights"] --> O3["1 then 10 then 50<br/>then 100 percent v2"]
 ```
 
 </details>
@@ -339,7 +339,7 @@ The danger zone — schema must serve both versions during the rollout.
 
 ```mermaid
 flowchart LR
-  V1[App v1 reads col_a] --> DB[Database<br/>col_a + col_b]
+  V1[App v1 reads col_a] --> DB["Database<br/>col_a + col_b"]
   V2[App v2 reads col_b] --> DB
   DB --> Both[Both versions happy]
   Cleanup[Drop col_a after v1 gone] --> DB

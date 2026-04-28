@@ -37,7 +37,7 @@ A control plane + dataplane that gives you secure, observable, policy-controlled
 ## 3. API & Data Model
 
 ### CRDs (Istio-style)
-```
+```text
 VirtualService     # routing rules: weights, headers, redirects
 DestinationRule    # client-side LB, conn pool, outlier detection
 Gateway            # ingress/egress configuration
@@ -64,7 +64,7 @@ Envoy speaks **xDS** (gRPC discovery): LDS (listeners), RDS (routes), CDS (clust
 
 ```mermaid
 flowchart LR
-  CRD[CRDs in K8s API] --> CP[Control Plane<br/>Istiod]
+  CRD[CRDs in K8s API] --> CP["Control Plane<br/>Istiod"]
   CP -->|xDS gRPC| Sidecar1[Envoy sidecar Pod A]
   CP -->|xDS gRPC| Sidecar2[Envoy sidecar Pod B]
   CP -->|SDS| CA[Cert Authority]
@@ -116,7 +116,7 @@ Single binary that combines:
 
 ```mermaid
 flowchart LR
-  K[K8s API watches<br/>Services, Endpoints, CRDs] --> Pilot
+  K["K8s API watches<br/>Services, Endpoints, CRDs"] --> Pilot
   Pilot -->|xDS| Sidecars
   CA[Citadel CA] -->|SDS| Sidecars
   Webhook[Mutating Webhook] -->|inject sidecar| New_Pods

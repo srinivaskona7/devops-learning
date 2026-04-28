@@ -68,6 +68,32 @@ docker inspect, exec, layer diff, dangling cleanup. The exact commands for 03:00
 
 ---
 
+<div class="grid cards" markdown>
+
+-   :material-layers:{ .lg .middle } **Images & Layers**
+
+    ---
+    An image is an immutable stack of OverlayFS layers. `FROM` = base, each `RUN`/`COPY` = new layer.
+
+-   :material-run-fast:{ .lg .middle } **Containers**
+
+    ---
+    A container is an image + a writable `upperdir` + isolated namespaces + cgroup limits.
+
+-   :material-lan:{ .lg .middle } **Networking**
+
+    ---
+    `bridge` network = Linux bridge + veth pairs. `host` = shared host netns. `none` = isolated.
+
+-   :material-database:{ .lg .middle } **Volumes**
+
+    ---
+    Volumes outlive containers. Bind mounts share host paths. tmpfs is ephemeral RAM storage.
+
+</div>
+
+---
+
 ## 1. Images vs containers
 
 <div class="concept" markdown>
@@ -221,13 +247,13 @@ flowchart LR
 ```bash
 # Create a fast-cache Dockerfile (deps before source)
 cat > /tmp/Dockerfile.good <<'EOF'
-FROM python:3.12-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+FROM python:3.12-slim # (1)!
+WORKDIR /app          # (2)!
+COPY requirements.txt . # (3)!
+RUN pip install --no-cache-dir -r requirements.txt # (4)!
 COPY . .
-ENTRYPOINT ["python"]
-CMD ["app.py"]
+ENTRYPOINT ["python"] # (5)!
+CMD ["app.py"]        # (6)!
 EOF
 
 # Build it, then build again — second build uses full cache
@@ -241,6 +267,22 @@ docker history myapp:good --human --format "table {{.CreatedBy}}\t{{.Size}}"
 # Inspect ENTRYPOINT vs CMD
 docker inspect myapp:good --format '{{.Config.Entrypoint}} / {{.Config.Cmd}}'
 ```
+
+1. `slim` variant = Debian base, ~45MB vs ~900MB for full image. Never use `latest` — pin to a version tag or digest.
+2. Sets working directory for all subsequent `RUN`/`COPY`/`CMD` — creates it if missing. Never use `RUN cd /app &&`.
+3. Copy only requirements first to leverage layer caching — this layer only rebuilds on dependency changes.
+4. `--no-cache-dir` prevents pip's download cache from bloating the layer. Chain with `&&` to keep layer count low.
+5. `ENTRYPOINT` is the fixed binary — it cannot be overridden by `docker run <image> <arg>` (only replaced with `--entrypoint`).
+6. `CMD` is the default argument to `ENTRYPOINT`. `docker run myapp:good server.py` → `python server.py`. Overridable.
+
+!!! prod-danger "The Silent Version Drift"
+    **Never use `latest` image tag in production deployments.**
+    If a node restarts and pulls `myapp:latest`, it may get a different image than what you originally deployed — silently. Pin to a digest for true immutability:
+    ```bash
+    docker pull myapp:v1.2.3
+    # or use a sha256 digest
+    docker run myapp@sha256:abc123...
+    ```
 
 <span class="stage simulation">🔮 Simulation — what you'll see</span>
 
@@ -707,31 +749,39 @@ flowchart LR
 
 <span class="stage execution">⚡ Execution</span>
 
+=== ":material-database: Named Volume"
+    ```bash
+    docker volume create pgdata
+    docker run -d \
+      --name pg \
+      -e POSTGRES_PASSWORD=secret \
+      -v pgdata:/var/lib/postgresql/data \
+      postgres:16-alpine
+    # Data persists across container restarts and removals
+    docker volume inspect pgdata --format '{{.Mountpoint}}'
+    # → /var/lib/docker/volumes/pgdata/_data
+    ```
+
+=== ":material-folder-open: Bind Mount (dev)"
+    ```bash
+    # Hot-reload local source code into a container
+    docker run --rm -it \
+      -v $(pwd)/src:/app/src \
+      -p 3000:3000 \
+      node:20-alpine sh -c "cd /app && node src/index.js"
+    # Changes to ./src are visible inside immediately
+    ```
+
+=== ":material-memory: tmpfs (ephemeral)"
+    ```bash
+    # In-memory scratch pad — no disk I/O, data gone on stop
+    docker run --rm \
+      --tmpfs /tmp:rw,size=64m \
+      alpine df -h /tmp
+    # → tmpfs 64.0M 0 64.0M 0% /tmp
+    ```
+
 ```bash
-# Create a named volume and run postgres with it
-docker volume create pgdata
-docker run -d \
-  --name pg \
-  -e POSTGRES_PASSWORD=secret \
-  -v pgdata:/var/lib/postgresql/data \
-  postgres:16-alpine
-
-# Inspect where Docker stores the volume on the host
-docker volume inspect pgdata --format '{{.Mountpoint}}'
-# → /var/lib/docker/volumes/pgdata/_data
-
-# Bind mount for local dev (source code hot-reload)
-docker run --rm -it \
-  -v $(pwd)/src:/app/src \
-  -p 3000:3000 \
-  node:20-alpine sh -c "cd /app && node src/index.js"
-
-# tmpfs for an in-memory scratch pad
-docker run --rm \
-  --tmpfs /tmp:rw,size=64m \
-  alpine df -h /tmp
-# → tmpfs 64.0M 0 64.0M 0% /tmp
-
 # Remove container but keep data in volume
 docker rm -f pg
 docker volume ls   # pgdata still present

@@ -2,7 +2,7 @@
 
 > A "stuck process" usually isn't stuck. It's blocked, sleeping, zombied, or waiting for something you forgot exists.
 
-```
+```text
    ┌──────────────────────────────────────────────────────────────┐
    │  PROCESS STATES   (from /proc/PID/status,  ps -o state)      │
    ├──────────────────────────────────────────────────────────────┤
@@ -201,7 +201,7 @@ cat /proc/$PID/cgroup                   # which cgroup a process is in
 
 ## ★ If you remember nothing else ★
 
-```
+```text
 1.  D state ≠ stuck process. It's stuck IO. Fix the disk/network, not the proc.
 2.  Z state ≠ alive. Fix the PARENT (kill or restart it).
 3.  TERM first, KILL last.  Use kill -0 PID to check before re-sending.

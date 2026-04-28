@@ -13,11 +13,11 @@ The Container Storage Interface (CSI) replaced in-tree volume drivers and turned
 
 ```mermaid
 flowchart LR
-  P[PVC] --> Prov[external-provisioner<br/>watches PVCs]
+  P[PVC] --> Prov["external-provisioner<br/>watches PVCs"]
   Prov -->|CreateVolume gRPC| CSI1[CSI Controller Plugin]
   CSI1 --> Cloud[(cloud disk)]
   CSI1 --> PV[PV bound]
-  PV --> Att[external-attacher<br/>watches VolumeAttachments]
+  PV --> Att["external-attacher<br/>watches VolumeAttachments"]
   Att -->|ControllerPublishVolume| CSI1
   Att --> Node[node has volume attached]
   Node --> Kube[kubelet]

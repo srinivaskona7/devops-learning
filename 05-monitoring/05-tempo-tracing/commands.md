@@ -41,7 +41,7 @@ curl -s http://localhost:3200/api/search/tag/service.name/values | jq .
 
 ### TraceQL patterns
 
-```
+```json
 { resource.service.name="checkout-svc" }
 { duration > 500ms }
 { status = error }
@@ -70,7 +70,7 @@ curl -s http://localhost:3200/metrics | grep traces_spanmetrics
 
 ### Sampling reminder (lives in OTel Collector — see 06)
 
-```
+```text
 Head-based : decide at trace start (cheap, lossy).
 Tail-based : collector buffers whole trace; keep all errors + slow + 1% normal.
 ```
@@ -91,7 +91,7 @@ curl -s http://localhost:3200/api/traces/$TID | jq '.batches[].scopeSpans[].span
 curl -sG http://localhost:3200/api/search --data-urlencode 'q={ status=error }' | jq '.traces | length'
 ```
 
-```
+```text
 trace = DAG of spans, propagated via W3C traceparent header.
 Tempo stores in object storage (S3/GCS/Azure) -> cheap "always on" tracing.
 Search by trace_id is free; TraceQL search needs the search index.

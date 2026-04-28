@@ -25,11 +25,11 @@ flowchart TB
     F --> G[Patch loop]
     G -.iterate.-> B
     
-    B -. removes .-> S1[Unused services<br/>Listening ports<br/>Setuid binaries]
-    C -. configures .-> S2[SSH, sudo, PAM<br/>NTP, syslog]
-    D -. tunes .-> S3[sysctl<br/>kernel modules<br/>ASLR PIE RELRO]
-    E -. mounts .-> S4[noexec/nosuid/nodev<br/>chattr +i]
-    F -. enables .-> S5[auditd<br/>AIDE<br/>SIEM]
+    B -. removes .-> S1["Unused services<br/>Listening ports<br/>Setuid binaries"]
+    C -. configures .-> S2["SSH, sudo, PAM<br/>NTP, syslog"]
+    D -. tunes .-> S3["sysctl<br/>kernel modules<br/>ASLR PIE RELRO"]
+    E -. mounts .-> S4["noexec/nosuid/nodev<br/>chattr +i"]
+    F -. enables .-> S5["auditd<br/>AIDE<br/>SIEM"]
 ```
 
 </details>
@@ -41,7 +41,7 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph "Tier 1 — non-negotiable"
-        A1[SSH key only<br/>Root login disabled]
+        A1["SSH key only<br/>Root login disabled"]
         A2[Patch on a schedule]
         A3[Firewall default deny]
         A4[Audit daemon running]

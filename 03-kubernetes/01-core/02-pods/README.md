@@ -16,7 +16,7 @@ flowchart LR
   subgraph POD["Pod (shares net + IPC + volumes)"]
     APP[app container]
     SIDE[sidecar container]
-    INIT[init container<br/>runs first, then exits]
+    INIT["init container<br/>runs first, then exits"]
     VOL[(shared volume)]
   end
   APP -->|localhost:port| SIDE

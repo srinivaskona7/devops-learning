@@ -16,18 +16,18 @@ flowchart TB
         P2[Prometheus] --- SC2[Thanos Sidecar]
     end
 
-    SC1 -->|2h blocks| S3[(Object Storage<br/>S3 / GCS / Azure)]
+    SC1 -->|2h blocks| S3["(Object Storage<br/>S3 / GCS / Azure)"]
     SC2 -->|2h blocks| S3
 
-    S3 --> COMPACT[Thanos Compactor<br/>downsample 5m, 1h]
-    S3 --> STORE[Thanos Store Gateway<br/>fan-out reads]
+    S3 --> COMPACT["Thanos Compactor<br/>downsample 5m, 1h"]
+    S3 --> STORE["Thanos Store Gateway<br/>fan-out reads"]
 
-    SC1 --> QUERIER[Thanos Querier<br/>StoreAPI fan-out]
+    SC1 --> QUERIER["Thanos Querier<br/>StoreAPI fan-out"]
     SC2 --> QUERIER
     STORE --> QUERIER
     QUERIER -->|dedup| GRAFANA[Grafana / API]
 
-    QUERIER --> RULER[Thanos Ruler<br/>cross-cluster rules]
+    QUERIER --> RULER["Thanos Ruler<br/>cross-cluster rules"]
     RULER --> AM[Alertmanager]
 ```
 

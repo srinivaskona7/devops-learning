@@ -17,7 +17,7 @@ This module covers the four layers DevOps engineers touch every day:
 
 ## The Filesystem Hierarchy Standard (FHS) Map
 
-```
+```text
 /
 ├── bin       -> /usr/bin       # essential user binaries
 ├── sbin      -> /usr/sbin      # essential system binaries
@@ -116,9 +116,9 @@ ls -l /proc/$$/fd
 
 ```mermaid
 flowchart TB
-    APP[Applications<br/>nginx, postgres, your code]
-    LIB[glibc / musl<br/>POSIX wrappers]
-    SYSCALL[Syscall interface<br/>open/read/write/ioctl/mmap]
+    APP["Applications<br/>nginx, postgres, your code"]
+    LIB["glibc / musl<br/>POSIX wrappers"]
+    SYSCALL["Syscall interface<br/>open/read/write/ioctl/mmap"]
     VFS[VFS — uniform file API]
     DRV[Drivers — block, char, network]
     KMOD[Kernel modules — loadable drivers]

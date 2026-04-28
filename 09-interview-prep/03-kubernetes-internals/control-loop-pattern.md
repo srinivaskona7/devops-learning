@@ -15,11 +15,11 @@ Kubernetes is not an orchestration engine that *issues commands*. It is a **set 
 
 ```mermaid
 flowchart LR
-    A[Watch API server<br/>desired state] --> B[Local cache<br/>informer]
+    A["Watch API server<br/>desired state"] --> B["Local cache<br/>informer"]
     B --> C{Diff<br/>desired vs actual}
-    C -- mismatch --> D[Reconcile<br/>idempotent action]
+    C -- mismatch --> D["Reconcile<br/>idempotent action"]
     C -- match --> E[No-op]
-    D --> F[Update status<br/>or external system]
+    D --> F["Update status<br/>or external system"]
     F --> A
     E --> A
 ```
@@ -94,10 +94,10 @@ Between the informer (which receives watch events) and the reconciler sits a **w
 
 ```mermaid
 flowchart LR
-    W[Watch events] --> H[Event handler<br/>extracts key]
-    H --> Q[(Workqueue<br/>deduped FIFO)]
+    W[Watch events] --> H["Event handler<br/>extracts key"]
+    H --> Q["(Workqueue<br/>deduped FIFO)"]
     Q --> R[Reconcile worker]
-    R -- error --> RL[Rate limiter<br/>exponential backoff]
+    R -- error --> RL["Rate limiter<br/>exponential backoff"]
     RL --> Q
     R -- Result.RequeueAfter --> Q
     R -- success --> DONE[Forget key]

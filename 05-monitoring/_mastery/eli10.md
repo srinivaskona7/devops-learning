@@ -49,7 +49,7 @@ flowchart LR
 </details>
 
 ### A real query (PromQL)
-```
+```text
 rate(http_requests_total[5m])
 ```
 Translation: "How many web requests per second, averaged over the last 5 minutes?"
@@ -87,7 +87,7 @@ flowchart LR
 </details>
 
 ### A real query (LogQL)
-```
+```json
 {app="checkout"} |= "ERROR" | json
 ```
 Translation: "Show me every diary entry from the checkout app that contains the word ERROR, and parse it as JSON."
@@ -124,7 +124,7 @@ flowchart LR
 </details>
 
 ### A real query (TraceQL)
-```
+```json
 { service.name = "payment" && duration > 500ms }
 ```
 Translation: "Find traces where the payment service took longer than half a second."
@@ -159,7 +159,7 @@ flowchart LR
 </details>
 
 ### A real query (PromQL on a dashboard panel)
-```
+```text
 sum by (service) (rate(http_requests_total{status=~"5.."}[5m]))
 ```
 Translation: "For each service, how many error responses per second?"
@@ -194,13 +194,13 @@ flowchart LR
 </details>
 
 ### A real query (PromQL alert)
-```
+```text
 sum(rate(http_requests_total{status=~"5.."}[5m])) > 10
 ```
 Translation: "If more than 10 errors per second happen, fire."
 
 With duration:
-```
+```text
 expr: rate(errors_total[5m]) > 10
 for: 2m
 ```
@@ -241,7 +241,7 @@ flowchart LR
 </details>
 
 ### A real query (PromQL SLO)
-```
+```text
 1 - (sum(rate(http_requests_total{status=~"5.."}[30d])) / sum(rate(http_requests_total[30d])))
 ```
 Translation: "What fraction of requests in the last 30 days were NOT errors?" That's our availability.
@@ -365,7 +365,7 @@ When something feels broken, ask:
 4. **Saturation** — is the engine red-lining? (How full are CPU, memory, disk?)
 
 ### A real query covering them
-```
+```text
 histogram_quantile(0.99, sum by (le) (rate(http_request_duration_seconds_bucket[5m])))
 ```
 Translation: "The slowest 1% of requests in the last 5 minutes — how long did they take?"

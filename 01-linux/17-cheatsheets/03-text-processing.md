@@ -2,7 +2,7 @@
 
 > Logs aren't data until you shape them. These six tools are your lathe.
 
-```
+```bash
    ┌──────────┬────────────────────────────────────────────────┐
    │  TOOL    │  USE WHEN...                                   │
    ├──────────┼────────────────────────────────────────────────┤
@@ -197,7 +197,7 @@ awk -F, 'BEGIN{OFS=","} {$2=toupper($2); print}' data.csv > tmp && mv tmp data.c
 
 ## ★ If you remember nothing else ★
 
-```
+```bash
 1.  sort | uniq -c | sort -rn | head    is the top-N pipeline.  Memorize it.
 2.  awk '{print $N}'  beats every cut hack the moment fields aren't fixed.
 3.  grep -oP '...\K\S+'   extracts JUST the captured part (no lookahead clutter).

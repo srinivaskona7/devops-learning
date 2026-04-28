@@ -23,16 +23,16 @@ The four discipline points:
 
 ```mermaid
 flowchart LR
-    P[Production Data] --> H[Hot Tier<br/>Snapshots on same host]
-    P --> L[LAN Tier<br/>rsync to NAS, daily]
-    P --> O[Off-site Tier<br/>S3 / B2 / tape, weekly]
+    P[Production Data] --> H["Hot Tier<br/>Snapshots on same host"]
+    P --> L["LAN Tier<br/>rsync to NAS, daily"]
+    P --> O["Off-site Tier<br/>S3 / B2 / tape, weekly"]
 
     H -.fast restore<br/>but co-located.-> R1[Same-host failure: useless]
     L -.minutes to hours.-> R2[Site fire: useless]
     O -.hours to days.-> R3[True DR copy]
 
     R3 --> Drill[Quarterly Restore Drill]
-    Drill --> Verify[Checksum match +<br/>app boots + data queryable]
+    Drill --> Verify["Checksum match +<br/>app boots + data queryable"]
 ```
 
 </details>
@@ -434,7 +434,7 @@ logger -t "$LOG_TAG" "DONE $DATE bytes=$(du -sh "$DEST/$DATE" | cut -f1)"
 ```
 
 Realistic output in journal:
-```
+```bash
 $ journalctl -u backup.service --since today
 Apr 26 02:30:01 web-01 systemd[1]: Starting Nightly backup...
 Apr 26 02:30:01 web-01 logger[12001]: START 2026-04-26

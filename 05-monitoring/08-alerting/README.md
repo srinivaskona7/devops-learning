@@ -11,13 +11,13 @@ Prometheus **fires** alerts; Alertmanager **routes** them. Separation of concern
 
 ```mermaid
 flowchart LR
-    P[Prometheus<br/>rule eval] -->|alerts| AM
+    P["Prometheus<br/>rule eval"] -->|alerts| AM
     subgraph AM[Alertmanager]
         DEDUP[Dedupe]
-        GROUP[Group<br/>by alertname/cluster]
-        INH[Inhibition<br/>suppress dependent alerts]
-        SIL[Silences<br/>scheduled mute]
-        ROUTE[Route tree<br/>match labels]
+        GROUP["Group<br/>by alertname/cluster"]
+        INH["Inhibition<br/>suppress dependent alerts"]
+        SIL["Silences<br/>scheduled mute"]
+        ROUTE["Route tree<br/>match labels"]
         TPL[Templating]
     end
     DEDUP --> GROUP --> INH --> SIL --> ROUTE --> TPL

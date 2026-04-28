@@ -15,7 +15,7 @@ Cron jobs, CI pipelines, init scripts, container entrypoints — they're all bas
 
 ```mermaid
 flowchart TB
-    A[Shebang #!/usr/bin/env bash] --> B[set -euo pipefail<br/>IFS=$'\n\t']
+    A[Shebang #!/usr/bin/env bash] --> B["set -euo pipefail<br/>IFS=$'\n\t'"]
     B --> C[Constants & defaults]
     C --> D[Argument parsing]
     D --> E[trap cleanup EXIT INT TERM]

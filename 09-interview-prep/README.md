@@ -103,7 +103,7 @@ The bar-raiser is watching for three things:
 ```mermaid
 flowchart LR
   subgraph Before
-    A[v1 stable<br/>100% traffic]
+    A["v1 stable<br/>100% traffic"]
   end
   subgraph During
     B[LB / mesh] -->|99%| A
@@ -111,8 +111,8 @@ flowchart LR
     D[Observability] -->|SLI burn| E{Auto-halt?}
   end
   subgraph After
-    F[v2 stable<br/>100% traffic]
-    G[v1 warm-idle<br/>T+30 min]
+    F["v2 stable<br/>100% traffic"]
+    G["v1 warm-idle<br/>T+30 min"]
   end
   E -->|yes| A
   E -->|no, progress| H[1% → 5% → 25% → 50% → 100%]
@@ -374,18 +374,18 @@ The bar-raiser listens for a **decision tree**, not a command list. If you name 
 ```mermaid
 flowchart TB
   A[CrashLoopBackOff] --> B{describe: last state?}
-  B -->|OOMKilled| C[Memory limit too low<br/>or leak]
+  B -->|OOMKilled| C["Memory limit too low<br/>or leak"]
   B -->|Error / exit 1| D[App-level crash]
-  B -->|ContainerCannotRun| E[Bad command/args<br/>or missing file]
-  B -->|ImagePullBackOff| F[Not actually CLB<br/>diff problem]
-  B -->|Completed / exit 0| G[Not a long-running process<br/>wrong PID 1]
+  B -->|ContainerCannotRun| E["Bad command/args<br/>or missing file"]
+  B -->|ImagePullBackOff| F["Not actually CLB<br/>diff problem"]
+  B -->|Completed / exit 0| G["Not a long-running process<br/>wrong PID 1"]
   D --> D1{logs --previous?}
   D1 -->|stack trace| D2[App fix]
-  D1 -->|silent| D3[stdout not wired<br/>or SIGTERM too fast]
+  D1 -->|silent| D3["stdout not wired<br/>or SIGTERM too fast"]
   C --> C1[kubectl top pod / metrics-server]
   C --> C2[Raise limit, check reqs]
-  E --> E1[exec into debug image<br/>via ephemeralContainer]
-  G --> G1[Check entrypoint + args<br/>maybe tini needed]
+  E --> E1["exec into debug image<br/>via ephemeralContainer"]
+  G --> G1["Check entrypoint + args<br/>maybe tini needed"]
 ```
 
 - **First partition on exit reason**, not on logs. `describe` gives you `OOMKilled | Error | ContainerCannotRun | Completed` — each has a different next step.
@@ -501,17 +501,17 @@ Search is a particularly nasty service for SLOs because the product definition o
 ```mermaid
 flowchart LR
   subgraph SLIs
-    A[Availability<br/>good_reqs / total]
-    B[Latency<br/>p99 < 300ms]
-    C[Quality<br/>click-through on top-3]
-    D[Freshness<br/>indexed - now < 5min]
+    A["Availability<br/>good_reqs / total"]
+    B["Latency<br/>p99 < 300ms"]
+    C["Quality<br/>click-through on top-3"]
+    D["Freshness<br/>indexed - now < 5min"]
   end
   subgraph SLO
-    E[99.9% / 30d<br/>= 43m 49s budget]
+    E["99.9% / 30d<br/>= 43m 49s budget"]
   end
   subgraph Alerts
-    F[Fast burn<br/>14.4x 1h + 6x 5m]
-    G[Slow burn<br/>6x 6h + 3x 30m]
+    F["Fast burn<br/>14.4x 1h + 6x 5m"]
+    G["Slow burn<br/>6x 6h + 3x 30m"]
   end
   A --> E
   B --> E
@@ -636,22 +636,22 @@ The panel listens for:
 ```mermaid
 flowchart TB
   subgraph EU
-    EU_LB[Edge LB] --> EU_APP[App<br/>stateless]
-    EU_APP --> EU_DB[Region DB<br/>leader]
+    EU_LB[Edge LB] --> EU_APP["App<br/>stateless"]
+    EU_APP --> EU_DB["Region DB<br/>leader"]
     EU_DB -->|async| G_DB
   end
   subgraph US
-    US_LB[Edge LB] --> US_APP[App<br/>stateless]
-    US_APP --> US_DB[Region DB<br/>leader]
+    US_LB[Edge LB] --> US_APP["App<br/>stateless"]
+    US_APP --> US_DB["Region DB<br/>leader"]
     US_DB -->|async| G_DB
   end
   subgraph AP
-    AP_LB[Edge LB] --> AP_APP[App<br/>stateless]
-    AP_APP --> AP_DB[Region DB<br/>leader]
+    AP_LB[Edge LB] --> AP_APP["App<br/>stateless"]
+    AP_APP --> AP_DB["Region DB<br/>leader"]
     AP_DB -->|async| G_DB
   end
-  G_DB[Global<br/>conflict resolver<br/>or sharded by tenant]
-  User[User] --> DNS[Latency DNS<br/>or anycast]
+  G_DB["Global<br/>conflict resolver<br/>or sharded by tenant"]
+  User[User] --> DNS["Latency DNS<br/>or anycast"]
   DNS --> EU_LB
   DNS --> US_LB
   DNS --> AP_LB
@@ -783,12 +783,12 @@ flowchart TB
   C --> G[Scheduled job / GC]
   C --> H[Network / LB change]
   D --> D1[Revert / rollback]
-  E --> E1[Autoscaler lag?<br/>Connection pool?]
-  F --> F1[Downstream p99?<br/>Circuit breaker?]
-  G --> G1[Heap / GC logs<br/>cron overlap]
-  H --> H1[Edge routing?<br/>TLS renegotiation?]
-  C --> I[Which endpoint?<br/>RED by route]
-  I --> I1[One endpoint = code<br/>All endpoints = infra]
+  E --> E1["Autoscaler lag?<br/>Connection pool?"]
+  F --> F1["Downstream p99?<br/>Circuit breaker?"]
+  G --> G1["Heap / GC logs<br/>cron overlap"]
+  H --> H1["Edge routing?<br/>TLS renegotiation?"]
+  C --> I["Which endpoint?<br/>RED by route"]
+  I --> I1["One endpoint = code<br/>All endpoints = infra"]
 ```
 
 - **RED first, USE second.** Rate, Errors, Duration per endpoint, then host metrics. Users see duration; hosts see saturation. Start with users.
@@ -1042,14 +1042,14 @@ The panel listens for:
 
 ```mermaid
 flowchart LR
-  A[Pre-flight] --> A1[Backup taken<br/>verified restorable]
-  A --> A2[Compatibility check<br/>minor vs major]
-  A --> A3[Replication healthy<br/>lag < 1s]
-  A --> B[Upgrade replicas<br/>one at a time]
+  A[Pre-flight] --> A1["Backup taken<br/>verified restorable"]
+  A --> A2["Compatibility check<br/>minor vs major"]
+  A --> A3["Replication healthy<br/>lag < 1s"]
+  A --> B["Upgrade replicas<br/>one at a time"]
   B --> B1[Drain → stop → upgrade → start]
-  B --> B2[Wait: replication catches up<br/>lag < 1s + 5 min bake]
+  B --> B2["Wait: replication catches up<br/>lag < 1s + 5 min bake"]
   B --> C[Upgrade leader last]
-  C --> C1[Promote a replica<br/>old leader becomes replica]
+  C --> C1["Promote a replica<br/>old leader becomes replica"]
   C --> C2[Upgrade old leader]
   C --> C3[Optional: fail back]
   C --> D[Post-flight]
@@ -1180,20 +1180,20 @@ failure-modes named
 
 ```mermaid
 flowchart TB
-  A[Threat model:<br/>long-lived static secrets] --> B[Replace with:]
-  B --> C[Dynamic / short-lived<br/>Vault dynamic DB creds, STS, K8s SA tokens]
-  B --> D[Workload identity<br/>SPIFFE, IRSA, Workload Identity]
-  C --> E[Secrets broker<br/>Vault / AWS SM / GCP SM]
+  A["Threat model:<br/>long-lived static secrets"] --> B[Replace with:]
+  B --> C["Dynamic / short-lived<br/>Vault dynamic DB creds, STS, K8s SA tokens"]
+  B --> D["Workload identity<br/>SPIFFE, IRSA, Workload Identity"]
+  C --> E["Secrets broker<br/>Vault / AWS SM / GCP SM"]
   D --> E
   E --> F[Delivery to pod]
-  F --> F1[Sidecar / init<br/>vault-agent, csi-secrets-store]
-  F --> F2[SDK<br/>app reads directly]
+  F --> F1["Sidecar / init<br/>vault-agent, csi-secrets-store"]
+  F --> F2["SDK<br/>app reads directly"]
   F1 --> G[Rotation]
   F2 --> G
-  G --> G1[TTL-based renewal<br/>short TTL = rotation]
-  G --> G2[Event-based<br/>on breach, revoke + mint new]
-  G --> G3[File-watch<br/>app re-reads without restart]
-  G --> H[Audit trail<br/>who, what, when]
+  G --> G1["TTL-based renewal<br/>short TTL = rotation"]
+  G --> G2["Event-based<br/>on breach, revoke + mint new"]
+  G --> G3["File-watch<br/>app re-reads without restart"]
+  G --> H["Audit trail<br/>who, what, when"]
 ```
 
 - **Rotation is TTL-based renewal.** Don't "rotate weekly" — issue 1-hour credentials that automatically renew. If a credential leaks, max exposure is 1 hour.
@@ -1319,20 +1319,20 @@ A candidate who starts by running `terraform import` loses the panel. A candidat
 
 ```mermaid
 flowchart TB
-  A[T+0: prod deleted] --> B[T+0–5<br/>CONTAIN]
-  B --> B1[Freeze all CI/CD pipelines<br/>esp. terraform]
-  B --> B2[Declare incident<br/>open bridge + status page]
+  A[T+0: prod deleted] --> B["T+0–5<br/>CONTAIN"]
+  B --> B1["Freeze all CI/CD pipelines<br/>esp. terraform"]
+  B --> B2["Declare incident<br/>open bridge + status page"]
   B --> B3[Revoke apply creds]
-  B --> C[T+5–20<br/>ASSESS]
-  C --> C1[What was deleted?<br/>tf state + audit log]
-  C --> C2[Cloud trail / audit log<br/>reconstruct exact ops]
+  B --> C["T+5–20<br/>ASSESS"]
+  C --> C1["What was deleted?<br/>tf state + audit log"]
+  C --> C2["Cloud trail / audit log<br/>reconstruct exact ops"]
   C --> C3[Classify by recoverability]
-  C --> D[T+20–50<br/>RECOVER]
-  D --> D1[Compute: recreate from tf<br/>apply prior state]
-  D --> D2[Storage: restore from backup<br/>RDS PITR, S3 versioning]
-  D --> D3[Network/DNS: recreate<br/>accept TTL propagation]
-  D --> D4[Secrets: mint new<br/>revoke leaked ones]
-  D --> E[T+50–60<br/>VERIFY]
+  C --> D["T+20–50<br/>RECOVER"]
+  D --> D1["Compute: recreate from tf<br/>apply prior state"]
+  D --> D2["Storage: restore from backup<br/>RDS PITR, S3 versioning"]
+  D --> D3["Network/DNS: recreate<br/>accept TTL propagation"]
+  D --> D4["Secrets: mint new<br/>revoke leaked ones"]
+  D --> E["T+50–60<br/>VERIFY"]
   E --> E1[Synthetic checks pass]
   E --> E2[Real traffic healthy]
   E --> E3[Writeback to status page]

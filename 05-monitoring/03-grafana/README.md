@@ -19,10 +19,10 @@ flowchart LR
 
     subgraph Grafana
         DS[Datasource plugins]
-        DASH[Dashboards<br/>JSON]
-        VAR[Template vars<br/>$namespace, $pod]
+        DASH["Dashboards<br/>JSON"]
+        VAR["Template vars<br/>$namespace, $pod"]
         AL[Unified Alerting]
-        PROV[Provisioning<br/>YAML]
+        PROV["Provisioning<br/>YAML"]
     end
 
     Browser((Browser)) --> Grafana
@@ -87,7 +87,7 @@ docker run -d --name grafana -p 3000:3000 \
 
 ## Variables (the productivity unlock)
 
-```
+```text
 namespace  =  label_values(kube_pod_info, namespace)
 pod        =  label_values(kube_pod_info{namespace="$namespace"}, pod)
 ```

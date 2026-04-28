@@ -3,7 +3,7 @@
 A **module** is a reusable bundle of `.tf` files. Every Terraform configuration *is* a module (the **root module**); when you `module "x" { source = ... }` you're calling a **child module**.
 
 ## Anatomy
-```
+```text
 modules/vpc-stub/
 ├── main.tf        # resources
 ├── variables.tf   # inputs
@@ -20,9 +20,9 @@ modules/vpc-stub/
 
 ```mermaid
 flowchart LR
-    R[Root config] --> N[module.network<br/>terraform-aws-modules/vpc/aws]
-    R --> K[module.eks<br/>terraform-aws-modules/eks/aws]
-    R --> A[module.app<br/>./modules/app]
+    R[Root config] --> N["module.network<br/>terraform-aws-modules/vpc/aws"]
+    R --> K["module.eks<br/>terraform-aws-modules/eks/aws"]
+    R --> A["module.app<br/>./modules/app"]
     K --> N
     A --> N
     A --> K

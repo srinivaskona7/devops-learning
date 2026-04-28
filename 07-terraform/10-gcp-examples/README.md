@@ -41,7 +41,7 @@ flowchart LR
     N --> S[Subnetwork eu-west1]
     S --> GKE[GKE Cluster]
     GKE --> NP[Node Pool]
-    P --> SA[Service Account<br/>terraform]
+    P --> SA["Service Account<br/>terraform"]
     P --> B[(GCS Bucket)]
     SA -.uses.-> GKE
     SA -.uses.-> B

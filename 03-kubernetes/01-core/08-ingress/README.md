@@ -15,7 +15,7 @@ With Ingress: one LB → one Ingress controller → routed to many services by h
 ```mermaid
 flowchart LR
   USER[User] -->|HTTPS| LB[Cloud LB / NodePort]
-  LB --> ING[Ingress Controller<br/>nginx / Traefik / HAProxy]
+  LB --> ING["Ingress Controller<br/>nginx / Traefik / HAProxy"]
   ING -->|api.example.com| SVC1[Service: api]
   ING -->|app.example.com/admin| SVC2[Service: admin]
   ING -->|app.example.com/*| SVC3[Service: web]

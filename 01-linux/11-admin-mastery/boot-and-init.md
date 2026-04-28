@@ -14,18 +14,18 @@ Senior admins do not panic at a kernel panic. They read the panic message, ident
 
 ```mermaid
 flowchart LR
-    A[Power on] --> B[POST<br/>BIOS/UEFI firmware]
+    A[Power on] --> B["POST<br/>BIOS/UEFI firmware"]
     B --> C{Boot mode?}
     C -->|BIOS| D[MBR / 1st stage GRUB]
     C -->|UEFI| E[ESP /EFI/.../grubx64.efi]
-    D --> F[GRUB stage 2<br/>/boot/grub/grub.cfg]
+    D --> F["GRUB stage 2<br/>/boot/grub/grub.cfg"]
     E --> F
-    F --> G[kernel vmlinuz +<br/>initramfs initrd]
-    G --> H[Kernel decompresses<br/>mounts initramfs as /]
-    H --> I[initramfs scripts:<br/>load drivers, find root FS]
+    F --> G["kernel vmlinuz +<br/>initramfs initrd"]
+    G --> H["Kernel decompresses<br/>mounts initramfs as /"]
+    H --> I["initramfs scripts:<br/>load drivers, find root FS"]
     I --> J[switch_root to real /]
     J --> K[/sbin/init = systemd PID 1]
-    K --> L[default.target<br/>= multi-user.target]
+    K --> L["default.target<br/>= multi-user.target"]
     L --> M[Login prompt]
 ```
 
@@ -39,16 +39,16 @@ flowchart TD
     Failure[Boot Failure] --> Where{Where did it stop?}
 
     Where -->|No POST / no display| HW[Hardware: PSU, RAM, GPU]
-    Where -->|"No boot device"| BL[Bootloader: ESP missing,<br/>MBR wiped, BIOS order]
-    Where -->|GRUB rescue prompt| GR[GRUB lost grub.cfg<br/>or kernel files]
-    Where -->|Kernel panic early| K1[Bad kernel, missing initramfs,<br/>wrong root=]
-    Where -->|"Cannot find root FS"| K2[initramfs missing driver,<br/>wrong UUID, fsck failed]
-    Where -->|Stuck at systemd| SD[Failed unit blocks target;<br/>boot to emergency.target]
+    Where -->|"No boot device"| BL["Bootloader: ESP missing,<br/>MBR wiped, BIOS order"]
+    Where -->|GRUB rescue prompt| GR["GRUB lost grub.cfg<br/>or kernel files"]
+    Where -->|Kernel panic early| K1["Bad kernel, missing initramfs,<br/>wrong root="]
+    Where -->|"Cannot find root FS"| K2["initramfs missing driver,<br/>wrong UUID, fsck failed"]
+    Where -->|Stuck at systemd| SD["Failed unit blocks target;<br/>boot to emergency.target"]
     Where -->|Login but no network| US[Userspace; not a boot bug]
 
     GR --> R1[GRUB CLI: ls, set root, linux, initrd, boot]
-    K2 --> R2[chroot from live USB,<br/>regenerate initramfs]
-    SD --> R3[systemd.unit=emergency.target<br/>at GRUB cmdline]
+    K2 --> R2["chroot from live USB,<br/>regenerate initramfs"]
+    SD --> R3["systemd.unit=emergency.target<br/>at GRUB cmdline"]
 ```
 
 </details>
@@ -139,7 +139,7 @@ Targets are systemd's grouping mechanism — analogous to SysV runlevels but a d
 Switch live: `sudo systemctl isolate rescue.target`.
 
 Boot to a target by adding to GRUB cmdline:
-```
+```text
 systemd.unit=emergency.target
 systemd.unit=rescue.target
 ```
@@ -161,7 +161,7 @@ Press `Ctrl+X` or `F10` to boot the edited entry. Edits are temporary — they d
 
 If GRUB drops to the rescue prompt (`grub rescue>`), it could not find or read `grub.cfg`:
 
-```
+```bash
 grub rescue> ls
 (hd0) (hd0,gpt1) (hd0,gpt2) (hd0,gpt3)
 grub rescue> ls (hd0,gpt2)/
@@ -177,7 +177,7 @@ grub rescue> normal
 
 ## Manual boot from GRUB CLI
 
-```
+```bash
 grub> ls (hd0,gpt2)/boot/
 vmlinuz-5.15.0-92-generic   initrd.img-5.15.0-92-generic   ...
 grub> set root=(hd0,gpt2)
@@ -250,7 +250,7 @@ Recovery without root password: at GRUB, edit the kernel line to add `init=/bin/
 
 ## Walkthrough: "kernel panic - not syncing - VFS unable to mount root fs"
 
-```
+```bash
 [    1.234] Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
 
 # Translation: kernel cannot find or mount the device named in root=
@@ -276,7 +276,7 @@ exit; umount -R /mnt; reboot
 
 ## Walkthrough: "you are in emergency mode"
 
-```
+```bash
 You are in emergency mode. After logging in, type "journalctl -xb"
 to view system logs, "systemctl reboot" to reboot, "systemctl
 default" or "exit" to boot into default mode.
@@ -299,7 +299,7 @@ systemctl default              # try to reach multi-user.target
 
 ## Walkthrough: forgot root password
 
-```
+```bash
 # At GRUB, press 'e' on the entry. Find:
 linux /boot/vmlinuz-... root=UUID=... ro quiet splash
 

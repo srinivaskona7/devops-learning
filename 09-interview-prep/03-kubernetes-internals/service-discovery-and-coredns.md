@@ -13,12 +13,12 @@ In Kubernetes, every service gets a DNS name. Behind that simplicity sits CoreDN
 
 ```mermaid
 flowchart LR
-  Pod[Pod] -->|DNS query| Resolv[/etc/resolv.conf<br/>nameserver = kube-dns ClusterIP/]
+  Pod[Pod] -->|DNS query| Resolv["/etc/resolv.conf<br/>nameserver = kube-dns ClusterIP/"]
   Resolv --> KD[kube-dns Service]
   KD --> CD[CoreDNS pod]
   CD --> Plugin[plugin chain]
-  Plugin --> K[kubernetes plugin<br/>resolves *.cluster.local]
-  Plugin --> F[forward plugin<br/>upstream resolver]
+  Plugin --> K["kubernetes plugin<br/>resolves *.cluster.local"]
+  Plugin --> F["forward plugin<br/>upstream resolver"]
   Plugin --> C[cache plugin]
 ```
 
@@ -30,7 +30,7 @@ Every pod's `/etc/resolv.conf` points at the kube-dns ClusterIP (typically `10.9
 
 ## Pod resolv.conf Anatomy
 
-```
+```text
 nameserver 10.96.0.10
 search myns.svc.cluster.local svc.cluster.local cluster.local
 options ndots:5
@@ -65,7 +65,7 @@ Four queries instead of one. Fix: trailing dot (`api.example.com.`) or `dnsConfi
 
 The config is a chain — order matters. Each "block" applies to a zone.
 
-```
+```text
 .:53 {
     errors
     health {
@@ -131,8 +131,8 @@ A DaemonSet that runs a DNS cache on every node, listening on a link-local IP (t
 
 ```mermaid
 flowchart LR
-  Pod -->|169.254.20.10:53| NL[NodeLocal DNS<br/>per-node DaemonSet]
-  NL -->|cache miss| CD[CoreDNS<br/>cluster service]
+  Pod -->|169.254.20.10:53| NL["NodeLocal DNS<br/>per-node DaemonSet"]
+  NL -->|cache miss| CD["CoreDNS<br/>cluster service"]
   NL -.cache hit.-> Pod
 ```
 

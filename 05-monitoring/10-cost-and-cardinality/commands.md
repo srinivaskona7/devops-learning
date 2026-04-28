@@ -97,7 +97,7 @@ groups:
 
 ## Long-term storage choice
 
-```
+```text
 Thanos          -> keep your Prometheus servers, federate after the fact (sidecar -> S3 -> compactor downsamples).
 Mimir (Grafana) -> replace Prometheus storage entirely; remote_write; billions of series.
 Cortex          -> Mimir's predecessor; use Mimir.
@@ -127,7 +127,7 @@ metric_relabel_configs:
     regex: '.*_id$|.*uuid.*'
 ```
 
-```
+```text
 Cardinality = unique label combos = active series. Million users in a label = million series = OOM.
 Bounded label sets only. Method/status/region OK. user_id/request_id/trace_id NEVER (use logs+traces).
 Cost levers (most -> least impact):

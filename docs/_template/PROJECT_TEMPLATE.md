@@ -12,7 +12,7 @@ Every project ships:
 
 ## Project folder layout
 
-```
+```bash
 NN-<project-slug>/
   README.md                 ← teaching page (this template)
   architecture.md           ← zoomed-in architecture deep-dive
@@ -86,8 +86,8 @@ Real problem. Named scenario. Example:
 ```mermaid
 flowchart TB
   U[User] --> LB[Load balancer]
-  LB --> A[Service v1<br/>90% traffic]
-  LB --> B[Service v2<br/>10% canary]
+  LB --> A["Service v1<br/>90% traffic"]
+  LB --> B["Service v2<br/>10% canary"]
   A --> DB[(Postgres)]
   B --> DB
   subgraph Observability
@@ -97,7 +97,7 @@ flowchart TB
   A -.-> Prom
   B -.-> Prom
   Prom --> Graf
-```
+```bash
 
 Key design decisions (3–5 bullets explaining why this shape, not another).
 

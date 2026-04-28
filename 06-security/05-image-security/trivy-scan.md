@@ -69,7 +69,7 @@ trivy k8s -f sarif -o k8s.sarif cluster
 
 `.trivyignore` — one CVE per line, optional expiry comment:
 
-```
+```text
 CVE-2023-12345    # accepted: not exploitable without local user, review 2026-01
 CVE-2024-67890
 ```

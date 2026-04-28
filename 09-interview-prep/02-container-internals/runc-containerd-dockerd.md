@@ -13,12 +13,12 @@
 
 ```mermaid
 flowchart TB
-    user[docker CLI<br/>or kubelet] -->|REST / gRPC| dockerd[dockerd<br/>build, network, volume API]
-    dockerd -->|gRPC over UNIX socket| containerd[containerd<br/>image pull, snapshotter, lifecycle]
+    user["docker CLI<br/>or kubelet"] -->|REST / gRPC| dockerd["dockerd<br/>build, network, volume API"]
+    dockerd -->|gRPC over UNIX socket| containerd["containerd<br/>image pull, snapshotter, lifecycle"]
     kubelet[kubelet] -->|CRI gRPC| containerd
-    containerd -->|fork+exec| shim[containerd-shim-runc-v2<br/>one per container]
-    shim -->|fork+exec, then exit| runc[runc<br/>OCI runtime spec executor]
-    runc -->|clone+unshare| proc[container process<br/>PID 1 in new namespaces]
+    containerd -->|fork+exec| shim["containerd-shim-runc-v2<br/>one per container"]
+    shim -->|fork+exec, then exit| runc["runc<br/>OCI runtime spec executor"]
+    runc -->|clone+unshare| proc["container process<br/>PID 1 in new namespaces"]
     shim -.->|reaps zombies, holds stdio| proc
 ```
 

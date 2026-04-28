@@ -111,7 +111,7 @@ Files are named `NN-name.rules` and processed in lexicographic order. Common sta
 
 ### Rule syntax
 
-```
+```text
 ACTION=="add",                                  # match: add | remove | change
 SUBSYSTEM=="block",                             # match: block | net | tty | usb | input | ...
 KERNEL=="sd[a-z]",                              # kernel name pattern

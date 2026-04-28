@@ -61,7 +61,7 @@ Metrics + logs + traces. Easy at small scale. At 10K services and 50K nodes, eve
 ### Data model
 
 **Metric series:**
-```
+```text
 __name__: http_requests_total
 labels: {service, env, region, route, status, method}
 samples: [(timestamp, value), ...]
@@ -69,13 +69,13 @@ samples: [(timestamp, value), ...]
 Series identity = `__name__` + sorted labels. Add high-cardinality label = explode series count.
 
 **Log:**
-```
+```json
 {timestamp, level, service, trace_id, span_id, message, attributes}
 ```
 Indexed by labels (service, level), full-text on message body.
 
 **Trace span:**
-```
+```json
 {trace_id, span_id, parent_id, service_name, op_name, start, end, attributes, events, links, status}
 ```
 
@@ -90,8 +90,8 @@ Indexed by labels (service, level), full-text on message body.
 
 ```mermaid
 flowchart LR
-  Apps -->|OTLP| AGT[OTel Collector<br/>per node DaemonSet]
-  AGT --> GW[Collector Gateway<br/>Deployment]
+  Apps -->|OTLP| AGT["OTel Collector<br/>per node DaemonSet"]
+  AGT --> GW["Collector Gateway<br/>Deployment"]
   GW -->|metrics| MIM[Mimir / Prometheus]
   GW -->|logs| LOK[Loki / Elastic]
   GW -->|traces| TMP[Tempo / Jaeger]
@@ -161,7 +161,7 @@ flowchart LR
 
 **Loki model:** index labels only, store log lines as chunks in S3.
 
-```
+```text
 labels: {service=orders, env=prod, level=error}
 chunks: gzip-compressed log lines, 1MB each
 ```
@@ -217,7 +217,7 @@ Downsample metrics at tier boundaries: 15s → 1m → 5m → 1h. Lossy but cheap
 - Alertmanager dedupes, routes to PagerDuty/Slack
 - Inhibition: high-severity alert silences related lower-severity ones
 
-```
+```text
 expr: (
   sum(rate(http_errors_total[1h])) / sum(rate(http_requests_total[1h]))
 ) > 14.4 * 0.001  # burn rate 14.4x for 1% error budget over 1h

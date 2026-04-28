@@ -170,7 +170,7 @@ free -s 2       # repeat every 2s
 
 **Interpretation** — the cardinal sin is reading "used" wrong:
 
-```
+```text
               total   used   free   shared  buff/cache  available
 Mem:          16000   9000   500    100     6500        7200
 ```

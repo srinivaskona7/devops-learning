@@ -16,13 +16,13 @@ A Helm release is just a sequence of immutable, base64-gzipped manifest snapshot
 ```mermaid
 flowchart LR
     A[helm install nginx] --> B[Render templates]
-    B --> C[Secret sh.helm.release.v1.nginx.v1<br/>type=helm.sh/release.v1]
+    B --> C["Secret sh.helm.release.v1.nginx.v1<br/>type=helm.sh/release.v1"]
     C --> D[kubectl apply manifests]
     D --> E[helm upgrade]
-    E --> F[Secret ...nginx.v2<br/>status=deployed]
-    F --> G[Secret ...nginx.v1<br/>status=superseded]
+    E --> F["Secret ...nginx.v2<br/>status=deployed"]
+    F --> G["Secret ...nginx.v1<br/>status=superseded"]
     G --> H[helm rollback 1]
-    H --> I[Secret ...nginx.v3<br/>same manifests as v1]
+    H --> I["Secret ...nginx.v3<br/>same manifests as v1"]
 ```
 
 </details>
@@ -39,8 +39,8 @@ flowchart TB
     NS[Namespace: prod] --> S1[Secret: sh.helm.release.v1.api.v1]
     NS --> S2[Secret: sh.helm.release.v1.api.v2]
     NS --> S3[Secret: sh.helm.release.v1.api.v3]
-    S1 --> D1[data.release = base64<br/>gzip JSON snapshot]
-    D1 --> M1[chart + values + manifest +<br/>hooks + status + info]
+    S1 --> D1["data.release = base64<br/>gzip JSON snapshot"]
+    D1 --> M1["chart + values + manifest +<br/>hooks + status + info"]
 ```
 
 </details>

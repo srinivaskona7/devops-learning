@@ -27,7 +27,7 @@ Trivy inspects the final OCI image layers for:
 
 ### Gate policy
 
-```
+```text
 Image built
     │
     ├── CRITICAL (fixable) ──────── exit 1 — pipeline blocked
@@ -41,7 +41,7 @@ The `--ignore-unfixed` flag prevents the pipeline from blocking on CVEs with no 
 
 ### Scanning happens BEFORE push
 
-```
+```bash
 docker buildx build → [image in registry] → trivy scan → cosign sign → push final tags
 ```
 
@@ -93,7 +93,7 @@ Traditional image signing requires a private key:
 
 Cosign keyless signing uses the GitHub Actions OIDC token as identity. No long-lived secret exists.
 
-```
+```text
 GitHub Issues OIDC Token
         │
         │  Contains: repository, workflow, ref, run_id, sha

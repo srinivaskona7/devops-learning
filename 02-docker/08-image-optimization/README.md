@@ -56,7 +56,7 @@ CMD ["python", "app.py"]
 
 ## .dockerignore (always start with this)
 
-```
+```bash
 .git
 .gitignore
 .github

@@ -18,10 +18,10 @@ SLOs translate "the service must be reliable" into a number you can defend with 
 
 ```mermaid
 flowchart LR
-    R[Raw metric<br/>http_requests_total] --> SLI
-    SLI[SLI<br/>good / total] --> CMP[Compare to SLO target]
-    CMP --> EB[Error Budget<br/>remaining]
-    EB --> BR[Burn Rate<br/>= bad_rate / 1-SLO]
+    R["Raw metric<br/>http_requests_total"] --> SLI
+    SLI["SLI<br/>good / total"] --> CMP[Compare to SLO target]
+    CMP --> EB["Error Budget<br/>remaining"]
+    EB --> BR["Burn Rate<br/>= bad_rate / 1-SLO"]
     BR -->|fast burn| PAGE((Page on-call))
     BR -->|slow burn| TICKET((Ticket / next sprint))
 ```

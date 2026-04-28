@@ -88,13 +88,13 @@ WantedBy=multi-user.target
 ```mermaid
 flowchart LR
     Start[ExecStart fires]
-    Start --> simple[Type=simple<br/>Unit considered up the moment fork+exec returns]
-    Start --> exec[Type=exec<br/>Up after exec — used for tighter ordering]
-    Start --> forking[Type=forking<br/>ExecStart forks → parent exits → child is the service<br/>Use PIDFile=]
-    Start --> oneshot[Type=oneshot<br/>Run-to-completion; no main process<br/>RemainAfterExit=yes to stay 'active']
-    Start --> notify[Type=notify<br/>Service calls sd_notify ready=1 when ready]
-    Start --> dbus[Type=dbus<br/>Acquires a D-Bus name when ready]
-    Start --> idle[Type=idle<br/>Wait for active jobs to finish first]
+    Start --> simple["Type=simple<br/>Unit considered up the moment fork+exec returns"]
+    Start --> exec["Type=exec<br/>Up after exec — used for tighter ordering"]
+    Start --> forking["Type=forking<br/>ExecStart forks → parent exits → child is the service<br/>Use PIDFile="]
+    Start --> oneshot["Type=oneshot<br/>Run-to-completion; no main process<br/>RemainAfterExit=yes to stay 'active'"]
+    Start --> notify["Type=notify<br/>Service calls sd_notify ready=1 when ready"]
+    Start --> dbus["Type=dbus<br/>Acquires a D-Bus name when ready"]
+    Start --> idle["Type=idle<br/>Wait for active jobs to finish first"]
 ```
 
 </details>
@@ -122,7 +122,7 @@ flowchart LR
 
 Pair with **rate limiting** to avoid restart storms:
 
-```
+```text
 Restart=on-failure
 RestartSec=5s
 StartLimitIntervalSec=300
@@ -243,7 +243,7 @@ LogRateLimitBurst=1000
 
 Forwarding to syslog (rsyslog, journald → /dev/log):
 
-```
+```bash
 # /etc/systemd/journald.conf
 ForwardToSyslog=yes
 ForwardToWall=no

@@ -19,7 +19,7 @@ flowchart LR
     AL --> AS[ausearch / aureport]
     AL --> R[audisp plugins]
     R --> SY[rsyslog / syslog-ng]
-    SY -->|TLS| SIEM[(SIEM:<br/>Splunk / ELK / Wazuh / Sentinel)]
+    SY -->|TLS| SIEM["(SIEM:<br/>Splunk / ELK / Wazuh / Sentinel)"]
     
     FS[Filesystem] -->|nightly scan| AIDE[AIDE database]
     AIDE -->|diff| ALERT[email / SIEM alert]
@@ -64,7 +64,7 @@ Auditd records syscall and filesystem events with high fidelity. It's separate f
 
 ### Rule types
 
-```
+```bash
 # File watch: -w PATH -p PERM -k KEY
 -w /etc/passwd -p wa -k passwd_changes
 
@@ -87,7 +87,7 @@ Auditd records syscall and filesystem events with high fidelity. It's separate f
 
 `/etc/audit/rules.d/99-mysite.rules`:
 
-```
+```bash
 ## Buffer & failure
 -b 8192
 -f 1                              # 1=printk on failure, 2=panic (paranoid)
@@ -207,7 +207,7 @@ sudo ausearch -ua 1000-65535 -sc execve -ts today -i
 
 `/etc/audit/plugins.d/syslog.conf`:
 
-```
+```text
 active = yes
 direction = out
 path = /sbin/audisp-syslog
@@ -218,7 +218,7 @@ format = string
 
 Then in `/etc/rsyslog.d/00-audit.conf`:
 
-```
+```bash
 # Send local6.* to remote SIEM via TCP+TLS (RELP recommended for reliability)
 local6.*  @@(o)siem.corp.example:6514
 ```
@@ -245,7 +245,7 @@ sudo dnf install aide                  # RHEL
 
 Config in `/etc/aide.conf` or `/etc/aide/aide.conf`:
 
-```
+```bash
 # What to record
 PERMS = p+u+g+acl+selinux+xattrs
 DATAONLY = sha512+rmd160
@@ -289,7 +289,7 @@ sudo mv /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
 Schedule via systemd timer:
 
 `/etc/systemd/system/aide-check.service`:
-```
+```ini
 [Unit]
 Description=AIDE integrity check
 After=network.target
@@ -301,7 +301,7 @@ StandardOutput=journal
 ```
 
 `/etc/systemd/system/aide-check.timer`:
-```
+```ini
 [Unit]
 Description=Run AIDE nightly
 [Timer]

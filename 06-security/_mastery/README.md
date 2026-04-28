@@ -13,7 +13,7 @@ Comprehensive Kubernetes and cloud-native security learning track. Covers identi
 
 ## Sibling folders (deep-dive modules)
 
-```
+```text
 06-security/
   01-rbac-deep-dive/
   02-pod-security-admission/

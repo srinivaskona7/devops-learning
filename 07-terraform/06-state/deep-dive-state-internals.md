@@ -122,7 +122,7 @@ flowchart LR
     C -->|same| D[No drift]
     C -->|differ| E[Update state in memory]
     E --> F{Real attributes ==<br/>config?}
-    F -->|same| G[Plan: no change<br/>but state was wrong]
+    F -->|same| G["Plan: no change<br/>but state was wrong"]
     F -->|differ| H[Plan: revert change]
 ```
 
@@ -145,7 +145,7 @@ flowchart LR
     D -->|yes| E[Read state from S3]
     D -->|no| F[ERROR: state locked by ID xyz]
     E --> G[Apply changes]
-    G --> H[Write state to S3<br/>versioned object]
+    G --> H["Write state to S3<br/>versioned object"]
     H --> I[Release lock: DeleteItem]
 ```
 

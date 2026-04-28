@@ -15,12 +15,12 @@ A full disk takes everything down — databases, logs, even SSH login. LVM lets 
 
 ```mermaid
 flowchart TB
-    APP[Applications] --> FS[Filesystem<br/>ext4 / xfs / btrfs]
-    FS --> LV[Logical Volume<br/>LVM lv]
-    LV --> VG[Volume Group<br/>LVM vg]
-    VG --> PV[Physical Volume<br/>LVM pv]
-    PV --> PART[Partition<br/>sda1 / sdb1]
-    PART --> DISK[(Block Device<br/>sda / sdb / nvme0n1)]
+    APP[Applications] --> FS["Filesystem<br/>ext4 / xfs / btrfs"]
+    FS --> LV["Logical Volume<br/>LVM lv"]
+    LV --> VG["Volume Group<br/>LVM vg"]
+    VG --> PV["Physical Volume<br/>LVM pv"]
+    PV --> PART["Partition<br/>sda1 / sdb1"]
+    PART --> DISK["(Block Device<br/>sda / sdb / nvme0n1)"]
 ```
 
 </details>

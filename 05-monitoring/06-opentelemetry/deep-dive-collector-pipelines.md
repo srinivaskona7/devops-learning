@@ -72,10 +72,10 @@ Processors execute **in the order listed** in the pipeline. Order is load-bearin
 
 ```mermaid
 flowchart LR
-    A[Data in] --> B[memory_limiter<br/>FIRST always]
-    B --> C[Filtering / sampling<br/>tail_sampling, filter, probabilistic]
-    C --> D[Enrichment<br/>resource, attributes, k8sattributes]
-    D --> E[batch<br/>LAST always]
+    A[Data in] --> B["memory_limiter<br/>FIRST always"]
+    B --> C["Filtering / sampling<br/>tail_sampling, filter, probabilistic"]
+    C --> D["Enrichment<br/>resource, attributes, k8sattributes"]
+    D --> E["batch<br/>LAST always"]
     E --> F[Exporters]
 ```
 
@@ -215,7 +215,7 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    A1[App Collector<br/>agent] --> LB[Loadbalancing Collector<br/>shards by trace ID]
+    A1["App Collector<br/>agent"] --> LB["Loadbalancing Collector<br/>shards by trace ID"]
     A2[App Collector] --> LB
     A3[App Collector] --> LB
     LB --> S1[Sampling Collector 1]

@@ -11,14 +11,14 @@ The build and release pipeline is now the highest-leverage attack surface (Solar
 
 ```mermaid
 flowchart LR
-    L0[L0<br/>no guarantees] --> L1[L1<br/>provenance exists]
-    L1 --> L2[L2<br/>hosted, signed provenance]
-    L2 --> L3[L3<br/>hardened build,<br/>tamper-resistant]
-    L3 --> L4[L4 - retired<br/>two-party review]
+    L0["L0<br/>no guarantees"] --> L1["L1<br/>provenance exists"]
+    L1 --> L2["L2<br/>hosted, signed provenance"]
+    L2 --> L3["L3<br/>hardened build,<br/>tamper-resistant"]
+    L3 --> L4["L4 - retired<br/>two-party review"]
 
-    L1 -.requires.-> Prov[provenance.json:<br/>builder, source, deps]
+    L1 -.requires.-> Prov["provenance.json:<br/>builder, source, deps"]
     L2 -.requires.-> Sign[signed by builder identity]
-    L3 -.requires.-> Iso[isolated, ephemeral builder<br/>no maintainer access]
+    L3 -.requires.-> Iso["isolated, ephemeral builder<br/>no maintainer access"]
 ```
 
 </details>

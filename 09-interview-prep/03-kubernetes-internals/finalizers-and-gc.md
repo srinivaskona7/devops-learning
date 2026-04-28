@@ -16,13 +16,13 @@ Kubernetes deletion is not a single atomic operation — it's a multi-phase prot
 ```mermaid
 flowchart LR
     D[kubectl delete] --> S{has<br/>finalizers?}
-    S -- no --> T[Set deletionTimestamp<br/>+ immediate remove]
-    S -- yes --> M[Set deletionTimestamp<br/>object stays]
-    M --> R[Controllers see deletionTimestamp<br/>do cleanup<br/>remove their finalizer]
+    S -- no --> T["Set deletionTimestamp<br/>+ immediate remove"]
+    S -- yes --> M["Set deletionTimestamp<br/>object stays"]
+    M --> R["Controllers see deletionTimestamp<br/>do cleanup<br/>remove their finalizer"]
     R --> C{any finalizers<br/>left?}
     C -- yes --> R
     C -- no --> X[API server removes object]
-    X --> GC[GC reconciles owners<br/>cascades to children]
+    X --> GC["GC reconciles owners<br/>cascades to children"]
 ```
 
 </details>

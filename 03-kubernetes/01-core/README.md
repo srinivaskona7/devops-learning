@@ -76,6 +76,15 @@ Role, ClusterRole, Binding, ServiceAccount. Principle of least privilege is not 
 
 ## 1. Cluster architecture
 
+<div class="learning-stages">
+  <span class="ls-step ls-reason active">① Reason</span>
+  <span class="ls-step ls-thinking">② Thinking</span>
+  <span class="ls-step ls-execution">③ Execution</span>
+  <span class="ls-step ls-sim">④ Simulation</span>
+  <span class="ls-step ls-output">⑤ Output</span>
+  <span class="ls-step ls-usecase">⑥ Use-case</span>
+</div>
+
 <div class="concept" markdown>
 
 <span class="stage reason">🧭 Reason</span>
@@ -194,6 +203,30 @@ kubelet heartbeat gap → node capacity stale
 <div class="usecase-card" markdown>
 **At Lyft**, the cloud-controller-manager misconfigured new node objects during an autoscale event: nodes registered with 0 allocatable CPU. The kube-scheduler correctly declined to schedule pods there. The on-call team spent 18 minutes checking application logs before someone ran `kubectl describe node` and saw `Allocatable: cpu: 0`. Fixing the CCM config resolved it in 2 minutes. The incident post-mortem added "check node allocatable" as step 2 in every `Pending` pod runbook.
 </div>
+
+</div>
+
+<div class="grid cards" markdown>
+
+-   :material-server:{ .lg .middle } **Control Plane**
+
+    ---
+    API Server, etcd, Scheduler, Controller Manager. Every state change goes through the API Server — single source of truth.
+
+-   :material-kubernetes:{ .lg .middle } **Data Plane**
+
+    ---
+    kubelet + kube-proxy on every node. kubelet reconciles PodSpec → running container. kube-proxy programs iptables for Services.
+
+-   :material-package-variant:{ .lg .middle } **Workloads**
+
+    ---
+    Pod → ReplicaSet → Deployment. StatefulSet for ordered, persistent identity. DaemonSet for node-level agents.
+
+-   :material-shield-check:{ .lg .middle } **RBAC**
+
+    ---
+    Subject (User/SA) + Role (rules) + RoleBinding (glue). Every API call is checked. Default deny.
 
 </div>
 
@@ -482,6 +515,33 @@ stateDiagram-v2
 <span class="stage execution">⚡ Execution</span>
 
 **Run it yourself.**
+
+=== ":material-console: Imperative (CLI)"
+    ```bash
+    kubectl create deployment web --image=nginx:1.25 --replicas=3
+    kubectl rollout status deployment/web
+    ```
+
+=== ":material-file-code: Declarative (YAML)"
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: web
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
+          app: web
+      template:
+        metadata:
+          labels:
+            app: web
+        spec:
+          containers:
+          - name: web
+            image: nginx:1.25
+    ```
 
 ```bash
 # Create a Deployment
@@ -1304,6 +1364,10 @@ flowchart TD
 - **`kube-system` namespace** — never put application workloads here. No ResourceQuota by default.
 - **Resource units** — CPU in millicores: `500m` = 0.5 cores. Memory in Mi/Gi. Requests affect scheduling; limits affect cgroup throttling (CPU) or OOMKill (memory).
 
+!!! prod-danger "OOMKill Cascade Anti-Pattern"
+    **Never deploy to production without `resources.requests` AND `resources.limits`.**
+    Without requests, the scheduler places pods on full nodes (silent overcommit). Without limits, one noisy-neighbor pod OOMKills and cascades across the node. Always set both.
+
 <span class="stage execution">⚡ Execution</span>
 
 **Run it yourself.**
@@ -1628,6 +1692,20 @@ kubectl run nginx --image=nginx:1.25
 kubectl explain pod.spec.containers.livenessProbe
 kubectl explain deployment.spec.strategy.rollingUpdate
 
+# --- annotated: get control-plane pods with filters ---
+kubectl get pods \
+  -n kube-system \          # (1)!
+  -o wide \                 # (2)!
+  --field-selector=status.phase=Running \  # (3)!
+  -l 'component in (etcd,apiserver)'  # (4)!
+```
+
+1. `-n kube-system` — targets the cluster infrastructure namespace. Omit for the default namespace.
+2. `-o wide` — adds NODE, NOMINATED NODE, and READINESS GATES columns to spot scheduling issues.
+3. `--field-selector` — server-side filter on object fields (not labels). Only Running pods returned.
+4. `-l` — label selector. `in` operator matches either `etcd` or `apiserver` component.
+
+```bash
 # --- jsonpath: field extraction ---
 # Get pod IP
 kubectl get pod nginx -o jsonpath='{.status.podIP}'

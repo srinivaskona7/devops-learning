@@ -19,7 +19,7 @@ In 1.31, the **nftables proxy mode is GA** and is the recommended default for ne
 
 Three layers, top to bottom:
 
-```
+```text
 Service object   (virtual IP, selector, ports)        ← API layer
 EndpointSlice    (the actual {pod IP, port, ready})   ← state layer
 kernel rules     (iptables / nftables / IPVS / eBPF)  ← datapath layer
@@ -39,8 +39,8 @@ The Service IP is **fictional** — no interface holds it. Packets to it are int
 ```mermaid
 flowchart LR
     P[Client Pod] -->|dst=10.96.5.10:80<br/>ClusterIP| K{Kernel<br/>netfilter}
-    K -->|match KUBE-SERVICES chain| SEL[Random/round-robin<br/>backend selection]
-    SEL -->|DNAT to pod IP| CNI[CNI overlay<br/>VXLAN / native routing / eBPF]
+    K -->|match KUBE-SERVICES chain| SEL["Random/round-robin<br/>backend selection"]
+    SEL -->|DNAT to pod IP| CNI["CNI overlay<br/>VXLAN / native routing / eBPF"]
     CNI --> N[Other node]
     N --> POD[Backend Pod 10.244.3.7:8080]
     POD -->|reply| RC[conntrack reverse SNAT]
@@ -96,9 +96,9 @@ flowchart TB
         EXT[External client]
     end
     subgraph Cluster
-        LB[Cloud LB<br/>type=LoadBalancer]
-        N1[Node 1<br/>:30080]
-        N2[Node 2<br/>:30080]
+        LB["Cloud LB<br/>type=LoadBalancer"]
+        N1["Node 1<br/>:30080"]
+        N2["Node 2<br/>:30080"]
         CIP[ClusterIP 10.96.5.10:80]
         SLICE[EndpointSlice]
         POD1[Pod A]

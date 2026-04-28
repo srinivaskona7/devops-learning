@@ -47,10 +47,10 @@ flowchart LR
     P --> S2[setgid 2000]
     P --> S3[sticky 1000]
     
-    X[Beyond mode bits] --> ACL[POSIX ACLs<br/>per-user/group rules]
-    X --> XA[xattrs<br/>user.* security.* trusted.*]
-    X --> CAP[file caps<br/>cap_net_bind_service]
-    X --> IMM[chattr +i<br/>immutable]
+    X[Beyond mode bits] --> ACL["POSIX ACLs<br/>per-user/group rules"]
+    X --> XA["xattrs<br/>user.* security.* trusted.*"]
+    X --> CAP["file caps<br/>cap_net_bind_service"]
+    X --> IMM["chattr +i<br/>immutable"]
 ```
 
 </details>
@@ -60,7 +60,7 @@ flowchart LR
 
 Every file has a 16-bit mode. The lower 12 bits matter for permissions:
 
-```
+```text
  type    suid sgid sticky    user        group       other
  ----    ---- ---- ------    ---         ---         ---
  - d l   4000 2000 1000      rwx 400-100 rwx 040-010 rwx 004-001
@@ -214,7 +214,7 @@ sudo setfacl -R -m g:devops:rwX /srv/shared
 
 `ls -l` shows a `+` after the mode when ACLs are present:
 
-```
+```text
 -rw-r--r--+ 1 root root 1024 Apr 26 file
          ↑
 ```

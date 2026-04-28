@@ -2,7 +2,7 @@
 
 ## Test Pyramid Distribution
 
-```
+```text
           /\
          /  \
         / E2E \       10%  — 4 scenarios

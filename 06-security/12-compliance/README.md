@@ -12,17 +12,17 @@ Compliance frameworks aren't a list of K8s settings — they're control objectiv
 ```mermaid
 flowchart LR
     subgraph Frameworks
-        PCI[PCI-DSS<br/>cardholder data]
-        HIPAA[HIPAA<br/>US healthcare]
-        SOC2[SOC 2<br/>service orgs]
+        PCI["PCI-DSS<br/>cardholder data"]
+        HIPAA["HIPAA<br/>US healthcare"]
+        SOC2["SOC 2<br/>service orgs"]
         ISO[ISO 27001]
         FedRAMP[FedRAMP / GovCloud]
         GDPR[GDPR / DPA]
     end
     Frameworks --> Map[Control mapping]
-    Map --> Tech[Technical controls<br/>RBAC, NetPol, encryption,<br/>audit logging, IDS]
-    Map --> Proc[Process controls<br/>access review, IR plan,<br/>change mgmt, training]
-    Map --> Evidence[Evidence collection<br/>screenshots, logs, attestations]
+    Map --> Tech["Technical controls<br/>RBAC, NetPol, encryption,<br/>audit logging, IDS"]
+    Map --> Proc["Process controls<br/>access review, IR plan,<br/>change mgmt, training"]
+    Map --> Evidence["Evidence collection<br/>screenshots, logs, attestations"]
     Evidence --> Audit[Auditor review]
 ```
 

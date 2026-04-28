@@ -19,7 +19,7 @@ Native sidecar support (KEP-753: restartable init containers) reached **beta in 
 
 Phases (the only valid values):
 
-```
+```text
 Pending → Running → Succeeded
               ↓
             Failed
@@ -46,10 +46,10 @@ Sub-states inside `Pending` (what users actually see):
 ```mermaid
 flowchart TB
     A[Pod admitted to node] --> B[Pull images]
-    B --> C[Create sandbox<br/>network namespace]
-    C --> D[Run init containers<br/>SEQUENTIAL, must exit 0]
-    D --> S[Start sidecars<br/>restartPolicy: Always<br/>wait for startupProbe]
-    S --> M[Start main containers<br/>PARALLEL]
+    B --> C["Create sandbox<br/>network namespace"]
+    C --> D["Run init containers<br/>SEQUENTIAL, must exit 0"]
+    D --> S["Start sidecars<br/>restartPolicy: Always<br/>wait for startupProbe"]
+    S --> M["Start main containers<br/>PARALLEL"]
     M --> R{All probes pass?}
     R -->|yes| RDY[Pod Ready=True]
     R -->|no| RST[Restart per restartPolicy]

@@ -13,7 +13,7 @@ Thanks for helping make DevOps Learning Lab better. This repo prioritizes **runn
 
 ## Folder Convention
 
-```
+```bash
 NN-topic/
   README.md            # the lab guide
   manifests/           # k8s YAML, terraform, dockerfiles
@@ -44,7 +44,7 @@ Every PR runs the `.github/workflows/qa.yml` pipeline. Run the same checks local
 
 ```bash
 ./scripts/qa-local.sh
-```
+```bash
 
 The script mirrors CI and prints a terraform-style summary (`X passed · Y failed · Z skipped`). Checks performed:
 

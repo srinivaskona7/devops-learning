@@ -42,7 +42,7 @@ These pages are designed to be **printed at A4, pinned next to your monitor**, a
 
 ## Suggested print order (one A4 each)
 
-```
+```text
 Desk-left wall:   [01-shortcuts] [02-files-permissions] [07-process-and-signals]
 Desk-right wall:  [03-text-processing] [05-networking] [04-systemd]
 Above monitor:    [06-troubleshooting-flowchart]   <- the war room poster

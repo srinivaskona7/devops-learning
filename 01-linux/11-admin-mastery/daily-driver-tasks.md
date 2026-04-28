@@ -298,7 +298,7 @@ chmod -x /etc/update-motd.d/10-help-text   # disable a banner script
 
 ## Walkthrough: complete user onboarding (realistic)
 
-```
+```bash
 $ sudo useradd -m -s /bin/bash -c "Bob Patel" -G wheel,docker bpatel
 $ sudo chage -d 0 bpatel
 $ sudo chage -M 90 -W 14 -m 1 bpatel
@@ -331,7 +331,7 @@ $ sudo visudo -cf /etc/sudoers.d/bpatel
 
 ## Walkthrough: kernel update with verification
 
-```
+```bash
 $ uname -r
 5.15.0-89-generic
 

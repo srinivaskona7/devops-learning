@@ -10,7 +10,7 @@
 
 After `switch_root`, the initramfs execs `/sbin/init` from the real root. On every modern distro that's a symlink:
 
-```
+```text
 /sbin/init -> /lib/systemd/systemd        (Debian/Ubuntu)
 /sbin/init -> ../lib/systemd/systemd      (Fedora/RHEL)
 /usr/sbin/init -> ../lib/systemd/systemd  (Arch)
@@ -70,7 +70,7 @@ Read upward: a target on top **wants** everything below it to be already active.
 
 ### File map
 
-```
+```text
 /lib/systemd/system/                  ← distro-shipped units (don't edit)
 /usr/lib/systemd/system/              ← same on Fedora/Arch
 /etc/systemd/system/                  ← admin overrides (highest priority)
@@ -81,7 +81,7 @@ Read upward: a target on top **wants** everything below it to be already active.
 ```
 
 Lookup precedence (highest first):
-```
+```text
 /etc/systemd/system/  >  /run/systemd/system/  >  /usr/lib/systemd/system/
 ```
 

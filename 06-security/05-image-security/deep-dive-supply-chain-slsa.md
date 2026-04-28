@@ -20,8 +20,8 @@ Three independent problems:
 flowchart LR
     A[Source code] --> B[CI builder]
     B --> C[Artifact image]
-    B --> D[Provenance attestation<br/>SLSA in-toto]
-    C --> E[cosign sign<br/>uses OIDC identity]
+    B --> D["Provenance attestation<br/>SLSA in-toto"]
+    C --> E["cosign sign<br/>uses OIDC identity"]
     E --> F[Fulcio: short-lived cert]
     E --> G[Rekor: transparency log]
     H[Verifier] --> I[cosign verify]
@@ -200,13 +200,13 @@ This refuses to admit any pod whose image isn't signed AND whose SLSA provenance
 flowchart TB
     A[Developer push] --> B[GitHub Actions]
     B --> C[Build image]
-    C --> D[Generate SBOM<br/>syft]
-    C --> E[SLSA generator<br/>creates provenance]
+    C --> D["Generate SBOM<br/>syft"]
+    C --> E["SLSA generator<br/>creates provenance"]
     C --> F[cosign sign image]
     C --> G[cosign attest --predicate sbom.json]
     C --> H[cosign attest --predicate provenance.json]
-    F & G & H --> I[Push to registry +<br/>Rekor log]
-    I --> J[Admission controller<br/>cosign / Kyverno verify]
+    F & G & H --> I["Push to registry +<br/>Rekor log"]
+    I --> J["Admission controller<br/>cosign / Kyverno verify"]
     J --> K[Pod runs]
 ```
 

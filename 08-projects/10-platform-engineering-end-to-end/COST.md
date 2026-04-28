@@ -130,7 +130,7 @@ Compare to: a single engineer's time managing manual deployments (~$150/hour × 
 
 ## Local development cost
 
-```
+```text
 kind cluster (local Docker):   $0/month
 All platform components:       $0/month (runs on your laptop)
 Required laptop RAM:           16 GB minimum, 32 GB recommended

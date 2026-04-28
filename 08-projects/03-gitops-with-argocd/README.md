@@ -80,15 +80,15 @@ flowchart LR
   end
 
   subgraph Argo ["Argo CD — pull-based controller"]
-    RootApp[Root Application<br/>app-of-apps.yaml] -->|discovers| ChildApps[api-dev · api-staging · api-prod]
+    RootApp["Root Application<br/>app-of-apps.yaml"] -->|discovers| ChildApps[api-dev · api-staging · api-prod]
     ChildApps -->|polls git every 3 min| Git
     ChildApps -->|applies diff| Cluster
   end
 
   subgraph Cluster ["kind Cluster — 3 nodes"]
-    NSdev[Namespace: api-dev<br/>1 replica]
-    NSstag[Namespace: api-staging<br/>2 replicas]
-    NSprod[Namespace: api-prod<br/>3 replicas + PDB]
+    NSdev["Namespace: api-dev<br/>1 replica"]
+    NSstag["Namespace: api-staging<br/>2 replicas"]
+    NSprod["Namespace: api-prod<br/>3 replicas + PDB"]
     ESO[External Secrets Operator] -->|generates| KSec[Kubernetes Secret]
     KSec -->|mounted| NSprod
   end
@@ -210,7 +210,7 @@ Open <https://localhost:8080>. The empty dashboard appears. No apps deployed yet
 
 The App of Apps pattern solves the bootstrapping problem: "who creates the Application CRDs?" The answer is one root Application that points at a folder of other Application CRDs.
 
-```
+```text
 infra/argocd/
   app-of-apps.yaml       ← root Application (applied once manually)
   apps/
@@ -291,7 +291,7 @@ make drift-demo
 
 What happens internally:
 
-```
+```bash
 1. kubectl scale deploy/url-shortener-api -n api-prod --replicas=0
    → live cluster diverges from git  (git=3, live=0)
 
@@ -321,7 +321,7 @@ kubectl -n argocd patch cm argocd-cm --patch \
 
 This workflow maps directly to what Adobe's AEM Cloud Service team uses across 15 regions:
 
-```
+```bash
 1. Engineer opens PR
    → bumps newTag in k8s/overlays/staging/kustomization.yaml
    → v1.0.0 → v1.1.0
@@ -363,7 +363,7 @@ Hard-coded Secrets committed to git are a critical security antipattern. ESO dec
 
 ### How ESO works
 
-```
+```bash
 External Secret Store (Vault / AWS SSM / GCP Secret Manager / fake-vault sidecar)
           │
           │  ESO reads the value via SecretStore CRD

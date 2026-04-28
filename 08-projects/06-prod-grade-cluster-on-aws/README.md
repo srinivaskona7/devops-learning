@@ -347,7 +347,7 @@ metadata:
 
 cert-manager uses Route53 DNS-01 challenge. No inbound HTTP required. Works for private clusters.
 
-```
+```text
 cert-manager → creates CertificateRequest
 → creates _acme-challenge TXT record in Route53
 → Let's Encrypt validates

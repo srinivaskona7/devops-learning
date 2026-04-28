@@ -92,8 +92,8 @@ flowchart LR
     A3 --> A4[Hope nothing failed]
   end
   subgraph declarative[Declarative]
-    B1[Desired state<br/>.tf files]
-    B2[(Current state<br/>tfstate)]
+    B1["Desired state<br/>.tf files"]
+    B2["(Current state<br/>tfstate)"]
     B3[Real cloud]
     B1 -->|diff| P[Plan engine]
     B2 -->|diff| P
@@ -317,6 +317,10 @@ AWS + GCP + K8s grammar
 
 <span class="stage reason">🧭 Reason</span>
 
+!!! prod-danger "The Manual State Edit Anti-Pattern"
+    **Never manually edit `terraform.tfstate` or run `terraform state rm` without a plan.**
+    State is Terraform's source of truth. A corrupt state causes `plan` to recreate every resource — including your production database. Always use `terraform state mv`, `terraform import`, or `terraform refresh` instead. Lock state with `-lock=true` and enable versioning on your state backend.
+
 **Why this exists.** Terraform cannot look at a `.tf` file and know which real-world resources exist. The HCL says "an S3 bucket named `app-logs`" — but AWS might have ten buckets, none of which Terraform manages, plus the one it created yesterday with a generated suffix. The mapping from HCL address (`aws_s3_bucket.logs`) to real-world ID (`arn:aws:s3:::app-logs-8f2c`) lives in the **state file**. Without it, every `plan` would have to query the entire cloud, can't know ownership, and couldn't detect drift. At 03:00 a Cruise engineer deleted `terraform.tfstate` by accident; next `plan` showed "create 417 resources." The team learned two things the hard way: state is precious, and state belongs in a remote backend with locking — not on a laptop.
 
 <span class="stage thinking">🧠 Thinking</span>
@@ -325,9 +329,9 @@ AWS + GCP + K8s grammar
 
 ```mermaid
 flowchart LR
-  A[.tf files<br/>desired] -->|plan| D{diff}
-  B[(state file<br/>last-known)] -->|plan| D
-  C[Real cloud<br/>actual] -->|refresh| B
+  A[".tf files<br/>desired"] -->|plan| D{diff}
+  B["(state file<br/>last-known)"] -->|plan| D
+  C["Real cloud<br/>actual"] -->|refresh| B
   D -->|apply| C
   subgraph backend[Remote backend]
     B
@@ -369,6 +373,38 @@ terraform state mv aws_s3_bucket.logs aws_s3_bucket.audit_logs
 # rename in state only — the bucket itself is untouched
 terraform plan                                      # should show "No changes"
 ```
+
+=== ":material-aws: AWS"
+    ```hcl
+    resource "aws_s3_bucket" "state" {
+      bucket = "my-terraform-state"
+
+      versioning {
+        enabled = true
+      }
+
+      server_side_encryption_configuration {
+        rule {
+          apply_server_side_encryption_by_default {
+            sse_algorithm = "aws:kms"
+          }
+        }
+      }
+    }
+    ```
+
+=== ":material-google-cloud: GCP"
+    ```hcl
+    resource "google_storage_bucket" "state" {
+      name          = "my-terraform-state"
+      location      = "US"
+      force_destroy = false
+
+      versioning {
+        enabled = true
+      }
+    }
+    ```
 
 <span class="stage simulation">🔮 Simulation — what you'll see</span>
 
@@ -565,13 +601,13 @@ validated + documented
 ```mermaid
 flowchart LR
   subgraph root[Root module — environments/prod]
-    VPC[module.vpc<br/>source = ./modules/vpc<br/>version = 2.3.1]
-    EKS[module.eks<br/>source = registry/eks<br/>version = 19.20.0]
+    VPC["module.vpc<br/>source = ./modules/vpc<br/>version = 2.3.1"]
+    EKS["module.eks<br/>source = registry/eks<br/>version = 19.20.0"]
   end
   VPC -->|output.vpc_id| EKS
   VPC -->|output.subnets| EKS
   subgraph registry[Terraform Registry]
-    REG[terraform-aws-modules/eks/aws<br/>v19.20.0]
+    REG["terraform-aws-modules/eks/aws<br/>v19.20.0"]
   end
   EKS -.downloads.-> REG
 ```
@@ -581,6 +617,23 @@ flowchart LR
 - Always pin versions. `ref=v2.3.1` for git, `version = "~> 19.20"` for registry.
 - `terraform-aws-modules/*` on the registry is the de-facto standard library — vpc, eks, rds, alb.
 - Module versioning follows SemVer: major = breaking change to inputs/outputs, minor = new input with default, patch = bug fix.
+
+<div class="file-tree" markdown>
+
+📦 **terraform-aws-app/**  
+┣ 📜 `main.tf` — primary resource definitions  
+┣ 📜 `variables.tf` — input variable declarations  
+┣ 📜 `outputs.tf` — exported values for other modules  
+┣ 📜 `versions.tf` — `required_providers` + `terraform` block  
+┣ 📂 **modules/**  
+┃ ┣ 📂 **networking/** — VPC, subnets, security groups  
+┃ ┗ 📂 **compute/** — EKS, EC2, ASG  
+┣ 📂 **environments/**  
+┃ ┣ 📂 **dev/** — `terraform.tfvars` with dev values  
+┃ ┗ 📂 **prod/** — `terraform.tfvars` with prod values  
+┗ 📜 `.terraform.lock.hcl` — provider version lock file *(commit this!)*
+
+</div>
 
 <span class="stage execution">⚡ Execution</span>
 
@@ -688,7 +741,7 @@ one source, N consumers
 flowchart TB
   subgraph wrong[&#x274C; Workspaces for environments]
     W1[terraform workspace select prod]
-    W1 --> BE[(single backend<br/>prod.tfstate + dev.tfstate)]
+    W1 --> BE["(single backend<br/>prod.tfstate + dev.tfstate)"]
     W1 --> CRED[one IAM role]
   end
   subgraph right[&#x2705; Directory per environment]
@@ -705,6 +758,24 @@ flowchart TB
 - Prod and dev should live in separate AWS accounts, with separate backends and separate credentials.
 - Use directory-per-environment: `environments/{dev,staging,prod}/main.tf`, each with its own backend block and its own `terraform.tfvars`.
 - Valid uses for workspaces: short-lived per-branch or per-PR preview environments in a non-prod account.
+
+**State isolation with workspaces:**
+
+```diff
+  # Bad: single workspace for all environments
+  terraform workspace new dev
+- # All envs share one state file path
+- # Production changes visible alongside dev
+
+  # Good: separate state backends per environment
++ # environments/prod/backend.tf
++ terraform {
++   backend "s3" {
++     bucket = "tf-state-prod"
++     key    = "prod/terraform.tfstate"
++   }
++ }
+```
 
 <span class="stage execution">⚡ Execution</span>
 
@@ -826,7 +897,18 @@ flowchart LR
 
 ```bash
 # save + show + apply the same plan
-terraform plan -out=tfplan
+terraform plan \
+  -var-file="environments/prod/terraform.tfvars" \ # (1)!
+  -out=tfplan \                                     # (2)!
+  -detailed-exitcode \                              # (3)!
+  -lock=true                                        # (4)!
+```
+1. `-var-file` — loads variable values. Stack multiple `-var-file` flags; last value wins for conflicts.
+2. `-out=tfplan` — saves the plan to a binary file. Pass to `terraform apply tfplan` for a guaranteed-identical apply.
+3. `-detailed-exitcode` — exits 2 if there are changes (useful in CI: `if [ $? -eq 2 ]; then apply; fi`).
+4. `-lock=true` — acquires state lock before reading. Default true; set `-lock=false` ONLY for read-only inspection.
+
+```bash
 terraform show tfplan                           # human-readable
 terraform show -json tfplan | jq '.resource_changes[] |
   {addr: .address, actions: .change.actions}'   # machine-parseable
@@ -911,9 +993,9 @@ two humans must ack
 
 ```mermaid
 flowchart LR
-  HCL[HCL<br/>desired] -. review .-> STATE
-  STATE[(state<br/>last-known)] -. refresh .-> CLOUD
-  CLOUD[Cloud<br/>actual] -. drift .-> STATE
+  HCL["HCL<br/>desired"] -. review .-> STATE
+  STATE["(state<br/>last-known)"] -. refresh .-> CLOUD
+  CLOUD["Cloud<br/>actual"] -. drift .-> STATE
   STATE -. plan .-> DIFF{diff}
   HCL -. plan .-> DIFF
   DIFF -->|apply| CLOUD
@@ -1148,10 +1230,10 @@ no cross-repo coupling
 ```mermaid
 flowchart LR
   PR[Pull request] --> G1[fmt + validate + tflint]
-  G1 --> G2[plan<br/>posted as PR comment]
-  G2 --> G3[checkov / tfsec<br/>security gate]
+  G1 --> G2["plan<br/>posted as PR comment"]
+  G2 --> G3["checkov / tfsec<br/>security gate"]
   G3 --> R[Human review + approve]
-  R --> G4[apply on merge<br/>via OIDC role]
+  R --> G4["apply on merge<br/>via OIDC role"]
   G4 --> STATE[(remote state)]
   style G3 fill:#f59e0b,stroke:#78350f,color:#000
   style R fill:#10b981,stroke:#065f46,color:#fff
@@ -1266,9 +1348,9 @@ full audit trail in git
 
 ```mermaid
 flowchart LR
-  CODE[HCL] --> L1[tflint<br/>syntax + provider rules]
-  L1 --> L2[checkov / tfsec<br/>security &amp; compliance]
-  L2 --> L3[terratest<br/>spin up + assert + destroy]
+  CODE[HCL] --> L1["tflint<br/>syntax + provider rules"]
+  L1 --> L2["checkov / tfsec<br/>security &amp; compliance"]
+  L2 --> L3["terratest<br/>spin up + assert + destroy"]
   L3 --> PROD[merge to prod]
   style L1 fill:#22c55e,stroke:#14532d,color:#fff
   style L2 fill:#f59e0b,stroke:#78350f,color:#000
@@ -1387,15 +1469,15 @@ integration = proven
 flowchart LR
   subgraph tf[Terraform]
     DATA[data aws_secretsmanager_secret_version]
-    RES[resource aws_db_instance.main<br/>password = data.secret.value]
-    STATE[(state<br/>plaintext of data.secret.value)]
+    RES["resource aws_db_instance.main<br/>password = data.secret.value"]
+    STATE["(state<br/>plaintext of data.secret.value)"]
   end
   subgraph vault[AWS Secrets Manager]
-    S[rotating secret<br/>version-id only]
+    S["rotating secret<br/>version-id only"]
   end
   DATA --> S
   RES --> STATE
-  SAFE[Better: reference the ARN<br/>let the DB fetch at runtime] -.-> vault
+  SAFE["Better: reference the ARN<br/>let the DB fetch at runtime"] -.-> vault
   style STATE fill:#ef4444,stroke:#7f1d1d,color:#fff
   style SAFE fill:#10b981,stroke:#065f46,color:#fff
 ```

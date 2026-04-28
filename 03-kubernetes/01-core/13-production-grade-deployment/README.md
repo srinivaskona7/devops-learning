@@ -22,7 +22,7 @@ flowchart TB
   NP[NetworkPolicy] -.fences.- D
   SVC[Service] --> D
   ING[Ingress] --> SVC
-  K[Kustomization<br/>composes everything] --> D
+  K["Kustomization<br/>composes everything"] --> D
   K --> SVC
   K --> PDB
   K --> HPA

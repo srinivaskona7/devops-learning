@@ -9,8 +9,8 @@ The Kubernetes track is split into three sub-modules. Walk them in order, or jum
 
 ```mermaid
 flowchart LR
-    A[01 Core<br/>pods · deployments · svc · pvc · rbac] --> B[02 Strategies<br/>rolling · blue-green · canary · A-B · shadow]
-    B --> C[03 Advanced<br/>CRDs · operators · mesh · GW API · changelog]
+    A["01 Core<br/>pods · deployments · svc · pvc · rbac"] --> B["02 Strategies<br/>rolling · blue-green · canary · A-B · shadow"]
+    B --> C["03 Advanced<br/>CRDs · operators · mesh · GW API · changelog"]
     style A fill:#326CE5,stroke:#222,color:#fff
     style B fill:#5B8DEF,stroke:#222,color:#fff
     style C fill:#7FA9F7,stroke:#222,color:#000

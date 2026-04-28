@@ -51,7 +51,7 @@ rate(): smoothed average over window (use for alerting). irate(): instant rate f
 Pre-compute expensive queries, write result as new time series. Speeds up dashboards, used for SLO calculations. Naming convention: `level:metric:operation`, e.g., `service:http_requests:rate5m`.
 
 **Q13. How do you alert on a 5xx spike?**
-```
+```text
 sum(rate(http_requests_total{status=~"5.."}[5m])) by (service)
   / sum(rate(http_requests_total[5m])) by (service) > 0.05
 ```

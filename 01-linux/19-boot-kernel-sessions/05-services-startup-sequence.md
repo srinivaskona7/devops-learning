@@ -64,7 +64,7 @@ udevadm trigger --action=add                  # replay coldplug
 
 `/run/`, `/tmp/`, lock files, sockets — many programs assume certain dirs exist with certain perms. `systemd-tmpfiles` reads `/usr/lib/tmpfiles.d/*.conf` and `/etc/tmpfiles.d/*.conf` and creates them.
 
-```
+```bash
 # /usr/lib/tmpfiles.d/systemd.conf (excerpt)
 d /run/user 0755 root root -
 d /run/log/journal 2755 root systemd-journal -
@@ -81,7 +81,7 @@ systemd-tmpfiles --remove               # remove anything declared with a 'r' li
 
 Packages drop snippets into `/usr/lib/sysusers.d/` saying "I need a `nginx` user with UID > 100, group `nginx`, home `/var/lib/nginx`." `systemd-sysusers` reads these at boot (and on package install via `%post`) and creates users that don't exist yet.
 
-```
+```bash
 # /usr/lib/sysusers.d/nginx.conf
 u nginx - "nginx user" /var/lib/nginx /sbin/nologin
 g nginx -
@@ -91,7 +91,7 @@ g nginx -
 
 After `local-fs-pre.target`, systemd reads `/etc/fstab` (via `systemd-fstab-generator` which converts each line into a `*.mount` unit) and brings up every entry. `noauto` skips, `nofail` allows boot to continue if the mount fails.
 
-```
+```bash
 # /etc/fstab fields
 # <device>          <mountpoint>  <fstype>  <options>            <dump>  <pass>
 UUID=abcd-1234-...  /             xfs       defaults              0       1

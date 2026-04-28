@@ -50,7 +50,7 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    APP[App<br/>OTel SDK] -->|OTLP gRPC :4317| OT[OTel Collector]
+    APP["App<br/>OTel SDK"] -->|OTLP gRPC :4317| OT[OTel Collector]
     OT -->|OTLP| DIST[Tempo Distributor]
     DIST --> ING[Tempo Ingester]
     ING -->|blocks| S3[(Object Storage)]
@@ -75,7 +75,7 @@ Pick Tempo if you're already in the Grafana stack and store traces in object sto
 
 ## Sampling strategies
 
-```
+```text
 Head-based (cheap, lossy):  sample 1% at trace start
 Tail-based (smart, costly): collector buffers, keeps:
   - all errors
@@ -95,7 +95,7 @@ docker run -d --name tempo -p 3200:3200 -p 4317:4317 -p 4318:4318 \
 
 ## TraceQL example
 
-```
+```json
 { resource.service.name = "checkout-svc" && duration > 500ms && status = error }
 ```
 

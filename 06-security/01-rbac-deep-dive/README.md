@@ -17,12 +17,12 @@ flowchart LR
         SA[ServiceAccount]
     end
     subgraph Bindings
-        RB[RoleBinding<br/>namespace-scoped]
-        CRB[ClusterRoleBinding<br/>cluster-scoped]
+        RB["RoleBinding<br/>namespace-scoped"]
+        CRB["ClusterRoleBinding<br/>cluster-scoped"]
     end
     subgraph Permissions
-        R[Role<br/>namespace-scoped]
-        CR[ClusterRole<br/>cluster-scoped]
+        R["Role<br/>namespace-scoped"]
+        CR["ClusterRole<br/>cluster-scoped"]
     end
     Subjects --> RB --> R
     Subjects --> CRB --> CR

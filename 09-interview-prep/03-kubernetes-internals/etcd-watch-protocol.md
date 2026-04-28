@@ -17,9 +17,9 @@ etcd is a **strongly-consistent, replicated, MVCC key-value store with a streami
 
 ```mermaid
 flowchart LR
-    R[Raft consensus<br/>leader+followers] --> M[MVCC store<br/>append-only revisions]
-    M --> W[Watch streams<br/>per-key event delivery]
-    M --> C[Compaction<br/>reclaim old revisions]
+    R["Raft consensus<br/>leader+followers"] --> M["MVCC store<br/>append-only revisions"]
+    M --> W["Watch streams<br/>per-key event delivery"]
+    M --> C["Compaction<br/>reclaim old revisions"]
 ```
 
 </details>
@@ -62,7 +62,7 @@ Cluster-size sweet spot is 3 or 5 members. 7 is the practical max — write late
 
 Every write increments a global **revision** counter. Each key has a key-revision history:
 
-```
+```text
 key=/registry/pods/default/foo
   rev 1052 = {pod object v1}
   rev 1078 = {pod object v2}
@@ -137,7 +137,7 @@ This is why Kubernetes deletion is a *write* in etcd. It is also why you cannot 
 
 ## etcd in Kubernetes: where keys live
 
-```
+```text
 /registry/<resource>/<namespace>/<name>     # namespaced
 /registry/<resource>/<name>                 # cluster-scoped
 /registry/pods/default/foo                  # actual pod

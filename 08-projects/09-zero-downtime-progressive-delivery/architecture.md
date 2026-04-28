@@ -61,7 +61,7 @@ stateDiagram-v2
 
 ## Traffic weight timeline — canary promote
 
-```
+```text
 Time →     T+0m    T+5m    T+10m   T+15m   T+20m   T+25m
            ┌───────┬───────┬───────┬───────┬───────┐
 Stable %   │  100  │  80   │  60   │  40   │  20   │  0 (promoted)
@@ -78,7 +78,7 @@ Canary %   │   0   │  20   │  40   │  60   │  80   │  100
 
 ## Traffic weight timeline — bad canary rollback
 
-```
+```text
 Time →     T+0m    T+5m    T+5m30s   T+6m
            ┌───────┬───────┬──────────┬──────────────
 Stable %   │  100  │  80   │  80      │  100  ← snapped back
@@ -176,7 +176,7 @@ sequenceDiagram
 
 ## Prometheus metric taxonomy
 
-```
+```text
 http_requests_total{code, path, kubernetes_service_name, kubernetes_pod_name}
 http_request_duration_seconds_bucket{path, le, kubernetes_service_name}
 app_build_info{version}

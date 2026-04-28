@@ -306,7 +306,7 @@ for f in "${files[@]}"; do printf '%s\n' "$f"; done
 
 ### Skeleton
 
-```
+```text
 ansible.cfg
 inventory/
   hosts.yml
@@ -585,7 +585,7 @@ log info "All hosts complete"
 
 Realistic invocation + output:
 
-```
+```bash
 $ ./rotate-logs.sh -d 30 -b s3://prod-logs web-01 web-02
 2026-04-26T03:00:01+0530 [info] Processing web-01
 2026-04-26T03:00:42+0530 [info] Done web-01

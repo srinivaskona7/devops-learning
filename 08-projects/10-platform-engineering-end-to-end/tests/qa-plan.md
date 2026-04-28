@@ -171,7 +171,7 @@ EOF
 
 Run this matrix in order. Failures in group B (bootstrap) block all other groups.
 
-```
+```text
 B (Bootstrap) → must pass 100% before proceeding
 D (Delivery)  → run after B
 O (Observability) → run after B

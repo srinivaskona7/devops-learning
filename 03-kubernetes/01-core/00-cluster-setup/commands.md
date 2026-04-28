@@ -40,7 +40,7 @@ kubectl config get-contexts
 
 Expected node listing:
 
-```
+```text
 NAME                 STATUS   ROLES           AGE   VERSION
 kind-control-plane   Ready    control-plane   45s   v1.30.x
 kind-worker          Ready    <none>          30s   v1.30.x

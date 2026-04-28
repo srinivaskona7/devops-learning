@@ -14,19 +14,19 @@ Classic `docker build` was sequential and dumb: it walked the Dockerfile line by
 ```mermaid
 flowchart TB
     subgraph frontends[Frontends produce LLB]
-        DF[Dockerfile<br/>frontend image]
+        DF["Dockerfile<br/>frontend image"]
         BP[Buildpack frontend]
-        CUSTOM[Custom frontend<br/>any language]
+        CUSTOM["Custom frontend<br/>any language"]
     end
-    DF --> LLB[LLB<br/>protobuf DAG of vertices]
+    DF --> LLB["LLB<br/>protobuf DAG of vertices"]
     BP --> LLB
     CUSTOM --> LLB
-    LLB --> SOLVER[BuildKit solver<br/>schedule + dedup + cache]
-    SOLVER --> EXEC[Worker<br/>runc / containerd / OCI]
+    LLB --> SOLVER["BuildKit solver<br/>schedule + dedup + cache"]
+    SOLVER --> EXEC["Worker<br/>runc / containerd / OCI"]
     SOLVER -.-> CACHE_LOCAL[local cache]
-    SOLVER -.-> CACHE_INLINE[inline cache<br/>in image manifest]
-    SOLVER -.-> CACHE_REGISTRY[registry cache<br/>type=registry]
-    SOLVER -.-> CACHE_GHA[GHA cache<br/>type=gha]
+    SOLVER -.-> CACHE_INLINE["inline cache<br/>in image manifest"]
+    SOLVER -.-> CACHE_REGISTRY["registry cache<br/>type=registry"]
+    SOLVER -.-> CACHE_GHA["GHA cache<br/>type=gha"]
     EXEC --> OUT{Output}
     OUT --> IMG[OCI image to registry]
     OUT --> TAR[tar to local]

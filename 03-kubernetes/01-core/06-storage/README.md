@@ -11,9 +11,9 @@
 
 ```mermaid
 flowchart TB
-  POD[Pod] --> PVC[PersistentVolumeClaim<br/>'I want 10Gi RWO']
-  PVC -->|bound to| PV[PersistentVolume<br/>actual storage handle]
-  PV --> SC[StorageClass<br/>provisioner: ebs.csi / gce-pd / nfs]
+  POD[Pod] --> PVC["PersistentVolumeClaim<br/>'I want 10Gi RWO'"]
+  PVC -->|bound to| PV["PersistentVolume<br/>actual storage handle"]
+  PV --> SC["StorageClass<br/>provisioner: ebs.csi / gce-pd / nfs"]
   SC -->|dynamically creates| BACKEND[(Cloud disk / NFS / Ceph)]
 ```
 

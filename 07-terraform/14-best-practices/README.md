@@ -61,7 +61,7 @@ resource "aws_instance" "app" {
 ```
 
 ## 7. Quality gates (every PR)
-```
+```text
 fmt -check → validate → tflint → tfsec/checkov → plan
 ```
 
@@ -82,7 +82,7 @@ terraform-docs markdown table . > README.md
 ```
 
 ## .gitignore template
-```
+```bash
 # Local .terraform directories
 **/.terraform/*
 
@@ -131,7 +131,7 @@ flowchart LR
     PL -->|comment| GH
     GH -->|merge to main| AP[terraform apply]
     AP -->|OIDC| AWS[(AWS / GCP)]
-    AP --> ST[(Remote State<br/>S3 + DynamoDB)]
+    AP --> ST["(Remote State<br/>S3 + DynamoDB)"]
     SCH[Nightly schedule] -->|drift detect| PL
 ```
 

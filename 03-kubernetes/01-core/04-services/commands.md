@@ -81,7 +81,7 @@ kubectl port-forward svc/<svc> 8080:80
 
 ## DNS reference
 
-```
+```text
 <service>.<namespace>.svc.cluster.local
 hello-app.default.svc.cluster.local
 hello-app                                # same namespace shortcut

@@ -79,7 +79,7 @@ For counters only. All three handle counter resets (a drop to lower value = rese
 
 ```mermaid
 flowchart LR
-    A[Counter samples<br/>over 5m] --> B[rate]
+    A["Counter samples<br/>over 5m"] --> B[rate]
     A --> C[irate]
     A --> D[increase]
     B --> E[smooth, hides spikes]
@@ -129,7 +129,7 @@ Note: no `_bucket` suffix, no `by (le)`. The function works directly on the nati
 
 ```mermaid
 flowchart LR
-    A[Classic] --> B[N counter series<br/>_bucket+_sum+_count]
+    A[Classic] --> B["N counter series<br/>_bucket+_sum+_count"]
     B --> C[Static bucket bounds]
     C --> D[Cardinality = N * labels]
     E[Native] --> F[1 sparse series]

@@ -332,7 +332,7 @@ Write a post-incident report covering:
 
 ## Quick Reference
 
-```
+```text
 ISOLATE   → NetworkPolicy deny-all + cordon node
 SNAPSHOT  → pod yaml + logs + Falco events + RBAC state
 INVESTIGATE → Falco timeline + cosign verify + blast radius

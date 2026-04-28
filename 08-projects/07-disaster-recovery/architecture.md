@@ -168,7 +168,7 @@ sequenceDiagram
 
 ## Network topology
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │  Route53 (global)                                       │
 │  api.example.com                                        │

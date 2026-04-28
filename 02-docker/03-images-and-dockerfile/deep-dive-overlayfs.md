@@ -10,21 +10,13 @@ Every container's filesystem is an OverlayFS mount. Every Dockerfile instruction
 
 OverlayFS is a **union mount**: it shows the merged view of a stack of read-only "lower" directories with a single read-write "upper" directory on top. Reads check upper first then walk lower layers; writes always go to upper.
 
-```
-+---------------------+   what the container sees as /
-|   merged (mount)    |
-+---------------------+
-       /\
-       || union
-+------||------+
-| upperdir (RW)|   <- changes made by the container live here
-+------||------+
-| workdir      |   <- overlay scratchpad (atomic ops)
-+------||------+
-| lowerdir N   |   <- topmost image layer (RO)
-| lowerdir ... |
-| lowerdir 0   |   <- base image layer (RO)
-+--------------+
+```mermaid
+flowchart TD
+    M["merged mount — container's / view"] --> UP["upperdir (RW)\ncontainer writes land here"]
+    M --> WK["workdir\noverlay scratchpad (atomic ops)"]
+    M --> LN["lowerdir N — topmost image layer (RO)"]
+    LN --> LD["lowerdir ... (RO)"]
+    LD --> L0["lowerdir 0 — base image layer (RO)"]
 ```
 
 **Key invariant:** lower layers are immutable. Many containers from the same image **share** the same lower layers on disk — this is why pulling 50 containers from one image takes one image's worth of space.
@@ -65,12 +57,12 @@ docker inspect <id> --format '{{ json .GraphDriver }}' | jq
 
 ```mermaid
 flowchart TB
-    M[Container view<br/>merged] --> U[upperdir<br/>RW per container]
+    M["Container view<br/>merged"] --> U["upperdir<br/>RW per container"]
     M --> L1[lowerdir N - top image layer RO]
     L1 --> L2[lowerdir N-1 RO]
     L2 --> L3[...]
     L3 --> L0[lowerdir 0 - base RO]
-    U -.shares.-> SH[(All containers from<br/>same image share<br/>these lowerdirs)]
+    U -.shares.-> SH["(All containers from<br/>same image share<br/>these lowerdirs)"]
     L1 --- SH
     L2 --- SH
     L0 --- SH

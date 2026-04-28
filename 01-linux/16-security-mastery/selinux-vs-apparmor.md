@@ -39,12 +39,12 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph SELinux ["SELinux: label-based"]
-        S1[Process context<br/>user:role:type:level] --> R1{Policy rule:<br/>allow type T<br/>access type O}
+        S1["Process context<br/>user:role:type:level"] --> R1{Policy rule:<br/>allow type T<br/>access type O}
         O1[Object label] --> R1
         R1 --> D1{decide}
     end
     subgraph AppArmor ["AppArmor: path-based"]
-        S2[Process attached<br/>to profile] --> R2{Profile says:<br/>/var/log/* w}
+        S2["Process attached<br/>to profile"] --> R2{Profile says:<br/>/var/log/* w}
         O2[File path] --> R2
         R2 --> D2{decide}
     end
@@ -69,7 +69,7 @@ Both run. The kernel checks DAC first; if DAC denies, the request fails. If DAC 
 
 Every process and object gets a **security context** of the form:
 
-```
+```text
 user:role:type:sensitivity[:category]
 example: system_u:system_r:httpd_t:s0
 ```
@@ -80,7 +80,7 @@ example: system_u:system_r:httpd_t:s0
 - **sensitivity / categories** — MLS (multi-level security), used in MCS for container/multi-tenant separation.
 
 Policy says things like:
-```
+```text
 allow httpd_t httpd_sys_content_t : file { read getattr open };
 ```
 
@@ -226,7 +226,7 @@ sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.nginx   # reload
 
 ### Profile syntax (read like a firewall rule)
 
-```
+```bash
 #include <tunables/global>
 
 /usr/sbin/nginx {

@@ -18,8 +18,8 @@ flowchart LR
     A[CI workflow run] --> B[Request JWT from CI OIDC issuer]
     B --> C[JWT signed by CI's private key]
     C --> D[STS AssumeRoleWithWebIdentity]
-    D --> E[Cloud verifies JWT signature<br/>via issuer's JWKS]
-    E --> F[Cloud checks trust policy<br/>conditions on claims]
+    D --> E["Cloud verifies JWT signature<br/>via issuer's JWKS"]
+    E --> F["Cloud checks trust policy<br/>conditions on claims"]
     F --> G[Short-lived credentials]
     G --> H[terraform apply]
 ```
@@ -63,8 +63,8 @@ sequenceDiagram
 
 ```mermaid
 flowchart TB
-    A[CI Provider<br/>e.g. GitHub] -->|publishes JWKS at<br/>well-known URL| B[Cloud OIDC Provider<br/>resource]
-    B -->|trusted by| C[IAM Role / GCP SA<br/>trust policy]
+    A["CI Provider<br/>e.g. GitHub"] -->|publishes JWKS at<br/>well-known URL| B["Cloud OIDC Provider<br/>resource"]
+    B -->|trusted by| C["IAM Role / GCP SA<br/>trust policy"]
     D[CI Workflow Run] -->|presents JWT| C
     C -->|verifies signature against| B
     C -->|checks claim conditions| C
@@ -163,7 +163,7 @@ jobs:
 
 The JWT `sub` claim from GitHub is structured:
 
-```
+```text
 repo:<owner>/<repo>:ref:refs/heads/<branch>
 repo:<owner>/<repo>:ref:refs/tags/<tag>
 repo:<owner>/<repo>:environment:<env-name>
@@ -180,7 +180,7 @@ repo:<owner>/<repo>:job_workflow_ref:<owner>/<repo>/.github/workflows/<file>@<re
 
 **Recommended pattern:** Pin the subject to a specific environment + branch combination, and use GitHub Environments with required reviewers for production:
 
-```
+```text
 repo:acme/infra:environment:production
 ```
 

@@ -154,7 +154,7 @@ Color-coded, multi-pane `tail -F`. Indispensable when watching two correlated lo
 
 `/etc/logrotate.d/myapp`:
 
-```
+```bash
 /var/log/myapp/*.log {
     daily
     rotate 14
@@ -212,7 +212,7 @@ sudo logrotate -f /etc/logrotate.d/myapp     # force
 
 `/etc/rsyslog.d/99-forward.conf`:
 
-```
+```text
 *.* @@logserver.example.com:514     # @@ = TCP, @ = UDP
 ```
 
@@ -226,7 +226,7 @@ logger -t test "hello from $HOSTNAME"
 ## Structured logging (JSON) — do this in apps
 
 Plain text:
-```
+```text
 2026-04-26T10:00:00 INFO User 1234 logged in from 10.0.0.5
 ```
 

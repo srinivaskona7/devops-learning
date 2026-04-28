@@ -13,9 +13,9 @@ Namespaces and cgroups isolate **resources**. They do not stop a process from ca
 
 ```mermaid
 flowchart TB
-    proc[container process] -->|syscall| seccomp[seccomp-bpf filter<br/>kernel-level allowlist]
-    seccomp -->|allowed| caps[capability check<br/>CAP_NET_ADMIN, CAP_SYS_ADMIN, ...]
-    caps -->|allowed| lsm[LSM hook<br/>AppArmor OR SELinux]
+    proc[container process] -->|syscall| seccomp["seccomp-bpf filter<br/>kernel-level allowlist"]
+    seccomp -->|allowed| caps["capability check<br/>CAP_NET_ADMIN, CAP_SYS_ADMIN, ..."]
+    caps -->|allowed| lsm["LSM hook<br/>AppArmor OR SELinux"]
     lsm -->|allowed| kernel[kernel executes syscall]
     seccomp -.->|denied| err1[EPERM / SIGSYS]
     caps -.->|denied| err2[EPERM]
@@ -32,11 +32,11 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph defense[Layered Defense]
-        L1[1 User namespace<br/>UID remap]
-        L2[2 Capabilities<br/>drop CAP_*]
-        L3[3 seccomp<br/>syscall allowlist]
-        L4[4 LSM<br/>AppArmor/SELinux MAC]
-        L5[5 Read-only rootfs<br/>noNewPrivs]
+        L1["1 User namespace<br/>UID remap"]
+        L2["2 Capabilities<br/>drop CAP_*"]
+        L3["3 seccomp<br/>syscall allowlist"]
+        L4["4 LSM<br/>AppArmor/SELinux MAC"]
+        L5["5 Read-only rootfs<br/>noNewPrivs"]
     end
     L1 --> L2 --> L3 --> L4 --> L5
 ```

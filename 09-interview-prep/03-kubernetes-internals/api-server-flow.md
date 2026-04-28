@@ -15,17 +15,17 @@ The API server is the *only* component that talks to etcd. Every other component
 
 ```mermaid
 flowchart LR
-    C[Client<br/>kubectl/controller] --> TLS[TLS handshake]
-    TLS --> AUTHN[Authentication<br/>cert / OIDC / SA token / webhook]
-    AUTHN --> APF[APF flow control<br/>PriorityLevel + FlowSchema]
-    APF --> AUTHZ[Authorization<br/>Node + RBAC + webhook]
-    AUTHZ --> MUT[Mutating Admission<br/>webhooks + builtins]
-    MUT --> SCHEMA[Schema validation<br/>OpenAPI + CEL]
-    SCHEMA --> VAL[Validating Admission<br/>VAP CEL + webhooks]
-    VAL --> REG[REST registry<br/>conversion + defaults]
-    REG --> ETCD[(etcd<br/>MVCC write)]
+    C["Client<br/>kubectl/controller"] --> TLS[TLS handshake]
+    TLS --> AUTHN["Authentication<br/>cert / OIDC / SA token / webhook"]
+    AUTHN --> APF["APF flow control<br/>PriorityLevel + FlowSchema"]
+    APF --> AUTHZ["Authorization<br/>Node + RBAC + webhook"]
+    AUTHZ --> MUT["Mutating Admission<br/>webhooks + builtins"]
+    MUT --> SCHEMA["Schema validation<br/>OpenAPI + CEL"]
+    SCHEMA --> VAL["Validating Admission<br/>VAP CEL + webhooks"]
+    VAL --> REG["REST registry<br/>conversion + defaults"]
+    REG --> ETCD["(etcd<br/>MVCC write)"]
     ETCD --> RESP[Response to client]
-    ETCD -.notify.-> WATCH[WATCH streams<br/>controllers/kubelets]
+    ETCD -.notify.-> WATCH["WATCH streams<br/>controllers/kubelets"]
 ```
 
 </details>

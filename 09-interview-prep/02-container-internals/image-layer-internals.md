@@ -14,15 +14,15 @@ Container images are not files — they are stacks of immutable tarballs joined 
 ```mermaid
 flowchart TB
     subgraph image[Image: nginx:1.27]
-        L1[Layer 1<br/>sha256:a1b2...<br/>debian rootfs]
-        L2[Layer 2<br/>sha256:c3d4...<br/>apt install nginx]
-        L3[Layer 3<br/>sha256:e5f6...<br/>copy nginx.conf]
+        L1["Layer 1<br/>sha256:a1b2...<br/>debian rootfs"]
+        L2["Layer 2<br/>sha256:c3d4...<br/>apt install nginx"]
+        L3["Layer 3<br/>sha256:e5f6...<br/>copy nginx.conf"]
     end
     subgraph overlay[overlayfs at runtime]
-        lower[lowerdir<br/>L1 + L2 + L3<br/>read-only]
-        upper[upperdir<br/>container writes<br/>read-write]
-        work[workdir<br/>atomic ops scratch]
-        merged[merged<br/>what container sees]
+        lower["lowerdir<br/>L1 + L2 + L3<br/>read-only"]
+        upper["upperdir<br/>container writes<br/>read-write"]
+        work["workdir<br/>atomic ops scratch"]
+        merged["merged<br/>what container sees"]
     end
     L1 --> lower
     L2 --> lower
@@ -41,12 +41,12 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    A[container reads<br/>/etc/nginx/nginx.conf] --> B{exists in upper?}
+    A["container reads<br/>/etc/nginx/nginx.conf"] --> B{exists in upper?}
     B -->|yes| C[serve from upper]
     B -->|no| D{exists in lower?}
-    D -->|yes| E[serve from lower<br/>read-only]
+    D -->|yes| E["serve from lower<br/>read-only"]
     D -->|no| F[ENOENT]
-    G[container writes<br/>/etc/nginx/nginx.conf] --> H[copy_up:<br/>copy file from lower to upper]
+    G["container writes<br/>/etc/nginx/nginx.conf"] --> H["copy_up:<br/>copy file from lower to upper"]
     H --> I[modify in upper]
 ```
 

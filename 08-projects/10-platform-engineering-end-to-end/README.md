@@ -121,19 +121,19 @@ The design principle: **platform as product**. Teams are customers. The golden-p
 flowchart TB
     subgraph Dev["Developer Experience"]
         direction LR
-        DEV[Engineer<br/>pushes PR] --> GIT[GitHub / GitLab]
-        BACK[Backstage<br/>Portal] --> GIT
+        DEV["Engineer<br/>pushes PR"] --> GIT[GitHub / GitLab]
+        BACK["Backstage<br/>Portal"] --> GIT
     end
 
     subgraph CI["CI Pipeline"]
         GIT --> BUILD[Build + Unit Tests]
-        BUILD --> SCAN[Trivy / Grype<br/>image scan]
-        SCAN --> SIGN[Cosign sign<br/>+ push to registry]
-        SIGN --> GITOPS[Update GitOps<br/>manifests repo]
+        BUILD --> SCAN["Trivy / Grype<br/>image scan"]
+        SCAN --> SIGN["Cosign sign<br/>+ push to registry"]
+        SIGN --> GITOPS["Update GitOps<br/>manifests repo"]
     end
 
     subgraph CD["GitOps Delivery — Argo CD"]
-        GITOPS --> APPOFAPPS[app-of-apps<br/>root Application]
+        GITOPS --> APPOFAPPS["app-of-apps<br/>root Application"]
         APPOFAPPS --> APP1[delivery-app]
         APPOFAPPS --> APP2[observability-app]
         APPOFAPPS --> APP3[security-app]
@@ -143,23 +143,23 @@ flowchart TB
 
     subgraph Runtime["Runtime — Kubernetes + Istio"]
         direction TB
-        INGRESS[Istio Ingress<br/>Gateway] --> VS[VirtualService<br/>canary split]
-        VS --> STABLE[Stable<br/>90% traffic]
-        VS --> CANARY[Canary<br/>10% traffic]
+        INGRESS["Istio Ingress<br/>Gateway"] --> VS["VirtualService<br/>canary split"]
+        VS --> STABLE["Stable<br/>90% traffic"]
+        VS --> CANARY["Canary<br/>10% traffic"]
         subgraph Rollout["Argo Rollouts"]
             STABLE
             CANARY
-            SLOGATE[SLO Analysis<br/>Prometheus query]
+            SLOGATE["SLO Analysis<br/>Prometheus query"]
         end
-        STABLE --> PA[PeerAuthentication<br/>mTLS STRICT]
+        STABLE --> PA["PeerAuthentication<br/>mTLS STRICT"]
         CANARY --> PA
     end
 
     subgraph Observability["Observability Stack"]
         direction LR
-        PROM[Prometheus] --> GRAF[Grafana<br/>dashboards]
-        LOKI[Loki<br/>log aggregation] --> GRAF
-        TEMPO[Tempo<br/>distributed traces] --> GRAF
+        PROM[Prometheus] --> GRAF["Grafana<br/>dashboards"]
+        LOKI["Loki<br/>log aggregation"] --> GRAF
+        TEMPO["Tempo<br/>distributed traces"] --> GRAF
         OTEL[OTel Collector] --> PROM
         OTEL --> LOKI
         OTEL --> TEMPO
@@ -167,17 +167,17 @@ flowchart TB
 
     subgraph Security["Security Plane"]
         direction LR
-        VAULT[HashiCorp Vault] --> ESO[External Secrets<br/>Operator]
+        VAULT[HashiCorp Vault] --> ESO["External Secrets<br/>Operator"]
         ESO --> SECRETS[Kubernetes Secrets]
-        KYVERNO[Kyverno<br/>5 policies] --> ADMIT[Admission webhook]
-        COSIGN[Cosign verify<br/>at admission] --> ADMIT
+        KYVERNO["Kyverno<br/>5 policies"] --> ADMIT[Admission webhook]
+        COSIGN["Cosign verify<br/>at admission"] --> ADMIT
     end
 
     subgraph Chaos["Chaos Engineering"]
         CHAOSM[Chaos Mesh] --> PODKILL[Pod kill]
         CHAOSM --> NETDELAY[Network delay]
         CHAOSM --> CPUSTRESS[CPU stress]
-        K6[k6 load gen] --> SLO[SLO breach<br/>detection]
+        K6[k6 load gen] --> SLO["SLO breach<br/>detection"]
     end
 
     CD --> Runtime
@@ -214,14 +214,14 @@ Progressive delivery solves the "notice too late" problem by making the deployme
 ```mermaid
 flowchart LR
     subgraph GitOps
-        REPO[(GitOps Repo<br/>manifests/)] --> ARGOCD[Argo CD<br/>sync loop 2m]
+        REPO["(GitOps Repo<br/>manifests/)"] --> ARGOCD["Argo CD<br/>sync loop 2m"]
     end
 
     subgraph Rollout["Argo Rollouts — canary strategy"]
         ARGOCD --> ROLLOUT[Rollout object]
-        ROLLOUT --> STABLE_RS[Stable ReplicaSet<br/>image: v1.2.3]
-        ROLLOUT --> CANARY_RS[Canary ReplicaSet<br/>image: v1.2.4]
-        CANARY_RS -->|step 1 · 10%| ANALYSIS1[AnalysisRun<br/>5 min window]
+        ROLLOUT --> STABLE_RS["Stable ReplicaSet<br/>image: v1.2.3"]
+        ROLLOUT --> CANARY_RS["Canary ReplicaSet<br/>image: v1.2.4"]
+        CANARY_RS -->|step 1 · 10%| ANALYSIS1["AnalysisRun<br/>5 min window"]
         ANALYSIS1 -->|pass| STEP2[25%]
         STEP2 -->|pass| STEP3[50%]
         STEP3 -->|pass| FULL[100% — promote]
@@ -337,23 +337,23 @@ flowchart LR
     subgraph Services["Service Mesh"]
         SVC1[payment-service] -->|OTLP gRPC 4317| OTEL
         SVC2[fraud-service] -->|OTLP gRPC 4317| OTEL
-        ENVOY[Istio Envoy<br/>sidecar] -->|access logs| OTEL
+        ENVOY["Istio Envoy<br/>sidecar"] -->|access logs| OTEL
     end
 
     subgraph Collection["OTel Collector"]
-        OTEL[OTel Collector<br/>daemonset] -->|remote_write| PROM
+        OTEL["OTel Collector<br/>daemonset"] -->|remote_write| PROM
         OTEL -->|loki push| LOKI
         OTEL -->|otlp export| TEMPO
     end
 
     subgraph Storage
-        PROM[Prometheus<br/>TSDB 30d]
-        LOKI[Loki<br/>object store]
-        TEMPO[Tempo<br/>object store]
+        PROM["Prometheus<br/>TSDB 30d"]
+        LOKI["Loki<br/>object store"]
+        TEMPO["Tempo<br/>object store"]
     end
 
     subgraph Grafana["Grafana — unified query"]
-        DASH[Service Dashboard<br/>RED + USE] --> PROM
+        DASH["Service Dashboard<br/>RED + USE"] --> PROM
         DASH --> LOKI
         DASH --> TEMPO
         ALERT[Alertmanager] --> PROM
@@ -361,8 +361,8 @@ flowchart LR
     end
 
     subgraph SLO["SLO Evaluation"]
-        SLOCALC[Prometheus<br/>recording rules] --> PROM
-        SLOCALC --> ERRORBUDGET[Error budget<br/>burn-rate alerts]
+        SLOCALC["Prometheus<br/>recording rules"] --> PROM
+        SLOCALC --> ERRORBUDGET["Error budget<br/>burn-rate alerts"]
     end
 ```
 
@@ -409,7 +409,7 @@ Platform-level policy enforcement means you fix the root cause (the platform def
 ```mermaid
 flowchart TB
     subgraph Admission["Kubernetes Admission Chain"]
-        API[kube-apiserver] --> KYVERNO[Kyverno<br/>admission webhook]
+        API[kube-apiserver] --> KYVERNO["Kyverno<br/>admission webhook"]
         KYVERNO -->|enforce| P1[require-labels]
         KYVERNO -->|enforce| P2[disallow-root]
         KYVERNO -->|enforce| P3[require-resource-limits]
@@ -419,8 +419,8 @@ flowchart TB
     end
 
     subgraph Secrets["Secrets Lifecycle"]
-        VAULT[HashiCorp Vault<br/>PKI + KV] -->|lease 24h| ESO[External Secrets Operator]
-        ESO -->|sync 1h| K8SSECRET[Kubernetes Secret<br/>auto-rotated]
+        VAULT["HashiCorp Vault<br/>PKI + KV"] -->|lease 24h| ESO[External Secrets Operator]
+        ESO -->|sync 1h| K8SSECRET["Kubernetes Secret<br/>auto-rotated"]
         K8SSECRET --> POD[Pod env injection]
     end
 
@@ -432,8 +432,8 @@ flowchart TB
     end
 
     subgraph Mesh["Service Mesh Security"]
-        PA[PeerAuthentication<br/>STRICT mTLS] --> MTLS[All pod-to-pod<br/>traffic TLS 1.3]
-        AUTHPOL[AuthorizationPolicy<br/>deny-all + allow-list] --> MTLS
+        PA["PeerAuthentication<br/>STRICT mTLS"] --> MTLS["All pod-to-pod<br/>traffic TLS 1.3"]
+        AUTHPOL["AuthorizationPolicy<br/>deny-all + allow-list"] --> MTLS
     end
 ```
 
@@ -482,9 +482,9 @@ Reliability must be **automated and gated**, not aspirational.
 ```mermaid
 flowchart LR
     subgraph SLO["SLO Tiers"]
-        BRONZE[Bronze<br/>99.0% · p95 500ms]
-        SILVER[Silver<br/>99.5% · p95 300ms]
-        GOLD[Gold<br/>99.9% · p95 150ms]
+        BRONZE["Bronze<br/>99.0% · p95 500ms"]
+        SILVER["Silver<br/>99.5% · p95 300ms"]
+        GOLD["Gold<br/>99.9% · p95 150ms"]
     end
 
     subgraph Gate["Canary SLO Gate"]
@@ -494,20 +494,20 @@ flowchart LR
     end
 
     subgraph Chaos["Chaos Engineering — Chaos Mesh"]
-        SCHEDULE[CronChaos<br/>daily 03:00 UTC] --> PODKILL[PodChaos<br/>kill 1 of 3 pods]
-        SCHEDULE --> NETDELAY[NetworkChaos<br/>100ms delay p50]
-        SCHEDULE --> CPUSTRESS[StressChaos<br/>2 cores 80%]
-        PODKILL -->|observe| K6[k6 load<br/>500 VUs]
+        SCHEDULE["CronChaos<br/>daily 03:00 UTC"] --> PODKILL["PodChaos<br/>kill 1 of 3 pods"]
+        SCHEDULE --> NETDELAY["NetworkChaos<br/>100ms delay p50"]
+        SCHEDULE --> CPUSTRESS["StressChaos<br/>2 cores 80%"]
+        PODKILL -->|observe| K6["k6 load<br/>500 VUs"]
         NETDELAY -->|observe| K6
         CPUSTRESS -->|observe| K6
-        K6 -->|SLO violated?| SCORE[Resilience score<br/>PASS / FAIL]
+        K6 -->|SLO violated?| SCORE["Resilience score<br/>PASS / FAIL"]
     end
 
     subgraph Perf["Performance Baseline"]
-        K6SMOKE[k6 smoke<br/>10 VUs 1m]
-        K6LOAD[k6 load<br/>500 VUs 5m]
-        K6STRESS[k6 stress<br/>1000 VUs 10m]
-        K6SOAK[k6 soak<br/>200 VUs 60m]
+        K6SMOKE["k6 smoke<br/>10 VUs 1m"]
+        K6LOAD["k6 load<br/>500 VUs 5m"]
+        K6STRESS["k6 stress<br/>1000 VUs 10m"]
+        K6SOAK["k6 soak<br/>200 VUs 60m"]
     end
 
     SLO --> Gate
@@ -587,7 +587,7 @@ The golden-path template is the platform team's product. It encodes every best p
 
 ### What the Backstage template provides
 
-```
+```bash
 New service scaffolded via Backstage template gets:
 ├── app/
 │   ├── main.go             ← HTTP server with OTLP tracing + Prometheus metrics

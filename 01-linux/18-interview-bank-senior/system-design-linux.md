@@ -12,7 +12,7 @@ For each Q, before reading the answer:
 
 ## The 6-section answer structure
 
-```
+```text
 1. SCOPE & CONSTRAINTS    – cardinality, SLOs, what's in/out
 2. HIGH-LEVEL ARCHITECTURE – boxes-and-arrows, data flow
 3. KEY COMPONENTS DEEP-DIVE – the 2-3 hardest pieces, in detail
@@ -33,7 +33,7 @@ For each Q, before reading the answer:
 - **Cost cap**: target < $X / TB ingested. Compression mandatory.
 
 ### 2. High-level architecture
-```
+```text
 [host agent] → [regional aggregator (Kafka)] → [normalizer/enricher] → [hot store (OS/Loki/CH)]
                                                          └─→ [cold S3 (Parquet)]
                                                          └─→ [archive after N days]
@@ -74,7 +74,7 @@ For each Q, before reading the answer:
 - Threat model: tenants are mutually distrustful; assume one will try to escape.
 
 ### 2. High-level
-```
+```text
 [control plane] → [kubelet/runtime] → [runc / kata / gVisor]
                                        └─ cgroup v2 (cpu/mem/io)
                                        └─ namespaces (pid/net/mnt/uts/ipc/user)
@@ -113,7 +113,7 @@ For each Q, before reading the answer:
 - L4 only (no TLS termination here; that's a separate fleet).
 
 ### 2. High-level
-```
+```text
    [BGP-anycast VIPs across PoPs]
                 |
         [ECMP (DSR or NAT)]
@@ -189,7 +189,7 @@ For each Q, before reading the answer:
 - Must support emergency CVE patches in <72h fleet-wide.
 
 ### 2. High-level
-```
+```text
 [image build] → [signed image registry] → [regional mirrors] → [host agent]
                                                                       ↓
                                                               [staged rollout]
@@ -258,7 +258,7 @@ For each Q, before reading the answer:
 - A new git tag must result in a signed, scanned, attested image deployed to fleet within 30 min, with auto-rollback.
 
 ### 2. High-level
-```
+```bash
 git tag → CI build → SBOM + scan → sign (cosign) → push to registry
         → policy gate (admission) → progressive rollout → SLO check → done|rollback
 ```

@@ -82,14 +82,38 @@ One bad label kills your cluster. Learn to count before you label.
 
 ```mermaid
 flowchart LR
-  App[Service] -->|counters, gauges, histograms| M[Metrics<br/>Prometheus TSDB]
-  App -->|structured events| L[Logs<br/>Loki / Elastic]
-  App -->|spans| T[Traces<br/>Tempo / Jaeger]
+  App[Service] -->|counters, gauges, histograms| M["Metrics<br/>Prometheus TSDB"]
+  App -->|structured events| L["Logs<br/>Loki / Elastic"]
+  App -->|spans| T["Traces<br/>Tempo / Jaeger"]
   M -->|what?| G[Grafana]
   L -->|why?| G
   T -->|where?| G
   G -->|correlate via trace_id| SRE((SRE))
 ```
+
+<div class="grid cards" markdown>
+
+-   :material-chart-line:{ .lg .middle } **Metrics (Prometheus)**
+
+    ---
+    Time-series of numeric measurements scraped via `/metrics`. RED method: Rate, Errors, Duration per service.
+
+-   :material-text-box-multiple:{ .lg .middle } **Logs (Loki)**
+
+    ---
+    Indexed by labels only — no full-text index. Query with LogQL. Push via Promtail or Alloy.
+
+-   :material-vector-polyline:{ .lg .middle } **Traces (Tempo)**
+
+    ---
+    Distributed trace = tree of spans. W3C TraceContext propagates trace-id across services. Tempo stores, Grafana visualizes.
+
+-   :material-bell-alert:{ .lg .middle } **Alerting (Alertmanager)**
+
+    ---
+    Routes alerts to PagerDuty/Slack/email. Inhibition, silences, group-wait prevent alert storms.
+
+</div>
 
 - **Metrics** = numeric aggregates sampled every 15s — cheap per cardinality, expensive per label.
 - **Logs** = full-fidelity events — expensive per volume, easy to search.
@@ -180,13 +204,13 @@ p99 spike → log error → span stuck on DB
 
 ```mermaid
 flowchart LR
-  SD[Service Discovery<br/>K8s, EC2, file] --> SC[Scrape loop<br/>every 15s]
+  SD["Service Discovery<br/>K8s, EC2, file"] --> SC["Scrape loop<br/>every 15s"]
   SC -->|HTTP GET /metrics| APP[Target]
-  SC --> WAL[(WAL<br/>head block)]
-  WAL -->|every 2h| BLK[(Block<br/>chunks + index)]
-  BLK -->|compact| BIG[(Compacted<br/>24h block)]
+  SC --> WAL["(WAL<br/>head block)"]
+  WAL -->|every 2h| BLK["(Block<br/>chunks + index)"]
+  BLK -->|compact| BIG["(Compacted<br/>24h block)"]
   BIG -->|retention 15d| DEL[Deleted]
-  QE[Query Engine<br/>PromQL] --> WAL
+  QE["Query Engine<br/>PromQL"] --> WAL
   QE --> BLK
   API[HTTP API] --> QE
 ```
@@ -291,9 +315,9 @@ TSDB compacts, retention enforced
 
 ```mermaid
 flowchart LR
-  TS[Time series<br/>http_requests_total] -->|range selector [5m]| RV[Range vector]
-  RV -->|rate| IV[Instant vector<br/>req/sec]
-  IV -->|sum by (status)| AGG[Aggregated<br/>vector]
+  TS["Time series<br/>http_requests_total"] -->|range selector [5m]| RV[Range vector]
+  RV -->|rate| IV["Instant vector<br/>req/sec"]
+  IV -->|sum by (status)| AGG["Aggregated<br/>vector"]
   AGG -->|/ total| RATIO[Error ratio]
   HIST[_bucket series] -->|histogram_quantile 0.99| P99[p99 latency]
 ```
@@ -313,7 +337,16 @@ flowchart LR
 curl -sG 'localhost:9090/api/v1/query' \
   --data-urlencode 'query=sum by (status) (rate(http_requests_total[5m]))' | jq .
 
-# Error ratio — 5xx divided by all
+# Error ratio — 5xx divided by all (annotated)
+rate(http_requests_total{job="api",status=~"5.."}[5m]) # (1)!
+  /                                                      # (2)!
+rate(http_requests_total{job="api"}[5m])                # (3)!
+```
+1. `rate()` computes per-second rate over the 5m window. `status=~"5.."` matches all 5xx codes via regex.
+2. Division produces the error ratio (0.0–1.0).
+3. Denominator: total request rate for the same job across all status codes.
+
+```bash
 curl -sG 'localhost:9090/api/v1/query' \
   --data-urlencode 'query=sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m]))' | jq .
 
@@ -394,10 +427,10 @@ actionable number, regional breakdown
 
 ```mermaid
 flowchart LR
-  TSDB[(TSDB)] --> EG[Rule group<br/>interval=30s]
-  EG --> REC[Recording rule<br/>job:http_errors:ratio5m]
+  TSDB[(TSDB)] --> EG["Rule group<br/>interval=30s"]
+  EG --> REC["Recording rule<br/>job:http_errors:ratio5m"]
   REC -->|write back| TSDB
-  EG --> ALT[Alerting rule<br/>burn_rate > 14.4]
+  EG --> ALT["Alerting rule<br/>burn_rate > 14.4"]
   ALT -->|firing| AM[Alertmanager]
   AM --> PD[PagerDuty]
   subgraph Burn-rate logic
@@ -411,6 +444,31 @@ flowchart LR
 - **Alerting rules** compare a value to a threshold and fire after `for:` stabilises the signal.
 - **Multi-window burn-rate alerts** compare a short window (5m) and a long window (1h) against the same threshold → catches both big spikes and slow burns without flapping.
 - **The `14.4` magic number** = burn the entire 30-day budget in 2 days. Google SRE book, page 119.
+
+<div class="before-after" markdown>
+
+**❌ Before — noisy threshold**
+
+```yaml
+- alert: HighLatency
+  expr: http_request_duration_seconds > 0.1
+  for: 0s
+```
+
+**✅ After — meaningful SLO-based threshold**
+
+```yaml
+- alert: HighLatency  
+  expr: |
+    histogram_quantile(0.99,
+      rate(http_request_duration_seconds_bucket[5m])
+    ) > 0.5
+  for: 10m
+  labels:
+    severity: warning
+```
+
+</div>
 
 <span class="stage execution">Execution</span>
 
@@ -446,6 +504,30 @@ groups:
         annotations:
           summary: "checkout burning budget 14.4x — will exhaust in 2 days"
 ```
+
+=== ":material-prometheus: PrometheusRule"
+    ```yaml
+    groups:
+    - name: api.slo
+      rules:
+      - alert: HighErrorRate
+        expr: |
+          rate(http_requests_total{status=~"5.."}[5m])
+          / rate(http_requests_total[5m]) > 0.01
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Error rate > 1% for 5 minutes"
+    ```
+
+=== ":material-grafana: Grafana Alert"
+    ```yaml
+    # In Grafana UI: Alerting → Alert rules → New alert rule
+    # Expression: same PromQL, threshold: IS ABOVE 0.01
+    # Pending period: 5m
+    # Labels: severity=critical
+    ```
 
 ```bash
 # Reload Prometheus rules without restart
@@ -522,11 +604,11 @@ symptom-based, budget-aware
 
 ```mermaid
 flowchart LR
-  USER[User picks<br/>env=prod, region=us-east] --> VAR[Variable<br/>$env, $region]
-  VAR --> Q[Panel query<br/>rate{env=&quot;$env&quot;, region=&quot;$region&quot;}]
-  Q --> DS[(Datasource<br/>Prometheus)]
+  USER["User picks<br/>env=prod, region=us-east"] --> VAR["Variable<br/>$env, $region"]
+  VAR --> Q["Panel query<br/>rate{env=&quot;$env&quot;, region=&quot;$region&quot;}"]
+  Q --> DS["(Datasource<br/>Prometheus)"]
   DS --> PANEL[Panel renders]
-  ANN[Annotation query<br/>changes_deploy_total] --> OVER[Vertical line<br/>on time axis]
+  ANN["Annotation query<br/>changes_deploy_total"] --> OVER["Vertical line<br/>on time axis"]
   OVER --> PANEL
 ```
 
@@ -646,11 +728,11 @@ $env / $region variables active
 flowchart LR
   APP[App stdout] --> PT[Promtail / Alloy]
   PT -->|add labels: app, namespace, level| ING[Loki Ingester]
-  ING --> S1[Stream<br/>{app=api, level=error}]
-  ING --> S2[Stream<br/>{app=api, level=info}]
-  S1 --> CHK[(Chunk<br/>gzipped 1MB)]
+  ING --> S1["Stream<br/>{app=api, level=error}"]
+  ING --> S2["Stream<br/>{app=api, level=info}"]
+  S1 --> CHK["(Chunk<br/>gzipped 1MB)"]
   S2 --> CHK
-  IDX[(BoltDB index<br/>labels → chunk IDs)] -.-> CHK
+  IDX["(BoltDB index<br/>labels → chunk IDs)"] -.-> CHK
   QRY[LogQL query] --> IDX
   IDX --> CHK --> OUT[Log lines]
 ```
@@ -751,12 +833,12 @@ labels indexed, lines compressed
 
 ```mermaid
 flowchart TB
-  ROOT[Span: POST /checkout<br/>service=gateway<br/>400ms] --> A[Span: cart.get<br/>service=cart<br/>50ms]
-  ROOT --> B[Span: inventory.reserve<br/>service=inv<br/>80ms]
-  ROOT --> C[Span: payment.charge<br/>service=pay<br/>250ms ⚠️]
-  C --> C1[Span: db.query<br/>210ms ⚠️ cold cache]
-  C --> C2[Span: stripe.api<br/>40ms]
-  B --> B1[Span: redis.decr<br/>5ms]
+  ROOT["Span: POST /checkout<br/>service=gateway<br/>400ms"] --> A["Span: cart.get<br/>service=cart<br/>50ms"]
+  ROOT --> B["Span: inventory.reserve<br/>service=inv<br/>80ms"]
+  ROOT --> C["Span: payment.charge<br/>service=pay<br/>250ms ⚠️"]
+  C --> C1["Span: db.query<br/>210ms ⚠️ cold cache"]
+  C --> C2["Span: stripe.api<br/>40ms"]
+  B --> B1["Span: redis.decr<br/>5ms"]
 ```
 
 - **A span** = start time, duration, service name, operation, attributes (kv), status.
@@ -866,12 +948,12 @@ fix: warm the cache on deploy
 
 ```mermaid
 flowchart LR
-  APP[App code] --> API[OTel API<br/>vendor-neutral]
-  API --> SDK[OTel SDK<br/>batcher, sampler]
-  AUTO[Auto-instrumentation<br/>agent / init-hook] -.->|patches http, db, grpc| API
+  APP[App code] --> API["OTel API<br/>vendor-neutral"]
+  API --> SDK["OTel SDK<br/>batcher, sampler"]
+  AUTO["Auto-instrumentation<br/>agent / init-hook"] -.->|patches http, db, grpc| API
   SDK -->|OTLP gRPC/HTTP| COL[OTel Collector]
-  BAG[Baggage<br/>tenant_id=acme] -.->|propagates via header| API
-  RES[Resource<br/>service.name=checkout<br/>deployment.environment=prod] -.-> SDK
+  BAG["Baggage<br/>tenant_id=acme"] -.->|propagates via header| API
+  RES["Resource<br/>service.name=checkout<br/>deployment.environment=prod"] -.-> SDK
   COL --> TEMPO[Tempo]
   COL --> PROM[Prometheus]
   COL --> LOKI[Loki]
@@ -984,15 +1066,15 @@ Jaeger / Tempo / Datadog — swap exporters only
 
 ```mermaid
 flowchart LR
-  APP1[App OTLP] --> R1[Receiver<br/>otlp]
-  PROM[Prometheus scrape] --> R2[Receiver<br/>prometheus]
-  HOST[Host metrics] --> R3[Receiver<br/>hostmetrics]
-  R1 --> PIPE[Processors<br/>batch → memory_limiter<br/>→ tail_sampling → redact]
+  APP1[App OTLP] --> R1["Receiver<br/>otlp"]
+  PROM[Prometheus scrape] --> R2["Receiver<br/>prometheus"]
+  HOST[Host metrics] --> R3["Receiver<br/>hostmetrics"]
+  R1 --> PIPE["Processors<br/>batch → memory_limiter<br/>→ tail_sampling → redact"]
   R2 --> PIPE
   R3 --> PIPE
-  PIPE --> E1[Exporter<br/>otlp → Tempo]
-  PIPE --> E2[Exporter<br/>prometheusremotewrite]
-  PIPE --> E3[Exporter<br/>loki]
+  PIPE --> E1["Exporter<br/>otlp → Tempo"]
+  PIPE --> E2["Exporter<br/>prometheusremotewrite"]
+  PIPE --> E3["Exporter<br/>loki"]
 ```
 
 - **Receivers** = "how data enters." `otlp`, `prometheus`, `filelog`, `hostmetrics`, `kafka`, `jaeger` (for migrations).
@@ -1131,10 +1213,10 @@ apps untouched, PII never leaves cluster
 
 ```mermaid
 flowchart LR
-  SLI[SLI<br/>successful_requests / total<br/>measured every 1m] --> AGG[Aggregate<br/>30-day window]
+  SLI["SLI<br/>successful_requests / total<br/>measured every 1m"] --> AGG["Aggregate<br/>30-day window"]
   AGG --> CUR[Current: 99.93%]
-  TGT[SLO<br/>target: 99.9%] --> BUDGET[Error budget<br/>0.1% = 43.2 min/month]
-  CUR --> REMAIN[Remaining budget<br/>= 30.2 min unused]
+  TGT["SLO<br/>target: 99.9%"] --> BUDGET["Error budget<br/>0.1% = 43.2 min/month"]
+  CUR --> REMAIN["Remaining budget<br/>= 30.2 min unused"]
   BUDGET --> POLICY{Budget < 0 ?}
   REMAIN --> POLICY
   POLICY -->|yes| FREEZE[Freeze releases]
@@ -1237,9 +1319,9 @@ budget spent → freeze, reliability work
 ```mermaid
 flowchart TB
   PROM[Prometheus] -->|alerts with labels| AM[Alertmanager]
-  AM --> GROUP[Grouping<br/>by cluster+alertname]
-  GROUP --> INHIBIT[Inhibition<br/>NodeDown silences PodDown]
-  INHIBIT --> SILENCE[Silence check<br/>matcher: env=stg&maint=true]
+  AM --> GROUP["Grouping<br/>by cluster+alertname"]
+  GROUP --> INHIBIT["Inhibition<br/>NodeDown silences PodDown"]
+  INHIBIT --> SILENCE["Silence check<br/>matcher: env=stg&maint=true"]
   SILENCE --> ROUTE{Router tree}
   ROUTE -->|team=payments,sev=page| PD[PagerDuty]
   ROUTE -->|sev=ticket| JIRA[Jira]
@@ -1381,6 +1463,10 @@ PD routes payments→payments on-call
 
 <span class="stage reason">Reason</span>
 
+!!! prod-danger "The Cardinality Explosion Anti-Pattern"
+    **Never use high-cardinality values (user IDs, trace IDs, URLs) as Prometheus label values.**
+    Each unique label combination creates a new time series. 1M users × 1 metric = 1M series → OOM crash. Use histograms for per-request data and keep label cardinality under 10,000 per metric.
+
 **Why this exists.** Every unique combination of label values creates a new **time series**. `http_requests_total{method="GET", status="200", path="/health"}` = 1 series. Add a `user_id` label and each of your 50M users creates a series. Prometheus RAM explodes, scrape times hit 30s+, queries OOM. One intern adds `request_id` to a metric at 14:00, the cluster is dead by 14:05. This isn't a bug, it's physics — TSDBs index by label set.
 
 <span class="stage thinking">Thinking</span>
@@ -1396,7 +1482,7 @@ flowchart LR
   DIM2 --> PROD
   DIM3 --> PROD
   M --> BAD[+ user_id: 50M unique]
-  BAD --> BOOM[3×3×2×50M = 900M series ✗<br/>~3.5 TB RAM]
+  BAD --> BOOM["3×3×2×50M = 900M series ✗<br/>~3.5 TB RAM"]
 ```
 
 - **Cardinality = the product of unique values per label.** Not the sum.

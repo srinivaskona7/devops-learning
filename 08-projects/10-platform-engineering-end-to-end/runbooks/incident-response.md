@@ -50,7 +50,7 @@ This is the single most impactful action in the first 5 minutes. Do not wait for
 
 ## Diagnosis flowchart
 
-```
+```bash
 Alert fires
     │
     ▼

@@ -78,7 +78,7 @@ A stack has four management groups:
 
 Each line in `/etc/pam.d/<svc>`:
 
-```
+```text
 <group>   <control>   <module>.so   [args]
 ```
 
@@ -131,7 +131,7 @@ loginctl user-status alice
 
 ### SSH path specifics
 
-```
+```text
 sshd reads /etc/ssh/sshd_config
   → AuthorizedKeysFile ~/.ssh/authorized_keys
   → PAM stack /etc/pam.d/sshd

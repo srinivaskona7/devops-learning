@@ -12,10 +12,10 @@
 ```mermaid
 flowchart LR
   Dev[docker push] --> R{Registry}
-  R --> DH[Docker Hub<br/>docker.io]
-  R --> GHCR[GitHub Container Registry<br/>ghcr.io]
-  R --> GCR[Google Artifact Registry<br/>*-docker.pkg.dev]
-  R --> PRIV[Self-hosted<br/>registry:2]
+  R --> DH["Docker Hub<br/>docker.io"]
+  R --> GHCR["GitHub Container Registry<br/>ghcr.io"]
+  R --> GCR["Google Artifact Registry<br/>*-docker.pkg.dev"]
+  R --> PRIV["Self-hosted<br/>registry:2"]
   K8s[Kubernetes / docker pull] --> R
 ```
 

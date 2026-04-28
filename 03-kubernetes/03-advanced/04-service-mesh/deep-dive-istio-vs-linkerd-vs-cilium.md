@@ -39,13 +39,13 @@ flowchart TB
         S2 --- P2[Pod B]
     end
     subgraph Ambient [Ambient model: Istio Ambient]
-        PA[Pod A] --> ZTA[ztunnel<br/>per-node L4]
+        PA[Pod A] --> ZTA["ztunnel<br/>per-node L4"]
         ZTA -->|HBONE mTLS| ZTB[ztunnel]
         ZTB --> PB[Pod B]
-        ZTA -.optional L7.-> WL[waypoint proxy<br/>per-namespace Envoy]
+        ZTA -.optional L7.-> WL["waypoint proxy<br/>per-namespace Envoy"]
     end
     subgraph eBPF [eBPF model: Cilium]
-        PE1[Pod A] --> EBPF1[eBPF program<br/>kernel TC/socket]
+        PE1[Pod A] --> EBPF1["eBPF program<br/>kernel TC/socket"]
         EBPF1 -->|WireGuard or IPsec| EBPF2[eBPF program]
         EBPF2 --> PE2[Pod B]
         EBPF1 -.L7.-> ENV[Envoy DaemonSet]
@@ -66,15 +66,15 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph Istio
-        I_API[CRDs: VirtualService<br/>DestinationRule<br/>Gateway / Ambient: Waypoint] --> ISTIOD[istiod<br/>config + CA + xDS]
+        I_API["CRDs: VirtualService<br/>DestinationRule<br/>Gateway / Ambient: Waypoint"] --> ISTIOD["istiod<br/>config + CA + xDS"]
         ISTIOD -->|xDS| I_DP[Envoy sidecar / ztunnel / waypoint]
     end
     subgraph Linkerd
-        L_API[CRDs: ServiceProfile<br/>HTTPRoute Gateway API] --> LCTRL[linkerd-controller<br/>identity + destination]
+        L_API["CRDs: ServiceProfile<br/>HTTPRoute Gateway API"] --> LCTRL["linkerd-controller<br/>identity + destination"]
         LCTRL -->|gRPC| L_DP[linkerd2-proxy Rust]
     end
     subgraph Cilium
-        C_API[CRDs: CiliumNetworkPolicy<br/>CiliumEnvoyConfig<br/>Gateway API] --> AGENT[cilium-agent<br/>per node]
+        C_API["CRDs: CiliumNetworkPolicy<br/>CiliumEnvoyConfig<br/>Gateway API"] --> AGENT["cilium-agent<br/>per node"]
         AGENT --> EBPF[eBPF maps]
         AGENT -.L7.-> ENVOY[Envoy DS]
     end

@@ -10,13 +10,9 @@ Every networking bug — dropped packets, mysterious latency, iptables rules tha
 
 A received packet traverses three worlds:
 
-```
-+----------------+   +----------------+   +----------------+
-|   Hardware     |   |    Kernel      |   |   Userspace    |
-|  NIC + DMA     |-->|  IRQ + softirq |-->|  socket recv   |
-|  ring buffer   |   |  netfilter     |   |  buffer        |
-+----------------+   |  TCP/IP stack  |   +----------------+
-                     +----------------+
+```mermaid
+flowchart LR
+    HW["Hardware\nNIC + DMA\nring buffer"] --> KN["Kernel\nIRQ + softirq\nnetfilter\nTCP/IP stack"] --> US["Userspace\nsocket recv\nbuffer"]
 ```
 
 The kernel does NOT process packets in the hardware interrupt — it only ACKs the IRQ and schedules a **softirq** (`NET_RX_SOFTIRQ`) which runs the actual stack work outside the IRQ context. This is why `top`'s `si` column matters under load.

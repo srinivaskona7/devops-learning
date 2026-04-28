@@ -23,7 +23,7 @@ The four pillars:
 
 ```mermaid
 flowchart LR
-    T[default.target<br/>e.g. multi-user] --> S1[network.target]
+    T["default.target<br/>e.g. multi-user"] --> S1[network.target]
     T --> S2[remote-fs.target]
     T --> S3[basic.target]
 
@@ -263,7 +263,7 @@ journalctl -u backup.service --since today
 
 ### OnCalendar shortcuts
 
-```
+```text
 minutely        = *-*-* *:*:00
 hourly          = *-*-* *:00:00
 daily           = *-*-* 00:00:00
@@ -282,7 +282,7 @@ Validate with: `systemd-analyze calendar 'Mon *-*-* 09:00:00'`.
 
 A **slice** is a cgroup that holds units; a **scope** is a cgroup created for processes started outside systemd (e.g. by login).
 
-```
+```text
 -.slice                       (root)
   ├─ system.slice             (system services)
   │   ├─ nginx.service
@@ -353,7 +353,7 @@ systemctl show nginx.service | less        # all resolved properties
 
 ### Drop-in load order
 
-```
+```text
 /etc/systemd/system/<unit>.d/*.conf      <- highest priority (admin)
 /run/systemd/system/<unit>.d/*.conf      <- runtime (transient)
 /usr/lib/systemd/system/<unit>.d/*.conf  <- vendor
@@ -433,7 +433,7 @@ journalctl --vacuum-time=14d
 
 ## Walkthrough: diagnose a flapping service
 
-```
+```bash
 $ systemctl status myapp.service
 ● myapp.service - My App
      Loaded: loaded (/etc/systemd/system/myapp.service; enabled)
@@ -474,7 +474,7 @@ active
 
 ## Walkthrough: socket activation for zero-downtime restart
 
-```
+```bash
 $ cat /etc/systemd/system/myapi.socket
 [Unit]
 Description=myapi listening socket

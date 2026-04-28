@@ -11,9 +11,9 @@ The two pseudo-filesystems `procfs` and `sysfs` are how Linux exposes its **inte
 ```mermaid
 flowchart LR
     subgraph procfs["/proc — legacy + per-process"]
-        P1[PID dirs<br/>per-process state]
-        P2[Global info<br/>cpuinfo, meminfo, loadavg]
-        P3[/proc/sys<br/>writable kernel tunables]
+        P1["PID dirs<br/>per-process state"]
+        P2["Global info<br/>cpuinfo, meminfo, loadavg"]
+        P3["/proc/sys<br/>writable kernel tunables"]
     end
     subgraph sysfs["/sys — modern device model"]
         S1[/sys/class — by function]
@@ -22,7 +22,7 @@ flowchart LR
         S4[/sys/fs/cgroup — cgroup v2]
         S5[/sys/module — loaded modules]
     end
-    KOBJ[kobject layer<br/>+ ksets] --> sysfs
+    KOBJ["kobject layer<br/>+ ksets"] --> sysfs
     TASK[task_struct, mm_struct, ...] --> procfs
 ```
 

@@ -13,8 +13,8 @@ Bare Pods don't self-heal across node failures. ReplicaSets keep N pods alive bu
 
 ```mermaid
 flowchart TB
-  D[Deployment<br/>nginx v2] --> RS2[ReplicaSet v2<br/>3 pods]
-  D -.old.-> RS1[ReplicaSet v1<br/>0 pods]
+  D["Deployment<br/>nginx v2"] --> RS2["ReplicaSet v2<br/>3 pods"]
+  D -.old.-> RS1["ReplicaSet v1<br/>0 pods"]
   RS2 --> P1[Pod v2]
   RS2 --> P2[Pod v2]
   RS2 --> P3[Pod v2]

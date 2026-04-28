@@ -12,7 +12,7 @@ In cgroups **v1**, each controller (cpu, memory, blkio, pids, ...) had its **own
 
 In cgroups **v2**, there is **one** tree. A process belongs to exactly one cgroup, and that cgroup enables a subset of controllers via `cgroup.subtree_control`.
 
-```
+```bash
 /sys/fs/cgroup/                             <-- root cgroup (v2 mount)
 ├── cgroup.controllers                      <-- controllers available
 ├── cgroup.subtree_control                  <-- controllers enabled for children
@@ -50,13 +50,13 @@ The leading `0::` means cgroup v2 unified hierarchy.
 
 ```mermaid
 flowchart TB
-    R[Root cgroup<br/>sys/fs/cgroup] --> S[system.slice]
+    R["Root cgroup<br/>sys/fs/cgroup"] --> S[system.slice]
     R --> U[user.slice]
     R --> M[machine.slice]
     S --> SVC1[nginx.service]
     S --> SVC2[docker.service]
-    SVC2 --> CT1[docker-abc.scope<br/>memory.max=2G<br/>cpu.max=200k 100k]
-    SVC2 --> CT2[docker-def.scope<br/>memory.max=512M]
+    SVC2 --> CT1["docker-abc.scope<br/>memory.max=2G<br/>cpu.max=200k 100k"]
+    SVC2 --> CT2["docker-def.scope<br/>memory.max=512M"]
     M --> POD1[kubepods.slice/podXYZ.slice]
     POD1 --> CTR1[cri-containerd-aaa.scope]
     POD1 --> CTR2[cri-containerd-bbb.scope]
@@ -129,7 +129,7 @@ cat memory.events
 flowchart LR
     A[Allocation] --> B{usage <= memory.high?}
     B -->|yes| OK[allocate normally]
-    B -->|no| THR[throttle: invoke direct reclaim<br/>sleep, free pages]
+    B -->|no| THR["throttle: invoke direct reclaim<br/>sleep, free pages"]
     THR --> C{usage <= memory.max?}
     C -->|yes| OK
     C -->|no| OOM[invoke cgroup OOM killer]
