@@ -15,32 +15,39 @@
 
 <div class="hub" markdown>
 
-<a class="tile lead" href="03-kubernetes/01-core/README.md" markdown>
+<a class="tile" href="03-kubernetes/01-core/README.md" markdown>
 <span class="num">03</span>
 <h3>Kubernetes</h3>
 <p class="muted">Core · Strategies · Advanced — the heart of the curriculum. Pods to operators, rolling to GitOps.</p>
 <span class="tag">46 h · intermediate → expert</span>
 </a>
 
-<a class="tile top" href="01-linux/README.md" markdown>
+<a class="tile" href="01-linux/README.md" markdown>
 <span class="num">01–02</span>
 <h3>Foundations</h3>
 <p class="muted">Linux internals, bash, systemd, Docker layers, BuildKit, Compose.</p>
 <span class="tag">22 h · beginner → intermediate</span>
 </a>
 
-<a class="tile mid-l" href="04-helm/README.md" markdown>
+<a class="tile" href="04-helm/README.md" markdown>
 <span class="num">04–07</span>
 <h3>Platform layer</h3>
 <p class="muted">Helm, Prometheus/Grafana/OTel, Security (SLSA L3), Terraform EKS.</p>
 <span class="tag">44 h · intermediate → expert</span>
 </a>
 
-<a class="tile mid-r" href="08-projects/README.md" markdown>
+<a class="tile" href="08-projects/README.md" markdown>
 <span class="num">08</span>
 <h3>10 Projects</h3>
 <p class="muted">Docker → GitOps → Progressive delivery → Platform engineering.</p>
 <span class="tag">80+ h · beginner → expert</span>
+</a>
+
+<a class="tile" href="15-ai-for-devops/README.md" markdown>
+<span class="num">15</span>
+<h3>AI for DevOps</h3>
+<p class="muted">AIOps, Prompt Engineering for IaC, RAG for Runbooks, Platform Intelligence.</p>
+<span class="tag">16 h · intermediate → expert</span>
 </a>
 
 </div>
@@ -137,6 +144,12 @@ Build CRDs and operators from scratch — 10 real-world operator projects, RBAC,
 <div class="stop" data-step="15" markdown>
 #### 14 · OPA & Kyverno
 Policy as Code — shift compliance left with Gatekeeper, Rego, Kyverno · 10 policy projects
+</div>
+
+<div class="stop" data-step="16" markdown>
+#### 15 · AI for DevOps
+AIOps, LLMs for Infrastructure as Code, Intelligent Runbooks, and Platform Intelligence models.
+<span class="level expert">expert</span> — [Open →](15-ai-for-devops/README.md)
 </div>
 
 </div>
@@ -238,6 +251,7 @@ make up && make test && make perf && make down
 | 12 | [`12-golang`](./12-golang) | Go for DevOps — foundations, client-go, operators, CLI | Advanced | — |
 | 13 | [`13-operators`](./13-operators) | Kubernetes Operators & CRDs | Advanced → Expert | 20 hrs |
 | 14 | [`14-policy-as-code`](./14-policy-as-code) | OPA & Kyverno — Policy as Code | Intermediate → Expert | 16 hrs |
+| 15 | [`15-ai-for-devops`](./15-ai-for-devops) | AI & Data Concepts in DevOps, AIOps, Prompt Eng | Expert | 16 hrs |
 
 ## Contributing
 
