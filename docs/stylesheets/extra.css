@@ -1507,3 +1507,53 @@ html { scroll-behavior: smooth; }
   box-shadow: 0 2px 0 #6366f1;
   color: #e5e7eb;
 }
+
+/* ---------- Mermaid Diagram Stitch Styling ------------------------- */
+/* Make Mermaid diagrams fit seamlessly into the Stitch premium design */
+.mermaid svg {
+  background: var(--dl-bg-alt);
+  border: 1px solid var(--dl-border);
+  border-radius: var(--dl-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--dl-shadow-sm);
+  max-width: 100%;
+}
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon {
+  fill: var(--dl-bg) !important;
+  stroke: var(--dl-border) !important;
+  stroke-width: 1px !important;
+  rx: var(--dl-radius-sm) !important; /* rounded corners for nodes */
+  ry: var(--dl-radius-sm) !important;
+}
+.mermaid .node text {
+  fill: var(--dl-fg) !important;
+  font-family: inherit !important;
+  font-weight: 500;
+}
+.mermaid .edgePath .path {
+  stroke: var(--dl-indigo-soft) !important;
+  stroke-width: 2px !important;
+}
+.mermaid .edgeLabel {
+  background-color: var(--dl-bg-alt) !important;
+  color: var(--dl-fg-muted) !important;
+  font-family: inherit !important;
+  font-size: var(--dl-fs-small) !important;
+}
+.mermaid .cluster rect {
+  fill: var(--dl-bg-alt) !important;
+  stroke: var(--dl-border) !important;
+  stroke-dasharray: 4 !important;
+  rx: var(--dl-radius-md) !important;
+  ry: var(--dl-radius-md) !important;
+}
+.mermaid .cluster text {
+  fill: var(--dl-fg-muted) !important;
+  font-weight: bold;
+}
+[data-md-color-scheme="slate"] .mermaid svg {
+  background: var(--dl-bg-alt);
+}

@@ -80,6 +80,13 @@ plugins:
   - same-dir
   - search
   - mermaid2
+  - kroki:
+      ServerURL: !ENV [KROKI_SERVER_URL, 'https://kroki.io']
+      EnableBlockDiag: false
+      Enablebpmn: false
+      EnableExcalidraw: true
+      EnableMermaid: false
+      EnableDiagramsnet: false
   - glightbox:
       touchNavigation: true
       loop: false
