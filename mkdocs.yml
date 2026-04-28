@@ -157,6 +157,8 @@ nav:
       - 03 Advanced:
           - Overview: 03-kubernetes/03-advanced/README.md
           - Commands: 03-kubernetes/03-advanced/commands.md
+      - 03 Production Best Practices:
+          - Overview: 03-kubernetes/04-production-best-practices/README.md
 
   - Platform:
       - 04 Helm:
