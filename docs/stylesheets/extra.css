@@ -65,6 +65,12 @@ html, body, .md-typeset {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--dl-bg);
+  background-image: 
+    linear-gradient(rgba(34, 211, 238, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-attachment: fixed;
 }
 .md-typeset { font-size: var(--dl-fs-body); line-height: 1.65; }
 
@@ -227,10 +233,15 @@ html { scroll-behavior: smooth; }
   animation: dl-meshDrift 22s ease-in-out infinite alternate;
 }
 .hero::after {
-  animation-duration: 30s;
-  animation-direction: alternate-reverse;
-  opacity: 0.6;
-  mix-blend-mode: screen;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  z-index: -1;
+  pointer-events: none;
 }
 @keyframes dl-meshDrift {
   0%   { transform: translate3d(-2%, -1%, 0) scale(1); }
