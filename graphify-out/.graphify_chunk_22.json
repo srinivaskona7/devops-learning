@@ -1,0 +1,745 @@
+{
+  "nodes": [
+    {
+      "id": "docker_concepts_container",
+      "label": "Container Concept",
+      "file_type": "concept",
+      "source_file": "02-docker/01-concepts/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_concepts_namespaces",
+      "label": "Linux Namespaces (mnt, pid, net, uts, ipc, user, cgroup)",
+      "file_type": "concept",
+      "source_file": "02-docker/01-concepts/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_concepts_cgroups",
+      "label": "Control Groups (cgroups)",
+      "file_type": "concept",
+      "source_file": "02-docker/01-concepts/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_concepts_capabilities",
+      "label": "Linux Capabilities",
+      "file_type": "concept",
+      "source_file": "02-docker/01-concepts/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_concepts_oci",
+      "label": "Open Container Initiative (OCI) Specification",
+      "file_type": "concept",
+      "source_file": "02-docker/01-concepts/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_concepts_image_layers",
+      "label": "Docker Image Layers",
+      "file_type": "concept",
+      "source_file": "02-docker/01-concepts/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_runtime_stack_dockerd",
+      "label": "dockerd (moby engine)",
+      "file_type": "concept",
+      "source_file": "02-docker/01-concepts/deep-dive-runtime-stack.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_runtime_stack_containerd",
+      "label": "containerd",
+      "file_type": "concept",
+      "source_file": "02-docker/01-concepts/deep-dive-runtime-stack.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_runtime_stack_shim",
+      "label": "containerd-shim",
+      "file_type": "concept",
+      "source_file": "02-docker/01-concepts/deep-dive-runtime-stack.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_runtime_stack_runc",
+      "label": "runc (OCI Runtime)",
+      "file_type": "concept",
+      "source_file": "02-docker/01-concepts/deep-dive-runtime-stack.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_dockerfile_instructions",
+      "label": "Dockerfile Instructions (FROM, RUN, COPY, ARG, ENV, etc)",
+      "file_type": "concept",
+      "source_file": "02-docker/03-images-and-dockerfile/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_dockerfile_entrypoint_cmd",
+      "label": "ENTRYPOINT vs CMD",
+      "file_type": "concept",
+      "source_file": "02-docker/03-images-and-dockerfile/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_dockerfile_layer_caching",
+      "label": "Layer Caching and Build Optimization",
+      "file_type": "concept",
+      "source_file": "02-docker/03-images-and-dockerfile/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_overlayfs_architecture",
+      "label": "OverlayFS Architecture",
+      "file_type": "concept",
+      "source_file": "02-docker/03-images-and-dockerfile/deep-dive-overlayfs.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_overlayfs_copyup",
+      "label": "OverlayFS Copy-Up Mechanism",
+      "file_type": "concept",
+      "source_file": "02-docker/03-images-and-dockerfile/deep-dive-overlayfs.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_overlayfs_whiteout",
+      "label": "OverlayFS Whiteout Files",
+      "file_type": "concept",
+      "source_file": "02-docker/03-images-and-dockerfile/deep-dive-overlayfs.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_volume_storage_bind_mount",
+      "label": "Bind Mount Storage",
+      "file_type": "concept",
+      "source_file": "02-docker/04-volumes-and-storage/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_volume_storage_named",
+      "label": "Named Volume Storage",
+      "file_type": "concept",
+      "source_file": "02-docker/04-volumes-and-storage/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_volume_storage_tmpfs",
+      "label": "tmpfs Storage",
+      "file_type": "concept",
+      "source_file": "02-docker/04-volumes-and-storage/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_image_optimization_base_selection",
+      "label": "Image Optimization: Base Selection",
+      "file_type": "concept",
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_image_optimization_multistage",
+      "label": "Multi-Stage Build Optimization",
+      "file_type": "concept",
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_image_optimization_dockerignore",
+      "label": ".dockerignore",
+      "file_type": "concept",
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_image_optimization_layer_ordering",
+      "label": "Layer Ordering by Change Frequency",
+      "file_type": "concept",
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_security_non_root_user",
+      "label": "Security: Non-Root User",
+      "file_type": "concept",
+      "source_file": "02-docker/09-security/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_security_pin_digest",
+      "label": "Security: Pin by Digest",
+      "file_type": "concept",
+      "source_file": "02-docker/09-security/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_security_read_only_filesystem",
+      "label": "Security: Read-Only Root Filesystem",
+      "file_type": "concept",
+      "source_file": "02-docker/09-security/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_security_drop_capabilities",
+      "label": "Security: Drop Capabilities",
+      "file_type": "concept",
+      "source_file": "02-docker/09-security/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_security_vulnerability_scanning",
+      "label": "Vulnerability Scanning (Trivy, Grype)",
+      "file_type": "concept",
+      "source_file": "02-docker/09-security/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_security_image_signing",
+      "label": "Image Signing with cosign/Sigstore",
+      "file_type": "concept",
+      "source_file": "02-docker/09-security/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_buildkit_overview",
+      "label": "BuildKit Overview",
+      "file_type": "concept",
+      "source_file": "02-docker/10-buildkit-and-buildx/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_buildkit_buildx",
+      "label": "buildx CLI",
+      "file_type": "concept",
+      "source_file": "02-docker/10-buildkit-and-buildx/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_buildkit_multiplatform",
+      "label": "Multi-Platform Builds",
+      "file_type": "concept",
+      "source_file": "02-docker/10-buildkit-and-buildx/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_buildkit_cache_mount",
+      "label": "BuildKit Cache Mounts (--mount=type=cache)",
+      "file_type": "concept",
+      "source_file": "02-docker/10-buildkit-and-buildx/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_buildkit_secret_mount",
+      "label": "BuildKit Secret Mounts",
+      "file_type": "concept",
+      "source_file": "02-docker/10-buildkit-and-buildx/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_buildkit_cache_export",
+      "label": "BuildKit Cache Export to Registry",
+      "file_type": "concept",
+      "source_file": "02-docker/10-buildkit-and-buildx/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_buildkit_llb",
+      "label": "Low Level Build (LLB)",
+      "file_type": "concept",
+      "source_file": "02-docker/10-buildkit-and-buildx/deep-dive-llb-and-cache.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_buildkit_frontend",
+      "label": "BuildKit Frontends",
+      "file_type": "concept",
+      "source_file": "02-docker/10-buildkit-and-buildx/deep-dive-llb-and-cache.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_buildkit_parallel_execution",
+      "label": "Parallel Execution in BuildKit",
+      "file_type": "concept",
+      "source_file": "02-docker/10-buildkit-and-buildx/deep-dive-llb-and-cache.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_mastery_eli10",
+      "label": "Docker Explained for 10-Year-Olds",
+      "file_type": "document",
+      "source_file": "02-docker/_mastery/eli10.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_mastery_architect_qa",
+      "label": "Architect-Level Q&A (15-year experience)",
+      "file_type": "document",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_mastery_visual_flows",
+      "label": "Visual Flows: 10 Docker Operations",
+      "file_type": "document",
+      "source_file": "02-docker/_mastery/visual-flows.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_image_distroless",
+      "label": "Distroless Base Images",
+      "file_type": "concept",
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_image_alpine",
+      "label": "Alpine Base Image",
+      "file_type": "concept",
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_image_scratch",
+      "label": "Scratch Base Image",
+      "file_type": "concept",
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_runtime_crun",
+      "label": "crun OCI Runtime",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_runtime_gvisor",
+      "label": "gVisor Userspace Runtime",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_runtime_kata",
+      "label": "Kata Containers (VM-based)",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_storage_overlay2",
+      "label": "overlay2 Storage Driver",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_networking_bridge",
+      "label": "Bridge Network Mode",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_networking_host",
+      "label": "Host Network Mode",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_networking_macvlan",
+      "label": "macvlan Network",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_registry_distribution",
+      "label": "Registry Distribution and Tiering",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_registry_harbor",
+      "label": "Harbor Registry",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_multiarch_manifest",
+      "label": "Multi-Arch Image Manifest",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_sbom_provenance",
+      "label": "SBOM and Provenance Attestation",
+      "file_type": "concept",
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "captured_at": "2026-05-01"
+    }
+  ],
+  "edges": [
+    {
+      "source": "docker_concepts_container",
+      "target": "docker_concepts_namespaces",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/01-concepts/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_concepts_container",
+      "target": "docker_concepts_cgroups",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/01-concepts/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_concepts_container",
+      "target": "docker_concepts_capabilities",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/01-concepts/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_concepts_container",
+      "target": "docker_concepts_oci",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/01-concepts/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_concepts_container",
+      "target": "docker_concepts_image_layers",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/01-concepts/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_runtime_stack_dockerd",
+      "target": "docker_runtime_stack_containerd",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/01-concepts/deep-dive-runtime-stack.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_runtime_stack_containerd",
+      "target": "docker_runtime_stack_shim",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/01-concepts/deep-dive-runtime-stack.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_runtime_stack_shim",
+      "target": "docker_runtime_stack_runc",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/01-concepts/deep-dive-runtime-stack.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_dockerfile_entrypoint_cmd",
+      "target": "docker_dockerfile_instructions",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/03-images-and-dockerfile/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_dockerfile_layer_caching",
+      "target": "docker_dockerfile_instructions",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/03-images-and-dockerfile/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_overlayfs_architecture",
+      "target": "docker_concepts_image_layers",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/03-images-and-dockerfile/deep-dive-overlayfs.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_overlayfs_copyup",
+      "target": "docker_overlayfs_architecture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/03-images-and-dockerfile/deep-dive-overlayfs.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_overlayfs_whiteout",
+      "target": "docker_overlayfs_architecture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/03-images-and-dockerfile/deep-dive-overlayfs.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_volume_storage_bind_mount",
+      "target": "docker_concepts_container",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/04-volumes-and-storage/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_volume_storage_named",
+      "target": "docker_concepts_container",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/04-volumes-and-storage/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_image_optimization_base_selection",
+      "target": "docker_image_distroless",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_image_optimization_base_selection",
+      "target": "docker_image_alpine",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_image_optimization_multistage",
+      "target": "docker_image_optimization_base_selection",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_image_optimization_layer_ordering",
+      "target": "docker_dockerfile_layer_caching",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/08-image-optimization/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_security_non_root_user",
+      "target": "docker_concepts_capabilities",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/09-security/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_security_drop_capabilities",
+      "target": "docker_concepts_capabilities",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/09-security/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_buildkit_overview",
+      "target": "docker_buildkit_llb",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/10-buildkit-and-buildx/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_buildkit_buildx",
+      "target": "docker_buildkit_multiplatform",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/10-buildkit-and-buildx/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_buildkit_cache_mount",
+      "target": "docker_dockerfile_layer_caching",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/10-buildkit-and-buildx/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_buildkit_secret_mount",
+      "target": "docker_security_image_signing",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "02-docker/10-buildkit-and-buildx/README.md",
+      "weight": 0.7
+    },
+    {
+      "source": "docker_buildkit_llb",
+      "target": "docker_buildkit_frontend",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/10-buildkit-and-buildx/deep-dive-llb-and-cache.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_buildkit_parallel_execution",
+      "target": "docker_buildkit_llb",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/10-buildkit-and-buildx/deep-dive-llb-and-cache.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_mastery_eli10",
+      "target": "docker_concepts_container",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/eli10.md",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "source": "docker_mastery_eli10",
+      "target": "docker_concepts_namespaces",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/eli10.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_mastery_eli10",
+      "target": "docker_concepts_cgroups",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/eli10.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_runtime_crun",
+      "target": "docker_runtime_stack_runc",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_runtime_gvisor",
+      "target": "docker_runtime_stack_runc",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_runtime_kata",
+      "target": "docker_runtime_stack_runc",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_storage_overlay2",
+      "target": "docker_overlayfs_architecture",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_networking_bridge",
+      "target": "docker_concepts_container",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_networking_host",
+      "target": "docker_concepts_container",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_networking_macvlan",
+      "target": "docker_concepts_container",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_registry_distribution",
+      "target": "docker_multiarch_manifest",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_sbom_provenance",
+      "target": "docker_security_image_signing",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/_mastery/architect-qa.md",
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 95000,
+  "output_tokens": 4200
+}

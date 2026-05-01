@@ -1,0 +1,696 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+              - generic [ref=e53]: Search or jump to...
+              - img [ref=e55]
+            - link "Sign in" [ref=e59] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+            - link "Sign up" [ref=e60] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2Fsearch&source=header
+            - button "Appearance settings" [ref=e63] [cursor=pointer]:
+              - img
+  - main [ref=e66]:
+    - generic [ref=e69]:
+      - heading "repositories Search Results · topic:mcp-server stars:>100" [level=1] [ref=e70]
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - region "Filter by" [ref=e75]:
+            - heading "Filter by" [level=2] [ref=e76]
+            - list "Filter by" [ref=e81]:
+              - listitem [ref=e82]:
+                - list [ref=e83]:
+                  - listitem [ref=e84]:
+                    - link "Code (...) results" [ref=e85] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=code
+                      - generic:
+                        - img
+                      - generic [ref=e86]:
+                        - generic [ref=e87]: Code
+                        - generic:
+                          - generic: ...
+                          - generic: (...)
+                          - generic: results
+                  - listitem [ref=e88]:
+                    - link "Repositories results" [ref=e89] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=repositories
+                      - generic:
+                        - img
+                      - generic [ref=e90]:
+                        - generic [ref=e91]: Repositories
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e92]:
+                    - link "Issues results" [ref=e93] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=issues
+                      - generic:
+                        - img
+                      - generic [ref=e94]:
+                        - generic [ref=e95]: Issues
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e96]:
+                    - link "Pull requests results" [ref=e97] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=pullrequests
+                      - generic:
+                        - img
+                      - generic [ref=e98]:
+                        - generic [ref=e99]: Pull requests
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e100]:
+                    - link "Discussions results" [ref=e101] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=discussions
+                      - generic:
+                        - img
+                      - generic [ref=e102]:
+                        - generic [ref=e103]: Discussions
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e104]:
+                    - link "Users results" [ref=e105] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=users
+                      - generic:
+                        - img
+                      - generic [ref=e106]:
+                        - generic [ref=e107]: Users
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e108]:
+                    - button "More" [ref=e109] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e111]: More
+              - listitem [ref=e112]
+              - listitem [ref=e113]:
+                - heading "Languages" [level=3] [ref=e115]
+                - list "Languages" [ref=e116]:
+                  - listitem [ref=e117]:
+                    - link "Python" [ref=e118] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+language%3APython&type=repositories&s=updated&o=desc
+                      - generic "Python" [ref=e122]
+                  - listitem [ref=e123]:
+                    - link "TypeScript" [ref=e124] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+language%3ATypeScript&type=repositories&s=updated&o=desc
+                      - generic "TypeScript" [ref=e128]
+                  - listitem [ref=e129]:
+                    - link "Go" [ref=e130] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+language%3AGo&type=repositories&s=updated&o=desc
+                      - generic "Go" [ref=e134]
+                  - listitem [ref=e135]:
+                    - link "JavaScript" [ref=e136] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+language%3AJavaScript&type=repositories&s=updated&o=desc
+                      - generic "JavaScript" [ref=e140]
+                  - listitem [ref=e141]:
+                    - link "Rust" [ref=e142] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+language%3ARust&type=repositories&s=updated&o=desc
+                      - generic "Rust" [ref=e146]
+                  - listitem [ref=e147]:
+                    - link "Java" [ref=e148] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+language%3AJava&type=repositories&s=updated&o=desc
+                      - generic "Java" [ref=e152]
+                  - listitem [ref=e153]:
+                    - link "C#" [ref=e154] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+language%3AC%23&type=repositories&s=updated&o=desc
+                      - generic "C#" [ref=e158]
+                  - listitem [ref=e159]:
+                    - link "C++" [ref=e160] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+language%3AC%2B%2B&type=repositories&s=updated&o=desc
+                      - generic "C++" [ref=e164]
+                  - listitem [ref=e165]:
+                    - link "HTML" [ref=e166] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+language%3AHTML&type=repositories&s=updated&o=desc
+                      - generic "HTML" [ref=e170]
+                  - listitem [ref=e171]:
+                    - link "Jupyter Notebook" [ref=e172] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+language%3AJupyter+Notebook&type=repositories&s=updated&o=desc
+                      - generic "Jupyter Notebook" [ref=e176]
+                  - listitem [ref=e177]:
+                    - button "More languages..." [ref=e178] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "More languages..." [ref=e181]
+                  - listitem [ref=e182]
+              - listitem [ref=e183]:
+                - heading "Advanced" [level=3] [ref=e185]
+                - list "Advanced" [ref=e186]:
+                  - listitem [ref=e187]:
+                    - button "Owner" [ref=e188] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Owner" [ref=e192]
+                  - listitem [ref=e193]:
+                    - button "Size" [ref=e194] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Size" [ref=e198]
+                  - listitem [ref=e199]:
+                    - button "Number of followers" [ref=e200] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Number of followers" [ref=e204]
+                  - listitem [ref=e205]:
+                    - button "Number of forks" [ref=e206] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Number of forks" [ref=e210]
+                  - listitem [ref=e211]:
+                    - button "Number of stars" [ref=e212] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Number of stars" [ref=e216]
+                  - listitem [ref=e217]:
+                    - button "Date created" [ref=e218] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Date created" [ref=e222]
+                  - listitem [ref=e223]:
+                    - button "Date pushed" [ref=e224] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Date pushed" [ref=e228]
+                  - listitem [ref=e229]:
+                    - button "Topic" [ref=e230] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Topic" [ref=e234]
+                  - listitem [ref=e235]:
+                    - button "License" [ref=e236] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "License" [ref=e240]
+                  - listitem [ref=e241]:
+                    - button "Archived" [ref=e242] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Archived" [ref=e246]
+                  - listitem [ref=e247]:
+                    - link "Public" [ref=e248] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+is%3Apublic&type=repositories&s=updated&o=desc
+                      - generic:
+                        - img
+                      - generic "Public" [ref=e252]
+                  - listitem [ref=e253]:
+                    - link "Private" [ref=e254] [cursor=pointer]:
+                      - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100+is%3Aprivate&type=repositories&s=updated&o=desc
+                      - generic:
+                        - img
+                      - generic "Private" [ref=e258]
+              - listitem [ref=e259]
+              - listitem [ref=e260]:
+                - link "Advanced search" [ref=e261] [cursor=pointer]:
+                  - /url: /search/advanced
+                  - generic:
+                    - img
+                  - generic [ref=e263]: Advanced search
+          - slider "Draggable pane splitter" [ref=e265]
+        - generic [ref=e268]:
+          - generic [ref=e269]:
+            - generic [ref=e271]:
+              - generic [ref=e272]:
+                - generic [ref=e273]:
+                  - generic [ref=e274]: 676 results
+                  - generic [ref=e275]: (1 s)
+                - heading "676 results" [active] [level=2] [ref=e276]
+              - generic [ref=e277]:
+                - 'button "Sort by: Recently updated" [ref=e279] [cursor=pointer]':
+                  - generic [ref=e281]: "Sort by: Recently updated"
+                  - generic:
+                    - img
+                - button "Open column options" [ref=e283] [cursor=pointer]:
+                  - img [ref=e284]
+            - generic [ref=e288]:
+              - generic [ref=e290]:
+                - generic [ref=e291]:
+                  - heading "mksglu/context-mode" [level=3] [ref=e292]:
+                    - link "mksglu/context-mode" [ref=e296] [cursor=pointer]:
+                      - /url: /mksglu/context-mode
+                  - generic [ref=e297]: Context window optimization for AI coding agents. Sandboxes tool output, 98% reduction. 14 platforms
+                  - generic [ref=e298]:
+                    - link "skills" [ref=e300] [cursor=pointer]:
+                      - /url: /topics/skills
+                    - link "mcp" [ref=e302] [cursor=pointer]:
+                      - /url: /topics/mcp
+                    - link "opencode" [ref=e304] [cursor=pointer]:
+                      - /url: /topics/opencode
+                    - link "copilot" [ref=e306] [cursor=pointer]:
+                      - /url: /topics/copilot
+                    - link "codex" [ref=e308] [cursor=pointer]:
+                      - /url: /topics/codex
+                  - list [ref=e309]:
+                    - listitem [ref=e310]:
+                      - generic "TypeScript language" [ref=e313]: TypeScript
+                    - generic [ref=e314]: ·
+                    - listitem [ref=e315]:
+                      - link "10628 stars" [ref=e316] [cursor=pointer]:
+                        - /url: /mksglu/context-mode/stargazers
+                        - img [ref=e317]
+                        - generic [ref=e319]: 10.6k
+                    - generic [ref=e320]: ·
+                    - listitem [ref=e321]:
+                      - generic [ref=e322]:
+                        - text: Updated
+                        - generic "Apr 27, 2026, 6:25 PM UTC" [ref=e323]: 12 minutes ago
+                - generic [ref=e324]:
+                  - link "Star" [ref=e326] [cursor=pointer]:
+                    - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+                    - generic [ref=e327]:
+                      - generic:
+                        - img
+                      - generic [ref=e328]: Star
+                  - button "Sponsor mksglu/context-mode" [ref=e331] [cursor=pointer]:
+                    - generic [ref=e333]:
+                      - img [ref=e334]
+                      - text: Sponsor
+              - generic [ref=e337]:
+                - generic [ref=e338]:
+                  - heading "open-metadata/OpenMetadata" [level=3] [ref=e339]:
+                    - link "open-metadata/OpenMetadata" [ref=e343] [cursor=pointer]:
+                      - /url: /open-metadata/OpenMetadata
+                  - generic [ref=e344]: OpenMetadata is a unified metadata platform for data discovery, data observability, and data governance powered by a central metadata rep…
+                  - generic [ref=e345]:
+                    - link "metadata" [ref=e347] [cursor=pointer]:
+                      - /url: /topics/metadata
+                    - link "data-validation" [ref=e349] [cursor=pointer]:
+                      - /url: /topics/data-validation
+                    - link "mcp" [ref=e351] [cursor=pointer]:
+                      - /url: /topics/mcp
+                    - link "data-catalog" [ref=e353] [cursor=pointer]:
+                      - /url: /topics/data-catalog
+                    - link "data-discovery" [ref=e355] [cursor=pointer]:
+                      - /url: /topics/data-discovery
+                  - list [ref=e356]:
+                    - listitem [ref=e357]:
+                      - generic "TypeScript language" [ref=e360]: TypeScript
+                    - generic [ref=e361]: ·
+                    - listitem [ref=e362]:
+                      - link "13681 stars" [ref=e363] [cursor=pointer]:
+                        - /url: /open-metadata/OpenMetadata/stargazers
+                        - img [ref=e364]
+                        - generic [ref=e366]: 13.7k
+                    - generic [ref=e367]: ·
+                    - listitem [ref=e368]:
+                      - generic [ref=e369]:
+                        - text: Updated
+                        - generic "Apr 27, 2026, 6:32 PM UTC" [ref=e370]: 4 minutes ago
+                - generic [ref=e371]:
+                  - link "Star" [ref=e373] [cursor=pointer]:
+                    - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+                    - generic [ref=e374]:
+                      - generic:
+                        - img
+                      - generic [ref=e375]: Star
+                  - link "Sponsor @open-metadata" [ref=e378] [cursor=pointer]:
+                    - /url: /sponsors/open-metadata
+                    - generic [ref=e380]:
+                      - img [ref=e381]
+                      - text: Sponsor
+              - generic [ref=e384]:
+                - generic [ref=e385]:
+                  - heading "google-gemini/gemini-cli" [level=3] [ref=e386]:
+                    - link "google-gemini/gemini-cli" [ref=e390] [cursor=pointer]:
+                      - /url: /google-gemini/gemini-cli
+                  - generic [ref=e391]: An open-source AI agent that brings the power of Gemini directly into your terminal.
+                  - generic [ref=e392]:
+                    - link "cli" [ref=e394] [cursor=pointer]:
+                      - /url: /topics/cli
+                    - link "ai" [ref=e396] [cursor=pointer]:
+                      - /url: /topics/ai
+                    - link "gemini" [ref=e398] [cursor=pointer]:
+                      - /url: /topics/gemini
+                    - link "ai-agents" [ref=e400] [cursor=pointer]:
+                      - /url: /topics/ai-agents
+                    - link "gemini-api" [ref=e402] [cursor=pointer]:
+                      - /url: /topics/gemini-api
+                  - list [ref=e403]:
+                    - listitem [ref=e404]:
+                      - generic "TypeScript language" [ref=e407]: TypeScript
+                    - generic [ref=e408]: ·
+                    - listitem [ref=e409]:
+                      - link "102552 stars" [ref=e410] [cursor=pointer]:
+                        - /url: /google-gemini/gemini-cli/stargazers
+                        - img [ref=e411]
+                        - generic [ref=e413]: 103k
+                    - generic [ref=e414]: ·
+                    - listitem [ref=e415]:
+                      - generic [ref=e416]:
+                        - text: Updated
+                        - generic "Apr 27, 2026, 6:30 PM UTC" [ref=e417]: 7 minutes ago
+                - link "Star" [ref=e420] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+                  - generic [ref=e421]:
+                    - generic:
+                      - img
+                    - generic [ref=e422]: Star
+              - generic [ref=e424]:
+                - generic [ref=e425]:
+                  - heading "drhelius/Gearboy" [level=3] [ref=e426]:
+                    - link "drhelius/Gearboy" [ref=e430] [cursor=pointer]:
+                      - /url: /drhelius/Gearboy
+                  - generic [ref=e431]: Game Boy / Game Boy Color / Super Game Boy emulator, debugger and embedded MCP server for macOS, Windows, Linux, BSD and RetroArch.
+                  - generic [ref=e432]:
+                    - link "linux" [ref=e434] [cursor=pointer]:
+                      - /url: /topics/linux
+                    - link "emulator" [ref=e436] [cursor=pointer]:
+                      - /url: /topics/emulator
+                    - link "raspberry-pi" [ref=e438] [cursor=pointer]:
+                      - /url: /topics/raspberry-pi
+                    - link "gameboy" [ref=e440] [cursor=pointer]:
+                      - /url: /topics/gameboy
+                    - link "gameboy-emulator" [ref=e442] [cursor=pointer]:
+                      - /url: /topics/gameboy-emulator
+                  - list [ref=e443]:
+                    - listitem [ref=e444]:
+                      - generic "C++ language" [ref=e447]: C++
+                    - generic [ref=e448]: ·
+                    - listitem [ref=e449]:
+                      - link "1122 stars" [ref=e450] [cursor=pointer]:
+                        - /url: /drhelius/Gearboy/stargazers
+                        - img [ref=e451]
+                        - generic [ref=e453]: 1.1k
+                    - generic [ref=e454]: ·
+                    - listitem [ref=e455]:
+                      - generic [ref=e456]:
+                        - text: Updated
+                        - generic "Apr 27, 2026, 6:33 PM UTC" [ref=e457]: 3 minutes ago
+                - generic [ref=e458]:
+                  - link "Star" [ref=e460] [cursor=pointer]:
+                    - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+                    - generic [ref=e461]:
+                      - generic:
+                        - img
+                      - generic [ref=e462]: Star
+                  - button "Sponsor drhelius/Gearboy" [ref=e465] [cursor=pointer]:
+                    - generic [ref=e467]:
+                      - img [ref=e468]
+                      - text: Sponsor
+              - generic [ref=e471]:
+                - generic [ref=e472]:
+                  - heading "decocms/studio" [level=3] [ref=e473]:
+                    - link "decocms/studio" [ref=e477] [cursor=pointer]:
+                      - /url: /decocms/studio
+                  - generic [ref=e478]: Open-source control plane for your AI agents. Connect tools, hire agents, track every token and dollar
+                  - generic [ref=e479]:
+                    - link "nodejs" [ref=e481] [cursor=pointer]:
+                      - /url: /topics/nodejs
+                    - link "typescript" [ref=e483] [cursor=pointer]:
+                      - /url: /topics/typescript
+                    - link "ai" [ref=e485] [cursor=pointer]:
+                      - /url: /topics/ai
+                    - link "mcp" [ref=e487] [cursor=pointer]:
+                      - /url: /topics/mcp
+                    - link "workflows" [ref=e489] [cursor=pointer]:
+                      - /url: /topics/workflows
+                  - list [ref=e490]:
+                    - listitem [ref=e491]:
+                      - generic "TypeScript language" [ref=e494]: TypeScript
+                    - generic [ref=e495]: ·
+                    - listitem [ref=e496]:
+                      - link "362 stars" [ref=e497] [cursor=pointer]:
+                        - /url: /decocms/studio/stargazers
+                        - img [ref=e498]
+                        - generic [ref=e500]: "362"
+                    - generic [ref=e501]: ·
+                    - listitem [ref=e502]:
+                      - generic [ref=e503]:
+                        - text: Updated
+                        - generic "Apr 27, 2026, 6:14 PM UTC" [ref=e504]: 22 minutes ago
+                - link "Star" [ref=e507] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+                  - generic [ref=e508]:
+                    - generic:
+                      - img
+                    - generic [ref=e509]: Star
+              - generic [ref=e511]:
+                - generic [ref=e512]:
+                  - heading "alpic-ai/skybridge" [level=3] [ref=e513]:
+                    - link "alpic-ai/skybridge" [ref=e517] [cursor=pointer]:
+                      - /url: /alpic-ai/skybridge
+                  - generic [ref=e518]: Skybridge is a Full-Stack TypeScript framework for MCP Apps and ChatGPT Apps. Type-safe. React-powered. Platform-agnostic.
+                  - generic [ref=e519]:
+                    - link "react" [ref=e521] [cursor=pointer]:
+                      - /url: /topics/react
+                    - link "agent" [ref=e523] [cursor=pointer]:
+                      - /url: /topics/agent
+                    - link "typescript" [ref=e525] [cursor=pointer]:
+                      - /url: /topics/typescript
+                    - link "ai" [ref=e527] [cursor=pointer]:
+                      - /url: /topics/ai
+                    - link "tooling" [ref=e529] [cursor=pointer]:
+                      - /url: /topics/tooling
+                  - list [ref=e530]:
+                    - listitem [ref=e531]:
+                      - generic "TypeScript language" [ref=e534]: TypeScript
+                    - generic [ref=e535]: ·
+                    - listitem [ref=e536]:
+                      - link "1105 stars" [ref=e537] [cursor=pointer]:
+                        - /url: /alpic-ai/skybridge/stargazers
+                        - img [ref=e538]
+                        - generic [ref=e540]: 1.1k
+                    - generic [ref=e541]: ·
+                    - listitem [ref=e542]:
+                      - generic [ref=e543]:
+                        - text: Updated
+                        - generic "Apr 27, 2026, 6:01 PM UTC" [ref=e544]: 36 minutes ago
+                - link "Star" [ref=e547] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+                  - generic [ref=e548]:
+                    - generic:
+                      - img
+                    - generic [ref=e549]: Star
+              - generic [ref=e551]:
+                - generic [ref=e552]:
+                  - heading "n8n-io/n8n" [level=3] [ref=e553]:
+                    - link "n8n-io/n8n" [ref=e557] [cursor=pointer]:
+                      - /url: /n8n-io/n8n
+                  - generic [ref=e558]: Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ in…
+                  - generic [ref=e559]:
+                    - link "cli" [ref=e561] [cursor=pointer]:
+                      - /url: /topics/cli
+                    - link "workflow" [ref=e563] [cursor=pointer]:
+                      - /url: /topics/workflow
+                    - link "integrations" [ref=e565] [cursor=pointer]:
+                      - /url: /topics/integrations
+                    - link "development" [ref=e567] [cursor=pointer]:
+                      - /url: /topics/development
+                    - link "automation" [ref=e569] [cursor=pointer]:
+                      - /url: /topics/automation
+                  - list [ref=e570]:
+                    - listitem [ref=e571]:
+                      - generic "TypeScript language" [ref=e574]: TypeScript
+                    - generic [ref=e575]: ·
+                    - listitem [ref=e576]:
+                      - link "185829 stars" [ref=e577] [cursor=pointer]:
+                        - /url: /n8n-io/n8n/stargazers
+                        - img [ref=e578]
+                        - generic [ref=e580]: 186k
+                    - generic [ref=e581]: ·
+                    - listitem [ref=e582]:
+                      - generic [ref=e583]:
+                        - text: Updated
+                        - generic "Apr 27, 2026, 5:58 PM UTC" [ref=e584]: 39 minutes ago
+                - link "Star" [ref=e587] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+                  - generic [ref=e588]:
+                    - generic:
+                      - img
+                    - generic [ref=e589]: Star
+              - generic [ref=e591]:
+                - generic [ref=e592]:
+                  - heading "activepieces/activepieces" [level=3] [ref=e593]:
+                    - link "activepieces/activepieces" [ref=e597] [cursor=pointer]:
+                      - /url: /activepieces/activepieces
+                  - generic [ref=e598]: AI Agents & MCPs & AI Workflow Automation • (~400 MCP servers for AI agents) • AI Automation / AI Agent with MCPs • AI Workflows & AI Age…
+                  - generic [ref=e599]:
+                    - link "workflow" [ref=e601] [cursor=pointer]:
+                      - /url: /topics/workflow
+                    - link "mcp" [ref=e603] [cursor=pointer]:
+                      - /url: /topics/mcp
+                    - link "workflows" [ref=e605] [cursor=pointer]:
+                      - /url: /topics/workflows
+                    - link "workflow-automation" [ref=e607] [cursor=pointer]:
+                      - /url: /topics/workflow-automation
+                    - link "ai-agents" [ref=e609] [cursor=pointer]:
+                      - /url: /topics/ai-agents
+                  - list [ref=e610]:
+                    - listitem [ref=e611]:
+                      - generic "TypeScript language" [ref=e614]: TypeScript
+                    - generic [ref=e615]: ·
+                    - listitem [ref=e616]:
+                      - link "21937 stars" [ref=e617] [cursor=pointer]:
+                        - /url: /activepieces/activepieces/stargazers
+                        - img [ref=e618]
+                        - generic [ref=e620]: 21.9k
+                    - generic [ref=e621]: ·
+                    - listitem [ref=e622]:
+                      - generic [ref=e623]:
+                        - text: Updated
+                        - generic "Apr 27, 2026, 6:29 PM UTC" [ref=e624]: 8 minutes ago
+                - link "Star" [ref=e627] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+                  - generic [ref=e628]:
+                    - generic:
+                      - img
+                    - generic [ref=e629]: Star
+              - generic [ref=e631]:
+                - generic [ref=e632]:
+                  - heading "mongodb-js/mongodb-mcp-server" [level=3] [ref=e633]:
+                    - link "mongodb-js/mongodb-mcp-server" [ref=e637] [cursor=pointer]:
+                      - /url: /mongodb-js/mongodb-mcp-server
+                  - generic [ref=e638]: A Model Context Protocol server to connect to MongoDB databases and MongoDB Atlas Clusters.
+                  - generic [ref=e639]:
+                    - link "mongodb" [ref=e641] [cursor=pointer]:
+                      - /url: /topics/mongodb
+                    - link "mcp" [ref=e643] [cursor=pointer]:
+                      - /url: /topics/mcp
+                    - link "mongodb-database" [ref=e645] [cursor=pointer]:
+                      - /url: /topics/mongodb-database
+                    - link "mongodb-atlas" [ref=e647] [cursor=pointer]:
+                      - /url: /topics/mongodb-atlas
+                    - link "mcp-server" [ref=e649] [cursor=pointer]:
+                      - /url: /topics/mcp-server
+                  - list [ref=e650]:
+                    - listitem [ref=e651]:
+                      - generic "TypeScript language" [ref=e654]: TypeScript
+                    - generic [ref=e655]: ·
+                    - listitem [ref=e656]:
+                      - link "1009 stars" [ref=e657] [cursor=pointer]:
+                        - /url: /mongodb-js/mongodb-mcp-server/stargazers
+                        - img [ref=e658]
+                        - generic [ref=e660]: 1k
+                    - generic [ref=e661]: ·
+                    - listitem [ref=e662]:
+                      - generic [ref=e663]:
+                        - text: Updated
+                        - generic "Apr 27, 2026, 5:19 PM UTC" [ref=e664]: 1 hour ago
+                - link "Star" [ref=e667] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+                  - generic [ref=e668]:
+                    - generic:
+                      - img
+                    - generic [ref=e669]: Star
+              - generic [ref=e671]:
+                - generic [ref=e672]:
+                  - heading "osaurus-ai/osaurus" [level=3] [ref=e673]:
+                    - link "osaurus-ai/osaurus" [ref=e677] [cursor=pointer]:
+                      - /url: /osaurus-ai/osaurus
+                  - generic [ref=e678]: Own your AI. The native macOS harness for AI agents -- any model, persistent memory, autonomous execution, cryptographic identity. Built …
+                  - generic [ref=e679]:
+                    - link "swift" [ref=e681] [cursor=pointer]:
+                      - /url: /topics/swift
+                    - link "mcp" [ref=e683] [cursor=pointer]:
+                      - /url: /topics/mcp
+                    - link "openai" [ref=e685] [cursor=pointer]:
+                      - /url: /topics/openai
+                    - link "mlx" [ref=e687] [cursor=pointer]:
+                      - /url: /topics/mlx
+                    - link "llm" [ref=e689] [cursor=pointer]:
+                      - /url: /topics/llm
+                  - list [ref=e690]:
+                    - listitem [ref=e691]:
+                      - generic "C language" [ref=e694]: C
+                    - generic [ref=e695]: ·
+                    - listitem [ref=e696]:
+                      - link "5154 stars" [ref=e697] [cursor=pointer]:
+                        - /url: /osaurus-ai/osaurus/stargazers
+                        - img [ref=e698]
+                        - generic [ref=e700]: 5.2k
+                    - generic [ref=e701]: ·
+                    - listitem [ref=e702]:
+                      - generic [ref=e703]:
+                        - text: Updated
+                        - generic "Apr 27, 2026, 5:48 PM UTC" [ref=e704]: 49 minutes ago
+                - link "Star" [ref=e707] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dtopic%253Amcp-server%2Bstars%253A%253E100%26type%3Drepositories%26s%3Dupdated%26o%3Ddesc
+                  - generic [ref=e708]:
+                    - generic:
+                      - img
+                    - generic [ref=e709]: Star
+            - navigation "Pagination" [ref=e712]:
+              - generic [ref=e713]:
+                - generic [ref=e714]:
+                  - img [ref=e715]
+                  - text: Previous
+                - link "Page 1" [ref=e717] [cursor=pointer]:
+                  - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=repositories&s=updated&o=desc&p=1
+                  - text: "1"
+                - link "Page 2" [ref=e718] [cursor=pointer]:
+                  - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=repositories&s=updated&o=desc&p=2
+                  - text: "2"
+                - link "Page 3" [ref=e719] [cursor=pointer]:
+                  - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=repositories&s=updated&o=desc&p=3
+                  - text: "3"
+                - link "Page 4" [ref=e720] [cursor=pointer]:
+                  - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=repositories&s=updated&o=desc&p=4
+                  - text: "4"
+                - link "Page 5" [ref=e721] [cursor=pointer]:
+                  - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=repositories&s=updated&o=desc&p=5
+                  - text: "5"
+                - link "Page 6" [ref=e722] [cursor=pointer]:
+                  - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=repositories&s=updated&o=desc&p=6
+                  - text: "6"
+                - link "Page 7..." [ref=e723] [cursor=pointer]:
+                  - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=repositories&s=updated&o=desc&p=7
+                  - text: "7"
+                - text: …
+                - link "Page 68" [ref=e724] [cursor=pointer]:
+                  - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=repositories&s=updated&o=desc&p=68
+                  - text: "68"
+                - link "Next Page" [ref=e725] [cursor=pointer]:
+                  - /url: https://github.com/search?q=topic%3Amcp-server+stars%3A%3E100&type=repositories&s=updated&o=desc&p=2
+                  - text: Next
+                  - img [ref=e726]
+          - generic [ref=e729]:
+            - generic [ref=e730]:
+              - img "Package icon" [ref=e732]
+              - heading "Sponsor open source projects you depend on" [level=2] [ref=e733]
+              - generic [ref=e734]: Contributors are working behind the scenes to make open source better for everyone—give them the help and recognition they deserve.
+              - link "Explore sponsorable projects" [ref=e735] [cursor=pointer]:
+                - /url: https://github.com/sponsors/explore
+                - text: Explore sponsorable projects
+                - img [ref=e736]
+            - generic [ref=e738]:
+              - generic [ref=e739]:
+                - img [ref=e740]
+                - text: ProTip!
+              - generic [ref=e742]:
+                - text: Press the
+                - generic [ref=e743]: /
+                - text: key to activate the search input again and adjust your query.

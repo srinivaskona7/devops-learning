@@ -1,0 +1,1088 @@
+{
+  "nodes": [
+    {
+      "id": "p03_gitops_project",
+      "label": "GitOps with Argo CD (Project 03)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 1-44"
+    },
+    {
+      "id": "p03_app_of_apps",
+      "label": "App of Apps Pattern",
+      "file_type": "code",
+      "source_file": "08-projects/03-gitops-with-argocd/infra/argocd/app-of-apps.yaml"
+    },
+    {
+      "id": "p03_sync_waves",
+      "label": "Sync Waves (Ordering Control)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 242-270"
+    },
+    {
+      "id": "p03_drift_detection",
+      "label": "Drift Detection and Auto-Heal",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 274-308"
+    },
+    {
+      "id": "p03_eso_secrets",
+      "label": "External Secrets Operator (ESO)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 360-400"
+    },
+    {
+      "id": "p03_kustomize_overlays",
+      "label": "Kustomize Overlays (dev/staging/prod)",
+      "file_type": "code",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/overlays/prod/kustomization.yaml"
+    },
+    {
+      "id": "p03_deployment_base",
+      "label": "Base Deployment Specification",
+      "file_type": "code",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml"
+    },
+    {
+      "id": "p03_pdb_prod",
+      "label": "PodDisruptionBudget (Production HA)",
+      "file_type": "code",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/overlays/prod/pdb.yaml"
+    },
+    {
+      "id": "p03_kind_cluster",
+      "label": "3-Node Kind Cluster",
+      "file_type": "code",
+      "source_file": "08-projects/03-gitops-with-argocd/infra/kind-config.yaml"
+    },
+    {
+      "id": "p03_qa_plan",
+      "label": "QA Test Plan (7 Phases)",
+      "file_type": "document",
+      "source_file": "08-projects/03-gitops-with-argocd/tests/qa-plan.md"
+    },
+    {
+      "id": "p04_cicd_project",
+      "label": "CI/CD Pipeline with GitHub Actions (Project 04)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 1-44"
+    },
+    {
+      "id": "p04_pipeline_stages",
+      "label": "7-Stage Pipeline (lint→test→build→scan→sign→push→deploy)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 48-85"
+    },
+    {
+      "id": "p04_fan_out_design",
+      "label": "Fan-Out/Fan-In Parallelization",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 51-85"
+    },
+    {
+      "id": "p04_buildkit_cache",
+      "label": "BuildKit Layer Caching (GHA)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 90-125"
+    },
+    {
+      "id": "p04_trivy_scan",
+      "label": "Trivy Image Scanning Gate",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 152-188"
+    },
+    {
+      "id": "p04_cosign_keyless",
+      "label": "Keyless Signing with Cosign + OIDC",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 191-232"
+    },
+    {
+      "id": "p04_preview_envs",
+      "label": "Preview Environments Per PR",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 235-251"
+    },
+    {
+      "id": "p04_ephemeral_k8s",
+      "label": "Ephemeral K8s Integration Tests (kind)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 128-149"
+    },
+    {
+      "id": "p09_progressive_delivery",
+      "label": "Zero-Downtime Progressive Delivery (Project 09)",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md"
+    },
+    {
+      "id": "p09_argo_rollouts",
+      "label": "Argo Rollouts Controller",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "source_location": "line 11-17"
+    },
+    {
+      "id": "p09_istio_virtualservice",
+      "label": "Istio VirtualService Traffic Splitting",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "source_location": "line 20-24"
+    },
+    {
+      "id": "p09_analysis_templates",
+      "label": "AnalysisTemplate (Metric Gates)",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "source_location": "line 13-15"
+    },
+    {
+      "id": "p09_canary_workflow",
+      "label": "Canary Promotion Workflow (80/20 → 100)",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "source_location": "line 64-94"
+    },
+    {
+      "id": "p09_blue_green",
+      "label": "Blue-Green Deployment",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "source_location": "line 99-118"
+    },
+    {
+      "id": "p09_prometheus_metrics",
+      "label": "Prometheus Metric Collection + Analysis",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "source_location": "line 178-189"
+    },
+    {
+      "id": "cncf_gitops_principles",
+      "label": "CNCF GitOps Working Group 4 Principles",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 54-61"
+    },
+    {
+      "id": "git_single_source_of_truth",
+      "label": "Git as Single Source of Truth",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 54-61"
+    },
+    {
+      "id": "pr_based_deploy_workflow",
+      "label": "PR-Based Deployment Workflow",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 320-356"
+    },
+    {
+      "id": "rolling_update_strategy",
+      "label": "RollingUpdate Strategy (zero-downtime)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "source_location": "line 19-25"
+    },
+    {
+      "id": "readiness_probe_pattern",
+      "label": "Readiness Probe for Traffic Routing",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "source_location": "line 77-84"
+    },
+    {
+      "id": "security_context_hardening",
+      "label": "Security Context Hardening (non-root)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "source_location": "line 34-37"
+    },
+    {
+      "id": "topology_spread_constraints",
+      "label": "Topology Spread Constraints (Zone HA)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "source_location": "line 121-127"
+    },
+    {
+      "id": "configmap_vs_secrets",
+      "label": "ConfigMap for config, ESO for secrets",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "source_location": "line 51-65"
+    },
+    {
+      "id": "github_actions_secrets",
+      "label": "GitHub Actions Secret Management",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 21"
+    },
+    {
+      "id": "multi_arch_builds",
+      "label": "Multi-Architecture Docker Builds (amd64 + arm64)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 25-26"
+    },
+    {
+      "id": "sbom_generation",
+      "label": "SBOM Generation (Software Bill of Materials)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/architecture.md",
+      "source_location": "line 69-71"
+    },
+    {
+      "id": "rekor_transparency_log",
+      "label": "Rekor Immutable Transparency Log",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 209-210"
+    },
+    {
+      "id": "fulcio_ca",
+      "label": "Sigstore Fulcio Certificate Authority",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 195-210"
+    },
+    {
+      "id": "adobe_aem_reference",
+      "label": "Adobe AEM Cloud Service Real-World Use Case",
+      "file_type": "document",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 435-438"
+    },
+    {
+      "id": "intuit_turboatax_reference",
+      "label": "Intuit TurboTax Platform (40M users) Reference",
+      "file_type": "document",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 50-53"
+    },
+    {
+      "id": "shopify_shipit_reference",
+      "label": "Shopify Shipit Preview Environments Reference",
+      "file_type": "document",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 251"
+    },
+    {
+      "id": "netflix_spinnaker_reference",
+      "label": "Netflix Spinnaker Security Gate Reference",
+      "file_type": "document",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 401-403"
+    },
+    {
+      "id": "image_tag_strategy",
+      "label": "Image Tagging Strategy (semver + main + pr)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/architecture.md",
+      "source_location": "line 154-161"
+    },
+    {
+      "id": "pr_number_namespacing",
+      "label": "PR-Number Namespace Isolation",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 239-243"
+    },
+    {
+      "id": "distroless_base_images",
+      "label": "Distroless Base Images (Attack Surface Reduction)",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "source_location": "line 173"
+    },
+    {
+      "id": "resource_quota_limits",
+      "label": "Resource Quota + Limits (Wave -1)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/architecture.md",
+      "source_location": "line 201-204"
+    },
+    {
+      "id": "health_assessment",
+      "label": "Health Assessment State Machine",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/architecture.md",
+      "source_location": "line 59-88"
+    },
+    {
+      "id": "automated_rollback",
+      "label": "Automated Rollback on Analysis Failure",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "source_location": "line 79-93"
+    },
+    {
+      "id": "oidc_identity_verification",
+      "label": "OIDC-Based Identity Verification",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 213-220"
+    },
+    {
+      "id": "static_analysis_golangci",
+      "label": "Static Analysis with golangci-lint",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 79"
+    },
+    {
+      "id": "race_detector_testing",
+      "label": "Go Race Detector (Concurrency Testing)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 80"
+    },
+    {
+      "id": "cache_invalidation_rules",
+      "label": "Cache Invalidation Rules (go.sum hash)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/architecture.md",
+      "source_location": "line 180-185"
+    },
+    {
+      "id": "cve_severity_policy",
+      "label": "CVE Severity Policy (CRITICAL/HIGH blocking)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/architecture.md",
+      "source_location": "line 190-200"
+    },
+    {
+      "id": "envoy_sidecar_injection",
+      "label": "Envoy Sidecar Proxy (Per-Pod)",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "source_location": "line 22"
+    },
+    {
+      "id": "progressive_weight_steps",
+      "label": "Progressive Weight Steps (5m analysis gates)",
+      "file_type": "concept",
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "source_location": "line 64-75"
+    },
+    {
+      "id": "gha_cache_storage",
+      "label": "GitHub Actions Cache (10GB limit per repo)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/architecture.md",
+      "source_location": "line 167-178"
+    },
+    {
+      "id": "kind_cluster_management",
+      "label": "kind Cluster Lifecycle (ephemeral)",
+      "file_type": "concept",
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "source_location": "line 132-139"
+    },
+    {
+      "id": "helm_chart_package",
+      "label": "Helm Chart Packaging Option",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/argocd-install.md",
+      "source_location": "line 12-21"
+    },
+    {
+      "id": "rbac_multi_tenant",
+      "label": "RBAC Multi-Tenant Configuration",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/argocd-install.md",
+      "source_location": "line 72-82"
+    },
+    {
+      "id": "tls_termination",
+      "label": "TLS Termination at Ingress",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/argocd-install.md",
+      "source_location": "line 47-70"
+    },
+    {
+      "id": "startup_probe_pattern",
+      "label": "Startup Probe (JVM/Application Startup)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "source_location": "line 88-93"
+    },
+    {
+      "id": "liveness_probe_pattern",
+      "label": "Liveness Probe (Process Hang Detection)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "source_location": "line 68-74"
+    },
+    {
+      "id": "termination_grace_period",
+      "label": "Termination Grace Period (Graceful Shutdown)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "source_location": "line 39"
+    },
+    {
+      "id": "maxunavailable_constraint",
+      "label": "maxUnavailable=0 (Zero-Downtime Rolling Update)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "source_location": "line 25"
+    },
+    {
+      "id": "maxsurge_constraint",
+      "label": "maxSurge=1 (Bounded Resource Usage During Rollout)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "source_location": "line 23"
+    },
+    {
+      "id": "k6_load_testing",
+      "label": "k6 Load Testing (VUs + Duration)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 150-155"
+    },
+    {
+      "id": "heal_time_sla",
+      "label": "Heal Time SLA (≤ 3 min)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 12"
+    },
+    {
+      "id": "p95_latency_sla",
+      "label": "p95 Latency SLA (< 150ms)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 11"
+    },
+    {
+      "id": "zero_error_rate_requirement",
+      "label": "Zero Error Rate (0% dropped requests)",
+      "file_type": "concept",
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "source_location": "line 339"
+    }
+  ],
+  "edges": [
+    {
+      "source": "p03_gitops_project",
+      "target": "cncf_gitops_principles",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "p03_app_of_apps",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "p03_kustomize_overlays",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_app_of_apps",
+      "target": "p03_sync_waves",
+      "relation": "orchestrates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/infra/argocd/app-of-apps.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "p03_drift_detection",
+      "relation": "demonstrates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "p03_eso_secrets",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_kustomize_overlays",
+      "target": "p03_deployment_base",
+      "relation": "extends",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/overlays/prod/kustomization.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_kustomize_overlays",
+      "target": "p03_pdb_prod",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/overlays/prod/kustomization.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_deployment_base",
+      "target": "rolling_update_strategy",
+      "relation": "configures",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_deployment_base",
+      "target": "readiness_probe_pattern",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_deployment_base",
+      "target": "security_context_hardening",
+      "relation": "applies",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_deployment_base",
+      "target": "topology_spread_constraints",
+      "relation": "enforces",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_deployment_base",
+      "target": "configmap_vs_secrets",
+      "relation": "demonstrates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "rolling_update_strategy",
+      "target": "maxunavailable_constraint",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "rolling_update_strategy",
+      "target": "maxsurge_constraint",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "rolling_update_strategy",
+      "target": "readiness_probe_pattern",
+      "relation": "enforces",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "pr_based_deploy_workflow",
+      "relation": "demonstrates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_cicd_project",
+      "target": "p04_pipeline_stages",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_cicd_project",
+      "target": "p04_fan_out_design",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_pipeline_stages",
+      "target": "static_analysis_golangci",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_pipeline_stages",
+      "target": "race_detector_testing",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_fan_out_design",
+      "target": "p04_buildkit_cache",
+      "relation": "optimizes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_pipeline_stages",
+      "target": "p04_trivy_scan",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_trivy_scan",
+      "target": "cve_severity_policy",
+      "relation": "enforces",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_pipeline_stages",
+      "target": "p04_cosign_keyless",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_cosign_keyless",
+      "target": "fulcio_ca",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_cosign_keyless",
+      "target": "rekor_transparency_log",
+      "relation": "records",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_cosign_keyless",
+      "target": "oidc_identity_verification",
+      "relation": "leverages",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_pipeline_stages",
+      "target": "p04_preview_envs",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_preview_envs",
+      "target": "pr_number_namespacing",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_pipeline_stages",
+      "target": "p04_ephemeral_k8s",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_ephemeral_k8s",
+      "target": "kind_cluster_management",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_buildkit_cache",
+      "target": "cache_invalidation_rules",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_buildkit_cache",
+      "target": "gha_cache_storage",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_cicd_project",
+      "target": "image_tag_strategy",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_pipeline_stages",
+      "target": "sbom_generation",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/04-ci-cd-pipeline/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p09_progressive_delivery",
+      "target": "p09_argo_rollouts",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p09_progressive_delivery",
+      "target": "p09_istio_virtualservice",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p09_progressive_delivery",
+      "target": "p09_analysis_templates",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p09_argo_rollouts",
+      "target": "p09_canary_workflow",
+      "relation": "orchestrates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p09_argo_rollouts",
+      "target": "p09_blue_green",
+      "relation": "orchestrates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p09_analysis_templates",
+      "target": "p09_prometheus_metrics",
+      "relation": "queries",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p09_canary_workflow",
+      "target": "progressive_weight_steps",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p09_canary_workflow",
+      "target": "automated_rollback",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p09_istio_virtualservice",
+      "target": "envoy_sidecar_injection",
+      "relation": "configures",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "intuit_turboatax_reference",
+      "target": "git_single_source_of_truth",
+      "relation": "enforces",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "adobe_aem_reference",
+      "target": "p03_app_of_apps",
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "shopify_shipit_reference",
+      "target": "p04_preview_envs",
+      "relation": "inspired",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "netflix_spinnaker_reference",
+      "target": "p04_trivy_scan",
+      "relation": "inspired",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "p04_cicd_project",
+      "relation": "complementary_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p04_cicd_project",
+      "target": "p09_progressive_delivery",
+      "relation": "feeds_into",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "08-projects/04-ci-cd-pipeline/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "p09_progressive_delivery",
+      "relation": "enables",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "pr_based_deploy_workflow",
+      "target": "pr_based_deploy_workflow",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_drift_detection",
+      "target": "heal_time_sla",
+      "relation": "targets",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "p95_latency_sla",
+      "relation": "targets",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "zero_error_rate_requirement",
+      "relation": "targets",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "k6_load_testing",
+      "relation": "validates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_deployment_base",
+      "target": "startup_probe_pattern",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_deployment_base",
+      "target": "liveness_probe_pattern",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_deployment_base",
+      "target": "termination_grace_period",
+      "relation": "configures",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/k8s/base/deployment.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "helm_chart_package",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/argocd-install.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "rbac_multi_tenant",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/argocd-install.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_gitops_project",
+      "target": "tls_termination",
+      "relation": "configures",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/argocd-install.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p09_progressive_delivery",
+      "target": "distroless_base_images",
+      "relation": "uses",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/09-zero-downtime-progressive-delivery/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_sync_waves",
+      "target": "resource_quota_limits",
+      "relation": "schedules",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "p03_app_of_apps",
+      "target": "health_assessment",
+      "relation": "monitors",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "cncf_gitops_principles",
+      "target": "git_single_source_of_truth",
+      "relation": "includes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/03-gitops-with-argocd/README.md",
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

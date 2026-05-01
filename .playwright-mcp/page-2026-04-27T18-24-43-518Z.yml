@@ -1,0 +1,402 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+              - generic [ref=e53]: Search or jump to...
+              - img [ref=e55]
+            - link "Sign in" [ref=e59] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fpunkpeye%2Fawesome-mcp-servers
+            - link "Sign up" [ref=e60] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E&source=header-repo&source_repo=punkpeye%2Fawesome-mcp-servers
+            - button "Appearance settings" [disabled] [ref=e63]:
+              - img
+  - main [ref=e67]:
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - generic [ref=e71]:
+          - img [ref=e72]
+          - link "punkpeye" [ref=e75] [cursor=pointer]:
+            - /url: /punkpeye
+          - generic [ref=e76]: /
+          - strong [ref=e77]:
+            - link "awesome-mcp-servers" [ref=e78] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers
+          - generic [ref=e79]: Public
+        - generic [ref=e80]:
+          - list:
+            - listitem [ref=e81]:
+              - link "You must be signed in to change notification settings" [ref=e82] [cursor=pointer]:
+                - /url: /login?return_to=%2Fpunkpeye%2Fawesome-mcp-servers
+                - img [ref=e83]
+                - text: Notifications
+            - listitem [ref=e85]:
+              - link "Fork 9.6k" [ref=e86] [cursor=pointer]:
+                - /url: /login?return_to=%2Fpunkpeye%2Fawesome-mcp-servers
+                - img [ref=e87]
+                - text: Fork
+                - generic "9,566" [ref=e89]: 9.6k
+            - listitem [ref=e90]:
+              - link "You must be signed in to star a repository" [ref=e92] [cursor=pointer]:
+                - /url: /login?return_to=%2Fpunkpeye%2Fawesome-mcp-servers
+                - img [ref=e93]
+                - text: Star
+                - generic "85770 users starred this repository" [ref=e95]: 85.8k
+      - navigation "Repository" [ref=e96]:
+        - list [ref=e97]:
+          - listitem [ref=e98]:
+            - link "Code" [ref=e99] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers
+              - img [ref=e100]
+              - generic [ref=e102]: Code
+          - listitem [ref=e103]:
+            - link "Issues 19" [ref=e104] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers/issues
+              - img [ref=e105]
+              - generic [ref=e108]: Issues
+              - generic "19" [ref=e109]
+          - listitem [ref=e110]:
+            - link "Pull requests 726" [ref=e111] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers/pulls
+              - img [ref=e112]
+              - generic [ref=e114]: Pull requests
+              - generic "726" [ref=e115]
+          - listitem [ref=e116]:
+            - link "Actions" [ref=e117] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers/actions
+              - img [ref=e118]
+              - generic [ref=e120]: Actions
+          - listitem [ref=e121]:
+            - link "Projects" [ref=e122] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers/projects
+              - img [ref=e123]
+              - generic [ref=e125]: Projects
+          - listitem [ref=e126]:
+            - link "Security and quality" [ref=e127] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers/security
+              - img [ref=e128]
+              - generic [ref=e130]: Security and quality
+          - listitem [ref=e131]:
+            - link "Insights" [ref=e132] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers/pulse
+              - img [ref=e133]
+              - generic [ref=e135]: Insights
+    - generic [ref=e148]:
+      - heading "punkpeye/awesome-mcp-servers" [level=1] [ref=e150]
+      - generic [ref=e151]:
+        - generic [ref=e154]:
+          - generic [ref=e155]:
+            - generic [ref=e156]:
+              - button "main branch" [ref=e158] [cursor=pointer]:
+                - generic [ref=e159]:
+                  - generic [ref=e161]:
+                    - img [ref=e163]
+                    - generic [ref=e166]: main
+                  - generic:
+                    - img
+              - generic [ref=e167]:
+                - link "Branches" [ref=e168] [cursor=pointer]:
+                  - /url: /punkpeye/awesome-mcp-servers/branches
+                  - generic [ref=e169]:
+                    - generic:
+                      - img
+                    - generic [ref=e170]: Branches
+                - link "Tags" [ref=e171] [cursor=pointer]:
+                  - /url: /punkpeye/awesome-mcp-servers/tags
+                  - generic [ref=e172]:
+                    - generic:
+                      - img
+                    - generic [ref=e173]: Tags
+            - generic [ref=e174]:
+              - generic [ref=e178]:
+                - img [ref=e180]
+                - combobox "Go to file" [ref=e182]
+              - button "Code" [ref=e183] [cursor=pointer]:
+                - generic [ref=e184]:
+                  - generic:
+                    - img
+                  - generic [ref=e185]: Code
+                  - generic:
+                    - img
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - heading "Folders and files" [level=2] [ref=e188]
+              - table "Folders and files" [ref=e189]:
+                - rowgroup:
+                  - row "Name Last commit message Last commit date":
+                    - columnheader "Name"
+                    - columnheader "Last commit message":
+                      - generic "Last commit message"
+                    - columnheader "Last commit date":
+                      - generic "Last commit date"
+                - rowgroup [ref=e190]:
+                  - row "Latest commit History 6,436 Commits" [ref=e191]:
+                    - cell "Latest commit History 6,436 Commits" [ref=e192]:
+                      - generic [ref=e193]:
+                        - heading "Latest commit" [level=2] [ref=e194]
+                        - generic [ref=e197]:
+                          - heading "History" [level=2] [ref=e198]
+                          - link "6,436 Commits" [ref=e199] [cursor=pointer]:
+                            - /url: /punkpeye/awesome-mcp-servers/commits/main/
+                            - generic [ref=e200]:
+                              - generic:
+                                - img
+                              - generic [ref=e201]: 6,436 Commits
+                  - row ".github/workflows, (Directory)" [ref=e202]:
+                    - cell ".github/workflows, (Directory)" [ref=e203]:
+                      - generic [ref=e204]:
+                        - img [ref=e205]
+                        - link ".github/workflows, (Directory)" [ref=e210] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/tree/main/.github/workflows
+                          - text: .github/workflows
+                    - cell [ref=e211]
+                    - cell [ref=e213]
+                  - row "CONTRIBUTING.md, (File)" [ref=e216]:
+                    - cell "CONTRIBUTING.md, (File)" [ref=e217]:
+                      - generic [ref=e218]:
+                        - img [ref=e219]
+                        - link "CONTRIBUTING.md, (File)" [ref=e224] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/blob/main/CONTRIBUTING.md
+                          - text: CONTRIBUTING.md
+                    - cell [ref=e225]
+                    - cell [ref=e227]
+                  - row "LICENSE, (File)" [ref=e230]:
+                    - cell "LICENSE, (File)" [ref=e231]:
+                      - generic [ref=e232]:
+                        - img [ref=e233]
+                        - link "LICENSE, (File)" [ref=e238] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/blob/main/LICENSE
+                          - text: LICENSE
+                    - cell [ref=e239]
+                    - cell [ref=e241]
+                  - row "README-fa-ir.md, (File)" [ref=e244]:
+                    - cell "README-fa-ir.md, (File)" [ref=e245]:
+                      - generic [ref=e246]:
+                        - img [ref=e247]
+                        - link "README-fa-ir.md, (File)" [ref=e252] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/blob/main/README-fa-ir.md
+                          - text: README-fa-ir.md
+                    - cell [ref=e253]
+                    - cell [ref=e255]
+                  - row "README-ja.md, (File)" [ref=e258]:
+                    - cell "README-ja.md, (File)" [ref=e259]:
+                      - generic [ref=e260]:
+                        - img [ref=e261]
+                        - link "README-ja.md, (File)" [ref=e266] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/blob/main/README-ja.md
+                          - text: README-ja.md
+                    - cell [ref=e267]
+                    - cell [ref=e269]
+                  - row "README-ko.md, (File)" [ref=e272]:
+                    - cell "README-ko.md, (File)" [ref=e273]:
+                      - generic [ref=e274]:
+                        - img [ref=e275]
+                        - link "README-ko.md, (File)" [ref=e280] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/blob/main/README-ko.md
+                          - text: README-ko.md
+                    - cell [ref=e281]
+                    - cell [ref=e283]
+                  - row "README-pt_BR.md, (File)" [ref=e286]:
+                    - cell "README-pt_BR.md, (File)" [ref=e287]:
+                      - generic [ref=e288]:
+                        - img [ref=e289]
+                        - link "README-pt_BR.md, (File)" [ref=e294] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/blob/main/README-pt_BR.md
+                          - text: README-pt_BR.md
+                    - cell [ref=e295]
+                    - cell [ref=e297]
+                  - row "README-th.md, (File)" [ref=e300]:
+                    - cell "README-th.md, (File)" [ref=e301]:
+                      - generic [ref=e302]:
+                        - img [ref=e303]
+                        - link "README-th.md, (File)" [ref=e308] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/blob/main/README-th.md
+                          - text: README-th.md
+                    - cell [ref=e309]
+                    - cell [ref=e311]
+                  - row "README-zh.md, (File)" [ref=e314]:
+                    - cell "README-zh.md, (File)" [ref=e315]:
+                      - generic [ref=e316]:
+                        - img [ref=e317]
+                        - link "README-zh.md, (File)" [ref=e322] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/blob/main/README-zh.md
+                          - text: README-zh.md
+                    - cell [ref=e323]
+                    - cell [ref=e325]
+                  - row "README-zh_TW.md, (File)" [ref=e328]:
+                    - cell "README-zh_TW.md, (File)" [ref=e329]:
+                      - generic [ref=e330]:
+                        - img [ref=e331]
+                        - link "README-zh_TW.md, (File)" [ref=e336] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/blob/main/README-zh_TW.md
+                          - text: README-zh_TW.md
+                    - cell [ref=e337]
+                    - cell [ref=e339]
+                  - row "README.md, (File)" [ref=e342]:
+                    - cell "README.md, (File)" [ref=e343]:
+                      - generic [ref=e344]:
+                        - img [ref=e345]
+                        - link "README.md, (File)" [ref=e350] [cursor=pointer]:
+                          - /url: /punkpeye/awesome-mcp-servers/blob/main/README.md
+                          - text: README.md
+                    - cell [ref=e351]
+                    - cell [ref=e353]
+            - generic [ref=e357]:
+              - generic [ref=e358]:
+                - heading "Repository files navigation" [level=2] [ref=e359]
+                - navigation "Repository files" [ref=e360]:
+                  - list [ref=e361]:
+                    - listitem [ref=e362]:
+                      - link "README" [ref=e363] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e365]
+                        - generic [ref=e367]: README
+                    - listitem [ref=e368]:
+                      - link "Contributing" [ref=e369] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e371]
+                        - generic [ref=e373]: Contributing
+                    - listitem [ref=e374]:
+                      - link "MIT license" [ref=e375] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e377]
+                        - generic [ref=e379]: MIT license
+                - button "Outline" [ref=e380] [cursor=pointer]:
+                  - img [ref=e381]
+              - generic [ref=e384]:
+                - img [ref=e385]
+                - generic [ref=e388]: Loading
+        - generic [ref=e392]:
+          - generic [ref=e395]:
+            - heading "About" [level=2] [ref=e396]
+            - paragraph [ref=e397]: A collection of MCP servers.
+            - generic [ref=e398]:
+              - img [ref=e399]
+              - link "glama.ai/mcp/servers" [ref=e402] [cursor=pointer]:
+                - /url: https://glama.ai/mcp/servers
+            - heading "Topics" [level=3] [ref=e403]
+            - generic [ref=e405]:
+              - link "ai" [ref=e406] [cursor=pointer]:
+                - /url: /topics/ai
+              - link "mcp" [ref=e407] [cursor=pointer]:
+                - /url: /topics/mcp
+            - heading "Resources" [level=3] [ref=e408]
+            - link "Readme" [ref=e410] [cursor=pointer]:
+              - /url: "#readme-ov-file"
+              - img [ref=e411]
+              - text: Readme
+            - heading "License" [level=3] [ref=e413]
+            - link "MIT license" [ref=e415] [cursor=pointer]:
+              - /url: "#MIT-1-ov-file"
+              - img [ref=e416]
+              - text: MIT license
+            - heading "Contributing" [level=3] [ref=e418]
+            - link "Contributing" [ref=e420] [cursor=pointer]:
+              - /url: "#contributing-ov-file"
+              - img [ref=e421]
+              - text: Contributing
+            - link "Activity" [ref=e424] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers/activity
+              - img [ref=e425]
+              - text: Activity
+            - heading "Stars" [level=3] [ref=e427]
+            - link "85.8k stars" [ref=e429] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers/stargazers
+              - img [ref=e430]
+              - strong [ref=e432]: 85.8k
+              - text: stars
+            - heading "Watchers" [level=3] [ref=e433]
+            - link "7 watching" [ref=e435] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers/watchers
+              - img [ref=e436]
+              - strong [ref=e438]: "7"
+              - text: watching
+            - heading "Forks" [level=3] [ref=e439]
+            - link "9.6k forks" [ref=e441] [cursor=pointer]:
+              - /url: /punkpeye/awesome-mcp-servers/forks
+              - img [ref=e442]
+              - strong [ref=e444]: 9.6k
+              - text: forks
+            - link "Report repository" [ref=e446] [cursor=pointer]:
+              - /url: /contact/report-content?content_url=https%3A%2F%2Fgithub.com%2Fpunkpeye%2Fawesome-mcp-servers&report=punkpeye+%28user%29
+          - generic "Loading contributors" [ref=e449]:
+            - generic:
+              - heading "Contributors" [level=2] [ref=e450]:
+                - link "Contributors" [ref=e451] [cursor=pointer]:
+                  - /url: /punkpeye/awesome-mcp-servers/graphs/contributors
+              - list [ref=e452]:
+                - listitem [ref=e453]
+                - listitem [ref=e455]
+                - listitem [ref=e457]
+  - contentinfo [ref=e460]:
+    - heading "Footer" [level=2] [ref=e461]
+    - generic [ref=e462]:
+      - generic [ref=e463]:
+        - link "GitHub Homepage" [ref=e464] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e465]
+        - generic [ref=e467]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e468]:
+        - heading "Footer navigation" [level=3] [ref=e469]
+        - list "Footer navigation" [ref=e470]:
+          - listitem [ref=e471]:
+            - link "Terms" [ref=e472] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e473]:
+            - link "Privacy" [ref=e474] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e475]:
+            - link "Security" [ref=e476] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e477]:
+            - link "Status" [ref=e478] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e479]:
+            - link "Community" [ref=e480] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e481]:
+            - link "Docs" [ref=e482] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e483]:
+            - link "Contact" [ref=e484] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e485]:
+            - button "Manage cookies" [ref=e487] [cursor=pointer]
+          - listitem [ref=e488]:
+            - button "Do not share my personal information" [ref=e490] [cursor=pointer]

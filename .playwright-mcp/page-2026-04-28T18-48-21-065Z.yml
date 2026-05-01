@@ -1,0 +1,679 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img [ref=e6]
+      - list [ref=e25]:
+        - listitem [ref=e26]:
+          - link "Documentation" [ref=e27] [cursor=pointer]:
+            - /url: /docs/home/
+        - listitem [ref=e28]:
+          - link "Kubernetes Blog" [ref=e29] [cursor=pointer]:
+            - /url: /blog/
+        - listitem [ref=e30]:
+          - link "Training" [ref=e31] [cursor=pointer]:
+            - /url: /training/
+        - listitem [ref=e32]:
+          - link "Careers" [ref=e33] [cursor=pointer]:
+            - /url: /careers/
+        - listitem [ref=e34]:
+          - link "Partners" [ref=e35] [cursor=pointer]:
+            - /url: /partners/
+        - listitem [ref=e36]:
+          - link "Community" [ref=e37] [cursor=pointer]:
+            - /url: /community/
+        - listitem [ref=e38]:
+          - button "Versions" [ref=e39] [cursor=pointer]
+        - listitem [ref=e40]:
+          - button "English" [ref=e41] [cursor=pointer]
+          - text:                            
+      - text:  
+    - heading "Kubernetes Blog" [level=2] [ref=e43]
+  - generic [ref=e46]:
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic: 
+          - searchbox "Search this site" [ref=e51]
+        - text: 
+      - navigation [ref=e52]:
+        - text:                            
+        - list [ref=e53]:
+          - listitem [ref=e54]:
+            - list [ref=e55]:
+              - listitem [ref=e56]:
+                - generic [ref=e57]:  2026
+              - listitem [ref=e58]:
+                - generic [ref=e59]:  2025
+                - list [ref=e60]:
+                  - listitem [ref=e61]:
+                    - 'link "Kubernetes 1.35: Enhanced Debugging with Versioned z-pages APIs" [ref=e63] [cursor=pointer]':
+                      - /url: /blog/2025/12/31/kubernetes-v1-35-structured-zpages/
+                  - listitem [ref=e64]:
+                    - 'link "Kubernetes v1.35: Watch Based Route Reconciliation in the Cloud Controller Manager" [ref=e66] [cursor=pointer]':
+                      - /url: /blog/2025/12/30/kubernetes-v1-35-watch-based-route-reconciliation-in-ccm/
+                  - listitem [ref=e67]:
+                    - 'link "Kubernetes v1.35: Introducing Workload Aware Scheduling" [ref=e69] [cursor=pointer]':
+                      - /url: /blog/2025/12/29/kubernetes-v1-35-introducing-workload-aware-scheduling/
+                  - listitem [ref=e70]:
+                    - 'link "Kubernetes v1.35: Fine-grained Supplemental Groups Control Graduates to GA" [ref=e72] [cursor=pointer]':
+                      - /url: /blog/2025/12/23/kubernetes-v1-35-fine-grained-supplementalgroups-control-ga/
+                  - listitem [ref=e73]:
+                    - 'link "Kubernetes v1.35: Kubelet Configuration Drop-in Directory Graduates to GA" [ref=e75] [cursor=pointer]':
+                      - /url: /blog/2025/12/22/kubernetes-v1-35-kubelet-config-drop-in-directory-ga/
+                  - listitem [ref=e76]:
+                    - link "Avoiding Zombie Cluster Members When Upgrading to etcd v3.6" [ref=e78] [cursor=pointer]:
+                      - /url: /blog/2025/12/21/preventing-etcd-zombies/
+                  - listitem [ref=e79]:
+                    - 'link "Kubernetes 1.35: In-Place Pod Resize Graduates to Stable" [ref=e81] [cursor=pointer]':
+                      - /url: /blog/2025/12/19/kubernetes-v1-35-in-place-pod-resize-ga/
+                  - listitem [ref=e82]:
+                    - 'link "Kubernetes v1.35: Job Managed By Goes GA" [ref=e84] [cursor=pointer]':
+                      - /url: /blog/2025/12/18/kubernetes-v1-35-job-managedby-for-jobs-goes-ga/
+                  - listitem [ref=e85]:
+                    - 'link "Kubernetes v1.35: Timbernetes (The World Tree Release)" [ref=e87] [cursor=pointer]':
+                      - /url: /blog/2025/12/17/kubernetes-v1-35-release/
+                  - listitem [ref=e88]:
+                    - link "Kubernetes v1.35 Sneak Peek" [ref=e90] [cursor=pointer]:
+                      - /url: /blog/2025/11/26/kubernetes-v1-35-sneak-peek/
+                  - listitem [ref=e91]:
+                    - link "Kubernetes Configuration Good Practices" [ref=e93] [cursor=pointer]:
+                      - /url: /blog/2025/11/25/configuration-good-practices/
+                  - listitem [ref=e94]:
+                    - 'link "Ingress NGINX Retirement: What You Need to Know" [ref=e96] [cursor=pointer]':
+                      - /url: /blog/2025/11/11/ingress-nginx-retirement/
+                  - listitem [ref=e97]:
+                    - link "Announcing the 2025 Steering Committee Election Results" [ref=e99] [cursor=pointer]:
+                      - /url: /blog/2025/11/09/steering-committee-results-2025/
+                  - listitem [ref=e100]:
+                    - 'link "Gateway API 1.4: New Features" [ref=e102] [cursor=pointer]':
+                      - /url: /blog/2025/11/06/gateway-api-v1-4/
+                  - listitem [ref=e103]:
+                    - link "7 Common Kubernetes Pitfalls (and How I Learned to Avoid Them)" [ref=e105] [cursor=pointer]:
+                      - /url: /blog/2025/10/20/seven-kubernetes-pitfalls-and-how-to-avoid/
+                  - listitem [ref=e106]:
+                    - link "Spotlight on Policy Working Group" [ref=e108] [cursor=pointer]:
+                      - /url: /blog/2025/10/18/wg-policy-spotlight-2025/
+                  - listitem [ref=e109]:
+                    - link "Introducing Headlamp Plugin for Karpenter - Scaling and Visibility" [ref=e111] [cursor=pointer]:
+                      - /url: /blog/2025/10/06/introducing-headlamp-plugin-for-karpenter/
+                  - listitem [ref=e112]:
+                    - link "Announcing Changed Block Tracking API support (alpha)" [ref=e114] [cursor=pointer]:
+                      - /url: /blog/2025/09/25/csi-changed-block-tracking/
+                  - listitem [ref=e115]:
+                    - 'link "Kubernetes v1.34: Pod Level Resources Graduated to Beta" [ref=e117] [cursor=pointer]':
+                      - /url: /blog/2025/09/22/kubernetes-v1-34-pod-level-resources/
+                  - listitem [ref=e118]:
+                    - 'link "Kubernetes v1.34: Recovery From Volume Expansion Failure (GA)" [ref=e120] [cursor=pointer]':
+                      - /url: /blog/2025/09/19/kubernetes-v1-34-recover-expansion-failure/
+                  - listitem [ref=e121]:
+                    - 'link "Kubernetes v1.34: DRA Consumable Capacity" [ref=e123] [cursor=pointer]':
+                      - /url: /blog/2025/09/18/kubernetes-v1-34-dra-consumable-capacity/
+                  - listitem [ref=e124]:
+                    - 'link "Kubernetes v1.34: Pods Report DRA Resource Health" [ref=e126] [cursor=pointer]':
+                      - /url: /blog/2025/09/17/kubernetes-v1-34-pods-report-dra-resource-health/
+                  - listitem [ref=e127]:
+                    - 'link "Kubernetes v1.34: Moving Volume Group Snapshots to v1beta2" [ref=e129] [cursor=pointer]':
+                      - /url: /blog/2025/09/16/kubernetes-v1-34-volume-group-snapshot-beta-2/
+                  - listitem [ref=e130]:
+                    - 'link "Kubernetes v1.34: Decoupled Taint Manager Is Now Stable" [ref=e132] [cursor=pointer]':
+                      - /url: /blog/2025/09/15/kubernetes-v1-34-decoupled-taint-manager-is-now-stable/
+                  - listitem [ref=e133]:
+                    - 'link "Kubernetes v1.34: Autoconfiguration for Node Cgroup Driver Goes GA" [ref=e135] [cursor=pointer]':
+                      - /url: /blog/2025/09/12/kubernetes-v1-34-cri-cgroup-driver-lookup-now-ga/
+                  - listitem [ref=e136]:
+                    - 'link "Kubernetes v1.34: Mutable CSI Node Allocatable Graduates to Beta" [ref=e138] [cursor=pointer]':
+                      - /url: /blog/2025/09/11/kubernetes-v1-34-mutable-csi-node-allocatable-count/
+                  - listitem [ref=e139]:
+                    - 'link "Kubernetes v1.34: Use An Init Container To Define App Environment Variables" [ref=e141] [cursor=pointer]':
+                      - /url: /blog/2025/09/10/kubernetes-v1-34-env-files/
+                  - listitem [ref=e142]:
+                    - 'link "Kubernetes v1.34: Snapshottable API server cache" [ref=e144] [cursor=pointer]':
+                      - /url: /blog/2025/09/09/kubernetes-v1-34-snapshottable-api-server-cache/
+                  - listitem [ref=e145]:
+                    - 'link "Kubernetes v1.34: VolumeAttributesClass for Volume Modification GA" [ref=e147] [cursor=pointer]':
+                      - /url: /blog/2025/09/08/kubernetes-v1-34-volume-attributes-class/
+                  - listitem [ref=e148]:
+                    - 'link "Kubernetes v1.34: Pod Replacement Policy for Jobs Goes GA" [ref=e150] [cursor=pointer]':
+                      - /url: /blog/2025/09/05/kubernetes-v1-34-pod-replacement-policy-for-jobs-goes-ga/
+                  - listitem [ref=e151]:
+                    - 'link "Kubernetes v1.34: PSI Metrics for Kubernetes Graduates to Beta" [ref=e153] [cursor=pointer]':
+                      - /url: /blog/2025/09/04/kubernetes-v1-34-introducing-psi-metrics-beta/
+                  - listitem [ref=e154]:
+                    - 'link "Kubernetes v1.34: Service Account Token Integration for Image Pulls Graduates to Beta" [ref=e156] [cursor=pointer]':
+                      - /url: /blog/2025/09/03/kubernetes-v1-34-sa-tokens-image-pulls-beta/
+                  - listitem [ref=e157]:
+                    - 'link "Kubernetes v1.34: Introducing CPU Manager Static Policy Option for Uncore Cache Alignment" [ref=e159] [cursor=pointer]':
+                      - /url: /blog/2025/09/02/kubernetes-v1-34-prefer-align-by-uncore-cache-cpumanager-static-policy-optimization/
+                  - listitem [ref=e160]:
+                    - 'link "Kubernetes v1.34: DRA has graduated to GA" [ref=e162] [cursor=pointer]':
+                      - /url: /blog/2025/09/01/kubernetes-v1-34-dra-updates/
+                  - listitem [ref=e163]:
+                    - 'link "Kubernetes v1.34: Finer-Grained Control Over Container Restarts" [ref=e165] [cursor=pointer]':
+                      - /url: /blog/2025/08/29/kubernetes-v1-34-per-container-restart-policy/
+                  - listitem [ref=e166]:
+                    - 'link "Kubernetes v1.34: User preferences (kuberc) are available for testing in kubectl 1.34" [ref=e168] [cursor=pointer]':
+                      - /url: /blog/2025/08/28/kubernetes-v1-34-kubectl-kuberc-beta/
+                  - listitem [ref=e169]:
+                    - 'link "Kubernetes v1.34: Of Wind & Will (O'' WaW)" [ref=e171] [cursor=pointer]':
+                      - /url: /blog/2025/08/27/kubernetes-v1-34-release/
+                  - listitem [ref=e172]:
+                    - 'link "Tuning Linux Swap for Kubernetes: A Deep Dive" [ref=e174] [cursor=pointer]':
+                      - /url: /blog/2025/08/19/tuning-linux-swap-for-kubernetes-a-deep-dive/
+                  - listitem [ref=e175]:
+                    - link "Introducing Headlamp AI Assistant" [ref=e177] [cursor=pointer]:
+                      - /url: /blog/2025/08/07/introducing-headlamp-ai-assistant/
+                  - listitem [ref=e178]:
+                    - link "Kubernetes v1.34 Sneak Peek" [ref=e180] [cursor=pointer]:
+                      - /url: /blog/2025/07/28/kubernetes-v1-34-sneak-peek/
+                  - listitem [ref=e181]:
+                    - link "Post-Quantum Cryptography in Kubernetes" [ref=e183] [cursor=pointer]:
+                      - /url: /blog/2025/07/18/pqc-in-k8s/
+                  - listitem [ref=e184]:
+                    - link "Navigating Failures in Pods With Devices" [ref=e186] [cursor=pointer]:
+                      - /url: /blog/2025/07/03/navigating-failures-in-pods-with-devices/
+                  - listitem [ref=e187]:
+                    - link "Image Compatibility In Cloud Native Environments" [ref=e189] [cursor=pointer]:
+                      - /url: /blog/2025/06/25/image-compatibility-in-cloud-native-environments/
+                  - listitem [ref=e190]:
+                    - link "Changes to Kubernetes Slack" [ref=e192] [cursor=pointer]:
+                      - /url: /blog/2025/06/16/changes-to-kubernetes-slack/
+                  - listitem [ref=e193]:
+                    - link "Enhancing Kubernetes Event Management with Custom Aggregation" [ref=e195] [cursor=pointer]:
+                      - /url: /blog/2025/06/10/enhancing-kubernetes-event-management-custom-aggregation/
+                  - listitem [ref=e196]:
+                    - link "Introducing Gateway API Inference Extension" [ref=e198] [cursor=pointer]:
+                      - /url: /blog/2025/06/05/introducing-gateway-api-inference-extension/
+                  - listitem [ref=e199]:
+                    - 'link "Start Sidecar First: How To Avoid Snags" [ref=e201] [cursor=pointer]':
+                      - /url: /blog/2025/06/03/start-sidecar-first/
+                  - listitem [ref=e202]:
+                    - 'link "Gateway API v1.3.0: Advancements in Request Mirroring, CORS, Gateway Merging, and Retry Budgets" [ref=e204] [cursor=pointer]':
+                      - /url: /blog/2025/06/02/gateway-api-v1-3/
+                  - listitem [ref=e205]:
+                    - 'link "Kubernetes v1.33: In-Place Pod Resize Graduated to Beta" [ref=e207] [cursor=pointer]':
+                      - /url: /blog/2025/05/16/kubernetes-v1-33-in-place-pod-resize-beta/
+                  - listitem [ref=e208]:
+                    - link "Announcing etcd v3.6.0" [ref=e210] [cursor=pointer]:
+                      - /url: /blog/2025/05/15/announcing-etcd-3.6/
+                  - listitem [ref=e211]:
+                    - 'link "Kubernetes 1.33: Job''s SuccessPolicy Goes GA" [ref=e213] [cursor=pointer]':
+                      - /url: /blog/2025/05/15/kubernetes-1-33-jobs-success-policy-goes-ga/
+                  - listitem [ref=e214]:
+                    - 'link "Kubernetes v1.33: Updates to Container Lifecycle" [ref=e216] [cursor=pointer]':
+                      - /url: /blog/2025/05/14/kubernetes-v1-33-updates-to-container-lifecycle/
+                  - listitem [ref=e217]:
+                    - 'link "Kubernetes v1.33: Job''s Backoff Limit Per Index Goes GA" [ref=e219] [cursor=pointer]':
+                      - /url: /blog/2025/05/13/kubernetes-v1-33-jobs-backoff-limit-per-index-goes-ga/
+                  - listitem [ref=e220]:
+                    - 'link "Kubernetes v1.33: Image Pull Policy the way you always thought it worked!" [ref=e222] [cursor=pointer]':
+                      - /url: /blog/2025/05/12/kubernetes-v1-33-ensure-secret-pulled-images-alpha/
+                  - listitem [ref=e223]:
+                    - 'link "Kubernetes v1.33: Streaming List responses" [ref=e225] [cursor=pointer]':
+                      - /url: /blog/2025/05/09/kubernetes-v1-33-streaming-list-responses/
+                  - listitem [ref=e226]:
+                    - 'link "Kubernetes 1.33: Volume Populators Graduate to GA" [ref=e228] [cursor=pointer]':
+                      - /url: /blog/2025/05/08/kubernetes-v1-33-volume-populators-ga/
+                  - listitem [ref=e229]:
+                    - 'link "Kubernetes v1.33: From Secrets to Service Accounts: Kubernetes Image Pulls Evolved" [ref=e231] [cursor=pointer]':
+                      - /url: /blog/2025/05/07/kubernetes-v1-33-wi-for-image-pulls/
+                  - listitem [ref=e232]:
+                    - 'link "Kubernetes v1.33: Fine-grained SupplementalGroups Control Graduates to Beta" [ref=e234] [cursor=pointer]':
+                      - /url: /blog/2025/05/06/kubernetes-v1-33-fine-grained-supplementalgroups-control-beta/
+                  - listitem [ref=e235]:
+                    - 'link "Kubernetes v1.33: Prevent PersistentVolume Leaks When Deleting out of Order graduates to GA" [ref=e237] [cursor=pointer]':
+                      - /url: /blog/2025/05/05/kubernetes-v1-33-prevent-persistentvolume-leaks-when-deleting-out-of-order-graduate-to-ga/
+                  - listitem [ref=e238]:
+                    - 'link "Kubernetes v1.33: Mutable CSI Node Allocatable Count" [ref=e240] [cursor=pointer]':
+                      - /url: /blog/2025/05/02/kubernetes-1-33-mutable-csi-node-allocatable-count/
+                  - listitem [ref=e241]:
+                    - 'link "Kubernetes v1.33: New features in DRA" [ref=e243] [cursor=pointer]':
+                      - /url: /blog/2025/05/01/kubernetes-v1-33-dra-updates/
+                  - listitem [ref=e244]:
+                    - 'link "Kubernetes v1.33: Storage Capacity Scoring of Nodes for Dynamic Provisioning (alpha)" [ref=e246] [cursor=pointer]':
+                      - /url: /blog/2025/04/30/kubernetes-v1-33-storage-capacity-scoring-feature/
+                  - listitem [ref=e247]:
+                    - 'link "Kubernetes v1.33: Image Volumes graduate to beta!" [ref=e249] [cursor=pointer]':
+                      - /url: /blog/2025/04/29/kubernetes-v1-33-image-volume-beta/
+                  - listitem [ref=e250]:
+                    - 'link "Kubernetes v1.33: HorizontalPodAutoscaler Configurable Tolerance" [ref=e252] [cursor=pointer]':
+                      - /url: /blog/2025/04/28/kubernetes-v1-33-hpa-configurable-tolerance/
+                  - listitem [ref=e253]:
+                    - 'link "Kubernetes v1.33: User Namespaces enabled by default!" [ref=e255] [cursor=pointer]':
+                      - /url: /blog/2025/04/25/userns-enabled-by-default/
+                  - listitem [ref=e256]:
+                    - 'link "Kubernetes v1.33: Continuing the transition from Endpoints to EndpointSlices" [ref=e258] [cursor=pointer]':
+                      - /url: /blog/2025/04/24/endpoints-deprecation/
+                  - listitem [ref=e259]:
+                    - 'link "Kubernetes v1.33: Octarine" [ref=e261] [cursor=pointer]':
+                      - /url: /blog/2025/04/23/kubernetes-v1-33-release/
+                  - listitem [ref=e262]:
+                    - 'link "Kubernetes Multicontainer Pods: An Overview" [ref=e264] [cursor=pointer]':
+                      - /url: /blog/2025/04/22/multi-container-pods-overview/
+                  - listitem [ref=e265]:
+                    - link "Introducing kube-scheduler-simulator" [ref=e267] [cursor=pointer]:
+                      - /url: /blog/2025/04/07/introducing-kube-scheduler-simulator/
+                  - listitem [ref=e268]:
+                    - link "Kubernetes v1.33 sneak peek" [ref=e270] [cursor=pointer]:
+                      - /url: /blog/2025/03/26/kubernetes-v1-33-upcoming-changes/
+                  - listitem [ref=e271]:
+                    - link "Fresh Swap Features for Linux Users in Kubernetes 1.32" [ref=e273] [cursor=pointer]:
+                      - /url: /blog/2025/03/25/swap-linux-improvements/
+                  - listitem [ref=e274]:
+                    - 'link "Ingress-nginx CVE-2025-1974: What You Need to Know" [ref=e276] [cursor=pointer]':
+                      - /url: /blog/2025/03/24/ingress-nginx-cve-2025-1974/
+                  - listitem [ref=e277]:
+                    - link "Introducing JobSet" [ref=e279] [cursor=pointer]:
+                      - /url: /blog/2025/03/23/introducing-jobset/
+                  - listitem [ref=e280]:
+                    - link "Spotlight on SIG Apps" [ref=e282] [cursor=pointer]:
+                      - /url: /blog/2025/03/12/sig-apps-spotlight-2025/
+                  - listitem [ref=e283]:
+                    - link "Spotlight on SIG etcd" [ref=e285] [cursor=pointer]:
+                      - /url: /blog/2025/03/04/sig-etcd-spotlight/
+                  - listitem [ref=e286]:
+                    - link "NFTables mode for kube-proxy" [ref=e288] [cursor=pointer]:
+                      - /url: /blog/2025/02/28/nftables-kube-proxy/
+                  - listitem [ref=e289]:
+                    - link "The Cloud Controller Manager Chicken and Egg Problem" [ref=e291] [cursor=pointer]:
+                      - /url: /blog/2025/02/14/cloud-controller-manager-chicken-egg-problem/
+                  - listitem [ref=e292]:
+                    - 'link "Spotlight on SIG Architecture: Enhancements" [ref=e294] [cursor=pointer]':
+                      - /url: /blog/2025/01/21/sig-architecture-enhancements/
+              - listitem [ref=e295]:
+                - generic [ref=e296]:  2024
+              - listitem [ref=e297]:
+                - generic [ref=e298]:  2023
+              - listitem [ref=e299]:
+                - generic [ref=e300]:  2022
+              - listitem [ref=e301]:
+                - generic [ref=e302]:  2021
+              - listitem [ref=e303]:
+                - generic [ref=e304]:  2020
+              - listitem [ref=e305]:
+                - generic [ref=e306]:  2019
+              - listitem [ref=e307]:
+                - generic [ref=e308]:  2018
+              - listitem [ref=e309]:
+                - generic [ref=e310]:  2017
+              - listitem [ref=e311]:
+                - generic [ref=e312]:  2016
+              - listitem [ref=e313]:
+                - generic [ref=e314]:  2015
+    - main [ref=e315]:
+      - generic [ref=e316]:
+        - heading "Kubernetes Configuration Good Practices" [level=1] [ref=e317]
+        - generic [ref=e318]:
+          - text: By Kirti Goyal |
+          - time [ref=e319]: Tuesday, November 25, 2025
+        - paragraph [ref=e320]: Configuration is one of those things in Kubernetes that seems small until it's not. Configuration is at the heart of every Kubernetes workload. A missing quote, a wrong API version or a misplaced YAML indent can ruin your entire deploy.
+        - paragraph [ref=e321]: This blog brings together tried-and-tested configuration best practices. The small habits that make your Kubernetes setup clean, consistent and easier to manage. Whether you are just starting out or already deploying apps daily, these are the little things that keep your cluster stable and your future self sane.
+        - paragraph [ref=e322]:
+          - emphasis [ref=e323]:
+            - text: This blog is inspired by the original
+            - emphasis [ref=e324]: Configuration Best Practices
+            - text: page, which has evolved through contributions from many members of the Kubernetes community.
+        - heading "General configuration practices" [level=2] [ref=e325]
+        - heading "Use the latest stable API version" [level=3] [ref=e326]
+        - paragraph [ref=e327]: Kubernetes evolves fast. Older APIs eventually get deprecated and stop working. So, whenever you are defining resources, make sure you are using the latest stable API version. You can always check with
+        - code [ref=e330]:
+          - generic [ref=e332]: kubectl api-resources
+        - paragraph [ref=e333]: This simple step saves you from future compatibility issues.
+        - heading "Store configuration in version control" [level=3] [ref=e334]
+        - paragraph [ref=e335]: Never apply manifest files directly from your desktop. Always keep them in a version control system like Git, it's your safety net. If something breaks, you can instantly roll back to a previous commit, compare changes or recreate your cluster setup without panic.
+        - heading "Write configs in YAML not JSON" [level=3] [ref=e336]
+        - paragraph [ref=e337]: Write your configuration files using YAML rather than JSON. Both work technically, but YAML is just easier for humans. It's cleaner to read and less noisy and widely used in the community.
+        - paragraph [ref=e338]:
+          - text: "YAML has some sneaky gotchas with boolean values: Use only"
+          - code [ref=e339]: "true"
+          - text: or
+          - code [ref=e340]: "false"
+          - text: . Don't write
+          - code [ref=e341]: "yes"
+          - text: ","
+          - code [ref=e342]: "no"
+          - text: ","
+          - code [ref=e343]: "on"
+          - text: or
+          - code [ref=e344]: "off"
+          - text: . They might work in one version of YAML but break in another. To be safe, quote anything that looks like a Boolean (for example
+          - code [ref=e345]: "\"yes\""
+          - text: ).
+        - heading "Keep configuration simple and minimal" [level=3] [ref=e346]
+        - paragraph [ref=e347]: Avoid setting default values that are already handled by Kubernetes. Minimal manifests are easier to debug, cleaner to review and less likely to break things later.
+        - heading "Group related objects together" [level=3] [ref=e348]
+        - paragraph [ref=e349]:
+          - text: If your Deployment, Service and ConfigMap all belong to one app, put them in a single manifest file.
+          - text: It's easier to track changes and apply them as a unit. See the
+          - link "Guestbook all-in-one.yaml" [ref=e350] [cursor=pointer]:
+            - /url: https://github.com/kubernetes/examples/blob/master/web/guestbook/all-in-one/guestbook-all-in-one.yaml
+          - text: file for an example of this syntax.
+        - paragraph [ref=e351]: "You can even apply entire directories with:"
+        - code [ref=e354]:
+          - generic [ref=e356]: kubectl apply -f configs/
+        - paragraph [ref=e357]: One command and boom everything in that folder gets deployed.
+        - heading "Add helpful annotations" [level=3] [ref=e358]
+        - paragraph [ref=e359]: Manifest files are not just for machines, they are for humans too. Use annotations to describe why something exists or what it does. A quick one-liner can save hours when debugging later and also allows better collaboration.
+        - paragraph [ref=e360]:
+          - text: The most helpful annotation to set is
+          - code [ref=e361]: kubernetes.io/description
+          - text: . It's like using comment, except that it gets copied into the API so that everyone else can see it even after you deploy.
+        - 'heading "Managing Workloads: Pods, Deployments, and Jobs" [level=2] [ref=e362]'
+        - paragraph [ref=e363]: A common early mistake in Kubernetes is creating Pods directly. Pods work, but they don't reschedule themselves if something goes wrong.
+        - paragraph [ref=e364]:
+          - emphasis [ref=e365]: Naked Pods
+          - text: (Pods not managed by a controller, such as
+          - link "Deployment" [ref=e366] [cursor=pointer]:
+            - /url: /docs/concepts/workloads/controllers/deployment/
+          - text: or a
+          - link "StatefulSet" [ref=e367] [cursor=pointer]:
+            - /url: /docs/concepts/workloads/controllers/statefulset/
+          - text: ) are fine for testing, but in real setups, they are risky.
+        - paragraph [ref=e368]: Why? Because if the node hosting that Pod dies, the Pod dies with it and Kubernetes won't bring it back automatically.
+        - heading "Use Deployments for apps that should always be running" [level=3] [ref=e369]
+        - paragraph [ref=e370]:
+          - text: A Deployment, which both creates a ReplicaSet to ensure that the desired number of Pods is always available, and specifies a strategy to replace Pods (such as
+          - link "RollingUpdate" [ref=e371] [cursor=pointer]:
+            - /url: /docs/concepts/workloads/controllers/deployment/#rolling-update-deployment
+          - text: ), is almost always preferable to creating Pods directly. You can roll out a new version, and if something breaks, roll back instantly.
+        - heading "Use Jobs for tasks that should finish" [level=3] [ref=e372]
+        - paragraph [ref=e373]:
+          - text: A
+          - link "Job" [ref=e374] [cursor=pointer]:
+            - /url: /docs/concepts/workloads/controllers/job/
+          - text: is perfect when you need something to run once and then stop like database migration or batch processing task. It will retry if the pods fails and report success when it's done.
+        - heading "Service Configuration and Networking" [level=2] [ref=e375]
+        - paragraph [ref=e376]: Services are how your workloads talk to each other inside (and sometimes outside) your cluster. Without them, your pods exist but can't reach anyone. Let's make sure that doesn't happen.
+        - heading "Create Services before workloads that use them" [level=3] [ref=e377]
+        - paragraph [ref=e378]:
+          - text: When Kubernetes starts a Pod, it automatically injects environment variables for existing Services. So, if a Pod depends on a Service, create a
+          - link "Service" [ref=e379] [cursor=pointer]:
+            - /url: /docs/concepts/services-networking/service/
+          - strong [ref=e380]: before
+          - text: its corresponding backend workloads (Deployments or StatefulSets), and before any workloads that need to access it.
+        - paragraph [ref=e381]: "For example, if a Service named foo exists, all containers will get the following variables in their initial environment:"
+        - code [ref=e383]: FOO_SERVICE_HOST=<the host the Service runs on> FOO_SERVICE_PORT=<the port the Service runs on>
+        - paragraph [ref=e384]: DNS based discovery doesn't have this problem, but it's a good habit to follow anyway.
+        - heading "Use DNS for Service discovery" [level=3] [ref=e385]
+        - paragraph [ref=e386]:
+          - text: If your cluster has the DNS
+          - link "add-on" [ref=e387] [cursor=pointer]:
+            - /url: /docs/concepts/cluster-administration/addons/
+          - text: "(most do), every Service automatically gets a DNS entry. That means you can access it by name instead of IP:"
+        - code [ref=e390]:
+          - generic [ref=e392]: curl http://my-service.default.svc.cluster.local
+        - paragraph [ref=e393]: It's one of those features that makes Kubernetes networking feel magical.
+        - heading "Avoid hostPort and hostNetwork unless absolutely necessary" [level=3] [ref=e394]:
+          - text: Avoid
+          - code [ref=e395]: hostPort
+          - text: and
+          - code [ref=e396]: hostNetwork
+          - text: unless absolutely necessary
+        - paragraph [ref=e397]: "You'll sometimes see these options in manifests:"
+        - code [ref=e400]:
+          - generic [ref=e402]: "hostPort: 8080"
+          - generic [ref=e404]: "hostNetwork: true"
+        - paragraph [ref=e405]:
+          - text: "But here's the thing: They tie your Pods to specific nodes, making them harder to schedule and scale. Because each <"
+          - code [ref=e406]: hostIP
+          - text: ","
+          - code [ref=e407]: hostPort
+          - text: ","
+          - code [ref=e408]: protocol
+          - text: "> combination must be unique. If you don't specify the"
+          - code [ref=e409]: hostIP
+          - text: and
+          - code [ref=e410]: protocol
+          - text: explicitly, Kubernetes will use
+          - code [ref=e411]: 0.0.0.0
+          - text: as the default
+          - code [ref=e412]: hostIP
+          - text: and
+          - code [ref=e413]: TCP
+          - text: as the default
+          - code [ref=e414]: protocol
+          - text: . Unless you're debugging or building something like a network plugin, avoid them.
+        - paragraph [ref=e415]:
+          - text: If you just need local access for testing, try
+          - link "kubectl port-forward" [ref=e416] [cursor=pointer]:
+            - /url: /docs/reference/kubectl/generated/kubectl_port-forward/
+            - code [ref=e417]: kubectl port-forward
+          - text: ":"
+        - code [ref=e420]:
+          - generic [ref=e422]: kubectl port-forward deployment/web 8080:80
+        - paragraph [ref=e423]:
+          - text: See
+          - link "Use Port Forwarding to access applications in a cluster" [ref=e424] [cursor=pointer]:
+            - /url: /docs/tasks/access-application-cluster/port-forward-access-application-cluster/
+          - text: to learn more. Or if you really need external access, use a
+          - 'link "type: NodePort Service" [ref=e425] [cursor=pointer]':
+            - /url: /docs/concepts/services-networking/service/#type-nodeport
+            - code [ref=e426]: "type: NodePort"
+            - text: Service
+          - text: . That's the safer, Kubernetes-native way.
+        - heading "Use headless Services for internal discovery" [level=3] [ref=e427]
+        - paragraph [ref=e428]:
+          - text: Sometimes, you don't want Kubernetes to load balance traffic. You want to talk directly to each Pod. That's where
+          - link "headless Services" [ref=e429] [cursor=pointer]:
+            - /url: /docs/concepts/services-networking/service/#headless-services
+          - text: come in.
+        - paragraph [ref=e430]:
+          - text: You create one by setting
+          - code [ref=e431]: "clusterIP: None"
+          - text: . Instead of a single IP, DNS gives you a list of all Pods IPs, perfect for apps that manage connections themselves.
+        - heading "Working with labels effectively" [level=2] [ref=e432]
+        - paragraph [ref=e433]:
+          - link "Labels" [ref=e434] [cursor=pointer]:
+            - /url: /docs/concepts/overview/working-with-objects/labels/
+          - text: are key/value pairs that are attached to objects such as Pods. Labels help you organize, query and group your resources. They don't do anything by themselves, but they make everything else from Services to Deployments work together smoothly.
+        - heading "Use semantics labels" [level=3] [ref=e435]
+        - paragraph [ref=e436]:
+          - text: Good labels help you understand what's what, even after months later. Define and use
+          - link "labels" [ref=e437] [cursor=pointer]:
+            - /url: /docs/concepts/overview/working-with-objects/labels/
+          - text: that identify semantic attributes of your application or Deployment. For example;
+        - code [ref=e440]:
+          - generic [ref=e442]: "labels:"
+          - generic [ref=e444]: "app.kubernetes.io/name: myapp"
+          - generic [ref=e446]: "app.kubernetes.io/component: web"
+          - generic [ref=e448]: "tier: frontend"
+          - generic [ref=e450]: "phase: test"
+        - list [ref=e451]:
+          - listitem [ref=e452]:
+            - code [ref=e453]: app.kubernetes.io/name
+            - text: ": what the app is"
+          - listitem [ref=e454]:
+            - code [ref=e455]: tier
+            - text: ": which layer it belongs to (frontend/backend)"
+          - listitem [ref=e456]:
+            - code [ref=e457]: phase
+            - text: ": which stage it's in (test/prod)"
+        - paragraph [ref=e458]: "You can then use these labels to make powerful selectors. For example:"
+        - code [ref=e461]:
+          - generic [ref=e463]: kubectl get pods -l tier=frontend
+        - paragraph [ref=e464]:
+          - text: This will list all frontend Pods across your cluster, no matter which Deployment they came from. Basically you are not manually listing Pod names; you are just describing what you want. See the
+          - link "guestbook" [ref=e465] [cursor=pointer]:
+            - /url: https://github.com/kubernetes/examples/tree/master/web/guestbook/
+          - text: app for examples of this approach.
+        - heading "Use common Kubernetes labels" [level=3] [ref=e466]
+        - paragraph [ref=e467]:
+          - text: Kubernetes actually recommends a set of
+          - link "common labels" [ref=e468] [cursor=pointer]:
+            - /url: /docs/concepts/overview/working-with-objects/common-labels/
+          - text: . It's a standardized way to name things across your different workloads or projects. Following this convention makes your manifests cleaner, and it means that tools such as
+          - link "Headlamp" [ref=e469] [cursor=pointer]:
+            - /url: https://headlamp.dev/
+          - text: ","
+          - link "dashboard" [ref=e470] [cursor=pointer]:
+            - /url: https://github.com/kubernetes/dashboard#introduction
+          - text: ", or third-party monitoring systems can all automatically understand what's running."
+        - heading "Manipulate labels for debugging" [level=3] [ref=e471]
+        - paragraph [ref=e472]: Since controllers (like ReplicaSets or Deployments) use labels to manage Pods, you can remove a label to “detach” a Pod temporarily.
+        - paragraph [ref=e473]: "Example:"
+        - code [ref=e476]:
+          - generic [ref=e478]: kubectl label pod mypod app-
+        - paragraph [ref=e479]:
+          - text: The
+          - code [ref=e480]: app-
+          - text: part removes the label key
+          - code [ref=e481]: app
+          - text: . Once that happens, the controller won’t manage that Pod anymore. It’s like isolating it for inspection, a “quarantine mode” for debugging. To interactively remove or add labels, use
+          - link "kubectl label" [ref=e482] [cursor=pointer]:
+            - /url: /docs/reference/kubectl/generated/kubectl_label/
+            - code [ref=e483]: kubectl label
+          - text: .
+        - paragraph [ref=e484]: You can then check logs, exec into it and once done, delete it manually. That’s a super underrated trick every Kubernetes engineer should know.
+        - heading "Handy kubectl tips" [level=2] [ref=e485]
+        - paragraph [ref=e486]: These small tips make life much easier when you are working with multiple manifest files or clusters.
+        - heading "Apply entire directories" [level=3] [ref=e487]
+        - paragraph [ref=e488]: "Instead of applying one file at a time, apply the whole folder:"
+        - code [ref=e491]:
+          - generic [ref=e493]: "# Using server-side apply is also a good practice"
+          - generic [ref=e495]: kubectl apply -f configs/ --server-side
+        - paragraph [ref=e496]:
+          - text: This command looks for
+          - code [ref=e497]: .yaml
+          - text: ","
+          - code [ref=e498]: .yml
+          - text: and
+          - code [ref=e499]: .json
+          - text: files in that folder and applies them all together. It's faster, cleaner and helps keep things grouped by app.
+        - heading "Use label selectors to get or delete resources" [level=3] [ref=e500]
+        - paragraph [ref=e501]:
+          - text: You don't always need to type out resource names one by one. Instead, use
+          - link "selectors" [ref=e502] [cursor=pointer]:
+            - /url: /docs/concepts/overview/working-with-objects/labels/#label-selectors
+          - text: "to act on entire groups at once:"
+        - code [ref=e505]:
+          - generic [ref=e507]: kubectl get pods -l app=myapp
+          - generic [ref=e509]: kubectl delete pod -l phase=test
+        - paragraph [ref=e510]: It's especially useful in CI/CD pipelines, where you want to clean up test resources dynamically.
+        - heading "Quickly create Deployments and Services" [level=3] [ref=e511]
+        - paragraph [ref=e512]: "For quick experiments, you don't always need to write a manifest. You can spin up a Deployment right from the CLI:"
+        - code [ref=e515]:
+          - generic [ref=e517]: kubectl create deployment webapp --image=nginx
+        - paragraph [ref=e518]: "Then expose it as a Service:"
+        - code [ref=e521]:
+          - generic [ref=e523]: kubectl expose deployment webapp --port=80
+        - paragraph [ref=e524]:
+          - text: This is great when you just want to test something before writing full manifests. Also, see
+          - link "Use a Service to Access an Application in a cluster" [ref=e525] [cursor=pointer]:
+            - /url: /docs/tasks/access-application-cluster/service-access-application-cluster/
+          - text: for an example.
+        - heading "Conclusion" [level=2] [ref=e526]
+        - paragraph [ref=e527]: "Cleaner configuration leads to calmer cluster administrators. If you stick to a few simple habits: keep configuration simple and minimal, version-control everything, use consistent labels, and avoid relying on naked Pods, you'll save yourself hours of debugging down the road."
+        - paragraph [ref=e528]: The best part? Clean configurations stay readable. Even after months, you or anyone on your team can glance at them and know exactly what’s happening.
+        - list [ref=e529]:
+          - listitem [ref=e530]:
+            - 'link "Previous - Ingress NGINX Retirement: What You Need to Know" [ref=e531] [cursor=pointer]':
+              - /url: /blog/2025/11/11/ingress-nginx-retirement/
+              - text: ←Previous
+          - listitem [ref=e532]:
+            - link "Next - Kubernetes v1.35 Sneak Peek" [ref=e533] [cursor=pointer]:
+              - /url: /blog/2025/11/26/kubernetes-v1-35-sneak-peek/
+              - text: Next→
+    - generic [ref=e535]:
+      - link " RSS Feed" [ref=e536] [cursor=pointer]:
+        - /url: https://kubernetes.io/feed.xml
+        - generic [ref=e537]:
+          - generic [ref=e538]: 
+          - text: RSS Feed
+      - link " Submit a Post" [ref=e539] [cursor=pointer]:
+        - /url: https://kubernetes.io/docs/contribute/new-content/blogs-case-studies/
+        - generic [ref=e540]:
+          - generic [ref=e541]: 
+          - text: Submit a Post
+      - link " @kubernetes.io" [ref=e542] [cursor=pointer]:
+        - /url: https://bsky.app/profile/kubernetes.io
+        - generic [ref=e543]:
+          - generic [ref=e544]: 
+          - text: "@kubernetes.io"
+      - link " @Kubernetesio" [ref=e545] [cursor=pointer]:
+        - /url: https://x.com/kubernetesio
+        - generic [ref=e546]:
+          - generic [ref=e547]: 
+          - text: "@Kubernetesio"
+      - link " on GitHub" [ref=e548] [cursor=pointer]:
+        - /url: https://github.com/kubernetes/kubernetes
+        - generic [ref=e549]:
+          - generic [ref=e550]: 
+          - text: on GitHub
+      - 'link " #kubernetes-users" [ref=e551] [cursor=pointer]':
+        - /url: http://slack.k8s.io
+        - generic [ref=e552]:
+          - generic [ref=e553]: 
+          - text: "#kubernetes-users"
+      - link " Stack Overflow" [ref=e554] [cursor=pointer]:
+        - /url: https://stackoverflow.com/questions/tagged/kubernetes
+        - generic [ref=e555]:
+          - generic [ref=e556]: 
+          - text: Stack Overflow
+      - link " Forum" [ref=e557] [cursor=pointer]:
+        - /url: https://discuss.kubernetes.io
+        - generic [ref=e558]:
+          - generic [ref=e559]: 
+          - text: Forum
+      - link " Kubernetes" [ref=e560] [cursor=pointer]:
+        - /url: https://kubernetes.io/docs/setup
+        - generic [ref=e561]:
+          - generic [ref=e562]: 
+          - text: Kubernetes
+  - contentinfo [ref=e563]:
+    - generic [ref=e565]:
+      - generic [ref=e566]:
+        - paragraph [ref=e567]:
+          - generic [ref=e568]:
+            - text: © 2026 The Kubernetes Authors | Documentation Distributed under
+            - link "CC BY 4.0" [ref=e569] [cursor=pointer]:
+              - /url: https://git.k8s.io/website/LICENSE
+        - paragraph [ref=e570]:
+          - generic [ref=e571]:
+            - text: © 2026 The Linux Foundation ®. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our
+            - link "Trademark Usage page" [ref=e572] [cursor=pointer]:
+              - /url: https://www.linuxfoundation.org/trademark-usage
+        - paragraph [ref=e573]: "ICP license: 京ICP备17074266号-3"
+      - list [ref=e575]:
+        - listitem [ref=e576]:
+          - link "YouTube" [ref=e577] [cursor=pointer]:
+            - /url: https://youtube.com/kubernetescommunity
+            - generic [ref=e578]: 
+        - listitem [ref=e579]:
+          - link "Forum" [ref=e580] [cursor=pointer]:
+            - /url: https://discuss.kubernetes.io
+            - generic [ref=e581]: 
+        - listitem [ref=e582]:
+          - link "Server Fault" [ref=e583] [cursor=pointer]:
+            - /url: https://serverfault.com/questions/tagged/kubernetes
+            - generic [ref=e584]: 
+        - listitem [ref=e585]:
+          - link "LinkedIn" [ref=e586] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/kubernetes/
+            - generic [ref=e587]: 
+        - listitem [ref=e588]:
+          - link "Bluesky" [ref=e589] [cursor=pointer]:
+            - /url: https://bsky.app/profile/kubernetes.io
+            - generic [ref=e590]: 
+        - listitem [ref=e591]:
+          - link "X (formerly Twitter)" [ref=e592] [cursor=pointer]:
+            - /url: https://x.com/kubernetesio
+            - generic [ref=e593]: 
+      - list [ref=e595]:
+        - listitem [ref=e596]:
+          - link "Contributor website" [ref=e597] [cursor=pointer]:
+            - /url: https://k8s.dev/
+            - generic [ref=e598]: 
+        - listitem [ref=e599]:
+          - link "GitHub" [ref=e600] [cursor=pointer]:
+            - /url: https://github.com/kubernetes/kubernetes
+            - generic [ref=e601]: 
+        - listitem [ref=e602]:
+          - link "Slack" [ref=e603] [cursor=pointer]:
+            - /url: https://slack.k8s.io
+            - generic [ref=e604]: 
+        - listitem [ref=e605]:
+          - link "Events Calendar" [ref=e606] [cursor=pointer]:
+            - /url: https://calendar.google.com/calendar/embed?src=calendar%40kubernetes.io
+            - generic [ref=e607]: 
+  - text:               

@@ -17,20 +17,20 @@ theme:
   language: en
   font: false
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: indigo
-      accent: deep purple
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
-      accent: deep purple
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Cyberpunk Mode (Default)
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: cyan
       toggle:
         icon: material/weather-sunny
-        name: Switch to light mode
+        name: High Contrast Mode
   features:
     - navigation.tabs
     - navigation.sections

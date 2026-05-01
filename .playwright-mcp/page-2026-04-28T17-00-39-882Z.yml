@@ -1,0 +1,1469 @@
+- generic [ref=e2]:
+  - navigation [ref=e3]:
+    - link "LearnKube logo" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - img [ref=e6]
+    - list [ref=e13]:
+      - listitem [ref=e14]:
+        - link "Corporate training" [ref=e15] [cursor=pointer]:
+          - /url: /corporate-training
+      - listitem [ref=e16]:
+        - link "Public workshops" [ref=e17] [cursor=pointer]:
+          - /url: /training
+      - listitem [ref=e18]:
+        - link "Blog" [ref=e19] [cursor=pointer]:
+          - /url: /blog
+      - listitem [ref=e20]:
+        - link "Contact us" [ref=e21] [cursor=pointer]:
+          - /url: /contact-us
+  - generic [ref=e23]:
+    - heading "Kubernetes production best practices" [level=1] [ref=e24]:
+      - text: Kubernetes
+      - text: production
+      - text: best practices
+    - paragraph [ref=e26]: A curated checklist of best practices designed to help you release to production
+  - generic [ref=e27]:
+    - paragraph [ref=e28]: This checklist provides actionable best practices for deploying secure, scalable, and resilient services on Kubernetes.
+    - paragraph [ref=e29]:
+      - text: The content is open source and available
+      - link "in this repository" [ref=e30] [cursor=pointer]:
+        - /url: https://github.com/learnk8s/kubernetes-production-best-practices
+      - text: .
+      - text: If you think there are missing best practices or they are not right, consider submitting an issue.
+    - paragraph [ref=e31]: Check things off to keep track as you go.
+  - generic [ref=e32]:
+    - generic [ref=e34]:
+      - generic [ref=e36]:
+        - paragraph [ref=e37]: Your progress
+        - paragraph [ref=e38]: 0% complete
+      - generic [ref=e39]:
+        - paragraph [ref=e40]: Categories
+        - list [ref=e41]:
+          - listitem [ref=e42]:
+            - link "1. Application development" [ref=e43] [cursor=pointer]:
+              - /url: "#application-development"
+          - listitem [ref=e44]:
+            - link "2. Governance" [ref=e45] [cursor=pointer]:
+              - /url: "#governance"
+          - listitem [ref=e46]:
+            - link "3. Cluster configuration" [ref=e47] [cursor=pointer]:
+              - /url: "#cluster-configuration"
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - heading "1. Application development" [level=2] [ref=e50]
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - paragraph [ref=e54]: Health checks
+              - button "Info" [ref=e56]:
+                - img "Info" [ref=e57]
+            - generic [ref=e58]:
+              - paragraph [ref=e59]:
+                - strong [ref=e60]: The readiness probe determines when a container can receive traffic.
+              - paragraph [ref=e61]: The kubelet executes the checks and decides if the app can receive traffic or not.
+              - paragraph [ref=e62]:
+                - strong [ref=e63]: The liveness probe determines when a container should be restarted.
+              - paragraph [ref=e64]: The kubelet executes the check and decides if the container should be restarted.
+              - paragraph [ref=e65]:
+                - strong [ref=e66]: "Resources:"
+              - list [ref=e67]:
+                - listitem [ref=e68]:
+                  - text: The official Kubernetes documentation offers some practical advice on how to
+                  - link "configure Liveness, Readiness and Startup Probes" [ref=e69] [cursor=pointer]:
+                    - /url: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+                  - text: .
+                - listitem [ref=e70]:
+                  - link "Liveness probes are dangerous" [ref=e71] [cursor=pointer]:
+                    - /url: https://srcco.de/posts/kubernetes-liveness-probes-are-dangerous.html
+                  - text: has some information on how to set (or not) dependencies in your readiness probes.
+          - list [ref=e72]:
+            - listitem [ref=e73]:
+              - generic [ref=e74]:
+                - generic [ref=e75]:
+                  - checkbox [ref=e76]
+                  - paragraph [ref=e77]: Containers have Readiness probes
+                  - button "Open" [ref=e79]
+                - generic [ref=e81]:
+                  - blockquote [ref=e82]:
+                    - paragraph [ref=e83]: Please note that there's no default value for readiness and liveness.
+                  - paragraph [ref=e84]: If you don't set the readiness probe, the kubelet assumes that the app is ready to receive traffic as soon as the container starts.
+                  - paragraph [ref=e85]: If the container takes 2 minutes to start, all the requests to it will fail for those 2 minutes.
+            - listitem [ref=e86]:
+              - generic [ref=e87]:
+                - generic [ref=e88]:
+                  - checkbox [ref=e89]
+                  - paragraph [ref=e90]: Containers crash when there's a fatal error
+                  - button "Open" [ref=e92]
+                - generic [ref=e94]:
+                  - paragraph [ref=e95]:
+                    - text: If the application reaches an unrecoverable error,
+                    - link "you should let it crash" [ref=e96] [cursor=pointer]:
+                      - /url: https://blog.colinbreck.com/kubernetes-liveness-and-readiness-probes-revisited-how-to-avoid-shooting-yourself-in-the-other-foot/#letitcrash
+                    - text: .
+                  - paragraph [ref=e97]: "Examples of such unrecoverable errors are:"
+                  - list [ref=e98]:
+                    - listitem [ref=e99]: an uncaught exception
+                    - listitem [ref=e100]: a typo in the code (for dynamic languages)
+                    - listitem [ref=e101]: unable to load a header or dependency
+                  - paragraph [ref=e102]: Please note that you should not signal a failing Liveness probe.
+                  - paragraph [ref=e103]: Instead, you should immediately exit the process and let the kubelet restart the container.
+            - listitem [ref=e104]:
+              - generic [ref=e105]:
+                - generic [ref=e106]:
+                  - checkbox [ref=e107]
+                  - paragraph [ref=e108]: Configure a passive Liveness probe
+                  - button "Open" [ref=e110]
+                - generic [ref=e112]:
+                  - paragraph [ref=e113]: The Liveness probe is designed to restart your container when it's stuck.
+                  - paragraph [ref=e114]: "Consider the following scenario: if your application is processing an infinite loop, there's no way to exit or ask for help."
+                  - paragraph [ref=e115]: When the process is consuming 100% CPU, it won't have time to reply to the (other) Readiness probe checks, and it will be eventually removed from the Service.
+                  - paragraph [ref=e116]: However, the Pod is still registered as an active replica for the current Deployment.
+                  - paragraph [ref=e117]:
+                    - text: If you don't have a Liveness probe, it stays
+                    - emphasis [ref=e118]: Running
+                    - text: but detached from the Service.
+                  - paragraph [ref=e119]: In other words, not only is the process not serving any requests, but it is also consuming resources.
+                  - paragraph [ref=e120]:
+                    - emphasis [ref=e121]: What should you do?
+                  - list [ref=e122]:
+                    - listitem [ref=e123]: Expose an endpoint from your app
+                    - listitem [ref=e124]: The endpoint always replies with a success response
+                    - listitem [ref=e125]: Consume the endpoint from the Liveness probe
+                  - paragraph [ref=e126]: Please note that you should not use the Liveness probe to handle fatal errors in your app and request Kubernetes to restart the app.
+                  - paragraph [ref=e127]: Instead, you should let the app crash.
+                  - paragraph [ref=e128]: The Liveness probe should be used as a recovery mechanism only in case the process is not responsive.
+            - listitem [ref=e129]:
+              - generic [ref=e130]:
+                - generic [ref=e131]:
+                  - checkbox [ref=e132]
+                  - paragraph [ref=e133]: Liveness probes values aren't the same as the Readiness
+                  - button "Open" [ref=e135]
+                - generic [ref=e137]:
+                  - paragraph [ref=e138]: When Liveness and Readiness probes are pointing to the same endpoint, the effects of the probes are combined.
+                  - paragraph [ref=e139]:
+                    - text: When the app signals that it's not ready or live, the kubelet detaches the container from the Service and delete it
+                    - strong [ref=e140]: at the same time
+                    - text: .
+                  - paragraph [ref=e141]: You might notice dropping connections because the container does not have enough time to drain the current connections or process the incoming ones.
+                  - paragraph [ref=e142]:
+                    - text: You can dig deeper in the following
+                    - link "article that discussed graceful shutdown" [ref=e143] [cursor=pointer]:
+                      - /url: https://freecontent.manning.com/handling-client-requests-properly-with-kubernetes/
+                    - text: .
+        - generic [ref=e144]:
+          - generic [ref=e145]:
+            - generic [ref=e146]:
+              - paragraph [ref=e147]: Apps are independent
+              - button "Info" [ref=e149]:
+                - img "Info" [ref=e150]
+            - generic [ref=e151]:
+              - paragraph [ref=e152]:
+                - text: If the app connects to a database, you might think that returning a failing readiness probe until the database is
+                - emphasis [ref=e153]: ready
+                - text: is a good idea — it is not.
+              - paragraph [ref=e154]: "Consider the following scenario: you have one front-end app that depends on a backend API."
+              - paragraph [ref=e155]: If the API is flaky (e.g. it's unavailable from time to time due to a bug), the readiness probe fails, and the dependent readiness in the front-end app fail as well.
+              - paragraph [ref=e156]: And you have downtime.
+              - paragraph [ref=e157]:
+                - text: More in general,
+                - strong [ref=e158]: a failure in a dependency downstream could propagate to all apps upstream
+                - text: and eventually, bring down your front-end facing layer as well.
+          - list [ref=e159]:
+            - listitem [ref=e160]:
+              - generic [ref=e161]:
+                - generic [ref=e162]:
+                  - checkbox [ref=e163]
+                  - paragraph [ref=e164]: The Readiness probes are independent
+                  - button "Open" [ref=e166]
+                - generic [ref=e168]:
+                  - paragraph [ref=e169]: "The readiness probe doesn't include dependencies to services such as:"
+                  - list [ref=e170]:
+                    - listitem [ref=e171]: databases
+                    - listitem [ref=e172]: database migrations
+                    - listitem [ref=e173]: APIs
+                    - listitem [ref=e174]: third party services
+                  - paragraph [ref=e175]:
+                    - text: You can
+                    - link "explore what happens when there're dependencies in the readiness probes in this essay" [ref=e176] [cursor=pointer]:
+                      - /url: https://blog.colinbreck.com/kubernetes-liveness-and-readiness-probes-how-to-avoid-shooting-yourself-in-the-foot/#shootingyourselfinthefootwithreadinessprobes
+                    - text: .
+            - listitem [ref=e177]:
+              - generic [ref=e178]:
+                - generic [ref=e179]:
+                  - checkbox [ref=e180]
+                  - paragraph [ref=e181]: The app retries connecting to dependent services
+                  - button "Open" [ref=e183]
+                - generic [ref=e185]:
+                  - paragraph [ref=e186]: When the app starts, it shouldn't crash because a dependency such as a database isn't ready.
+                  - paragraph [ref=e187]: Instead, the app should keep retrying to connect to the database until it succeeds.
+                  - paragraph [ref=e188]: Kubernetes expects that application components can be started in any order.
+                  - paragraph [ref=e189]: When you make sure that your app can reconnect to a dependency such as a database you know you can deliver a more robust and resilient service.
+        - generic [ref=e190]:
+          - generic [ref=e191]:
+            - generic [ref=e192]:
+              - paragraph [ref=e193]: Graceful shutdown
+              - button "Info" [ref=e195]:
+                - img "Info" [ref=e196]
+            - generic [ref=e197]:
+              - paragraph [ref=e198]: Instead, you should wait for the existing connection to drain and stop processing new ones.
+              - paragraph [ref=e199]: Please notice that, when a Pod is terminated, the endpoints for that Pod are removed from the Service.
+              - paragraph [ref=e200]: However, it might take some time before component such as kube-proxy or the Ingress controller is notified of the change.
+              - paragraph [ref=e201]:
+                - text: You can find a detail explanation on how graceful shutdown works in
+                - link "handling client requests correctly with Kubernetes" [ref=e202] [cursor=pointer]:
+                  - /url: https://freecontent.manning.com/handling-client-requests-properly-with-kubernetes/
+                - text: .
+              - paragraph [ref=e203]: "The correct graceful shutdown sequence is:"
+              - list [ref=e204]:
+                - listitem [ref=e205]: upon receiving SIGTERM
+                - listitem [ref=e206]: the server stops accepting new connections
+                - listitem [ref=e207]: completes all active requests
+                - listitem [ref=e208]: then immediately kills all keepalive connections and
+                - listitem [ref=e209]: the process exits
+              - paragraph [ref=e210]:
+                - text: You can
+                - 'link "test that your app gracefully shuts down with this tool: kube-sigterm-test" [ref=e211] [cursor=pointer]':
+                  - /url: https://github.com/mikkeloscar/kube-sigterm-test
+                - text: .
+          - list [ref=e212]:
+            - listitem [ref=e213]:
+              - generic [ref=e214]:
+                - generic [ref=e215]:
+                  - checkbox [ref=e216]
+                  - paragraph [ref=e217]: The app doesn't shut down on SIGTERM, but it gracefully terminates connections
+                  - button "Open" [ref=e219]
+                - generic [ref=e221]:
+                  - paragraph [ref=e222]: It might take some time before a component such as kube-proxy or the Ingress controller is notified of the endpoint changes.
+                  - paragraph [ref=e223]: Hence, traffic might still flow to the Pod despite it being marked as terminated.
+                  - paragraph [ref=e224]: The app should stop accepting new requests on all remaining connections, and close these once the outgoing queue is drained.
+                  - paragraph [ref=e225]:
+                    - text: If you need a refresher on how endpoints are propagated in your cluster,
+                    - link "read this article on how to handle client requests properly" [ref=e226] [cursor=pointer]:
+                      - /url: https://freecontent.manning.com/handling-client-requests-properly-with-kubernetes/
+                    - text: .
+            - listitem [ref=e227]:
+              - generic [ref=e228]:
+                - generic [ref=e229]:
+                  - checkbox [ref=e230]
+                  - paragraph [ref=e231]: The app still processes incoming requests in the grace period
+                  - button "Open" [ref=e233]
+                - paragraph [ref=e236]:
+                  - text: You might want to consider using the container lifecycle events such as
+                  - link "the preStop handler" [ref=e237] [cursor=pointer]:
+                    - /url: https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/#define-poststart-and-prestop-handlers
+                  - text: to customize what happens before a Pod is deleted.
+            - listitem [ref=e238]:
+              - generic [ref=e239]:
+                - generic [ref=e240]:
+                  - checkbox [ref=e241]
+                  - paragraph [ref=e242]:
+                    - text: The CMD in the
+                    - code [ref=e243]: Dockerfile
+                    - text: forwards the SIGTERM to the process
+                  - button "Open" [ref=e245]
+                - generic [ref=e247]:
+                  - paragraph [ref=e248]: You can be notified when the Pod is about to be terminated by capturing the SIGTERM signal in your app.
+                  - paragraph [ref=e249]:
+                    - text: You should also pay attention to
+                    - link "forwarding the signal to the right process in your container" [ref=e250] [cursor=pointer]:
+                      - /url: https://pracucci.com/graceful-shutdown-of-kubernetes-pods.html
+                    - text: .
+            - listitem [ref=e251]:
+              - generic [ref=e252]:
+                - generic [ref=e253]:
+                  - checkbox [ref=e254]
+                  - paragraph [ref=e255]: Close all idle keep-alive sockets
+                  - button "Open" [ref=e257]
+                - generic [ref=e259]:
+                  - paragraph [ref=e260]: If the calling app is not closing the TCP connection (e.g. using TCP keep-alive or a connection pool) it will connect to one Pod and not use the other Pods in that Service.
+                  - paragraph [ref=e261]:
+                    - emphasis [ref=e262]: But what happens when a Pod is deleted?
+                  - paragraph [ref=e263]: Ideally, the request should go to another Pod.
+                  - paragraph [ref=e264]: However, the calling app has a long-lived connection open with the Pod that is about to be terminated, and it will keep using it.
+                  - paragraph [ref=e265]: On the other hand, you shouldn't abruptly terminate long-lived connections.
+                  - paragraph [ref=e266]: Instead, you should terminate them before shutting down the app.
+        - generic [ref=e267]:
+          - generic [ref=e268]:
+            - generic [ref=e269]:
+              - paragraph [ref=e270]: Fault tolerance
+              - button "Info" [ref=e272]:
+                - img "Info" [ref=e273]
+            - generic [ref=e274]:
+              - list [ref=e275]:
+                - listitem [ref=e276]: a hardware failure of the physical machine
+                - listitem [ref=e277]: cloud provider or hypervisor failure
+                - listitem [ref=e278]: a kernel panic
+              - paragraph [ref=e279]: Pods deployed in those nodes are lost too.
+              - paragraph [ref=e280]: "Also, there are other scenarios where Pods could be deleted:"
+              - list [ref=e281]:
+                - listitem [ref=e282]: directly deleting a pod (accident)
+                - listitem [ref=e283]: draining a node
+                - listitem [ref=e284]: removing a pod from a node to permit another Pod to fit on that node
+              - paragraph [ref=e285]: Any of the above scenarios could affect the availability of your app and potentially cause downtime.
+              - paragraph [ref=e286]: You should protect from a scenario where all of your Pods are made unavailable, and you aren't able to serve live traffic.
+          - list [ref=e287]:
+            - listitem [ref=e288]:
+              - generic [ref=e289]:
+                - generic [ref=e290]:
+                  - checkbox [ref=e291]
+                  - paragraph [ref=e292]: Run more than one replica for your Deployment
+                  - button "Open" [ref=e294]
+                - generic [ref=e296]:
+                  - paragraph [ref=e297]: Never run a single Pod individually.
+                  - paragraph [ref=e298]: Instead consider deploying your Pod as part of a Deployment, DaemonSet, ReplicaSet or StatefulSet.
+                  - paragraph [ref=e299]:
+                    - link "Running more than one instance of your Pods guarantees that deleting a single Pod won't cause downtime" [ref=e300] [cursor=pointer]:
+                      - /url: https://cloudmark.github.io/Node-Management-In-GKE/#replicas
+                    - text: .
+            - listitem [ref=e301]:
+              - generic [ref=e302]:
+                - generic [ref=e303]:
+                  - checkbox [ref=e304]
+                  - paragraph [ref=e305]: Avoid Pods being placed into a single node
+                  - button "Open" [ref=e307]
+                - generic [ref=e309]:
+                  - paragraph [ref=e310]:
+                    - strong [ref=e311]: Even if you run several copies of your Pods, there are no guarantees that losing a node won't take down your service.
+                  - paragraph [ref=e312]: "Consider the following scenario: you have 11 replicas on a single cluster node."
+                  - paragraph [ref=e313]: If the node is made unavailable, the 11 replicas are lost, and you have downtime.
+                  - paragraph [ref=e314]:
+                    - link "You should apply anti-affinity rules to your Deployments so that Pods are spread in all the nodes of your cluster" [ref=e315] [cursor=pointer]:
+                      - /url: https://cloudmark.github.io/Node-Management-In-GKE/#pod-anti-affinity-rules
+                    - text: .
+                  - paragraph [ref=e316]:
+                    - text: The
+                    - link "inter-pod affinity and anti-affinity" [ref=e317] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+                    - text: documentation describe how you can you could change your Pod to be located (or not) in the same node.
+            - listitem [ref=e318]:
+              - generic [ref=e319]:
+                - generic [ref=e320]:
+                  - checkbox [ref=e321]
+                  - paragraph [ref=e322]: Set Pod disruption budgets
+                  - button "Open" [ref=e324]
+                - generic [ref=e326]:
+                  - paragraph [ref=e327]: When a node is drained, all the Pods on that node are deleted and rescheduled.
+                  - paragraph [ref=e328]:
+                    - emphasis [ref=e329]: But what if you are under heavy load and you can't lose more than 50% of your Pods?
+                  - paragraph [ref=e330]: The drain event could affect your availability.
+                  - paragraph [ref=e331]: To protect the Deployments from unexpected events that could take down several Pods at the same time, you can define Pod Disruption Budget.
+                  - paragraph [ref=e332]:
+                    - text: "Imagine saying:"
+                    - emphasis [ref=e333]: "\"Kubernetes, please make sure that there are always at least 5 Pods running for my app\"."
+                  - paragraph [ref=e334]: Kubernetes will prevent the drain event if the final state results in less than 5 Pods for that Deployment.
+                  - paragraph [ref=e335]:
+                    - text: The official documentation is an excellent place to start to understand
+                    - link "Pod Disruption Budgets" [ref=e336] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
+                    - text: .
+        - generic [ref=e337]:
+          - generic [ref=e338]:
+            - generic [ref=e339]:
+              - paragraph [ref=e340]: Resources utilisation
+              - button "Info" [ref=e342]:
+                - img "Info" [ref=e343]
+            - generic [ref=e344]:
+              - paragraph [ref=e345]: Docker containers are the blocks; servers are the boards, and the scheduler is the player.
+              - paragraph [ref=e346]: To maximise the efficiency of the scheduler, you should share with Kubernetes details such as resource utilisation, workload priorities and overheads.
+          - list [ref=e347]:
+            - listitem [ref=e348]:
+              - generic [ref=e349]:
+                - generic [ref=e350]:
+                  - checkbox [ref=e351]
+                  - paragraph [ref=e352]: Set memory limits and requests for all containers
+                  - button "Open" [ref=e354]
+                - generic [ref=e356]:
+                  - paragraph [ref=e357]:
+                    - text: Resource limits are used to constrain how much CPU and memory your containers can utilise and are set using the resources property of a
+                    - code [ref=e358]: containerSpec
+                    - text: .
+                  - paragraph [ref=e359]: The scheduler uses those as one of metrics to decide which node is best suited for the current Pod.
+                  - paragraph [ref=e360]: A container without a memory limit has memory utilisation of zero — according to the scheduler.
+                  - paragraph [ref=e361]: An unlimited number of Pods if schedulable on any nodes leading to resource overcommitment and potential node (and kubelet) crashes.
+                  - paragraph [ref=e362]: The same applies to CPU limits.
+                  - paragraph [ref=e363]:
+                    - emphasis [ref=e364]: But should you always set limits and requests for memory and CPU?
+                  - paragraph [ref=e365]: Yes and no.
+                  - paragraph [ref=e366]: If your process goes over the memory limit, the process is terminated.
+                  - paragraph [ref=e367]: Since CPU is a compressible resource, if your container goes over the limit, the process is throttled.
+                  - paragraph [ref=e368]: Even if it could have used some of the CPU that was available at that moment.
+                  - paragraph [ref=e369]:
+                    - strong [ref=e370]:
+                      - link "CPU limits are hard." [ref=e371] [cursor=pointer]:
+                        - /url: https://www.reddit.com/r/kubernetes/comments/cmp7jj/multithreading_in_a_container_with_limited/ew52fcj/
+                  - paragraph [ref=e372]: "If you wish to dig deeper into CPU and memory limits you should check out the following articles:"
+                  - list [ref=e373]:
+                    - listitem [ref=e374]:
+                      - 'link "Understanding resource limits in kubernetes: memory" [ref=e375] [cursor=pointer]':
+                        - /url: https://medium.com/@betz.mark/understanding-resource-limits-in-kubernetes-memory-6b41e9a955f9
+                    - listitem [ref=e376]:
+                      - 'link "Understanding resource limits in kubernetes: cpu time" [ref=e377] [cursor=pointer]':
+                        - /url: https://medium.com/@betz.mark/understanding-resource-limits-in-kubernetes-cpu-time-9eff74d3161b
+                  - blockquote [ref=e378]:
+                    - paragraph [ref=e379]:
+                      - text: Please note that if you are not sure what should be the
+                      - emphasis [ref=e380]: right
+                      - text: CPU or memory limit, you can use the
+                      - link "Vertical Pod Autoscaler" [ref=e381] [cursor=pointer]:
+                        - /url: https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler
+                      - text: in Kubernetes with the recommendation mode turned on. The autoscaler profiles your app and recommends limits for it.
+            - listitem [ref=e382]:
+              - generic [ref=e383]:
+                - generic [ref=e384]:
+                  - checkbox [ref=e385]
+                  - paragraph [ref=e386]: Set CPU request to 1 CPU or below
+                  - button "Open" [ref=e388]
+                - paragraph [ref=e391]:
+                  - text: Unless you have computational intensive jobs,
+                  - link "it is recommended to set the request to 1 CPU or below" [ref=e392] [cursor=pointer]:
+                    - /url: https://www.youtube.com/watch?v=xjpHggHKm78
+                  - text: .
+            - listitem [ref=e393]:
+              - generic [ref=e394]:
+                - generic [ref=e395]:
+                  - checkbox [ref=e396]
+                  - paragraph [ref=e397]: Disable CPU limits — unless you have a good use case
+                  - button "Open" [ref=e399]
+                - generic [ref=e401]:
+                  - paragraph [ref=e402]: CPU is measured as CPU timeunits per timeunit.
+                  - paragraph [ref=e403]:
+                    - code [ref=e404]: "cpu: 1"
+                    - text: means 1 CPU second per second.
+                  - paragraph [ref=e405]: If you have 1 thread, you can't consume more than 1 CPU second per second.
+                  - paragraph [ref=e406]: If you have 2 threads, you can consume 1 CPU second in 0.5 seconds.
+                  - paragraph [ref=e407]: 8 threads can consume 1 CPU second in 0.125 seconds.
+                  - paragraph [ref=e408]: After that, your process is throttled.
+                  - paragraph [ref=e409]: If you're not sure about what's the best settings for your app, it's better not to set the CPU limits.
+                  - paragraph [ref=e410]:
+                    - text: If you wish to learn more,
+                    - link "this article digs deeper in CPU requests and limits" [ref=e411] [cursor=pointer]:
+                      - /url: https://medium.com/@betz.mark/understanding-resource-limits-in-kubernetes-cpu-time-9eff74d3161b
+                    - text: .
+            - listitem [ref=e412]:
+              - generic [ref=e413]:
+                - generic [ref=e414]:
+                  - checkbox [ref=e415]
+                  - paragraph [ref=e416]: The namespace has a LimitRange
+                  - button "Open" [ref=e418]
+                - generic [ref=e420]:
+                  - paragraph [ref=e421]: If you think you might forget to set memory and CPU limits, you should consider using a LimitRange object to define the standard size for a container deployed in the current namespace.
+                  - paragraph [ref=e422]:
+                    - link "The official documentation about LimitRange" [ref=e423] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/concepts/policy/limit-range/
+                    - text: is an excellent place to start.
+            - listitem [ref=e424]:
+              - generic [ref=e425]:
+                - generic [ref=e426]:
+                  - checkbox [ref=e427]
+                  - paragraph [ref=e428]: Set an appropriate Quality of Service (QoS) for Pods
+                  - button "Open" [ref=e430]
+                - generic [ref=e432]:
+                  - paragraph [ref=e433]: When a node goes into an overcommitted state (i.e. using too many resources) Kubernetes tries to evict some of the Pod in that Node.
+                  - paragraph [ref=e434]: Kubernetes ranks and evicts the Pods according to a well-defined logic.
+                  - paragraph [ref=e435]:
+                    - text: You can find more about
+                    - link "configuring the quality of service for your Pods" [ref=e436] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/tasks/configure-pod-container/quality-service-pod/
+                    - text: on the official documentation.
+        - generic [ref=e437]:
+          - generic [ref=e438]:
+            - generic [ref=e439]:
+              - paragraph [ref=e440]: Tagging resources
+              - button "Info" [ref=e442]:
+                - img "Info" [ref=e443]
+            - generic [ref=e444]:
+              - paragraph [ref=e445]: A label is a key-value pair without any pre-defined meaning.
+              - paragraph [ref=e446]: They can be applied to all resources in your cluster from Pods to Service, Ingress manifests, Endpoints, etc.
+              - paragraph [ref=e447]: You can use labels to categorize resources by purpose, owner, environment, or other criteria.
+              - paragraph [ref=e448]: So you could choose a label to tag a Pod in an environment such as "this pod is running in production" or "the payment team owns that Deployment".
+              - paragraph [ref=e449]: You can also omit labels altogether.
+              - paragraph [ref=e450]: "However, you might want to consider using labels to cover the following categories:"
+              - list [ref=e451]:
+                - listitem [ref=e452]: technical labels such as the environment
+                - listitem [ref=e453]: labels for automation
+                - listitem [ref=e454]: label related to your business such as cost-centre allocation
+                - listitem [ref=e455]: label related to security such as compliance requirements
+          - list [ref=e456]:
+            - listitem [ref=e457]:
+              - generic [ref=e458]:
+                - generic [ref=e459]:
+                  - checkbox [ref=e460]
+                  - paragraph [ref=e461]: Resources have technical labels defined
+                  - button "Open" [ref=e463]
+                - generic [ref=e465]:
+                  - paragraph [ref=e466]: "You could tag your Pods with:"
+                  - list [ref=e467]:
+                    - listitem [ref=e468]:
+                      - code [ref=e469]: name
+                      - text: ", the name of the application such \"User API\""
+                    - listitem [ref=e470]:
+                      - code [ref=e471]: instance
+                      - text: ", a unique name identifying the instance of an application (you could use the container image tag)"
+                    - listitem [ref=e472]:
+                      - code [ref=e473]: version
+                      - text: ", the current version of the appl (an incremental counter)"
+                    - listitem [ref=e474]:
+                      - code [ref=e475]: component
+                      - text: ", the component within the architecture such as \"API\" or \"database\""
+                    - listitem [ref=e476]:
+                      - code [ref=e477]: part-of
+                      - text: ", the name of a higher-level application this one is part of such as \"payment gateway\""
+                    - listitem [ref=e478]:
+                      - code [ref=e479]: managed-by
+                      - text: ", the tool being used to manage the operation of an application such as \"kubectl\" or \"Helm\""
+                  - paragraph [ref=e480]: "Here's an example on how you could use such labels in a Deployment:"
+                  - generic [ref=e481]:
+                    - paragraph [ref=e486]: deployment.yaml
+                    - code [ref=e488]:
+                      - generic [ref=e489]: "apiVersion: apps/v1 kind: Deployment metadata: name: deployment labels:"
+                      - generic [ref=e490]: "app.kubernetes.io/name: user-api app.kubernetes.io/instance: user-api-5fa65d2 app.kubernetes.io/version: \"42\" app.kubernetes.io/component: api app.kubernetes.io/part-of: payment-gateway app.kubernetes.io/managed-by: kubectl"
+                      - generic [ref=e491]: "spec: replicas: 3 selector: matchLabels: application: my-app template: metadata: labels:"
+                      - generic [ref=e492]: "app.kubernetes.io/name: user-api app.kubernetes.io/instance: user-api-5fa65d2 app.kubernetes.io/version: \"42\" app.kubernetes.io/component: api app.kubernetes.io/part-of: payment-gateway"
+                      - generic [ref=e493]: "spec: containers: - name: app image: myapp"
+                  - paragraph [ref=e494]:
+                    - text: Those labels are
+                    - link "recommended by the official documentation" [ref=e495] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/
+                    - text: .
+                  - blockquote [ref=e496]:
+                    - paragraph [ref=e497]:
+                      - text: Please note that you're recommended to tag
+                      - strong [ref=e498]: all resources
+                      - text: .
+            - listitem [ref=e499]:
+              - generic [ref=e500]:
+                - generic [ref=e501]:
+                  - checkbox [ref=e502]
+                  - paragraph [ref=e503]: Resources have business labels defined
+                  - button "Open" [ref=e505]
+                - generic [ref=e507]:
+                  - paragraph [ref=e508]: "You could tag your Pods with:"
+                  - list [ref=e509]:
+                    - listitem [ref=e510]:
+                      - code [ref=e511]: owner
+                      - text: ", used to identify who is responsible for the resource"
+                    - listitem [ref=e512]:
+                      - code [ref=e513]: project
+                      - text: ", used to determine the project that the resource belongs to"
+                    - listitem [ref=e514]:
+                      - code [ref=e515]: business-unit
+                      - text: ", used to identify the cost centre or business unit associated with a resource; typically for cost allocation and tracking"
+                  - paragraph [ref=e516]: "Here's an example on how you could use such labels in a Deployment:"
+                  - generic [ref=e517]:
+                    - paragraph [ref=e522]: deployment.yaml
+                    - code [ref=e524]:
+                      - generic [ref=e525]: "apiVersion: apps/v1 kind: Deployment metadata: name: deployment labels:"
+                      - generic [ref=e526]: "owner: payment-team project: fraud-detection business-unit: \"80432\""
+                      - generic [ref=e527]: "spec: replicas: 3 selector: matchLabels: application: my-app template: metadata: labels:"
+                      - generic [ref=e528]: "owner: payment-team project: fraud-detection business-unit: \"80432\""
+                      - generic [ref=e529]: "spec: containers: - name: app image: myapp"
+                  - paragraph [ref=e530]:
+                    - text: You can explore labels and
+                    - link "tagging for resources on the AWS tagging strategy page" [ref=e531] [cursor=pointer]:
+                      - /url: https://aws.amazon.com/answers/account-management/aws-tagging-strategies/
+                    - text: .
+                  - paragraph [ref=e532]: The article isn't specific to Kubernetes but explores some of the most common strategies for tagging resources.
+                  - blockquote [ref=e533]:
+                    - paragraph [ref=e534]:
+                      - text: Please not that you're recommended to tag
+                      - strong [ref=e535]: all resources
+                      - text: .
+            - listitem [ref=e536]:
+              - generic [ref=e537]:
+                - generic [ref=e538]:
+                  - checkbox [ref=e539]
+                  - paragraph [ref=e540]: Resources have security labels defined
+                  - button "Open" [ref=e542]
+                - generic [ref=e544]:
+                  - paragraph [ref=e545]: "You could tag your Pods with:"
+                  - list [ref=e546]:
+                    - listitem [ref=e547]:
+                      - code [ref=e548]: confidentiality
+                      - text: ", an identifier for the specific data-confidentiality level a resource supports"
+                    - listitem [ref=e549]:
+                      - code [ref=e550]: compliance
+                      - text: ", an identifier for workloads designed to adhere to specific compliance requirements"
+                  - paragraph [ref=e551]: "Here's an example on how you could use such labels in a Deployment:"
+                  - generic [ref=e552]:
+                    - paragraph [ref=e557]: deployment.yaml
+                    - code [ref=e559]:
+                      - generic [ref=e560]: "apiVersion: apps/v1 kind: Deployment metadata: name: deployment labels:"
+                      - generic [ref=e561]: "confidentiality: official compliance: pci spec: replicas: 3 selector: matchLabels:"
+                      - generic [ref=e562]: "application: my-app template: metadata: labels: confidentiality: official compliance: pci spec: containers:"
+                      - generic [ref=e563]: "- name: app image: myapp"
+                  - paragraph [ref=e564]:
+                    - text: You can explore label and
+                    - link "tagging for resources on the AWS tagging strategy page" [ref=e565] [cursor=pointer]:
+                      - /url: https://aws.amazon.com/answers/account-management/aws-tagging-strategies/
+                    - text: .
+                  - paragraph [ref=e566]: The article isn't specific to Kubernetes but explores some of the most common strategies for tagging resources.
+                  - blockquote [ref=e567]:
+                    - paragraph [ref=e568]:
+                      - text: Please not that you're recommended to tag
+                      - strong [ref=e569]: all resources
+                      - text: .
+        - generic [ref=e570]:
+          - generic [ref=e571]:
+            - generic [ref=e572]:
+              - paragraph [ref=e573]: Logging
+              - button "Info" [ref=e575]:
+                - img "Info" [ref=e576]
+            - paragraph [ref=e578]: The logs are particularly useful for debugging problems and monitoring app activity.
+          - list [ref=e579]:
+            - listitem [ref=e580]:
+              - generic [ref=e581]:
+                - generic [ref=e582]:
+                  - checkbox [ref=e583]
+                  - paragraph [ref=e584]:
+                    - text: The application logs to
+                    - code [ref=e585]: stdout
+                    - text: and
+                    - code [ref=e586]: stderr
+                  - button "Open" [ref=e588]
+                - generic [ref=e590]:
+                  - paragraph [ref=e591]:
+                    - text: "There are two logging strategies:"
+                    - emphasis [ref=e592]: passive
+                    - text: and
+                    - emphasis [ref=e593]: active
+                    - text: .
+                  - paragraph [ref=e594]: Apps that use passive logging are unaware of the logging infrastructure and log messages to standard outputs.
+                  - paragraph [ref=e595]:
+                    - text: This best practice is part of
+                    - link "the twelve-factor app" [ref=e596] [cursor=pointer]:
+                      - /url: https://12factor.net/logs
+                    - text: .
+                  - paragraph [ref=e597]: In active logging, the app makes network connections to intermediate aggregators, sends data to third-party logging services, or writes directly to a database or index.
+                  - paragraph [ref=e598]: Active logging is considered an antipattern, and it should be avoided.
+            - listitem [ref=e599]:
+              - generic [ref=e600]:
+                - generic [ref=e601]:
+                  - checkbox [ref=e602]
+                  - paragraph [ref=e603]: Avoid sidecars for logging (if you can)
+                  - button "Open" [ref=e605]
+                - generic [ref=e607]:
+                  - paragraph [ref=e608]:
+                    - text: If you wish to
+                    - link "apply log transformations to an application with a non-standard log event model" [ref=e609] [cursor=pointer]:
+                      - /url: https://rclayton.silvrback.com/container-services-logging-with-docker#effective-logging-infrastructure
+                    - text: ", you may want to use a sidecar container."
+                  - paragraph [ref=e610]: With a sidecar container, you can normalise the log entries before they are shipped elsewhere.
+                  - paragraph [ref=e611]: For example, you may want to transform Apache logs into Logstash JSON format before shipping it to the logging infrastructure.
+                  - paragraph [ref=e612]: However, if you have control over the application, you could output the right format, to begin with.
+                  - paragraph [ref=e613]: You could save on running an extra container for each Pod in your cluster.
+        - generic [ref=e614]:
+          - generic [ref=e615]:
+            - generic [ref=e616]:
+              - paragraph [ref=e617]: Scaling
+              - button "Info" [ref=e619]:
+                - img "Info" [ref=e620]
+            - generic [ref=e621]:
+              - paragraph [ref=e622]: Containers have a local filesystem and you might be tempted to use it for persisting data.
+              - paragraph [ref=e623]: However, storing persistent data in a container's local filesystem prevents the encompassing Pod from being scaled horizontally (that is, by adding or removing replicas of the Pod).
+              - paragraph [ref=e624]: This is because, by using the local filesystem, each container maintains its own "state", which means that the states of Pod replicas may diverge over time. This results in inconsistent behaviour from the user's point of view (for example, a specific piece of user information is available when the request hits one Pod, but not when the request hits another Pod).
+              - paragraph [ref=e625]: Instead, any persistent information should be saved at a central place outside the Pods. For example, in a PersistentVolume in the cluster, or even better in some storage service outside the cluster.
+          - list [ref=e626]:
+            - listitem [ref=e627]:
+              - generic [ref=e628]:
+                - generic [ref=e629]:
+                  - checkbox [ref=e630]
+                  - paragraph [ref=e631]: Containers do not store any state in their local filesystem
+                  - button "Open" [ref=e633]
+                - generic [ref=e635]:
+                  - paragraph [ref=e636]: Containers have a local filesystem and you might be tempted to use it for persisting data.
+                  - paragraph [ref=e637]: However, storing persistent data in a container's local filesystem prevents the encompassing Pod from being scaled horizontally (that is, by adding or removing replicas of the Pod).
+                  - paragraph [ref=e638]: This is because, by using the local filesystem, each container maintains its own "state", which means that the states of Pod replicas may diverge over time. This results in inconsistent behaviour from the user's point of view (for example, a specific piece of user information is available when the request hits one Pod, but not when the request hits another Pod).
+                  - paragraph [ref=e639]: Instead, any persistent information should be saved at a central place outside the Pods. For example, in a PersistentVolume in the cluster, or even better in some storage service outside the cluster.
+            - listitem [ref=e640]:
+              - generic [ref=e641]:
+                - generic [ref=e642]:
+                  - checkbox [ref=e643]
+                  - paragraph [ref=e644]: Use the Horizontal Pod Autoscaler for apps with variable usage patterns
+                  - button "Open" [ref=e646]
+                - generic [ref=e648]:
+                  - paragraph [ref=e649]:
+                    - text: The
+                    - link "Horizontal Pod Autoscaler (HPA)" [ref=e650] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+                    - text: is a built-in Kubernetes feature that monitors your application and automatically adds or removes Pod replicas based on the current usage.
+                  - paragraph [ref=e651]: Configuring the HPA allows your app to stay available and responsive under any traffic conditions, including unexpected spikes.
+                  - paragraph [ref=e652]:
+                    - text: To configure the HPA to autoscale your app, you have to create a
+                    - link "HorizontalPodAutoscaler" [ref=e653] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.16/#horizontalpodautoscaler-v1-autoscaling
+                    - text: resource, which defines what metric to monitor for your app.
+                  - paragraph [ref=e654]:
+                    - text: The HPA can monitor either built-in resource metric (CPU and memory usage of your Pods) or custom metrics. In the case of custom metrics, you are also responsible for collecting and exposing these metrics, which you can do, for example, with
+                    - link "Prometheus" [ref=e655] [cursor=pointer]:
+                      - /url: https://prometheus.io/
+                    - text: and the
+                    - link "Prometheus Adapter" [ref=e656] [cursor=pointer]:
+                      - /url: https://github.com/kubernetes-sigs/prometheus-adapter
+                    - text: .
+            - listitem [ref=e657]:
+              - generic [ref=e658]:
+                - generic [ref=e659]:
+                  - checkbox [ref=e660]
+                  - paragraph [ref=e661]: Don't use the Vertical Pod Autoscaler while it's still in beta
+                  - button "Open" [ref=e663]
+                - generic [ref=e665]:
+                  - paragraph [ref=e666]:
+                    - text: Analogous to the
+                    - link "Horizontal Pod Autoscaler (HPA)" [ref=e667] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+                    - text: ", there exists the"
+                    - link "Vertical Pod Autoscaler (VPA)" [ref=e668] [cursor=pointer]:
+                      - /url: https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler
+                    - text: .
+                  - paragraph [ref=e669]:
+                    - text: The VPA can automatically adapt the resource requests and limits of your Pods so that when a Pod needs more resources, it can get them (increasing/decreasing the resources of a single Pod is called
+                    - emphasis [ref=e670]: vertical scaling
+                    - text: ", as opposed to"
+                    - emphasis [ref=e671]: horizontal scaling
+                    - text: ", which means increasing/decreasing the number of replicas of a Pod)."
+                  - paragraph [ref=e672]: This can be useful for scaling applications that can't be scaled horizontally.
+                  - paragraph [ref=e673]:
+                    - text: However, the VPA is curently in beta and it has
+                    - link "some known limitations" [ref=e674] [cursor=pointer]:
+                      - /url: https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler#limitations-of-beta-version
+                    - text: (for example, scaling a Pod by changing its resource requirements, requires the Pod to be killed and restarted).
+                  - paragraph [ref=e675]: Given these limitations, and the fact that most applications on Kubernetes can be scaled horizontally anyway, it is recommended to not use the VPA in production (at least until there is a stable version).
+            - listitem [ref=e676]:
+              - generic [ref=e677]:
+                - generic [ref=e678]:
+                  - checkbox [ref=e679]
+                  - paragraph [ref=e680]: Use the Cluster Autoscaler if you have highly varying workloads
+                  - button "Open" [ref=e682]
+                - generic [ref=e684]:
+                  - paragraph [ref=e685]:
+                    - text: The
+                    - link "Cluster Autoscaler" [ref=e686] [cursor=pointer]:
+                      - /url: https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler
+                    - text: is another type of "autoscaler" (besides the
+                    - link "Horizontal Pod Autoscaler" [ref=e687] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+                    - text: and
+                    - link "Vertical Pod Autoscaler" [ref=e688] [cursor=pointer]:
+                      - /url: https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler
+                    - text: ).
+                  - paragraph [ref=e689]: The Cluster Autoscaler can automatically scale the size of your cluster by adding or removing worker nodes.
+                  - paragraph [ref=e690]: A scale-up operation happens when a Pod fails to be scheduled because of insufficient resources on the existing worker nodes. In this case, the Cluster Autoscaler creates a new worker node, so that the Pod can be scheduled. Similarly, when the utilisation of the existing worker nodes is low, the Cluster Autoscaler can scale down by evicting all the workloads from one of the worker nodes and removing it.
+                  - paragraph [ref=e691]: Using the Cluster Autoscaler makes sense for highly variable workloads, for example, when the number of Pods may multiply in a short time, and then go back to the previous value. In such scenarios, the Cluster Autoscaler allows you to meet the demand spikes without wasting resources by overprovisioning worker nodes.
+                  - paragraph [ref=e692]: However, if your workloads do not vary so much, it may not be worth to set up the Cluster Autoscaler, as it may never be triggered. If your workloads grow slowly and monotonically, it may be enough to monitor the utilisations of your existing worker nodes and add an additional worker node manually when they reach a critical value.
+        - generic [ref=e693]:
+          - generic [ref=e694]:
+            - generic [ref=e695]:
+              - paragraph [ref=e696]: Configuration and secrets
+              - button "Info" [ref=e698]:
+                - img "Info" [ref=e699]
+            - generic [ref=e700]:
+              - paragraph [ref=e701]: Configuration should be maintained outside the application code.
+              - paragraph [ref=e702]: This has several benefits. First, changing the configuration does not require recompiling the application. Second, the configuration can be updated when the application is running. Third, the same code can be used in different environments.
+              - paragraph [ref=e703]: In Kubernetes, the configuration can be saved in ConfigMaps, which can then be mounted into containers as volumes are passed in as environment variables.
+              - paragraph [ref=e704]: Save only non-sensitive configuration in ConfigMaps. For sensitive information (such as credentials), use the Secret resource.
+          - list [ref=e705]:
+            - listitem [ref=e706]:
+              - generic [ref=e707]:
+                - generic [ref=e708]:
+                  - checkbox [ref=e709]
+                  - paragraph [ref=e710]: Externalise all configuration
+                  - button "Open" [ref=e712]
+                - generic [ref=e714]:
+                  - paragraph [ref=e715]: Configuration should be maintained outside the application code.
+                  - paragraph [ref=e716]: This has several benefits. First, changing the configuration does not require recompiling the application. Second, the configuration can be updated when the application is running. Third, the same code can be used in different environments.
+                  - paragraph [ref=e717]: In Kubernetes, the configuration can be saved in ConfigMaps, which can then be mounted into containers as volumes are passed in as environment variables.
+                  - paragraph [ref=e718]: Save only non-sensitive configuration in ConfigMaps. For sensitive information (such as credentials), use the Secret resource.
+            - listitem [ref=e719]:
+              - generic [ref=e720]:
+                - generic [ref=e721]:
+                  - checkbox [ref=e722]
+                  - paragraph [ref=e723]: Mount Secrets as volumes, not enviroment variables
+                  - button "Open" [ref=e725]
+                - generic [ref=e727]:
+                  - paragraph [ref=e728]: The content of Secret resources should be mounted into containers as volumes rather than passed in as environment variables.
+                  - paragraph [ref=e729]: This is to prevent that the secret values appear in the command that was used to start the container, which may be inspected by individuals that shouldn't have access to the secret values.
+      - generic [ref=e730]:
+        - heading "2. Governance" [level=2] [ref=e731]
+        - generic [ref=e732]:
+          - generic [ref=e733]:
+            - generic [ref=e734]:
+              - paragraph [ref=e735]: Namespace limits
+              - button "Info" [ref=e737]:
+                - img "Info" [ref=e738]
+            - generic [ref=e739]:
+              - paragraph [ref=e740]: You shouldn't allow your user to use more resources than what you agreed in advance.
+              - paragraph [ref=e741]: Cluster administrators can set constraints to limit the number of objects or amount of computing resources that are used in your project with quotas and limit ranges.
+              - paragraph [ref=e742]:
+                - text: You should check out the official documentation if you need a refresher on
+                - link "limit ranges" [ref=e743] [cursor=pointer]:
+                  - /url: https://kubernetes.io/docs/concepts/policy/limit-range/
+          - list [ref=e744]:
+            - listitem [ref=e745]:
+              - generic [ref=e746]:
+                - generic [ref=e747]:
+                  - checkbox [ref=e748]
+                  - paragraph [ref=e749]: Namespaces have LimitRange
+                  - button "Open" [ref=e751]
+                - generic [ref=e753]:
+                  - paragraph [ref=e754]: Containers without limits can lead to resource contention with other containers and unoptimized consumption of computing resources.
+                  - paragraph [ref=e755]: "Kubernetes has two features for constraining resource utilisation: ResourceQuota and LimitRange."
+                  - paragraph [ref=e756]: With the LimitRange object, you can define default values for resource requests and limits for individual containers inside namespaces.
+                  - paragraph [ref=e757]: Any container created inside that namespace, without request and limit values explicitly specified, is assigned the default values.
+                  - paragraph [ref=e758]:
+                    - text: You should check out the official documentation if you need a refresher on
+                    - link "resource quotas" [ref=e759] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/concepts/policy/resource-quotas/
+                    - text: .
+            - listitem [ref=e760]:
+              - generic [ref=e761]:
+                - generic [ref=e762]:
+                  - checkbox [ref=e763]
+                  - paragraph [ref=e764]: Namespaces have ResourceQuotas
+                  - button "Open" [ref=e766]
+                - generic [ref=e768]:
+                  - paragraph [ref=e769]: With ResourceQuotas, you can limit the total resource consumption of all containers inside a Namespace.
+                  - paragraph [ref=e770]: Defining a resource quota for a namespace limits the total amount of CPU, memory or storage resources that can be consumed by all containers belonging to that namespace.
+                  - paragraph [ref=e771]: You can also set quotas for other Kubernetes objects such as the number of Pods in the current namespace.
+                  - paragraph [ref=e772]: If you're thinking that someone could exploit your cluster and create 20000 ConfigMaps, using the LimitRange is how you can prevent that.
+        - generic [ref=e773]:
+          - generic [ref=e774]:
+            - generic [ref=e775]:
+              - paragraph [ref=e776]: Pod security policies
+              - button "Info" [ref=e778]:
+                - img "Info" [ref=e779]
+            - generic [ref=e780]:
+              - list [ref=e781]:
+                - listitem [ref=e782]: the container being compromised
+                - listitem [ref=e783]: the container using resources on the node that are not allowed such as process, network or file system
+              - paragraph [ref=e784]: More in general, you should restrict what the Pod can do to the bare minimum.
+          - list [ref=e785]:
+            - listitem [ref=e786]:
+              - generic [ref=e787]:
+                - generic [ref=e788]:
+                  - checkbox [ref=e789]
+                  - paragraph [ref=e790]: Enable Pod Security Policies
+                  - button "Open" [ref=e792]
+                - generic [ref=e794]:
+                  - paragraph [ref=e795]: "For example, you can use Kubernetes Pod security policies for restricting:"
+                  - list [ref=e796]:
+                    - listitem [ref=e797]: Access the host process or network namespace
+                    - listitem [ref=e798]: Running privileged containers
+                    - listitem [ref=e799]: The user that the container is running as
+                    - listitem [ref=e800]: Access the host filesystem
+                    - listitem [ref=e801]: Linux capabilities, Seccomp or SELinux profiles
+                  - paragraph [ref=e802]: Choosing the right policy depends on the nature of your cluster.
+                  - paragraph [ref=e803]:
+                    - text: The following article explains some of the
+                    - link "Kubernetes Pod Security Policy best practices" [ref=e804] [cursor=pointer]:
+                      - /url: https://resources.whitesourcesoftware.com/blog-whitesource/kubernetes-pod-security-policy
+            - listitem [ref=e805]:
+              - generic [ref=e806]:
+                - generic [ref=e807]:
+                  - checkbox [ref=e808]
+                  - paragraph [ref=e809]: Disable privileged containers
+                  - button "Open" [ref=e811]
+                - generic [ref=e813]:
+                  - paragraph [ref=e814]: In a Pod, containers can run in "privileged" mode and have almost unrestricted access to resources on the host system.
+                  - paragraph [ref=e815]: While there are specific use cases where this level of access is necessary, in general, it's a security risk to let your containers do this.
+                  - paragraph [ref=e816]: Valid uses cases for privileged Pods include using hardware on the node such as GPUs.
+                  - paragraph [ref=e817]:
+                    - text: You can
+                    - link "learn more about security contexts and privileges containers from this article" [ref=e818] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+                    - text: .
+            - listitem [ref=e819]:
+              - generic [ref=e820]:
+                - generic [ref=e821]:
+                  - checkbox [ref=e822]
+                  - paragraph [ref=e823]: Use a read-only filesystem in containers
+                  - button "Open" [ref=e825]
+                - generic [ref=e827]:
+                  - paragraph [ref=e828]: Running a read-only file system in your containers forces your containers to be immutable.
+                  - paragraph [ref=e829]: Not only does this mitigate some old (and risky) practices such as hot patching, but also helps you prevent the risks of malicious processes storing or manipulating data inside a container.
+                  - paragraph [ref=e830]: Running containers with a read-only file system might sound straightforward, but it might come with some complexity.
+                  - paragraph [ref=e831]:
+                    - emphasis [ref=e832]: What if you need to write logs or store files in a temporary folder?
+                  - paragraph [ref=e833]:
+                    - text: You can learn about the trade-offs in this article on
+                    - link "running containers securely in production" [ref=e834] [cursor=pointer]:
+                      - /url: https://medium.com/@axbaretto/running-docker-containers-securely-in-production-98b8104ef68
+                    - text: .
+            - listitem [ref=e835]:
+              - generic [ref=e836]:
+                - generic [ref=e837]:
+                  - checkbox [ref=e838]
+                  - paragraph [ref=e839]: Prevent containers from running as root
+                  - button "Open" [ref=e841]
+                - generic [ref=e843]:
+                  - paragraph [ref=e844]: A process running in a container is no different from any other process on the host, except it has a small piece of metadata that declares that it's in a container.
+                  - paragraph [ref=e845]: Hence, root in a container is the same root (uid 0) as on the host machine.
+                  - paragraph [ref=e846]: If a user manages to break out of an application running as root in a container, they may be able to gain access to the host with the same root user.
+                  - paragraph [ref=e847]: Configuring containers to use unprivileged users, is the best way to prevent privilege escalation attacks.
+                  - paragraph [ref=e848]:
+                    - text: If you wish to learn more, the follow
+                    - link "article offers some detailed explanation examples of what happens when you run your containers as root" [ref=e849] [cursor=pointer]:
+                      - /url: https://medium.com/@mccode/processes-in-containers-should-not-run-as-root-2feae3f0df3b
+                    - text: .
+            - listitem [ref=e850]:
+              - generic [ref=e851]:
+                - generic [ref=e852]:
+                  - checkbox [ref=e853]
+                  - paragraph [ref=e854]: Limit capabilities
+                  - button "Open" [ref=e856]
+                - generic [ref=e858]:
+                  - paragraph [ref=e859]: Linux capabilities give processes the ability to do some of the many privileged operations only the root user can do by default.
+                  - paragraph [ref=e860]:
+                    - text: For example,
+                    - code [ref=e861]: CAP_CHOWN
+                    - text: allows a process to "make arbitrary changes to file UIDs and GIDs".
+                  - paragraph [ref=e862]:
+                    - text: Even if your process doesn't run as
+                    - code [ref=e863]: root
+                    - text: ", there's a chance that a process could use those root-like features by escalating privileges."
+                  - paragraph [ref=e864]: In other words, you should enable only the capabilities that you need if you don't want to be compromised.
+                  - paragraph [ref=e865]:
+                    - emphasis [ref=e866]: But what capabilities should be enabled and why?
+                  - paragraph [ref=e867]: "The following two articles dive into the theory and practical best-practices about capabilities in the Linux Kernel:"
+                  - list [ref=e868]:
+                    - listitem [ref=e869]:
+                      - 'link "Linux Capabilities: Why They Exist and How They Work" [ref=e870] [cursor=pointer]':
+                        - /url: https://blog.container-solutions.com/linux-capabilities-why-they-exist-and-how-they-work
+                    - listitem [ref=e871]:
+                      - link "Linux Capabilities In Practice" [ref=e872] [cursor=pointer]:
+                        - /url: https://blog.container-solutions.com/linux-capabilities-in-practice
+            - listitem [ref=e873]:
+              - generic [ref=e874]:
+                - generic [ref=e875]:
+                  - checkbox [ref=e876]
+                  - paragraph [ref=e877]: Prevent privilege escalation
+                  - button "Open" [ref=e879]
+                - paragraph [ref=e882]:
+                  - text: You should run your container with privilege escalation turned off to prevent escalating privileges using
+                  - code [ref=e883]: setuid
+                  - text: or
+                  - code [ref=e884]: setgid
+                  - text: binaries.
+        - generic [ref=e885]:
+          - generic [ref=e886]:
+            - generic [ref=e887]:
+              - paragraph [ref=e888]: Network policies
+              - button "Info" [ref=e890]:
+                - img "Info" [ref=e891]
+            - generic [ref=e892]:
+              - list [ref=e893]:
+                - listitem [ref=e894]:
+                  - strong [ref=e895]: containers can talk to any other container in the network
+                  - text: ", and there's no translation of addresses in the process — i.e. no NAT is involved"
+                - listitem [ref=e896]:
+                  - strong [ref=e897]: nodes in the cluster can talk to any other container in the network and vice-versa
+                  - text: . Even in this case, there's no translation of addresses — i.e. no NAT
+                - listitem [ref=e898]:
+                  - strong [ref=e899]: a container's IP address is always the same
+                  - text: ", independently if seen from another container or itself."
+              - paragraph [ref=e900]: The first rule isn't helping if you plan to segregate your cluster in smaller chunks and have isolation between namespaces.
+              - paragraph [ref=e901]:
+                - emphasis [ref=e902]: Imagine if a user in your cluster were able to use any other service in the cluster.
+              - paragraph [ref=e903]:
+                - text: Now,
+                - emphasis [ref=e904]: imagine if a malicious user in the cluster were to obtain access to the cluster
+                - text: — they could make requests to the whole cluster.
+              - paragraph [ref=e905]: To fix that, you can define how Pods should be allowed to communicate in the current namespace and cross-namespace using Network Policies.
+          - list [ref=e906]:
+            - listitem [ref=e907]:
+              - generic [ref=e908]:
+                - generic [ref=e909]:
+                  - checkbox [ref=e910]
+                  - paragraph [ref=e911]: Enable network policies
+                  - button "Open" [ref=e913]
+                - generic [ref=e915]:
+                  - paragraph [ref=e916]: Kubernetes network policies specify the access permissions for groups of pods, much like security groups in the cloud are used to control access to VM instances.
+                  - paragraph [ref=e917]: In other words, it creates firewalls between pods running on a Kubernetes cluster.
+                  - paragraph [ref=e918]:
+                    - text: If you are not familiar with Network Policies, you can read
+                    - link "Securing Kubernetes Cluster Networking" [ref=e919] [cursor=pointer]:
+                      - /url: https://ahmet.im/blog/kubernetes-network-policy/
+                    - text: .
+            - listitem [ref=e920]:
+              - generic [ref=e921]:
+                - generic [ref=e922]:
+                  - checkbox [ref=e923]
+                  - paragraph [ref=e924]: There's a conservative NetworkPolicy in every namespace
+                  - button "Open" [ref=e926]
+                - paragraph [ref=e929]:
+                  - text: This repository contains various use cases of Kubernetes Network Policies and samples YAML files to leverage in your setup. If you ever wondered
+                  - link "how to drop/restrict traffic to applications running on Kubernetes" [ref=e930] [cursor=pointer]:
+                    - /url: https://github.com/ahmetb/kubernetes-network-policy-recipes
+                  - text: ", read on."
+        - generic [ref=e931]:
+          - generic [ref=e932]:
+            - generic [ref=e933]:
+              - paragraph [ref=e934]: Role-Based Access Control (RBAC) policies
+              - button "Info" [ref=e936]:
+                - img "Info" [ref=e937]
+            - generic [ref=e938]:
+              - paragraph [ref=e939]:
+                - text: It's common practice to give away the least permission needed,
+                - emphasis [ref=e940]: but what is practical and how do you quantify the least privilege?
+              - paragraph [ref=e941]: Fine-grained policies provide greater security but require more effort to administrate.
+              - paragraph [ref=e942]: Broader grants can give unnecessary API access to service accounts but are easier to controls.
+              - paragraph [ref=e943]:
+                - emphasis [ref=e944]: Should you create a single policy per namespace and share it?
+              - paragraph [ref=e945]:
+                - emphasis [ref=e946]: Or perhaps it's better to have them on a more granular basis?
+              - paragraph [ref=e947]: There's no one-size-fits-all approach, and you should judge your requirements case by case.
+              - paragraph [ref=e948]:
+                - emphasis [ref=e949]: But where do you start?
+              - paragraph [ref=e950]: If you start with a Role with empty rules, you can add all the resources that you need one by one and still be sure that you're not giving away too much.
+          - list [ref=e951]:
+            - listitem [ref=e952]:
+              - generic [ref=e953]:
+                - generic [ref=e954]:
+                  - checkbox [ref=e955]
+                  - paragraph [ref=e956]: Disable auto-mounting of the default ServiceAccount
+                  - button "Open" [ref=e958]
+                - generic [ref=e960]:
+                  - paragraph [ref=e961]:
+                    - text: Please note that
+                    - link "the default ServiceAccount is automatically mounted into the file system of all Pods" [ref=e962] [cursor=pointer]:
+                      - /url: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#use-the-default-service-account-to-access-the-api-server
+                    - text: .
+                  - paragraph [ref=e963]: You might want to disable that and provide more granular policies.
+            - listitem [ref=e964]:
+              - generic [ref=e965]:
+                - generic [ref=e966]:
+                  - checkbox [ref=e967]
+                  - paragraph [ref=e968]: RBAC policies are set to the least amount of privileges necessary
+                  - button "Open" [ref=e970]
+                - paragraph [ref=e973]:
+                  - text: It's challenging to find good advice on how to set up your RBAC rules. In
+                  - link "3 realistic approaches to Kubernetes RBAC" [ref=e974] [cursor=pointer]:
+                    - /url: https://thenewstack.io/three-realistic-approaches-to-kubernetes-rbac/
+                  - text: ", you can find three practical scenarios and practical advice on how to get started."
+            - listitem [ref=e975]:
+              - generic [ref=e976]:
+                - generic [ref=e977]:
+                  - checkbox [ref=e978]
+                  - paragraph [ref=e979]: RBAC policies are granular and not shared
+                  - button "Open" [ref=e981]
+                - generic [ref=e983]:
+                  - paragraph [ref=e984]: Zalando has a concise policy to define roles and ServiceAccounts.
+                  - paragraph [ref=e985]: "First, they describe their requirements:"
+                  - list [ref=e986]:
+                    - listitem [ref=e987]: Users should be able to deploy, but they shouldn't be allowed to read Secrets for example
+                    - listitem [ref=e988]: Admins should get full access to all resources
+                    - listitem [ref=e989]: Applications should not gain write access to the Kubernetes API by default
+                    - listitem [ref=e990]: It should be possible to write to the Kubernetes API for some uses.
+                  - paragraph [ref=e991]: "The four requirements translate into five separate Roles:"
+                  - list [ref=e992]:
+                    - listitem [ref=e993]: ReadOnly
+                    - listitem [ref=e994]: PowerUser
+                    - listitem [ref=e995]: Operator
+                    - listitem [ref=e996]: Controller
+                    - listitem [ref=e997]: Admin
+                  - paragraph [ref=e998]:
+                    - text: You can read about
+                    - link "their decision in this link" [ref=e999] [cursor=pointer]:
+                      - /url: https://kubernetes-on-aws.readthedocs.io/en/latest/dev-guide/arch/access-control/adr-004-roles-and-service-accounts.html
+                    - text: .
+        - generic [ref=e1000]:
+          - generic [ref=e1001]:
+            - generic [ref=e1002]:
+              - paragraph [ref=e1003]: Custom policies
+              - button "Info" [ref=e1005]:
+                - img "Info" [ref=e1006]
+            - generic [ref=e1007]:
+              - paragraph [ref=e1008]: As an example, you might want to avoid downloading containers from the public internet and prefer to approve those containers first.
+              - paragraph [ref=e1009]: Perhaps you have an internal registry, and only the images in this registry can be deployed in your cluster.
+              - paragraph [ref=e1010]:
+                - emphasis [ref=e1011]:
+                  - text: How do you enforce that only
+                  - strong [ref=e1012]: trusted containers
+                  - text: can be deployed in the cluster?
+              - paragraph [ref=e1013]: There's no RBAC policy for that.
+              - paragraph [ref=e1014]: Network policies won't work.
+              - paragraph [ref=e1015]:
+                - emphasis [ref=e1016]: What should you do?
+              - paragraph [ref=e1017]:
+                - text: You could use the
+                - link "Admission controller" [ref=e1018] [cursor=pointer]:
+                  - /url: https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
+                - text: to vet resources that are submitted to the cluster.
+          - list [ref=e1019]:
+            - listitem [ref=e1020]:
+              - generic [ref=e1021]:
+                - generic [ref=e1022]:
+                  - checkbox [ref=e1023]
+                  - paragraph [ref=e1024]: Allow deploying containers only from known registries
+                  - button "Open" [ref=e1026]
+                - generic [ref=e1028]:
+                  - paragraph [ref=e1029]: One of the most common custom policies that you might want to consider is to restrict the images that can be deployed in your cluster.
+                  - paragraph [ref=e1030]:
+                    - link "The following tutorial explains how you can use the Open Policy Agent to restrict not approved images" [ref=e1031] [cursor=pointer]:
+                      - /url: https://blog.openpolicyagent.org/securing-the-kubernetes-api-with-open-policy-agent-ce93af0552c3#3c6e
+                    - text: .
+            - listitem [ref=e1032]:
+              - generic [ref=e1033]:
+                - generic [ref=e1034]:
+                  - checkbox [ref=e1035]
+                  - paragraph [ref=e1036]: Enforce uniqueness in Ingress hostnames
+                  - button "Open" [ref=e1038]
+                - generic [ref=e1040]:
+                  - paragraph [ref=e1041]: When a user creates an Ingress manifest, they can use any hostname in it.
+                  - generic [ref=e1042]:
+                    - paragraph [ref=e1047]: ingress.yaml
+                    - code [ref=e1049]:
+                      - generic [ref=e1050]: "apiVersion: networking.k8s.io/v1 kind: Ingress metadata: name: example-ingress spec: rules:"
+                      - generic [ref=e1051]: "- host: first.example.com"
+                      - generic [ref=e1052]: "http: paths: - path: / pathType: Prefix backend: service: name: service port: number: 80"
+                  - paragraph [ref=e1053]:
+                    - text: However, you might want to prevent users using
+                    - strong [ref=e1054]: the same hostname multiple times
+                    - text: and overriding each other.
+                  - paragraph [ref=e1055]:
+                    - text: The official documentation for the Open Policy Agent has
+                    - link "a tutorial on how to check Ingress resources as part of the validation webhook" [ref=e1056] [cursor=pointer]:
+                      - /url: https://www.openpolicyagent.org/docs/latest/kubernetes-tutorial/#4-define-a-policy-and-load-it-into-opa-via-kubernetes
+                    - text: .
+            - listitem [ref=e1057]:
+              - generic [ref=e1058]:
+                - generic [ref=e1059]:
+                  - checkbox [ref=e1060]
+                  - paragraph [ref=e1061]: Only use approved domain names in the Ingress hostnames
+                  - button "Open" [ref=e1063]
+                - generic [ref=e1065]:
+                  - paragraph [ref=e1066]: When a user creates an Ingress manifest, they can use any hostname in it. a
+                  - generic [ref=e1067]:
+                    - paragraph [ref=e1072]: ingress.yaml
+                    - code [ref=e1074]:
+                      - generic [ref=e1075]: "apiVersion: networking.k8s.io/v1 kind: Ingress metadata: name: example-ingress spec: rules:"
+                      - generic [ref=e1076]: "- host: first.example.com"
+                      - generic [ref=e1077]: "http: paths: - path: / pathType: Prefix backend: service: name: service port: number: 80"
+                  - paragraph [ref=e1078]:
+                    - text: However, you might want to prevent users using
+                    - strong [ref=e1079]: invalid hostnames
+                    - text: .
+                  - paragraph [ref=e1080]:
+                    - text: The official documentation for the Open Policy Agent has
+                    - link "a tutorial on how to check Ingress resources as part of the validation webhook" [ref=e1081] [cursor=pointer]:
+                      - /url: https://www.openpolicyagent.org/docs/latest/kubernetes-tutorial/#4-define-a-policy-and-load-it-into-opa-via-kubernetes
+                    - text: .
+      - generic [ref=e1082]:
+        - heading "3. Cluster configuration" [level=2] [ref=e1083]
+        - paragraph [ref=e1085]:
+          - text: This section is a work in progress. Do you have an opinion on what you should be included?
+          - link "File an issue." [ref=e1086] [cursor=pointer]:
+            - /url: https://github.com/learnk8s/kubernetes-production-best-practices/issues
+        - generic [ref=e1087]:
+          - generic [ref=e1088]:
+            - generic [ref=e1089]:
+              - paragraph [ref=e1090]: Approved Kubernetes configuration
+              - button "Info" [ref=e1092]:
+                - img "Info" [ref=e1093]
+            - generic [ref=e1094]:
+              - paragraph [ref=e1095]: But how do you know what's the recommended configuration for your cluster?
+              - paragraph [ref=e1096]: The best option is to compare your cluster with a standard reference.
+              - paragraph [ref=e1097]: In the case of Kubernetes, the reference is the Centre for Internet Security (CIS) benchmark.
+          - list [ref=e1098]:
+            - listitem [ref=e1099]:
+              - generic [ref=e1100]:
+                - generic [ref=e1101]:
+                  - checkbox [ref=e1102]
+                  - paragraph [ref=e1103]: The cluster passes the CIS benchmark
+                  - button "Open" [ref=e1105]
+                - generic [ref=e1107]:
+                  - paragraph [ref=e1108]: The Center for Internet Security provides several guidelines and benchmark tests for best practices in securing your code.
+                  - paragraph [ref=e1109]:
+                    - text: They also maintain a benchmark for Kubernetes which you can
+                    - link "download from the official website" [ref=e1110] [cursor=pointer]:
+                      - /url: https://www.cisecurity.org/benchmark/kubernetes/
+                    - text: .
+                  - paragraph [ref=e1111]:
+                    - text: While you can read the lengthy guide and manually check if your cluster is compliant, an easier way is to download and execute
+                    - link "kube-bench" [ref=e1112] [cursor=pointer]:
+                      - /url: https://github.com/aquasecurity/kube-bench
+                      - code [ref=e1113]: kube-bench
+                    - text: .
+                  - paragraph [ref=e1114]:
+                    - link "kube-bench" [ref=e1115] [cursor=pointer]:
+                      - /url: https://github.com/aquasecurity/kube-bench
+                      - code [ref=e1116]: kube-bench
+                    - text: is a tool designed to automate the CIS Kubernetes benchmark and report on misconfigurations in your cluster.
+                  - paragraph [ref=e1117]: "Example output:"
+                  - generic [ref=e1118]:
+                    - paragraph [ref=e1123]: bash
+                    - code [ref=e1125]:
+                      - generic [ref=e1126]: "[INFO] 1 Master Node Security Configuration [INFO] 1.1 API Server [WARN] 1.1.1 Ensure that the --anonymous-auth argument is set to false (Not Scored) [PASS] 1.1.2 Ensure that the --basic-auth-file argument is not set (Scored) [PASS] 1.1.3 Ensure that the --insecure-allow-any-token argument is not set (Not Scored) [PASS] 1.1.4 Ensure that the --kubelet-https argument is set to true (Scored) [PASS] 1.1.5 Ensure that the --insecure-bind-address argument is not set (Scored) [PASS] 1.1.6 Ensure that the --insecure-port argument is set to 0 (Scored) [PASS] 1.1.7 Ensure that the --secure-port argument is not set to 0 (Scored) [FAIL] 1.1.8 Ensure that the --profiling argument is set to false (Scored)"
+                  - blockquote [ref=e1127]:
+                    - paragraph [ref=e1128]:
+                      - text: Please note that it is not possible to inspect the master nodes of managed clusters such as GKE, EKS and AKS, using
+                      - code [ref=e1129]: kube-bench
+                      - text: . The master nodes are controlled and managed by the cloud provider.
+            - listitem [ref=e1130]:
+              - generic [ref=e1131]:
+                - generic [ref=e1132]:
+                  - checkbox [ref=e1133]
+                  - paragraph [ref=e1134]: Disable metadata cloud providers metadata API
+                  - button "Open" [ref=e1136]
+                - generic [ref=e1138]:
+                  - paragraph [ref=e1139]: Cloud platforms (AWS, Azure, GCE, etc.) often expose metadata services locally to instances.
+                  - paragraph [ref=e1140]: By default, these APIs are accessible by pods running on an instance and can contain cloud credentials for that node, or provisioning data such as kubelet credentials.
+                  - paragraph [ref=e1141]: These credentials can be used to escalate within the cluster or to other cloud services under the same account.
+            - listitem [ref=e1142]:
+              - generic [ref=e1143]:
+                - generic [ref=e1144]:
+                  - checkbox [ref=e1145]
+                  - paragraph [ref=e1146]: Restrict access to alpha or beta features
+                  - button "Open" [ref=e1148]
+                - generic [ref=e1150]:
+                  - paragraph [ref=e1151]: Alpha and beta Kubernetes features are in active development and may have limitations or bugs that result in security vulnerabilities.
+                  - paragraph [ref=e1152]: Always assess the value an alpha or beta feature may provide against the possible risk to your security posture.
+                  - paragraph [ref=e1153]: When in doubt, disable features you do not use.
+        - generic [ref=e1154]:
+          - generic [ref=e1155]:
+            - generic [ref=e1156]:
+              - paragraph [ref=e1157]: Authentication
+              - button "Info" [ref=e1159]:
+                - img "Info" [ref=e1160]
+            - generic [ref=e1161]:
+              - paragraph [ref=e1162]: "Kubernetes supports different authentication strategies:"
+              - list [ref=e1163]:
+                - listitem [ref=e1164]:
+                  - strong [ref=e1165]: Static Tokens
+                  - text: ": are difficult to invalidate and should be avoided"
+                - listitem [ref=e1166]:
+                  - strong [ref=e1167]: Bootstrap Tokens
+                  - text: ": same as static tokens above"
+                - listitem [ref=e1168]:
+                  - strong [ref=e1169]: Basic Authentication
+                  - text: transmits credentials over the network in cleartext
+                - listitem [ref=e1170]:
+                  - strong [ref=e1171]: X509 client certs
+                  - text: requires renewing and redistributing client certs regularly
+                - listitem [ref=e1172]:
+                  - strong [ref=e1173]: Service Account Tokens
+                  - text: are the preferred authentication strategy for applications and workloads running in the cluster
+                - listitem [ref=e1174]:
+                  - strong [ref=e1175]: OpenID Connect (OIDC) Tokens
+                  - text: ": best authentication strategy for end-users as OIDC integrates with your identity provider such as AD, AWS IAM, GCP IAM, etc."
+              - paragraph [ref=e1176]:
+                - text: You can learn about the strategies in more detail
+                - link "in the official documentation" [ref=e1177] [cursor=pointer]:
+                  - /url: https://kubernetes.io/docs/reference/access-authn-authz/authentication/
+                - text: .
+          - list [ref=e1178]:
+            - listitem [ref=e1179]:
+              - generic [ref=e1180]:
+                - generic [ref=e1181]:
+                  - checkbox [ref=e1182]
+                  - paragraph [ref=e1183]: Use OpenID (OIDC) tokens as a user authentication strategy
+                  - button "Open" [ref=e1185]
+                - generic [ref=e1187]:
+                  - paragraph [ref=e1188]: Kubernetes supports various authentication methods, including OpenID Connect (OIDC).
+                  - paragraph [ref=e1189]: OpenID Connect allows single sign-on (SSO) such as your Google Identity to connect to a Kubernetes cluster and other development tools.
+                  - paragraph [ref=e1190]: You don't need to remember or manage credentials separately.
+                  - paragraph [ref=e1191]: You could have several clusters connect to the same OpenID provider.
+                  - paragraph [ref=e1192]:
+                    - text: You can
+                    - link "learn more about the OpenID connect in Kubernetes" [ref=e1193] [cursor=pointer]:
+                      - /url: https://thenewstack.io/kubernetes-single-sign-one-less-identity/
+                    - text: in this article.
+        - generic [ref=e1194]:
+          - generic [ref=e1196]:
+            - paragraph [ref=e1197]: Role-Based Access Control (RBAC)
+            - button "Info" [ref=e1199]:
+              - img "Info" [ref=e1200]
+          - list [ref=e1202]:
+            - listitem [ref=e1203]:
+              - generic [ref=e1204]:
+                - generic [ref=e1205]:
+                  - checkbox [ref=e1206]
+                  - paragraph [ref=e1207]:
+                    - text: ServiceAccount tokens are for applications and controllers
+                    - strong [ref=e1208]: only
+                  - button "Open" [ref=e1210]
+                - paragraph [ref=e1213]: Service Account Tokens should not be used for end-users trying to interact with Kubernetes clusters, but they are the preferred authentication strategy for applications and workloads running on Kubernetes.
+        - generic [ref=e1214]:
+          - generic [ref=e1216]:
+            - paragraph [ref=e1217]: Logging setup
+            - button "Info" [ref=e1219]:
+              - img "Info" [ref=e1220]
+          - list [ref=e1222]:
+            - listitem [ref=e1223]:
+              - generic [ref=e1224]:
+                - generic [ref=e1225]:
+                  - checkbox [ref=e1226]
+                  - paragraph [ref=e1227]: There's a retention and archival strategy for logs
+                  - button "Open" [ref=e1229]
+                - paragraph [ref=e1232]: You should retain 30-45 days of historical logs.
+            - listitem [ref=e1233]:
+              - generic [ref=e1234]:
+                - generic [ref=e1235]:
+                  - checkbox [ref=e1236]
+                  - paragraph [ref=e1237]: Logs are collected from Nodes, Control Plane, Auditing
+                  - button "Open" [ref=e1239]
+                - generic [ref=e1241]:
+                  - paragraph [ref=e1242]: "What to collect logs from:"
+                  - list [ref=e1243]:
+                    - listitem [ref=e1244]: Nodes (kubelet, container runtime)
+                    - listitem [ref=e1245]: Control plane (API server, scheduler, controller manager)
+                    - listitem [ref=e1246]: Kubernetes auditing (all requests to the API server)
+                  - paragraph [ref=e1247]: "What you should collect:"
+                  - list [ref=e1248]:
+                    - listitem [ref=e1249]: Application name. Retrieved from metadata labels.
+                    - listitem [ref=e1250]: Application instance. Retrieved from metadata labels.
+                    - listitem [ref=e1251]: Application version. Retrieved from metadata labels.
+                    - listitem [ref=e1252]: Cluster ID. Retrieved from Kubernetes cluster.
+                    - listitem [ref=e1253]: Container name. Retrieved from Kubernetes API.
+                    - listitem [ref=e1254]: Cluster node running this container. Retrieved from Kubernetes cluster.
+                    - listitem [ref=e1255]: Pod name running the container. Retrieved from Kubernetes cluster.
+                    - listitem [ref=e1256]: The namespace. Retrieved from Kubernetes cluster.
+            - listitem [ref=e1257]:
+              - generic [ref=e1258]:
+                - generic [ref=e1259]:
+                  - checkbox [ref=e1260]
+                  - paragraph [ref=e1261]: Prefer a daemon on each node to collect the logs instead of sidecars
+                  - button "Open" [ref=e1263]
+                - generic [ref=e1265]:
+                  - paragraph [ref=e1266]: Applications should log to stdout rather than to files.
+                  - paragraph [ref=e1267]:
+                    - link "A daemon on each node can collect the logs from the container runtime" [ref=e1268] [cursor=pointer]:
+                      - /url: https://rclayton.silvrback.com/container-services-logging-with-docker#effective-logging-infrastructure
+                    - text: (if logging to files, a sidecar container for each pod might be necessary).
+            - listitem [ref=e1269]:
+              - generic [ref=e1270]:
+                - generic [ref=e1271]:
+                  - checkbox [ref=e1272]
+                  - paragraph [ref=e1273]: Provision a log aggregation tool
+                  - button "Open" [ref=e1275]
+                - paragraph [ref=e1278]: Use a log aggregation tool such as EFK stack (Elasticsearch, Fluentd, Kibana), DataDog, Sumo Logic, Sysdig, GCP Stackdriver, Azure Monitor, AWS CloudWatch.
+  - list [ref=e1280]:
+    - listitem [ref=e1281]:
+      - paragraph [ref=e1282]: What is LearnKube?
+      - paragraph [ref=e1283]: In-depth Kubernetes training that is practical and easy to understand.
+    - listitem [ref=e1284]:
+      - link "Kubernetes training ❯" [ref=e1285] [cursor=pointer]:
+        - /url: /training
+        - text: Kubernetes training
+        - generic [ref=e1286]: ❯
+      - paragraph [ref=e1287]: Deep dive into containers and Kubernetes with the help of our instructors and become an expert in deploying applications at scale.
+    - listitem [ref=e1288]:
+      - link "Corporate training ❯" [ref=e1289] [cursor=pointer]:
+        - /url: /corporate-training
+        - text: Corporate training
+        - generic [ref=e1290]: ❯
+      - paragraph [ref=e1291]: Train your team in containers and Kubernetes with a customised learning path — remotely or on-site.
+  - contentinfo [ref=e1292]:
+    - generic [ref=e1293]:
+      - generic [ref=e1294]:
+        - link "LearnKube logo" [ref=e1295] [cursor=pointer]:
+          - /url: /
+          - img [ref=e1296]
+        - paragraph [ref=e1302]: The Kubernetes learning company.
+        - list [ref=e1303]:
+          - listitem [ref=e1304]:
+            - link "Contact us" [ref=e1305] [cursor=pointer]:
+              - /url: /contact-us
+          - listitem [ref=e1306]:
+            - link "Team" [ref=e1307] [cursor=pointer]:
+              - /url: /about-us
+          - listitem [ref=e1308]:
+            - link "Careers" [ref=e1309] [cursor=pointer]:
+              - /url: /careers
+        - list [ref=e1310]:
+          - listitem [ref=e1311]:
+            - link "LearnKube on Twitter" [ref=e1312] [cursor=pointer]:
+              - /url: https://twitter.com/learnk8s
+              - img [ref=e1313]
+          - listitem [ref=e1315]:
+            - link "LearnKube on LinkedIn" [ref=e1316] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/learnkube/
+              - img [ref=e1317]
+          - listitem [ref=e1319]:
+            - link "LearnKube on Slack" [ref=e1320] [cursor=pointer]:
+              - /url: /slack
+              - img [ref=e1321]
+          - listitem [ref=e1324]:
+            - link "LearnKube on Telegram" [ref=e1325] [cursor=pointer]:
+              - /url: https://t.me/LearnKube
+              - img [ref=e1326]
+          - listitem [ref=e1328]:
+            - link "LearnKube on Mastodon" [ref=e1329] [cursor=pointer]:
+              - /url: https://learnk8s.news/@learnk8s
+              - img [ref=e1330]
+      - generic [ref=e1335]:
+        - paragraph [ref=e1336]: Services
+        - list [ref=e1337]:
+          - listitem [ref=e1338]:
+            - link "Corporate training" [ref=e1339] [cursor=pointer]:
+              - /url: /corporate-training
+          - listitem [ref=e1340]:
+            - link "Public workshops" [ref=e1341] [cursor=pointer]:
+              - /url: /training
+          - listitem [ref=e1342]:
+            - link "Sponsorships" [ref=e1343] [cursor=pointer]:
+              - /url: /sponsorships
+          - listitem [ref=e1344]:
+            - link "Consulting" [ref=e1345] [cursor=pointer]:
+              - /url: /consulting
+      - generic [ref=e1347]:
+        - paragraph [ref=e1348]: Tools
+        - list [ref=e1349]:
+          - listitem [ref=e1350]:
+            - link "Kubernetes instance calculator" [ref=e1351] [cursor=pointer]:
+              - /url: /kubernetes-instance-calculator
+          - listitem [ref=e1352]:
+            - link "Troubleshooting flow chart" [ref=e1353] [cursor=pointer]:
+              - /url: /troubleshooting-deployments
+          - listitem [ref=e1354]:
+            - link "Kubernetes production best practices" [ref=e1355] [cursor=pointer]:
+              - /url: /production-best-practices
+          - listitem [ref=e1356]:
+            - link "See all tools" [ref=e1357] [cursor=pointer]:
+              - /url: /kubernetes-resources
+      - generic [ref=e1359]:
+        - paragraph [ref=e1360]: Research
+        - list [ref=e1361]:
+          - listitem [ref=e1362]:
+            - link "Ingress controller comparison" [ref=e1363] [cursor=pointer]:
+              - /url: https://docs.google.com/spreadsheets/d/191WWNpjJ2za6-nbG4ZoUMXMpUK8KlCIosvQB0f-oq3k
+          - listitem [ref=e1364]:
+            - link "Managed services comparison" [ref=e1365] [cursor=pointer]:
+              - /url: https://docs.google.com/spreadsheets/d/1RPpyDOLFmcgxMCpABDzrsBYWpPYCIBuvAoUQLwOGoQw
+          - listitem [ref=e1366]:
+            - link "Resource allocations in Kubernetes nodes" [ref=e1367] [cursor=pointer]:
+              - /url: https://docs.google.com/spreadsheets/d/1yhkuBJBY2iO2Ax5FcbDMdWD5QLTVO6Y_kYt_VumnEtI
+          - listitem [ref=e1368]:
+            - link "See all research" [ref=e1369] [cursor=pointer]:
+              - /url: /research
+      - generic [ref=e1371]:
+        - paragraph [ref=e1372]: Our network
+        - list [ref=e1373]:
+          - listitem [ref=e1374]:
+            - link "KubeFM" [ref=e1375] [cursor=pointer]:
+              - /url: https://kube.fm
+          - listitem [ref=e1376]:
+            - link "Kube Events" [ref=e1377] [cursor=pointer]:
+              - /url: https://kube.events
+          - listitem [ref=e1378]:
+            - link "Kube Careers" [ref=e1379] [cursor=pointer]:
+              - /url: https://kube.careers
+          - listitem [ref=e1380]:
+            - link "Kube Architect" [ref=e1381] [cursor=pointer]:
+              - /url: https://kube.archi
+          - listitem [ref=e1382]:
+            - link "Kubesploit" [ref=e1383] [cursor=pointer]:
+              - /url: https://kubesploit.io
+          - listitem [ref=e1384]:
+            - link "Kube Builders" [ref=e1385] [cursor=pointer]:
+              - /url: https://kube.builders
+          - listitem [ref=e1386]:
+            - link "See all" [ref=e1387] [cursor=pointer]:
+              - /url: /news-events-jobs
+    - paragraph [ref=e1389]:
+      - text: Copyright © LearnKube 2017-2026. Made with ❤︎ in London. View our
+      - link "Terms and Conditions" [ref=e1390] [cursor=pointer]:
+        - /url: /terms-and-conditions
+      - text: or
+      - link "Privacy Policy" [ref=e1391] [cursor=pointer]:
+        - /url: /privacy-policy
+      - text: . Kubernetes is a registered trademark of The Linux Foundation.

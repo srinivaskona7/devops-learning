@@ -1,0 +1,710 @@
+{
+  "nodes": [
+    {
+      "id": "docker_container",
+      "label": "Docker Container",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_image",
+      "label": "Docker Image",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_registry",
+      "label": "Docker Registry",
+      "file_type": "concept",
+      "source_file": "02-docker/07-registries/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_networking",
+      "label": "Docker Networking",
+      "file_type": "concept",
+      "source_file": "02-docker/05-networking/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_volumes",
+      "label": "Docker Volumes & Storage",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "dockerfile",
+      "label": "Dockerfile",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "multistage_build",
+      "label": "Multi-Stage Build",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "buildkit",
+      "label": "BuildKit",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_compose",
+      "label": "Docker Compose",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "container_runtime",
+      "label": "Container Runtime & Isolation",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "linux_namespaces",
+      "label": "Linux Namespaces",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "cgroups",
+      "label": "Linux cgroups",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "seccomp",
+      "label": "seccomp Syscall Filter",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "image_security",
+      "label": "Image Security",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "trivy_scanner",
+      "label": "Trivy Vulnerability Scanner",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "cosign",
+      "label": "Cosign Image Signing",
+      "file_type": "concept",
+      "source_file": "02-docker/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "production_patterns",
+      "label": "Production Patterns",
+      "file_type": "concept",
+      "source_file": "02-docker/11-production-patterns/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "healthcheck",
+      "label": "Docker Healthcheck",
+      "file_type": "concept",
+      "source_file": "02-docker/11-production-patterns/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "graceful_shutdown",
+      "label": "Graceful Shutdown",
+      "file_type": "concept",
+      "source_file": "02-docker/11-production-patterns/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "three_tier_app",
+      "label": "Three-Tier URL Shortener Project",
+      "file_type": "code",
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "fastapi",
+      "label": "FastAPI",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "postgres_database",
+      "label": "PostgreSQL Database",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "nginx_reverse_proxy",
+      "label": "Nginx Reverse Proxy",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "helm_chart",
+      "label": "Helm Chart",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/helm/three-tier/Chart.yaml",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "kubernetes_deployment",
+      "label": "Kubernetes Deployment",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/helm/three-tier/templates/backend.yaml",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "kubernetes_statefulset",
+      "label": "Kubernetes StatefulSet",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/helm/three-tier/templates/postgres-statefulset.yaml",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "kubernetes_ingress",
+      "label": "Kubernetes Ingress",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/helm/three-tier/templates/ingress.yaml",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "ai_for_devops",
+      "label": "AI for DevOps",
+      "file_type": "concept",
+      "source_file": "15-ai-for-devops/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "aiops",
+      "label": "AIOps",
+      "file_type": "concept",
+      "source_file": "15-ai-for-devops/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "qa_testing",
+      "label": "QA Testing",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/tests/qa-plan.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_install_cmd",
+      "label": "Docker Installation Commands",
+      "file_type": "code",
+      "source_file": "02-docker/02-install-and-hello-world/commands.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_networking_cmd",
+      "label": "Docker Networking Commands",
+      "file_type": "code",
+      "source_file": "02-docker/05-networking/commands.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_registry_cmd",
+      "label": "Docker Registry Commands",
+      "file_type": "code",
+      "source_file": "02-docker/07-registries/commands.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_prod_cmd",
+      "label": "Production Patterns Commands",
+      "file_type": "code",
+      "source_file": "02-docker/11-production-patterns/commands.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "docker_cheatsheet",
+      "label": "Docker Cheatsheet",
+      "file_type": "document",
+      "source_file": "02-docker/cheatsheet.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "depends_on_healthcheck",
+      "label": "depends_on with Healthcheck",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "named_volumes",
+      "label": "Named Docker Volumes",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "schema_migration",
+      "label": "Database Schema Migration",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "network_isolation",
+      "label": "Container Network Isolation",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/architecture.md",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "bridge_network",
+      "label": "Docker Bridge Network",
+      "file_type": "concept",
+      "source_file": "02-docker/05-networking/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    },
+    {
+      "id": "k6_load_testing",
+      "label": "k6 Load Testing",
+      "file_type": "concept",
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "confidence": "EXTRACTED",
+      "captured_at": "2026-05-01"
+    }
+  ],
+  "edges": [
+    {
+      "source": "docker_image",
+      "target": "docker_container",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "dockerfile",
+      "target": "docker_image",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "multistage_build",
+      "target": "dockerfile",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "buildkit",
+      "target": "docker_image",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_container",
+      "target": "linux_namespaces",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_container",
+      "target": "cgroups",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "container_runtime",
+      "target": "linux_namespaces",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "container_runtime",
+      "target": "cgroups",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "container_runtime",
+      "target": "seccomp",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_container",
+      "target": "docker_networking",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/05-networking/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_networking",
+      "target": "bridge_network",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/05-networking/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_container",
+      "target": "docker_volumes",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_image",
+      "target": "docker_registry",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/07-registries/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "image_security",
+      "target": "trivy_scanner",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "image_security",
+      "target": "cosign",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_compose",
+      "target": "docker_container",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "depends_on_healthcheck",
+      "target": "docker_compose",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "production_patterns",
+      "target": "healthcheck",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/11-production-patterns/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "production_patterns",
+      "target": "graceful_shutdown",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/11-production-patterns/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "three_tier_app",
+      "target": "docker_compose",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "three_tier_app",
+      "target": "fastapi",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "three_tier_app",
+      "target": "postgres_database",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "three_tier_app",
+      "target": "nginx_reverse_proxy",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "nginx_reverse_proxy",
+      "target": "network_isolation",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/02-three-tier-app/architecture.md",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_chart",
+      "target": "kubernetes_deployment",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/02-three-tier-app/helm/three-tier/Chart.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_chart",
+      "target": "kubernetes_statefulset",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/02-three-tier-app/helm/three-tier/Chart.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_chart",
+      "target": "kubernetes_ingress",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/02-three-tier-app/helm/three-tier/Chart.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "kubernetes_statefulset",
+      "target": "postgres_database",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/02-three-tier-app/helm/three-tier/templates/postgres-statefulset.yaml",
+      "weight": 1.0
+    },
+    {
+      "source": "named_volumes",
+      "target": "docker_volumes",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "schema_migration",
+      "target": "postgres_database",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "three_tier_app",
+      "target": "qa_testing",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/02-three-tier-app/tests/qa-plan.md",
+      "weight": 1.0
+    },
+    {
+      "source": "three_tier_app",
+      "target": "k6_load_testing",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "aiops",
+      "target": "ai_for_devops",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "15-ai-for-devops/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_install_cmd",
+      "target": "docker_container",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/02-install-and-hello-world/commands.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_networking_cmd",
+      "target": "docker_networking",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/05-networking/commands.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_registry_cmd",
+      "target": "docker_registry",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/07-registries/commands.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_prod_cmd",
+      "target": "production_patterns",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/11-production-patterns/commands.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_cheatsheet",
+      "target": "docker_container",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/cheatsheet.md",
+      "weight": 1.0
+    },
+    {
+      "source": "container_runtime",
+      "target": "production_patterns",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "02-docker/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_compose",
+      "target": "bridge_network",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/02-three-tier-app/infra/docker-compose.yml",
+      "weight": 1.0
+    },
+    {
+      "source": "fastapi",
+      "target": "healthcheck",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "08-projects/02-three-tier-app/README.md",
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 45000,
+  "output_tokens": 5200
+}

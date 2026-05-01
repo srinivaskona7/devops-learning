@@ -1,0 +1,162 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+              - generic [ref=e53]: mcp server testing OR documentation OR design OR memory
+              - img [ref=e55]
+            - link "Sign in" [ref=e59] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dmcp%2Bserver%2Btesting%2BOR%2Bdocumentation%2BOR%2Bdesign%2BOR%2Bmemory%26type%3Drepositories%26s%3Dstars%26o%3Ddesc%26created%253A%253E2025-01-01
+            - link "Sign up" [ref=e60] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2Fsearch&source=header
+            - button "Appearance settings" [ref=e63] [cursor=pointer]:
+              - img
+  - main [ref=e66]:
+    - generic [ref=e69]:
+      - heading "repositories Search Results · mcp server testing OR documentation OR design OR memory" [level=1] [ref=e70]
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - heading "Filter by" [level=2] [ref=e76]
+            - list "Filter by" [ref=e81]:
+              - listitem [ref=e82]:
+                - list [ref=e83]:
+                  - listitem [ref=e84]:
+                    - link "Code (...) results" [ref=e85] [cursor=pointer]:
+                      - /url: https://github.com/search?q=mcp+server+testing+OR+documentation+OR+design+OR+memory&type=code&created%3A%3E2025-01-01=
+                      - generic:
+                        - img
+                      - generic [ref=e86]:
+                        - generic [ref=e87]: Code
+                        - generic:
+                          - generic: ...
+                          - generic: (...)
+                          - generic: results
+                  - listitem [ref=e88]:
+                    - link "Repositories results" [ref=e89] [cursor=pointer]:
+                      - /url: https://github.com/search?q=mcp+server+testing+OR+documentation+OR+design+OR+memory&type=repositories&created%3A%3E2025-01-01=
+                      - generic:
+                        - img
+                      - generic [ref=e90]:
+                        - generic [ref=e91]: Repositories
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e92]:
+                    - link "Issues results" [ref=e93] [cursor=pointer]:
+                      - /url: https://github.com/search?q=mcp+server+testing+OR+documentation+OR+design+OR+memory&type=issues&created%3A%3E2025-01-01=
+                      - generic:
+                        - img
+                      - generic [ref=e94]:
+                        - generic [ref=e95]: Issues
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e96]:
+                    - link "Pull requests results" [ref=e97] [cursor=pointer]:
+                      - /url: https://github.com/search?q=mcp+server+testing+OR+documentation+OR+design+OR+memory&type=pullrequests&created%3A%3E2025-01-01=
+                      - generic:
+                        - img
+                      - generic [ref=e98]:
+                        - generic [ref=e99]: Pull requests
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e100]:
+                    - link "Discussions results" [ref=e101] [cursor=pointer]:
+                      - /url: https://github.com/search?q=mcp+server+testing+OR+documentation+OR+design+OR+memory&type=discussions&created%3A%3E2025-01-01=
+                      - generic:
+                        - img
+                      - generic [ref=e102]:
+                        - generic [ref=e103]: Discussions
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e104]:
+                    - link "Users results" [ref=e105] [cursor=pointer]:
+                      - /url: https://github.com/search?q=mcp+server+testing+OR+documentation+OR+design+OR+memory&type=users&created%3A%3E2025-01-01=
+                      - generic:
+                        - img
+                      - generic [ref=e106]:
+                        - generic [ref=e107]: Users
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e108]:
+                    - button "More" [ref=e109] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e111]: More
+              - listitem [ref=e112]
+              - listitem [ref=e113]:
+                - link "Advanced search" [ref=e114] [cursor=pointer]:
+                  - /url: /search/advanced
+                  - generic:
+                    - img
+                  - generic [ref=e116]: Advanced search
+          - slider "Draggable pane splitter" [ref=e118]
+        - generic [ref=e122]:
+          - generic [ref=e124]:
+            - generic [ref=e125]:
+              - generic [ref=e126]:
+                - generic [ref=e127]: 0 results
+                - generic [ref=e128]: (395 ms)
+              - heading "0 results" [active] [level=2] [ref=e129]
+            - generic [ref=e130]:
+              - 'button "Sort by: Most stars" [ref=e132] [cursor=pointer]':
+                - generic [ref=e134]: "Sort by: Most stars"
+                - generic:
+                  - img
+              - button "Open column options" [ref=e136] [cursor=pointer]:
+                - img [ref=e137]
+          - generic [ref=e140]:
+            - img "Mona looking through a globe hologram for code" [ref=e144]
+            - generic [ref=e145]:
+              - generic [ref=e147]:
+                - heading "Your search did not match any repositories" [level=3] [ref=e148]
+                - paragraph [ref=e149]: Try one of the tips below to find more repositories
+              - generic [ref=e151]:
+                - group [ref=e152]:
+                  - generic "Search across an organization" [ref=e153] [cursor=pointer]:
+                    - generic [ref=e154]: Search across an organization
+                    - img [ref=e155]
+                - group [ref=e157]:
+                  - generic "Saved searches" [ref=e158] [cursor=pointer]:
+                    - generic [ref=e159]: Saved searches
+                    - img [ref=e160]
+              - paragraph [ref=e163]:
+                - text: You could try an
+                - link "advanced search" [ref=e164] [cursor=pointer]:
+                  - /url: /search/advanced?q=mcp+server+testing+OR+documentation+OR+design+OR+memory
+                - text: .

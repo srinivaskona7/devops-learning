@@ -1,0 +1,669 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+              - generic [ref=e53]: Search or jump to...
+              - img [ref=e55]
+            - link "Sign in" [ref=e59] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+            - link "Sign up" [ref=e60] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2Fsearch&source=header
+            - button "Appearance settings" [ref=e63] [cursor=pointer]:
+              - img
+  - main [ref=e66]:
+    - generic [ref=e69]:
+      - heading "repositories Search Results · excalidraw mcp" [level=1] [ref=e70]
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - region "Filter by" [ref=e75]:
+            - heading "Filter by" [level=2] [ref=e76]
+            - list "Filter by" [ref=e81]:
+              - listitem [ref=e82]:
+                - list [ref=e83]:
+                  - listitem [ref=e84]:
+                    - link "Code (...) results" [ref=e85] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp&type=code
+                      - generic:
+                        - img
+                      - generic [ref=e86]:
+                        - generic [ref=e87]: Code
+                        - generic:
+                          - generic: ...
+                          - generic: (...)
+                          - generic: results
+                  - listitem [ref=e88]:
+                    - link "Repositories results" [ref=e89] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp&type=repositories
+                      - generic:
+                        - img
+                      - generic [ref=e90]:
+                        - generic [ref=e91]: Repositories
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e92]:
+                    - link "Issues results" [ref=e93] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp&type=issues
+                      - generic:
+                        - img
+                      - generic [ref=e94]:
+                        - generic [ref=e95]: Issues
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e96]:
+                    - link "Pull requests results" [ref=e97] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp&type=pullrequests
+                      - generic:
+                        - img
+                      - generic [ref=e98]:
+                        - generic [ref=e99]: Pull requests
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e100]:
+                    - link "Discussions results" [ref=e101] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp&type=discussions
+                      - generic:
+                        - img
+                      - generic [ref=e102]:
+                        - generic [ref=e103]: Discussions
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e104]:
+                    - link "Users results" [ref=e105] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp&type=users
+                      - generic:
+                        - img
+                      - generic [ref=e106]:
+                        - generic [ref=e107]: Users
+                        - generic:
+                          - generic: results
+                  - listitem [ref=e108]:
+                    - button "More" [ref=e109] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic [ref=e111]: More
+              - listitem [ref=e112]
+              - listitem [ref=e113]:
+                - heading "Languages" [level=3] [ref=e115]
+                - list "Languages" [ref=e116]:
+                  - listitem [ref=e117]:
+                    - link "TypeScript" [ref=e118] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp+language%3ATypeScript&type=repositories&s=stars&o=desc
+                      - generic "TypeScript" [ref=e122]
+                  - listitem [ref=e123]:
+                    - link "JavaScript" [ref=e124] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp+language%3AJavaScript&type=repositories&s=stars&o=desc
+                      - generic "JavaScript" [ref=e128]
+                  - listitem [ref=e129]:
+                    - link "Python" [ref=e130] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp+language%3APython&type=repositories&s=stars&o=desc
+                      - generic "Python" [ref=e134]
+                  - listitem [ref=e135]:
+                    - link "Dockerfile" [ref=e136] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp+language%3ADockerfile&type=repositories&s=stars&o=desc
+                      - generic "Dockerfile" [ref=e140]
+                  - listitem [ref=e141]:
+                    - link "Go" [ref=e142] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp+language%3AGo&type=repositories&s=stars&o=desc
+                      - generic "Go" [ref=e146]
+                  - listitem [ref=e147]:
+                    - link "HTML" [ref=e148] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp+language%3AHTML&type=repositories&s=stars&o=desc
+                      - generic "HTML" [ref=e152]
+                  - listitem [ref=e153]:
+                    - link "Shell" [ref=e154] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp+language%3AShell&type=repositories&s=stars&o=desc
+                      - generic "Shell" [ref=e158]
+                  - listitem [ref=e159]:
+                    - button "More languages..." [ref=e160] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "More languages..." [ref=e163]
+                  - listitem [ref=e164]
+              - listitem [ref=e165]:
+                - heading "Advanced" [level=3] [ref=e167]
+                - list "Advanced" [ref=e168]:
+                  - listitem [ref=e169]:
+                    - button "Owner" [ref=e170] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Owner" [ref=e174]
+                  - listitem [ref=e175]:
+                    - button "Size" [ref=e176] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Size" [ref=e180]
+                  - listitem [ref=e181]:
+                    - button "Number of followers" [ref=e182] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Number of followers" [ref=e186]
+                  - listitem [ref=e187]:
+                    - button "Number of forks" [ref=e188] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Number of forks" [ref=e192]
+                  - listitem [ref=e193]:
+                    - button "Number of stars" [ref=e194] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Number of stars" [ref=e198]
+                  - listitem [ref=e199]:
+                    - button "Date created" [ref=e200] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Date created" [ref=e204]
+                  - listitem [ref=e205]:
+                    - button "Date pushed" [ref=e206] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Date pushed" [ref=e210]
+                  - listitem [ref=e211]:
+                    - button "Topic" [ref=e212] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Topic" [ref=e216]
+                  - listitem [ref=e217]:
+                    - button "License" [ref=e218] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "License" [ref=e222]
+                  - listitem [ref=e223]:
+                    - button "Archived" [ref=e224] [cursor=pointer]:
+                      - generic:
+                        - img
+                      - generic "Archived" [ref=e228]
+                  - listitem [ref=e229]:
+                    - link "Public" [ref=e230] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp+is%3Apublic&type=repositories&s=stars&o=desc
+                      - generic:
+                        - img
+                      - generic "Public" [ref=e234]
+                  - listitem [ref=e235]:
+                    - link "Private" [ref=e236] [cursor=pointer]:
+                      - /url: https://github.com/search?q=excalidraw+mcp+is%3Aprivate&type=repositories&s=stars&o=desc
+                      - generic:
+                        - img
+                      - generic "Private" [ref=e240]
+              - listitem [ref=e241]
+              - listitem [ref=e242]:
+                - link "Advanced search" [ref=e243] [cursor=pointer]:
+                  - /url: /search/advanced
+                  - generic:
+                    - img
+                  - generic [ref=e245]: Advanced search
+          - slider "Draggable pane splitter" [ref=e247]
+        - generic [ref=e250]:
+          - generic [ref=e251]:
+            - generic [ref=e253]:
+              - generic [ref=e254]:
+                - generic [ref=e255]:
+                  - generic [ref=e256]: 90 results
+                  - generic [ref=e257]: (601 ms)
+                - heading "90 results" [active] [level=2] [ref=e258]
+              - generic [ref=e259]:
+                - 'button "Sort by: Most stars" [ref=e261] [cursor=pointer]':
+                  - generic [ref=e263]: "Sort by: Most stars"
+                  - generic:
+                    - img
+                - button "Open column options" [ref=e265] [cursor=pointer]:
+                  - img [ref=e266]
+            - generic [ref=e270]:
+              - generic [ref=e272]:
+                - generic [ref=e273]:
+                  - heading "excalidraw/excalidraw-mcp" [level=3] [ref=e274]:
+                    - link "excalidraw/excalidraw-mcp" [ref=e278] [cursor=pointer]:
+                      - /url: /excalidraw/excalidraw-mcp
+                      - generic [ref=e279]:
+                        - text: excalidraw/
+                        - emphasis [ref=e280]: excalidraw
+                        - text: "-"
+                        - emphasis [ref=e281]: mcp
+                  - generic [ref=e283]:
+                    - text: Fast and streamable
+                    - emphasis [ref=e284]: Excalidraw
+                    - emphasis [ref=e285]: MCP
+                    - text: App
+                  - list [ref=e286]:
+                    - listitem [ref=e287]:
+                      - generic "TypeScript language" [ref=e290]: TypeScript
+                    - generic [ref=e291]: ·
+                    - listitem [ref=e292]:
+                      - link "4202 stars" [ref=e293] [cursor=pointer]:
+                        - /url: /excalidraw/excalidraw-mcp/stargazers
+                        - img [ref=e294]
+                        - generic [ref=e296]: 4.2k
+                    - generic [ref=e297]: ·
+                    - listitem [ref=e298]:
+                      - generic [ref=e299]:
+                        - text: Updated
+                        - generic "Mar 24, 2026, 12:27 PM UTC" [ref=e300]: on Mar 24
+                - link "Star" [ref=e303] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+                  - generic [ref=e304]:
+                    - generic:
+                      - img
+                    - generic [ref=e305]: Star
+              - generic [ref=e307]:
+                - generic [ref=e308]:
+                  - heading "yctimlin/mcp_excalidraw" [level=3] [ref=e309]:
+                    - link "yctimlin/mcp_excalidraw" [ref=e313] [cursor=pointer]:
+                      - /url: /yctimlin/mcp_excalidraw
+                      - generic [ref=e314]:
+                        - text: yctimlin/
+                        - emphasis [ref=e315]: mcp
+                        - text: _
+                        - emphasis [ref=e316]: excalidraw
+                  - generic [ref=e318]:
+                    - emphasis [ref=e319]: MCP
+                    - text: server and Claude Code skill for
+                    - emphasis [ref=e320]: Excalidraw
+                    - text: — programmatic canvas toolkit to create, edit, and export diagrams via AI agents with rea…
+                  - list [ref=e321]:
+                    - listitem [ref=e322]:
+                      - generic "JavaScript language" [ref=e325]: JavaScript
+                    - generic [ref=e326]: ·
+                    - listitem [ref=e327]:
+                      - link "1820 stars" [ref=e328] [cursor=pointer]:
+                        - /url: /yctimlin/mcp_excalidraw/stargazers
+                        - img [ref=e329]
+                        - generic [ref=e331]: 1.8k
+                    - generic [ref=e332]: ·
+                    - listitem [ref=e333]:
+                      - generic [ref=e334]:
+                        - text: Updated
+                        - generic "Apr 24, 2026, 4:49 PM UTC" [ref=e335]: 3 days ago
+                - link "Star" [ref=e338] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+                  - generic [ref=e339]:
+                    - generic:
+                      - img
+                    - generic [ref=e340]: Star
+              - generic [ref=e342]:
+                - generic [ref=e343]:
+                  - heading "BV-Venky/excalidraw-architect-mcp" [level=3] [ref=e344]:
+                    - link "BV-Venky/excalidraw-architect-mcp" [ref=e348] [cursor=pointer]:
+                      - /url: /BV-Venky/excalidraw-architect-mcp
+                      - generic [ref=e349]:
+                        - text: BV-Venky/
+                        - emphasis [ref=e350]: excalidraw
+                        - text: "-architect-"
+                        - emphasis [ref=e351]: mcp
+                  - generic [ref=e353]:
+                    - text: An
+                    - emphasis [ref=e354]: MCP
+                    - text: server that generates beautiful
+                    - emphasis [ref=e355]: Excalidraw
+                    - text: architecture diagrams with perfect auto-layout.
+                  - generic [ref=e356]:
+                    - link "productivity" [ref=e358] [cursor=pointer]:
+                      - /url: /topics/productivity
+                    - link "ai" [ref=e360] [cursor=pointer]:
+                      - /url: /topics/ai
+                    - link "skills" [ref=e362] [cursor=pointer]:
+                      - /url: /topics/skills
+                    - link "mcp" [ref=e364] [cursor=pointer]:
+                      - /url: /topics/mcp
+                    - link "developer-tools" [ref=e366] [cursor=pointer]:
+                      - /url: /topics/developer-tools
+                  - list [ref=e367]:
+                    - listitem [ref=e368]:
+                      - generic "Python language" [ref=e371]: Python
+                    - generic [ref=e372]: ·
+                    - listitem [ref=e373]:
+                      - link "101 stars" [ref=e374] [cursor=pointer]:
+                        - /url: /BV-Venky/excalidraw-architect-mcp/stargazers
+                        - img [ref=e375]
+                        - generic [ref=e377]: "101"
+                    - generic [ref=e378]: ·
+                    - listitem [ref=e379]:
+                      - generic [ref=e380]:
+                        - text: Updated
+                        - generic "Apr 26, 2026, 12:20 PM UTC" [ref=e381]: yesterday
+                - link "Star" [ref=e384] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+                  - generic [ref=e385]:
+                    - generic:
+                      - img
+                    - generic [ref=e386]: Star
+              - generic [ref=e388]:
+                - generic [ref=e389]:
+                  - heading "Scofieldfree/excalidraw-mcp" [level=3] [ref=e390]:
+                    - link "Scofieldfree/excalidraw-mcp" [ref=e394] [cursor=pointer]:
+                      - /url: /Scofieldfree/excalidraw-mcp
+                      - generic [ref=e395]:
+                        - text: Scofieldfree/
+                        - emphasis [ref=e396]: excalidraw
+                        - text: "-"
+                        - emphasis [ref=e397]: mcp
+                  - generic [ref=e399]:
+                    - emphasis [ref=e400]: excalidraw
+                    - emphasis [ref=e401]: mcp
+                  - list [ref=e402]:
+                    - listitem [ref=e403]:
+                      - generic "TypeScript language" [ref=e406]: TypeScript
+                    - generic [ref=e407]: ·
+                    - listitem [ref=e408]:
+                      - link "90 stars" [ref=e409] [cursor=pointer]:
+                        - /url: /Scofieldfree/excalidraw-mcp/stargazers
+                        - img [ref=e410]
+                        - generic [ref=e412]: "90"
+                    - generic [ref=e413]: ·
+                    - listitem [ref=e414]:
+                      - generic [ref=e415]:
+                        - text: Updated
+                        - generic "Feb 9, 2026, 3:25 AM UTC" [ref=e416]: on Feb 9
+                - link "Star" [ref=e419] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+                  - generic [ref=e420]:
+                    - generic:
+                      - img
+                    - generic [ref=e421]: Star
+              - generic [ref=e423]:
+                - generic [ref=e424]:
+                  - heading "robonuggets/excalidraw-skill" [level=3] [ref=e425]:
+                    - link "robonuggets/excalidraw-skill" [ref=e429] [cursor=pointer]:
+                      - /url: /robonuggets/excalidraw-skill
+                      - generic [ref=e430]:
+                        - text: robonuggets/
+                        - emphasis [ref=e431]: excalidraw
+                        - text: "-skill"
+                  - generic [ref=e433]:
+                    - emphasis [ref=e434]: Excalidraw
+                    - text: diagramming skill for Claude Code — 10 visual techniques, layout best practices, self-correcting diagrams via
+                    - emphasis [ref=e435]: MCP
+                  - list [ref=e436]:
+                    - listitem [ref=e437]:
+                      - link "53 stars" [ref=e438] [cursor=pointer]:
+                        - /url: /robonuggets/excalidraw-skill/stargazers
+                        - img [ref=e439]
+                        - generic [ref=e441]: "53"
+                    - generic [ref=e442]: ·
+                    - listitem [ref=e443]:
+                      - generic [ref=e444]:
+                        - text: Updated
+                        - generic "Apr 10, 2026, 5:50 AM UTC" [ref=e445]: 17 days ago
+                - link "Star" [ref=e448] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+                  - generic [ref=e449]:
+                    - generic:
+                      - img
+                    - generic [ref=e450]: Star
+              - generic [ref=e452]:
+                - generic [ref=e453]:
+                  - heading "i-tozer/excalidraw-mcp" [level=3] [ref=e454]:
+                    - link "i-tozer/excalidraw-mcp" [ref=e458] [cursor=pointer]:
+                      - /url: /i-tozer/excalidraw-mcp
+                      - generic [ref=e459]:
+                        - text: i-tozer/
+                        - emphasis [ref=e460]: excalidraw
+                        - text: "-"
+                        - emphasis [ref=e461]: mcp
+                  - generic [ref=e463]:
+                    - text: Model Context Protocol (
+                    - emphasis [ref=e464]: MCP
+                    - text: ) server for
+                    - emphasis [ref=e465]: Excalidraw
+                    - text: "- Work in Progress"
+                  - list [ref=e466]:
+                    - listitem [ref=e467]:
+                      - generic "JavaScript language" [ref=e470]: JavaScript
+                    - generic [ref=e471]: ·
+                    - listitem [ref=e472]:
+                      - link "44 stars" [ref=e473] [cursor=pointer]:
+                        - /url: /i-tozer/excalidraw-mcp/stargazers
+                        - img [ref=e474]
+                        - generic [ref=e476]: "44"
+                    - generic [ref=e477]: ·
+                    - listitem [ref=e478]:
+                      - generic [ref=e479]:
+                        - text: Updated
+                        - generic "Mar 15, 2025, 10:19 AM UTC" [ref=e480]: on Mar 15, 2025
+                - link "Star" [ref=e483] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+                  - generic [ref=e484]:
+                    - generic:
+                      - img
+                    - generic [ref=e485]: Star
+              - generic [ref=e487]:
+                - generic [ref=e488]:
+                  - heading "excalimate/excalimate" [level=3] [ref=e489]:
+                    - link "excalimate/excalimate" [ref=e493] [cursor=pointer]:
+                      - /url: /excalimate/excalimate
+                  - generic [ref=e495]:
+                    - text: Create keyframe animations from hand-drawn
+                    - emphasis [ref=e496]: Excalidraw
+                    - text: diagrams — timeline editor, camera animation, sequence reveals, and an
+                    - emphasis [ref=e497]: MCP
+                    - text: server f…
+                  - generic [ref=e498]:
+                    - link "react" [ref=e500] [cursor=pointer]:
+                      - /url: /topics/react
+                    - link "typescript" [ref=e502] [cursor=pointer]:
+                      - /url: /topics/typescript
+                    - link "ai" [ref=e504] [cursor=pointer]:
+                      - /url: /topics/ai
+                    - link "mp4" [ref=e506] [cursor=pointer]:
+                      - /url: /topics/mp4
+                    - link "timeline" [ref=e508] [cursor=pointer]:
+                      - /url: /topics/timeline
+                  - list [ref=e509]:
+                    - listitem [ref=e510]:
+                      - generic "TypeScript language" [ref=e513]: TypeScript
+                    - generic [ref=e514]: ·
+                    - listitem [ref=e515]:
+                      - link "17 stars" [ref=e516] [cursor=pointer]:
+                        - /url: /excalimate/excalimate/stargazers
+                        - img [ref=e517]
+                        - generic [ref=e519]: "17"
+                    - generic [ref=e520]: ·
+                    - listitem [ref=e521]:
+                      - generic [ref=e522]:
+                        - text: Updated
+                        - generic "Apr 24, 2026, 8:44 PM UTC" [ref=e523]: 2 days ago
+                - link "Star" [ref=e526] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+                  - generic [ref=e527]:
+                    - generic:
+                      - img
+                    - generic [ref=e528]: Star
+              - generic [ref=e530]:
+                - generic [ref=e531]:
+                  - heading "al1y/mcp-excalidraw" [level=3] [ref=e532]:
+                    - link "al1y/mcp-excalidraw" [ref=e536] [cursor=pointer]:
+                      - /url: /al1y/mcp-excalidraw
+                      - generic [ref=e537]:
+                        - text: al1y/
+                        - emphasis [ref=e538]: mcp
+                        - text: "-"
+                        - emphasis [ref=e539]: excalidraw
+                  - generic [ref=e541]:
+                    - emphasis [ref=e542]: MCP
+                    - text: server creating
+                    - emphasis [ref=e543]: Excalidraw
+                    - text: diagrams via Claude Desktop, Cursor, or other hosts with a live web app preview.
+                  - list [ref=e544]:
+                    - listitem [ref=e545]:
+                      - generic "TypeScript language" [ref=e548]: TypeScript
+                    - generic [ref=e549]: ·
+                    - listitem [ref=e550]:
+                      - link "15 stars" [ref=e551] [cursor=pointer]:
+                        - /url: /al1y/mcp-excalidraw/stargazers
+                        - img [ref=e552]
+                        - generic [ref=e554]: "15"
+                    - generic [ref=e555]: ·
+                    - listitem [ref=e556]:
+                      - generic [ref=e557]:
+                        - text: Updated
+                        - generic "May 31, 2025, 3:04 PM UTC" [ref=e558]: on May 31, 2025
+                - link "Star" [ref=e561] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+                  - generic [ref=e562]:
+                    - generic:
+                      - img
+                    - generic [ref=e563]: Star
+              - generic [ref=e565]:
+                - generic [ref=e566]:
+                  - heading "teamchong/drawmode" [level=3] [ref=e567]:
+                    - link "teamchong/drawmode" [ref=e571] [cursor=pointer]:
+                      - /url: /teamchong/drawmode
+                  - generic [ref=e573]:
+                    - text: Code Mode
+                    - emphasis [ref=e574]: MCP
+                    - text: server for generating
+                    - emphasis [ref=e575]: Excalidraw
+                    - text: architecture diagrams with auto-layout. LLM writes TypeScript, Graphviz handles layout.
+                  - list [ref=e576]:
+                    - listitem [ref=e577]:
+                      - generic "TypeScript language" [ref=e580]: TypeScript
+                    - generic [ref=e581]: ·
+                    - listitem [ref=e582]:
+                      - link "15 stars" [ref=e583] [cursor=pointer]:
+                        - /url: /teamchong/drawmode/stargazers
+                        - img [ref=e584]
+                        - generic [ref=e586]: "15"
+                    - generic [ref=e587]: ·
+                    - listitem [ref=e588]:
+                      - generic [ref=e589]:
+                        - text: Updated
+                        - generic "Apr 21, 2026, 9:53 PM UTC" [ref=e590]: 5 days ago
+                - link "Star" [ref=e593] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+                  - generic [ref=e594]:
+                    - generic:
+                      - img
+                    - generic [ref=e595]: Star
+              - generic [ref=e597]:
+                - generic [ref=e598]:
+                  - heading "beycom/onetool-mcp" [level=3] [ref=e599]:
+                    - link "beycom/onetool-mcp" [ref=e603] [cursor=pointer]:
+                      - /url: /beycom/onetool-mcp
+                      - generic [ref=e604]:
+                        - text: beycom/onetool-
+                        - emphasis [ref=e605]: mcp
+                  - generic [ref=e607]:
+                    - text: 🧿 One
+                    - emphasis [ref=e608]: MCP
+                    - text: for developers - no tool tax, no context rot. 100+ tools including Brave, Google, Context7,
+                    - emphasis [ref=e609]: Excalidraw
+                    - text: ", AWS, Version Checker, E…"
+                  - generic [ref=e610]:
+                    - link "python" [ref=e612] [cursor=pointer]:
+                      - /url: /topics/python
+                    - link "mcp" [ref=e614] [cursor=pointer]:
+                      - /url: /topics/mcp
+                    - link "claude" [ref=e616] [cursor=pointer]:
+                      - /url: /topics/claude
+                    - link "llm" [ref=e618] [cursor=pointer]:
+                      - /url: /topics/llm
+                    - link "model-context-protocol" [ref=e620] [cursor=pointer]:
+                      - /url: /topics/model-context-protocol
+                  - list [ref=e621]:
+                    - listitem [ref=e622]:
+                      - generic "Python language" [ref=e625]: Python
+                    - generic [ref=e626]: ·
+                    - listitem [ref=e627]:
+                      - link "14 stars" [ref=e628] [cursor=pointer]:
+                        - /url: /beycom/onetool-mcp/stargazers
+                        - img [ref=e629]
+                        - generic [ref=e631]: "14"
+                    - generic [ref=e632]: ·
+                    - listitem [ref=e633]:
+                      - generic [ref=e634]:
+                        - text: Updated
+                        - generic "Apr 19, 2026, 9:53 AM UTC" [ref=e635]: 8 days ago
+                - link "Star" [ref=e638] [cursor=pointer]:
+                  - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fsearch%3Fq%3Dexcalidraw%2Bmcp%26type%3Drepositories%26s%3Dstars%26o%3Ddesc
+                  - generic [ref=e639]:
+                    - generic:
+                      - img
+                    - generic [ref=e640]: Star
+            - navigation "Pagination" [ref=e643]:
+              - generic [ref=e644]:
+                - generic [ref=e645]:
+                  - img [ref=e646]
+                  - text: Previous
+                - link "Page 1" [ref=e648] [cursor=pointer]:
+                  - /url: https://github.com/search?q=excalidraw+mcp&type=repositories&s=stars&o=desc&p=1
+                  - text: "1"
+                - link "Page 2" [ref=e649] [cursor=pointer]:
+                  - /url: https://github.com/search?q=excalidraw+mcp&type=repositories&s=stars&o=desc&p=2
+                  - text: "2"
+                - link "Page 3" [ref=e650] [cursor=pointer]:
+                  - /url: https://github.com/search?q=excalidraw+mcp&type=repositories&s=stars&o=desc&p=3
+                  - text: "3"
+                - link "Page 4" [ref=e651] [cursor=pointer]:
+                  - /url: https://github.com/search?q=excalidraw+mcp&type=repositories&s=stars&o=desc&p=4
+                  - text: "4"
+                - link "Page 5" [ref=e652] [cursor=pointer]:
+                  - /url: https://github.com/search?q=excalidraw+mcp&type=repositories&s=stars&o=desc&p=5
+                  - text: "5"
+                - link "Page 6" [ref=e653] [cursor=pointer]:
+                  - /url: https://github.com/search?q=excalidraw+mcp&type=repositories&s=stars&o=desc&p=6
+                  - text: "6"
+                - link "Page 7" [ref=e654] [cursor=pointer]:
+                  - /url: https://github.com/search?q=excalidraw+mcp&type=repositories&s=stars&o=desc&p=7
+                  - text: "7"
+                - link "Page 8" [ref=e655] [cursor=pointer]:
+                  - /url: https://github.com/search?q=excalidraw+mcp&type=repositories&s=stars&o=desc&p=8
+                  - text: "8"
+                - link "Page 9" [ref=e656] [cursor=pointer]:
+                  - /url: https://github.com/search?q=excalidraw+mcp&type=repositories&s=stars&o=desc&p=9
+                  - text: "9"
+                - link "Next Page" [ref=e657] [cursor=pointer]:
+                  - /url: https://github.com/search?q=excalidraw+mcp&type=repositories&s=stars&o=desc&p=2
+                  - text: Next
+                  - img [ref=e658]
+          - generic [ref=e661]:
+            - generic [ref=e662]:
+              - img "Package icon" [ref=e664]
+              - heading "Sponsor open source projects you depend on" [level=2] [ref=e665]
+              - generic [ref=e666]: Contributors are working behind the scenes to make open source better for everyone—give them the help and recognition they deserve.
+              - link "Explore sponsorable projects" [ref=e667] [cursor=pointer]:
+                - /url: https://github.com/sponsors/explore
+                - text: Explore sponsorable projects
+                - img [ref=e668]
+            - generic [ref=e670]:
+              - generic [ref=e671]:
+                - img [ref=e672]
+                - text: ProTip!
+              - generic [ref=e674]:
+                - text: Press the
+                - generic [ref=e675]: /
+                - text: key to activate the search input again and adjust your query.

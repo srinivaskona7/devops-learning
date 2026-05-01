@@ -1,0 +1,922 @@
+{
+  "nodes": [
+    {
+      "id": "prometheus_alerting",
+      "label": "Prometheus Alert Rules (node, kubernetes, prometheus)",
+      "file_type": "code",
+      "source_file": "05-monitoring/02-prometheus/alert-rules.yml",
+      "source_location": "lines 1-85",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "prometheus_config",
+      "label": "Prometheus Configuration (scrape, sd, relabel)",
+      "file_type": "code",
+      "source_file": "05-monitoring/02-prometheus/prometheus.yml",
+      "source_location": "lines 1-106",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "promql_execution",
+      "label": "PromQL Deep Dive (range vs instant, histograms, quantiles)",
+      "file_type": "document",
+      "source_file": "05-monitoring/02-prometheus/deep-dive-promql-execution.md",
+      "source_location": "lines 1-192",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_foundations",
+      "label": "Go Foundations (modules, error handling, interfaces, HTTP, testing)",
+      "file_type": "document",
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 1-754",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_concurrency",
+      "label": "Go Concurrency (goroutines, channels, select, context, worker pool)",
+      "file_type": "document",
+      "source_file": "12-golang/02-go-concurrency.md",
+      "source_location": "lines 1-400",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_readme",
+      "label": "Go Module - Why Go for DevOps (comparison table, ecosystem map)",
+      "file_type": "document",
+      "source_file": "12-golang/README.md",
+      "source_location": "lines 1-173",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_commands",
+      "label": "Go Commands Reference (toolchain, modules, kubebuilder, docker, kubectl)",
+      "file_type": "document",
+      "source_file": "12-golang/commands.md",
+      "source_location": "lines 1-247",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "projects_index",
+      "label": "Projects Index (10 capstone labs, learning path, skill matrix)",
+      "file_type": "document",
+      "source_file": "08-projects/README.md",
+      "source_location": "lines 1-62",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "security_lab_readme",
+      "label": "Security Hardening Lab (STRIDE, defense-in-depth, 8 layers, SLSA L2)",
+      "file_type": "document",
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 1-200",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "security_lab_arch",
+      "label": "Security Lab Architecture (STRIDE diagram, defense-in-depth, trust boundaries)",
+      "file_type": "document",
+      "source_file": "08-projects/08-security-hardening-lab/architecture.md",
+      "source_location": "lines 1-140",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "kyverno_require_non_root",
+      "label": "Kyverno Policy - require-non-root",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/policies/kyverno/require-non-root.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "kyverno_require_image_digest",
+      "label": "Kyverno Policy - require-image-digest",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/policies/kyverno/require-image-digest.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "kyverno_require_resource_limits",
+      "label": "Kyverno Policy - require-resource-limits",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/policies/kyverno/require-resource-limits.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "kyverno_deny_privilege_escalation",
+      "label": "Kyverno Policy - deny-privilege-escalation",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/policies/kyverno/deny-privilege-escalation.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "kyverno_restrict_hostpath",
+      "label": "Kyverno Policy - restrict-hostpath",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/policies/kyverno/restrict-hostpath.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "falco_rules",
+      "label": "Falco Runtime Security Rules (eBPF, syscall detection)",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/runtime/falco-rules.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "secure_deployment",
+      "label": "Secure Deployment Manifest (hardened, non-root, limits, read-only FS)",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/hardened/secure-deployment.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "secure_rbac",
+      "label": "Secure RBAC Manifest (least-privilege, namespace-scoped, no automount)",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/hardened/secure-rbac.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "insecure_deployment",
+      "label": "Insecure Deployment Baseline (contrast, no security, root, unbounded)",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/baseline/insecure-deployment.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "insecure_rbac",
+      "label": "Insecure RBAC Baseline (cluster-admin, unsafe pattern)",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/baseline/insecure-rbac.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "trivy_config",
+      "label": "Trivy Scanner Configuration (image scanning, vulnerability gates)",
+      "file_type": "code",
+      "source_file": "08-projects/08-security-hardening-lab/scanners/trivy-config.yaml",
+      "source_location": null,
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "alert_high_cpu",
+      "label": "PromQL Alert: HighCpuUsage (100ms idle rate over 5m, threshold 85%)",
+      "file_type": "concept",
+      "source_file": "05-monitoring/02-prometheus/alert-rules.yml",
+      "source_location": "lines 5-13",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "alert_disk_filling",
+      "label": "PromQL Alert: DiskFillingUp (fstype != tmpfs/overlay, >85% for 15m)",
+      "file_type": "concept",
+      "source_file": "05-monitoring/02-prometheus/alert-rules.yml",
+      "source_location": "lines 25-33",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "alert_pod_crash_loop",
+      "label": "PromQL Alert: PodCrashLooping (>3 restarts in 5m window)",
+      "file_type": "concept",
+      "source_file": "05-monitoring/02-prometheus/alert-rules.yml",
+      "source_location": "lines 47-55",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "sd_kubernetes_pods",
+      "label": "Prometheus SD: Kubernetes Pods (opt-in via prometheus.io annotations)",
+      "file_type": "concept",
+      "source_file": "05-monitoring/02-prometheus/prometheus.yml",
+      "source_location": "lines 37-61",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "sd_kubernetes_services",
+      "label": "Prometheus SD: Kubernetes Services (annotation-driven discovery)",
+      "file_type": "concept",
+      "source_file": "05-monitoring/02-prometheus/prometheus.yml",
+      "source_location": "lines 62-87",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "sd_kubernetes_cadvisor",
+      "label": "Prometheus SD: cAdvisor via Kubelet (container metrics, HTTPS)",
+      "file_type": "concept",
+      "source_file": "05-monitoring/02-prometheus/prometheus.yml",
+      "source_location": "lines 88-106",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "promql_instant_vs_range",
+      "label": "PromQL Concepts: Instant vs Range Vectors (/query vs /query_range endpoints)",
+      "file_type": "concept",
+      "source_file": "05-monitoring/02-prometheus/deep-dive-promql-execution.md",
+      "source_location": "lines 30-40",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "promql_lookback_delta",
+      "label": "PromQL Concepts: Lookback Delta (5m default, stale markers)",
+      "file_type": "concept",
+      "source_file": "05-monitoring/02-prometheus/deep-dive-promql-execution.md",
+      "source_location": "lines 41-64",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "promql_rate_vs_irate",
+      "label": "PromQL Functions: rate vs irate vs increase (counter functions)",
+      "file_type": "concept",
+      "source_file": "05-monitoring/02-prometheus/deep-dive-promql-execution.md",
+      "source_location": "lines 65-95",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "promql_histograms_classic",
+      "label": "PromQL Histograms: Classic vs Native (cardinality, interpolation)",
+      "file_type": "concept",
+      "source_file": "05-monitoring/02-prometheus/deep-dive-promql-execution.md",
+      "source_location": "lines 96-141",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_modules_concept",
+      "label": "Go Concept: Modules (go.mod, go.sum, reproducible builds, versioning)",
+      "file_type": "concept",
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 38-155",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_error_handling",
+      "label": "Go Concept: Error Handling (fmt.Errorf %w, errors.Is, errors.As, explicit chains)",
+      "file_type": "concept",
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 159-291",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_interfaces_devops",
+      "label": "Go Concept: Interfaces for DevOps (pluggable backends, multi-cloud)",
+      "file_type": "concept",
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 295-429",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_http_context",
+      "label": "Go Concept: HTTP + Context (timeouts, pooling, cancellation)",
+      "file_type": "concept",
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 433-583",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_testing",
+      "label": "Go Concept: Testing (table-driven, subtests, mocking via interfaces)",
+      "file_type": "concept",
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 588-754",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_goroutines_waitgroup",
+      "label": "Go Concurrency: Goroutines + WaitGroup (parallel health checks, M:N)",
+      "file_type": "concept",
+      "source_file": "12-golang/02-go-concurrency.md",
+      "source_location": "lines 38-174",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_channels_fanout",
+      "label": "Go Concurrency: Channels (fan-out/fan-in, worker pool, buffered)",
+      "file_type": "concept",
+      "source_file": "12-golang/02-go-concurrency.md",
+      "source_location": "lines 178-335",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "go_select_timeout",
+      "label": "Go Concurrency: Select + Timeouts (k8s watch stalls, state machines)",
+      "file_type": "concept",
+      "source_file": "12-golang/02-go-concurrency.md",
+      "source_location": "lines 339-400",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "stride_model",
+      "label": "Security Concept: STRIDE Threat Model (S-T-R-I-D-E: 6 threat categories)",
+      "file_type": "concept",
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 124-136",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "slsa_l2_supply_chain",
+      "label": "Security Concept: SLSA L2 (source-signed, build-provenance, SBOM, attestation)",
+      "file_type": "concept",
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 37-60",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "defense_in_depth_8layer",
+      "label": "Security Pattern: Defense-in-Depth (8 independent layers)",
+      "file_type": "concept",
+      "source_file": "08-projects/08-security-hardening-lab/architecture.md",
+      "source_location": "lines 66-80",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "psa_restricted",
+      "label": "Kubernetes Security: Pod Security Admission (PSA restricted profile)",
+      "file_type": "concept",
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 170-193",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "rbac_least_privilege",
+      "label": "Kubernetes RBAC: Least Privilege (Role/RoleBinding, not ClusterRole, automount=false)",
+      "file_type": "concept",
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 139-167",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "network_policy_default_deny",
+      "label": "Kubernetes Networking: NetworkPolicy (default-deny-all, zero-trust)",
+      "file_type": "concept",
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 196-199",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "cosign_keyless",
+      "label": "Supply Chain: Sigstore cosign (keyless signing, OIDC-bound identity, Fulcio/Rekor)",
+      "file_type": "concept",
+      "source_file": "08-projects/08-security-hardening-lab/architecture.md",
+      "source_location": "lines 12-20",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    },
+    {
+      "id": "falco_ebpf",
+      "label": "Runtime Detection: Falco eBPF (syscall monitoring, safe on production)",
+      "file_type": "concept",
+      "source_file": "08-projects/08-security-hardening-lab/architecture.md",
+      "source_location": "lines 51-55",
+      "captured_at": "2026-05-01",
+      "author": "DevOps Lab"
+    }
+  ],
+  "edges": [
+    {
+      "source": "prometheus_alerting",
+      "target": "alert_high_cpu",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "05-monitoring/02-prometheus/alert-rules.yml",
+      "source_location": "lines 5-13",
+      "weight": 1.0
+    },
+    {
+      "source": "prometheus_alerting",
+      "target": "alert_disk_filling",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "05-monitoring/02-prometheus/alert-rules.yml",
+      "source_location": "lines 25-33",
+      "weight": 1.0
+    },
+    {
+      "source": "prometheus_alerting",
+      "target": "alert_pod_crash_loop",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "05-monitoring/02-prometheus/alert-rules.yml",
+      "source_location": "lines 47-55",
+      "weight": 1.0
+    },
+    {
+      "source": "prometheus_config",
+      "target": "sd_kubernetes_pods",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "05-monitoring/02-prometheus/prometheus.yml",
+      "source_location": "lines 37-61",
+      "weight": 1.0
+    },
+    {
+      "source": "prometheus_config",
+      "target": "sd_kubernetes_services",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "05-monitoring/02-prometheus/prometheus.yml",
+      "source_location": "lines 62-87",
+      "weight": 1.0
+    },
+    {
+      "source": "prometheus_config",
+      "target": "sd_kubernetes_cadvisor",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "05-monitoring/02-prometheus/prometheus.yml",
+      "source_location": "lines 88-106",
+      "weight": 1.0
+    },
+    {
+      "source": "promql_execution",
+      "target": "promql_instant_vs_range",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "05-monitoring/02-prometheus/deep-dive-promql-execution.md",
+      "source_location": "lines 30-40",
+      "weight": 1.0
+    },
+    {
+      "source": "promql_execution",
+      "target": "promql_lookback_delta",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "05-monitoring/02-prometheus/deep-dive-promql-execution.md",
+      "source_location": "lines 41-64",
+      "weight": 1.0
+    },
+    {
+      "source": "promql_execution",
+      "target": "promql_rate_vs_irate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "05-monitoring/02-prometheus/deep-dive-promql-execution.md",
+      "source_location": "lines 65-95",
+      "weight": 1.0
+    },
+    {
+      "source": "promql_execution",
+      "target": "promql_histograms_classic",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "05-monitoring/02-prometheus/deep-dive-promql-execution.md",
+      "source_location": "lines 96-141",
+      "weight": 1.0
+    },
+    {
+      "source": "go_foundations",
+      "target": "go_modules_concept",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 38-155",
+      "weight": 1.0
+    },
+    {
+      "source": "go_foundations",
+      "target": "go_error_handling",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 159-291",
+      "weight": 1.0
+    },
+    {
+      "source": "go_foundations",
+      "target": "go_interfaces_devops",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 295-429",
+      "weight": 1.0
+    },
+    {
+      "source": "go_foundations",
+      "target": "go_http_context",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 433-583",
+      "weight": 1.0
+    },
+    {
+      "source": "go_foundations",
+      "target": "go_testing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": "lines 588-754",
+      "weight": 1.0
+    },
+    {
+      "source": "go_concurrency",
+      "target": "go_goroutines_waitgroup",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "12-golang/02-go-concurrency.md",
+      "source_location": "lines 38-174",
+      "weight": 1.0
+    },
+    {
+      "source": "go_concurrency",
+      "target": "go_channels_fanout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "12-golang/02-go-concurrency.md",
+      "source_location": "lines 178-335",
+      "weight": 1.0
+    },
+    {
+      "source": "go_concurrency",
+      "target": "go_select_timeout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "12-golang/02-go-concurrency.md",
+      "source_location": "lines 339-400",
+      "weight": 1.0
+    },
+    {
+      "source": "projects_index",
+      "target": "security_lab_readme",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/README.md",
+      "source_location": "line 23",
+      "weight": 1.0
+    },
+    {
+      "source": "security_lab_readme",
+      "target": "stride_model",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 124-136",
+      "weight": 1.0
+    },
+    {
+      "source": "security_lab_readme",
+      "target": "slsa_l2_supply_chain",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 37-60",
+      "weight": 1.0
+    },
+    {
+      "source": "security_lab_readme",
+      "target": "psa_restricted",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 170-193",
+      "weight": 1.0
+    },
+    {
+      "source": "security_lab_readme",
+      "target": "rbac_least_privilege",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 139-167",
+      "weight": 1.0
+    },
+    {
+      "source": "security_lab_readme",
+      "target": "network_policy_default_deny",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/08-security-hardening-lab/README.md",
+      "source_location": "lines 196-199",
+      "weight": 1.0
+    },
+    {
+      "source": "security_lab_arch",
+      "target": "defense_in_depth_8layer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/08-security-hardening-lab/architecture.md",
+      "source_location": "lines 66-80",
+      "weight": 1.0
+    },
+    {
+      "source": "security_lab_arch",
+      "target": "cosign_keyless",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/08-security-hardening-lab/architecture.md",
+      "source_location": "lines 12-20",
+      "weight": 1.0
+    },
+    {
+      "source": "security_lab_arch",
+      "target": "falco_ebpf",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/08-security-hardening-lab/architecture.md",
+      "source_location": "lines 51-55",
+      "weight": 1.0
+    },
+    {
+      "source": "secure_deployment",
+      "target": "insecure_deployment",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "08-projects/08-security-hardening-lab",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "secure_rbac",
+      "target": "insecure_rbac",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "08-projects/08-security-hardening-lab",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "kyverno_require_non_root",
+      "target": "psa_restricted",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/08-security-hardening-lab/policies/kyverno/require-non-root.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "kyverno_require_resource_limits",
+      "target": "psa_restricted",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/08-security-hardening-lab/policies/kyverno/require-resource-limits.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "kyverno_deny_privilege_escalation",
+      "target": "psa_restricted",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/08-security-hardening-lab/policies/kyverno/deny-privilege-escalation.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "kyverno_require_image_digest",
+      "target": "slsa_l2_supply_chain",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "08-projects/08-security-hardening-lab/policies/kyverno/require-image-digest.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "kyverno_restrict_hostpath",
+      "target": "psa_restricted",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/08-security-hardening-lab/policies/kyverno/restrict-hostpath.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "falco_rules",
+      "target": "falco_ebpf",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "08-projects/08-security-hardening-lab/runtime/falco-rules.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "go_http_context",
+      "target": "go_commands",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "12-golang/commands.md",
+      "source_location": "lines 69-90",
+      "weight": 1.0
+    },
+    {
+      "source": "go_testing",
+      "target": "go_commands",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "12-golang/commands.md",
+      "source_location": "lines 19-26",
+      "weight": 1.0
+    },
+    {
+      "source": "go_readme",
+      "target": "go_foundations",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "12-golang/README.md",
+      "source_location": "lines 104-113",
+      "weight": 1.0
+    },
+    {
+      "source": "go_readme",
+      "target": "go_concurrency",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "12-golang/README.md",
+      "source_location": "lines 104-117",
+      "weight": 1.0
+    },
+    {
+      "source": "alert_pod_crash_loop",
+      "target": "prometheus_alerting",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "05-monitoring/02-prometheus/alert-rules.yml",
+      "source_location": "lines 47-55",
+      "weight": 1.0
+    },
+    {
+      "source": "promql_rate_vs_irate",
+      "target": "alert_pod_crash_loop",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "05-monitoring/02-prometheus/deep-dive-promql-execution.md",
+      "source_location": "lines 69-95",
+      "weight": 1.0
+    },
+    {
+      "source": "stride_model",
+      "target": "defense_in_depth_8layer",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/08-security-hardening-lab",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "slsa_l2_supply_chain",
+      "target": "cosign_keyless",
+      "relation": "contains",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "08-projects/08-security-hardening-lab/architecture.md",
+      "source_location": "lines 12-20",
+      "weight": 1.0
+    },
+    {
+      "source": "secure_deployment",
+      "target": "rbac_least_privilege",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "08-projects/08-security-hardening-lab/hardened",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "go_modules_concept",
+      "target": "go_error_handling",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "go_interfaces_devops",
+      "target": "go_testing",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "12-golang/01-go-foundations.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "go_goroutines_waitgroup",
+      "target": "go_http_context",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "12-golang",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "go_channels_fanout",
+      "target": "go_select_timeout",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "12-golang/02-go-concurrency.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "promql_instant_vs_range",
+      "target": "sd_kubernetes_pods",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "05-monitoring",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

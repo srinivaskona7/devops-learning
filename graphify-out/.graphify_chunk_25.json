@@ -1,0 +1,462 @@
+{
+  "nodes": [
+    {
+      "id": "linux_helm",
+      "label": "Linux & Helm Fundamentals",
+      "file_type": "document",
+      "source_file": "01-linux/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_process_mgmt",
+      "label": "Process Management: fork, exec, signals",
+      "file_type": "concept",
+      "source_file": "01-linux/README.md",
+      "source_location": "Section 3",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_permission_bits",
+      "label": "File Permissions: rwx, setuid, setgid, sticky",
+      "file_type": "concept",
+      "source_file": "01-linux/16-security-mastery/file-permissions-deep.md",
+      "source_location": "Lines 59-160",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_pam_auth",
+      "label": "PAM Stack: pluggable authentication modules",
+      "file_type": "concept",
+      "source_file": "01-linux/16-security-mastery/pam-deep.md",
+      "source_location": "Lines 1-100",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_users_sudo",
+      "label": "Users, Groups, and sudo Privilege Escalation",
+      "file_type": "concept",
+      "source_file": "01-linux/16-security-mastery/users-groups-sudo.md",
+      "source_location": "Lines 50-155",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_storage_lvm",
+      "label": "Storage Stack: Block devices, LVM, Filesystems",
+      "file_type": "concept",
+      "source_file": "01-linux/09-storage-disks/README.md",
+      "source_location": "Lines 8-36",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_io_issues",
+      "label": "I/O Troubleshooting: iostat, await, scheduler",
+      "file_type": "document",
+      "source_file": "01-linux/12-troubleshooting-deep/io-issues.md",
+      "source_location": "Lines 1-70",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_cpu_issues",
+      "label": "CPU Troubleshooting: load, steal, throttling",
+      "file_type": "document",
+      "source_file": "01-linux/12-troubleshooting-deep/cpu-issues.md",
+      "source_location": "Lines 1-65",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_network_issues",
+      "label": "Network Troubleshooting: conntrack, MTU, TIME_WAIT",
+      "file_type": "document",
+      "source_file": "01-linux/12-troubleshooting-deep/network-issues.md",
+      "source_location": "Lines 1-70",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_memory_issues",
+      "label": "Memory Troubleshooting: OOM, swap, THP, slab",
+      "file_type": "document",
+      "source_file": "01-linux/12-troubleshooting-deep/memory-issues.md",
+      "source_location": "Lines 1-70",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_kernel_panic",
+      "label": "Kernel Panics & Debugging: kdump, SELinux",
+      "file_type": "document",
+      "source_file": "01-linux/12-troubleshooting-deep/kernel-panic-and-debug.md",
+      "source_location": "Lines 1-70",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_app_debug",
+      "label": "Application Debugging: strace, perf, gdb",
+      "file_type": "document",
+      "source_file": "01-linux/12-troubleshooting-deep/application-debug.md",
+      "source_location": "Lines 1-70",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_audit_fim",
+      "label": "Audit & FIM: auditd, AIDE, tamper detection",
+      "file_type": "concept",
+      "source_file": "01-linux/16-security-mastery/audit-and-fim.md",
+      "source_location": "Lines 1-100",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_selinux_apparmor",
+      "label": "MAC: SELinux vs AppArmor mandatory access control",
+      "file_type": "concept",
+      "source_file": "01-linux/16-security-mastery/selinux-vs-apparmor.md",
+      "source_location": "Lines 1-100",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "linux_postmortem",
+      "label": "Production Postmortems: 5-Whys, Cynefin, blameless",
+      "file_type": "document",
+      "source_file": "01-linux/12-troubleshooting-deep/production-postmortem.md",
+      "source_location": "Lines 1-100",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_concepts",
+      "label": "Helm Concepts: Charts, Releases, Templates",
+      "file_type": "concept",
+      "source_file": "04-helm/01-concepts/README.md",
+      "source_location": "Lines 1-70",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_release_storage",
+      "label": "Helm Release Storage: Secrets, revisions, rollback",
+      "file_type": "concept",
+      "source_file": "04-helm/01-concepts/deep-dive-release-storage.md",
+      "source_location": "Lines 1-70",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_service_template",
+      "label": "Helm Service Template: exposing applications",
+      "file_type": "code",
+      "source_file": "04-helm/04-creating-a-chart/hello-app/templates/service.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_hpa_template",
+      "label": "Helm HPA Template: horizontal pod autoscaling",
+      "file_type": "code",
+      "source_file": "04-helm/04-creating-a-chart/hello-app/templates/hpa.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_serviceaccount_template",
+      "label": "Helm ServiceAccount Template: RBAC identity",
+      "file_type": "code",
+      "source_file": "04-helm/04-creating-a-chart/hello-app/templates/serviceaccount.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "security_dac_mac",
+      "label": "Security: DAC (Discretionary) vs MAC (Mandatory)",
+      "file_type": "concept",
+      "source_file": "01-linux/16-security-mastery/README.md",
+      "source_location": "Lines 10-40",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "troubleshooting_use_red",
+      "label": "Troubleshooting: USE (resources) + RED (services) methodology",
+      "file_type": "concept",
+      "source_file": "01-linux/12-troubleshooting-deep/README.md",
+      "source_location": "Lines 20-70",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "containers_kubernetes",
+      "label": "Containers in Kubernetes: namespaces, cgroups, images",
+      "file_type": "concept",
+      "source_file": "04-helm/01-concepts/README.md",
+      "source_location": "Lines 60-100",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "linux_process_mgmt",
+      "target": "linux_pam_auth",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "01-linux/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "linux_users_sudo",
+      "target": "linux_pam_auth",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "01-linux/16-security-mastery/users-groups-sudo.md",
+      "source_location": "Lines 50-150",
+      "weight": 1.0
+    },
+    {
+      "source": "linux_permission_bits",
+      "target": "linux_users_sudo",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "01-linux/16-security-mastery/file-permissions-deep.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "linux_selinux_apparmor",
+      "target": "security_dac_mac",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "01-linux/16-security-mastery/selinux-vs-apparmor.md",
+      "source_location": "Lines 1-60",
+      "weight": 1.0
+    },
+    {
+      "source": "linux_audit_fim",
+      "target": "linux_selinux_apparmor",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "01-linux/16-security-mastery/audit-and-fim.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "linux_io_issues",
+      "target": "linux_storage_lvm",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "01-linux/12-troubleshooting-deep/io-issues.md",
+      "source_location": "Lines 1-100",
+      "weight": 1.0
+    },
+    {
+      "source": "linux_cpu_issues",
+      "target": "linux_process_mgmt",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "01-linux/12-troubleshooting-deep/cpu-issues.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "linux_network_issues",
+      "target": "linux_audit_fim",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.6,
+      "source_file": "01-linux/12-troubleshooting-deep/network-issues.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "linux_memory_issues",
+      "target": "linux_storage_lvm",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "01-linux/12-troubleshooting-deep/memory-issues.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "linux_kernel_panic",
+      "target": "linux_audit_fim",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "01-linux/12-troubleshooting-deep/kernel-panic-and-debug.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "linux_app_debug",
+      "target": "linux_process_mgmt",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "01-linux/12-troubleshooting-deep/application-debug.md",
+      "source_location": "Lines 1-70",
+      "weight": 1.0
+    },
+    {
+      "source": "linux_postmortem",
+      "target": "troubleshooting_use_red",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "01-linux/12-troubleshooting-deep/production-postmortem.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "helm_release_storage",
+      "target": "helm_concepts",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/01-concepts/deep-dive-release-storage.md",
+      "source_location": "Lines 1-50",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_service_template",
+      "target": "helm_concepts",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/04-creating-a-chart/hello-app/templates/service.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "helm_hpa_template",
+      "target": "helm_concepts",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/04-creating-a-chart/hello-app/templates/hpa.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "helm_serviceaccount_template",
+      "target": "helm_concepts",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/04-creating-a-chart/hello-app/templates/serviceaccount.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "containers_kubernetes",
+      "target": "linux_process_mgmt",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "04-helm/01-concepts/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "containers_kubernetes",
+      "target": "linux_users_sudo",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "04-helm/01-concepts/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "helm_serviceaccount_template",
+      "target": "linux_users_sudo",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "04-helm/04-creating-a-chart/hello-app/templates/serviceaccount.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "linux_app_debug",
+      "target": "troubleshooting_use_red",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "01-linux/12-troubleshooting-deep/application-debug.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

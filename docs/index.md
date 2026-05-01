@@ -66,20 +66,72 @@ flowchart LR
 
 </details>
 
-## :material-folder-multiple-outline: Browse modules { #folders }
+## :material-folder-multiple-outline: The Intelligent Learning Navigator { #folders }
 
-<div class="grid cards" markdown>
-
-- [:material-console:{ .lg } **01 — Linux**](01-linux.md) <br/> Filesystem, users, processes, networking, systemd, troubleshooting.
-- [:material-docker:{ .lg } **02 — Docker**](02-docker.md) <br/> Images, volumes, compose, BuildKit, registries, hardening.
-- [:material-kubernetes:{ .lg } **03 — Kubernetes**](03-kubernetes.md) <br/> Core resources, deployment strategies, advanced controllers.
-- [:material-ship-wheel:{ .lg } **04 — Helm**](04-helm.md) <br/> Templating, values, hooks, dependencies, ArgoCD integration.
-- [:material-chart-line:{ .lg } **05 — Monitoring**](05-monitoring.md) <br/> Prometheus, Grafana, Loki, Tempo, OTel, SLOs, cost.
-- [:material-shield-lock-outline:{ .lg } **06 — Security**](06-security.md) <br/> RBAC, PSA, network policies, supply chain, zero trust.
-- [:material-cloud-cog-outline:{ .lg } **07 — Terraform**](07-terraform.md) <br/> Modules, state, workspaces, AWS/GCP/K8s providers.
-- [:material-flag-checkered:{ .lg } **08 — Projects**](08-projects.md) <br/> End-to-end labs from hello-world to multi-region prod.
-- [:material-account-tie:{ .lg } **09 — Interview Prep**](interview-prep.md) <br/> Internals, system design, troubleshooting drills, Q&A bank.
-
+<div class="bento-grid">
+  <a href="01-linux.md" class="bento-item wide">
+    <div class="badge">:material-console:</div>
+    <div>
+      <h3>01 — Linux Foundations</h3>
+      <p>Master the kernel, processes, and networking fundamentals that power the cloud.</p>
+    </div>
+  </a>
+  <a href="02-docker.md" class="bento-item">
+    <div class="badge">:material-docker:</div>
+    <div>
+      <h3>02 — Docker</h3>
+      <p>Hardened containerization strategies.</p>
+    </div>
+  </a>
+  <a href="03-kubernetes.md" class="bento-item large">
+    <div class="badge">:material-kubernetes:</div>
+    <div>
+      <h3>03 — Kubernetes Mastery</h3>
+      <p>Scale production workloads with advanced controllers, RBAC, and scheduling logic.</p>
+    </div>
+  </a>
+  <a href="04-helm.md" class="bento-item">
+    <div class="badge">:material-ship-wheel:</div>
+    <div>
+      <h3>04 — Helm</h3>
+      <p>Packaging & GitOps flows.</p>
+    </div>
+  </a>
+  <a href="06-security.md" class="bento-item wide">
+    <div class="badge">:material-shield-lock-outline:</div>
+    <div>
+      <h3>06 — DevSecOps</h3>
+      <p>Zero-trust architectures, supply-chain security, and Falco runtime monitoring.</p>
+    </div>
+  </a>
+  <a href="05-monitoring.md" class="bento-item">
+    <div class="badge">:material-chart-line:</div>
+    <div>
+      <h3>05 — Observability</h3>
+      <p>Prometheus & OTel stack.</p>
+    </div>
+  </a>
+  <a href="07-terraform.md" class="bento-item">
+    <div class="badge">:material-cloud-cog-outline:</div>
+    <div>
+      <h3>07 — IaC</h3>
+      <p>Multi-cloud Terraform.</p>
+    </div>
+  </a>
+  <a href="08-projects.md" class="bento-item wide">
+    <div class="badge">:material-flag-checkered:</div>
+    <div>
+      <h3>08 — Production Projects</h3>
+      <p>Real-world multi-region deployments with ArgoCD and Rollouts.</p>
+    </div>
+  </a>
+  <a href="interview-prep.md" class="bento-item tall">
+    <div class="badge">:material-account-tie:</div>
+    <div>
+      <h3>09 — Interview Drill</h3>
+      <p>Internals, system design, and senior troubleshooting drills.</p>
+    </div>
+  </a>
 </div>
 
 ## :material-account-group-outline: By role

@@ -1,0 +1,914 @@
+{
+  "nodes": [
+    {
+      "id": "qbank_linux",
+      "label": "Linux Q&A Bank",
+      "file_type": "document",
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "source_location": "lines 1-218",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "qbank_docker",
+      "label": "Docker Q&A Bank",
+      "file_type": "document",
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "source_location": "lines 1-168",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "qbank_terraform",
+      "label": "Terraform Q&A Bank",
+      "file_type": "document",
+      "source_file": "09-interview-prep/06-questions-bank/terraform.md",
+      "source_location": "lines 1-128",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "qbank_security",
+      "label": "Security Q&A Bank",
+      "file_type": "document",
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "source_location": "lines 1-168",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "qbank_observability",
+      "label": "Observability Q&A Bank",
+      "file_type": "document",
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "source_location": "lines 1-166",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "qbank_readme",
+      "label": "Questions Bank README",
+      "file_type": "document",
+      "source_file": "09-interview-prep/06-questions-bank/README.md",
+      "source_location": "lines 1-50",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "k8s_internals_readme",
+      "label": "Kubernetes Internals Deep Dives",
+      "file_type": "document",
+      "source_file": "09-interview-prep/03-kubernetes-internals/README.md",
+      "source_location": "lines 1-79",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "k8s_api_server_flow",
+      "label": "API Server Request Flow",
+      "file_type": "document",
+      "source_file": "09-interview-prep/03-kubernetes-internals/api-server-flow.md",
+      "source_location": "lines 1-100",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "k8s_etcd_watch",
+      "label": "etcd Watch Protocol",
+      "file_type": "document",
+      "source_file": "09-interview-prep/03-kubernetes-internals/etcd-watch-protocol.md",
+      "source_location": "lines 1-100",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "k8s_control_loop",
+      "label": "Control Loop Pattern",
+      "file_type": "document",
+      "source_file": "09-interview-prep/03-kubernetes-internals/control-loop-pattern.md",
+      "source_location": "lines 1-80",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "sysdesign_readme",
+      "label": "System Design Framework",
+      "file_type": "document",
+      "source_file": "09-interview-prep/04-system-design/README.md",
+      "source_location": "lines 1-260",
+      "captured_at": "2025-05-01",
+      "author": "Kona Srinivas",
+      "contributor": null
+    },
+    {
+      "id": "concept_linux_processes",
+      "label": "Linux Processes & Signals",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "source_location": "lines 11-37",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_filesystems",
+      "label": "Filesystems & Permissions",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "source_location": "lines 38-65",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_networking",
+      "label": "Networking Fundamentals",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "source_location": "lines 66-95",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_systemd",
+      "label": "Systemd & Service Management",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "source_location": "lines 98-117",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_performance_debugging",
+      "label": "Performance & Debugging",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "source_location": "lines 120-206",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_linux_security",
+      "label": "Linux Security & Permissions",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "source_location": "lines 170-192",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_docker_images",
+      "label": "Docker Images & Layers",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "source_location": "lines 11-42",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_docker_runtime",
+      "label": "Docker Container Runtime",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "source_location": "lines 47-73",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_docker_networking",
+      "label": "Docker Networking",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "source_location": "lines 76-95",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_docker_security",
+      "label": "Docker Container Security",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "source_location": "lines 130-152",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_terraform_state",
+      "label": "Terraform State Management",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/terraform.md",
+      "source_location": "lines 11-36",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_terraform_modules",
+      "label": "Terraform Modules & Design",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/terraform.md",
+      "source_location": "lines 39-58",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_terraform_secrets",
+      "label": "Terraform Secrets & Auth",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/terraform.md",
+      "source_location": "lines 83-93",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_k8s_rbac",
+      "label": "Kubernetes RBAC & Identity",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "source_location": "lines 11-36",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_k8s_pod_security",
+      "label": "Kubernetes Pod Security",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "source_location": "lines 39-64",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_k8s_network_security",
+      "label": "Kubernetes Network Security",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "source_location": "lines 67-86",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_supply_chain_security",
+      "label": "Supply Chain Security",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "source_location": "lines 89-111",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_secrets_management",
+      "label": "Secrets Management",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "source_location": "lines 114-130",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_observability_pillars",
+      "label": "Three Pillars of Observability",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "source_location": "lines 11-26",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_prometheus",
+      "label": "Prometheus Architecture & Patterns",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "source_location": "lines 30-74",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_otel",
+      "label": "OpenTelemetry & Tracing",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "source_location": "lines 109-131",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_slo_design",
+      "label": "SLOs & Error Budgets",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "source_location": "lines 134-150",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_api_server_pipeline",
+      "label": "Kubernetes API Server Pipeline",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/03-kubernetes-internals/api-server-flow.md",
+      "source_location": "lines 9-64",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_authn_authz",
+      "label": "Authentication & Authorization",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/03-kubernetes-internals/api-server-flow.md",
+      "source_location": "lines 66-100",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_etcd_consensus",
+      "label": "etcd Raft & MVCC",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/03-kubernetes-internals/etcd-watch-protocol.md",
+      "source_location": "lines 1-75",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_watch_protocol",
+      "label": "Kubernetes Watch Protocol",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/03-kubernetes-internals/etcd-watch-protocol.md",
+      "source_location": "lines 76-100",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_reconciliation_loop",
+      "label": "Reconciliation Control Loop",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/03-kubernetes-internals/control-loop-pattern.md",
+      "source_location": "lines 1-80",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_level_triggered",
+      "label": "Level-Triggered vs Edge-Triggered",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/03-kubernetes-internals/control-loop-pattern.md",
+      "source_location": "lines 31-44",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_sysdesign_framework",
+      "label": "6-Step System Design Framework",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/04-system-design/README.md",
+      "source_location": "lines 6-32",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "concept_capacity_estimation",
+      "label": "Capacity Estimation & Modeling",
+      "file_type": "concept",
+      "source_file": "09-interview-prep/04-system-design/README.md",
+      "source_location": "lines 57-77",
+      "captured_at": "2025-05-01",
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "qbank_readme",
+      "target": "qbank_linux",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_readme",
+      "target": "qbank_docker",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_readme",
+      "target": "qbank_terraform",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_readme",
+      "target": "qbank_security",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_readme",
+      "target": "qbank_observability",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_linux",
+      "target": "concept_linux_processes",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_linux",
+      "target": "concept_filesystems",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_linux",
+      "target": "concept_networking",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_linux",
+      "target": "concept_systemd",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_linux",
+      "target": "concept_performance_debugging",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_linux",
+      "target": "concept_linux_security",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/linux.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_docker",
+      "target": "concept_docker_images",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_docker",
+      "target": "concept_docker_runtime",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_docker",
+      "target": "concept_docker_networking",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_docker",
+      "target": "concept_docker_security",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_terraform",
+      "target": "concept_terraform_state",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/terraform.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_terraform",
+      "target": "concept_terraform_modules",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/terraform.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_terraform",
+      "target": "concept_terraform_secrets",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/terraform.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_security",
+      "target": "concept_k8s_rbac",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_security",
+      "target": "concept_k8s_pod_security",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_security",
+      "target": "concept_k8s_network_security",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_security",
+      "target": "concept_supply_chain_security",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_security",
+      "target": "concept_secrets_management",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_observability",
+      "target": "concept_observability_pillars",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_observability",
+      "target": "concept_prometheus",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_observability",
+      "target": "concept_otel",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_observability",
+      "target": "concept_slo_design",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "weight": 1.0
+    },
+    {
+      "source": "k8s_internals_readme",
+      "target": "k8s_api_server_flow",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/03-kubernetes-internals/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "k8s_internals_readme",
+      "target": "k8s_etcd_watch",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/03-kubernetes-internals/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "k8s_internals_readme",
+      "target": "k8s_control_loop",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/03-kubernetes-internals/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "k8s_api_server_flow",
+      "target": "concept_api_server_pipeline",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/03-kubernetes-internals/api-server-flow.md",
+      "weight": 1.0
+    },
+    {
+      "source": "k8s_api_server_flow",
+      "target": "concept_authn_authz",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/03-kubernetes-internals/api-server-flow.md",
+      "weight": 1.0
+    },
+    {
+      "source": "k8s_etcd_watch",
+      "target": "concept_etcd_consensus",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/03-kubernetes-internals/etcd-watch-protocol.md",
+      "weight": 1.0
+    },
+    {
+      "source": "k8s_etcd_watch",
+      "target": "concept_watch_protocol",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/03-kubernetes-internals/etcd-watch-protocol.md",
+      "weight": 1.0
+    },
+    {
+      "source": "k8s_control_loop",
+      "target": "concept_reconciliation_loop",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/03-kubernetes-internals/control-loop-pattern.md",
+      "weight": 1.0
+    },
+    {
+      "source": "k8s_control_loop",
+      "target": "concept_level_triggered",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/03-kubernetes-internals/control-loop-pattern.md",
+      "weight": 1.0
+    },
+    {
+      "source": "sysdesign_readme",
+      "target": "concept_sysdesign_framework",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/04-system-design/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "sysdesign_readme",
+      "target": "concept_capacity_estimation",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/04-system-design/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_docker_runtime",
+      "target": "concept_linux_processes",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "weight": 0.8
+    },
+    {
+      "source": "concept_docker_networking",
+      "target": "concept_networking",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "weight": 0.8
+    },
+    {
+      "source": "concept_docker_security",
+      "target": "concept_linux_security",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "weight": 0.8
+    },
+    {
+      "source": "concept_api_server_pipeline",
+      "target": "concept_authn_authz",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/03-kubernetes-internals/api-server-flow.md",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_reconciliation_loop",
+      "target": "concept_watch_protocol",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "09-interview-prep/03-kubernetes-internals/control-loop-pattern.md",
+      "weight": 0.9
+    },
+    {
+      "source": "concept_level_triggered",
+      "target": "concept_etcd_consensus",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "09-interview-prep/03-kubernetes-internals/control-loop-pattern.md",
+      "weight": 0.7
+    },
+    {
+      "source": "concept_k8s_rbac",
+      "target": "concept_authn_authz",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_k8s_network_security",
+      "target": "concept_networking",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "weight": 0.8
+    },
+    {
+      "source": "concept_supply_chain_security",
+      "target": "concept_docker_images",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "09-interview-prep/06-questions-bank/security.md",
+      "weight": 0.75
+    },
+    {
+      "source": "concept_prometheus",
+      "target": "concept_observability_pillars",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_otel",
+      "target": "concept_observability_pillars",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "weight": 1.0
+    },
+    {
+      "source": "concept_slo_design",
+      "target": "concept_prometheus",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "09-interview-prep/06-questions-bank/observability.md",
+      "weight": 0.8
+    },
+    {
+      "source": "concept_capacity_estimation",
+      "target": "concept_sysdesign_framework",
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "09-interview-prep/04-system-design/README.md",
+      "weight": 1.0
+    },
+    {
+      "source": "qbank_docker",
+      "target": "qbank_linux",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "09-interview-prep/06-questions-bank/docker.md",
+      "weight": 0.7
+    },
+    {
+      "source": "qbank_terraform",
+      "target": "qbank_security",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "09-interview-prep/06-questions-bank/terraform.md",
+      "weight": 0.65
+    },
+    {
+      "source": "k8s_api_server_flow",
+      "target": "concept_etcd_consensus",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "09-interview-prep/03-kubernetes-internals/api-server-flow.md",
+      "weight": 0.75
+    },
+    {
+      "source": "concept_terraform_state",
+      "target": "concept_etcd_consensus",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "09-interview-prep/06-questions-bank/terraform.md",
+      "weight": 0.65
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 148900,
+  "output_tokens": 5200
+}

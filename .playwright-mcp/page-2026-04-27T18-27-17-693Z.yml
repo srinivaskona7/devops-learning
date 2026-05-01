@@ -1,0 +1,852 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+              - generic [ref=e53]: Search or jump to...
+              - img [ref=e55]
+            - link "Sign in" [ref=e59] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2FBV-Venky%2Fexcalidraw-architect-mcp
+            - link "Sign up" [ref=e60] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E&source=header-repo&source_repo=BV-Venky%2Fexcalidraw-architect-mcp
+            - button "Appearance settings" [ref=e63] [cursor=pointer]:
+              - img
+  - main [ref=e67]:
+    - generic [ref=e68]:
+      - generic [ref=e69]:
+        - generic [ref=e71]:
+          - img [ref=e72]
+          - link "BV-Venky" [ref=e75] [cursor=pointer]:
+            - /url: /BV-Venky
+          - generic [ref=e76]: /
+          - strong [ref=e77]:
+            - link "excalidraw-architect-mcp" [ref=e78] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp
+          - generic [ref=e79]: Public
+        - generic [ref=e80]:
+          - list:
+            - listitem [ref=e81]:
+              - link "You must be signed in to change notification settings" [ref=e82] [cursor=pointer]:
+                - /url: /login?return_to=%2FBV-Venky%2Fexcalidraw-architect-mcp
+                - img [ref=e83]
+                - text: Notifications
+            - listitem [ref=e85]:
+              - link "Fork 6" [ref=e86] [cursor=pointer]:
+                - /url: /login?return_to=%2FBV-Venky%2Fexcalidraw-architect-mcp
+                - img [ref=e87]
+                - text: Fork
+                - generic "6" [ref=e89]
+            - listitem [ref=e90]:
+              - link "You must be signed in to star a repository" [ref=e92] [cursor=pointer]:
+                - /url: /login?return_to=%2FBV-Venky%2Fexcalidraw-architect-mcp
+                - img [ref=e93]
+                - text: Star
+                - generic "101 users starred this repository" [ref=e95]: "101"
+      - navigation "Repository" [ref=e96]:
+        - list [ref=e97]:
+          - listitem [ref=e98]:
+            - link "Code" [ref=e99] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp
+              - img [ref=e100]
+              - generic [ref=e102]: Code
+          - listitem [ref=e103]:
+            - link "Issues 1" [ref=e104] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/issues
+              - img [ref=e105]
+              - generic [ref=e108]: Issues
+              - generic "1" [ref=e109]
+          - listitem [ref=e110]:
+            - link "Pull requests" [ref=e111] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/pulls
+              - img [ref=e112]
+              - generic [ref=e114]: Pull requests
+          - listitem [ref=e115]:
+            - link "Discussions" [ref=e116] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/discussions
+              - img [ref=e117]
+              - generic [ref=e119]: Discussions
+          - listitem [ref=e120]:
+            - link "Actions" [ref=e121] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/actions
+              - img [ref=e122]
+              - generic [ref=e124]: Actions
+          - listitem [ref=e125]:
+            - link "Projects" [ref=e126] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/projects
+              - img [ref=e127]
+              - generic [ref=e129]: Projects
+          - listitem [ref=e130]:
+            - link "Security and quality" [ref=e131] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/security
+              - img [ref=e132]
+              - generic [ref=e134]: Security and quality
+          - listitem [ref=e135]:
+            - link "Insights" [ref=e136] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/pulse
+              - img [ref=e137]
+              - generic [ref=e139]: Insights
+    - generic [ref=e152]:
+      - heading "BV-Venky/excalidraw-architect-mcp" [level=1] [ref=e154]
+      - generic [ref=e155]:
+        - generic [ref=e158]:
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - button "main branch" [ref=e162] [cursor=pointer]:
+                - generic [ref=e163]:
+                  - generic [ref=e165]:
+                    - img [ref=e167]
+                    - generic [ref=e170]: main
+                  - generic:
+                    - img
+              - generic [ref=e171]:
+                - link "10 Branches" [ref=e172] [cursor=pointer]:
+                  - /url: /BV-Venky/excalidraw-architect-mcp/branches
+                  - generic [ref=e173]:
+                    - generic:
+                      - img
+                    - generic [ref=e175]:
+                      - strong [ref=e176]: "10"
+                      - text: Branches
+                - link "4 Tags" [ref=e177] [cursor=pointer]:
+                  - /url: /BV-Venky/excalidraw-architect-mcp/tags
+                  - generic [ref=e178]:
+                    - generic:
+                      - img
+                    - generic [ref=e180]:
+                      - strong [ref=e181]: "4"
+                      - text: Tags
+            - generic [ref=e182]:
+              - generic [ref=e186]:
+                - img [ref=e188]
+                - combobox "Go to file" [ref=e190]
+              - button "Code" [ref=e191] [cursor=pointer]:
+                - generic [ref=e192]:
+                  - generic:
+                    - img
+                  - generic [ref=e193]: Code
+                  - generic:
+                    - img
+          - generic [ref=e194]:
+            - generic [ref=e195]:
+              - heading "Folders and files" [level=2] [ref=e196]
+              - table "Folders and files" [ref=e197]:
+                - rowgroup:
+                  - row "Name Last commit message Last commit date":
+                    - columnheader "Name"
+                    - columnheader "Last commit message":
+                      - generic "Last commit message"
+                    - columnheader "Last commit date":
+                      - generic "Last commit date"
+                - rowgroup [ref=e198]:
+                  - 'row "Latest commit BV-Venky commits by BV-Venky Merge pull request #14 from nandanadileep/feat/image-export Open commit details success Commit da7845e · Apr 26, 2026yesterday History 51 Commits" [ref=e199]':
+                    - 'cell "Latest commit BV-Venky commits by BV-Venky Merge pull request #14 from nandanadileep/feat/image-export Open commit details success Commit da7845e · Apr 26, 2026yesterday History 51 Commits" [ref=e200]':
+                      - generic [ref=e201]:
+                        - heading "Latest commit" [level=2] [ref=e202]
+                        - generic [ref=e203]:
+                          - generic [ref=e205]:
+                            - link "BV-Venky" [ref=e206] [cursor=pointer]:
+                              - /url: /BV-Venky
+                              - img "BV-Venky" [ref=e207]
+                            - link "commits by BV-Venky" [ref=e208] [cursor=pointer]:
+                              - /url: /BV-Venky/excalidraw-architect-mcp/commits?author=BV-Venky
+                              - text: BV-Venky
+                          - generic [ref=e209]:
+                            - generic [ref=e211]:
+                              - link "Merge pull request" [ref=e212] [cursor=pointer]:
+                                - /url: /BV-Venky/excalidraw-architect-mcp/commit/da7845e0264ad678f067efe572b9c32949628a95
+                              - link "#14" [ref=e213] [cursor=pointer]:
+                                - /url: https://github.com/BV-Venky/excalidraw-architect-mcp/pull/14
+                              - link "from nandanadileep/feat/image-export" [ref=e214] [cursor=pointer]:
+                                - /url: /BV-Venky/excalidraw-architect-mcp/commit/da7845e0264ad678f067efe572b9c32949628a95
+                            - button "Open commit details" [ref=e215] [cursor=pointer]:
+                              - img [ref=e216]
+                            - button "success" [ref=e218] [cursor=pointer]:
+                              - img [ref=e219]
+                        - generic [ref=e221]:
+                          - generic [ref=e223]:
+                            - link "Commit da7845e" [ref=e224] [cursor=pointer]:
+                              - /url: /BV-Venky/excalidraw-architect-mcp/commit/da7845e0264ad678f067efe572b9c32949628a95
+                              - text: da7845e
+                            - text: ·
+                            - generic "Apr 26, 2026, 5:50 PM GMT+5:30" [ref=e225]: Apr 26, 2026yesterday
+                          - generic [ref=e226]:
+                            - heading "History" [level=2] [ref=e227]
+                            - link "51 Commits" [ref=e228] [cursor=pointer]:
+                              - /url: /BV-Venky/excalidraw-architect-mcp/commits/main/
+                              - generic [ref=e229]:
+                                - generic:
+                                  - img
+                                - generic [ref=e230]: 51 Commits
+                  - row ".github, (Directory) Remove test-pypi from publish workflow, bump to v0.2.1 Mar 7, 2026last month" [ref=e231]:
+                    - cell ".github, (Directory)" [ref=e232]:
+                      - generic [ref=e233]:
+                        - img [ref=e234]
+                        - link ".github, (Directory)" [ref=e239] [cursor=pointer]:
+                          - /url: /BV-Venky/excalidraw-architect-mcp/tree/main/.github
+                          - text: .github
+                    - cell "Remove test-pypi from publish workflow, bump to v0.2.1" [ref=e240]:
+                      - link "Remove test-pypi from publish workflow, bump to v0.2.1" [ref=e243] [cursor=pointer]:
+                        - /url: /BV-Venky/excalidraw-architect-mcp/commit/71cd798e968a05c73d122268d1950c58c9277cac
+                    - cell "Mar 7, 2026last month" [ref=e244]:
+                      - generic [ref=e245]: Mar 7, 2026last month
+                  - row ".skills/excalidraw-diagram-design, (Directory) Add layout engine tests Mar 6, 2026last month" [ref=e246]:
+                    - cell ".skills/excalidraw-diagram-design, (Directory)" [ref=e247]:
+                      - generic [ref=e248]:
+                        - img [ref=e249]
+                        - link ".skills/excalidraw-diagram-design, (Directory)" [ref=e254] [cursor=pointer]:
+                          - /url: /BV-Venky/excalidraw-architect-mcp/tree/main/.skills/excalidraw-diagram-design
+                          - text: .skills/excalidraw-diagram-design
+                    - cell "Add layout engine tests" [ref=e255]:
+                      - link "Add layout engine tests" [ref=e258] [cursor=pointer]:
+                        - /url: /BV-Venky/excalidraw-architect-mcp/commit/93eada854e01e9d1d8af14b21031e8344a1c757a
+                    - cell "Mar 6, 2026last month" [ref=e259]:
+                      - generic [ref=e260]: Mar 6, 2026last month
+                  - 'row "showcase, (Directory) feat(local): Updated Readme.MD Mar 7, 2026last month" [ref=e261]':
+                    - cell "showcase, (Directory)" [ref=e262]:
+                      - generic [ref=e263]:
+                        - img [ref=e264]
+                        - link "showcase, (Directory)" [ref=e269] [cursor=pointer]:
+                          - /url: /BV-Venky/excalidraw-architect-mcp/tree/main/showcase
+                          - text: showcase
+                    - 'cell "feat(local): Updated Readme.MD" [ref=e270]':
+                      - 'link "feat(local): Updated Readme.MD" [ref=e273] [cursor=pointer]':
+                        - /url: /BV-Venky/excalidraw-architect-mcp/commit/89ac638f91c90ee98f82c446cfa1a59edf0f830a
+                    - cell "Mar 7, 2026last month" [ref=e274]:
+                      - generic [ref=e275]: Mar 7, 2026last month
+                  - 'row "src/excalidraw_mcp, (Directory) fix: collapse function signatures to satisfy ruff format Apr 3, 2026last month" [ref=e276]':
+                    - cell "src/excalidraw_mcp, (Directory)" [ref=e277]:
+                      - generic [ref=e278]:
+                        - img [ref=e279]
+                        - link "src/excalidraw_mcp, (Directory)" [ref=e284] [cursor=pointer]:
+                          - /url: /BV-Venky/excalidraw-architect-mcp/tree/main/src/excalidraw_mcp
+                          - text: src/excalidraw_mcp
+                    - 'cell "fix: collapse function signatures to satisfy ruff format" [ref=e285]':
+                      - 'link "fix: collapse function signatures to satisfy ruff format" [ref=e288] [cursor=pointer]':
+                        - /url: /BV-Venky/excalidraw-architect-mcp/commit/088e857383fe42f5d28d4dfc56eb96379c1896ff
+                    - cell "Apr 3, 2026last month" [ref=e289]:
+                      - generic [ref=e290]: Apr 3, 2026last month
+                  - 'row "tests, (Directory) fix: remove unused Path import in test_export.py Apr 2, 2026last month" [ref=e291]':
+                    - cell "tests, (Directory)" [ref=e292]:
+                      - generic [ref=e293]:
+                        - img [ref=e294]
+                        - link "tests, (Directory)" [ref=e299] [cursor=pointer]:
+                          - /url: /BV-Venky/excalidraw-architect-mcp/tree/main/tests
+                          - text: tests
+                    - 'cell "fix: remove unused Path import in test_export.py" [ref=e300]':
+                      - 'link "fix: remove unused Path import in test_export.py" [ref=e303] [cursor=pointer]':
+                        - /url: /BV-Venky/excalidraw-architect-mcp/commit/d4aa7468a300786e01cdfdd2ce9857e9dc8d352c
+                    - cell "Apr 2, 2026last month" [ref=e304]:
+                      - generic [ref=e305]: Apr 2, 2026last month
+                  - row ".gitignore, (File) Add layout engine tests Mar 6, 2026last month" [ref=e306]:
+                    - cell ".gitignore, (File)" [ref=e307]:
+                      - generic [ref=e308]:
+                        - img [ref=e309]
+                        - link ".gitignore, (File)" [ref=e314] [cursor=pointer]:
+                          - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/.gitignore
+                          - text: .gitignore
+                    - cell "Add layout engine tests" [ref=e315]:
+                      - link "Add layout engine tests" [ref=e318] [cursor=pointer]:
+                        - /url: /BV-Venky/excalidraw-architect-mcp/commit/93eada854e01e9d1d8af14b21031e8344a1c757a
+                    - cell "Mar 6, 2026last month" [ref=e319]:
+                      - generic [ref=e320]: Mar 6, 2026last month
+                  - 'row "CONTRIBUTING.md, (File) feat(local): Updated Contribution.md and Readme.md Mar 6, 2026last month" [ref=e321]':
+                    - cell "CONTRIBUTING.md, (File)" [ref=e322]:
+                      - generic [ref=e323]:
+                        - img [ref=e324]
+                        - link "CONTRIBUTING.md, (File)" [ref=e329] [cursor=pointer]:
+                          - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/CONTRIBUTING.md
+                          - text: CONTRIBUTING.md
+                    - 'cell "feat(local): Updated Contribution.md and Readme.md" [ref=e330]':
+                      - 'link "feat(local): Updated Contribution.md and Readme.md" [ref=e333] [cursor=pointer]':
+                        - /url: /BV-Venky/excalidraw-architect-mcp/commit/d31007b60509e82096eedaf4a8e8671120c22a4d
+                    - cell "Mar 6, 2026last month" [ref=e334]:
+                      - generic [ref=e335]: Mar 6, 2026last month
+                  - 'row "LICENSE, (File) Initial commit: Excalidraw Architect MCP with auto-layout engine Mar 6, 2026last month" [ref=e336]':
+                    - cell "LICENSE, (File)" [ref=e337]:
+                      - generic [ref=e338]:
+                        - img [ref=e339]
+                        - link "LICENSE, (File)" [ref=e344] [cursor=pointer]:
+                          - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/LICENSE
+                          - text: LICENSE
+                    - 'cell "Initial commit: Excalidraw Architect MCP with auto-layout engine" [ref=e345]':
+                      - 'link "Initial commit: Excalidraw Architect MCP with auto-layout engine" [ref=e348] [cursor=pointer]':
+                        - /url: /BV-Venky/excalidraw-architect-mcp/commit/09cac5f59aad35896dfac2bcb7217cd1d5e8b9de
+                    - cell "Mar 6, 2026last month" [ref=e349]:
+                      - generic [ref=e350]: Mar 6, 2026last month
+                  - 'row "README.md, (File) feat(local): Updated ReadMe.md Mar 10, 2026last month" [ref=e351]':
+                    - cell "README.md, (File)" [ref=e352]:
+                      - generic [ref=e353]:
+                        - img [ref=e354]
+                        - link "README.md, (File)" [ref=e359] [cursor=pointer]:
+                          - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/README.md
+                          - text: README.md
+                    - 'cell "feat(local): Updated ReadMe.md" [ref=e360]':
+                      - 'link "feat(local): Updated ReadMe.md" [ref=e363] [cursor=pointer]':
+                        - /url: /BV-Venky/excalidraw-architect-mcp/commit/b19fbc1cec9b1914d15f5ce7356d836824a0d310
+                    - cell "Mar 10, 2026last month" [ref=e364]:
+                      - generic [ref=e365]: Mar 10, 2026last month
+                  - row "pyproject.toml, (File) Add export_diagram tool for SVG and PNG export Mar 21, 2026last month" [ref=e366]:
+                    - cell "pyproject.toml, (File)" [ref=e367]:
+                      - generic [ref=e368]:
+                        - img [ref=e369]
+                        - link "pyproject.toml, (File)" [ref=e374] [cursor=pointer]:
+                          - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/pyproject.toml
+                          - text: pyproject.toml
+                    - cell "Add export_diagram tool for SVG and PNG export" [ref=e375]:
+                      - link "Add export_diagram tool for SVG and PNG export" [ref=e378] [cursor=pointer]:
+                        - /url: /BV-Venky/excalidraw-architect-mcp/commit/537db05f6f1052d5cdd22d473a47d47a11572d1f
+                    - cell "Mar 21, 2026last month" [ref=e379]:
+                      - generic [ref=e380]: Mar 21, 2026last month
+            - generic [ref=e382]:
+              - generic [ref=e383]:
+                - heading "Repository files navigation" [level=2] [ref=e384]
+                - navigation "Repository files" [ref=e385]:
+                  - list [ref=e386]:
+                    - listitem [ref=e387]:
+                      - link "README" [ref=e388] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e390]
+                        - generic [ref=e392]: README
+                    - listitem [ref=e393]:
+                      - link "Contributing" [ref=e394] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e396]
+                        - generic [ref=e398]: Contributing
+                    - listitem [ref=e399]:
+                      - link "MIT license" [ref=e400] [cursor=pointer]:
+                        - /url: "#"
+                        - img [ref=e402]
+                        - generic [ref=e404]: MIT license
+                - button "Outline" [ref=e405] [cursor=pointer]:
+                  - img [ref=e406]
+              - article [ref=e409]:
+                - generic [ref=e410]:
+                  - heading "Excalidraw Architect MCP" [level=1] [ref=e411]
+                  - 'link "Permalink: Excalidraw Architect MCP" [ref=e412] [cursor=pointer]':
+                    - /url: "#excalidraw-architect-mcp"
+                    - img [ref=e413]
+                - paragraph [ref=e415]:
+                  - link "PyPI" [ref=e416] [cursor=pointer]:
+                    - /url: https://pypi.org/project/excalidraw-architect-mcp/
+                    - img "PyPI" [ref=e417]
+                  - link "Cursor Directory" [ref=e418] [cursor=pointer]:
+                    - /url: https://cursor.directory/mcp/excalidraw-architect-mcp
+                    - img "Cursor Directory" [ref=e419]
+                  - 'link "License: MIT" [ref=e420] [cursor=pointer]':
+                    - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/LICENSE
+                    - 'img "License: MIT" [ref=e421]'
+                - link "excalidraw-architect-mcp MCP server" [ref=e422] [cursor=pointer]:
+                  - /url: https://glama.ai/mcp/servers/@BV-Venky/excalidraw-architect-mcp
+                  - img "excalidraw-architect-mcp MCP server" [ref=e423]
+                - paragraph [ref=e424]: It's been a constant struggle trying to understand unfamiliar and complex codebases - managing cognitive overload and trying to imagine how everything fits together.
+                - generic [ref=e425]:
+                  - heading "The Problem" [level=2] [ref=e426]
+                  - 'link "Permalink: The Problem" [ref=e427] [cursor=pointer]':
+                    - /url: "#the-problem"
+                    - img [ref=e428]
+                - paragraph [ref=e430]: When you're onboarding onto a codebase, designing a new system, or documenting existing architecture, a visual diagram communicates in seconds what pages of text can't. But the options today aren't great. Mermaid diagrams are quick to generate but have limited capabilities - you can't drag a node to reposition it, group components visually. Excalidraw solves these problems, but when LLMs try to generate Excalidraw directly, they hallucinate coordinates - boxes overlap, arrows tangle, and you end up fixing the diagram manually.
+                - generic [ref=e431]:
+                  - heading "The Solution" [level=2] [ref=e432]
+                  - 'link "Permalink: The Solution" [ref=e433] [cursor=pointer]':
+                    - /url: "#the-solution"
+                    - img [ref=e434]
+                - paragraph [ref=e436]:
+                  - strong [ref=e437]: excalidraw-architect-mcp
+                  - text: separates the
+                  - emphasis [ref=e438]: what
+                  - text: from the
+                  - emphasis [ref=e439]: where
+                  - text: "- the AI focuses on structure, the engine handles the pixel math."
+                - paragraph [ref=e440]: Your LLM describes the components and connections, and the MCP handles layout, styling, and rendering using a proper graph layout algorithm. 50+ technologies (Kafka, PostgreSQL, Redis, etc.) get auto-styled, you can iteratively edit diagrams with natural language ("add a cache in front of the DB"), and it runs fully offline in Cursor/Windsurf - no API keys needed.
+                - list [ref=e441]:
+                  - listitem [ref=e442]:
+                    - strong [ref=e443]: Perfect layouts every time
+                    - text: "- Sugiyama algorithm with adaptive spacing; no overlapping boxes"
+                  - listitem [ref=e444]:
+                    - strong [ref=e445]: Architecture-aware styling
+                    - text: "- say \"Kafka\" and get a stream-styled node, not a generic rectangle"
+                  - listitem [ref=e446]:
+                    - strong [ref=e447]: Talk to your diagrams
+                    - text: "- add, remove, or rewire components on an existing diagram with natural language"
+                  - listitem [ref=e448]:
+                    - strong [ref=e449]: Hub node visualization
+                    - text: "- gateways and load balancers auto-stretch to span their connected services"
+                - generic [ref=e450]:
+                  - heading "See It In Action" [level=2] [ref=e451]
+                  - 'link "Permalink: See It In Action" [ref=e452] [cursor=pointer]':
+                    - /url: "#see-it-in-action"
+                    - img [ref=e453]
+                - blockquote [ref=e455]:
+                  - paragraph [ref=e456]: Every frame below is generated entirely by AI using this MCP - zero manual positioning.
+                - generic [ref=e457]:
+                  - heading "E-Commerce Platform Architecture" [level=3] [ref=e458]
+                  - 'link "Permalink: E-Commerce Platform Architecture" [ref=e459] [cursor=pointer]':
+                    - /url: "#e-commerce-platform-architecture"
+                    - img [ref=e460]
+                - paragraph [ref=e462]:
+                  - link "E-Commerce Platform Demo" [ref=e464] [cursor=pointer]:
+                    - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/showcase/demo_ecommerce.gif
+                    - img "E-Commerce Platform Demo" [ref=e465]
+                - generic [ref=e466]:
+                  - heading "Payment Processing Flow" [level=3] [ref=e467]
+                  - 'link "Permalink: Payment Processing Flow" [ref=e468] [cursor=pointer]':
+                    - /url: "#payment-processing-flow"
+                    - img [ref=e469]
+                - paragraph [ref=e471]:
+                  - link "Payment Processing Flow Demo" [ref=e473] [cursor=pointer]:
+                    - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/showcase/demo_payment.gif
+                    - img "Payment Processing Flow Demo" [ref=e474]
+                - generic [ref=e475]:
+                  - heading "Use Cases" [level=2] [ref=e476]
+                  - 'link "Permalink: Use Cases" [ref=e477] [cursor=pointer]':
+                    - /url: "#use-cases"
+                    - img [ref=e478]
+                - list [ref=e480]:
+                  - listitem [ref=e481]:
+                    - strong [ref=e482]: Onboarding onto a new codebase
+                    - text: "- point it at a microservice and get a high-level architecture diagram without reading a single line of code. Point it to a set of classes for a low-level flow diagram when you need the details."
+                  - listitem [ref=e483]:
+                    - strong [ref=e484]: Brainstorming and system design
+                    - text: "- when you're whiteboarding a new service or debating trade-offs, ask it to visualize the architecture as you go. Iterate by saying \"add a cache here\" or \"swap Kafka for SQS\" instead of redrawing from scratch."
+                  - listitem [ref=e485]:
+                    - strong [ref=e486]: Documentation that stays alive
+                    - text: "- drop the"
+                    - code [ref=e487]: .excalidraw
+                    - text: file into your repo and update it with natural language as the system evolves. No more stale diagrams from six sprints ago.
+                - generic [ref=e488]:
+                  - heading "Quick Start" [level=2] [ref=e489]
+                  - 'link "Permalink: Quick Start" [ref=e490] [cursor=pointer]':
+                    - /url: "#quick-start"
+                    - img [ref=e491]
+                - generic [ref=e493]:
+                  - heading "Install" [level=3] [ref=e494]
+                  - 'link "Permalink: Install" [ref=e495] [cursor=pointer]':
+                    - /url: "#install"
+                    - img [ref=e496]
+                - generic [ref=e498]:
+                  - generic [ref=e499]: pip install excalidraw-architect-mcp
+                  - button "Copy" [ref=e501] [cursor=pointer]:
+                    - img [ref=e502]
+                - paragraph [ref=e505]:
+                  - text: Or run without installing (requires
+                  - link "uv" [ref=e506] [cursor=pointer]:
+                    - /url: https://docs.astral.sh/uv/
+                  - text: "):"
+                - generic [ref=e507]:
+                  - generic [ref=e508]: uvx excalidraw-architect-mcp
+                  - button "Copy" [ref=e510] [cursor=pointer]:
+                    - img [ref=e511]
+                - generic [ref=e514]:
+                  - heading "Configure MCP in Your IDE" [level=3] [ref=e515]
+                  - 'link "Permalink: Configure MCP in Your IDE" [ref=e516] [cursor=pointer]':
+                    - /url: "#configure-mcp-in-your-ide"
+                    - img [ref=e517]
+                - paragraph [ref=e519]:
+                  - strong [ref=e520]: Cursor
+                  - text: "- Add to"
+                  - code [ref=e521]: .cursor/mcp.json
+                  - text: ":"
+                - generic [ref=e522]:
+                  - generic [ref=e523]:
+                    - text: "{ \"mcpServers\": { \"excalidraw-architect\": { \"command\":"
+                    - generic [ref=e524]: "\"excalidraw-architect-mcp\""
+                    - text: ", \"transport\":"
+                    - generic [ref=e525]: "\"stdio\""
+                    - text: "} } }"
+                  - button "Copy" [ref=e527] [cursor=pointer]:
+                    - img [ref=e528]
+                - paragraph [ref=e531]:
+                  - strong [ref=e532]: Windsurf / Other IDEs
+                  - text: "- Same pattern; point to the"
+                  - code [ref=e533]: excalidraw-architect-mcp
+                  - text: command over stdio.
+                - generic [ref=e534]:
+                  - heading "Install the Diagram Design Skill (recommended)" [level=3] [ref=e535]
+                  - 'link "Permalink: Install the Diagram Design Skill (recommended)" [ref=e536] [cursor=pointer]':
+                    - /url: "#install-the-diagram-design-skill-recommended"
+                    - img [ref=e537]
+                - paragraph [ref=e539]:
+                  - text: This repo includes a
+                  - link "Diagram Design Skill" [ref=e540] [cursor=pointer]:
+                    - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/.skills/excalidraw-diagram-design/SKILL.md
+                  - text: that teaches the AI how to structure diagrams for the best results - node count limits, topology rules, edge label guidelines, and common patterns.
+                - paragraph [ref=e541]:
+                  - strong [ref=e542]: "For Cursor users:"
+                - generic [ref=e543]:
+                  - generic [ref=e544]: mkdir -p ~/.cursor/skills/excalidraw-diagram-design && \ curl -o ~/.cursor/skills/excalidraw-diagram-design/SKILL.md \ https://raw.githubusercontent.com/BV-Venky/excalidraw-architect-mcp/main/.skills/excalidraw-diagram-design/SKILL.md
+                  - button "Copy" [ref=e546] [cursor=pointer]:
+                    - img [ref=e547]
+                - paragraph [ref=e550]:
+                  - strong [ref=e551]: "For other IDEs:"
+                  - text: Download the
+                  - link "SKILL.md" [ref=e552] [cursor=pointer]:
+                    - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/.skills/excalidraw-diagram-design/SKILL.md
+                  - text: file and add it to your IDE's prompt context or system instructions.
+                - paragraph [ref=e553]: The AI will automatically pick up the skill and apply it when generating diagrams. Feel free to modify the rules to suit your preferences - tweak node limits, add your own patterns, or adjust styling guidelines.
+                - blockquote [ref=e554]:
+                  - paragraph [ref=e555]:
+                    - strong [ref=e556]: "A note on diagram complexity:"
+                    - text: As the number of components and connections grows, diagrams inevitably become harder to read - this is true for humans drawing by hand too, not just automated layout. For best results, aim for
+                    - strong [ref=e557]: 6-15 nodes
+                    - text: in architecture diagrams and
+                    - strong [ref=e558]: 10-25 nodes
+                    - text: in detailed flows. If your system is larger, split it into multiple focused diagrams rather than cramming everything into one.
+                - generic [ref=e559]:
+                  - heading "Use It" [level=3] [ref=e560]
+                  - 'link "Permalink: Use It" [ref=e561] [cursor=pointer]':
+                    - /url: "#use-it"
+                    - img [ref=e562]
+                - paragraph [ref=e564]: "Just ask your AI IDE naturally:"
+                - blockquote [ref=e565]:
+                  - paragraph [ref=e566]: "\"Create a high-level architecture diagram of this codebase\""
+                - blockquote [ref=e567]:
+                  - paragraph [ref=e568]: "\"Create an architecture diagram for a microservices system with an API Gateway, Auth Service, User Service, Order Service, PostgreSQL, Redis cache, and Kafka event bus\""
+                - blockquote [ref=e569]:
+                  - paragraph [ref=e570]: "\"Convert this mermaid diagram to excalidraw diagram\""
+                - blockquote [ref=e571]:
+                  - paragraph [ref=e572]: "\"Add a Caching layer to the Order Service in the High Level architecture diagram\""
+                - paragraph [ref=e573]:
+                  - text: The AI calls the MCP tool with the relationship map. The MCP handles layout, styling, and output. Open the resulting
+                  - code [ref=e574]: .excalidraw
+                  - text: file with the
+                  - link "Excalidraw VS Code extension" [ref=e575] [cursor=pointer]:
+                    - /url: https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor
+                  - text: or drag it into
+                  - link "excalidraw.com" [ref=e576] [cursor=pointer]:
+                    - /url: https://excalidraw.com
+                  - text: .
+                - generic [ref=e577]:
+                  - heading "Features" [level=2] [ref=e578]
+                  - 'link "Permalink: Features" [ref=e579] [cursor=pointer]':
+                    - /url: "#features"
+                    - img [ref=e580]
+                - generic [ref=e582]:
+                  - heading "Auto Layout Engine" [level=3] [ref=e583]
+                  - 'link "Permalink: Auto Layout Engine" [ref=e584] [cursor=pointer]':
+                    - /url: "#auto-layout-engine"
+                    - img [ref=e585]
+                - paragraph [ref=e587]: "Uses the Sugiyama hierarchical layout algorithm with:"
+                - list [ref=e588]:
+                  - listitem [ref=e589]:
+                    - strong [ref=e590]: Adaptive layer gaps
+                    - text: "- spacing adjusts based on edge label length"
+                  - listitem [ref=e591]:
+                    - strong [ref=e592]: Hub node stretching
+                    - text: "- gateways/load balancers stretch to span connected services"
+                  - listitem [ref=e593]:
+                    - strong [ref=e594]: Obstacle-aware edge routing
+                    - text: "- arrows curve around intermediate nodes instead of cutting through them"
+                  - listitem [ref=e595]:
+                    - strong [ref=e596]: Disconnected component stacking
+                    - text: "- separate subgraphs (e.g., monitoring stack) are placed without overlap"
+                - generic [ref=e597]:
+                  - heading "Component Library" [level=3] [ref=e598]
+                  - 'link "Permalink: Component Library" [ref=e599] [cursor=pointer]':
+                    - /url: "#component-library"
+                    - img [ref=e600]
+                - paragraph [ref=e602]: "50+ technology mappings with automatic visual styling:"
+                - table [ref=e604]:
+                  - rowgroup [ref=e605]:
+                    - row "Category Technologies" [ref=e606]:
+                      - columnheader "Category" [ref=e607]
+                      - columnheader "Technologies" [ref=e608]
+                  - rowgroup [ref=e609]:
+                    - row "Database PostgreSQL, MySQL, MongoDB, DynamoDB, Cassandra, ClickHouse, SQLite, CockroachDB" [ref=e610]:
+                      - cell "Database" [ref=e611]
+                      - cell "PostgreSQL, MySQL, MongoDB, DynamoDB, Cassandra, ClickHouse, SQLite, CockroachDB" [ref=e612]
+                    - row "Message Queue Kafka, RabbitMQ, SQS, Redis Streams, NATS" [ref=e613]:
+                      - cell "Message Queue" [ref=e614]
+                      - cell "Kafka, RabbitMQ, SQS, Redis Streams, NATS" [ref=e615]
+                    - row "Cache Redis, Memcached, Varnish" [ref=e616]:
+                      - cell "Cache" [ref=e617]
+                      - cell "Redis, Memcached, Varnish" [ref=e618]
+                    - row "Load Balancer Nginx, HAProxy, ALB/ELB, Traefik, Envoy" [ref=e619]:
+                      - cell "Load Balancer" [ref=e620]
+                      - cell "Nginx, HAProxy, ALB/ELB, Traefik, Envoy" [ref=e621]
+                    - row "Compute Docker, Kubernetes, Lambda, ECS, Fargate" [ref=e622]:
+                      - cell "Compute" [ref=e623]
+                      - cell "Docker, Kubernetes, Lambda, ECS, Fargate" [ref=e624]
+                    - row "Storage S3, GCS, Azure Blob, MinIO" [ref=e625]:
+                      - cell "Storage" [ref=e626]
+                      - cell "S3, GCS, Azure Blob, MinIO" [ref=e627]
+                    - row "API REST, GraphQL, gRPC, WebSocket" [ref=e628]:
+                      - cell "API" [ref=e629]
+                      - cell "REST, GraphQL, gRPC, WebSocket" [ref=e630]
+                    - row "CDN CloudFront, Cloudflare" [ref=e631]:
+                      - cell "CDN" [ref=e632]
+                      - cell "CloudFront, Cloudflare" [ref=e633]
+                    - row "Monitoring Prometheus, Grafana, Datadog, ELK" [ref=e634]:
+                      - cell "Monitoring" [ref=e635]
+                      - cell "Prometheus, Grafana, Datadog, ELK" [ref=e636]
+                    - row "Client Browser, Mobile, Desktop, CLI" [ref=e637]:
+                      - cell "Client" [ref=e638]
+                      - cell "Browser, Mobile, Desktop, CLI" [ref=e639]
+                - generic [ref=e640]:
+                  - heading "Stateful Editing" [level=3] [ref=e641]
+                  - 'link "Permalink: Stateful Editing" [ref=e642] [cursor=pointer]':
+                    - /url: "#stateful-editing"
+                    - img [ref=e643]
+                - paragraph [ref=e645]:
+                  - text: Diagram metadata is embedded in the
+                  - code [ref=e646]: .excalidraw
+                  - text: "file. Ask the AI:"
+                - blockquote [ref=e647]:
+                  - paragraph [ref=e648]: "\"Add a Redis cache in front of the database in the existing diagram\""
+                - paragraph [ref=e649]: The MCP reads the current state, applies the modification, and re-renders with proper layout.
+                - generic [ref=e650]:
+                  - heading "Mermaid Conversion" [level=3] [ref=e651]
+                  - 'link "Permalink: Mermaid Conversion" [ref=e652] [cursor=pointer]':
+                    - /url: "#mermaid-conversion"
+                    - img [ref=e653]
+                - paragraph [ref=e655]: "Already have a Mermaid flowchart? Convert it:"
+                - blockquote [ref=e656]:
+                  - paragraph [ref=e657]: "\"Convert this Mermaid diagram to Excalidraw\" (paste your Mermaid syntax)"
+                - generic [ref=e658]:
+                  - heading "MCP Tools" [level=2] [ref=e659]
+                  - 'link "Permalink: MCP Tools" [ref=e660] [cursor=pointer]':
+                    - /url: "#mcp-tools"
+                    - img [ref=e661]
+                - table [ref=e664]:
+                  - rowgroup [ref=e665]:
+                    - row "Tool Description" [ref=e666]:
+                      - columnheader "Tool" [ref=e667]
+                      - columnheader "Description" [ref=e668]
+                  - rowgroup [ref=e669]:
+                    - row "create_diagram Create a new diagram from structured node/connection data" [ref=e670]:
+                      - cell "create_diagram" [ref=e671]:
+                        - code [ref=e672]: create_diagram
+                      - cell "Create a new diagram from structured node/connection data" [ref=e673]
+                    - row "mermaid_to_excalidraw Convert Mermaid flowchart syntax to .excalidraw" [ref=e674]:
+                      - cell "mermaid_to_excalidraw" [ref=e675]:
+                        - code [ref=e676]: mermaid_to_excalidraw
+                      - cell "Convert Mermaid flowchart syntax to .excalidraw" [ref=e677]:
+                        - text: Convert Mermaid flowchart syntax to
+                        - code [ref=e678]: .excalidraw
+                    - row "modify_diagram Add/remove/update nodes and connections on an existing diagram" [ref=e679]:
+                      - cell "modify_diagram" [ref=e680]:
+                        - code [ref=e681]: modify_diagram
+                      - cell "Add/remove/update nodes and connections on an existing diagram" [ref=e682]
+                    - row "get_diagram_info Read current diagram state (call before modifying)" [ref=e683]:
+                      - cell "get_diagram_info" [ref=e684]:
+                        - code [ref=e685]: get_diagram_info
+                      - cell "Read current diagram state (call before modifying)" [ref=e686]
+                - generic [ref=e687]:
+                  - heading "Contributing" [level=2] [ref=e688]
+                  - 'link "Permalink: Contributing" [ref=e689] [cursor=pointer]':
+                    - /url: "#contributing"
+                    - img [ref=e690]
+                - paragraph [ref=e692]:
+                  - text: See
+                  - link "CONTRIBUTING.md" [ref=e693] [cursor=pointer]:
+                    - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/CONTRIBUTING.md
+                  - text: for details.
+                - generic [ref=e694]:
+                  - heading "License" [level=2] [ref=e695]
+                  - 'link "Permalink: License" [ref=e696] [cursor=pointer]':
+                    - /url: "#license"
+                    - img [ref=e697]
+                - paragraph [ref=e699]:
+                  - text: MIT - see
+                  - link "LICENSE" [ref=e700] [cursor=pointer]:
+                    - /url: /BV-Venky/excalidraw-architect-mcp/blob/main/LICENSE
+                  - text: .
+        - generic [ref=e704]:
+          - generic [ref=e707]:
+            - heading "About" [level=2] [ref=e708]
+            - paragraph [ref=e709]: An MCP server that generates beautiful Excalidraw architecture diagrams with perfect auto-layout.
+            - heading "Topics" [level=3] [ref=e710]
+            - generic [ref=e712]:
+              - link "productivity" [ref=e713] [cursor=pointer]:
+                - /url: /topics/productivity
+              - link "ai" [ref=e714] [cursor=pointer]:
+                - /url: /topics/ai
+              - link "skills" [ref=e715] [cursor=pointer]:
+                - /url: /topics/skills
+              - link "mcp" [ref=e716] [cursor=pointer]:
+                - /url: /topics/mcp
+              - link "developer-tools" [ref=e717] [cursor=pointer]:
+                - /url: /topics/developer-tools
+              - link "cursor" [ref=e718] [cursor=pointer]:
+                - /url: /topics/cursor
+              - link "windsurf" [ref=e719] [cursor=pointer]:
+                - /url: /topics/windsurf
+              - link "excalidraw" [ref=e720] [cursor=pointer]:
+                - /url: /topics/excalidraw
+              - link "llm" [ref=e721] [cursor=pointer]:
+                - /url: /topics/llm
+              - link "antigravity" [ref=e722] [cursor=pointer]:
+                - /url: /topics/antigravity
+              - link "excalidraw-platform" [ref=e723] [cursor=pointer]:
+                - /url: /topics/excalidraw-platform
+            - heading "Resources" [level=3] [ref=e724]
+            - link "Readme" [ref=e726] [cursor=pointer]:
+              - /url: "#readme-ov-file"
+              - img [ref=e727]
+              - text: Readme
+            - heading "License" [level=3] [ref=e729]
+            - link "MIT license" [ref=e731] [cursor=pointer]:
+              - /url: "#MIT-1-ov-file"
+              - img [ref=e732]
+              - text: MIT license
+            - heading "Contributing" [level=3] [ref=e734]
+            - link "Contributing" [ref=e736] [cursor=pointer]:
+              - /url: "#contributing-ov-file"
+              - img [ref=e737]
+              - text: Contributing
+            - link "Activity" [ref=e740] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/activity
+              - img [ref=e741]
+              - text: Activity
+            - heading "Stars" [level=3] [ref=e743]
+            - link "101 stars" [ref=e745] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/stargazers
+              - img [ref=e746]
+              - strong [ref=e748]: "101"
+              - text: stars
+            - heading "Watchers" [level=3] [ref=e749]
+            - link "2 watching" [ref=e751] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/watchers
+              - img [ref=e752]
+              - strong [ref=e754]: "2"
+              - text: watching
+            - heading "Forks" [level=3] [ref=e755]
+            - link "6 forks" [ref=e757] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/forks
+              - img [ref=e758]
+              - strong [ref=e760]: "6"
+              - text: forks
+            - link "Report repository" [ref=e762] [cursor=pointer]:
+              - /url: /contact/report-content?content_url=https%3A%2F%2Fgithub.com%2FBV-Venky%2Fexcalidraw-architect-mcp&report=BV-Venky+%28user%29
+          - generic [ref=e764]:
+            - heading "Releases 4" [level=2] [ref=e765]:
+              - link "Releases 4" [ref=e766] [cursor=pointer]:
+                - /url: /BV-Venky/excalidraw-architect-mcp/releases
+                - text: Releases
+                - generic "4" [ref=e767]
+            - link "Python 3.10 Compatibility fix Latest Mar 9, 2026on Mar 9" [ref=e768] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/releases/tag/v0.2.3
+              - img [ref=e769]
+              - generic [ref=e771]:
+                - generic [ref=e772]:
+                  - generic [ref=e773]: Python 3.10 Compatibility fix
+                  - 'generic "Label: Latest" [ref=e774]': Latest
+                - generic [ref=e775]: Mar 9, 2026on Mar 9
+            - link "+ 3 releases" [ref=e777] [cursor=pointer]:
+              - /url: /BV-Venky/excalidraw-architect-mcp/releases
+          - generic [ref=e779]:
+            - heading "Packages" [level=2] [ref=e780]:
+              - link "Packages" [ref=e781] [cursor=pointer]:
+                - /url: /users/BV-Venky/packages?repo_name=excalidraw-architect-mcp
+            - generic [ref=e782]: No packages published
+          - generic [ref=e784]:
+            - heading "Contributors 3" [level=2] [ref=e785]:
+              - link "Contributors 3" [ref=e786] [cursor=pointer]:
+                - /url: /BV-Venky/excalidraw-architect-mcp/graphs/contributors
+                - text: Contributors
+                - generic "3" [ref=e787]
+            - list [ref=e788]:
+              - listitem [ref=e789]:
+                - link "@BV-Venky" [ref=e790] [cursor=pointer]:
+                  - /url: https://github.com/BV-Venky
+                  - img "@BV-Venky" [ref=e791]
+                - link "BV-Venky BHUKYA VENKATESH" [ref=e793] [cursor=pointer]:
+                  - /url: https://github.com/BV-Venky
+                  - strong [ref=e794]: BV-Venky
+                  - text: BHUKYA VENKATESH
+              - listitem [ref=e795]:
+                - link "@nandanadileep" [ref=e796] [cursor=pointer]:
+                  - /url: https://github.com/nandanadileep
+                  - img "@nandanadileep" [ref=e797]
+                - link "nandanadileep Nandana Dileep" [ref=e799] [cursor=pointer]:
+                  - /url: https://github.com/nandanadileep
+                  - strong [ref=e800]: nandanadileep
+                  - text: Nandana Dileep
+              - listitem [ref=e801]:
+                - link "@punkpeye" [ref=e802] [cursor=pointer]:
+                  - /url: https://github.com/punkpeye
+                  - img "@punkpeye" [ref=e803]
+                - link "punkpeye Frank Fiegel" [ref=e805] [cursor=pointer]:
+                  - /url: https://github.com/punkpeye
+                  - strong [ref=e806]: punkpeye
+                  - text: Frank Fiegel
+          - generic [ref=e808]:
+            - heading "Languages" [level=2] [ref=e809]
+            - list [ref=e813]:
+              - listitem [ref=e814]:
+                - link "Python 100.0%" [ref=e815] [cursor=pointer]:
+                  - /url: /BV-Venky/excalidraw-architect-mcp/search?l=python
+                  - img [ref=e816]
+                  - generic [ref=e818]: Python
+                  - generic [ref=e819]: 100.0%
+  - contentinfo [ref=e821]:
+    - heading "Footer" [level=2] [ref=e822]
+    - generic [ref=e823]:
+      - generic [ref=e824]:
+        - link "GitHub Homepage" [ref=e825] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e826]
+        - generic [ref=e828]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e829]:
+        - heading "Footer navigation" [level=3] [ref=e830]
+        - list "Footer navigation" [ref=e831]:
+          - listitem [ref=e832]:
+            - link "Terms" [ref=e833] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e834]:
+            - link "Privacy" [ref=e835] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e836]:
+            - link "Security" [ref=e837] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e838]:
+            - link "Status" [ref=e839] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e840]:
+            - link "Community" [ref=e841] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e842]:
+            - link "Docs" [ref=e843] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e844]:
+            - link "Contact" [ref=e845] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e846]:
+            - button "Manage cookies" [ref=e848] [cursor=pointer]
+          - listitem [ref=e849]:
+            - button "Do not share my personal information" [ref=e851] [cursor=pointer]

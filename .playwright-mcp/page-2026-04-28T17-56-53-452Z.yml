@@ -1,0 +1,1310 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#kubernetes-production-best-practices
+  - banner [ref=e3]:
+    - navigation "Header" [ref=e4]:
+      - img [ref=e6] [cursor=pointer]
+      - generic [ref=e9]:
+        - generic [ref=e11]: DevOps Learning Lab
+        - generic:
+          - generic: Overview
+      - generic [ref=e12]:
+        - radio "Switch to dark mode"
+        - generic "Switch to dark mode" [ref=e13] [cursor=pointer]:
+          - img [ref=e14]
+        - radio "Switch to light mode"
+      - dialog [ref=e16]:
+        - search [ref=e17]:
+          - generic [ref=e18]:
+            - textbox "Search" [ref=e19]
+            - generic:
+              - img
+            - navigation "Search":
+              - button "Clear":
+                - img
+          - generic [ref=e22]: Type to start searching
+      - link "Devops-learning" [ref=e24] [cursor=pointer]:
+        - /url: https://github.com/example/Devops-learning
+        - img [ref=e26]
+        - generic [ref=e28]: Devops-learning
+  - generic [ref=e29]:
+    - main [ref=e30]:
+      - generic [ref=e31]:
+        - navigation "Navigation" [ref=e34]:
+          - generic [ref=e35] [cursor=pointer]:
+            - link "DevOps Learning Lab" [ref=e36]:
+              - /url: http://127.0.0.1:8777/
+              - img [ref=e37]
+            - text: DevOps Learning Lab
+          - list [ref=e39]:
+            - listitem [ref=e40]:
+              - link "Home" [ref=e41] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/
+                - generic [ref=e42]: Home
+            - listitem [ref=e43]:
+              - generic [ref=e45]: Foundations
+              - navigation "Foundations" [ref=e47]:
+                - generic [ref=e48] [cursor=pointer]: Foundations
+                - list [ref=e50]:
+                  - listitem [ref=e51]:
+                    - link "01 Linux" [ref=e53] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/01-linux/
+                      - generic [ref=e54]: 01 Linux
+                    - navigation [ref=e57]:
+                      - generic [ref=e58] [cursor=pointer]: 01 Linux
+                      - list [ref=e60]:
+                        - listitem [ref=e61]:
+                          - link "Commands" [ref=e62] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/01-linux/commands/
+                            - generic [ref=e63]: Commands
+                  - listitem [ref=e64]:
+                    - link "02 Docker" [ref=e66] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/02-docker/
+                      - generic [ref=e67]: 02 Docker
+                    - navigation [ref=e70]:
+                      - generic [ref=e71] [cursor=pointer]: 02 Docker
+                      - list [ref=e73]:
+                        - listitem [ref=e74]:
+                          - link "Commands" [ref=e75] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/02-docker/commands/
+                            - generic [ref=e76]: Commands
+            - listitem [ref=e77]:
+              - generic [ref=e79]: Kubernetes
+              - navigation "Kubernetes" [ref=e81]:
+                - generic [ref=e82] [cursor=pointer]: Kubernetes
+                - list [ref=e84]:
+                  - listitem [ref=e85]:
+                    - link "03 Core" [ref=e87] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/01-core/
+                      - generic [ref=e88]: 03 Core
+                    - navigation [ref=e91]:
+                      - generic [ref=e92] [cursor=pointer]: 03 Core
+                      - list [ref=e94]:
+                        - listitem [ref=e95]:
+                          - link "Commands" [ref=e96] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/03-kubernetes/01-core/commands/
+                            - generic [ref=e97]: Commands
+                  - listitem [ref=e98]:
+                    - link "03 Strategies" [ref=e100] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/02-strategies/
+                      - generic [ref=e101]: 03 Strategies
+                    - navigation [ref=e104]:
+                      - generic [ref=e105] [cursor=pointer]: 03 Strategies
+                      - list [ref=e107]:
+                        - listitem [ref=e108]:
+                          - link "Commands" [ref=e109] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/03-kubernetes/02-strategies/commands/
+                            - generic [ref=e110]: Commands
+                  - listitem [ref=e111]:
+                    - link "03 Advanced" [ref=e113] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/03-advanced/
+                      - generic [ref=e114]: 03 Advanced
+                    - navigation [ref=e117]:
+                      - generic [ref=e118] [cursor=pointer]: 03 Advanced
+                      - list [ref=e120]:
+                        - listitem [ref=e121]:
+                          - link "Commands" [ref=e122] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/03-kubernetes/03-advanced/commands/
+                            - generic [ref=e123]: Commands
+                  - listitem [ref=e124]:
+                    - link "03 Production Best Practices" [ref=e126] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/
+                      - generic [ref=e127]: 03 Production Best Practices
+                    - navigation [ref=e128]:
+                      - generic [ref=e129] [cursor=pointer]: 03 Production Best Practices
+                      - list [ref=e131]
+            - listitem [ref=e132]:
+              - generic [ref=e134]: Platform
+              - navigation "Platform" [ref=e136]:
+                - generic [ref=e137] [cursor=pointer]: Platform
+                - list [ref=e139]:
+                  - listitem [ref=e140]:
+                    - link "04 Helm" [ref=e142] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/04-helm/
+                      - generic [ref=e143]: 04 Helm
+                    - navigation [ref=e146]:
+                      - generic [ref=e147] [cursor=pointer]: 04 Helm
+                      - list [ref=e149]:
+                        - listitem [ref=e150]:
+                          - link "Commands" [ref=e151] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/04-helm/commands/
+                            - generic [ref=e152]: Commands
+                  - listitem [ref=e153]:
+                    - link "05 Monitoring" [ref=e155] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/05-monitoring/
+                      - generic [ref=e156]: 05 Monitoring
+                    - navigation [ref=e159]:
+                      - generic [ref=e160] [cursor=pointer]: 05 Monitoring
+                      - list [ref=e162]:
+                        - listitem [ref=e163]:
+                          - link "Commands" [ref=e164] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/05-monitoring/commands/
+                            - generic [ref=e165]: Commands
+                  - listitem [ref=e166]:
+                    - link "06 Security" [ref=e168] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/06-security/
+                      - generic [ref=e169]: 06 Security
+                    - navigation [ref=e172]:
+                      - generic [ref=e173] [cursor=pointer]: 06 Security
+                      - list [ref=e175]:
+                        - listitem [ref=e176]:
+                          - link "Commands" [ref=e177] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/06-security/commands/
+                            - generic [ref=e178]: Commands
+                  - listitem [ref=e179]:
+                    - link "07 Terraform" [ref=e181] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/07-terraform/
+                      - generic [ref=e182]: 07 Terraform
+                    - navigation [ref=e185]:
+                      - generic [ref=e186] [cursor=pointer]: 07 Terraform
+                      - list [ref=e188]:
+                        - listitem [ref=e189]:
+                          - link "Commands" [ref=e190] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/07-terraform/commands/
+                            - generic [ref=e191]: Commands
+            - listitem [ref=e192]:
+              - link "Projects" [ref=e194] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/08-projects/
+                - generic [ref=e195]: Projects
+              - navigation [ref=e198]:
+                - generic [ref=e199] [cursor=pointer]: Projects
+                - list [ref=e201]:
+                  - listitem [ref=e202]:
+                    - link "P01 · Hello World Docker" [ref=e203] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/08-projects/01-hello-world-end-to-end/
+                      - generic [ref=e204]: P01 · Hello World Docker
+                  - listitem [ref=e205]:
+                    - link "P02 · Three-Tier App" [ref=e206] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/08-projects/02-three-tier-app/
+                      - generic [ref=e207]: P02 · Three-Tier App
+                  - listitem [ref=e208]:
+                    - link "P03 · GitOps with Argo CD" [ref=e209] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/08-projects/03-gitops-with-argocd/
+                      - generic [ref=e210]: P03 · GitOps with Argo CD
+                  - listitem [ref=e211]:
+                    - link "P04 · CI/CD Pipeline" [ref=e212] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/08-projects/04-ci-cd-pipeline/
+                      - generic [ref=e213]: P04 · CI/CD Pipeline
+                  - listitem [ref=e214]:
+                    - link "P05 · Observability Stack" [ref=e215] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/08-projects/05-observability-stack/
+                      - generic [ref=e216]: P05 · Observability Stack
+                  - listitem [ref=e217]:
+                    - link "P06 · Prod EKS on AWS" [ref=e218] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/08-projects/06-prod-grade-cluster-on-aws/
+                      - generic [ref=e219]: P06 · Prod EKS on AWS
+                  - listitem [ref=e220]:
+                    - link "P07 · Disaster Recovery" [ref=e221] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/08-projects/07-disaster-recovery/
+                      - generic [ref=e222]: P07 · Disaster Recovery
+                  - listitem [ref=e223]:
+                    - link "P08 · Security Hardening" [ref=e224] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/08-projects/08-security-hardening-lab/
+                      - generic [ref=e225]: P08 · Security Hardening
+                  - listitem [ref=e226]:
+                    - link "P09 · Zero-Downtime Delivery" [ref=e227] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/08-projects/09-zero-downtime-progressive-delivery/
+                      - generic [ref=e228]: P09 · Zero-Downtime Delivery
+                  - listitem [ref=e229]:
+                    - link "P10 · Platform Engineering" [ref=e230] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/08-projects/10-platform-engineering-end-to-end/
+                      - generic [ref=e231]: P10 · Platform Engineering
+            - listitem [ref=e232]:
+              - generic [ref=e234]: Scripting
+              - navigation "Scripting" [ref=e236]:
+                - generic [ref=e237] [cursor=pointer]: Scripting
+                - list [ref=e239]:
+                  - listitem [ref=e240]:
+                    - link "10 Python & Bash" [ref=e242] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/10-scripting/
+                      - generic [ref=e243]: 10 Python & Bash
+                    - navigation [ref=e246]:
+                      - generic [ref=e247] [cursor=pointer]: 10 Python & Bash
+                      - list [ref=e249]:
+                        - listitem [ref=e250]:
+                          - link "Bash Foundations" [ref=e251] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/10-scripting/01-bash-foundations/
+                            - generic [ref=e252]: Bash Foundations
+                        - listitem [ref=e253]:
+                          - link "Bash Advanced" [ref=e254] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/10-scripting/02-bash-advanced.md
+                            - generic [ref=e255]: Bash Advanced
+                        - listitem [ref=e256]:
+                          - link "Python Foundations" [ref=e257] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/10-scripting/03-python-foundations.md
+                            - generic [ref=e258]: Python Foundations
+                        - listitem [ref=e259]:
+                          - link "Python DevOps Libs" [ref=e260] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/10-scripting/04-python-devops-libs.md
+                            - generic [ref=e261]: Python DevOps Libs
+                        - listitem [ref=e262]:
+                          - link "Challenges Q&A" [ref=e263] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/10-scripting/05-challenges-qna.md
+                            - generic [ref=e264]: Challenges Q&A
+                        - listitem [ref=e265]:
+                          - link "Commands" [ref=e266] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/10-scripting/commands.md
+                            - generic [ref=e267]: Commands
+            - listitem [ref=e268]:
+              - generic [ref=e270]: DevOps Tools
+              - navigation "DevOps Tools" [ref=e272]:
+                - generic [ref=e273] [cursor=pointer]: DevOps Tools
+                - list [ref=e275]:
+                  - listitem [ref=e276]:
+                    - link "11 Trending Tools" [ref=e278] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/11-devops-tools/
+                      - generic [ref=e279]: 11 Trending Tools
+                    - navigation [ref=e282]:
+                      - generic [ref=e283] [cursor=pointer]: 11 Trending Tools
+                      - list [ref=e285]:
+                        - listitem [ref=e286]:
+                          - link "GitHub Actions" [ref=e287] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/01-github-actions/
+                            - generic [ref=e288]: GitHub Actions
+                        - listitem [ref=e289]:
+                          - link "Jenkins" [ref=e290] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/02-jenkins.md
+                            - generic [ref=e291]: Jenkins
+                        - listitem [ref=e292]:
+                          - link "Argo CD" [ref=e293] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/03-argocd/
+                            - generic [ref=e294]: Argo CD
+                        - listitem [ref=e295]:
+                          - link "Ansible" [ref=e296] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/04-ansible.md
+                            - generic [ref=e297]: Ansible
+                        - listitem [ref=e298]:
+                          - link "Vault" [ref=e299] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/05-vault.md
+                            - generic [ref=e300]: Vault
+                        - listitem [ref=e301]:
+                          - link "Prometheus & Grafana" [ref=e302] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/06-prometheus-grafana.md
+                            - generic [ref=e303]: Prometheus & Grafana
+                        - listitem [ref=e304]:
+                          - link "ELK Stack" [ref=e305] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/07-elk-stack.md
+                            - generic [ref=e306]: ELK Stack
+                        - listitem [ref=e307]:
+                          - link "Istio" [ref=e308] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/08-istio.md
+                            - generic [ref=e309]: Istio
+                        - listitem [ref=e310]:
+                          - link "Trivy" [ref=e311] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/09-trivy.md
+                            - generic [ref=e312]: Trivy
+                        - listitem [ref=e313]:
+                          - link "Crossplane" [ref=e314] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/10-crossplane.md
+                            - generic [ref=e315]: Crossplane
+                        - listitem [ref=e316]:
+                          - link "Flux CD" [ref=e317] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/11-flux.md
+                            - generic [ref=e318]: Flux CD
+                        - listitem [ref=e319]:
+                          - link "Tekton" [ref=e320] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/12-tekton.md
+                            - generic [ref=e321]: Tekton
+                        - listitem [ref=e322]:
+                          - link "Falco" [ref=e323] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/13-falco.md
+                            - generic [ref=e324]: Falco
+                        - listitem [ref=e325]:
+                          - link "Karpenter" [ref=e326] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/14-karpenter.md
+                            - generic [ref=e327]: Karpenter
+                        - listitem [ref=e328]:
+                          - link "Velero" [ref=e329] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/15-velero.md
+                            - generic [ref=e330]: Velero
+                        - listitem [ref=e331]:
+                          - link "cert-manager" [ref=e332] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/16-cert-manager.md
+                            - generic [ref=e333]: cert-manager
+                        - listitem [ref=e334]:
+                          - link "External Secrets" [ref=e335] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/17-external-secrets.md
+                            - generic [ref=e336]: External Secrets
+                        - listitem [ref=e337]:
+                          - link "OpenTelemetry" [ref=e338] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/18-opentelemetry.md
+                            - generic [ref=e339]: OpenTelemetry
+                        - listitem [ref=e340]:
+                          - link "Chaos Mesh" [ref=e341] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/19-chaos-mesh.md
+                            - generic [ref=e342]: Chaos Mesh
+                        - listitem [ref=e343]:
+                          - link "Backstage" [ref=e344] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/20-backstage.md
+                            - generic [ref=e345]: Backstage
+                        - listitem [ref=e346]:
+                          - link "Commands" [ref=e347] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/11-devops-tools/commands.md
+                            - generic [ref=e348]: Commands
+            - listitem [ref=e349]:
+              - generic [ref=e351]: Go Language
+              - navigation "Go Language" [ref=e353]:
+                - generic [ref=e354] [cursor=pointer]: Go Language
+                - list [ref=e356]:
+                  - listitem [ref=e357]:
+                    - link "12 Go for DevOps" [ref=e359] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/12-golang/
+                      - generic [ref=e360]: 12 Go for DevOps
+                    - navigation [ref=e363]:
+                      - generic [ref=e364] [cursor=pointer]: 12 Go for DevOps
+                      - list [ref=e366]:
+                        - listitem [ref=e367]:
+                          - link "Go Foundations" [ref=e368] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/12-golang/01-go-foundations/
+                            - generic [ref=e369]: Go Foundations
+                        - listitem [ref=e370]:
+                          - link "Concurrency" [ref=e371] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/12-golang/02-go-concurrency/
+                            - generic [ref=e372]: Concurrency
+                        - listitem [ref=e373]:
+                          - link "Kubernetes Client" [ref=e374] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/12-golang/03-go-kubernetes-client.md
+                            - generic [ref=e375]: Kubernetes Client
+                        - listitem [ref=e376]:
+                          - link "Docker SDK" [ref=e377] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/12-golang/04-go-docker-sdk.md
+                            - generic [ref=e378]: Docker SDK
+                        - listitem [ref=e379]:
+                          - link "Operators" [ref=e380] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/12-golang/05-go-operators.md
+                            - generic [ref=e381]: Operators
+                        - listitem [ref=e382]:
+                          - link "CLI Tools" [ref=e383] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/12-golang/06-go-cli-tools.md
+                            - generic [ref=e384]: CLI Tools
+                        - listitem [ref=e385]:
+                          - link "Commands" [ref=e386] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/12-golang/commands/
+                            - generic [ref=e387]: Commands
+            - listitem [ref=e388]:
+              - generic [ref=e390]: Operators & CRDs
+              - navigation "Operators & CRDs" [ref=e392]:
+                - generic [ref=e393] [cursor=pointer]: Operators & CRDs
+                - list [ref=e395]:
+                  - listitem [ref=e396]:
+                    - link "13 Kubernetes Operators" [ref=e398] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/13-operators/
+                      - generic [ref=e399]: 13 Kubernetes Operators
+                    - navigation [ref=e402]:
+                      - generic [ref=e403] [cursor=pointer]: 13 Kubernetes Operators
+                      - list [ref=e405]:
+                        - listitem [ref=e406]:
+                          - link "CRD Fundamentals" [ref=e407] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/13-operators/01-crd-fundamentals.md
+                            - generic [ref=e408]: CRD Fundamentals
+                        - listitem [ref=e409]:
+                          - link "Operator Foundations" [ref=e410] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/13-operators/02-operator-foundations.md
+                            - generic [ref=e411]: Operator Foundations
+                        - listitem [ref=e412]:
+                          - link "RBAC & Security" [ref=e413] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/13-operators/03-rbac-and-security.md
+                            - generic [ref=e414]: RBAC & Security
+                        - listitem [ref=e415]:
+                          - link "controller-runtime" [ref=e416] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/13-operators/04-controller-runtime.md
+                            - generic [ref=e417]: controller-runtime
+                        - listitem [ref=e418]:
+                          - link "Operator Patterns" [ref=e419] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/13-operators/05-operator-patterns.md
+                            - generic [ref=e420]: Operator Patterns
+                        - listitem [ref=e421]:
+                          - link "10 Operator Projects" [ref=e422] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/13-operators/06-operator-projects.md
+                            - generic [ref=e423]: 10 Operator Projects
+                        - listitem [ref=e424]:
+                          - link "Commands" [ref=e425] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/13-operators/commands.md
+                            - generic [ref=e426]: Commands
+            - listitem [ref=e427]:
+              - generic [ref=e429]: Policy as Code
+              - navigation "Policy as Code" [ref=e431]:
+                - generic [ref=e432] [cursor=pointer]: Policy as Code
+                - list [ref=e434]:
+                  - listitem [ref=e435]:
+                    - link "14 OPA & Kyverno" [ref=e437] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/14-policy-as-code/
+                      - generic [ref=e438]: 14 OPA & Kyverno
+                    - navigation [ref=e441]:
+                      - generic [ref=e442] [cursor=pointer]: 14 OPA & Kyverno
+                      - list [ref=e444]:
+                        - listitem [ref=e445]:
+                          - link "OPA Foundations" [ref=e446] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/14-policy-as-code/01-opa-foundations/
+                            - generic [ref=e447]: OPA Foundations
+                        - listitem [ref=e448]:
+                          - link "OPA + Kubernetes" [ref=e449] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/14-policy-as-code/02-opa-kubernetes.md
+                            - generic [ref=e450]: OPA + Kubernetes
+                        - listitem [ref=e451]:
+                          - link "OPA Advanced" [ref=e452] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/14-policy-as-code/03-opa-advanced.md
+                            - generic [ref=e453]: OPA Advanced
+                        - listitem [ref=e454]:
+                          - link "Kyverno Foundations" [ref=e455] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/14-policy-as-code/04-kyverno-foundations.md
+                            - generic [ref=e456]: Kyverno Foundations
+                        - listitem [ref=e457]:
+                          - link "Kyverno Advanced" [ref=e458] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/14-policy-as-code/05-kyverno-advanced.md
+                            - generic [ref=e459]: Kyverno Advanced
+                        - listitem [ref=e460]:
+                          - link "10 Policy Projects" [ref=e461] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/14-policy-as-code/06-policy-projects.md
+                            - generic [ref=e462]: 10 Policy Projects
+                        - listitem [ref=e463]:
+                          - link "Commands" [ref=e464] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/14-policy-as-code/commands.md
+                            - generic [ref=e465]: Commands
+            - listitem [ref=e466]:
+              - link "Interview Prep" [ref=e468] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/09-interview-prep/
+                - generic [ref=e469]: Interview Prep
+              - navigation [ref=e470]:
+                - generic [ref=e471] [cursor=pointer]: Interview Prep
+                - list [ref=e473]
+            - listitem [ref=e474]:
+              - generic [ref=e476]: AI for DevOps
+              - navigation "AI for DevOps" [ref=e478]:
+                - generic [ref=e479] [cursor=pointer]: AI for DevOps
+                - list [ref=e481]:
+                  - listitem [ref=e482]:
+                    - link "15 AI & Data" [ref=e484] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/15-ai-for-devops/
+                      - generic [ref=e485]: 15 AI & Data
+                    - navigation [ref=e486]:
+                      - generic [ref=e487] [cursor=pointer]: 15 AI & Data
+                      - list [ref=e489]
+            - listitem [ref=e490]:
+              - link "Glossary" [ref=e491] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/docs/glossary/
+                - generic [ref=e492]: Glossary
+        - navigation "Table of contents" [ref=e496]:
+          - generic [ref=e497]: Table of contents
+          - list [ref=e498]:
+            - listitem [ref=e499]:
+              - link "Page Architecture — What LearnKube Covers" [ref=e500] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#page-architecture-what-learnkube-covers
+                - generic [ref=e501]: Page Architecture — What LearnKube Covers
+              - navigation "Page Architecture — What LearnKube Covers" [ref=e502]:
+                - list [ref=e503]:
+                  - listitem [ref=e504]:
+                    - link "The 50-Item Checklist Map" [ref=e505] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#the-50-item-checklist-map
+                      - generic [ref=e506]: The 50-Item Checklist Map
+            - listitem [ref=e507]:
+              - link "Audit Findings — Issues Discovered" [ref=e508] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#audit-findings-issues-discovered
+                - generic [ref=e509]: Audit Findings — Issues Discovered
+              - navigation "Audit Findings — Issues Discovered" [ref=e510]:
+                - list [ref=e511]:
+                  - listitem [ref=e512]:
+                    - link "What We Found Wrong" [ref=e513] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#what-we-found-wrong
+                      - generic [ref=e514]: What We Found Wrong
+                    - navigation "What We Found Wrong" [ref=e515]:
+                      - list [ref=e516]:
+                        - listitem [ref=e517]:
+                          - link "Typos & Grammar (7)" [ref=e518] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#typos-grammar-7
+                            - generic [ref=e519]: Typos & Grammar (7)
+                        - listitem [ref=e520]:
+                          - link "Stale Content (3 critical)" [ref=e521] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#stale-content-3-critical
+                            - generic [ref=e522]: Stale Content (3 critical)
+            - listitem [ref=e523]:
+              - link "Health Checks — Reasoning Flow" [ref=e524] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#health-checks-reasoning-flow
+                - generic [ref=e525]: Health Checks — Reasoning Flow
+              - navigation "Health Checks — Reasoning Flow" [ref=e526]:
+                - list [ref=e527]:
+                  - listitem [ref=e528]:
+                    - link "Readiness vs Liveness vs Startup Probes" [ref=e529] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#readiness-vs-liveness-vs-startup-probes
+                      - generic [ref=e530]: Readiness vs Liveness vs Startup Probes
+            - listitem [ref=e531]:
+              - link "Graceful Shutdown — Pod Deletion Sequence" [ref=e532] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#graceful-shutdown-pod-deletion-sequence
+                - generic [ref=e533]: Graceful Shutdown — Pod Deletion Sequence
+              - navigation "Graceful Shutdown — Pod Deletion Sequence" [ref=e534]:
+                - list [ref=e535]:
+                  - listitem [ref=e536]:
+                    - link "What Happens When a Pod is Deleted" [ref=e537] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#what-happens-when-a-pod-is-deleted
+                      - generic [ref=e538]: What Happens When a Pod is Deleted
+                    - navigation "What Happens When a Pod is Deleted" [ref=e539]:
+                      - list [ref=e540]:
+                        - listitem [ref=e541]:
+                          - link "Wrong Approaches" [ref=e542] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#wrong-approaches
+                            - generic [ref=e543]: Wrong Approaches
+                        - listitem [ref=e544]:
+                          - link "Correct Sequence" [ref=e545] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#correct-sequence
+                            - generic [ref=e546]: Correct Sequence
+            - listitem [ref=e547]:
+              - link "Fault Tolerance — Surviving Node Failures" [ref=e548] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#fault-tolerance-surviving-node-failures
+                - generic [ref=e549]: Fault Tolerance — Surviving Node Failures
+              - navigation "Fault Tolerance — Surviving Node Failures" [ref=e550]:
+                - list [ref=e551]:
+                  - listitem [ref=e552]:
+                    - link "The Three Pillars of Pod Resilience" [ref=e553] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#the-three-pillars-of-pod-resilience
+                      - generic [ref=e554]: The Three Pillars of Pod Resilience
+            - listitem [ref=e555]:
+              - link "Governance — Security Defense in Depth" [ref=e556] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#governance-security-defense-in-depth
+                - generic [ref=e557]: Governance — Security Defense in Depth
+              - navigation "Governance — Security Defense in Depth" [ref=e558]:
+                - list [ref=e559]:
+                  - listitem [ref=e560]:
+                    - link "Six Layers of Kubernetes Security" [ref=e561] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#six-layers-of-kubernetes-security
+                      - generic [ref=e562]: Six Layers of Kubernetes Security
+            - listitem [ref=e563]:
+              - link "Resource Management — Requests, Limits & Autoscaling" [ref=e564] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#resource-management-requests-limits-autoscaling
+                - generic [ref=e565]: Resource Management — Requests, Limits & Autoscaling
+              - navigation "Resource Management — Requests, Limits & Autoscaling" [ref=e566]:
+                - list [ref=e567]:
+                  - listitem [ref=e568]:
+                    - link "The Resource Triangle" [ref=e569] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#the-resource-triangle
+                      - generic [ref=e570]: The Resource Triangle
+            - listitem [ref=e571]:
+              - link "Configuration & Secrets" [ref=e572] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#configuration-secrets
+                - generic [ref=e573]: Configuration & Secrets
+              - navigation "Configuration & Secrets" [ref=e574]:
+                - list [ref=e575]:
+                  - listitem [ref=e576]:
+                    - link "Externalise Everything, Mount Secrets as Volumes" [ref=e577] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#externalise-everything-mount-secrets-as-volumes
+                      - generic [ref=e578]: Externalise Everything, Mount Secrets as Volumes
+                    - navigation "Externalise Everything, Mount Secrets as Volumes" [ref=e579]:
+                      - list [ref=e580]:
+                        - listitem [ref=e581]:
+                          - link "Anti-pattern" [ref=e582] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#anti-pattern
+                            - generic [ref=e583]: Anti-pattern
+                        - listitem [ref=e584]:
+                          - link "Best practice" [ref=e585] [cursor=pointer]:
+                            - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#best-practice
+                            - generic [ref=e586]: Best practice
+            - listitem [ref=e587]:
+              - link "What's Missing — Gaps for Modern Kubernetes" [ref=e588] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#whats-missing-gaps-for-modern-kubernetes
+                - generic [ref=e589]: What's Missing — Gaps for Modern Kubernetes
+              - navigation "What's Missing — Gaps for Modern Kubernetes" [ref=e590]:
+                - list [ref=e591]:
+                  - listitem [ref=e592]:
+                    - link "Five Topics LearnKube Should Add" [ref=e593] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#five-topics-learnkube-should-add
+                      - generic [ref=e594]: Five Topics LearnKube Should Add
+            - listitem [ref=e595]:
+              - link "Quick Reference — The Production Readiness Checklist" [ref=e596] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#quick-reference-the-production-readiness-checklist
+                - generic [ref=e597]: Quick Reference — The Production Readiness Checklist
+              - navigation "Quick Reference — The Production Readiness Checklist" [ref=e598]:
+                - list [ref=e599]:
+                  - listitem [ref=e600]:
+                    - link "Condensed 20-Point Checklist" [ref=e601] [cursor=pointer]:
+                      - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#condensed-20-point-checklist
+                      - generic [ref=e602]: Condensed 20-Point Checklist
+        - article [ref=e604]:
+          - heading "Kubernetes Production Best Practices ¶" [level=1] [ref=e605]:
+            - text: Kubernetes Production Best Practices
+            - link "¶" [ref=e606] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#kubernetes-production-best-practices
+          - paragraph
+          - heading "03 · Kubernetes Production Best Practices" [level=1] [ref=e607]:
+            - text: 03 · Kubernetes
+            - emphasis [ref=e608]: Production Best Practices
+          - paragraph [ref=e609]: A visual audit of the 50-item LearnKube checklist — what holds up, what's stale, and what's missing for modern K8s (1.28+).
+          - paragraph
+          - paragraph [ref=e611]: Reason Thinking Execution Simulation Output Use-case
+          - separator [ref=e612]
+          - heading "Page Architecture — What LearnKube Covers ¶" [level=2] [ref=e613]:
+            - text: Page Architecture — What LearnKube Covers
+            - link "¶" [ref=e614] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#page-architecture-what-learnkube-covers
+          - generic [ref=e615]:
+            - heading "The 50-Item Checklist Map ¶" [level=3] [ref=e616]:
+              - text: The 50-Item Checklist Map
+              - link "¶" [ref=e617] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#the-50-item-checklist-map
+            - paragraph [ref=e618]:
+              - text: Reason — Before deploying to production, you need a
+              - strong [ref=e619]: structured checklist
+              - text: that covers application-level, governance, and cluster-level concerns. LearnKube organizes this into three nested layers.
+            - paragraph [ref=e620]:
+              - link "Page Architecture Map" [ref=e621] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/img/prod-bp-architecture.svg
+                - img "Page Architecture Map" [ref=e622]
+            - table [ref=e625]:
+              - rowgroup [ref=e626]:
+                - row "Section Items Coverage Status" [ref=e627]:
+                  - columnheader "Section" [ref=e628]
+                  - columnheader "Items" [ref=e629]
+                  - columnheader "Coverage" [ref=e630]
+                  - columnheader "Status" [ref=e631]
+              - rowgroup [ref=e632]:
+                - row "1. Application Development 30 Health, shutdown, scaling, config Current" [ref=e633]:
+                  - cell "1. Application Development" [ref=e634]:
+                    - strong [ref=e635]: 1. Application Development
+                  - cell "30" [ref=e636]
+                  - cell "Health, shutdown, scaling, config" [ref=e637]
+                  - cell "Current" [ref=e638]
+                - row "2. Governance 16 Namespaces, security, RBAC, policies Partially stale" [ref=e639]:
+                  - cell "2. Governance" [ref=e640]:
+                    - strong [ref=e641]: 2. Governance
+                  - cell "16" [ref=e642]
+                  - cell "Namespaces, security, RBAC, policies" [ref=e643]
+                  - cell "Partially stale" [ref=e644]
+                - row "3. Cluster Configuration 9 CIS, auth, logging Incomplete (WIP)" [ref=e645]:
+                  - cell "3. Cluster Configuration" [ref=e646]:
+                    - strong [ref=e647]: 3. Cluster Configuration
+                  - cell "9" [ref=e648]
+                  - cell "CIS, auth, logging" [ref=e649]
+                  - cell "Incomplete (WIP)" [ref=e650]
+          - separator [ref=e651]
+          - heading "Audit Findings — Issues Discovered ¶" [level=2] [ref=e652]:
+            - text: Audit Findings — Issues Discovered
+            - link "¶" [ref=e653] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#audit-findings-issues-discovered
+          - generic [ref=e654]:
+            - heading "What We Found Wrong ¶" [level=3] [ref=e655]:
+              - text: What We Found Wrong
+              - link "¶" [ref=e656] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#what-we-found-wrong
+            - paragraph [ref=e657]: Thinking — We audited every section, link, and code example. Here's the full findings map.
+            - paragraph [ref=e658]:
+              - link "Issues and Bugs Found" [ref=e659] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/img/prod-bp-issues.svg
+                - img "Issues and Bugs Found" [ref=e660]
+            - generic [ref=e661]:
+              - generic [ref=e662]:
+                - heading "Typos & Grammar (7) ¶" [level=5] [ref=e663]:
+                  - text: Typos & Grammar (7)
+                  - link "¶" [ref=e664] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#typos-grammar-7
+                - table [ref=e667]:
+                  - rowgroup [ref=e668]:
+                    - row "# Found Should be Section" [ref=e669]:
+                      - columnheader "#" [ref=e670]
+                      - columnheader "Found" [ref=e671]
+                      - columnheader "Should be" [ref=e672]
+                      - columnheader "Section" [ref=e673]
+                  - rowgroup [ref=e674]:
+                    - row "1 \"Please not that\" \"Please note that\" Business labels (×2)" [ref=e675]:
+                      - cell "1" [ref=e676]
+                      - cell "\"Please not that\"" [ref=e677]:
+                        - text: "\"Please"
+                        - strong [ref=e678]: not
+                        - text: that"
+                      - cell "\"Please note that\"" [ref=e679]:
+                        - text: "\"Please"
+                        - strong [ref=e680]: note
+                        - text: that"
+                      - cell "Business labels (×2)" [ref=e681]
+                    - row "2 Same typo Same fix Security labels" [ref=e682]:
+                      - cell "2" [ref=e683]
+                      - cell "Same typo" [ref=e684]
+                      - cell "Same fix" [ref=e685]
+                      - cell "Security labels" [ref=e686]
+                    - row "3 \"curently\" \"currently\" VPA section" [ref=e687]:
+                      - cell "3" [ref=e688]
+                      - cell "\"curently\"" [ref=e689]:
+                        - text: "\""
+                        - strong [ref=e690]: curently
+                        - text: "\""
+                      - cell "\"currently\"" [ref=e691]:
+                        - text: "\""
+                        - strong [ref=e692]: currently
+                        - text: "\""
+                      - cell "VPA section" [ref=e693]
+                    - row "4 \"version of the appl\" \"application\" Technical labels" [ref=e694]:
+                      - cell "4" [ref=e695]
+                      - cell "\"version of the appl\"" [ref=e696]:
+                        - text: "\"version of the"
+                        - strong [ref=e697]: appl
+                        - text: "\""
+                      - cell "\"application\"" [ref=e698]:
+                        - text: "\""
+                        - strong [ref=e699]: application
+                        - text: "\""
+                      - cell "Technical labels" [ref=e700]
+                    - row "5 \"enviroment\" \"environment\" Secrets heading" [ref=e701]:
+                      - cell "5" [ref=e702]
+                      - cell "\"enviroment\"" [ref=e703]:
+                        - text: "\""
+                        - strong [ref=e704]: enviroment
+                        - text: "\""
+                      - cell "\"environment\"" [ref=e705]:
+                        - text: "\""
+                        - strong [ref=e706]: environment
+                        - text: "\""
+                      - cell "Secrets heading" [ref=e707]
+                    - row "6 \"a detail explanation\" \"a detailed\" Graceful shutdown" [ref=e708]:
+                      - cell "6" [ref=e709]
+                      - cell "\"a detail explanation\"" [ref=e710]:
+                        - text: "\"a"
+                        - strong [ref=e711]: detail
+                        - text: explanation"
+                      - cell "\"a detailed\"" [ref=e712]:
+                        - text: "\"a"
+                        - strong [ref=e713]: detailed
+                        - text: "\""
+                      - cell "Graceful shutdown" [ref=e714]
+                    - row "7 \"easier to controls\" \"easier to control\" RBAC governance" [ref=e715]:
+                      - cell "7" [ref=e716]
+                      - cell "\"easier to controls\"" [ref=e717]:
+                        - text: "\"easier to"
+                        - strong [ref=e718]: controls
+                        - text: "\""
+                      - cell "\"easier to control\"" [ref=e719]:
+                        - text: "\"easier to"
+                        - strong [ref=e720]: control
+                        - text: "\""
+                      - cell "RBAC governance" [ref=e721]
+              - generic [ref=e722]: →
+              - generic [ref=e723]:
+                - heading "Stale Content (3 critical) ¶" [level=5] [ref=e724]:
+                  - text: Stale Content (3 critical)
+                  - link "¶" [ref=e725] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#stale-content-3-critical
+                - table [ref=e728]:
+                  - rowgroup [ref=e729]:
+                    - row "Item Impact Modern replacement" [ref=e730]:
+                      - columnheader "Item" [ref=e731]
+                      - columnheader "Impact" [ref=e732]
+                      - columnheader "Modern replacement" [ref=e733]
+                  - rowgroup [ref=e734]:
+                    - row "PodSecurityPolicy HIGH — removed K8s 1.25 Pod Security Admission + Standards" [ref=e735]:
+                      - cell "PodSecurityPolicy" [ref=e736]:
+                        - strong [ref=e737]: PodSecurityPolicy
+                      - cell "HIGH — removed K8s 1.25" [ref=e738]:
+                        - img [ref=e740]
+                        - text: HIGH — removed K8s 1.25
+                      - cell "Pod Security Admission + Standards" [ref=e742]
+                    - row "VPA \"still in beta\" MED — VPA is GA since 2023 Remove beta warning, recommend VPA" [ref=e743]:
+                      - cell "VPA \"still in beta\"" [ref=e744]:
+                        - strong [ref=e745]: VPA "still in beta"
+                      - cell "MED — VPA is GA since 2023" [ref=e746]:
+                        - img [ref=e748]
+                        - text: MED — VPA is GA since 2023
+                      - cell "Remove beta warning, recommend VPA" [ref=e750]
+                    - row "WhiteSource link LOW — rebranded to Mend.io Update URL" [ref=e751]:
+                      - cell "WhiteSource link" [ref=e752]:
+                        - strong [ref=e753]: WhiteSource link
+                      - cell "LOW — rebranded to Mend.io" [ref=e754]
+                      - cell "Update URL" [ref=e755]
+          - separator [ref=e756]
+          - heading "Health Checks — Reasoning Flow ¶" [level=2] [ref=e757]:
+            - text: Health Checks — Reasoning Flow
+            - link "¶" [ref=e758] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#health-checks-reasoning-flow
+          - generic [ref=e759]:
+            - heading "Readiness vs Liveness vs Startup Probes ¶" [level=3] [ref=e760]:
+              - text: Readiness vs Liveness vs Startup Probes
+              - link "¶" [ref=e761] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#readiness-vs-liveness-vs-startup-probes
+            - paragraph [ref=e762]:
+              - text: "Reason — The single most impactful production decision:"
+              - strong [ref=e763]: how does Kubernetes know your app is ready?
+            - paragraph [ref=e764]:
+              - link "Health Checks Reasoning" [ref=e765] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/img/prod-bp-health-checks.svg
+                - img "Health Checks Reasoning" [ref=e766]
+            - paragraph [ref=e767]: "Thinking — Let's trace the decision flow:"
+            - paragraph [ref=e769]: "Execution — The three probe types serve distinct purposes:"
+            - table [ref=e772]:
+              - rowgroup [ref=e773]:
+                - row "Probe Purpose When it fires Kill action Key rule" [ref=e774]:
+                  - columnheader "Probe" [ref=e775]
+                  - columnheader "Purpose" [ref=e776]
+                  - columnheader "When it fires" [ref=e777]
+                  - columnheader "Kill action" [ref=e778]
+                  - columnheader "Key rule" [ref=e779]
+              - rowgroup [ref=e780]:
+                - row "Readiness Gate traffic Before routing Remove from Service Must be independent — no DB deps" [ref=e781]:
+                  - cell "Readiness" [ref=e782]:
+                    - strong [ref=e783]: Readiness
+                  - cell "Gate traffic" [ref=e784]
+                  - cell "Before routing" [ref=e785]
+                  - cell "Remove from Service" [ref=e786]
+                  - cell "Must be independent — no DB deps" [ref=e787]:
+                    - text: Must be
+                    - strong [ref=e788]: independent
+                    - text: — no DB deps
+                - row "Liveness Restart stuck pods Periodic check Kill + restart container Passive — always return 200" [ref=e789]:
+                  - cell "Liveness" [ref=e790]:
+                    - strong [ref=e791]: Liveness
+                  - cell "Restart stuck pods" [ref=e792]
+                  - cell "Periodic check" [ref=e793]
+                  - cell "Kill + restart container" [ref=e794]
+                  - cell "Passive — always return 200" [ref=e795]:
+                    - strong [ref=e796]: Passive
+                    - text: — always return 200
+                - row "Startup Slow-start apps Before liveness Delays liveness checks Use for Java/heavy init apps" [ref=e797]:
+                  - cell "Startup" [ref=e798]:
+                    - strong [ref=e799]: Startup
+                  - cell "Slow-start apps" [ref=e800]
+                  - cell "Before liveness" [ref=e801]
+                  - cell "Delays liveness checks" [ref=e802]
+                  - cell "Use for Java/heavy init apps" [ref=e803]
+            - generic [ref=e806]:
+              - navigation [ref=e807]:
+                - button "Copy to clipboard" [ref=e808] [cursor=pointer]
+              - code [ref=e809]:
+                - generic [ref=e810]: "# Correct probe configuration"
+                - generic [ref=e811]: "apiVersion: v1"
+                - generic [ref=e812]: "kind: Pod"
+                - generic [ref=e813]: "spec:"
+                - generic [ref=e814]: "containers:"
+                - generic [ref=e815]: "- name: app"
+                - generic [ref=e816]: "readinessProbe:"
+                - generic [ref=e817]: "httpGet:"
+                - generic [ref=e818]: "path: /ready # Separate endpoint!"
+                - generic [ref=e819]: "port: 8080"
+                - generic [ref=e820]: "initialDelaySeconds: 5"
+                - generic [ref=e821]: "periodSeconds: 10"
+                - generic [ref=e822]: "livenessProbe:"
+                - generic [ref=e823]: "httpGet:"
+                - generic [ref=e824]: "path: /healthz # Different from readiness!"
+                - generic [ref=e825]: "port: 8080"
+                - generic [ref=e826]: "initialDelaySeconds: 15"
+                - generic [ref=e827]: "periodSeconds: 20"
+                - generic [ref=e828]: "startupProbe:"
+                - generic [ref=e829]: "httpGet:"
+                - generic [ref=e830]: "path: /healthz"
+                - generic [ref=e831]: "port: 8080"
+                - generic [ref=e832]: "failureThreshold: 30"
+                - generic [ref=e833]: "periodSeconds: 10"
+            - generic [ref=e834]:
+              - paragraph [ref=e835]: Critical anti-pattern
+              - paragraph [ref=e836]:
+                - strong [ref=e837]: Never point readiness and liveness probes to the same endpoint.
+                - text: When both fail simultaneously, kubelet removes from Service AND kills the container — dropping all in-flight connections with no drain time.
+            - paragraph [ref=e839]:
+              - strong [ref=e840]: "Real-world scenario:"
+              - text: Your app connects to Redis. You add
+              - code [ref=e841]: redis.ping()
+              - text: "to the readiness probe. Redis goes down for 30 seconds. Result: every pod fails readiness → removed from Service → entire application offline. The correct approach: readiness checks only the app's own HTTP server, never downstream dependencies."
+          - separator [ref=e842]
+          - heading "Graceful Shutdown — Pod Deletion Sequence ¶" [level=2] [ref=e843]:
+            - text: Graceful Shutdown — Pod Deletion Sequence
+            - link "¶" [ref=e844] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#graceful-shutdown-pod-deletion-sequence
+          - generic [ref=e845]:
+            - heading "What Happens When a Pod is Deleted ¶" [level=3] [ref=e846]:
+              - text: What Happens When a Pod is Deleted
+              - link "¶" [ref=e847] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#what-happens-when-a-pod-is-deleted
+            - paragraph [ref=e848]: Reason — Pod deletion is not instant. Two parallel paths race against each other, and if your app doesn't handle it correctly, users see dropped connections.
+            - paragraph [ref=e849]:
+              - link "Graceful Shutdown Sequence" [ref=e850] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/img/prod-bp-graceful-shutdown.svg
+                - img "Graceful Shutdown Sequence" [ref=e851]
+            - paragraph [ref=e852]: "Thinking — The timeline of a pod deletion:"
+            - paragraph [ref=e854]: "Execution — The correct vs wrong shutdown patterns:"
+            - generic [ref=e855]:
+              - generic [ref=e856]:
+                - heading "Wrong Approaches ¶" [level=5] [ref=e857]:
+                  - text: Wrong Approaches
+                  - link "¶" [ref=e858] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#wrong-approaches
+                - generic [ref=e860]:
+                  - navigation [ref=e861]:
+                    - button "Copy to clipboard" [ref=e862] [cursor=pointer]
+                  - code [ref=e863]:
+                    - generic [ref=e864]: ✗ Immediate process.exit(0)
+                    - generic [ref=e865]: → Drops all in-flight requests
+                    - generic [ref=e867]: ✗ Shell as PID 1 (CMD node app.js)
+                    - generic [ref=e868]: → /bin/sh traps SIGTERM
+                    - generic [ref=e869]: → Container killed at 30s timeout
+                    - generic [ref=e871]: ✗ Keep-alive sockets left open
+                    - generic [ref=e872]: → Clients still route to dead pod
+              - generic [ref=e873]: →
+              - generic [ref=e874]:
+                - heading "Correct Sequence ¶" [level=5] [ref=e875]:
+                  - text: Correct Sequence
+                  - link "¶" [ref=e876] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#correct-sequence
+                - generic [ref=e878]:
+                  - navigation [ref=e879]:
+                    - button "Copy to clipboard" [ref=e880] [cursor=pointer]
+                  - code [ref=e881]:
+                    - generic [ref=e882]: 1. Receive SIGTERM
+                    - generic [ref=e883]: 2. Stop accepting NEW connections
+                    - generic [ref=e884]: 3. Complete all ACTIVE requests
+                    - generic [ref=e885]: 4. Close idle keep-alive sockets
+                    - generic [ref=e886]: 5. Exit process cleanly
+                    - generic [ref=e887]: "+ preStop hook: sleep(5s) for race"
+            - generic [ref=e888]:
+              - paragraph [ref=e889]: Dockerfile key insight
+              - paragraph [ref=e890]:
+                - text: Use
+                - code [ref=e891]: CMD ["node", "app.js"]
+                - text: (
+                - strong [ref=e892]: exec form
+                - text: ) — NOT
+                - code [ref=e893]: CMD node app.js
+                - text: (
+                - strong [ref=e894]: shell form
+                - text: ). Shell form wraps the process in
+                - code [ref=e895]: /bin/sh
+                - text: ", which"
+                - strong [ref=e896]: traps SIGTERM
+                - text: and never forwards it to your application. Your app never knows it should shut down.
+            - generic [ref=e899]:
+              - navigation [ref=e900]:
+                - button "Copy to clipboard" [ref=e901] [cursor=pointer]
+              - code [ref=e902]:
+                - generic [ref=e903]: "# preStop hook to handle the race condition"
+                - generic [ref=e904]: "lifecycle:"
+                - generic [ref=e905]: "preStop:"
+                - generic [ref=e906]: "exec:"
+                - generic [ref=e907]: "command: [\"sh\", \"-c\", \"sleep 5\"]"
+                - generic [ref=e908]: "terminationGracePeriodSeconds: 30"
+          - separator [ref=e909]
+          - heading "Fault Tolerance — Surviving Node Failures ¶" [level=2] [ref=e910]:
+            - text: Fault Tolerance — Surviving Node Failures
+            - link "¶" [ref=e911] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#fault-tolerance-surviving-node-failures
+          - generic [ref=e912]:
+            - heading "The Three Pillars of Pod Resilience ¶" [level=3] [ref=e913]:
+              - text: The Three Pillars of Pod Resilience
+              - link "¶" [ref=e914] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#the-three-pillars-of-pod-resilience
+            - paragraph [ref=e915]: Reason — Nodes die. Cloud providers have outages. Kernel panics happen. Your deployment must survive any single point of failure.
+            - paragraph [ref=e916]: "Execution — Three mandatory controls:"
+            - generic [ref=e920]:
+              - navigation [ref=e921]:
+                - button "Copy to clipboard" [ref=e922] [cursor=pointer]
+              - code [ref=e923]:
+                - generic [ref=e924]: "# Pod anti-affinity + PDB combo"
+                - generic [ref=e925]: "apiVersion: apps/v1"
+                - generic [ref=e926]: "kind: Deployment"
+                - generic [ref=e927]: "spec:"
+                - generic [ref=e928]: "replicas: 3"
+                - generic [ref=e929]: "template:"
+                - generic [ref=e930]: "spec:"
+                - generic [ref=e931]: "affinity:"
+                - generic [ref=e932]: "podAntiAffinity:"
+                - generic [ref=e933]: "preferredDuringSchedulingIgnoredDuringExecution:"
+                - generic [ref=e934]: "- weight: 100"
+                - generic [ref=e935]: "podAffinityTerm:"
+                - generic [ref=e936]: "labelSelector:"
+                - generic [ref=e937]: "matchExpressions:"
+                - generic [ref=e938]: "- key: app"
+                - generic [ref=e939]: "operator: In"
+                - generic [ref=e940]: "values: [\"my-app\"]"
+                - generic [ref=e941]: "topologyKey: kubernetes.io/hostname"
+                - generic [ref=e942]: "---"
+                - generic [ref=e943]: "apiVersion: policy/v1"
+                - generic [ref=e944]: "kind: PodDisruptionBudget"
+                - generic [ref=e945]: "spec:"
+                - generic [ref=e946]: "minAvailable: 2"
+                - generic [ref=e947]: "selector:"
+                - generic [ref=e948]: "matchLabels:"
+                - generic [ref=e949]: "app: my-app"
+            - paragraph [ref=e951]:
+              - strong [ref=e952]: "Scenario:"
+              - text: "You have 11 replicas — all scheduled on the same node (Kubernetes doesn't spread by default). Node goes down. Result: 100% downtime despite 11 replicas. The fix:"
+              - code [ref=e953]: podAntiAffinity
+              - text: with
+              - code [ref=e954]: "topologyKey: kubernetes.io/hostname"
+              - text: ensures spread across nodes.
+          - separator [ref=e955]
+          - heading "Governance — Security Defense in Depth ¶" [level=2] [ref=e956]:
+            - text: Governance — Security Defense in Depth
+            - link "¶" [ref=e957] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#governance-security-defense-in-depth
+          - generic [ref=e958]:
+            - heading "Six Layers of Kubernetes Security ¶" [level=3] [ref=e959]:
+              - text: Six Layers of Kubernetes Security
+              - link "¶" [ref=e960] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#six-layers-of-kubernetes-security
+            - paragraph [ref=e961]: Reason — Security is not a single control. It's nested layers — each layer catches what the previous one misses.
+            - paragraph [ref=e962]:
+              - link "Security Defense in Depth" [ref=e963] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/img/prod-bp-security-layers.svg
+                - img "Security Defense in Depth" [ref=e964]
+            - paragraph [ref=e965]: "Thinking — From outer (cluster-wide) to inner (per-container):"
+            - paragraph [ref=e967]: "Execution — The modern security context every pod should have:"
+            - generic [ref=e970]:
+              - navigation [ref=e971]:
+                - button "Copy to clipboard" [ref=e972] [cursor=pointer]
+              - code [ref=e973]:
+                - generic [ref=e974]: "# Production-hardened securityContext (K8s 1.28+)"
+                - generic [ref=e975]: "apiVersion: v1"
+                - generic [ref=e976]: "kind: Pod"
+                - generic [ref=e977]: "spec:"
+                - generic [ref=e978]: "securityContext:"
+                - generic [ref=e979]: "runAsNonRoot: true"
+                - generic [ref=e980]: "runAsUser: 1000"
+                - generic [ref=e981]: "runAsGroup: 1000"
+                - generic [ref=e982]: "fsGroup: 1000"
+                - generic [ref=e983]: "seccompProfile:"
+                - generic [ref=e984]: "type: RuntimeDefault"
+                - generic [ref=e985]: "containers:"
+                - generic [ref=e986]: "- name: app"
+                - generic [ref=e987]: "securityContext:"
+                - generic [ref=e988]: "allowPrivilegeEscalation: false"
+                - generic [ref=e989]: "readOnlyRootFilesystem: true"
+                - generic [ref=e990]: "capabilities:"
+                - generic [ref=e991]: "drop: [\"ALL\"]"
+                - generic [ref=e992]: "volumeMounts:"
+                - generic [ref=e993]: "- name: tmp"
+                - generic [ref=e994]: "mountPath: /tmp"
+                - generic [ref=e995]: "volumes:"
+                - generic [ref=e996]: "- name: tmp"
+                - generic [ref=e997]: "emptyDir: {}"
+            - generic [ref=e998]:
+              - paragraph [ref=e999]: Stale advice on LearnKube
+              - paragraph [ref=e1000]:
+                - text: The page still references
+                - strong [ref=e1001]: PodSecurityPolicy (PSP)
+                - text: ", which was"
+                - strong [ref=e1002]: removed in Kubernetes 1.25
+                - text: (August 2022). The modern replacement is
+                - strong [ref=e1003]: Pod Security Admission
+                - text: "with three levels:"
+                - code [ref=e1004]: privileged
+                - text: ","
+                - code [ref=e1005]: baseline
+                - text: ","
+                - code [ref=e1006]: restricted
+                - text: ". Apply via namespace labels:"
+              - generic [ref=e1008]:
+                - navigation [ref=e1009]:
+                  - button "Copy to clipboard" [ref=e1010] [cursor=pointer]
+                - code [ref=e1011]:
+                  - generic [ref=e1012]: "apiVersion: v1"
+                  - generic [ref=e1013]: "kind: Namespace"
+                  - generic [ref=e1014]: "metadata:"
+                  - generic [ref=e1015]: "name: production"
+                  - generic [ref=e1016]: "labels:"
+                  - generic [ref=e1017]: "pod-security.kubernetes.io/enforce: restricted"
+                  - generic [ref=e1018]: "pod-security.kubernetes.io/audit: restricted"
+                  - generic [ref=e1019]: "pod-security.kubernetes.io/warn: restricted"
+          - separator [ref=e1020]
+          - heading "Resource Management — Requests, Limits & Autoscaling ¶" [level=2] [ref=e1021]:
+            - text: Resource Management — Requests, Limits & Autoscaling
+            - link "¶" [ref=e1022] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#resource-management-requests-limits-autoscaling
+          - generic [ref=e1023]:
+            - heading "The Resource Triangle ¶" [level=3] [ref=e1024]:
+              - text: The Resource Triangle
+              - link "¶" [ref=e1025] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#the-resource-triangle
+            - paragraph [ref=e1026]: Reason — Every container needs defined resource boundaries. Without them, the scheduler flies blind and nodes crash from overcommitment.
+            - table [ref=e1030]:
+              - rowgroup [ref=e1031]:
+                - row "Resource Request Limit Recommendation" [ref=e1032]:
+                  - columnheader "Resource" [ref=e1033]
+                  - columnheader "Request" [ref=e1034]
+                  - columnheader "Limit" [ref=e1035]
+                  - columnheader "Recommendation" [ref=e1036]
+              - rowgroup [ref=e1037]:
+                - row "Memory Always set Always set OOM-kill if exceeded" [ref=e1038]:
+                  - cell "Memory" [ref=e1039]:
+                    - strong [ref=e1040]: Memory
+                  - cell "Always set" [ref=e1041]
+                  - cell "Always set" [ref=e1042]
+                  - cell "OOM-kill if exceeded" [ref=e1043]
+                - row "CPU Always set (≤1 CPU) Consider disabling Throttling wastes available cycles" [ref=e1044]:
+                  - cell "CPU" [ref=e1045]:
+                    - strong [ref=e1046]: CPU
+                  - cell "Always set (≤1 CPU)" [ref=e1047]
+                  - cell "Consider disabling" [ref=e1048]:
+                    - text: Consider
+                    - strong [ref=e1049]: disabling
+                  - cell "Throttling wastes available cycles" [ref=e1050]
+            - generic [ref=e1051]:
+              - paragraph [ref=e1052]: LearnKube's VPA advice is outdated
+              - paragraph [ref=e1053]:
+                - text: The page says "Don't use VPA while it's still in beta." The
+                - strong [ref=e1054]: Vertical Pod Autoscaler
+                - text: has been
+                - strong [ref=e1055]: GA since 2023
+                - text: and is safe for production with
+                - code [ref=e1056]: "updateMode: Auto"
+                - text: . Use VPA in recommendation mode to right-size your requests.
+          - separator [ref=e1057]
+          - heading "Configuration & Secrets ¶" [level=2] [ref=e1058]:
+            - text: Configuration & Secrets
+            - link "¶" [ref=e1059] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#configuration-secrets
+          - generic [ref=e1060]:
+            - heading "Externalise Everything, Mount Secrets as Volumes ¶" [level=3] [ref=e1061]:
+              - text: Externalise Everything, Mount Secrets as Volumes
+              - link "¶" [ref=e1062] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#externalise-everything-mount-secrets-as-volumes
+            - paragraph [ref=e1063]: "Execution — Two non-negotiable rules from the twelve-factor app:"
+            - list [ref=e1064]:
+              - listitem [ref=e1065]:
+                - strong [ref=e1066]: All config lives in ConfigMaps
+                - text: — never hardcode
+              - listitem [ref=e1067]:
+                - strong [ref=e1068]: Secrets mount as volumes, not env vars
+                - text: — env vars leak in
+                - code [ref=e1069]: docker inspect
+                - text: ", process listings, and crash dumps"
+            - generic [ref=e1072]:
+              - navigation [ref=e1073]:
+                - button "Copy to clipboard" [ref=e1074] [cursor=pointer]
+              - code [ref=e1075]:
+                - generic [ref=e1076]: "# Secrets as volume mount (correct)"
+                - generic [ref=e1077]: "volumes:"
+                - generic [ref=e1078]: "- name: db-creds"
+                - generic [ref=e1079]: "secret:"
+                - generic [ref=e1080]: "secretName: postgres-credentials"
+                - generic [ref=e1081]: "containers:"
+                - generic [ref=e1082]: "- name: app"
+                - generic [ref=e1083]: "volumeMounts:"
+                - generic [ref=e1084]: "- name: db-creds"
+                - generic [ref=e1085]: "mountPath: /etc/secrets"
+                - generic [ref=e1086]: "readOnly: true"
+            - generic [ref=e1087]:
+              - generic [ref=e1088]:
+                - heading "Anti-pattern ¶" [level=5] [ref=e1089]:
+                  - text: Anti-pattern
+                  - link "¶" [ref=e1090] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#anti-pattern
+                - generic [ref=e1092]:
+                  - navigation [ref=e1093]:
+                    - button "Copy to clipboard" [ref=e1094] [cursor=pointer]
+                  - code [ref=e1095]:
+                    - generic [ref=e1096]: "# WRONG: secrets as env vars"
+                    - generic [ref=e1097]: "env:"
+                    - generic [ref=e1098]: "- name: DB_PASSWORD"
+                    - generic [ref=e1099]: "valueFrom:"
+                    - generic [ref=e1100]: "secretKeyRef:"
+                    - generic [ref=e1101]: "name: postgres-credentials"
+                    - generic [ref=e1102]: "key: password"
+                    - generic [ref=e1103]: "# Visible in: kubectl describe pod,"
+                    - generic [ref=e1104]: "# docker inspect, /proc/1/environ"
+              - generic [ref=e1105]: →
+              - generic [ref=e1106]:
+                - heading "Best practice ¶" [level=5] [ref=e1107]:
+                  - text: Best practice
+                  - link "¶" [ref=e1108] [cursor=pointer]:
+                    - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#best-practice
+                - generic [ref=e1110]:
+                  - navigation [ref=e1111]:
+                    - button "Copy to clipboard" [ref=e1112] [cursor=pointer]
+                  - code [ref=e1113]:
+                    - generic [ref=e1114]: "# CORRECT: secrets as volume"
+                    - generic [ref=e1115]: "volumeMounts:"
+                    - generic [ref=e1116]: "- name: db-creds"
+                    - generic [ref=e1117]: "mountPath: /etc/secrets"
+                    - generic [ref=e1118]: "readOnly: true"
+                    - generic [ref=e1119]: "# File-based, not in process env"
+                    - generic [ref=e1120]: "# Supports rotation via CSI driver"
+          - separator [ref=e1121]
+          - heading "What's Missing — Gaps for Modern Kubernetes ¶" [level=2] [ref=e1122]:
+            - text: What's Missing — Gaps for Modern Kubernetes
+            - link "¶" [ref=e1123] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#whats-missing-gaps-for-modern-kubernetes
+          - generic [ref=e1124]:
+            - heading "Five Topics LearnKube Should Add ¶" [level=3] [ref=e1125]:
+              - text: Five Topics LearnKube Should Add
+              - link "¶" [ref=e1126] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#five-topics-learnkube-should-add
+            - paragraph [ref=e1127]: "Use-case — The checklist was written for K8s ~1.18. Here's what a 2024+ production checklist needs:"
+            - table [ref=e1130]:
+              - rowgroup [ref=e1131]:
+                - row "Missing Topic Why it matters Tools" [ref=e1132]:
+                  - columnheader "Missing Topic" [ref=e1133]
+                  - columnheader "Why it matters" [ref=e1134]
+                  - columnheader "Tools" [ref=e1135]
+              - rowgroup [ref=e1136]:
+                - row "Image scanning & supply chain Catch CVEs before deploy, verify image provenance Trivy, cosign, Sigstore, Kyverno image verification" [ref=e1137]:
+                  - cell "Image scanning & supply chain" [ref=e1138]:
+                    - strong [ref=e1139]: Image scanning & supply chain
+                  - cell "Catch CVEs before deploy, verify image provenance" [ref=e1140]
+                  - cell "Trivy, cosign, Sigstore, Kyverno image verification" [ref=e1141]
+                - row "Metrics & distributed tracing Only logging is covered — you need the full observability trio Prometheus, Grafana, OpenTelemetry, Jaeger" [ref=e1142]:
+                  - cell "Metrics & distributed tracing" [ref=e1143]:
+                    - strong [ref=e1144]: Metrics & distributed tracing
+                  - cell "Only logging is covered — you need the full observability trio" [ref=e1145]
+                  - cell "Prometheus, Grafana, OpenTelemetry, Jaeger" [ref=e1146]
+                - row "GitOps delivery Declarative, auditable, drift-detected deployments ArgoCD, Flux, ApplicationSets" [ref=e1147]:
+                  - cell "GitOps delivery" [ref=e1148]:
+                    - strong [ref=e1149]: GitOps delivery
+                  - cell "Declarative, auditable, drift-detected deployments" [ref=e1150]
+                  - cell "ArgoCD, Flux, ApplicationSets" [ref=e1151]
+                - row "Service mesh mTLS, traffic splitting, observability at L7 Istio, Linkerd, Cilium Service Mesh" [ref=e1152]:
+                  - cell "Service mesh" [ref=e1153]:
+                    - strong [ref=e1154]: Service mesh
+                  - cell "mTLS, traffic splitting, observability at L7" [ref=e1155]
+                  - cell "Istio, Linkerd, Cilium Service Mesh" [ref=e1156]
+                - row "Kubernetes version targeting Best practices change between versions Note which K8s version each recommendation targets" [ref=e1157]:
+                  - cell "Kubernetes version targeting" [ref=e1158]:
+                    - strong [ref=e1159]: Kubernetes version targeting
+                  - cell "Best practices change between versions" [ref=e1160]
+                  - cell "Note which K8s version each recommendation targets" [ref=e1161]
+          - separator [ref=e1162]
+          - heading "Quick Reference — The Production Readiness Checklist ¶" [level=2] [ref=e1163]:
+            - text: Quick Reference — The Production Readiness Checklist
+            - link "¶" [ref=e1164] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#quick-reference-the-production-readiness-checklist
+          - generic [ref=e1165]:
+            - heading "Condensed 20-Point Checklist ¶" [level=3] [ref=e1166]:
+              - text: Condensed 20-Point Checklist
+              - link "¶" [ref=e1167] [cursor=pointer]:
+                - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#condensed-20-point-checklist
+            - paragraph [ref=e1168]: "Output — Copy this into your team's deployment review process:"
+            - generic [ref=e1170]:
+              - navigation [ref=e1171]:
+                - button "Copy to clipboard" [ref=e1172] [cursor=pointer]
+              - code [ref=e1173]:
+                - generic [ref=e1174]: APPLICATION (10)
+                - generic [ref=e1175]: □ Readiness probe set (independent, no downstream deps)
+                - generic [ref=e1176]: □ Liveness probe set (passive, different endpoint)
+                - generic [ref=e1177]: □ Graceful shutdown handles SIGTERM (exec form CMD)
+                - generic [ref=e1178]: □ preStop hook with sleep(5) for endpoint propagation
+                - generic [ref=e1179]: □ Multiple replicas with pod anti-affinity
+                - generic [ref=e1180]: □ PodDisruptionBudget configured
+                - generic [ref=e1181]: □ Memory requests AND limits set
+                - generic [ref=e1182]: □ CPU requests set, limits disabled (or justified)
+                - generic [ref=e1183]: □ Logs to stdout/stderr (no file logging)
+                - generic [ref=e1184]: □ Config in ConfigMaps, secrets as volume mounts
+                - generic [ref=e1186]: GOVERNANCE (6)
+                - generic [ref=e1187]: □ LimitRange + ResourceQuota per namespace
+                - generic [ref=e1188]: "□ Pod Security Admission: enforce restricted"
+                - generic [ref=e1189]: □ Non-root, read-only FS, drop ALL capabilities
+                - generic [ref=e1190]: "□ Network policies: default deny, explicit allow"
+                - generic [ref=e1191]: "□ RBAC: disable default SA, least-privilege roles"
+                - generic [ref=e1192]: □ Admission controller for image registry allowlist
+                - generic [ref=e1194]: CLUSTER (4)
+                - generic [ref=e1195]: □ CIS benchmark passing (kube-bench)
+                - generic [ref=e1196]: □ Cloud metadata API disabled
+                - generic [ref=e1197]: □ OIDC authentication for users
+                - generic [ref=e1198]: □ Log aggregation + 30-45 day retention
+          - separator [ref=e1199]
+          - paragraph [ref=e1200]: "title: Glossary hide: - toc"
+          - separator [ref=e1201]
+          - heading "Glossary ¶" [level=1] [ref=e1202]:
+            - text: Glossary
+            - link "¶" [ref=e1203] [cursor=pointer]:
+              - /url: http://127.0.0.1:8777/03-kubernetes/04-production-best-practices/index.html#glossary
+          - paragraph [ref=e1204]: A reference of common DevOps, Kubernetes, container, and platform terms used throughout this site. Hover any abbreviation in the docs to see its definition (when supported by the browser).
+          - heading "Comments" [level=2] [ref=e1205]
+          - iframe [ref=e1207]
+      - button "Back to top":
+        - img
+        - text: Back to top
+    - contentinfo [ref=e1208]:
+      - generic [ref=e1211]:
+        - text: Made with
+        - link "Material for MkDocs" [ref=e1212] [cursor=pointer]:
+          - /url: https://squidfunk.github.io/mkdocs-material/

@@ -1,0 +1,298 @@
+- generic [active] [ref=e1]:
+  - region "We value your privacy" [ref=e2]:
+    - generic [ref=e5]:
+      - heading "We value your privacy" [level=2] [ref=e6]
+      - generic [ref=e7]:
+        - paragraph [ref=e9]: We use cookies to enhance your browsing experience, serve personalised ads or content, and analyse our traffic. By clicking "Accept All", you consent to our use of cookies.
+        - generic [ref=e10]:
+          - button "Customise" [ref=e11] [cursor=pointer]
+          - button "Reject All" [ref=e12] [cursor=pointer]
+          - button "Accept All" [ref=e13] [cursor=pointer]
+  - navigation [ref=e16]:
+    - generic [ref=e17]:
+      - link "Roadmap Logo" [ref=e18] [cursor=pointer]:
+        - /url: /
+        - img [ref=e19]
+      - navigation "Main" [ref=e22]:
+        - list [ref=e24]:
+          - listitem [ref=e25]:
+            - button "Open Navigation Dropdown" [ref=e26] [cursor=pointer]:
+              - img [ref=e27]
+          - listitem [ref=e28]:
+            - button "Open Navigation Dropdown" [ref=e29] [cursor=pointer]:
+              - text: Roadmaps
+              - img [ref=e30]
+          - listitem [ref=e32]:
+            - button "Open Navigation Dropdown" [ref=e33] [cursor=pointer]:
+              - text: AI Tutor
+              - img [ref=e34]
+          - listitem
+    - generic [ref=e36]:
+      - link "Login" [ref=e37] [cursor=pointer]:
+        - /url: /login
+      - link "Sign Up" [ref=e38] [cursor=pointer]:
+        - /url: /signup
+        - generic [ref=e39]: Sign Up
+  - main [ref=e40]:
+    - generic [ref=e41]:
+      - paragraph [ref=e43]:
+        - text: PartnerGet the latest Kubernetes news from our sister site
+        - link "TheNewStack.io" [ref=e44] [cursor=pointer]:
+          - /url: https://thenewstack.io/?utm_source=roadmap.sh&utm_medium=Referral&utm_campaign=Alert
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - link "Back to All Roadmaps" [ref=e47] [cursor=pointer]:
+            - /url: /roadmaps
+            - text: ← All Roadmaps
+          - generic [ref=e48]:
+            - button "Add to favorites" [ref=e49] [cursor=pointer]:
+              - img [ref=e50]
+            - button "Subscribe" [ref=e52] [cursor=pointer]:
+              - img [ref=e53]
+              - generic [ref=e56]: Weekly Newsletter
+            - link "Download Roadmap" [ref=e57] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e58]
+              - generic [ref=e61]: Download
+            - button "Share Roadmap" [ref=e62] [cursor=pointer]:
+              - img [ref=e63]
+        - generic [ref=e69]:
+          - heading "Kubernetes Roadmap" [level=1] [ref=e70]
+          - paragraph [ref=e71]: Step by step guide to learning Kubernetes in 2026
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - generic [ref=e74]:
+              - img [ref=e75]
+              - generic [ref=e77]: Roadmap
+            - link "AI Tutor" [ref=e78] [cursor=pointer]:
+              - /url: /ai/roadmap-chat/kubernetes
+              - img [ref=e79]
+              - generic [ref=e82]: AI Tutor
+          - button "Personalize" [ref=e83] [cursor=pointer]:
+            - img [ref=e84]
+            - generic [ref=e88]: Personalize
+    - button "Join 6,872+ others tracking their progress on this roadmap Sign up free" [ref=e92] [cursor=pointer]:
+      - generic [ref=e93]:
+        - img [ref=e94]
+        - generic [ref=e98]: Join 6,872+ others tracking their progress on this roadmap
+      - generic [ref=e99]: Sign up free
+    - generic [ref=e101]:
+      - img [ref=e103]:
+        - generic [ref=e118]: Kubernetes
+        - generic [ref=e121] [cursor=pointer]: Introduction
+        - generic [ref=e124] [cursor=pointer]: Overview of Kubernetes
+        - generic [ref=e127] [cursor=pointer]: Why use Kubernetes?
+        - generic [ref=e130] [cursor=pointer]: Key Concepts and Terminologies
+        - generic [ref=e133] [cursor=pointer]: Kubernetes Alternatives
+        - generic [ref=e136] [cursor=pointer]: Containers
+        - generic [ref=e139] [cursor=pointer]: Setting up Kubernetes
+        - generic [ref=e142] [cursor=pointer]: Deploying your First Application
+        - generic [ref=e145] [cursor=pointer]: Choosing a Managed Provider
+        - generic [ref=e148] [cursor=pointer]: Installing a Local Cluster
+        - generic [ref=e151] [cursor=pointer]: Running Applications
+        - generic [ref=e154] [cursor=pointer]: Pods
+        - generic [ref=e157] [cursor=pointer]: ReplicaSets
+        - generic [ref=e160] [cursor=pointer]: Deployments
+        - generic [ref=e163] [cursor=pointer]: StatefulSets
+        - generic [ref=e166] [cursor=pointer]: Jobs
+        - generic [ref=e169] [cursor=pointer]: Services and Networking
+        - generic [ref=e172] [cursor=pointer]: External Access to Services
+        - generic [ref=e175] [cursor=pointer]: Load Balancing
+        - generic [ref=e178] [cursor=pointer]: Networking & Pod-to-Pod Communication
+        - generic [ref=e181] [cursor=pointer]: Configuration Management
+        - generic [ref=e184] [cursor=pointer]: Injecting Pod Config with ConfigMaps
+        - generic [ref=e187] [cursor=pointer]: Using Secrets for Sensitive Data
+        - generic [ref=e190] [cursor=pointer]: Resource Management
+        - generic [ref=e193] [cursor=pointer]: Setting Resource Requests and Limits
+        - generic [ref=e196] [cursor=pointer]: Assigning Quotas to Namespaces
+        - generic [ref=e199] [cursor=pointer]: Monitoring & Optimizing Resource Usage
+        - generic [ref=e202] [cursor=pointer]: Security
+        - generic [ref=e205] [cursor=pointer]: Role Based Access Control (RBAC)
+        - generic [ref=e208] [cursor=pointer]: Network Security
+        - generic [ref=e211] [cursor=pointer]: Container and Pod Security
+        - generic [ref=e214] [cursor=pointer]: Container and Pod Security
+        - generic [ref=e217] [cursor=pointer]: Monitoring and Logging
+        - generic [ref=e220] [cursor=pointer]: Logs
+        - generic [ref=e223] [cursor=pointer]: Metrics
+        - generic [ref=e226] [cursor=pointer]: Traces
+        - generic [ref=e229] [cursor=pointer]: Resource Health
+        - generic [ref=e232] [cursor=pointer]: Observability Engines
+        - generic [ref=e235] [cursor=pointer]: Autoscaling
+        - generic [ref=e238] [cursor=pointer]: Horizontal Pod Autoscaler (HPA)
+        - generic [ref=e241] [cursor=pointer]: Vertical Pod Autoscaler (VPA)
+        - generic [ref=e244] [cursor=pointer]: Cluster Autoscaling
+        - generic [ref=e247] [cursor=pointer]: Scheduling
+        - generic [ref=e250] [cursor=pointer]: Basics
+        - generic [ref=e253] [cursor=pointer]: Taints and Tolerations
+        - generic [ref=e256] [cursor=pointer]: Topology Spread Constraints
+        - generic [ref=e259] [cursor=pointer]: Pod Priorities
+        - generic [ref=e262] [cursor=pointer]: Evictions
+        - generic [ref=e265] [cursor=pointer]: Storage and Volumes
+        - generic [ref=e268] [cursor=pointer]: CSI Drivers
+        - generic [ref=e271] [cursor=pointer]: Stateful Applications
+        - generic [ref=e274] [cursor=pointer]: Deployment Patterns
+        - generic [ref=e277] [cursor=pointer]: CI / CD Integration
+        - generic [ref=e280] [cursor=pointer]: GitOps
+        - generic [ref=e283] [cursor=pointer]: Helm Charts
+        - generic [ref=e286] [cursor=pointer]: Canary Deployments
+        - generic [ref=e289] [cursor=pointer]: Rolling Updates / Rollbacks
+        - generic [ref=e292] [cursor=pointer]: Advanced Topics
+        - generic [ref=e295] [cursor=pointer]: Creating Custom Controllers
+        - generic [ref=e298] [cursor=pointer]: Custom Schedulers and Extenders
+        - generic [ref=e301] [cursor=pointer]: Custom Resource Definitions (CRDs)
+        - generic [ref=e304] [cursor=pointer]: Kubernetes Extensions and APIs
+        - generic [ref=e307] [cursor=pointer]: Should you manage your own Cluster?
+        - generic [ref=e310] [cursor=pointer]: Installing the Control Plane
+        - generic [ref=e313] [cursor=pointer]: Adding and Managing Worker Nodes
+        - generic [ref=e316] [cursor=pointer]: Multi-Cluster Management
+        - generic [ref=e318]: Cluster Operations
+        - generic [ref=e321]: Continue learning with following roadmaps
+        - generic [ref=e324] [cursor=pointer]: DevOps
+        - generic [ref=e327] [cursor=pointer]: Backend
+        - generic [ref=e330] [cursor=pointer]: Docker
+        - generic [ref=e331]:
+          - generic [ref=e333]: Related Roadmaps
+          - generic [ref=e337] [cursor=pointer]: Docker Roadmap
+          - generic [ref=e341] [cursor=pointer]: Backend Roadmap
+          - generic [ref=e345] [cursor=pointer]: DevOps Roadmap
+          - generic [ref=e349] [cursor=pointer]: System Design Roadmap
+        - generic [ref=e352] [cursor=pointer]: Blue-Green Deployments
+        - generic [ref=e355]: Find the detailed version of this roadmapalong with other similar roadmaps
+        - generic [ref=e358] [cursor=pointer]: roadmap.sh
+      - button "AI Tutor Have a question? Type here" [ref=e360] [cursor=pointer]:
+        - img [ref=e361]
+        - generic [ref=e364]: AI Tutor
+        - generic [ref=e365]: Have a question? Type here
+    - generic [ref=e367]:
+      - heading "Frequently Asked Questions" [level=2] [ref=e369]
+      - generic [ref=e370]:
+        - generic [ref=e371]:
+          - button "What exactly does Kubernetes do?" [ref=e372] [cursor=pointer]:
+            - generic [ref=e373]: What exactly does Kubernetes do?
+            - img [ref=e374]
+          - paragraph [ref=e378]:
+            - text: Kubernetes is an open-source container orchestration platform used to
+            - strong [ref=e379]: automate the deployment, scaling, management, and networking of containerized applications
+            - text: . It enables self-healing applications, efficient resource utilization, service discovery, automated rollouts/rollbacks, and consistent operations across multi-cloud or hybrid environments.
+        - button "Is Kubernetes easy to learn?" [ref=e381] [cursor=pointer]:
+          - generic [ref=e382]: Is Kubernetes easy to learn?
+          - img [ref=e383]
+        - button "How to prepare for a Kubernetes interview" [ref=e386] [cursor=pointer]:
+          - generic [ref=e387]: How to prepare for a Kubernetes interview
+          - img [ref=e388]
+  - generic [ref=e391]:
+    - paragraph [ref=e392]: Join the Community
+    - paragraph [ref=e393]:
+      - text: roadmap.sh is the
+      - link "6th most starred project on GitHub" [ref=e394] [cursor=pointer]:
+        - /url: https://github.com/search?o=desc&q=stars%3A%3E100000&s=stars&type=Repositories
+      - text: and is visited by hundreds of thousands of developers every month.
+    - generic [ref=e395]:
+      - generic [ref=e396]:
+        - paragraph [ref=e397]:
+          - generic [ref=e398]: Rank
+          - text: out of 28M!
+        - generic [ref=e399]:
+          - paragraph [ref=e400]: 354K
+          - paragraph [ref=e401]: GitHub Stars
+        - 'link "Star us on GitHub Help us reach #1" [ref=e402] [cursor=pointer]':
+          - /url: https://github.com/kamranahmedse/developer-roadmap
+          - generic [ref=e403]:
+            - img [ref=e404]
+            - generic [ref=e406]: Star us on GitHub
+          - generic [ref=e407]: "Help us reach #1"
+      - generic [ref=e408]:
+        - paragraph [ref=e409]:
+          - generic [ref=e410]: +90k
+          - text: every month
+        - generic [ref=e411]:
+          - paragraph [ref=e412]: +2.8M
+          - paragraph [ref=e413]: Registered Users
+        - link "Register yourself Commit to your growth" [ref=e414] [cursor=pointer]:
+          - /url: /signup
+          - generic [ref=e415]:
+            - img [ref=e416]
+            - generic [ref=e421]: Register yourself
+          - generic [ref=e422]: Commit to your growth
+      - generic [ref=e423]:
+        - paragraph [ref=e424]:
+          - generic [ref=e425]: +2k
+          - text: every month
+        - generic [ref=e426]:
+          - paragraph [ref=e427]: 47K
+          - paragraph [ref=e428]: Discord Members
+        - link "Join on Discord Join the community" [ref=e429] [cursor=pointer]:
+          - /url: https://roadmap.sh/discord
+          - generic [ref=e430]:
+            - img [ref=e431]
+            - generic [ref=e434]: Join on Discord
+          - generic [ref=e435]: Join the community
+  - generic [ref=e437]:
+    - paragraph [ref=e438]:
+      - link "Roadmaps" [ref=e439] [cursor=pointer]:
+        - /url: /roadmaps
+      - link "Guides" [ref=e440] [cursor=pointer]:
+        - /url: /guides
+      - link "FAQs" [ref=e441] [cursor=pointer]:
+        - /url: /about
+      - link "YouTube" [ref=e442] [cursor=pointer]:
+        - /url: https://youtube.com/theroadmap?sub_confirmation=1
+    - generic [ref=e443]:
+      - generic [ref=e444]:
+        - paragraph [ref=e445]:
+          - link "roadmap.sh" [ref=e446] [cursor=pointer]:
+            - /url: /
+            - img [ref=e447]
+            - generic [ref=e450]: roadmap.sh
+          - generic [ref=e451]: by
+          - link "@nilbuild" [ref=e452] [cursor=pointer]:
+            - /url: https://x.com/nilbuild
+        - paragraph [ref=e453]: Community created roadmaps, best practices, projects, articles, resources and journeys to help you choose your path and grow in your career.
+        - paragraph [ref=e455]:
+          - text: © roadmap.sh·
+          - link "Terms" [ref=e456] [cursor=pointer]:
+            - /url: /terms
+          - text: ·
+          - link "Privacy" [ref=e457] [cursor=pointer]:
+            - /url: /privacy
+          - text: ·
+          - link "Follow on LinkedIn" [ref=e458] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/roadmapsh
+            - img [ref=e459]
+          - link "Subscribe to YouTube channel" [ref=e462] [cursor=pointer]:
+            - /url: https://youtube.com/theroadmap?sub_confirmation=1
+            - img [ref=e463]
+          - link "Follow on Twitter" [ref=e465] [cursor=pointer]:
+            - /url: https://twitter.com/roadmapsh
+            - img [ref=e466]
+          - link "Follow on Blusky" [ref=e468] [cursor=pointer]:
+            - /url: http://roadmapsh.bsky.social/
+            - img [ref=e469]
+      - generic [ref=e471]:
+        - link "ThewNewStack" [ref=e472] [cursor=pointer]:
+          - /url: https://thenewstack.io
+          - img "ThewNewStack" [ref=e473]
+        - paragraph [ref=e474]: The top DevOps resource for Kubernetes, cloud-native computing, and large-scale development and deployment.
+        - paragraph [ref=e476]:
+          - link "DevOps" [ref=e477] [cursor=pointer]:
+            - /url: https://thenewstack.io/category/devops?utm_source=roadmap.sh&utm_medium=Referral&utm_campaign=Footer
+          - text: ·
+          - link "Kubernetes" [ref=e478] [cursor=pointer]:
+            - /url: https://thenewstack.io/category/kubernetes?utm_source=roadmap.sh&utm_medium=Referral&utm_campaign=Footer
+          - text: ·
+          - link "Cloud-Native" [ref=e479] [cursor=pointer]:
+            - /url: https://thenewstack.io/category/cloud-native?utm_source=roadmap.sh&utm_medium=Referral&utm_campaign=Footer
+    - button "Cookie Settings" [ref=e481] [cursor=pointer]:
+      - img [ref=e482]
+      - text: Cookie Settings
+  - region "Notifications alt+T"
+  - iframe [ref=e486] [cursor=pointer]:
+    - generic [ref=f17e3] [cursor=pointer]:
+      - generic "Close" [ref=f17e4]:
+        - img [ref=f17e5]
+      - img "Sponsor Banner" [ref=f17e8]
+      - generic [ref=f17e9]:
+        - generic [ref=f17e10]:
+          - generic [ref=f17e11]: "Webinar: Close the AI Automation Gap"
+          - generic [ref=f17e12]: Find out how delivery automation unlocks the organizational gains that AI tools alone can't create.
+        - generic [ref=f17e13]: Partner Content

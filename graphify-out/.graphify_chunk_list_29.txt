@@ -1,0 +1,11 @@
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/01-linux/02-users-permissions/README.md
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/03-kubernetes/04-production-best-practices/img/prod-bp-graceful-shutdown.svg
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/03-kubernetes/04-production-best-practices/img/prod-bp-issues.svg
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/03-kubernetes/04-production-best-practices/img/prod-bp-architecture.svg
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/03-kubernetes/04-production-best-practices/img/prod-bp-security-layers.svg
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/03-kubernetes/04-production-best-practices/img/prod-bp-health-checks.svg
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/docs/diagrams/prod-bp-graceful-shutdown.svg
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/docs/diagrams/prod-bp-issues.svg
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/docs/diagrams/prod-bp-architecture.svg
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/docs/diagrams/prod-bp-security-layers.svg
+/Users/sr20536224wipro.com/Documents/Github-apple/myrepos/Devops-learning/docs/diagrams/prod-bp-health-checks.svg

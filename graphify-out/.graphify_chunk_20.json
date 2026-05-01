@@ -1,0 +1,609 @@
+{
+  "nodes": [
+    {
+      "id": "p01_hello_world_project",
+      "label": "Project 01: Hello World on Docker",
+      "file_type": "document",
+      "source_file": "08-projects/01-hello-world-end-to-end/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p01_architecture",
+      "label": "P01 Architecture: Multi-stage Docker Build & Security Hardening",
+      "file_type": "document",
+      "source_file": "08-projects/01-hello-world-end-to-end/architecture.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p01_qa_plan",
+      "label": "P01 QA Plan: 10-point Test Checklist",
+      "file_type": "document",
+      "source_file": "08-projects/01-hello-world-end-to-end/tests/qa-plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p05_observability_stack_project",
+      "label": "Project 05: Observability Stack (Prometheus, Grafana, Loki, Tempo)",
+      "file_type": "document",
+      "source_file": "08-projects/05-observability-stack/tests/qa-plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p05_grafana_datasources",
+      "label": "P05 Grafana Datasources Configuration (3-pillar correlation)",
+      "file_type": "code",
+      "source_file": "08-projects/05-observability-stack/grafana/provisioning/datasources.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p06_prod_eks_cluster",
+      "label": "Project 06: Production-Grade EKS Cluster on AWS",
+      "file_type": "document",
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p06_architecture",
+      "label": "P06 Architecture: VPC, EKS, Karpenter, IRSA, cert-manager",
+      "file_type": "document",
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/architecture.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p06_post_install",
+      "label": "P06 Post-Install: ArgoCD, kube-prometheus-stack, IRSA test",
+      "file_type": "document",
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/post-install.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p06_cost_analysis",
+      "label": "P06 Cost Analysis: Dev ($250/mo) vs Prod ($1000/mo)",
+      "file_type": "document",
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/COST.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p06_qa_plan",
+      "label": "P06 QA Plan: 6 phases (pre-apply checks, node health, IRSA, functional, security, chaos)",
+      "file_type": "document",
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/tests/qa-plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_disaster_recovery",
+      "label": "Project 07: Disaster Recovery (Velero, WAL-G, Route53 failover)",
+      "file_type": "document",
+      "source_file": "08-projects/07-disaster-recovery/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_architecture",
+      "label": "P07 Architecture: Primary/Secondary, Velero backup, WAL-G PITR, DNS failover",
+      "file_type": "document",
+      "source_file": "08-projects/07-disaster-recovery/architecture.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_velero_install",
+      "label": "P07 Velero Install: IRSA edition (production pattern)",
+      "file_type": "document",
+      "source_file": "08-projects/07-disaster-recovery/velero-install.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_velero_schedule",
+      "label": "P07 Velero Schedule: Daily full + 15min incremental backup",
+      "file_type": "code",
+      "source_file": "08-projects/07-disaster-recovery/infra/velero/schedule.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_wal_g_config",
+      "label": "P07 WAL-G Config: Postgres continuous WAL archiving to S3",
+      "file_type": "code",
+      "source_file": "08-projects/07-disaster-recovery/infra/postgres/wal-g-config.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_backup_job",
+      "label": "P07 Base Backup Job: Daily wal-g backup-push CronJob",
+      "file_type": "code",
+      "source_file": "08-projects/07-disaster-recovery/infra/postgres/backup-job.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_route53_failover",
+      "label": "P07 Route53 Failover: Primary/Secondary weighted routing + health checks",
+      "file_type": "code",
+      "source_file": "08-projects/07-disaster-recovery/infra/dns/route53-failover.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_qa_plan",
+      "label": "P07 QA Plan: Backup integrity, restore correctness, RPO/RTO measurement, DNS failover",
+      "file_type": "document",
+      "source_file": "08-projects/07-disaster-recovery/tests/qa-plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_failover_runbook",
+      "label": "P07 Failover Runbook: 15-step incident response (RPO ≤30s, RTO ≤15min)",
+      "file_type": "document",
+      "source_file": "08-projects/07-disaster-recovery/runbooks/REGION_FAILOVER.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_dr_drill_checklist",
+      "label": "P07 DR Drill Checklist: Quarterly exercise with pass/fail JSON report",
+      "file_type": "document",
+      "source_file": "08-projects/07-disaster-recovery/runbooks/DR_DRILL_CHECKLIST.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "p07_postmortem_template",
+      "label": "P07 Postmortem Template: Blameless incident review (5 Whys, RCA, action items)",
+      "file_type": "document",
+      "source_file": "08-projects/07-disaster-recovery/runbooks/POST_INCIDENT.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "DevOps Learning Lab",
+      "contributor": null
+    },
+    {
+      "id": "nginx_container",
+      "label": "Nginx Container (uid=101, read-only rootfs, security headers)",
+      "file_type": "concept",
+      "source_file": "08-projects/01-hello-world-end-to-end/architecture.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docker_multistage_build",
+      "label": "Docker Multi-stage Build Pattern",
+      "file_type": "concept",
+      "source_file": "08-projects/01-hello-world-end-to-end/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "kubernetes_irsa",
+      "label": "IRSA (IAM Roles for Service Accounts)",
+      "file_type": "concept",
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/architecture.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "karpenter_autoscaling",
+      "label": "Karpenter Node Autoscaling (Spot + consolidation)",
+      "file_type": "concept",
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/architecture.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "observability_three_pillars",
+      "label": "Three-Pillar Observability (Metrics, Logs, Traces)",
+      "file_type": "concept",
+      "source_file": "08-projects/05-observability-stack/tests/qa-plan.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "disaster_recovery_rto_rpo",
+      "label": "DR Concepts: RPO (Recovery Point Objective) & RTO (Recovery Time Objective)",
+      "file_type": "concept",
+      "source_file": "08-projects/07-disaster-recovery/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "postgres_wal_archiving",
+      "label": "PostgreSQL WAL Archiving & Point-in-Time Recovery (PITR)",
+      "file_type": "concept",
+      "source_file": "08-projects/07-disaster-recovery/infra/postgres/wal-g-config.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "s3_cross_region_replication",
+      "label": "S3 Cross-Region Replication (CRR) for Disaster Recovery",
+      "file_type": "concept",
+      "source_file": "08-projects/07-disaster-recovery/architecture.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "route53_health_checks",
+      "label": "Route53 Health Checks & Weighted Routing Failover",
+      "file_type": "concept",
+      "source_file": "08-projects/07-disaster-recovery/infra/dns/route53-failover.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "p01_hello_world_project",
+      "target": "p01_architecture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/01-hello-world-end-to-end/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p01_hello_world_project",
+      "target": "p01_qa_plan",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/01-hello-world-end-to-end/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p01_architecture",
+      "target": "docker_multistage_build",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/01-hello-world-end-to-end/architecture.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p01_architecture",
+      "target": "nginx_container",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/01-hello-world-end-to-end/architecture.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p05_observability_stack_project",
+      "target": "observability_three_pillars",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/05-observability-stack/tests/qa-plan.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p05_grafana_datasources",
+      "target": "observability_three_pillars",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/05-observability-stack/grafana/provisioning/datasources.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p06_prod_eks_cluster",
+      "target": "p06_architecture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p06_prod_eks_cluster",
+      "target": "p06_cost_analysis",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p06_architecture",
+      "target": "kubernetes_irsa",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/architecture.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p06_architecture",
+      "target": "karpenter_autoscaling",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/architecture.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p06_post_install",
+      "target": "p06_prod_eks_cluster",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/post-install.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p06_qa_plan",
+      "target": "kubernetes_irsa",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/tests/qa-plan.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_disaster_recovery",
+      "target": "p07_architecture",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_disaster_recovery",
+      "target": "disaster_recovery_rto_rpo",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_architecture",
+      "target": "postgres_wal_archiving",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/architecture.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_architecture",
+      "target": "s3_cross_region_replication",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/architecture.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_architecture",
+      "target": "route53_health_checks",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/architecture.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_velero_schedule",
+      "target": "p07_disaster_recovery",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/infra/velero/schedule.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_wal_g_config",
+      "target": "postgres_wal_archiving",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/infra/postgres/wal-g-config.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_backup_job",
+      "target": "postgres_wal_archiving",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/infra/postgres/backup-job.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_route53_failover",
+      "target": "route53_health_checks",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/infra/dns/route53-failover.yaml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_failover_runbook",
+      "target": "disaster_recovery_rto_rpo",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/runbooks/REGION_FAILOVER.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_dr_drill_checklist",
+      "target": "p07_failover_runbook",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "08-projects/07-disaster-recovery/runbooks/DR_DRILL_CHECKLIST.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p07_postmortem_template",
+      "target": "p07_dr_drill_checklist",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "08-projects/07-disaster-recovery/runbooks/POST_INCIDENT.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p01_hello_world_project",
+      "target": "p06_prod_eks_cluster",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "08-projects/06-prod-grade-cluster-on-aws/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "p06_prod_eks_cluster",
+      "target": "p07_disaster_recovery",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "08-projects/07-disaster-recovery/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "kubernetes_irsa",
+      "target": "p07_velero_install",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "08-projects/07-disaster-recovery/velero-install.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 116064,
+  "output_tokens": 0
+}

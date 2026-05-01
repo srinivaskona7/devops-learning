@@ -1,0 +1,789 @@
+{
+  "nodes": [
+    {
+      "id": "docker_multistage_build",
+      "label": "Multistage Docker Build Pattern",
+      "file_type": "concept",
+      "source_file": "02-docker/03-images-and-dockerfile/examples/02-multistage/README.md",
+      "source_location": "L1-L46",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docker_compose_core",
+      "label": "Docker Compose: Multi-container Orchestration",
+      "file_type": "concept",
+      "source_file": "02-docker/06-compose/README.md",
+      "source_location": "L1-L209",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docker_compose_commands",
+      "label": "Docker Compose Command Reference",
+      "file_type": "document",
+      "source_file": "02-docker/06-compose/commands.md",
+      "source_location": "L1-L125",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "compose_observability_stack",
+      "label": "Docker Compose Observability Stack (Prometheus + Grafana)",
+      "file_type": "concept",
+      "source_file": "02-docker/06-compose/examples/observability/docker-compose.yml",
+      "source_location": "L1-L45",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "prometheus_scrape_config",
+      "label": "Prometheus Scrape Configuration",
+      "file_type": "code",
+      "source_file": "02-docker/06-compose/examples/observability/prometheus.yml",
+      "source_location": "L1-L12",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "compose_wordpress_mysql",
+      "label": "Docker Compose: WordPress + MySQL 2-Tier Stack",
+      "file_type": "concept",
+      "source_file": "02-docker/06-compose/examples/wordpress-mysql/docker-compose.yml",
+      "source_location": "L1-L38",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "opa_foundations",
+      "label": "OPA (Open Policy Agent) Foundations",
+      "file_type": "concept",
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L1-L270",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "rego_language",
+      "label": "Rego Policy Language Basics",
+      "file_type": "concept",
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L117-L220",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "gatekeeper_constraint_template",
+      "label": "Gatekeeper ConstraintTemplate + Constraint Model",
+      "file_type": "concept",
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L273-L362",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "opa_audit_mode",
+      "label": "OPA Audit Mode and Enforcement Actions",
+      "file_type": "concept",
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L411-L485",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "opa_test_framework",
+      "label": "OPA Testing with opa test",
+      "file_type": "concept",
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L532-L742",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "policy_as_code_module",
+      "label": "Policy-as-Code: OPA & Kyverno Learning Module",
+      "file_type": "document",
+      "source_file": "14-policy-as-code/README.md",
+      "source_location": "L1-L125",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_package_manager",
+      "label": "Helm: Kubernetes Package Manager",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L1-L165",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_chart_anatomy",
+      "label": "Helm Chart Anatomy (Chart.yaml, values.yaml, templates/)",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L168-L287",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_templating_syntax",
+      "label": "Helm Template Syntax: Pipes, Functions, Range, If/Else",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L291-L431",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_values_precedence",
+      "label": "Helm Values Precedence: Layer Merging Rules",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L435-L565",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_dependencies",
+      "label": "Helm Dependencies and Umbrella Charts",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L569-L694",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_releases_rollback",
+      "label": "Helm Releases, History, and Rollback Mechanism",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L698-L822",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_hooks_lifecycle",
+      "label": "Helm Hooks: Lifecycle Events and Ordering",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L826-L965",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_testing_validation",
+      "label": "Helm Testing: lint, template --debug, helm test",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L969-L1089",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_secret_management",
+      "label": "Helm Secret Management: SOPS and External Secrets",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L1093-L1237",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_helmfile_argocd",
+      "label": "Managing Many Releases: Helmfile vs ArgoCD",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L1241-L1407",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_anti_patterns",
+      "label": "Helm Anti-Patterns: Five Production Mistakes",
+      "file_type": "concept",
+      "source_file": "04-helm/README.md",
+      "source_location": "L1431-L1535",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_cheatsheet",
+      "label": "Helm 3 Command Cheatsheet",
+      "file_type": "document",
+      "source_file": "04-helm/cheatsheet.md",
+      "source_location": "L1-L100",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_commands_reference",
+      "label": "Helm Commands Quick Reference (15 Panes)",
+      "file_type": "document",
+      "source_file": "04-helm/commands.md",
+      "source_location": "L1-L244",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_values_overrides_commands",
+      "label": "Helm Values and Overrides Commands",
+      "file_type": "document",
+      "source_file": "04-helm/06-values-and-overrides/commands.md",
+      "source_location": "L1-L73",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_values_precedence_detailed",
+      "label": "Values Precedence and Multi-Environment Pattern",
+      "file_type": "concept",
+      "source_file": "04-helm/06-values-and-overrides/README.md",
+      "source_location": "L1-L61",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helmfile_commands",
+      "label": "Helmfile and ArgoCD Commands",
+      "file_type": "document",
+      "source_file": "04-helm/12-helmfile-and-argocd/commands.md",
+      "source_location": "L1-L107",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helmfile_argocd_model",
+      "label": "Helmfile (Push) vs ArgoCD (Pull) Model",
+      "file_type": "concept",
+      "source_file": "04-helm/12-helmfile-and-argocd/README.md",
+      "source_location": "L1-L105",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_templating_examples",
+      "label": "Helm Templating Examples (10 Patterns)",
+      "file_type": "document",
+      "source_file": "04-helm/05-templating/examples.md",
+      "source_location": "L1-L93",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_templating_commands",
+      "label": "Helm Templating Commands",
+      "file_type": "document",
+      "source_file": "04-helm/05-templating/commands.md",
+      "source_location": "L1-L70",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_template_internals",
+      "label": "Helm Template Internals: Go Template Engine, Context, Execution",
+      "file_type": "concept",
+      "source_file": "04-helm/05-templating/deep-dive-template-internals.md",
+      "source_location": "L1-L281",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_templating_core",
+      "label": "Helm Templating: Built-in Objects and Actions",
+      "file_type": "concept",
+      "source_file": "04-helm/05-templating/README.md",
+      "source_location": "L1-L106",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_install_commands",
+      "label": "Helm Installation and Repository Configuration",
+      "file_type": "document",
+      "source_file": "04-helm/02-install/commands.md",
+      "source_location": "L1-L81",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_install_setup",
+      "label": "Helm 3 Installation and Repo Setup",
+      "file_type": "concept",
+      "source_file": "04-helm/02-install/README.md",
+      "source_location": "L1-L88",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_dependencies_commands",
+      "label": "Chart Dependencies Management Commands",
+      "file_type": "document",
+      "source_file": "04-helm/07-dependencies/commands.md",
+      "source_location": "L1-L74",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "helm_umbrella_charts",
+      "label": "Umbrella Charts: Multi-Chart Deployment",
+      "file_type": "concept",
+      "source_file": "04-helm/07-dependencies/README.md",
+      "source_location": "L1-L79",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "scratch_base_image",
+      "label": "scratch Base Image: Minimal Container Runtime",
+      "file_type": "concept",
+      "source_file": "02-docker/03-images-and-dockerfile/examples/02-multistage/README.md",
+      "source_location": "L19-L46",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docker_health_checks",
+      "label": "Docker Healthchecks: Startup Order Control",
+      "file_type": "concept",
+      "source_file": "02-docker/06-compose/README.md",
+      "source_location": "L124-L135",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "observability_prometheus_grafana",
+      "label": "Observability: Prometheus Scraping and Grafana Visualization",
+      "file_type": "concept",
+      "source_file": "02-docker/06-compose/examples/observability/docker-compose.yml",
+      "source_location": "null",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "k8s_admission_control",
+      "label": "Kubernetes Admission Control: Validating Webhooks",
+      "file_type": "concept",
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L7-L35",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "sprig_template_functions",
+      "label": "Sprig Template Function Library (120+ Functions)",
+      "file_type": "concept",
+      "source_file": "04-helm/05-templating/deep-dive-template-internals.md",
+      "source_location": "L179-L206",
+      "captured_at": "2026-05-01",
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docker_multistage_build",
+      "target": "scratch_base_image",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/03-images-and-dockerfile/examples/02-multistage/README.md",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_compose_core",
+      "target": "docker_health_checks",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/06-compose/README.md",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_compose_core",
+      "target": "compose_observability_stack",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/06-compose/examples/observability/docker-compose.yml",
+      "source_location": "null",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_compose_core",
+      "target": "compose_wordpress_mysql",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/06-compose/examples/wordpress-mysql/docker-compose.yml",
+      "source_location": "null",
+      "weight": 1.0
+    },
+    {
+      "source": "docker_compose_commands",
+      "target": "docker_compose_core",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/06-compose/commands.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "compose_observability_stack",
+      "target": "prometheus_scrape_config",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/06-compose/examples/observability/prometheus.yml",
+      "source_location": "null",
+      "weight": 1.0
+    },
+    {
+      "source": "compose_observability_stack",
+      "target": "observability_prometheus_grafana",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "02-docker/06-compose/examples/observability/docker-compose.yml",
+      "source_location": "L3-L40",
+      "weight": 1.0
+    },
+    {
+      "source": "opa_foundations",
+      "target": "k8s_admission_control",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L7-L35",
+      "weight": 1.0
+    },
+    {
+      "source": "opa_foundations",
+      "target": "rego_language",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "opa_foundations",
+      "target": "gatekeeper_constraint_template",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L273",
+      "weight": 1.0
+    },
+    {
+      "source": "opa_foundations",
+      "target": "opa_audit_mode",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L411",
+      "weight": 1.0
+    },
+    {
+      "source": "opa_foundations",
+      "target": "opa_test_framework",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L532",
+      "weight": 1.0
+    },
+    {
+      "source": "policy_as_code_module",
+      "target": "opa_foundations",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "14-policy-as-code/README.md",
+      "source_location": "L118",
+      "weight": 1.0
+    },
+    {
+      "source": "rego_language",
+      "target": "gatekeeper_constraint_template",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "14-policy-as-code/01-opa-foundations.md",
+      "source_location": "L320",
+      "weight": 0.8
+    },
+    {
+      "source": "helm_package_manager",
+      "target": "helm_chart_anatomy",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L168",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_package_manager",
+      "target": "helm_templating_syntax",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L291",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_package_manager",
+      "target": "helm_values_precedence",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L435",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_package_manager",
+      "target": "helm_dependencies",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L569",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_package_manager",
+      "target": "helm_releases_rollback",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L698",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_package_manager",
+      "target": "helm_hooks_lifecycle",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L826",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_package_manager",
+      "target": "helm_testing_validation",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L969",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_package_manager",
+      "target": "helm_secret_management",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L1093",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_package_manager",
+      "target": "helm_helmfile_argocd",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L1241",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_package_manager",
+      "target": "helm_anti_patterns",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L1431",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_chart_anatomy",
+      "target": "helm_templating_syntax",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/README.md",
+      "source_location": "L195",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_templating_syntax",
+      "target": "sprig_template_functions",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "04-helm/README.md",
+      "source_location": "L321",
+      "weight": 0.85
+    },
+    {
+      "source": "helm_values_precedence",
+      "target": "helm_values_overrides_commands",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/06-values-and-overrides/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_dependencies",
+      "target": "helm_umbrella_charts",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/07-dependencies/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_templating_core",
+      "target": "helm_template_internals",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/05-templating/deep-dive-template-internals.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_templating_examples",
+      "target": "helm_templating_core",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/05-templating/examples.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_commands_reference",
+      "target": "helm_package_manager",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/commands.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_cheatsheet",
+      "target": "helm_commands_reference",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "04-helm/cheatsheet.md",
+      "source_location": "L1",
+      "weight": 0.8
+    },
+    {
+      "source": "helmfile_argocd_model",
+      "target": "helm_helmfile_argocd",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/12-helmfile-and-argocd/README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "helmfile_commands",
+      "target": "helmfile_argocd_model",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/12-helmfile-and-argocd/commands.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_install_setup",
+      "target": "helm_install_commands",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/02-install/commands.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "helm_dependencies_commands",
+      "target": "helm_umbrella_charts",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "04-helm/07-dependencies/commands.md",
+      "source_location": "L1",
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 98754,
+  "output_tokens": 2346
+}

@@ -1,0 +1,249 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - link "Fairwinds Polaris Documentation" [ref=e5] [cursor=pointer]:
+      - /url: /
+      - img "Fairwinds Polaris Documentation" [ref=e6]
+    - generic [ref=e7]:
+      - textbox "Search" [ref=e9]:
+        - /placeholder: ""
+      - navigation [ref=e10]:
+        - link "View on GitHub (opens new window)" [ref=e12] [cursor=pointer]:
+          - /url: https://github.com/FairwindsOps/polaris
+          - text: View on GitHub
+          - generic [ref=e13]: (opens new window)
+  - complementary [ref=e14]:
+    - list [ref=e15]:
+      - listitem [ref=e16]:
+        - generic [ref=e17]:
+          - link "Polaris" [ref=e18] [cursor=pointer]:
+            - /url: /
+          - list [ref=e19]:
+            - listitem [ref=e20]:
+              - link "Changelog" [ref=e21] [cursor=pointer]:
+                - /url: /changelog/
+            - listitem [ref=e22]:
+              - link "Code of Conduct" [ref=e23] [cursor=pointer]:
+                - /url: /code-of-conduct/
+            - listitem [ref=e24]:
+              - link "Contributing" [ref=e25] [cursor=pointer]:
+                - /url: /contributing/
+      - listitem [ref=e26]:
+        - generic [ref=e27]:
+          - paragraph [ref=e28]: Ways to Run Polaris
+          - list [ref=e29]:
+            - listitem [ref=e30]:
+              - link "Dashboard" [ref=e31] [cursor=pointer]:
+                - /url: /dashboard/
+            - listitem [ref=e32]:
+              - link "Admission Controller" [ref=e33] [cursor=pointer]:
+                - /url: /admission-controller/
+            - listitem [ref=e34]:
+              - link "Infrastructure as Code" [ref=e35] [cursor=pointer]:
+                - /url: /infrastructure-as-code/
+      - listitem [ref=e36]:
+        - generic [ref=e37]:
+          - paragraph [ref=e38]: Usage
+          - list [ref=e39]:
+            - listitem [ref=e40]:
+              - link "CLI Options" [ref=e41] [cursor=pointer]:
+                - /url: /cli/
+      - listitem [ref=e42]:
+        - generic [ref=e43]:
+          - paragraph [ref=e44]: Customization
+          - list [ref=e45]:
+            - listitem [ref=e46]:
+              - link "Configuration" [ref=e47] [cursor=pointer]:
+                - /url: /customization/configuration/
+            - listitem [ref=e48]:
+              - link "Check Settings" [ref=e49] [cursor=pointer]:
+                - /url: /customization/checks/
+            - listitem [ref=e50]:
+              - link "Custom Checks" [ref=e51] [cursor=pointer]:
+                - /url: /customization/custom-checks/
+            - listitem [ref=e52]:
+              - link "Exemptions" [ref=e53] [cursor=pointer]:
+                - /url: /customization/exemptions/
+      - listitem [ref=e54]:
+        - generic [ref=e55]:
+          - paragraph [ref=e56]: Checks
+          - list [ref=e57]:
+            - listitem [ref=e58]:
+              - link "Security" [ref=e59] [cursor=pointer]:
+                - /url: /checks/security/
+            - listitem [ref=e60]:
+              - link "Efficiency" [ref=e61] [cursor=pointer]:
+                - /url: /checks/efficiency/
+            - listitem [ref=e62]:
+              - link "Reliability" [ref=e63] [cursor=pointer]:
+                - /url: /checks/reliability/
+  - main [ref=e64]:
+    - generic [ref=e65]:
+      - generic [ref=e66]:
+        - img "Polaris Logo" [ref=e67]
+        - heading "Polaris is an open source policy engine for Kubernetes" [level=3] [ref=e68]
+        - link [ref=e69] [cursor=pointer]:
+          - /url: https://github.com/FairwindsOps/polaris/releases
+          - img [ref=e70]
+        - link [ref=e71] [cursor=pointer]:
+          - /url: https://goreportcard.com/report/github.com/FairwindsOps/polaris
+          - img [ref=e72]
+        - link [ref=e73] [cursor=pointer]:
+          - /url: https://circleci.com/gh/FairwindsOps/polaris
+          - img [ref=e74]
+        - link [ref=e75] [cursor=pointer]:
+          - /url: https://insights.fairwinds.com/gh/FairwindsOps/polaris
+          - img [ref=e76]
+      - paragraph [ref=e77]: Polaris is an open source policy engine for Kubernetes that validates and remediates resource configuration. It includes 30+ built in configuration policies, as well as the ability to build custom policies with JSON Schema. When run on the command line or as a mutating webhook, Polaris can automatically remediate issues based on policy criteria.
+      - paragraph [ref=e78]: "Polaris can be run in three different modes:"
+      - list [ref=e79]:
+        - listitem [ref=e80]:
+          - text: As a
+          - link "dashboard" [ref=e81] [cursor=pointer]:
+            - /url: /dashboard
+          - text: "- Validate Kubernetes resources against policy-as-code."
+        - listitem [ref=e82]:
+          - text: As an
+          - link "admission controller" [ref=e83] [cursor=pointer]:
+            - /url: /admission-controller
+          - text: "- Automatically reject or modify workloads that don't adhere to your organization's policies."
+        - listitem [ref=e84]:
+          - text: As a
+          - link "command-line tool" [ref=e85] [cursor=pointer]:
+            - /url: /infrastructure-as-code
+          - text: "- Incorporate policy-as-code into the CI/CD process to test local YAML files."
+          - paragraph [ref=e86]:
+            - img "Polaris Architecture" [ref=e87]
+      - 'heading "# Notice: Registry Migration and Immutable Images (v10.1.8 → v10.2.0)" [level=2] [ref=e88]':
+        - link "#" [ref=e89] [cursor=pointer]:
+          - /url: "#notice-registry-migration-and-immutable-images-v10-1-8-→-v10-2-0"
+        - text: "Notice: Registry Migration and Immutable Images (v10.1.8 → v10.2.0)"
+      - paragraph [ref=e90]:
+        - text: Starting with
+        - strong [ref=e91]: v10.2.0
+        - text: ":"
+      - list [ref=e92]:
+        - listitem [ref=e93]:
+          - text: Images moved to
+          - code [ref=e94]: us-docker.pkg.dev/fairwinds-ops/oss/polaris
+        - listitem [ref=e95]:
+          - code [ref=e96]: quay.io/fairwinds/polaris
+          - text: is deprecated
+      - heading "# Required action" [level=3] [ref=e97]:
+        - link "#" [ref=e98] [cursor=pointer]:
+          - /url: "#required-action"
+        - text: Required action
+      - code [ref=e101]:
+        - generic [ref=e102]: "- quay.io/fairwinds/polaris:<tag>"
+        - generic [ref=e103]: + us-docker.pkg.dev/fairwinds-ops/oss/polaris:<tag>
+      - separator [ref=e104]
+      - heading "# Immutable and signed images" [level=2] [ref=e105]:
+        - link "#" [ref=e106] [cursor=pointer]:
+          - /url: "#immutable-and-signed-images"
+        - text: Immutable and signed images
+      - list [ref=e107]:
+        - listitem [ref=e108]:
+          - paragraph [ref=e109]:
+            - text: Images are now
+            - strong [ref=e110]: signed
+        - listitem [ref=e111]:
+          - paragraph [ref=e112]:
+            - text: Tags are
+            - strong [ref=e113]: immutable
+        - listitem [ref=e114]:
+          - paragraph [ref=e115]: "No more floating tags:"
+          - list [ref=e116]:
+            - listitem [ref=e117]:
+              - code [ref=e118]: v10
+            - listitem [ref=e119]:
+              - code [ref=e120]: v10.1
+            - listitem [ref=e121]:
+              - code [ref=e122]: latest
+      - paragraph [ref=e123]: "Use full version tags:"
+      - code [ref=e126]: us-docker.pkg.dev/fairwinds-ops/oss/polaris:v<major>.<minor>.<patch>
+      - paragraph [ref=e127]: "Or pin by digest:"
+      - code [ref=e130]: us-docker.pkg.dev/fairwinds-ops/oss/polaris@sha256:<digest>
+      - heading "# Join the Fairwinds Open Source Community" [level=2] [ref=e131]:
+        - link "#" [ref=e132] [cursor=pointer]:
+          - /url: "#join-the-fairwinds-open-source-community"
+        - text: Join the Fairwinds Open Source Community
+      - paragraph [ref=e133]:
+        - text: The goal of the Fairwinds Community is to exchange ideas, influence the open source roadmap, and network with fellow Kubernetes users.
+        - link "Chat with us on Slack (opens new window)" [ref=e134] [cursor=pointer]:
+          - /url: https://join.slack.com/t/fairwindscommunity/shared_invite/zt-2na8gtwb4-DGQ4qgmQbczQyB2NlFlYQQ
+          - text: Chat with us on Slack
+          - generic [ref=e135]:
+            - img [ref=e136]
+            - generic [ref=e139]: (opens new window)
+      - heading "# Other Projects from Fairwinds" [level=2] [ref=e140]:
+        - link "#" [ref=e141] [cursor=pointer]:
+          - /url: "#other-projects-from-fairwinds"
+        - text: Other Projects from Fairwinds
+      - paragraph [ref=e142]: "Enjoying Polaris? Check out some of our other projects:"
+      - list [ref=e143]:
+        - listitem [ref=e144]:
+          - link "Goldilocks (opens new window)" [ref=e145] [cursor=pointer]:
+            - /url: https://github.com/FairwindsOps/Goldilocks
+            - text: Goldilocks
+            - generic [ref=e146]:
+              - img [ref=e147]
+              - generic [ref=e150]: (opens new window)
+          - text: "- Right-size your Kubernetes Deployments by compare your memory and CPU settings against actual usage"
+        - listitem [ref=e151]:
+          - link "Pluto (opens new window)" [ref=e152] [cursor=pointer]:
+            - /url: https://github.com/FairwindsOps/Pluto
+            - text: Pluto
+            - generic [ref=e153]:
+              - img [ref=e154]
+              - generic [ref=e157]: (opens new window)
+          - text: "- Detect Kubernetes resources that have been deprecated or removed in future versions"
+        - listitem [ref=e158]:
+          - link "Nova (opens new window)" [ref=e159] [cursor=pointer]:
+            - /url: https://github.com/FairwindsOps/Nova
+            - text: Nova
+            - generic [ref=e160]:
+              - img [ref=e161]
+              - generic [ref=e164]: (opens new window)
+          - text: "- Check to see if any of your Helm charts have updates available"
+        - listitem [ref=e165]:
+          - link "rbac-manager (opens new window)" [ref=e166] [cursor=pointer]:
+            - /url: https://github.com/FairwindsOps/rbac-manager
+            - text: rbac-manager
+            - generic [ref=e167]:
+              - img [ref=e168]
+              - generic [ref=e171]: (opens new window)
+          - text: "- Simplify the management of RBAC in your Kubernetes clusters"
+      - paragraph [ref=e172]:
+        - text: Or
+        - link "check out the full list (opens new window)" [ref=e173] [cursor=pointer]:
+          - /url: https://www.fairwinds.com/open-source-software?utm_source=polaris&utm_medium=polaris&utm_campaign=polaris
+          - text: check out the full list
+          - generic [ref=e174]:
+            - img [ref=e175]
+            - generic [ref=e178]: (opens new window)
+      - heading "# Fairwinds Insights" [level=2] [ref=e179]:
+        - link "#" [ref=e180] [cursor=pointer]:
+          - /url: "#fairwinds-insights"
+        - text: Fairwinds Insights
+      - paragraph [ref=e181]:
+        - text: If you're interested in running Polaris in multiple clusters, tracking the results over time, integrating with Slack, Datadog, and Jira, or unlocking other functionality, check out
+        - link "Fairwinds Insights (opens new window)" [ref=e182] [cursor=pointer]:
+          - /url: https://fairwinds.com/insights
+          - text: Fairwinds Insights
+          - generic [ref=e183]:
+            - img [ref=e184]
+            - generic [ref=e187]: (opens new window)
+        - text: ", a platform for auditing and enforcing policy in Kubernetes clusters."
+    - generic [ref=e189]:
+      - link "Help us improve this page" [ref=e190] [cursor=pointer]:
+        - /url: https://github.com/FairwindsOps/polaris/edit/master/docs/README.md
+      - generic [ref=e191]:
+        - img [ref=e192]
+        - generic [ref=e195]: (opens new window)
+    - generic [ref=e196]:
+      - generic [ref=e197]:
+        - link "Learn more about Fairwinds" [ref=e198] [cursor=pointer]:
+          - /url: https://fairwinds.com
+        - link "Try Fairwinds Insights" [ref=e199] [cursor=pointer]:
+          - /url: https://fairwinds.com/insights
+      - link "Privacy Policy" [ref=e201] [cursor=pointer]:
+        - /url: https://www.fairwinds.com/privacy-policy
