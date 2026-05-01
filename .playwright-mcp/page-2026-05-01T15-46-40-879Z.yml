@@ -1,0 +1,223 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - button "DevOps Navigator" [ref=e150] [cursor=pointer]:
+      - img [ref=e152]
+      - heading "DevOps Navigator" [level=1] [ref=e154]
+  - generic [ref=e156]:
+    - complementary [ref=e158]:
+      - navigation [ref=e159]:
+        - heading "Modules" [level=2] [ref=e160]:
+          - img [ref=e161]
+          - text: Modules
+        - list [ref=e164]:
+          - listitem [ref=e165]:
+            - button "Linux Fundamentals" [ref=e166] [cursor=pointer]:
+              - generic [ref=e167]: Linux Fundamentals
+              - img [ref=e168]
+            - button "Overview" [ref=e171] [cursor=pointer]
+          - listitem [ref=e172]:
+            - button "Docker & Containers" [ref=e173] [cursor=pointer]:
+              - generic [ref=e174]: Docker & Containers
+              - img [ref=e175]
+          - listitem [ref=e177]:
+            - button "Kubernetes Core" [ref=e178] [cursor=pointer]:
+              - generic [ref=e179]: Kubernetes Core
+              - img [ref=e180]
+          - listitem [ref=e182]:
+            - button "Helm Charts" [ref=e183] [cursor=pointer]:
+              - generic [ref=e184]: Helm Charts
+              - img [ref=e185]
+          - listitem [ref=e187]:
+            - button "Monitoring & Observability" [ref=e188] [cursor=pointer]:
+              - generic [ref=e189]: Monitoring & Observability
+              - img [ref=e190]
+          - listitem [ref=e192]:
+            - button "Security Best Practices" [ref=e193] [cursor=pointer]:
+              - generic [ref=e194]: Security Best Practices
+              - img [ref=e195]
+          - listitem [ref=e197]:
+            - button "Terraform Infrastructure" [ref=e198] [cursor=pointer]:
+              - generic [ref=e199]: Terraform Infrastructure
+              - img [ref=e200]
+          - listitem [ref=e202]:
+            - button "Real-World Projects" [ref=e203] [cursor=pointer]:
+              - generic [ref=e204]: Real-World Projects
+              - img [ref=e205]
+          - listitem [ref=e207]:
+            - button "Interview Preparation" [ref=e208] [cursor=pointer]:
+              - generic [ref=e209]: Interview Preparation
+              - img [ref=e210]
+          - listitem [ref=e212]:
+            - button "Advanced Scripting" [ref=e213] [cursor=pointer]:
+              - generic [ref=e214]: Advanced Scripting
+              - img [ref=e215]
+          - listitem [ref=e217]:
+            - button "DevOps Tools" [ref=e218] [cursor=pointer]:
+              - generic [ref=e219]: DevOps Tools
+              - img [ref=e220]
+          - listitem [ref=e222]:
+            - button "Go Language" [ref=e223] [cursor=pointer]:
+              - generic [ref=e224]: Go Language
+              - img [ref=e225]
+          - listitem [ref=e227]:
+            - button "Kubernetes Operators" [ref=e228] [cursor=pointer]:
+              - generic [ref=e229]: Kubernetes Operators
+              - img [ref=e230]
+          - listitem [ref=e232]:
+            - button "Policy as Code" [ref=e233] [cursor=pointer]:
+              - generic [ref=e234]: Policy as Code
+              - img [ref=e235]
+          - listitem [ref=e237]:
+            - button "AI for DevOps" [ref=e238] [cursor=pointer]:
+              - generic [ref=e239]: AI for DevOps
+              - img [ref=e240]
+    - generic [ref=e242]:
+      - navigation [ref=e243]:
+        - button "Home" [ref=e244] [cursor=pointer]:
+          - img [ref=e245]
+          - generic [ref=e248]: Home
+        - img [ref=e249]
+        - button "Linux Fundamentals" [ref=e251]
+      - generic [ref=e252]:
+        - paragraph [ref=e255]: "Error: Failed to load README.md"
+        - generic [ref=e257]:
+          - generic [ref=e258]:
+            - generic [ref=e259]:
+              - img [ref=e260]
+              - heading "Security Monitoring (Falco)" [level=3] [ref=e263]
+            - generic [ref=e266]: Live
+          - generic [ref=e267]:
+            - generic [ref=e269]:
+              - img [ref=e270]
+              - generic [ref=e272]:
+                - generic [ref=e273]:
+                  - generic [ref=e274]: "[HIGH]"
+                  - generic [ref=e275]: 14:32:45.123
+                - generic [ref=e276]: "Rule: Write below root"
+                - generic [ref=e277]:
+                  - generic [ref=e278]: "Process: bash"
+                  - generic [ref=e279]: "Container: production-app-8f4d2"
+                - generic [ref=e280]:
+                  - generic [ref=e281]: "Action:"
+                  - generic [ref=e282]: KILLED
+            - generic [ref=e284]:
+              - img [ref=e285]
+              - generic [ref=e287]:
+                - generic [ref=e288]:
+                  - generic [ref=e289]: "[HIGH]"
+                  - generic [ref=e290]: 14:32:45.123
+                - generic [ref=e291]: "Rule: Write below root"
+                - generic [ref=e292]:
+                  - generic [ref=e293]: "Process: bash"
+                  - generic [ref=e294]: "Container: production-app-8f4d2"
+                - generic [ref=e295]:
+                  - generic [ref=e296]: "Action:"
+                  - generic [ref=e297]: KILLED
+            - generic [ref=e299]:
+              - img [ref=e300]
+              - generic [ref=e302]:
+                - generic [ref=e303]:
+                  - generic [ref=e304]: "[MEDIUM]"
+                  - generic [ref=e305]: 14:32:47.456
+                - generic [ref=e306]: "Rule: Unauthorized privilege escalation"
+                - generic [ref=e307]:
+                  - generic [ref=e308]: "Process: sudo"
+                  - generic [ref=e309]: "Container: web-server-prod-1a"
+                - generic [ref=e310]:
+                  - generic [ref=e311]: "Action:"
+                  - generic [ref=e312]: BLOCKED
+            - generic [ref=e314]:
+              - img [ref=e315]
+              - generic [ref=e317]:
+                - generic [ref=e318]:
+                  - generic [ref=e319]: "[MEDIUM]"
+                  - generic [ref=e320]: 14:32:47.456
+                - generic [ref=e321]: "Rule: Unauthorized privilege escalation"
+                - generic [ref=e322]:
+                  - generic [ref=e323]: "Process: sudo"
+                  - generic [ref=e324]: "Container: web-server-prod-1a"
+                - generic [ref=e325]:
+                  - generic [ref=e326]: "Action:"
+                  - generic [ref=e327]: BLOCKED
+            - generic [ref=e329]:
+              - img [ref=e330]
+              - generic [ref=e332]:
+                - generic [ref=e333]:
+                  - generic [ref=e334]: "[HIGH]"
+                  - generic [ref=e335]: 14:32:49.789
+                - generic [ref=e336]: "Rule: Suspicious network connection"
+                - generic [ref=e337]:
+                  - generic [ref=e338]: "Process: curl"
+                  - generic [ref=e339]: "Container: api-gateway-v2-3c"
+                - generic [ref=e340]:
+                  - generic [ref=e341]: "Action:"
+                  - generic [ref=e342]: LOGGED
+            - generic [ref=e344]:
+              - img [ref=e345]
+              - generic [ref=e347]:
+                - generic [ref=e348]:
+                  - generic [ref=e349]: "[HIGH]"
+                  - generic [ref=e350]: 14:32:49.789
+                - generic [ref=e351]: "Rule: Suspicious network connection"
+                - generic [ref=e352]:
+                  - generic [ref=e353]: "Process: curl"
+                  - generic [ref=e354]: "Container: api-gateway-v2-3c"
+                - generic [ref=e355]:
+                  - generic [ref=e356]: "Action:"
+                  - generic [ref=e357]: LOGGED
+            - generic [ref=e359]:
+              - img [ref=e360]
+              - generic [ref=e362]:
+                - generic [ref=e363]:
+                  - generic [ref=e364]: "[MEDIUM]"
+                  - generic [ref=e365]: 14:32:51.012
+                - generic [ref=e366]: "Rule: Sensitive file access"
+                - generic [ref=e367]:
+                  - generic [ref=e368]: "Process: cat"
+                  - generic [ref=e369]: "Container: database-service-5"
+                - generic [ref=e370]:
+                  - generic [ref=e371]: "Action:"
+                  - generic [ref=e372]: LOGGED
+            - generic [ref=e374]:
+              - img [ref=e375]
+              - generic [ref=e377]:
+                - generic [ref=e378]:
+                  - generic [ref=e379]: "[MEDIUM]"
+                  - generic [ref=e380]: 14:32:51.012
+                - generic [ref=e381]: "Rule: Sensitive file access"
+                - generic [ref=e382]:
+                  - generic [ref=e383]: "Process: cat"
+                  - generic [ref=e384]: "Container: database-service-5"
+                - generic [ref=e385]:
+                  - generic [ref=e386]: "Action:"
+                  - generic [ref=e387]: LOGGED
+            - generic [ref=e389]:
+              - img [ref=e390]
+              - generic [ref=e392]:
+                - generic [ref=e393]:
+                  - generic [ref=e394]: "[LOW]"
+                  - generic [ref=e395]: 14:32:53.345
+                - generic [ref=e396]: "Rule: Shell history access"
+                - generic [ref=e397]:
+                  - generic [ref=e398]: "Process: history"
+                  - generic [ref=e399]: "Container: shell-env-prod"
+                - generic [ref=e400]:
+                  - generic [ref=e401]: "Action:"
+                  - generic [ref=e402]: MONITORED
+            - generic [ref=e404]:
+              - img [ref=e405]
+              - generic [ref=e407]:
+                - generic [ref=e408]:
+                  - generic [ref=e409]: "[LOW]"
+                  - generic [ref=e410]: 14:32:53.345
+                - generic [ref=e411]: "Rule: Shell history access"
+                - generic [ref=e412]:
+                  - generic [ref=e413]: "Process: history"
+                  - generic [ref=e414]: "Container: shell-env-prod"
+                - generic [ref=e415]:
+                  - generic [ref=e416]: "Action:"
+                  - generic [ref=e417]: MONITORED
+            - generic [ref=e418]: 10 events | Falco Runtime Security
+          - generic [ref=e420]:
+            - generic [ref=e421]: $ falco -o file_output.sctp:/tmp/falco.sctp
+            - generic [ref=e422]: Running Falco with Kubernetes support enabled...

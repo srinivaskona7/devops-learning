@@ -27,9 +27,9 @@ Transform the standard MkDocs site into a premium, high-fidelity React platform 
 - [x] **Task 3: Hierarchical Navigator**
   - Create the `Sidebar` and `ModulePath` components.
   - Implement a Markdown engine to fetch and render files from `01-linux/` to `15-ai/`.
-- [ ] **Task 4: Interactive Terminal**
+- [x] **Task 4: Interactive Terminal**
   - Build the CRT-style terminal component for live security alerts.
-- [ ] **Task 5: Deployment Sync**
+- [/] **Task 5: Deployment Sync**
   - Configure `.github/workflows/gh-pages.yml` to build the `platform/` project.
 
 ---

@@ -7,5 +7,7 @@ export { Sidebar } from './Sidebar'
 export { MarkdownRenderer } from './MarkdownRenderer'
 export { ModulePath } from './ModulePath'
 export { CourseView } from './CourseView'
+export { InteractiveTerminal } from './InteractiveTerminal'
+
 
 

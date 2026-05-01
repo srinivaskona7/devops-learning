@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Sidebar, MarkdownRenderer, ModulePath } from './index'
+import { Sidebar, MarkdownRenderer, ModulePath, InteractiveTerminal } from './index'
 
 interface CourseViewProps {
   onBackToHome: () => void
@@ -53,8 +53,16 @@ export const CourseView: React.FC<CourseViewProps> = ({ onBackToHome }) => {
         />
 
         {activeModule ? (
-          <div className="glass-lg p-8 rounded-xl">
-            <MarkdownRenderer filePath={currentFile} moduleName={activeModule} />
+          <div className="space-y-6">
+            {/* Markdown Content */}
+            <div className="glass-lg p-8 rounded-xl">
+              <MarkdownRenderer filePath={currentFile} moduleName={activeModule} />
+            </div>
+
+            {/* Interactive Terminal at Bottom */}
+            <div>
+              <InteractiveTerminal />
+            </div>
           </div>
         ) : (
           <div className="glass-lg p-8 rounded-xl text-center">
