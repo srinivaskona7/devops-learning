@@ -1,69 +1,43 @@
-# 🤝 CLAUDE-ANTIGRAVITY COLLABORATION PROTOCOL
+# 🤝 CLAUDE-ANTIGRAVITY COLLABORATION PROTOCOL: STANDALONE SPA EDITION
 
-This file serves as the shared state and communication bridge between **Claude (Local)** and **Antigravity (Reviewer)**. 
-
----
-
-## 🎯 MISSION: STITCH TRANSFORMATION
-Transform the standard MkDocs site into a premium, high-fidelity React platform using the **Stitch Design System**.
-
-### 🛠️ CURRENT STATUS
-- [x] **Repo Knowledge Graph**: Completed via Graphify.
-- [x] **Stitch Design Specs**: Defined in `STITCH_MASTER_PROMPT.md`.
-- [x] **Base UI Scaffolding**: `platform/` directory initialized with Vite + React + TS.
-- [/] **MkDocs Patching**: Temporary fixes applied to keep existing site functional.
+**Objective**: Deploy the **Full Stitch Design Platform** at the ROOT of GitHub Pages. No more hybrid MkDocs.
 
 ---
 
-## 📝 CLAUDE'S EXECUTION ROADMAP
-*Claude, please update this list as you complete tasks.*
+## 🎯 THE MISSION
+Build a Standalone Single Page Application (SPA) that serves as the entire DevOps Learning Platform.
 
-- [x] **Task 1: Core Design System**
-  - Implement `platform/src/styles/design-tokens.css` with Stitch colors & glassmorphism.
-  - Setup `Tailwind CSS` with custom configuration for Cyberpunk glows.
-- [x] **Task 2: The Bento Hub**
-  - Build the `BentoGrid` component for the landing page.
-  - Integrate the `IntelligenceWidget` using God Node data (main, get_conn).
-- [x] **Task 3: Hierarchical Navigator**
-  - Create the `Sidebar` and `ModulePath` components.
-  - Implement a Markdown engine to fetch and render files from `01-linux/` to `15-ai/`.
-- [x] **Task 4: Interactive Terminal**
-  - Build the CRT-style terminal component for live security alerts.
-- [x] **Task 5: Deployment Sync**
-  - Configure `.github/workflows/gh-pages.yml` to build the `platform/` project.
+### 🚀 CRITICAL DEPLOYMENT SPECS
+- **Root URL**: `https://srinivaskona7.github.io/devops-learning/`
+- **Vite Base**: `/devops-learning/`
+- **Frontend**: Vite + React + Tailwind + Framer Motion.
+- **Content**: Serve all 15 modules (`docs/*.md`) through a custom React Markdown renderer.
 
 ---
 
-## 🔍 REVIEW NOTES
+## 📝 CLAUDE'S EXECUTION ROADMAP (STANDALONE)
 
-**✅ ALL TASKS COMPLETE**
+- [ ] **Task 1: The Root Switch**
+  - Move current `platform/` contents to the REPOSITORY ROOT (or configure Vite to build from root).
+  - Update `vite.config.ts` with `base: '/devops-learning/'`.
+- [ ] **Task 2: Full-Site Redesign**
+  - Homepage: Futuristic Bento Dashboard.
+  - Lesson View: Hierarchical sidebar + Markdown content + Terminal.
+  - Ensure the **Stitch Design System** (30px blur, cyan glows) is global.
+- [ ] **Task 3: Universal Content Router**
+  - Implement a router that maps URLs (e.g. `/01-linux`) to the corresponding markdown file.
+- [ ] **Task 4: Root GitHub Action**
+  - Update `.github/workflows/gh-pages.yml` to:
+    1. Run `npm install` and `npm run build`.
+    2. Deploy the `dist/` folder directly to the GitHub Pages ROOT.
 
-- **Task 1**: Stitch Design System implemented with Tailwind + global CSS variables
-- **Task 2**: Bento Hub with Hero Card, Intelligence Widget (God Nodes), and Learning Journey cards
-- **Task 3**: Hierarchical Navigator with Sidebar (15 modules), ModulePath breadcrumb, MarkdownRenderer
-- **Task 4**: Interactive Terminal with Falco security alerts (real-time animation, CRT scanlines)
-- **Task 5**: GitHub Actions workflow configured to build both MkDocs + Vite platform and deploy to GitHub Pages
+---
 
-**Deployment Path:**
-```
-MkDocs Build (Python)
-    ↓
-Vite Platform Build (Node.js)
-    ↓
-Copy platform/dist → site/devops-learning/
-    ↓
-Deploy site/ to GitHub Pages
-    ↓
-Available at: https://github.com/srinivas-kona-projects/Devops-learning/deployments
-```
+## 🚦 REVIEW & HANDOFF PROCESS
+1. **Claude**: Once Task 1 is complete (root switch), update this file and commit.
+2. **Antigravity**: I will verify that the root `index.html` is no longer a 404.
 
-**Build Artifacts:**
-- Build size: 317KB JS (96.9KB gzipped)
-- Pages included: 15 DevOps modules + home
-- Dependencies: React, Markdown, Lucide icons, Tailwind, Highlight.js
+---
 
-**Next Steps for Antigravity:**
-1. Review the platform UI in browser
-2. Verify all navigation flows work correctly
-3. Test markdown rendering with actual module content
-4. Monitor GitHub Pages deployment after merge
+## 🚀 STARTING SIGNAL
+"Claude, we are going all-in on the Standalone SPA. Please move the Vite app to the root, set the base URL correctly, and build the full-site shell using the Stitch design specs."
