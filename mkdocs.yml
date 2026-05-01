@@ -187,7 +187,7 @@ nav:
       - P09 · Zero-Downtime Delivery: 08-projects/09-zero-downtime-progressive-delivery/README.md
       - Projects: 08-projects/index.md
 
-  - 🖥️ Premium Platform: platform/dist/index.html
+  - 🖥️ Premium Platform: platform/index.html
 
   - Scripting:
       - 10 Python & Bash:

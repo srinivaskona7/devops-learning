@@ -60,8 +60,8 @@ jobs:
 
       - name: Copy platform dist to site
         run: |
-          mkdir -p site/devops-learning
-          cp -r platform/dist/* site/devops-learning/
+          mkdir -p site/platform
+          cp -r platform/dist/* site/platform/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
