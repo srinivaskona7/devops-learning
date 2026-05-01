@@ -66,15 +66,15 @@ extra:
             Thanks — please open an issue or PR to help improve it.
 
 extra_css:
-  - docs/stylesheets/extra.css
+  - stylesheets/extra.css
 
 extra_javascript:
-  - docs/javascripts/extra.js
-  - docs/javascripts/progress.js
-  - docs/javascripts/palette.js
-  - docs/javascripts/killercoda.js
-  - docs/javascripts/copy-yaml.js
-  - docs/javascripts/pwa-register.js
+  - javascripts/extra.js
+  - javascripts/progress.js
+  - javascripts/palette.js
+  - javascripts/killercoda.js
+  - javascripts/copy-yaml.js
+  - javascripts/pwa-register.js
 
 plugins:
   - same-dir
@@ -126,7 +126,7 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets:
       auto_append:
-        - docs/glossary.md
+        - glossary.md
   - pymdownx.smartsymbols
   - pymdownx.details
   - pymdownx.critic
@@ -185,7 +185,9 @@ nav:
       - P07 · Disaster Recovery: 08-projects/07-disaster-recovery/README.md
       - P08 · Security Hardening: 08-projects/08-security-hardening-lab/README.md
       - P09 · Zero-Downtime Delivery: 08-projects/09-zero-downtime-progressive-delivery/README.md
-      - P10 · Platform Engineering: 08-projects/10-platform-engineering-end-to-end/README.md
+      - Projects: 08-projects/index.md
+
+  - 🖥️ Premium Platform: platform/dist/index.html
 
   - Scripting:
       - 10 Python & Bash:
