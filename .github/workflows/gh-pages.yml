@@ -1,10 +1,11 @@
-name: Deploy MkDocs to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
     paths:
       - "docs/**"
+      - "platform/**"
       - "**/*.md"
       - "mkdocs.yml"
       - "requirements.txt"
@@ -29,15 +30,43 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Install dependencies
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: "platform/package-lock.json"
+
+      - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Install Node dependencies
+        working-directory: ./platform
+        run: npm ci
 
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Build and deploy
-        run: mkdocs gh-deploy --force --clean --verbose
+      - name: Build MkDocs site
+        run: mkdocs build --clean
+
+      - name: Build Vite platform
+        working-directory: ./platform
+        run: npm run build
+
+      - name: Copy platform dist to site
+        run: |
+          mkdir -p site/devops-learning
+          cp -r platform/dist/* site/devops-learning/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true
+
