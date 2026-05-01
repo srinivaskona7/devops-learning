@@ -21,7 +21,7 @@ Transform the standard MkDocs site into a premium, high-fidelity React platform 
 - [x] **Task 1: Core Design System**
   - Implement `platform/src/styles/design-tokens.css` with Stitch colors & glassmorphism.
   - Setup `Tailwind CSS` with custom configuration for Cyberpunk glows.
-- [ ] **Task 2: The Bento Hub**
+- [x] **Task 2: The Bento Hub**
   - Build the `BentoGrid` component for the landing page.
   - Integrate the `IntelligenceWidget` using God Node data (main, get_conn).
 - [ ] **Task 3: Hierarchical Navigator**

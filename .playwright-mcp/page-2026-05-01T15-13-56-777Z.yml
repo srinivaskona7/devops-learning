@@ -1,0 +1,91 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img [ref=e8]
+        - heading "DevOps Navigator" [level=1] [ref=e10]
+      - navigation [ref=e11]:
+        - link "Modules" [ref=e12] [cursor=pointer]:
+          - /url: "#"
+        - link "Projects" [ref=e13] [cursor=pointer]:
+          - /url: "#"
+        - link "Docs" [ref=e14] [cursor=pointer]:
+          - /url: "#"
+  - generic [ref=e16]:
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - heading "The Intelligent DevOps Navigator" [level=2] [ref=e20]
+        - paragraph [ref=e21]: Master cloud infrastructure through hands-on learning. 15 modules, 10 real-world projects, and a curriculum designed for production excellence.
+        - button "Start Learning" [ref=e22] [cursor=pointer]
+      - img [ref=e26]
+    - generic [ref=e29]:
+      - heading "System Architecture" [level=3] [ref=e30]
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - generic [ref=e35]:
+            - generic [ref=e36]: main()
+            - generic [ref=e37]: Entry point
+          - img [ref=e39]
+        - generic [ref=e41]:
+          - generic [ref=e44]:
+            - generic [ref=e45]: get_conn()
+            - generic [ref=e46]: Database connection
+          - img [ref=e48]
+        - generic [ref=e53]:
+          - generic [ref=e54]: run_migrations()
+          - generic [ref=e55]: Schema bootstrap
+      - paragraph [ref=e57]: 762 system files analyzed via Graphify
+  - generic [ref=e58]:
+    - heading "Your Learning Journey" [level=2] [ref=e59]
+    - generic [ref=e60]:
+      - generic [ref=e62] [cursor=pointer]:
+        - generic [ref=e63]:
+          - img [ref=e65]
+          - generic [ref=e68]: 100%
+        - heading "Linux Fundamentals" [level=3] [ref=e69]
+        - paragraph [ref=e72]: ✓ Completed
+      - generic [ref=e74] [cursor=pointer]:
+        - generic [ref=e75]:
+          - img [ref=e77]
+          - generic [ref=e80]: 85%
+        - heading "Docker & Containers" [level=3] [ref=e81]
+        - paragraph [ref=e84]: 15% remaining
+      - generic [ref=e86] [cursor=pointer]:
+        - generic [ref=e87]:
+          - img [ref=e89]
+          - generic [ref=e94]: 70%
+        - heading "Kubernetes Core" [level=3] [ref=e95]
+        - paragraph [ref=e98]: 30% remaining
+      - generic [ref=e100] [cursor=pointer]:
+        - generic [ref=e101]:
+          - img [ref=e103]
+          - generic [ref=e107]: 60%
+        - heading "Helm Charts" [level=3] [ref=e108]
+        - paragraph [ref=e111]: 40% remaining
+      - generic [ref=e113] [cursor=pointer]:
+        - generic [ref=e114]:
+          - img [ref=e116]
+          - generic [ref=e118]: 45%
+        - heading "Monitoring & Observability" [level=3] [ref=e119]
+        - paragraph [ref=e122]: 55% remaining
+      - generic [ref=e124] [cursor=pointer]:
+        - generic [ref=e125]:
+          - img [ref=e127]
+          - generic [ref=e129]: 30%
+        - heading "Security Best Practices" [level=3] [ref=e130]
+        - paragraph [ref=e133]: 70% remaining
+  - generic [ref=e134]:
+    - generic [ref=e135]:
+      - generic [ref=e136]: "15"
+      - paragraph [ref=e137]: Modules
+    - generic [ref=e138]:
+      - generic [ref=e139]: "10"
+      - paragraph [ref=e140]: Projects
+    - generic [ref=e141]:
+      - generic [ref=e142]: 120+
+      - paragraph [ref=e143]: Hours Content
+    - generic [ref=e144]:
+      - generic [ref=e145]: 1K+
+      - paragraph [ref=e146]: Community
+  - contentinfo [ref=e147]:
+    - paragraph [ref=e149]: © 2024 DevOps Learning Lab. Built with React + Vite + Stitch Design System.
