@@ -62,11 +62,25 @@ Build a Standalone Single Page Application (SPA) that serves as the entire DevOp
 
 ---
 
+## 🚑 EMERGENCY BUILD FIX: ALIGN WORKFLOW WITH ROOT
+*The build is currently failing because the GitHub Action is looking in the wrong place.*
+
+- [ ] **Step 1: Update `.github/workflows/gh-pages.yml`**
+  - Change `defaults: run: working-directory: platform` to `working-directory: .` (root).
+  - Update all paths (mkdir, cp, npm install) to be relative to the root.
+- [ ] **Step 2: Move Platform to Root**
+  - Ensure `package.json`, `vite.config.ts`, and `src/` are in the repository root.
+  - Delete the empty `platform/` folder once moved.
+- [ ] **Step 3: Fix Asset Base**
+  - Ensure `vite.config.ts` uses `base: '/devops-learning/'`.
+
+---
+
 ## 🚦 REVIEW & HANDOFF PROCESS
-1. **Claude**: Once Task 1 is complete (root switch), update this file and commit.
-2. **Antigravity**: I will verify that the root `index.html` is no longer a 404.
+1. **Claude**: Fix the workflow and move files to root. Commit and wait for the "Build" indicator on GitHub to turn green.
+2. **Antigravity**: I will verify the build status and the live root URL.
 
 ---
 
 ## 🚀 STARTING SIGNAL
-"Claude, we are going all-in on the Standalone SPA. Please move the Vite app to the root, set the base URL correctly, and build the full-site shell using the Stitch design specs."
+"Claude, the build is failing. Please perform the **EMERGENCY BUILD FIX** immediately to align the GitHub Action with our Root SPA strategy."
