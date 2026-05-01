@@ -24,7 +24,7 @@ Transform the standard MkDocs site into a premium, high-fidelity React platform 
 - [x] **Task 2: The Bento Hub**
   - Build the `BentoGrid` component for the landing page.
   - Integrate the `IntelligenceWidget` using God Node data (main, get_conn).
-- [ ] **Task 3: Hierarchical Navigator**
+- [x] **Task 3: Hierarchical Navigator**
   - Create the `Sidebar` and `ModulePath` components.
   - Implement a Markdown engine to fetch and render files from `01-linux/` to `15-ai/`.
 - [ ] **Task 4: Interactive Terminal**

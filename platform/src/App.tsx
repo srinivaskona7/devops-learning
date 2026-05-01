@@ -1,12 +1,13 @@
 import './App.css'
+import { useState } from 'react'
 import { Zap, GitBranch, BookOpen, Lightbulb, Cpu, Network } from 'lucide-react'
 import {
   BentoGrid,
   BentoItem,
-  HeroCard,
   IntelligenceWidget,
   LearningJourneyCard,
-  StatCard
+  StatCard,
+  CourseView
 } from './components'
 
 interface ModuleData {
@@ -33,6 +34,42 @@ const stats = [
 ]
 
 function App() {
+  const [isInCourseView, setIsInCourseView] = useState(false)
+
+  const handleStartLearning = () => {
+    setIsInCourseView(true)
+  }
+
+  const handleBackToHome = () => {
+    setIsInCourseView(false)
+  }
+
+  if (isInCourseView) {
+    return (
+      <div className="min-h-screen bg-stitch-dark text-stitch-text-primary overflow-hidden">
+        {/* Course View Header */}
+        <header className="sticky top-0 z-50 backdrop-blur-glass bg-stitch-surface border-b border-stitch-cyan/20">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <button
+              onClick={handleBackToHome}
+              className="flex items-center gap-3 hover:opacity-80 transition"
+            >
+              <div className="w-10 h-10 rounded-lg glass-sm flex items-center justify-center">
+                <Zap className="w-6 h-6 text-stitch-cyan animate-glow" />
+              </div>
+              <h1 className="text-xl font-bold text-gradient">DevOps Navigator</h1>
+            </button>
+          </div>
+        </header>
+
+        {/* Course View Content */}
+        <div className="max-w-7xl mx-auto">
+          <CourseView onBackToHome={handleBackToHome} />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-stitch-dark text-stitch-text-primary overflow-hidden">
       {/* Glassmorphic Header */}
@@ -45,9 +82,12 @@ function App() {
             <h1 className="text-xl font-bold text-gradient">DevOps Navigator</h1>
           </div>
           <nav className="flex gap-6 text-sm">
-            <a href="#" className="text-stitch-text-secondary hover:text-stitch-cyan transition">
+            <button
+              onClick={() => setIsInCourseView(true)}
+              className="text-stitch-text-secondary hover:text-stitch-cyan transition"
+            >
               Modules
-            </a>
+            </button>
             <a href="#" className="text-stitch-text-secondary hover:text-stitch-cyan transition">
               Projects
             </a>
@@ -63,7 +103,32 @@ function App() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Hero Card - Span 2 columns */}
           <div className="lg:col-span-2">
-            <HeroCard />
+            <div
+              onClick={handleStartLearning}
+              className="glass p-8 rounded-xl hover:shadow-glow-primary transition-all duration-300 relative overflow-hidden cursor-pointer"
+            >
+              <div className="relative z-10">
+                <h2 className="text-4xl font-bold mb-4">
+                  <span className="text-gradient">The Intelligent DevOps Navigator</span>
+                </h2>
+                <p className="text-stitch-text-secondary mb-6">
+                  Master cloud infrastructure through hands-on learning. 15 modules, 10 real-world projects, and a curriculum designed for production excellence.
+                </p>
+                <button
+                  onClick={handleStartLearning}
+                  className="px-6 py-3 bg-gradient-to-r from-stitch-cyan to-stitch-green text-stitch-dark font-bold rounded-lg hover:shadow-glow-lg transition-all hover:translate-y-[-2px]"
+                >
+                  Start Learning
+                </button>
+              </div>
+
+              {/* Animated pulsing cursor */}
+              <div className="absolute right-8 top-8 w-12 h-12">
+                <div className="absolute inset-0 rounded-full border-2 border-stitch-cyan/30 animate-pulse"></div>
+                <div className="absolute inset-2 rounded-full border border-stitch-cyan/60"></div>
+                <Zap className="absolute inset-3 w-6 h-6 text-stitch-cyan/50" />
+              </div>
+            </div>
           </div>
 
           {/* Intelligence Widget - Span 1 column */}
