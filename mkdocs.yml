@@ -66,15 +66,15 @@ extra:
             Thanks — please open an issue or PR to help improve it.
 
 extra_css:
-  - stylesheets/extra.css
+  - docs/stylesheets/extra.css
 
 extra_javascript:
-  - javascripts/extra.js
-  - javascripts/progress.js
-  - javascripts/palette.js
-  - javascripts/killercoda.js
-  - javascripts/copy-yaml.js
-  - javascripts/pwa-register.js
+  - docs/javascripts/extra.js
+  - docs/javascripts/progress.js
+  - docs/javascripts/palette.js
+  - docs/javascripts/killercoda.js
+  - docs/javascripts/copy-yaml.js
+  - docs/javascripts/pwa-register.js
 
 plugins:
   - same-dir
