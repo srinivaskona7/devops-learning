@@ -222,23 +222,27 @@ button, .btn {
    ======================================== */
 
 .card {
-  @apply glass p-6;
+  backdrop-filter: blur(30px);
+  background: var(--color-bg-surface);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-lg);
   transition: all var(--transition-base);
+}
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--glow-primary);
-    border-color: rgba(34, 211, 238, 0.4);
-  }
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--glow-primary);
+  border-color: rgba(34, 211, 238, 0.4);
 }
 
 .card-interactive {
-  @apply card;
   cursor: pointer;
+}
 
-  &:active {
-    transform: translateY(-2px);
-  }
+.card-interactive:active {
+  transform: translateY(-2px);
 }
 
 /* ========================================
