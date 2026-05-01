@@ -1,0 +1,238 @@
+# =============================================================================
+# infra/postgres/backup-job.yaml
+#
+# CronJob that runs wal-g backup-push (base backup) daily at 02:00 UTC.
+#
+# Why a CronJob instead of relying solely on WAL archiving?
+# - WAL archiving gives PITR but requires a base backup to replay FROM.
+# - Without a recent base backup, restore requires replaying ALL WAL from
+#   the beginning of time — potentially hours.
+# - A daily base backup limits recovery replay to at most 24 hours of WAL.
+#
+# The CronJob runs wal-g backup-push via the same sidecar image used in
+# the postgres pod. It mounts the same PGDATA volume (ReadOnly) and the
+# same wal-g-config ConfigMap + wal-g-secret Secret.
+#
+# Apply: kubectl apply -f infra/postgres/backup-job.yaml
+# Watch: kubectl -n production get cronjobs
+# Test:  kubectl -n production create job --from=cronjob/postgres-base-backup test-$(date +%s)
+# =============================================================================
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: postgres-base-backup
+  namespace: production
+  labels:
+    app.kubernetes.io/name: postgres-base-backup
+    app.kubernetes.io/component: postgres-backup
+    dr.example.com/backup-type: base
+  annotations:
+    dr.example.com/description: >
+      Daily wal-g base backup. Runs at 02:00 UTC (1 hour after Velero daily-full
+      to avoid competing for S3 upload bandwidth). Delta backups reduce upload size
+      to ~5% of full on unchanged databases.
+spec:
+  # Run at 02:00 UTC daily — 1 hour after Velero daily-full (01:00 UTC)
+  schedule: "0 2 * * *"
+
+  # Prevent multiple concurrent jobs if a backup runs long
+  concurrencyPolicy: Forbid
+
+  # Keep 3 successful and 1 failed job in history for debugging
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 1
+
+  # Start the job within 10 minutes of the scheduled time.
+  # If the cluster was down at 02:00, catch up within 10 minutes.
+  startingDeadlineSeconds: 600
+
+  jobTemplate:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postgres-base-backup
+        dr.example.com/backup-type: base
+    spec:
+      # Retry failed backup up to 2 times before marking as failed
+      backoffLimit: 2
+
+      # Abort if the backup takes more than 4 hours (something is wrong)
+      activeDeadlineSeconds: 14400
+
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/name: postgres-base-backup
+            dr.example.com/backup-type: base
+          annotations:
+            # Tell Velero to skip backing up this pod
+            backup.velero.io/backup-volumes-excludes: pgdata
+        spec:
+          restartPolicy: OnFailure
+
+          serviceAccountName: postgres-backup-sa
+
+          # Run on the same node as the postgres primary for local PGDATA access
+          # (or mount the PVC directly — see volumes below)
+          affinity:
+            podAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - weight: 100
+                  podAffinityTerm:
+                    labelSelector:
+                      matchLabels:
+                        app: postgres
+                        role: primary
+                    topologyKey: kubernetes.io/hostname
+
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 70       # postgres user UID
+            fsGroup: 70
+            seccompProfile:
+              type: RuntimeDefault
+
+          initContainers:
+            # Wait for postgres primary to be available before starting backup
+            - name: wait-for-postgres
+              image: postgres:16-alpine
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  until pg_isready -h postgres-primary.production.svc.cluster.local -U postgres; do
+                    echo "Waiting for postgres primary..."
+                    sleep 5
+                  done
+                  echo "Postgres is ready"
+              resources:
+                requests:
+                  cpu: 50m
+                  memory: 32Mi
+                limits:
+                  cpu: 100m
+                  memory: 64Mi
+
+          containers:
+            - name: wal-g-backup
+              # Use the same WAL-G version as the sidecar in the postgres pod
+              image: ghcr.io/wal-g/wal-g:v3.0.0-pg16
+              imagePullPolicy: IfNotPresent
+
+              command:
+                - /bin/bash
+                - -c
+                - |
+                  set -euo pipefail
+
+                  echo "=== Starting WAL-G base backup at $(date -u +%Y-%m-%dT%H:%M:%SZ) ==="
+
+                  # Verify postgres connectivity before starting
+                  pg_isready -h postgres-primary.production.svc.cluster.local -U postgres \
+                    || { echo "ERROR: Postgres primary not ready"; exit 1; }
+
+                  # Run backup-push
+                  # --full flag forces a full backup (ignores delta chain)
+                  # Omit --full for delta backups (default after first full)
+                  wal-g backup-push "${PGDATA}" \
+                    --add-user-data '{"triggered_by":"cronjob","cluster":"primary"}' \
+                    2>&1
+
+                  echo "=== Backup complete. Listing recent backups ==="
+                  wal-g backup-list DETAIL
+
+                  echo "=== Purging old backups (retain ${WALG_RETAIN_FULL_BACKUPS} full backups) ==="
+                  wal-g delete retain FULL "${WALG_RETAIN_FULL_BACKUPS}" --confirm
+
+                  echo "=== Done at $(date -u +%Y-%m-%dT%H:%M:%SZ) ==="
+
+              envFrom:
+                - configMapRef:
+                    name: wal-g-config
+                - secretRef:
+                    name: wal-g-secret
+
+              env:
+                # Connect to postgres primary for the CHECKPOINT before backup
+                - name: PGHOST
+                  value: "postgres-primary.production.svc.cluster.local"
+                - name: PGUSER
+                  value: "postgres"
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: postgres-credentials
+                      key: password
+
+              volumeMounts:
+                # Mount PGDATA read-only — wal-g reads data files directly
+                - name: pgdata
+                  mountPath: /var/lib/postgresql/data
+                  readOnly: true
+
+              resources:
+                requests:
+                  cpu: 500m
+                  memory: 256Mi
+                limits:
+                  cpu: 2000m   # Backup can spike CPU on compression
+                  memory: 1Gi
+
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities:
+                  drop:
+                    - ALL
+
+          volumes:
+            # The PVC that backs the postgres primary's PGDATA
+            # This must match the PVC name used by the postgres StatefulSet
+            - name: pgdata
+              persistentVolumeClaim:
+                claimName: pgdata-postgres-primary-0
+                readOnly: true
+
+---
+# ServiceAccount for the backup job
+# Annotate with IRSA role ARN for AWS credentials without static secrets
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: postgres-backup-sa
+  namespace: production
+  labels:
+    app.kubernetes.io/name: postgres-base-backup
+  annotations:
+    # Replace with actual role ARN after creating the IAM role
+    eks.amazonaws.com/role-arn: "arn:aws:iam::ACCOUNT_ID:role/postgres-backup-role"
+
+---
+# RBAC — backup job only needs to read its own namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: postgres-backup-role
+  namespace: production
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    resourceNames: ["wal-g-config"]
+    verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: postgres-backup-rb
+  namespace: production
+subjects:
+  - kind: ServiceAccount
+    name: postgres-backup-sa
+    namespace: production
+roleRef:
+  kind: Role
+  name: postgres-backup-role
+  apiGroup: rbac.authorization.k8s.io

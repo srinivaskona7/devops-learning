@@ -1,0 +1,215 @@
+# runtime/falco-rules.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Custom Falco detection rules for the Security Hardening Lab.
+# Five rules covering the most critical runtime attack patterns.
+#
+# Deploy:
+#   helm install falco falcosecurity/falco \
+#     --namespace falco --create-namespace \
+#     --set-file customRules."lab_rules\.yaml"=runtime/falco-rules.yaml
+#
+# EDUCATIONAL DEFENSIVE SECURITY ONLY
+# MITRE ATT&CK references map rules to the enterprise threat framework.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Macro Definitions ─────────────────────────────────────────────────────────
+
+# Detect any process that is a child of a container entrypoint
+# (i.e., spawned after container start, not the initial process)
+- macro: container_not_trusted
+  condition: >
+    container.id != host
+    and not container.image.repository in (trusted_images)
+
+# Trusted images that are allowed to run privileged operations
+# Add your debug/sidecar images here with justification
+- list: trusted_images
+  items:
+    - "gcr.io/google-containers/pause"
+    - "registry.k8s.io/pause"
+
+# Well-known shell binaries
+- list: shell_binaries
+  items:
+    - bash
+    - sh
+    - dash
+    - zsh
+    - ksh
+    - fish
+    - tcsh
+    - csh
+
+# Management tools that should not appear in production containers
+- list: mgmt_binaries
+  items:
+    - apt
+    - apt-get
+    - apk
+    - yum
+    - dnf
+    - curl
+    - wget
+    - nc
+    - ncat
+    - netcat
+    - nmap
+    - socat
+    - python
+    - python3
+    - perl
+    - ruby
+
+# ── Rule 1: Execution inside a running container ──────────────────────────────
+# MITRE ATT&CK: T1059 — Command and Scripting Interpreter
+# Why: An attacker with a reverse shell or who exploited a web app RCE will
+# exec into the container. Any exec after the initial process starts is suspicious.
+
+- rule: exec_in_container
+  desc: >
+    Detects execution of a shell or management binary inside a running container.
+    This is a strong indicator of interactive attacker activity or post-exploitation.
+    Legitimate container processes execute at startup, not interactively later.
+  condition: >
+    spawned_process
+    and container_not_trusted
+    and (proc.name in (shell_binaries) or proc.name in (mgmt_binaries))
+    and not proc.pname in (container_entrypoint)
+  output: >
+    Suspicious process execution in container
+    (user=%user.name user_uid=%user.uid command=%proc.cmdline
+     pid=%proc.pid parent=%proc.pname container=%container.name
+     image=%container.image.repository:%container.image.tag
+     namespace=%k8s.ns.name pod=%k8s.pod.name)
+  priority: WARNING
+  tags:
+    - mitre_execution
+    - T1059
+    - container_security
+    - lab_custom
+
+# ── Rule 2: Write to /etc inside a container ─────────────────────────────────
+# MITRE ATT&CK: T1098 — Account Manipulation / T1070 — Indicator Removal
+# Why: Attackers modify /etc/passwd, /etc/cron.d, /etc/ld.so.preload for
+# persistence. Legitimate app containers should use ConfigMaps or emptyDir,
+# never write to /etc directly.
+
+- rule: write_etc_dir
+  desc: >
+    Detects a write operation to the /etc directory inside a container.
+    Production containers should have read-only root filesystems.
+    Writes to /etc indicate persistence attempts or configuration tampering.
+  condition: >
+    open_write
+    and container_not_trusted
+    and fd.name startswith /etc/
+    and not proc.name in (package_mgmt_binaries)
+  output: >
+    Write to /etc directory in container
+    (user=%user.name command=%proc.cmdline pid=%proc.pid
+     file=%fd.name container=%container.name
+     image=%container.image.repository:%container.image.tag
+     namespace=%k8s.ns.name pod=%k8s.pod.name)
+  priority: ERROR
+  tags:
+    - mitre_persistence
+    - T1098
+    - container_security
+    - lab_custom
+
+# ── Rule 3: Unexpected outbound network connection ────────────────────────────
+# MITRE ATT&CK: T1071 — Application Layer Protocol (C2)
+# Why: A compromised container will attempt to connect to a Command & Control server.
+# NetworkPolicy blocks most paths, but this rule catches connections that happen
+# before NetworkPolicy is enforced (e.g., during init) or from privileged pods.
+
+- rule: unexpected_outbound
+  desc: >
+    Detects TCP connections to external IPs on non-standard ports from a container.
+    Legitimate service-to-service traffic should go to known ClusterIP services
+    on well-defined ports. Connections to random IPs or high ports indicate
+    Command and Control (C2) communication.
+  condition: >
+    outbound
+    and container_not_trusted
+    and not fd.sport in (80, 443, 8080, 8443, 5432, 3306, 6379, 9092, 2181)
+    and not fd.sip in (rfc_1918_addresses)
+    and not fd.sip = "127.0.0.1"
+  output: >
+    Unexpected outbound connection from container
+    (user=%user.name command=%proc.cmdline pid=%proc.pid
+     connection=%fd.name proto=%fd.l4proto
+     container=%container.name
+     image=%container.image.repository:%container.image.tag
+     namespace=%k8s.ns.name pod=%k8s.pod.name)
+  priority: WARNING
+  tags:
+    - mitre_command_and_control
+    - T1071
+    - container_security
+    - lab_custom
+
+# ── Rule 4: Privilege escalation attempt ─────────────────────────────────────
+# MITRE ATT&CK: T1548 — Abuse Elevation Control Mechanism
+# Why: Even with allowPrivilegeEscalation: false in the pod spec, kernel
+# vulnerabilities may allow a bypass. Falco provides the runtime backstop.
+# setuid/setgid syscalls are the mechanism for privilege escalation.
+
+- rule: privilege_escalation_attempt
+  desc: >
+    Detects setuid or setgid syscalls inside a container, indicating an attempt
+    to change process credentials to a higher-privileged user or group.
+    Combined with a kernel exploit, this enables container escape.
+    All containers should run with allowPrivilegeEscalation: false.
+  condition: >
+    (syscall.type = setuid or syscall.type = setgid)
+    and container_not_trusted
+    and not proc.name in (gosu, su, sudo)
+  output: >
+    Privilege escalation syscall in container
+    (syscall=%syscall.type user=%user.name uid=%user.uid
+     new_uid=%evt.rawres command=%proc.cmdline pid=%proc.pid
+     container=%container.name
+     image=%container.image.repository:%container.image.tag
+     namespace=%k8s.ns.name pod=%k8s.pod.name)
+  priority: CRITICAL
+  tags:
+    - mitre_privilege_escalation
+    - T1548
+    - container_security
+    - lab_custom
+
+# ── Rule 5: Read from /proc sensitive files ───────────────────────────────────
+# MITRE ATT&CK: T1057 — Process Discovery / T1212 — Exploitation for Credential Access
+# Why: /proc/<pid>/mem allows reading another process's memory space.
+# /proc/sysrq-trigger can crash the kernel. These are classic container escape
+# and credential harvesting paths.
+
+- rule: proc_read_attempt
+  desc: >
+    Detects reads from sensitive /proc entries that enable container escape,
+    memory dumping from other processes, or kernel stability attacks.
+    Legitimate containers never need to access /proc/<pid>/mem or sysrq-trigger.
+  condition: >
+    open_read
+    and container_not_trusted
+    and (
+      fd.name glob "/proc/*/mem"
+      or fd.name = "/proc/sysrq-trigger"
+      or fd.name glob "/proc/*/maps"
+      or fd.name glob "/proc/*/environ"
+    )
+    and proc.name != "ps"
+  output: >
+    Sensitive /proc read in container
+    (user=%user.name command=%proc.cmdline pid=%proc.pid
+     file=%fd.name container=%container.name
+     image=%container.image.repository:%container.image.tag
+     namespace=%k8s.ns.name pod=%k8s.pod.name)
+  priority: ERROR
+  tags:
+    - mitre_discovery
+    - T1057
+    - T1212
+    - container_security
+    - lab_custom

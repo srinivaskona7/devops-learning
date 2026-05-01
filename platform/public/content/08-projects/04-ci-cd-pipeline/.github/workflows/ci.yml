@@ -1,0 +1,397 @@
+name: CI — 7-Stage Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - '.github/workflows/ci.yml'
+
+# Minimal permissions at workflow level — jobs override as needed.
+permissions:
+  contents: read
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/cicd-demo
+  GO_VERSION: '1.22'
+
+jobs:
+  # ── Stage 1: Lint ─────────────────────────────────────────────────────────
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: true
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: v1.57
+          working-directory: app
+          args: --timeout 3m
+
+  # ── Stage 2: Test ─────────────────────────────────────────────────────────
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ env.GO_VERSION }}
+          cache: true
+
+      - name: Run tests with race detector
+        run: go test -race -v -coverprofile=coverage.out ./...
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: app/coverage.out
+          retention-days: 7
+
+  # ── Stage 3: Build multi-arch ─────────────────────────────────────────────
+  build:
+    name: Build multi-arch
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
+      image: ${{ steps.meta.outputs.tags }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up QEMU (for arm64 cross-compilation)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=sha,prefix=sha-,format=short
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+
+      - name: Build and push
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: app
+          file: app/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VERSION=${{ github.sha }}
+          # GHA cache: restore from base branch first, then current branch
+          cache-from: |
+            type=gha,scope=${{ github.base_ref || 'main' }}-buildkit
+            type=gha,scope=${{ github.ref_name }}-buildkit
+          cache-to: type=gha,scope=${{ github.ref_name }}-buildkit,mode=max
+          provenance: true
+          sbom: true
+
+  # ── Stage 4: Trivy scan ───────────────────────────────────────────────────
+  scan:
+    name: Trivy scan
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write  # upload SARIF to Code Scanning
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ needs.build.outputs.digest }}
+          format: sarif
+          output: trivy-results.sarif
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+
+      - name: Upload SARIF to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()  # upload even if trivy found issues (for visibility)
+        with:
+          sarif_file: trivy-results.sarif
+
+  # ── Stage 5: Cosign sign (keyless) ────────────────────────────────────────
+  sign:
+    name: Sign image (keyless)
+    needs: [scan]
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # OIDC token for Fulcio
+      packages: write   # write OCI signature artifact to GHCR
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3
+        with:
+          cosign-release: 'v2.2.4'
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sign image digest (keyless via OIDC)
+        env:
+          DIGEST: ${{ needs.build.outputs.digest }}
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        run: |
+          cosign sign --yes \
+            "${IMAGE}@${DIGEST}"
+
+      - name: Verify signature (sanity check)
+        env:
+          DIGEST: ${{ needs.build.outputs.digest }}
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        run: |
+          cosign verify \
+            --certificate-identity-regexp "https://github.com/${{ github.repository }}/" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            "${IMAGE}@${DIGEST}"
+
+  # ── Stage 6: Push final tags ──────────────────────────────────────────────
+  # Note: build already pushed. This job re-tags for clarity and generates SBOM.
+  push:
+    name: Finalize + SBOM
+    needs: [sign]
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3
+        with:
+          cosign-release: 'v2.2.4'
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate SBOM with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ needs.build.outputs.digest }}
+          format: spdx-json
+          output: sbom.spdx.json
+
+      - name: Attach SBOM to image
+        env:
+          DIGEST: ${{ needs.build.outputs.digest }}
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        run: |
+          cosign attach sbom --sbom sbom.spdx.json \
+            "${IMAGE}@${DIGEST}"
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: sbom.spdx.json
+          retention-days: 90
+
+  # ── Stage 7: Deploy preview (PR only) ────────────────────────────────────
+  deploy-preview:
+    name: Deploy preview
+    needs: [push]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    environment:
+      name: preview-pr-${{ github.event.number }}
+      url: https://pr-${{ github.event.number }}.preview.example.com
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Configure preview kubeconfig
+        env:
+          PREVIEW_KUBECONFIG: ${{ secrets.PREVIEW_KUBECONFIG }}
+        run: |
+          mkdir -p ~/.kube
+          echo "${PREVIEW_KUBECONFIG}" | base64 -d > ~/.kube/config
+          chmod 600 ~/.kube/config
+
+      - name: Deploy to preview namespace
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ needs.build.outputs.digest }}
+        run: |
+          chmod +x infra/preview/deploy.sh
+          infra/preview/deploy.sh "${PR_NUMBER}" "${IMAGE}"
+
+      - name: Post preview URL as PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request.number;
+            const url = `https://pr-${pr}.preview.example.com`;
+            const body = [
+              '## Preview environment',
+              '',
+              `Live at: **[${url}](${url})**`,
+              '',
+              `Image: \`${process.env.IMAGE}\``,
+              '',
+              '_Auto-deleted when this PR is closed._',
+            ].join('\n');
+
+            // Find existing preview comment and update it, or create new
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr,
+            });
+            const existing = comments.find(c =>
+              c.user.login === 'github-actions[bot]' &&
+              c.body.includes('Preview environment')
+            );
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr,
+                body,
+              });
+            }
+        env:
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ needs.build.outputs.digest }}
+
+  # ── Integration tests (main branch only) ─────────────────────────────────
+  integration-test:
+    name: Integration tests (kind)
+    needs: [push]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create kind cluster
+        uses: helm/kind-action@v1.10.0
+        with:
+          cluster_name: ci-${{ github.run_id }}
+          config: infra/kind.yaml
+          wait: 120s
+
+      - name: Load image into kind
+        env:
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ needs.build.outputs.digest }}
+        run: |
+          docker pull "${IMAGE}"
+          kind load docker-image "${IMAGE}" \
+            --name ci-${{ github.run_id }}
+
+      - name: Deploy to kind cluster
+        env:
+          IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ needs.build.outputs.digest }}
+        run: |
+          kubectl create namespace integration-test
+          kubectl create deployment cicd-demo \
+            --image="${IMAGE}" \
+            --namespace=integration-test
+          kubectl expose deployment cicd-demo \
+            --port=8080 --type=NodePort \
+            --namespace=integration-test
+          kubectl rollout status deployment/cicd-demo \
+            --namespace=integration-test \
+            --timeout=60s
+
+      - name: Port-forward and run k6 smoke test
+        run: |
+          kubectl port-forward \
+            svc/cicd-demo 8080:8080 \
+            --namespace=integration-test &
+          sleep 3
+          curl -sf http://localhost:8080/healthz
+          curl -sf http://localhost:8080/ready
+          curl -sf http://localhost:8080/api/hello | jq .
+
+      - name: Run k6 smoke test
+        uses: grafana/k6-action@v0.3.1
+        with:
+          filename: tests/k6/smoke.js
+
+      - name: Delete kind cluster
+        if: always()
+        run: kind delete cluster --name ci-${{ github.run_id }}

@@ -1,0 +1,21 @@
+# Inject defaults + min/max per container in this namespace
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: demo-limits
+  namespace: demo
+spec:
+  limits:
+    - type: Container
+      default:                       # ← used if user omits limits
+        cpu: 500m
+        memory: 256Mi
+      defaultRequest:                # ← used if user omits requests
+        cpu: 100m
+        memory: 64Mi
+      max:                           # ← reject anything bigger
+        cpu: "2"
+        memory: 2Gi
+      min:                           # ← reject anything smaller
+        cpu: 10m
+        memory: 16Mi

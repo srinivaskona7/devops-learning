@@ -1,0 +1,51 @@
+---
+# Recreate strategy: terminate ALL old pods before creating new ones.
+# Causes downtime. Use only when versions cannot co-exist.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-recreate
+  labels:
+    app: hello-recreate
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate          # << the whole point of this demo
+  selector:
+    matchLabels:
+      app: hello-recreate
+  template:
+    metadata:
+      labels:
+        app: hello-recreate
+        version: v1
+    spec:
+      containers:
+        - name: hello
+          image: gcr.io/google-samples/hello-app:1.0
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 1
+            periodSeconds: 2
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 64Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-recreate
+spec:
+  selector:
+    app: hello-recreate
+  ports:
+    - port: 80
+      targetPort: 8080

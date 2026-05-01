@@ -1,0 +1,12 @@
+# PDB: at least 2 pods must remain during voluntary disruptions (drain, upgrade)
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: hello-prod
+  labels:
+    app: hello-prod
+spec:
+  minAvailable: 2                      # ← or use maxUnavailable
+  selector:
+    matchLabels:
+      app: hello-prod

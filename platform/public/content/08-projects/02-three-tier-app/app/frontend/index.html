@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shortener — DevOps Lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <span class="logo">🔗 shortener</span>
+    <span class="badge">DevOps Lab — Project 02</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Shorten a <em>URL</em></h1>
+      <p class="sub">Paste any link. Get a short code. Watch it hit the DB.</p>
+    </section>
+
+    <section class="card shorten-card">
+      <form id="shorten-form">
+        <label for="url-input" class="form-label">Long URL</label>
+        <div class="input-row">
+          <input
+            id="url-input"
+            type="url"
+            placeholder="https://example.com/very/long/path"
+            required
+            autocomplete="off"
+          />
+          <button type="submit">Shorten</button>
+        </div>
+      </form>
+
+      <div id="result" class="result hidden">
+        <span class="result-label">Short URL</span>
+        <a id="short-link" href="#" target="_blank" rel="noopener noreferrer"></a>
+        <button id="copy-btn" class="copy-btn" title="Copy to clipboard">📋</button>
+      </div>
+      <div id="error" class="error hidden"></div>
+    </section>
+
+    <section class="card links-card">
+      <div class="links-header">
+        <h2>Recent links</h2>
+        <button id="refresh-btn" class="refresh-btn">↻ Refresh</button>
+      </div>
+      <table id="links-table">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Target</th>
+            <th>Hits</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody id="links-body">
+          <tr><td colspan="4" class="empty">No links yet.</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <span>Built with FastAPI · Postgres 16 · Nginx · Docker Compose</span>
+  </footer>
+
+  <script>
+    const API_BASE = '';  // same origin via nginx proxy
+
+    // --- Shorten form ---
+    document.getElementById('shorten-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const url = document.getElementById('url-input').value.trim();
+      const resultEl = document.getElementById('result');
+      const errorEl  = document.getElementById('error');
+      resultEl.classList.add('hidden');
+      errorEl.classList.add('hidden');
+
+      try {
+        const res = await fetch(`${API_BASE}/api/shorten`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url }),
+        });
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data.detail || `HTTP ${res.status}`);
+        }
+        const data = await res.json();
+        const link = document.getElementById('short-link');
+        link.href = data.short_url;
+        link.textContent = data.short_url;
+        resultEl.classList.remove('hidden');
+        document.getElementById('url-input').value = '';
+        loadLinks();
+      } catch (err) {
+        errorEl.textContent = `Error: ${err.message}`;
+        errorEl.classList.remove('hidden');
+      }
+    });
+
+    // --- Copy button ---
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      const url = document.getElementById('short-link').href;
+      navigator.clipboard.writeText(url).catch(() => {});
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = '✅';
+      setTimeout(() => { btn.textContent = '📋'; }, 1500);
+    });
+
+    // --- Refresh button ---
+    document.getElementById('refresh-btn').addEventListener('click', loadLinks);
+
+    // --- Load recent links ---
+    async function loadLinks() {
+      try {
+        const res = await fetch(`${API_BASE}/api/links?limit=20`);
+        const data = await res.json();
+        const tbody = document.getElementById('links-body');
+        if (!data.links || data.links.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" class="empty">No links yet.</td></tr>';
+          return;
+        }
+        tbody.innerHTML = data.links.map(l => `
+          <tr>
+            <td><a href="/${l.code}" target="_blank" rel="noopener noreferrer">${l.code}</a></td>
+            <td class="target-cell" title="${escHtml(l.target)}">${escHtml(truncate(l.target, 60))}</td>
+            <td class="hits">${l.hits}</td>
+            <td class="ts">${new Date(l.created_at).toLocaleString()}</td>
+          </tr>`).join('');
+      } catch (err) {
+        console.warn('loadLinks error:', err);
+      }
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    function truncate(s, n) {
+      return s.length > n ? s.slice(0, n) + '…' : s;
+    }
+
+    // Load on page open
+    loadLinks();
+  </script>
+</body>
+</html>

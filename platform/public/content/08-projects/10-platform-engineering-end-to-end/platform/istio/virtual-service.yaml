@@ -1,0 +1,120 @@
+---
+# Gateway — TLS termination at the mesh edge
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: platform-gateway
+  namespace: istio-system
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: platform-tls-cert   # cert-manager Certificate object
+      hosts:
+        - "api.vantapay.io"
+        - "grafana.vantapay.io"
+        - "argocd.vantapay.io"
+        - "backstage.vantapay.io"
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      tls:
+        httpsRedirect: true
+      hosts:
+        - "*"
+---
+# VirtualService — canary traffic split for payment-service
+# Argo Rollouts controller updates the canary weight automatically.
+# Do NOT manually edit canaryWeight — Rollouts owns it.
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: payment-service
+  namespace: payment
+  labels:
+    app.kubernetes.io/managed-by: argo-rollouts
+    platform.vantapay.io/rollout: payment-service
+  annotations:
+    # Argo Rollouts sets this annotation to indicate it manages this VS
+    argo-rollouts.argoproj.io/managed-by-rollouts: payment-service
+spec:
+  hosts:
+    - payment-service
+    - api.vantapay.io
+  gateways:
+    - istio-system/platform-gateway
+    - mesh   # internal service-to-service
+  http:
+    - name: primary
+      match:
+        - headers:
+            x-canary:
+              exact: "true"
+      route:
+        - destination:
+            host: payment-service-canary
+            port:
+              number: 8080
+          weight: 100
+    - name: canary-split
+      route:
+        # Argo Rollouts controller updates these weights during canary
+        - destination:
+            host: payment-service-stable
+            port:
+              number: 8080
+          weight: 90    # managed by Rollouts — do not edit manually
+        - destination:
+            host: payment-service-canary
+            port:
+              number: 8080
+          weight: 10    # managed by Rollouts — do not edit manually
+      timeout: 30s
+      retries:
+        attempts: 3
+        perTryTimeout: 10s
+        retryOn: gateway-error,connect-failure,retriable-4xx
+---
+# DestinationRule — circuit breaker + connection pool for payment-service
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: payment-service
+  namespace: payment
+  labels:
+    app.kubernetes.io/managed-by: platform-team
+spec:
+  host: payment-service
+  trafficPolicy:
+    connectionPool:
+      tcp:
+        maxConnections: 100
+      http:
+        http1MaxPendingRequests: 100
+        http2MaxRequests: 1000
+        maxRequestsPerConnection: 10
+    outlierDetection:
+      consecutiveGatewayErrors: 5
+      consecutive5xxErrors: 5
+      interval: 30s
+      baseEjectionTime: 30s
+      maxEjectionPercent: 50
+      minHealthPercent: 50
+    loadBalancer:
+      simple: LEAST_CONN
+  subsets:
+    - name: stable
+      labels:
+        rollouts-pod-template-hash: stable   # set by Argo Rollouts
+    - name: canary
+      labels:
+        rollouts-pod-template-hash: canary   # set by Argo Rollouts

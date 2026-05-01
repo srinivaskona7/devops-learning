@@ -1,0 +1,134 @@
+# =============================================================================
+# infra/postgres/wal-g-config.yaml
+#
+# ConfigMap carrying WAL-G environment variables for the wal-g sidecar
+# container. The sidecar runs alongside the postgres container and
+# intercepts archive_command / restore_command calls.
+#
+# WAL-G reads its configuration from environment variables prefixed WALG_*.
+# All sensitive values (AWS keys) reference Kubernetes Secrets — never
+# hardcode credentials in this ConfigMap.
+#
+# Usage:
+#   kubectl apply -f infra/postgres/wal-g-config.yaml
+#   Reference in pod spec:
+#     envFrom:
+#       - configMapRef: { name: wal-g-config }
+#       - secretRef:    { name: wal-g-secret }
+# =============================================================================
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wal-g-config
+  namespace: production
+  labels:
+    app.kubernetes.io/name: wal-g
+    app.kubernetes.io/component: postgres-backup
+    dr.example.com/rpo: "30s"
+  annotations:
+    dr.example.com/description: >
+      WAL-G sidecar configuration. WAL segments archive every 10s
+      (archive_timeout=10 in postgresql.conf). S3 bucket is the same
+      bucket used by Velero — different prefix (wal-g/ vs velero/).
+data:
+  # ── S3 target ─────────────────────────────────────────────────────────────
+  # AWS credentials are injected from wal-g-secret (not this ConfigMap).
+  # WALG_S3_PREFIX format: s3://<bucket>/<path>
+  # The path must be unique per Postgres cluster.
+  WALG_S3_PREFIX: "s3://dr-velero-primary-backup/wal-g/prod-postgres"
+
+  # AWS region — must match the bucket's region
+  AWS_REGION: "us-east-1"
+
+  # ── Compression ───────────────────────────────────────────────────────────
+  # lz4: fastest, good ratio — recommended for WAL segments (hot path)
+  # zstd: better ratio, slightly slower — used for base backups
+  WALG_COMPRESSION_METHOD: "lz4"
+
+  # Base backup compression can differ from WAL segment compression
+  WALG_BASE_BACKUP_COMPRESSION_METHOD: "zstd"
+
+  # ── Concurrency ───────────────────────────────────────────────────────────
+  # Upload parallelism for base backups (WAL segments are always serial)
+  WALG_UPLOAD_CONCURRENCY: "16"
+
+  # Download parallelism during restore
+  WALG_DOWNLOAD_CONCURRENCY: "8"
+
+  # Maximum number of concurrent disk operations during delta backup
+  WALG_UPLOAD_DISK_CONCURRENCY: "2"
+
+  # ── Retention ─────────────────────────────────────────────────────────────
+  # Keep base backups for 7 days — this defines PITR window
+  # WAL segments needed for PITR must also be retained (handled automatically
+  # by wal-g: it never deletes WAL segments that are required for a retained backup)
+  WALG_RETAIN_FULL_BACKUPS: "7"
+
+  # Delete backups older than this on next backup-push (prevents S3 cost explosion)
+  WALG_BACKUP_TTL: "168h"    # 7 days in hours
+
+  # ── Delta backups ─────────────────────────────────────────────────────────
+  # Delta backup uploads only changed pages vs the previous base backup.
+  # This dramatically reduces base backup size and upload time.
+  # After WALG_DELTA_MAX_STEPS delta backups, the next is a full base backup.
+  WALG_DELTA_MAX_STEPS: "6"
+
+  # Delta backup origin: the most recent base backup
+  WALG_DELTA_ORIGIN: "LATEST"
+
+  # ── Postgres-specific ─────────────────────────────────────────────────────
+  # pg_control file location — WAL-G needs this to determine cluster state
+  PGDATA: "/var/lib/postgresql/data/pgdata"
+
+  # ── Logging ───────────────────────────────────────────────────────────────
+  # Structured JSON logs — consumed by CloudWatch agent
+  WALG_LOG_FORMAT: "json"
+
+  # Log level: DEVEL | DEBUG | INFO | WARNING | ERROR
+  WALG_LOG_LEVEL: "INFO"
+
+  # ── Network ───────────────────────────────────────────────────────────────
+  # Timeout for individual S3 API calls (seconds)
+  AWS_CONNECT_TIMEOUT: "15"
+  AWS_MAX_RETRIES: "5"
+
+  # ── postgresql.conf additions ─────────────────────────────────────────────
+  # These settings must be set in postgresql.conf (or via ALTER SYSTEM).
+  # They are documented here as a reference for the DBA.
+  #
+  # archive_mode         = on
+  # archive_command      = 'wal-g wal-push %p'
+  # archive_timeout      = 10
+  # wal_level            = replica
+  # max_wal_senders      = 5
+  # wal_keep_size        = 512MB
+  # restore_command      = 'wal-g wal-fetch "%f" "%p"'  (set during PITR)
+
+---
+# Secret template — populate these values before applying.
+# In production, use External Secrets Operator or AWS Secrets Manager.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: wal-g-secret
+  namespace: production
+  labels:
+    app.kubernetes.io/name: wal-g
+    app.kubernetes.io/component: postgres-backup
+  annotations:
+    # Rotating this secret requires a pod restart to pick up new values.
+    # Use IRSA (IAM Roles for Service Accounts) to eliminate static credentials.
+    dr.example.com/description: "WAL-G AWS credentials — use IRSA in production"
+type: Opaque
+stringData:
+  # When using IRSA, leave these empty (the pod will use the injected role).
+  # When using static credentials (dev only), set these values.
+  AWS_ACCESS_KEY_ID: ""      # Set via: kubectl create secret ...
+  AWS_SECRET_ACCESS_KEY: ""  # Set via: kubectl create secret ...
+
+  # Encryption passphrase for WAL segment encryption at rest.
+  # WAL-G encrypts via OpenPGP before uploading.
+  # If empty, no application-level encryption (rely on S3 SSE-KMS).
+  WALG_PGP_KEY_PATH: ""
+  WALG_LIBSODIUM_KEY: ""

@@ -1,0 +1,44 @@
+# Deployment: 3 replicas of GCR hello-app with probes + resources + rolling update
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app
+  labels:
+    app: hello-app
+    version: "1.0"
+    component: web
+spec:
+  replicas: 3
+  revisionHistoryLimit: 5            # ← keep last 5 ReplicaSets for rollback
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1                    # ← at most 1 extra pod during rollout
+      maxUnavailable: 0              # ← never go below desired replica count
+  selector:
+    matchLabels:
+      app: hello-app                 # ← MUST match template.metadata.labels
+  template:
+    metadata:
+      labels:
+        app: hello-app
+        version: "1.0"
+        component: web
+    spec:
+      containers:
+        - name: hello
+          image: gcr.io/google-samples/hello-app:1.0
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            requests: { cpu: "50m",  memory: "64Mi" }
+            limits:   { cpu: "200m", memory: "128Mi" }
+          readinessProbe:            # ← gate traffic until app is up
+            httpGet: { path: /, port: http }
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:             # ← restart container if hung
+            httpGet: { path: /, port: http }
+            initialDelaySeconds: 10
+            periodSeconds: 10

@@ -1,0 +1,109 @@
+# OTel Collector — full pipeline: receive → process → export
+# Receives OTLP (gRPC + HTTP), batches, fans out to Prometheus, Loki, Tempo.
+
+extensions:
+  health_check:
+    endpoint: "0.0.0.0:13133"
+  pprof:
+    endpoint: "0.0.0.0:1777"
+  zpages:
+    endpoint: "0.0.0.0:55679"
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: "0.0.0.0:4317"
+      http:
+        endpoint: "0.0.0.0:4318"
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+    spike_limit_mib: 64
+
+  batch:
+    send_batch_size: 1024
+    timeout: 5s
+
+  # Enrich every span/metric/log with the k8s pod name and namespace
+  resource:
+    attributes:
+      - key: k8s.cluster.name
+        value: "obs-demo-cluster"
+        action: insert
+
+  # Add exemplar support: link metric data points to their producing trace ID
+  transform/add_exemplars:
+    metric_statements:
+      - context: datapoint
+        statements:
+          - set(attributes["trace_id"], trace_id.string) where trace_id != nil
+
+exporters:
+  # ── Traces → Tempo (OTLP gRPC) ──────────────────────────────────────────
+  otlp/tempo:
+    endpoint: "tempo:4317"
+    tls:
+      insecure: true
+
+  # ── Metrics → Prometheus remote-write ───────────────────────────────────
+  prometheusremotewrite:
+    endpoint: "http://prometheus-operated:9090/api/v1/write"
+    tls:
+      insecure: true
+    resource_to_telemetry_conversion:
+      enabled: true
+    target_info:
+      enabled: true
+
+  # ── Logs → Loki ─────────────────────────────────────────────────────────
+  loki:
+    endpoint: "http://loki:3100/loki/api/v1/push"
+    tls:
+      insecure: true
+    default_labels_enabled:
+      exporter: true
+      job: true
+      level: true
+    labels:
+      resource:
+        service.name: "service_name"
+        service.version: "service_version"
+        deployment.environment: "env"
+      attributes:
+        http.method: "http_method"
+        http.status_code: "http_status"
+
+  # ── Debug (stdout) ───────────────────────────────────────────────────────
+  debug:
+    verbosity: normal
+    sampling_initial: 5
+    sampling_thereafter: 200
+
+service:
+  extensions: [health_check, pprof, zpages]
+
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, resource, batch]
+      exporters: [otlp/tempo, debug]
+
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter, resource, transform/add_exemplars, batch]
+      exporters: [prometheusremotewrite, debug]
+
+    logs:
+      receivers: [otlp]
+      processors: [memory_limiter, resource, batch]
+      exporters: [loki, debug]
+
+  telemetry:
+    logs:
+      level: "info"
+    metrics:
+      level: basic
+      address: "0.0.0.0:8888"

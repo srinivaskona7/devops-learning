@@ -1,0 +1,14 @@
+---
+# Live Service. Selector decides which color users hit.
+# Switch by: kubectl patch svc hello-bg -p '{"spec":{"selector":{"app":"hello-bg","color":"green"}}}'
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-bg
+spec:
+  selector:
+    app: hello-bg
+    color: blue          # <-- the only line that matters during switchover
+  ports:
+    - port: 80
+      targetPort: 8080

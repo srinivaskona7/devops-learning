@@ -1,0 +1,61 @@
+# baseline/insecure-rbac.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# INTENTIONALLY INSECURE — DO NOT USE IN PRODUCTION
+# Demonstrates the most dangerous RBAC anti-patterns found in real clusters.
+# ─────────────────────────────────────────────────────────────────────────────
+
+---
+# ANTI-PATTERN 1: ServiceAccount with no description
+# In production you need to know WHO this SA is and WHY it needs any access
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: insecure-sa
+  namespace: insecure-workloads
+  # Missing: labels, annotations explaining purpose and owner
+
+---
+# ANTI-PATTERN 2: ClusterRoleBinding to cluster-admin
+# This grants the SA full read/write access to EVERY resource in EVERY namespace.
+# Any pod using this SA can: create privileged pods, read secrets, exec into
+# other pods, delete namespaces, escalate to any other identity.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: insecure-sa-cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: insecure-sa
+    namespace: insecure-workloads
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin    # DANGER: full God-mode access
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# ANTI-PATTERN 3: Custom ClusterRole with wildcard verbs and resources
+# Often seen as a "let's just get it working" shortcut that never gets removed
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: insecure-wildcard-role
+rules:
+  - apiGroups: ["*"]    # DANGER: all API groups
+    resources: ["*"]    # DANGER: all resources (pods, secrets, nodes, etc.)
+    verbs: ["*"]        # DANGER: all verbs (get, list, create, delete, exec...)
+
+---
+# ANTI-PATTERN 4: Default ServiceAccount is also over-permissive
+# Many teams forget the `default` SA exists and is auto-mounted in every pod
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: insecure-default-sa-binding
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: insecure-workloads
+roleRef:
+  kind: ClusterRole
+  name: view        # Even read-only cluster-wide is too broad for most workloads
+  apiGroup: rbac.authorization.k8s.io

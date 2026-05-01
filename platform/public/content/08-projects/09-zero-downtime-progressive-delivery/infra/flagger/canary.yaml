@@ -1,0 +1,73 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Flagger Canary CRD
+#
+# Flagger automates the canary promotion lifecycle for Istio:
+#   1. Detects a new Deployment image.
+#   2. Creates canary + primary Deployments automatically.
+#   3. Shifts traffic 10% → 20% → … → 100% every `interval` if metrics pass.
+#   4. Rolls back on metric failure or maxWeight exceeded without success.
+# ═══════════════════════════════════════════════════════════════════════════════
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: demo-app
+  namespace: progressive
+spec:
+  # ── Target Deployment ────────────────────────────────────────────────────
+  targetRef:
+    apiVersion: apps/v1
+    kind:       Deployment
+    name:       demo-app
+
+  # ── Istio ingress gateway + VirtualService management ───────────────────
+  provider: istio
+
+  service:
+    port:       8080
+    targetPort: 8080
+    gateways:
+      - istio-system/ingressgateway
+    hosts:
+      - demo-app.progressive.svc.cluster.local
+
+  # ── Canary promotion policy ──────────────────────────────────────────────
+  analysis:
+    # Evaluate metrics every 60 seconds.
+    interval:   1m
+    # Advance weight by 10% per successful interval.
+    stepWeight: 10
+    # Promote at 100%; Flagger stops and marks as succeeded.
+    maxWeight:  100
+    # Roll back if 5 consecutive evaluations fail.
+    threshold:  5
+
+    # ── SLO metric gates ──────────────────────────────────────────────────
+    metrics:
+      # Gate 1 — success rate from MetricTemplate (see metric-template.yaml).
+      - name: success-rate
+        templateRef:
+          name:      prometheus-success-rate
+          namespace: progressive
+        thresholdRange:
+          min: 99  # percent
+        interval: 1m
+
+      # Gate 2 — p95 request duration.
+      - name: request-duration
+        templateRef:
+          name:      prometheus-p95-duration
+          namespace: progressive
+        thresholdRange:
+          max: 200  # milliseconds
+        interval: 1m
+
+    # ── Webhooks: run k6 load test during each canary step ───────────────
+    webhooks:
+      - name:     load-test
+        url:      http://flagger-loadtester.progressive/
+        timeout:  5s
+        metadata:
+          type: cmd
+          cmd:  >
+            hey -z 1m -q 100 -c 5
+            http://demo-app-canary.progressive:8080/api

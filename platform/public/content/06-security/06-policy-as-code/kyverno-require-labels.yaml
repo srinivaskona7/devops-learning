@@ -1,0 +1,33 @@
+---
+# Kyverno: every Pod (and pod-template) must carry the labels `app` and `team`.
+# Mode: Enforce — pods without the labels are rejected at admission.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-labels
+  annotations:
+    policies.kyverno.io/title: Require app + team labels
+    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/severity: medium
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: check-labels
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+                - Deployment
+                - StatefulSet
+                - DaemonSet
+                - Job
+                - CronJob
+      validate:
+        message: "Workloads must declare metadata.labels.app and metadata.labels.team."
+        pattern:
+          metadata:
+            labels:
+              app: "?*"
+              team: "?*"

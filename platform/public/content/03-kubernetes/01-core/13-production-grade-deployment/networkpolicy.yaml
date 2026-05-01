@@ -1,0 +1,60 @@
+# Default-deny + selective allow.
+# Requires a NetworkPolicy-aware CNI (Calico, Cilium, Antrea). Flannel does NOT enforce.
+---
+# 1) Default deny all ingress to anything labeled app=hello-prod
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: hello-prod-default-deny
+  labels:
+    app: hello-prod
+spec:
+  podSelector:
+    matchLabels:
+      app: hello-prod
+  policyTypes: ["Ingress", "Egress"]
+  # no ingress / egress rules below = deny all
+---
+# 2) Allow ingress from ingress-nginx namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: hello-prod-allow-ingress
+  labels:
+    app: hello-prod
+spec:
+  podSelector:
+    matchLabels:
+      app: hello-prod
+  policyTypes: ["Ingress"]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+      ports:
+        - port: 8080
+          protocol: TCP
+---
+# 3) Allow egress to DNS (kube-dns) so the app can resolve names
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: hello-prod-allow-dns
+  labels:
+    app: hello-prod
+spec:
+  podSelector:
+    matchLabels:
+      app: hello-prod
+  policyTypes: ["Egress"]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP

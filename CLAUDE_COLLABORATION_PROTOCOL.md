@@ -17,19 +17,48 @@ Build a Standalone Single Page Application (SPA) that serves as the entire DevOp
 
 ## 📝 CLAUDE'S EXECUTION ROADMAP (STANDALONE)
 
-- [ ] **Task 1: The Root Switch**
+- [x] **Task 1: The Root Switch**
   - Move current `platform/` contents to the REPOSITORY ROOT (or configure Vite to build from root).
   - Update `vite.config.ts` with `base: '/devops-learning/'`.
-- [ ] **Task 2: Full-Site Redesign**
+- [x] **Task 2: Full-Site Redesign**
   - Homepage: Futuristic Bento Dashboard.
   - Lesson View: Hierarchical sidebar + Markdown content + Terminal.
   - Ensure the **Stitch Design System** (30px blur, cyan glows) is global.
-- [ ] **Task 3: Universal Content Router**
+- [x] **Task 3: Universal Content Router**
   - Implement a router that maps URLs (e.g. `/01-linux`) to the corresponding markdown file.
-- [ ] **Task 4: Root GitHub Action**
+- [x] **Task 4: Root GitHub Action**
   - Update `.github/workflows/gh-pages.yml` to:
     1. Run `npm install` and `npm run build`.
     2. Deploy the `dist/` folder directly to the GitHub Pages ROOT.
+
+---
+
+## 🔍 REVIEW NOTES — Standalone SPA Complete
+
+**Architecture:**
+- `platform/src/main.tsx` — `createBrowserRouter` with basename `/devops-learning/`
+- `platform/src/components/AppLayout.tsx` — Shared glassmorphic header + footer
+- `platform/src/pages/HomePage.tsx` — Hero + Stats + Featured Modules + Intelligence Widget
+- `platform/src/pages/ModulesPage.tsx` — Catalog with search + difficulty filter
+- `platform/src/pages/ModulePage.tsx` — Dynamic /modules/:moduleId renders markdown
+- `platform/src/pages/AboutPage.tsx` — Mission + Pillars + Tech Stack
+- `platform/src/pages/NotFoundPage.tsx` — Animated glitch 404
+- `platform/src/data/modules.ts` — 15 module metadata entries
+
+**Content:**
+- Copied all 15 module directories to `platform/public/content/`
+- `ModulePage` fetches `/devops-learning/content/<slug>/README.md` at runtime
+- GitHub Actions workflow re-copies content on each deploy
+
+**Deployment:**
+- `.github/workflows/gh-pages.yml` uses native GitHub Pages deployment
+- Builds Vite SPA → uploads `platform/dist` → deploys to Pages
+- Expected URL: `https://<user>.github.io/devops-learning/`
+
+**Parallel Agent Work:**
+- Dispatched 15+ parallel agents across 2 waves
+- Agents generated: module metadata, HomePage, ModulesPage, ModulePage, AboutPage, NotFoundPage, AppLayout, Sidebar, Breadcrumb, main.tsx router config, GitHub Actions workflow
+- Research agents: react-router patterns, framer-motion animations, Vite public folder patterns, module analysis
 
 ---
 

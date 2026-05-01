@@ -1,0 +1,115 @@
+# Production-grade Deployment: probes, securityContext, anti-affinity, topology spread
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hello-prod
+  labels:
+    app: hello-prod
+  # AWS EKS IRSA example:
+  # annotations:
+  #   eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/hello-prod
+automountServiceAccountToken: false        # ← only enable if app calls the K8s API
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-prod
+  labels:
+    app: hello-prod
+    version: "1.0.0"
+    component: web
+spec:
+  replicas: 3
+  revisionHistoryLimit: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0                    # ← zero-downtime
+  selector:
+    matchLabels:
+      app: hello-prod
+  template:
+    metadata:
+      labels:
+        app: hello-prod
+        version: "1.0.0"
+        component: web
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      serviceAccountName: hello-prod
+      automountServiceAccountToken: false
+      terminationGracePeriodSeconds: 30
+      securityContext:                     # ← pod-level
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 2000
+        seccompProfile:
+          type: RuntimeDefault
+
+      # spread across zones, then nodes
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels: { app: hello-prod }
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels: { app: hello-prod }
+
+      # never two replicas on same node
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels: { app: hello-prod }
+                topologyKey: kubernetes.io/hostname
+
+      containers:
+        - name: hello
+          image: gcr.io/google-samples/hello-app:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits:   { cpu: "500m", memory: "256Mi" }
+          startupProbe:
+            httpGet: { path: /, port: http }
+            failureThreshold: 30
+            periodSeconds: 2
+          readinessProbe:
+            httpGet: { path: /, port: http }
+            periodSeconds: 5
+            failureThreshold: 2
+          livenessProbe:
+            httpGet: { path: /, port: http }
+            periodSeconds: 10
+            failureThreshold: 3
+          lifecycle:
+            preStop:                       # ← graceful drain on shutdown
+              exec:
+                command: ["sh", "-c", "sleep 10"]
+          securityContext:                 # ← container-level (overrides pod)
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp              # ← needed because rootFS is RO
+
+      volumes:
+        - name: tmp
+          emptyDir: {}

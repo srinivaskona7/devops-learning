@@ -1,0 +1,260 @@
+---
+# Policy 1: require-labels
+# Every pod must have app, version, and team labels.
+# These are required for service mesh traffic attribution,
+# Prometheus label cardinality, and cost attribution.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-labels
+  annotations:
+    policies.kyverno.io/title: Require Labels
+    policies.kyverno.io/category: Platform Standards
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/description: >-
+      Every pod must have app, version, and team labels.
+      These labels are required for service mesh attribution,
+      Prometheus metric cardinality control, and cost attribution.
+    platform.vantapay.io/policy-owner: platform-team
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: check-pod-labels
+      match:
+        any:
+          - resources:
+              kinds: ["Pod"]
+              namespaces:
+                - "payment"
+                - "fraud"
+                - "auth"
+                - "api-gateway"
+      exclude:
+        any:
+          - resources:
+              namespaces: ["kube-system", "istio-system", "monitoring", "kyverno", "argocd", "vault", "external-secrets", "chaos-mesh", "backstage", "cert-manager"]
+      validate:
+        message: "Pod must have labels: app, version, team. Got: {{ request.object.metadata.labels }}"
+        pattern:
+          metadata:
+            labels:
+              app: "?*"
+              version: "?*"
+              team: "?*"
+---
+# Policy 2: disallow-root
+# Containers must not run as root (UID 0).
+# This prevents container escape from being immediately root on the node.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: disallow-root-user
+  annotations:
+    policies.kyverno.io/title: Disallow Root User
+    policies.kyverno.io/category: Pod Security
+    policies.kyverno.io/severity: critical
+    policies.kyverno.io/description: >-
+      Containers must not run as root. Set runAsNonRoot: true
+      and runAsUser to a value >= 1000 in the security context.
+    platform.vantapay.io/policy-owner: security-team
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: check-containers-not-root
+      match:
+        any:
+          - resources:
+              kinds: ["Pod"]
+      exclude:
+        any:
+          - resources:
+              namespaces: ["kube-system", "istio-system", "kyverno", "cert-manager"]
+      validate:
+        message: >-
+          Running as root is not allowed. Set securityContext.runAsNonRoot: true
+          and securityContext.runAsUser >= 1000.
+        foreach:
+          - list: "request.object.spec.containers"
+            deny:
+              conditions:
+                any:
+                  - key: "{{ element.securityContext.runAsUser || `0` }}"
+                    operator: Equals
+                    value: 0
+                  - key: "{{ element.securityContext.runAsNonRoot || `false` }}"
+                    operator: Equals
+                    value: false
+---
+# Policy 3: require-resource-limits
+# All containers must declare CPU and memory limits.
+# Prevents noisy-neighbour resource exhaustion.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-resource-limits
+  annotations:
+    policies.kyverno.io/title: Require Resource Limits
+    policies.kyverno.io/category: Resource Management
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/description: >-
+      All containers must declare CPU and memory requests and limits.
+      Missing limits can cause a single container to exhaust node resources,
+      impacting all other workloads on the node.
+    platform.vantapay.io/policy-owner: platform-team
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: check-resource-limits
+      match:
+        any:
+          - resources:
+              kinds: ["Pod"]
+      exclude:
+        any:
+          - resources:
+              namespaces: ["kube-system", "istio-system", "kyverno"]
+      validate:
+        message: >-
+          Container {{ request.object.metadata.name }} is missing resource limits.
+          All containers must specify resources.requests and resources.limits for cpu and memory.
+        foreach:
+          - list: "request.object.spec.containers"
+            deny:
+              conditions:
+                any:
+                  - key: "{{ element.resources.limits.memory || '' }}"
+                    operator: Equals
+                    value: ""
+                  - key: "{{ element.resources.limits.cpu || '' }}"
+                    operator: Equals
+                    value: ""
+                  - key: "{{ element.resources.requests.memory || '' }}"
+                    operator: Equals
+                    value: ""
+                  - key: "{{ element.resources.requests.cpu || '' }}"
+                    operator: Equals
+                    value: ""
+---
+# Policy 4: verify-image-signature
+# All container images must be signed by the platform Cosign key.
+# This prevents unsigned (potentially tampered) images from running.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: verify-image-signature
+  annotations:
+    policies.kyverno.io/title: Verify Image Signature
+    policies.kyverno.io/category: Supply Chain Security
+    policies.kyverno.io/severity: critical
+    policies.kyverno.io/description: >-
+      All container images from ghcr.io/vantapay/* must be signed
+      by the platform Cosign key using keyless signing (Sigstore).
+      Unsigned images indicate potential supply chain compromise.
+    platform.vantapay.io/policy-owner: security-team
+spec:
+  validationFailureAction: Enforce
+  background: false   # signature verification only at admission
+  rules:
+    - name: verify-cosign-signature
+      match:
+        any:
+          - resources:
+              kinds: ["Pod"]
+              namespaces:
+                - "payment"
+                - "fraud"
+                - "auth"
+                - "api-gateway"
+      verifyImages:
+        - imageReferences:
+            - "ghcr.io/vantapay/*"
+          attestors:
+            - entries:
+                - keyless:
+                    subject: "https://github.com/vantapay/*"
+                    issuer: "https://token.actions.githubusercontent.com"
+                    rekor:
+                      url: "https://rekor.sigstore.dev"
+          # Verify SBOM attestation exists
+          attestations:
+            - predicateType: https://spdx.dev/Document
+              conditions:
+                - all:
+                    - key: "{{ predicate.name }}"
+                      operator: NotEquals
+                      value: ""
+          # Verify vulnerability scan attestation (no critical CVEs)
+          # (Uncomment when grype attestation pipeline is set up)
+          # - predicateType: https://cosign.sigstore.dev/attestation/vuln/v1
+          #   conditions:
+          #     - all:
+          #         - key: "{{ predicate.scanner.result.criticalCount }}"
+          #           operator: Equals
+          #           value: 0
+---
+# Policy 5: require-probes
+# All Deployments and Rollouts must define readiness and liveness probes.
+# Without probes, Kubernetes has no signal to determine pod health,
+# leading to traffic being sent to unready pods during rollouts.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-probes
+  annotations:
+    policies.kyverno.io/title: Require Liveness and Readiness Probes
+    policies.kyverno.io/category: Reliability
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/description: >-
+      All Deployments must define both readinessProbe and livenessProbe
+      on every container. Without probes, rolling updates can send traffic
+      to pods that are starting or unhealthy.
+    platform.vantapay.io/policy-owner: platform-team
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: check-readiness-probe
+      match:
+        any:
+          - resources:
+              kinds: ["Deployment"]
+      exclude:
+        any:
+          - resources:
+              namespaces: ["kube-system", "istio-system", "kyverno", "cert-manager"]
+      validate:
+        message: >-
+          All containers in Deployment {{ request.object.metadata.name }}
+          must define a readinessProbe. This is required for safe rolling updates.
+        foreach:
+          - list: "request.object.spec.template.spec.containers"
+            deny:
+              conditions:
+                any:
+                  - key: "{{ element.readinessProbe || '' }}"
+                    operator: Equals
+                    value: ""
+    - name: check-liveness-probe
+      match:
+        any:
+          - resources:
+              kinds: ["Deployment"]
+      exclude:
+        any:
+          - resources:
+              namespaces: ["kube-system", "istio-system", "kyverno", "cert-manager"]
+      validate:
+        message: >-
+          All containers in Deployment {{ request.object.metadata.name }}
+          must define a livenessProbe.
+        foreach:
+          - list: "request.object.spec.template.spec.containers"
+            deny:
+              conditions:
+                any:
+                  - key: "{{ element.livenessProbe || '' }}"
+                    operator: Equals
+                    value: ""

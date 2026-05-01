@@ -1,0 +1,21 @@
+---
+# Istio VirtualService: send 100% of traffic to hello-v1 (primary)
+# AND fire-and-forget mirror 100% of it to hello-v2 (shadow).
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: hello-mirror
+spec:
+  hosts:
+    - hello-v1
+  http:
+    - route:
+        - destination:
+            host: hello-v1
+            port: { number: 80 }
+          weight: 100
+      mirror:
+        host: hello-v2
+        port: { number: 80 }
+      mirrorPercentage:
+        value: 100.0          # mirror 100% of requests; lower for sampling

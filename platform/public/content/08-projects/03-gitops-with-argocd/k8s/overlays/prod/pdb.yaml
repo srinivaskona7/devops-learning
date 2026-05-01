@@ -1,0 +1,22 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: url-shortener-api-pdb
+  labels:
+    app: url-shortener-api
+    app.kubernetes.io/name: url-shortener-api
+    app.kubernetes.io/component: api
+    environment: prod
+  annotations:
+    # Wave 1: apply after the Deployment (wave 0) is Healthy.
+    # PDB requires the Deployment to exist before it can be validated.
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  # With 3 replicas, minAvailable: 2 means:
+  #   - At most 1 pod can be disrupted at any time
+  #   - Rolling update + node drain both respect this budget
+  #   - The cluster scheduler will not evict a pod if only 2 are running
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: url-shortener-api

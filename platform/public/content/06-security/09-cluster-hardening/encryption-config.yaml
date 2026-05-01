@@ -1,0 +1,33 @@
+---
+# EncryptionConfiguration for kube-apiserver. Place at the path passed to
+#   --encryption-provider-config=/etc/kubernetes/enc/encryption-config.yaml
+#
+# Provider order matters: the FIRST provider is used to ENCRYPT new writes.
+# All providers are tried in order to DECRYPT.
+# Always keep `identity` last so existing plaintext can still be read while
+# you're rotating into encryption.
+apiVersion: apiserver.config.k8s.io/v1
+kind: EncryptionConfiguration
+resources:
+  - resources:
+      - secrets
+      - configmaps          # optional, but recommended for sensitive CMs
+    providers:
+      # Preferred: KMS v2 — actual key never on disk, lives in cloud KMS
+      - kms:
+          apiVersion: v2
+          name: aws-kms-provider
+          endpoint: unix:///var/run/kmsplugin/socket.sock
+          timeout: 3s
+          # cachesize: omitted in v2 (managed automatically)
+      # Fallback for read of older entries
+      - aescbc:
+          keys:
+            - name: key1
+              # 32 random bytes, base64. Generate with:
+              # head -c 32 /dev/urandom | base64
+              secret: "REPLACE_WITH_BASE64_32_BYTES"
+      # Last resort — must remain so plaintext entries pre-rollout still decrypt.
+      # Once `kubectl get secrets -A -o json | kubectl replace -f -` has rewritten
+      # everything, you can remove `identity`.
+      - identity: {}

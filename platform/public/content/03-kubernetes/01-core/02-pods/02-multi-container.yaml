@@ -1,0 +1,37 @@
+# Multi-container pod — app + sidecar log shipper sharing a volume
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-container
+  labels:
+    app: multi-container
+    version: "1.0"
+    component: demo
+spec:
+  containers:
+    # main app — writes logs to /var/log/app
+    - name: app
+      image: nginx:1.27-alpine
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: logs
+          mountPath: /var/log/nginx
+      resources:
+        requests: { cpu: "50m", memory: "64Mi" }
+        limits:   { cpu: "200m", memory: "128Mi" }
+
+    # sidecar — tails the same volume
+    - name: log-shipper
+      image: busybox:1.36
+      command: ["/bin/sh", "-c", "tail -F /var/log/nginx/access.log"]
+      volumeMounts:
+        - name: logs
+          mountPath: /var/log/nginx
+      resources:
+        requests: { cpu: "10m", memory: "16Mi" }
+        limits:   { cpu: "50m", memory: "32Mi" }
+
+  volumes:
+    - name: logs                      # ← emptyDir lives & dies with the pod
+      emptyDir: {}

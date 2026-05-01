@@ -1,0 +1,101 @@
+# policies/kyverno/deny-privilege-escalation.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Blocks containers that allow privilege escalation via setuid/setgid binaries.
+# Maps to: CIS Kubernetes Benchmark 5.2.5
+# STRIDE:  Elevation of Privilege (E)
+# ─────────────────────────────────────────────────────────────────────────────
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: deny-privilege-escalation
+  annotations:
+    policies.kyverno.io/title: Deny Privilege Escalation
+    policies.kyverno.io/category: Pod Security
+    policies.kyverno.io/severity: critical
+    policies.kyverno.io/subject: Pod, Container
+    policies.kyverno.io/description: >-
+      allowPrivilegeEscalation: true permits a process inside the container to
+      gain more privileges than its parent process via setuid/setgid binaries.
+      Combined with a kernel vulnerability this allows container escape.
+      This policy enforces allowPrivilegeEscalation: false on all containers,
+      including init and ephemeral containers.
+    cis-benchmark: "5.2.5"
+    mitre-attack: "T1548 — Abuse Elevation Control Mechanism"
+spec:
+  validationFailureAction: Enforce
+  background: true
+
+  rules:
+    # ── Rule 1: Application containers ───────────────────────────────────────
+    - name: deny-privilege-escalation-containers
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          Container securityContext.allowPrivilegeEscalation must be false.
+          Setting it to true permits setuid/setgid privilege escalation.
+          Violates CIS 5.2.5.
+        foreach:
+          - list: "request.object.spec.containers"
+            pattern:
+              securityContext:
+                allowPrivilegeEscalation: false
+
+    # ── Rule 2: Init containers ───────────────────────────────────────────────
+    - name: deny-privilege-escalation-init-containers
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      preconditions:
+        any:
+          - key: "{{ request.object.spec.initContainers[] | length(@) }}"
+            operator: GreaterThanOrEquals
+            value: 1
+      validate:
+        message: >-
+          Init container securityContext.allowPrivilegeEscalation must be false.
+          Violates CIS 5.2.5.
+        foreach:
+          - list: "request.object.spec.initContainers"
+            pattern:
+              securityContext:
+                allowPrivilegeEscalation: false
+
+    # ── Rule 3: Privileged containers ────────────────────────────────────────
+    - name: deny-privileged-containers
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          Privileged containers have direct access to the host kernel and all
+          host devices. This is equivalent to root on the node.
+          Violates CIS 5.2.1.
+        foreach:
+          - list: "request.object.spec.containers"
+            pattern:
+              securityContext:
+                "=(privileged)": false
+
+    # ── Rule 4: Capability drop ALL ──────────────────────────────────────────
+    - name: require-drop-all-capabilities
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          All containers must drop ALL Linux capabilities and explicitly add
+          back only what is required. Violates CIS 5.2.7.
+        foreach:
+          - list: "request.object.spec.containers"
+            pattern:
+              securityContext:
+                capabilities:
+                  drop:
+                    - ALL

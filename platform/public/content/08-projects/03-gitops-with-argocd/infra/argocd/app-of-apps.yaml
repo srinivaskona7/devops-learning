@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-app
+  namespace: argocd
+  # The resources-finalizer ensures Argo CD deletes all managed resources
+  # when this Application is deleted (cascade delete).
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    # Wave -1: the root app is bootstrapped before any child apps
+    argocd.argoproj.io/sync-wave: "-1"
+spec:
+  project: default
+
+  source:
+    # EDIT THIS: replace with your fork URL
+    repoURL: https://github.com/YOUR-ORG/Devops-learning.git
+    targetRevision: main
+    # Argo CD watches this directory for child Application CRDs.
+    # Every *.yaml file here is treated as a Kubernetes resource to apply.
+    path: 08-projects/03-gitops-with-argocd/infra/argocd/apps
+    directory:
+      recurse: false          # apps/ is flat — no need to recurse
+      include: "*.yaml"
+
+  destination:
+    server: https://kubernetes.default.svc
+    # Child Application CRDs must live in the argocd namespace
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      prune: true       # delete resources removed from git
+      selfHeal: true    # revert manual changes to Application CRDs
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true

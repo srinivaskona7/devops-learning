@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: api-dev
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  labels:
+    app.kubernetes.io/part-of: url-shortener
+    environment: dev
+  annotations:
+    # Wave 0: child apps sync after the root app (wave -1) is healthy
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+
+  source:
+    # EDIT THIS: replace with your fork URL
+    repoURL: https://github.com/YOUR-ORG/Devops-learning.git
+    targetRevision: main
+    path: 08-projects/03-gitops-with-argocd/k8s/overlays/dev
+    # Argo CD invokes kustomize build automatically when kustomization.yaml exists
+    kustomize:
+      # Force image tag tracking — Argo CD image updater can patch this.
+      images:
+        - url-shortener-api=ghcr.io/YOUR-ORG/url-shortener-api:v1.0.0-dev
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: api-dev
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+      - ServerSideApply=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 10s
+        factor: 2
+        maxDuration: 3m
+
+  # Health check thresholds — if Deployment has 0 available replicas
+  # for > 5 min, the app is marked Degraded and an alert fires.
+  ignoreDifferences:
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/replicas   # ignore HPA-driven replica changes

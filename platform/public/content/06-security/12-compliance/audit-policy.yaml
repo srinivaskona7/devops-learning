@@ -1,0 +1,61 @@
+---
+# Production audit policy. Place at the path passed via:
+#   kube-apiserver --audit-policy-file=/etc/kubernetes/audit-policy.yaml
+#                  --audit-log-path=/var/log/kubernetes/audit.log
+#                  --audit-log-maxage=30 --audit-log-maxbackup=10 --audit-log-maxsize=100
+apiVersion: audit.k8s.io/v1
+kind: Policy
+# Drop noisy reads from system components before the more general rules below
+omitStages:
+  - "RequestReceived"
+rules:
+  # 1. Never log the body of secret-bearing resources
+  - level: Metadata
+    resources:
+      - group: ""
+        resources: ["secrets", "configmaps", "serviceaccounts/token"]
+      - group: "authentication.k8s.io"
+        resources: ["tokenreviews"]
+
+  # 2. Forensics-grade for pod execution / debugging
+  - level: RequestResponse
+    resources:
+      - group: ""
+        resources: ["pods/exec", "pods/portforward", "pods/proxy", "pods/attach"]
+
+  # 3. Full body for RBAC mutations + admission webhooks (security-critical)
+  - level: RequestResponse
+    verbs: ["create", "update", "patch", "delete"]
+    resources:
+      - group: "rbac.authorization.k8s.io"
+        resources: ["roles", "rolebindings", "clusterroles", "clusterrolebindings"]
+      - group: "admissionregistration.k8s.io"
+        resources: ["validatingwebhookconfigurations", "mutatingwebhookconfigurations",
+                    "validatingadmissionpolicies", "validatingadmissionpolicybindings"]
+
+  # 4. Drop high-volume read traffic from infra service accounts
+  - level: None
+    users:
+      - "system:apiserver"
+      - "system:kube-controller-manager"
+      - "system:kube-scheduler"
+      - "system:serviceaccount:kube-system:endpoint-controller"
+    verbs: ["get", "list", "watch"]
+
+  - level: None
+    userGroups: ["system:nodes"]
+    verbs: ["get", "list", "watch"]
+
+  # 5. Drop reads of trivial endpoints (health/version)
+  - level: None
+    nonResourceURLs:
+      - "/healthz*"
+      - "/livez*"
+      - "/readyz*"
+      - "/version"
+      - "/metrics"
+
+  # 6. Default: log metadata for everything else
+  - level: Metadata
+    omitStages:
+      - "RequestReceived"

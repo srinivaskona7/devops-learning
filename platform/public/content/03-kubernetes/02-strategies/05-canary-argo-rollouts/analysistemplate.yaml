@@ -1,0 +1,27 @@
+---
+# Prometheus-based success-rate analysis. Aborts the rollout if HTTP 5xx ratio
+# exceeds 5% over the last minute.
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate
+spec:
+  args:
+    - name: service-name
+  metrics:
+    - name: success-rate
+      interval: 30s
+      count: 3
+      successCondition: result[0] >= 0.95
+      failureLimit: 1
+      provider:
+        prometheus:
+          address: http://prometheus.monitoring.svc.cluster.local:9090
+          query: |
+            sum(irate(
+              http_requests_total{service="{{args.service-name}}",code!~"5.."}[1m]
+            ))
+            /
+            sum(irate(
+              http_requests_total{service="{{args.service-name}}"}[1m]
+            ))

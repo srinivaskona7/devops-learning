@@ -1,0 +1,178 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "DevOps Navigator" [ref=e6] [cursor=pointer]:
+        - /url: /devops-learning/
+        - img [ref=e8]
+        - generic [ref=e10]: DevOps Navigator
+      - navigation [ref=e11]:
+        - link "Home" [ref=e12] [cursor=pointer]:
+          - /url: /devops-learning/
+        - link "Modules" [ref=e13] [cursor=pointer]:
+          - /url: /devops-learning/modules
+        - link "About" [ref=e14] [cursor=pointer]:
+          - /url: /devops-learning/about
+  - main [ref=e15]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e19]:
+            - img [ref=e20]
+            - generic [ref=e22]: Learn by doing. Ship with confidence.
+          - heading "The Intelligent DevOps Navigator" [level=1] [ref=e23]
+          - paragraph [ref=e24]: Master cloud infrastructure through hands-on learning. 15 modules, 10 real-world projects, a curriculum designed for production excellence.
+          - generic [ref=e25]:
+            - link "Start Learning" [ref=e26] [cursor=pointer]:
+              - /url: /devops-learning/modules/01-linux
+              - img [ref=e27]
+              - text: Start Learning
+              - img [ref=e29]
+            - link "View Modules" [ref=e31] [cursor=pointer]:
+              - /url: /devops-learning/modules
+              - text: View Modules
+              - img [ref=e32]
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - img [ref=e36]
+            - generic [ref=e39]: "15"
+            - generic [ref=e40]: Modules
+          - generic [ref=e41]:
+            - img [ref=e42]
+            - generic [ref=e46]: "10"
+            - generic [ref=e47]: Projects
+          - generic [ref=e48]:
+            - img [ref=e49]
+            - generic [ref=e52]: 120+
+            - generic [ref=e53]: Hours Content
+          - generic [ref=e54]:
+            - img [ref=e55]
+            - generic [ref=e60]: 1K+
+            - generic [ref=e61]: Community
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - generic [ref=e65]: Featured Modules
+            - heading "Pick your next skill" [level=2] [ref=e66]
+          - link "Browse all" [ref=e67] [cursor=pointer]:
+            - /url: /devops-learning/modules
+            - text: Browse all
+            - img [ref=e68]
+        - generic [ref=e70]:
+          - link "beginner Linux Fundamentals Master the Linux command line, filesystem, processes, and shell scripting essentials for DevOps work. 12h Explore" [ref=e72] [cursor=pointer]:
+            - /url: /devops-learning/modules/01-linux
+            - generic [ref=e73]:
+              - generic [ref=e74]:
+                - img [ref=e76]
+                - generic [ref=e78]: beginner
+              - heading "Linux Fundamentals" [level=3] [ref=e79]
+              - paragraph [ref=e80]: Master the Linux command line, filesystem, processes, and shell scripting essentials for DevOps work.
+              - generic [ref=e81]:
+                - generic [ref=e82]:
+                  - img [ref=e83]
+                  - text: 12h
+                - generic [ref=e86]:
+                  - text: Explore
+                  - img [ref=e87]
+          - link "beginner Docker & Containers Build, ship, and run containerized applications using Docker images, volumes, and networks. 14h Explore" [ref=e90] [cursor=pointer]:
+            - /url: /devops-learning/modules/02-docker
+            - generic [ref=e91]:
+              - generic [ref=e92]:
+                - img [ref=e94]
+                - generic [ref=e97]: beginner
+              - heading "Docker & Containers" [level=3] [ref=e98]
+              - paragraph [ref=e99]: Build, ship, and run containerized applications using Docker images, volumes, and networks.
+              - generic [ref=e100]:
+                - generic [ref=e101]:
+                  - img [ref=e102]
+                  - text: 14h
+                - generic [ref=e105]:
+                  - text: Explore
+                  - img [ref=e106]
+          - link "intermediate Kubernetes Core Orchestrate containers at scale with Pods, Deployments, Services, and declarative manifests. 24h Explore" [ref=e109] [cursor=pointer]:
+            - /url: /devops-learning/modules/03-kubernetes
+            - generic [ref=e110]:
+              - generic [ref=e111]:
+                - img [ref=e113]
+                - generic [ref=e115]: intermediate
+              - heading "Kubernetes Core" [level=3] [ref=e116]
+              - paragraph [ref=e117]: Orchestrate containers at scale with Pods, Deployments, Services, and declarative manifests.
+              - generic [ref=e118]:
+                - generic [ref=e119]:
+                  - img [ref=e120]
+                  - text: 24h
+                - generic [ref=e123]:
+                  - text: Explore
+                  - img [ref=e124]
+          - link "intermediate Helm Charts Package, template, and release Kubernetes applications with reusable Helm charts. 10h Explore" [ref=e127] [cursor=pointer]:
+            - /url: /devops-learning/modules/04-helm
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - img [ref=e131]
+                - generic [ref=e135]: intermediate
+              - heading "Helm Charts" [level=3] [ref=e136]
+              - paragraph [ref=e137]: Package, template, and release Kubernetes applications with reusable Helm charts.
+              - generic [ref=e138]:
+                - generic [ref=e139]:
+                  - img [ref=e140]
+                  - text: 10h
+                - generic [ref=e143]:
+                  - text: Explore
+                  - img [ref=e144]
+          - link "intermediate Monitoring & Observability Instrument systems with Prometheus, Grafana, OpenTelemetry, logs, metrics, and traces. 14h Explore" [ref=e147] [cursor=pointer]:
+            - /url: /devops-learning/modules/05-monitoring
+            - generic [ref=e148]:
+              - generic [ref=e149]:
+                - img [ref=e151]
+                - generic [ref=e153]: intermediate
+              - heading "Monitoring & Observability" [level=3] [ref=e154]
+              - paragraph [ref=e155]: Instrument systems with Prometheus, Grafana, OpenTelemetry, logs, metrics, and traces.
+              - generic [ref=e156]:
+                - generic [ref=e157]:
+                  - img [ref=e158]
+                  - text: 14h
+                - generic [ref=e161]:
+                  - text: Explore
+                  - img [ref=e162]
+          - link "advanced Security Best Practices Apply zero-trust, secrets management, RBAC, image scanning, and supply-chain hardening. 16h Explore" [ref=e165] [cursor=pointer]:
+            - /url: /devops-learning/modules/06-security
+            - generic [ref=e166]:
+              - generic [ref=e167]:
+                - img [ref=e169]
+                - generic [ref=e171]: advanced
+              - heading "Security Best Practices" [level=3] [ref=e172]
+              - paragraph [ref=e173]: Apply zero-trust, secrets management, RBAC, image scanning, and supply-chain hardening.
+              - generic [ref=e174]:
+                - generic [ref=e175]:
+                  - img [ref=e176]
+                  - text: 16h
+                - generic [ref=e179]:
+                  - text: Explore
+                  - img [ref=e180]
+      - generic [ref=e184]:
+        - generic [ref=e185]:
+          - generic [ref=e186]:
+            - img [ref=e187]
+            - text: Intelligence Widget
+          - heading "God Node execution flow" [level=3] [ref=e189]
+          - paragraph [ref=e190]: Trace your application's call graph with live context. The navigator surfaces the critical path — from entry point to every downstream dependency across 762 system files.
+        - generic [ref=e192]:
+          - generic [ref=e193]:
+            - generic [ref=e194]: call-graph.trace
+            - generic [ref=e195]: live
+          - generic [ref=e197]:
+            - generic [ref=e198]:
+              - generic [ref=e200]: main()
+              - generic [ref=e201]: entry
+            - generic [ref=e203]:
+              - generic [ref=e205]: get_conn()
+              - generic [ref=e206]: pool
+            - generic [ref=e208]:
+              - generic [ref=e210]: run_migrations()
+              - generic [ref=e211]: schema
+          - generic [ref=e212]:
+            - generic [ref=e213]: 3 nodes traced
+            - generic [ref=e214]: 12ms
+  - contentinfo [ref=e215]:
+    - generic [ref=e216]:
+      - paragraph [ref=e217]: © 2026 DevOps Navigator. All rights reserved.
+      - paragraph [ref=e218]: Built with React + Vite + Stitch Design System

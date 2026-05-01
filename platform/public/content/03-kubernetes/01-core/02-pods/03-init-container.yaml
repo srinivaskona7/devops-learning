@@ -1,0 +1,28 @@
+# Init container — runs to completion BEFORE the main container starts.
+# Common uses: wait-for-DB, schema migration, fetching secrets/config.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-demo
+  labels:
+    app: init-demo
+    version: "1.0"
+    component: demo
+spec:
+  initContainers:
+    - name: wait-for-it
+      image: busybox:1.36
+      # ← simulate waiting for a dependency, then exit 0
+      command: ["sh", "-c", "echo 'waiting for dep...'; sleep 5; echo 'ready'"]
+      resources:
+        requests: { cpu: "10m", memory: "16Mi" }
+        limits:   { cpu: "50m", memory: "32Mi" }
+
+  containers:
+    - name: app
+      image: gcr.io/google-samples/hello-app:1.0
+      ports:
+        - containerPort: 8080
+      resources:
+        requests: { cpu: "50m", memory: "64Mi" }
+        limits:   { cpu: "200m", memory: "128Mi" }

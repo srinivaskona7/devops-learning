@@ -1,0 +1,84 @@
+# policies/kyverno/require-non-root.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Blocks any Pod or container that runs as root (UID 0).
+# Maps to: CIS Kubernetes Benchmark 5.2.6
+# STRIDE:  Elevation of Privilege (E)
+# ─────────────────────────────────────────────────────────────────────────────
+
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-non-root
+  annotations:
+    policies.kyverno.io/title: Require Non-Root Containers
+    policies.kyverno.io/category: Pod Security
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/subject: Pod
+    policies.kyverno.io/description: >-
+      Containers running as UID 0 (root) can bypass file permission checks
+      and are one privilege escalation away from full node compromise.
+      This policy requires runAsNonRoot: true and forbids runAsUser: 0
+      at both the pod and container securityContext levels.
+    cis-benchmark: "5.2.6"
+    slsa-level: "L2"
+spec:
+  # enforce: blocks the resource and returns an error to the caller
+  validationFailureAction: Enforce
+
+  # Apply to Pods created directly or via Deployments / StatefulSets / Jobs
+  background: true
+
+  rules:
+    # ── Rule 1: Pod-level securityContext ────────────────────────────────────
+    - name: check-pod-run-as-non-root
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          Pod securityContext must set runAsNonRoot: true.
+          Running as root (UID 0) violates CIS 5.2.6.
+        pattern:
+          spec:
+            securityContext:
+              runAsNonRoot: true
+
+    # ── Rule 2: Container-level securityContext ───────────────────────────────
+    - name: check-container-run-as-non-root
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      validate:
+        message: >-
+          All containers must set runAsNonRoot: true and must not set
+          runAsUser: 0. Violates CIS 5.2.6.
+        foreach:
+          - list: "request.object.spec.containers"
+            pattern:
+              securityContext:
+                runAsNonRoot: true
+                # Deny explicit UID 0
+                "=(runAsUser)": ">0"
+
+    # ── Rule 3: Init containers ───────────────────────────────────────────────
+    - name: check-init-container-run-as-non-root
+      match:
+        any:
+          - resources:
+              kinds: [Pod]
+      preconditions:
+        any:
+          - key: "{{ request.object.spec.initContainers[] | length(@) }}"
+            operator: GreaterThanOrEquals
+            value: 1
+      validate:
+        message: >-
+          All init containers must set runAsNonRoot: true. Violates CIS 5.2.6.
+        foreach:
+          - list: "request.object.spec.initContainers"
+            pattern:
+              securityContext:
+                runAsNonRoot: true
+                "=(runAsUser)": ">0"

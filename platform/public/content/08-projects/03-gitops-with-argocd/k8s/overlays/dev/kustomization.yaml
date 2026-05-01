@@ -1,0 +1,55 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Inherit everything from base
+resources:
+  - ../../base
+
+# Namespace for the dev environment
+namespace: api-dev
+
+# Override replica count: dev uses 1 replica to save resources
+replicas:
+  - name: url-shortener-api
+    count: 1
+
+# Override the image tag for dev builds
+images:
+  - name: url-shortener-api
+    newName: ghcr.io/YOUR-ORG/url-shortener-api
+    newTag: "v1.0.0-dev"
+
+# Patch the ConfigMap to set APP_ENV=dev
+configMapGenerator:
+  - name: url-shortener-config
+    behavior: merge
+    literals:
+      - APP_ENV=dev
+      - LOG_LEVEL=debug
+
+# Add dev-specific labels to all resources
+commonLabels:
+  environment: dev
+
+# Dev does not need resource limits — let pods use available node capacity
+patches:
+  - target:
+      kind: Deployment
+      name: url-shortener-api
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/resources
+        value:
+          requests:
+            cpu: "50m"
+            memory: "32Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+  # Dev topology spread is too strict with 1 replica — remove it
+  - target:
+      kind: Deployment
+      name: url-shortener-api
+    patch: |-
+      - op: remove
+        path: /spec/template/spec/topologySpreadConstraints

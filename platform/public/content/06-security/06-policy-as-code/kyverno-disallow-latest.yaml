@@ -1,0 +1,29 @@
+---
+# Kyverno: disallow image tags `:latest` or no tag at all.
+# Forces digests or explicit version tags.
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: disallow-latest-tag
+  annotations:
+    policies.kyverno.io/title: Disallow :latest tag
+    policies.kyverno.io/severity: high
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: validate-image-tag
+      match:
+        any:
+          - resources:
+              kinds: ["Pod"]
+      validate:
+        message: "An image tag is required and `:latest` is not allowed. Use a version tag or digest."
+        pattern:
+          spec:
+            containers:
+              - image: "!*:latest & *:*"
+            =(initContainers):
+              - image: "!*:latest & *:*"
+            =(ephemeralContainers):
+              - image: "!*:latest & *:*"

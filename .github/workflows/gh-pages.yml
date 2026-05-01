@@ -1,72 +1,76 @@
-name: Deploy to GitHub Pages
+name: Deploy Platform to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
-      - "docs/**"
-      - "platform/**"
-      - "**/*.md"
-      - "mkdocs.yml"
-      - "requirements.txt"
-      - ".github/workflows/gh-pages.yml"
+      - 'platform/**'
+      - '*.md'
+      - '.github/workflows/gh-pages.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
+    name: Build Vite React SPA
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: platform
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
+      - name: Copy module content to public folder
+        run: |
+          mkdir -p platform/public/content
+          for module in 01-linux 02-docker 03-kubernetes 04-helm 05-monitoring 06-security 07-terraform 08-projects 09-interview-prep 10-scripting 11-devops-tools 12-golang 13-operators 14-policy-as-code 15-ai-for-devops; do
+            if [ -d "$module" ]; then
+              cp -r "$module" "platform/public/content/"
+            fi
+          done
+        working-directory: .
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          cache: npm
-          cache-dependency-path: "platform/package-lock.json"
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: platform/package-lock.json
 
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
-      - name: Install Node dependencies
-        working-directory: ./platform
+      - name: Install dependencies
         run: npm ci
 
-      - name: Configure git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Build MkDocs site
-        run: mkdocs build --clean
-
-      - name: Build Vite platform
-        working-directory: ./platform
+      - name: Build
         run: npm run build
+        env:
+          NODE_ENV: production
 
-      - name: Copy platform dist to site
-        run: |
-          mkdir -p site/platform
-          cp -r platform/dist/* site/platform/
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
-          force_orphan: true
+          path: platform/dist
 
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

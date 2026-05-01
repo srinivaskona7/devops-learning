@@ -1,0 +1,290 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "DevOps Navigator" [ref=e6] [cursor=pointer]:
+        - /url: /devops-learning/
+        - img [ref=e8]
+        - generic [ref=e10]: DevOps Navigator
+      - navigation [ref=e11]:
+        - link "Home" [ref=e12] [cursor=pointer]:
+          - /url: /devops-learning/
+        - link "Modules" [ref=e13] [cursor=pointer]:
+          - /url: /devops-learning/modules
+        - link "About" [ref=e14] [cursor=pointer]:
+          - /url: /devops-learning/about
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]: Curriculum
+        - heading "Module Catalog" [level=1] [ref=e21]
+        - paragraph [ref=e22]: Explore 15 hands-on DevOps modules. Learn by doing — each one follows the Reason, Thinking, Execution, Simulation, Output, and Use-case pattern.
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - img
+          - textbox "Search modules..." [ref=e25]
+        - generic [ref=e26]:
+          - button "all" [ref=e27] [cursor=pointer]
+          - button "beginner" [ref=e28] [cursor=pointer]
+          - button "intermediate" [ref=e29] [cursor=pointer]
+          - button "advanced" [ref=e30] [cursor=pointer]
+      - generic [ref=e31]: Showing 15 of 15
+      - generic [ref=e32]:
+        - link "beginner Linux Fundamentals Master the Linux command line, filesystem, processes, and shell scripting essentials for DevOps work. 12h No prereqs Start module" [ref=e34] [cursor=pointer]:
+          - /url: /devops-learning/modules/01-linux
+          - generic [ref=e35]:
+            - img [ref=e37]
+            - generic [ref=e39]: beginner
+          - heading "Linux Fundamentals" [level=3] [ref=e41]
+          - paragraph [ref=e42]: Master the Linux command line, filesystem, processes, and shell scripting essentials for DevOps work.
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - img [ref=e45]
+              - text: 12h
+            - generic [ref=e48]:
+              - img [ref=e49]
+              - text: No prereqs
+          - generic [ref=e52]:
+            - generic [ref=e53]: Start module
+            - img [ref=e54]
+        - link "beginner Docker & Containers Build, ship, and run containerized applications using Docker images, volumes, and networks. 14h 1 prereq Start module" [ref=e57] [cursor=pointer]:
+          - /url: /devops-learning/modules/02-docker
+          - generic [ref=e58]:
+            - img [ref=e60]
+            - generic [ref=e63]: beginner
+          - heading "Docker & Containers" [level=3] [ref=e65]
+          - paragraph [ref=e66]: Build, ship, and run containerized applications using Docker images, volumes, and networks.
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - img [ref=e69]
+              - text: 14h
+            - generic [ref=e72]:
+              - img [ref=e73]
+              - text: 1 prereq
+          - generic [ref=e76]:
+            - generic [ref=e77]: Start module
+            - img [ref=e78]
+        - link "intermediate Kubernetes Core Orchestrate containers at scale with Pods, Deployments, Services, and declarative manifests. 24h 1 prereq Start module" [ref=e81] [cursor=pointer]:
+          - /url: /devops-learning/modules/03-kubernetes
+          - generic [ref=e82]:
+            - img [ref=e84]
+            - generic [ref=e86]: intermediate
+          - heading "Kubernetes Core" [level=3] [ref=e88]
+          - paragraph [ref=e89]: Orchestrate containers at scale with Pods, Deployments, Services, and declarative manifests.
+          - generic [ref=e90]:
+            - generic [ref=e91]:
+              - img [ref=e92]
+              - text: 24h
+            - generic [ref=e95]:
+              - img [ref=e96]
+              - text: 1 prereq
+          - generic [ref=e99]:
+            - generic [ref=e100]: Start module
+            - img [ref=e101]
+        - link "intermediate Helm Charts Package, template, and release Kubernetes applications with reusable Helm charts. 10h 1 prereq Start module" [ref=e104] [cursor=pointer]:
+          - /url: /devops-learning/modules/04-helm
+          - generic [ref=e105]:
+            - img [ref=e107]
+            - generic [ref=e111]: intermediate
+          - heading "Helm Charts" [level=3] [ref=e113]
+          - paragraph [ref=e114]: Package, template, and release Kubernetes applications with reusable Helm charts.
+          - generic [ref=e115]:
+            - generic [ref=e116]:
+              - img [ref=e117]
+              - text: 10h
+            - generic [ref=e120]:
+              - img [ref=e121]
+              - text: 1 prereq
+          - generic [ref=e124]:
+            - generic [ref=e125]: Start module
+            - img [ref=e126]
+        - link "intermediate Monitoring & Observability Instrument systems with Prometheus, Grafana, OpenTelemetry, logs, metrics, and traces. 14h 1 prereq Start module" [ref=e129] [cursor=pointer]:
+          - /url: /devops-learning/modules/05-monitoring
+          - generic [ref=e130]:
+            - img [ref=e132]
+            - generic [ref=e134]: intermediate
+          - heading "Monitoring & Observability" [level=3] [ref=e136]
+          - paragraph [ref=e137]: Instrument systems with Prometheus, Grafana, OpenTelemetry, logs, metrics, and traces.
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - img [ref=e140]
+              - text: 14h
+            - generic [ref=e143]:
+              - img [ref=e144]
+              - text: 1 prereq
+          - generic [ref=e147]:
+            - generic [ref=e148]: Start module
+            - img [ref=e149]
+        - link "advanced Security Best Practices Apply zero-trust, secrets management, RBAC, image scanning, and supply-chain hardening. 16h 2 prereqs Start module" [ref=e152] [cursor=pointer]:
+          - /url: /devops-learning/modules/06-security
+          - generic [ref=e153]:
+            - img [ref=e155]
+            - generic [ref=e157]: advanced
+          - heading "Security Best Practices" [level=3] [ref=e159]
+          - paragraph [ref=e160]: Apply zero-trust, secrets management, RBAC, image scanning, and supply-chain hardening.
+          - generic [ref=e161]:
+            - generic [ref=e162]:
+              - img [ref=e163]
+              - text: 16h
+            - generic [ref=e166]:
+              - img [ref=e167]
+              - text: 2 prereqs
+          - generic [ref=e170]:
+            - generic [ref=e171]: Start module
+            - img [ref=e172]
+        - link "intermediate Terraform Infrastructure Provision cloud infrastructure declaratively with Terraform modules, state, and workspaces. 14h 1 prereq Start module" [ref=e175] [cursor=pointer]:
+          - /url: /devops-learning/modules/07-terraform
+          - generic [ref=e176]:
+            - img [ref=e178]
+            - generic [ref=e182]: intermediate
+          - heading "Terraform Infrastructure" [level=3] [ref=e184]
+          - paragraph [ref=e185]: Provision cloud infrastructure declaratively with Terraform modules, state, and workspaces.
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - img [ref=e188]
+              - text: 14h
+            - generic [ref=e191]:
+              - img [ref=e192]
+              - text: 1 prereq
+          - generic [ref=e195]:
+            - generic [ref=e196]: Start module
+            - img [ref=e197]
+        - link "advanced Real-World Projects Ship 10 end-to-end DevOps projects combining CI/CD, Kubernetes, observability, and IaC. 40h 4 prereqs Start module" [ref=e200] [cursor=pointer]:
+          - /url: /devops-learning/modules/08-projects
+          - generic [ref=e201]:
+            - img [ref=e203]
+            - generic [ref=e208]: advanced
+          - heading "Real-World Projects" [level=3] [ref=e210]
+          - paragraph [ref=e211]: Ship 10 end-to-end DevOps projects combining CI/CD, Kubernetes, observability, and IaC.
+          - generic [ref=e212]:
+            - generic [ref=e213]:
+              - img [ref=e214]
+              - text: 40h
+            - generic [ref=e217]:
+              - img [ref=e218]
+              - text: 4 prereqs
+          - generic [ref=e221]:
+            - generic [ref=e222]: Start module
+            - img [ref=e223]
+        - link "advanced Interview Preparation Drill DevOps system design, troubleshooting scenarios, and behavioral questions for FAANG-level interviews. 12h 1 prereq Start module" [ref=e226] [cursor=pointer]:
+          - /url: /devops-learning/modules/09-interview-prep
+          - generic [ref=e227]:
+            - img [ref=e229]
+            - generic [ref=e231]: advanced
+          - heading "Interview Preparation" [level=3] [ref=e233]
+          - paragraph [ref=e234]: Drill DevOps system design, troubleshooting scenarios, and behavioral questions for FAANG-level interviews.
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - img [ref=e237]
+              - text: 12h
+            - generic [ref=e240]:
+              - img [ref=e241]
+              - text: 1 prereq
+          - generic [ref=e244]:
+            - generic [ref=e245]: Start module
+            - img [ref=e246]
+        - link "intermediate Advanced Scripting Automate operations with advanced Bash, Python, and templating for resilient DevOps pipelines. 12h 1 prereq Start module" [ref=e249] [cursor=pointer]:
+          - /url: /devops-learning/modules/10-scripting
+          - generic [ref=e250]:
+            - img [ref=e252]
+            - generic [ref=e255]: intermediate
+          - heading "Advanced Scripting" [level=3] [ref=e257]
+          - paragraph [ref=e258]: Automate operations with advanced Bash, Python, and templating for resilient DevOps pipelines.
+          - generic [ref=e259]:
+            - generic [ref=e260]:
+              - img [ref=e261]
+              - text: 12h
+            - generic [ref=e264]:
+              - img [ref=e265]
+              - text: 1 prereq
+          - generic [ref=e268]:
+            - generic [ref=e269]: Start module
+            - img [ref=e270]
+        - 'link "intermediate DevOps Tools Navigate the DevOps ecosystem: Git, Jenkins, GitHub Actions, ArgoCD, Vault, and more. 16h 1 prereq Start module" [ref=e273] [cursor=pointer]':
+          - /url: /devops-learning/modules/11-devops-tools
+          - generic [ref=e274]:
+            - img [ref=e276]
+            - generic [ref=e278]: intermediate
+          - heading "DevOps Tools" [level=3] [ref=e280]
+          - paragraph [ref=e281]: "Navigate the DevOps ecosystem: Git, Jenkins, GitHub Actions, ArgoCD, Vault, and more."
+          - generic [ref=e282]:
+            - generic [ref=e283]:
+              - img [ref=e284]
+              - text: 16h
+            - generic [ref=e287]:
+              - img [ref=e288]
+              - text: 1 prereq
+          - generic [ref=e291]:
+            - generic [ref=e292]: Start module
+            - img [ref=e293]
+        - link "intermediate Go Language Learn Go fundamentals to build cloud-native tooling, controllers, and CLI utilities. 18h 1 prereq Start module" [ref=e296] [cursor=pointer]:
+          - /url: /devops-learning/modules/12-golang
+          - generic [ref=e297]:
+            - img [ref=e299]
+            - generic [ref=e301]: intermediate
+          - heading "Go Language" [level=3] [ref=e303]
+          - paragraph [ref=e304]: Learn Go fundamentals to build cloud-native tooling, controllers, and CLI utilities.
+          - generic [ref=e305]:
+            - generic [ref=e306]:
+              - img [ref=e307]
+              - text: 18h
+            - generic [ref=e310]:
+              - img [ref=e311]
+              - text: 1 prereq
+          - generic [ref=e314]:
+            - generic [ref=e315]: Start module
+            - img [ref=e316]
+        - link "advanced Kubernetes Operators Extend Kubernetes with CRDs and custom controllers using the operator pattern and kubebuilder. 20h 2 prereqs Start module" [ref=e319] [cursor=pointer]:
+          - /url: /devops-learning/modules/13-operators
+          - generic [ref=e320]:
+            - img [ref=e322]
+            - generic [ref=e325]: advanced
+          - heading "Kubernetes Operators" [level=3] [ref=e327]
+          - paragraph [ref=e328]: Extend Kubernetes with CRDs and custom controllers using the operator pattern and kubebuilder.
+          - generic [ref=e329]:
+            - generic [ref=e330]:
+              - img [ref=e331]
+              - text: 20h
+            - generic [ref=e334]:
+              - img [ref=e335]
+              - text: 2 prereqs
+          - generic [ref=e338]:
+            - generic [ref=e339]: Start module
+            - img [ref=e340]
+        - link "advanced Policy as Code Enforce guardrails with OPA, Rego, Kyverno, and admission controllers across clusters. 12h 2 prereqs Start module" [ref=e343] [cursor=pointer]:
+          - /url: /devops-learning/modules/14-policy-as-code
+          - generic [ref=e344]:
+            - img [ref=e346]
+            - generic [ref=e350]: advanced
+          - heading "Policy as Code" [level=3] [ref=e352]
+          - paragraph [ref=e353]: Enforce guardrails with OPA, Rego, Kyverno, and admission controllers across clusters.
+          - generic [ref=e354]:
+            - generic [ref=e355]:
+              - img [ref=e356]
+              - text: 12h
+            - generic [ref=e359]:
+              - img [ref=e360]
+              - text: 2 prereqs
+          - generic [ref=e363]:
+            - generic [ref=e364]: Start module
+            - img [ref=e365]
+        - link "advanced AI for DevOps Integrate LLMs, agents, and ML workflows into DevOps pipelines for AIOps and intelligent automation. 16h 2 prereqs Start module" [ref=e368] [cursor=pointer]:
+          - /url: /devops-learning/modules/15-ai-for-devops
+          - generic [ref=e369]:
+            - img [ref=e371]
+            - generic [ref=e374]: advanced
+          - heading "AI for DevOps" [level=3] [ref=e376]
+          - paragraph [ref=e377]: Integrate LLMs, agents, and ML workflows into DevOps pipelines for AIOps and intelligent automation.
+          - generic [ref=e378]:
+            - generic [ref=e379]:
+              - img [ref=e380]
+              - text: 16h
+            - generic [ref=e383]:
+              - img [ref=e384]
+              - text: 2 prereqs
+          - generic [ref=e387]:
+            - generic [ref=e388]: Start module
+            - img [ref=e389]
+  - contentinfo [ref=e391]:
+    - generic [ref=e392]:
+      - paragraph [ref=e393]: © 2026 DevOps Navigator. All rights reserved.
+      - paragraph [ref=e394]: Built with React + Vite + Stitch Design System
