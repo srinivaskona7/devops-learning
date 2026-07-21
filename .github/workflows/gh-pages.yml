@@ -50,14 +50,10 @@ jobs:
           cache: 'npm'
 
       - name: Install SPA dependencies
-        run: npm ci --include=dev
-        env:
-          NODE_ENV: development
+        run: npm ci
 
       - name: Build Vite SPA → dist/
         run: npm run build
-        env:
-          NODE_ENV: production
 
       - name: Merge MkDocs output into dist/docs/
         run: |
