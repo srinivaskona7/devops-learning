@@ -50,7 +50,9 @@ jobs:
           cache: 'npm'
 
       - name: Install SPA dependencies
-        run: npm ci
+        run: npm ci --include=dev
+        env:
+          NODE_ENV: development
 
       - name: Build Vite SPA → dist/
         run: npm run build
