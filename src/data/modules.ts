@@ -18,6 +18,7 @@ import {
 } from 'lucide-react'
 
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced' | 'expert'
+export type ModuleStatus = 'available' | 'coming-soon'
 
 export interface Module {
   id: number
@@ -29,6 +30,7 @@ export interface Module {
   estimatedHours: number
   color: 'cyan' | 'green' | 'pink' | 'purple' | 'orange'
   prerequisites: string[]
+  status: ModuleStatus
 }
 
 export const MODULES: Module[] = [
@@ -42,6 +44,7 @@ export const MODULES: Module[] = [
     estimatedHours: 12,
     color: 'cyan',
     prerequisites: [],
+    status: 'available',
   },
   {
     id: 2,
@@ -53,6 +56,7 @@ export const MODULES: Module[] = [
     estimatedHours: 14,
     color: 'cyan',
     prerequisites: ['01-linux'],
+    status: 'available',
   },
   {
     id: 3,
@@ -64,6 +68,7 @@ export const MODULES: Module[] = [
     estimatedHours: 24,
     color: 'green',
     prerequisites: ['02-docker'],
+    status: 'coming-soon',
   },
   {
     id: 4,
@@ -75,6 +80,7 @@ export const MODULES: Module[] = [
     estimatedHours: 10,
     color: 'green',
     prerequisites: ['03-kubernetes'],
+    status: 'coming-soon',
   },
   {
     id: 5,
@@ -86,6 +92,7 @@ export const MODULES: Module[] = [
     estimatedHours: 14,
     color: 'pink',
     prerequisites: ['03-kubernetes'],
+    status: 'coming-soon',
   },
   {
     id: 6,
@@ -97,6 +104,7 @@ export const MODULES: Module[] = [
     estimatedHours: 16,
     color: 'pink',
     prerequisites: ['03-kubernetes', '02-docker'],
+    status: 'coming-soon',
   },
   {
     id: 7,
@@ -108,6 +116,7 @@ export const MODULES: Module[] = [
     estimatedHours: 14,
     color: 'purple',
     prerequisites: ['01-linux'],
+    status: 'coming-soon',
   },
   {
     id: 8,
@@ -119,6 +128,7 @@ export const MODULES: Module[] = [
     estimatedHours: 40,
     color: 'orange',
     prerequisites: ['03-kubernetes', '04-helm', '05-monitoring', '07-terraform'],
+    status: 'coming-soon',
   },
   {
     id: 9,
@@ -130,6 +140,7 @@ export const MODULES: Module[] = [
     estimatedHours: 12,
     color: 'orange',
     prerequisites: ['08-projects'],
+    status: 'coming-soon',
   },
   {
     id: 10,
@@ -141,6 +152,7 @@ export const MODULES: Module[] = [
     estimatedHours: 12,
     color: 'cyan',
     prerequisites: ['01-linux'],
+    status: 'coming-soon',
   },
   {
     id: 11,
@@ -152,6 +164,7 @@ export const MODULES: Module[] = [
     estimatedHours: 16,
     color: 'purple',
     prerequisites: ['02-docker'],
+    status: 'coming-soon',
   },
   {
     id: 12,
@@ -163,6 +176,7 @@ export const MODULES: Module[] = [
     estimatedHours: 18,
     color: 'cyan',
     prerequisites: ['01-linux'],
+    status: 'coming-soon',
   },
   {
     id: 13,
@@ -174,6 +188,7 @@ export const MODULES: Module[] = [
     estimatedHours: 20,
     color: 'green',
     prerequisites: ['03-kubernetes', '12-golang'],
+    status: 'coming-soon',
   },
   {
     id: 14,
@@ -185,6 +200,7 @@ export const MODULES: Module[] = [
     estimatedHours: 12,
     color: 'pink',
     prerequisites: ['03-kubernetes', '06-security'],
+    status: 'coming-soon',
   },
   {
     id: 15,
@@ -196,5 +212,6 @@ export const MODULES: Module[] = [
     estimatedHours: 16,
     color: 'purple',
     prerequisites: ['05-monitoring', '10-scripting'],
+    status: 'coming-soon',
   },
 ]

@@ -6,17 +6,30 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+        sans: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+        serif: ['Fraunces', 'Georgia', 'serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+      },
       colors: {
         "stitch": {
-          "dark": "#0f172a",
-          "surface": "rgba(30, 41, 59, 0.7)",
+          "dark": "#0b1120",
+          "surface": "rgba(30, 41, 59, 0.55)",
           "cyan": "#22d3ee",
-          "green": "#4ade80",
-          "pink": "#ec4899",
+          "green": "#34d399",
+          "pink": "#f472b6",
           "text-primary": "#f1f5f9",
           "text-secondary": "#cbd5e1",
           "text-muted": "#94a3b8",
-        }
+        },
+        // Level accents (roadmap nodes + difficulty badges) — rgb form keeps /opacity working
+        "level": {
+          "beginner": "rgb(52 211 153 / <alpha-value>)",
+          "intermediate": "rgb(59 130 246 / <alpha-value>)",
+          "advanced": "rgb(167 139 250 / <alpha-value>)",
+          "expert": "rgb(244 114 182 / <alpha-value>)",
+        },
       },
       boxShadow: {
         "glow-primary": "0 0 20px rgba(34, 211, 238, 0.4)",

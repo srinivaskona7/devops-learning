@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState, useMemo } from 'react'
 import { MODULES, type Difficulty } from '../data/modules'
-import { Search, Clock, BookOpen, ChevronRight } from 'lucide-react'
+import { Search, Clock, BookOpen, ChevronRight, ExternalLink, Lock } from 'lucide-react'
 
 type FilterDifficulty = 'all' | Difficulty
+type FilterStatus = 'all' | 'available' | 'coming-soon'
 
 const difficultyStyles: Record<Difficulty, { badge: string; dot: string }> = {
   beginner: {
@@ -29,16 +30,20 @@ const DIFFICULTY_FILTERS: FilterDifficulty[] = ['all', 'beginner', 'intermediate
 
 const ModulesPage: React.FC = () => {
   const [difficulty, setDifficulty] = useState<FilterDifficulty>('all')
+  const [statusFilter, setStatusFilter] = useState<FilterStatus>('all')
   const [query, setQuery] = useState<string>('')
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
     return MODULES.filter((m) => {
       if (difficulty !== 'all' && m.difficulty !== difficulty) return false
+      if (statusFilter !== 'all' && m.status !== statusFilter) return false
       if (!q) return true
       return m.title.toLowerCase().includes(q) || m.description.toLowerCase().includes(q)
     })
-  }, [difficulty, query])
+  }, [difficulty, statusFilter, query])
+
+  const availableCount = useMemo(() => MODULES.filter((m) => m.status === 'available').length, [])
 
   return (
     <div className="min-h-screen bg-stitch-dark text-stitch-text-primary">
@@ -62,7 +67,7 @@ const ModulesPage: React.FC = () => {
             Module Catalog
           </h1>
           <p className="mt-4 max-w-2xl text-base text-stitch-text-secondary sm:text-lg">
-            Explore {MODULES.length} hands-on DevOps modules. Learn by doing — each one follows the Reason, Thinking, Execution, Simulation, Output, and Use-case pattern.
+            Explore {MODULES.length} hands-on DevOps modules. {availableCount} interactive now — the rest open inline in the reference docs. Each module follows the Reason, Thinking, Execution, Simulation, Output, and Use-case pattern.
           </p>
         </motion.header>
 
@@ -84,6 +89,25 @@ const ModulesPage: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap gap-2">
+            {(['all', 'available', 'coming-soon'] as FilterStatus[]).map((s) => {
+              const isActive = statusFilter === s
+              const label = s === 'all' ? 'All' : s === 'available' ? 'Interactive' : 'Docs-only'
+              return (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => setStatusFilter(s)}
+                  className={`rounded-lg border px-4 py-2 text-xs font-medium uppercase tracking-wider transition ${
+                    isActive
+                      ? 'border-stitch-green/60 bg-stitch-green/15 text-stitch-green'
+                      : 'border-stitch-cyan/20 bg-stitch-surface text-stitch-text-secondary hover:border-stitch-green/40 hover:text-stitch-green'
+                  }`}
+                >
+                  {label}
+                </button>
+              )
+            })}
+            <div className="mx-1 w-px self-stretch bg-stitch-cyan/20" />
             {DIFFICULTY_FILTERS.map((level) => {
               const isActive = difficulty === level
               return (
@@ -119,6 +143,62 @@ const ModulesPage: React.FC = () => {
             {filtered.map((module, i) => {
               const styles = difficultyStyles[module.difficulty]
               const Icon = module.icon
+              const isAvailable = module.status === 'available'
+
+              const CardBody = (
+                <>
+                  <div className="relative mb-4 flex items-start justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-stitch-cyan/20 bg-stitch-surface transition-transform duration-300 group-hover:scale-110">
+                      <Icon className="h-5 w-5 text-stitch-cyan" />
+                    </div>
+                    <div className="flex flex-col items-end gap-1.5">
+                      <span
+                        className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${styles.badge}`}
+                      >
+                        <span className={`h-1.5 w-1.5 rounded-full ${styles.dot}`} />
+                        {module.difficulty}
+                      </span>
+                      {!isAvailable && (
+                        <span className="inline-flex items-center gap-1 rounded-full border border-stitch-text-muted/30 bg-stitch-text-muted/10 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-stitch-text-muted">
+                          <Lock className="h-2.5 w-2.5" />
+                          Docs only
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <h3 className="relative mb-2 text-xl font-semibold tracking-tight text-stitch-text-primary transition-colors group-hover:text-stitch-cyan">
+                    {module.title}
+                  </h3>
+                  <p className="relative mb-6 line-clamp-3 flex-1 text-sm leading-relaxed text-stitch-text-secondary">
+                    {module.description}
+                  </p>
+
+                  <div className="relative mb-4 flex items-center gap-4 text-xs text-stitch-text-muted">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Clock className="h-3.5 w-3.5" />
+                      {module.estimatedHours}h
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <BookOpen className="h-3.5 w-3.5" />
+                      {module.prerequisites.length === 0
+                        ? 'No prereqs'
+                        : `${module.prerequisites.length} prereq${module.prerequisites.length === 1 ? '' : 's'}`}
+                    </span>
+                  </div>
+
+                  <div className={`relative flex items-center justify-between border-t pt-4 text-sm font-medium ${isAvailable ? 'border-stitch-cyan/20 text-stitch-cyan' : 'border-stitch-text-muted/20 text-stitch-text-muted'}`}>
+                    <span>{isAvailable ? 'Start module' : 'Open in docs'}</span>
+                    {isAvailable ? (
+                      <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    ) : (
+                      <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    )}
+                  </div>
+                </>
+              )
+
+              const cardClass = `glass group relative flex h-full flex-col overflow-hidden rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 ${isAvailable ? 'hover:border-stitch-cyan/60 hover:shadow-glow-primary' : 'opacity-80 hover:opacity-100 hover:border-stitch-text-muted/40'}`
 
               return (
                 <motion.div
@@ -128,47 +208,19 @@ const ModulesPage: React.FC = () => {
                   transition={{ duration: 0.4, delay: i * 0.05, ease: 'easeOut' }}
                   whileHover={{ y: -4 }}
                 >
-                  <Link
-                    to={`/modules/${module.slug}`}
-                    className="glass group relative flex h-full flex-col overflow-hidden rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 hover:border-stitch-cyan/60 hover:shadow-glow-primary"
-                  >
-                    <div className="relative mb-4 flex items-start justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-stitch-cyan/20 bg-stitch-surface transition-transform duration-300 group-hover:scale-110">
-                        <Icon className="h-5 w-5 text-stitch-cyan" />
-                      </div>
-                      <span
-                        className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${styles.badge}`}
-                      >
-                        <span className={`h-1.5 w-1.5 rounded-full ${styles.dot}`} />
-                        {module.difficulty}
-                      </span>
-                    </div>
-
-                    <h3 className="relative mb-2 text-xl font-semibold tracking-tight text-stitch-text-primary transition-colors group-hover:text-stitch-cyan">
-                      {module.title}
-                    </h3>
-                    <p className="relative mb-6 line-clamp-3 flex-1 text-sm leading-relaxed text-stitch-text-secondary">
-                      {module.description}
-                    </p>
-
-                    <div className="relative mb-4 flex items-center gap-4 text-xs text-stitch-text-muted">
-                      <span className="inline-flex items-center gap-1.5">
-                        <Clock className="h-3.5 w-3.5" />
-                        {module.estimatedHours}h
-                      </span>
-                      <span className="inline-flex items-center gap-1.5">
-                        <BookOpen className="h-3.5 w-3.5" />
-                        {module.prerequisites.length === 0
-                          ? 'No prereqs'
-                          : `${module.prerequisites.length} prereq${module.prerequisites.length === 1 ? '' : 's'}`}
-                      </span>
-                    </div>
-
-                    <div className="relative flex items-center justify-between border-t border-stitch-cyan/20 pt-4 text-sm font-medium text-stitch-cyan">
-                      <span>Start module</span>
-                      <ChevronRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </div>
-                  </Link>
+                  {isAvailable ? (
+                    <Link to={`/modules/${module.slug}`} className={cardClass}>
+                      {CardBody}
+                    </Link>
+                  ) : (
+                    <a
+                      href={`docs/${module.slug}/`}
+                      className={cardClass}
+                      aria-label={`Open ${module.title} in docs reference (not yet interactive)`}
+                    >
+                      {CardBody}
+                    </a>
+                  )}
                 </motion.div>
               )
             })}

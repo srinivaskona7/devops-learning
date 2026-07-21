@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0e1a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="description" content="DevOps Learning Lab — interactive curriculum covering Linux, Docker, Kubernetes, Helm, Monitoring, Security, and Terraform. Learn by doing with 15 modules and 10 real projects." />
+    <meta name="color-scheme" content="dark light" />
+
+    <!-- Distinctive typography: Bricolage Grotesque (display) · Instrument Sans (body) · Fraunces (serif accent) · JetBrains Mono (code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..600&family=Fraunces:ital,opsz,wght@1,9..144,400..600&family=JetBrains+Mono:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="DevOps Learning Lab — Learn by Doing" />
+    <meta property="og:description" content="Interactive DevOps curriculum: Linux, Docker, Kubernetes, Helm, Monitoring, Security, Terraform — 15 modules, 10 real projects." />
+    <meta property="og:url" content="https://srinivaskona7.github.io/devops-learning/" />
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DevOps Learning Lab" />
+    <meta name="twitter:description" content="Learn DevOps by doing — 15 modules, 10 projects, production-grade." />
+
+    <title>DevOps Learning Lab · Learn by Doing</title>
+
+    <!-- SPA 404 redirect restore: reads a path pushed by public/404.html and rewrites history. -->
+    <script>
+      (function () {
+        var l = window.location;
+        if (l.search.indexOf('?p=') === 0 || l.search.indexOf('&p=') !== -1) {
+          var query = l.search.slice(1).split('&').reduce(function (a, kv) {
+            var i = kv.indexOf('='); if (i < 0) return a;
+            a[decodeURIComponent(kv.slice(0, i))] = decodeURIComponent(kv.slice(i + 1).replace(/~and~/g, '&'));
+            return a;
+          }, {});
+          if (query.p !== undefined) {
+            var newPath = l.pathname.replace(/\/$/, '') + (query.p[0] === '/' ? query.p : '/' + query.p) + (query.q ? '?' + query.q : '') + l.hash;
+            window.history.replaceState(null, '', newPath);
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

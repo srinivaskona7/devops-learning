@@ -2,8 +2,9 @@ name: Lighthouse CI
 
 on:
   workflow_run:
-    workflows: ["gh-pages"]
+    workflows: ["Deploy to GitHub Pages (SPA + MkDocs)"]
     types: [completed]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,10 +12,10 @@ permissions:
 jobs:
   lighthouse:
     name: Lighthouse audit
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     env:
-      SITE_URL: ${{ vars.SITE_URL || 'https://example.github.io/Devops-learning' }}
+      SITE_URL: ${{ vars.SITE_URL || 'https://srinivaskona7.github.io/devops-learning' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -26,10 +27,11 @@ jobs:
           {
             echo "urls<<EOF"
             echo "$base/"
-            echo "$base/01-linux/"
-            echo "$base/03-kubernetes/"
-            echo "$base/09-interview-prep/"
+            echo "$base/modules"
+            echo "$base/modules/01-linux"
+            echo "$base/modules/02-docker"
             echo "$base/docs/"
+            echo "$base/docs/01-linux/"
             echo "EOF"
           } >> "$GITHUB_OUTPUT"
 

@@ -1,15 +1,38 @@
-site_name: DevOps Learning Lab
+site_name: DevOps Learning Lab — Reference Docs
 site_description: Learn-by-doing DevOps — Linux, Docker, Kubernetes, Helm, Monitoring, Security, Terraform
-site_url: https://example.github.io/Devops-learning/
-repo_url: https://github.com/example/Devops-learning
-repo_name: Devops-learning
+site_url: https://srinivaskona7.github.io/devops-learning/docs/
+repo_url: https://github.com/srinivaskona7/devops-learning
+repo_name: srinivaskona7/devops-learning
 edit_uri: edit/main/
 
 docs_dir: .
+site_dir: mkdocs-build
+use_directory_urls: true
 exclude_docs: |
   /node_modules/
   /.github/
   /docs/
+  /src/
+  /public/
+  /dist/
+  /mkdocs-build/
+  /site/
+  /.agents/
+  /.playwright-mcp/
+  /graphify-out/
+  /package.json
+  /package-lock.json
+  /tsconfig*.json
+  /vite.config.ts
+  /vite.config.*.ts
+  /eslint.config.js
+  /postcss.config.js
+  /tailwind.config.*
+  /index.html
+  /404.html
+  /CLAUDE_COLLABORATION_PROTOCOL.md
+  /STITCH_MASTER_PROMPT.md
+  /ULTIMATE_REDESIGN_PROMPT.md
 
 theme:
   name: material
@@ -187,7 +210,7 @@ nav:
       - P09 · Zero-Downtime Delivery: 08-projects/09-zero-downtime-progressive-delivery/README.md
       - Projects: 08-projects/index.md
 
-  - 🖥️ Premium Platform: https://srinivaskona7.github.io/devops-learning/platform/index.html
+  - ⚡ Interactive Lab: https://srinivaskona7.github.io/devops-learning/
 
   - Scripting:
       - 10 Python & Bash:

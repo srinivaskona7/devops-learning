@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DevOps Learning Lab · Routing…</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#0a0e1a" />
+    <style>
+      html, body { margin: 0; padding: 0; background: #0a0e1a; color: #cbd5e1; font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .box { display: flex; min-height: 100vh; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+      .inner { max-width: 420px; }
+      h1 { font-size: 1.25rem; color: #22d3ee; margin: 0 0 8px; }
+      p { margin: 0 0 16px; color: #94a3b8; }
+      a { color: #22d3ee; }
+    </style>
+    <!--
+      GitHub Pages SPA fallback (single-page apps for GitHub Pages).
+      Based on Rafael Pedicini's approach: https://github.com/rafgraph/spa-github-pages
+      We rewrite the deep-linked path into a query string and redirect to index.html,
+      which restores the route via the snippet in index.html.
+
+      segmentCount = number of path segments to KEEP before the app root.
+      For https://srinivaskona7.github.io/devops-learning/, the repo segment is 1.
+    -->
+    <script>
+      (function () {
+        var segmentCount = 1;
+        var l = window.location;
+        var base = l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/';
+        var rest = l.pathname.slice(base.length);
+        var target = base + '?p=/' + rest.replace(/&/g, '~and~') + (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') + l.hash;
+        l.replace(target);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="box">
+      <div class="inner">
+        <h1>Rerouting…</h1>
+        <p>If you are not redirected automatically, <a href="/devops-learning/">return to the DevOps Learning Lab</a>.</p>
+      </div>
+    </div>
+  </body>
+</html>

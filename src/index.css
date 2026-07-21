@@ -1,0 +1,352 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DEVOPS LEARNING LAB — "TERMINAL OBSERVATORY"
+   Refined dark · content-over-chrome · distinctive type
+   Grounded in DESIGN_SYSTEM.md (ui-ux-pro-max + Apple HIG)
+   ============================================================ */
+
+:root {
+  /* Semantic color tokens (dark) */
+  --color-bg: #0b1120;          /* deep slate-navy */
+  --color-bg-2: #0e1628;        /* raised backdrop */
+  --color-surface: 30 41 59;    /* slate-800 (rgb channels) */
+  --color-label: #f1f5f9;
+  --color-label-2: #cbd5e1;
+  --color-muted: #94a3b8;
+  --color-separator: rgba(148, 163, 184, 0.14);
+
+  /* Brand + accents */
+  --color-primary: #3b82f6;
+  --color-cta: #2563eb;
+  --color-accent: #22d3ee;      /* cyan glow — sparingly */
+
+  /* Level accents */
+  --level-beginner: #34d399;
+  --level-intermediate: #3b82f6;
+  --level-advanced: #a78bfa;
+  --level-expert: #f472b6;
+
+  /* Glass */
+  --glass-bg: rgba(17, 25, 42, 0.55);
+  --glass-border: rgba(148, 163, 184, 0.16);
+  --glass-blur: 16px;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 28px 60px -20px rgba(0, 0, 0, 0.7);
+
+  /* Radius / space / motion */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 160ms var(--ease-out);
+  --t-base: 260ms var(--ease-out);
+
+  /* Z-index scale */
+  --z-sticky: 10;
+  --z-dropdown: 20;
+  --z-overlay: 30;
+  --z-modal: 50;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-label);
+  font-family: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Atmospheric gradient mesh + grain (content-over-chrome: subtle, fixed) */
+  background-image:
+    radial-gradient(60rem 60rem at 12% -10%, rgba(59, 130, 246, 0.10), transparent 60%),
+    radial-gradient(50rem 50rem at 100% 8%, rgba(244, 114, 182, 0.08), transparent 55%),
+    radial-gradient(55rem 55rem at 40% 120%, rgba(167, 139, 250, 0.08), transparent 55%);
+  background-attachment: fixed;
+}
+
+#root { width: 100%; min-height: 100vh; }
+
+/* ---------------- Typography ---------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--color-label);
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); }
+h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
+h3 { font-size: 1.375rem; }
+h4 { font-size: 1.125rem; }
+
+p { color: var(--color-label-2); }
+
+a { color: var(--color-accent); text-decoration: none; transition: color var(--t-fast); }
+a:hover { color: #67e8f9; }
+
+::selection { background: rgba(34, 211, 238, 0.28); color: #fff; }
+
+code, pre, kbd { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+
+/* Distinctive display utilities */
+.font-display { font-family: 'Bricolage Grotesque', sans-serif; }
+.font-serif-accent { font-family: 'Fraunces', serif; font-style: italic; }
+
+.text-gradient {
+  background: linear-gradient(115deg, #e2f5ff 0%, var(--color-accent) 45%, var(--level-advanced) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------------- Accessibility ---------------- */
+
+:where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------------- Glass / surfaces (content over chrome) ---------------- */
+
+.glass {
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.glass-sm { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); background: rgba(17,25,42,0.45); border: 1px solid var(--glass-border); border-radius: var(--radius-md); }
+.glass-lg { backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); background: rgba(11,17,32,0.72); border: 1px solid var(--glass-border); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); }
+
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  transition: transform var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
+}
+.card:hover { transform: translateY(-3px); border-color: rgba(34, 211, 238, 0.35); }
+.card-interactive { cursor: pointer; }
+
+/* Hairline separators over heavy borders (HIG) */
+.hairline { border-color: var(--color-separator) !important; }
+
+/* ---------------- Buttons ---------------- */
+
+button, .btn { cursor: pointer; font-family: inherit; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.4rem; border: none; border-radius: var(--radius-md);
+  font-weight: 700; font-size: 0.95rem;
+  background: linear-gradient(120deg, var(--color-cta), var(--color-accent));
+  color: #061018;
+  box-shadow: 0 10px 30px -10px rgba(34, 211, 238, 0.5);
+  transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(34, 211, 238, 0.65); }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.4rem; border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg); color: var(--color-label);
+  font-weight: 600; transition: border-color var(--t-fast), background var(--t-fast);
+}
+.btn-secondary:hover { border-color: rgba(34, 211, 238, 0.5); background: rgba(34, 211, 238, 0.06); }
+
+/* ---------------- Roadmap ---------------- */
+
+.rm-track-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--color-muted);
+}
+.rm-node {
+  position: relative; display: flex; flex-direction: column; gap: 0.4rem;
+  padding: 0.9rem 1rem; border-radius: var(--radius-md);
+  background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--node-accent, var(--color-primary));
+  transition: transform var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast);
+  cursor: pointer; text-align: left; width: 100%;
+}
+.rm-node:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: color-mix(in oklab, var(--node-accent, #3b82f6) 55%, transparent); }
+.rm-node[data-status="done"] { border-left-color: var(--level-beginner); }
+.rm-node[data-locked="true"] { opacity: 0.62; }
+.rm-badge {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.15rem 0.5rem; border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--node-accent, #3b82f6) 40%, transparent);
+  color: var(--node-accent, #3b82f6);
+  background: color-mix(in oklab, var(--node-accent, #3b82f6) 12%, transparent);
+}
+.rm-connector { stroke: var(--color-separator); stroke-width: 2; fill: none; }
+
+/* ---------------- Difficulty toggle (ELI10 / Standard / Deep) ---------------- */
+
+.diff-toggle { display: inline-flex; padding: 3px; border-radius: 999px; background: rgba(17,25,42,0.6); border: 1px solid var(--glass-border); }
+.diff-toggle button {
+  padding: 0.35rem 0.85rem; border: none; background: transparent; border-radius: 999px;
+  font-size: 0.8rem; font-weight: 600; color: var(--color-muted); transition: color var(--t-fast), background var(--t-fast);
+}
+.diff-toggle button[aria-pressed="true"] { background: rgba(34,211,238,0.14); color: var(--color-accent); }
+
+/* Reading progress bar */
+.read-progress { position: fixed; top: 0; left: 0; height: 3px; z-index: var(--z-modal);
+  background: linear-gradient(90deg, var(--color-cta), var(--color-accent)); transition: width 120ms linear; }
+
+/* ---------------- Prose (lesson markdown) ---------------- */
+
+.prose { color: var(--color-label-2); font-size: 1.02rem; line-height: 1.75; max-width: 72ch; }
+.prose > * + * { margin-top: 1.15rem; }
+.prose h1, .prose h2, .prose h3, .prose h4 { color: var(--color-label); scroll-margin-top: 6rem; }
+.prose h1 { font-size: 2.25rem; margin-top: 0; }
+.prose h2 { font-size: 1.6rem; margin-top: 2.6rem; padding-top: 1.4rem; border-top: 1px solid var(--color-separator); }
+.prose h3 { font-size: 1.25rem; margin-top: 1.8rem; color: #e2f5ff; }
+.prose strong { color: var(--color-label); font-weight: 650; }
+.prose a { border-bottom: 1px solid rgba(34,211,238,0.35); }
+.prose ul, .prose ol { padding-left: 1.4rem; }
+.prose li { margin-top: 0.4rem; }
+.prose li::marker { color: var(--color-accent); }
+.prose code {
+  font-size: 0.88em; padding: 0.15em 0.4em; border-radius: 5px;
+  background: rgba(34, 211, 238, 0.1); color: #7dd3fc; border: 1px solid rgba(34,211,238,0.15);
+}
+.prose pre {
+  background: #05080f; border: 1px solid var(--glass-border); border-radius: var(--radius-md);
+  padding: 1.1rem 1.25rem; overflow-x: auto; font-size: 0.86rem; line-height: 1.7;
+}
+.prose pre code { background: none; border: none; padding: 0; color: #d6e2f0; }
+.prose blockquote {
+  border-left: 3px solid rgba(34,211,238,0.5); padding: 0.6rem 0 0.6rem 1.1rem;
+  color: var(--color-label-2); font-family: 'Fraunces', serif; font-style: italic; font-size: 1.08rem;
+}
+.prose table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.prose th, .prose td { text-align: left; padding: 0.6rem 0.85rem; border-bottom: 1px solid var(--color-separator); }
+.prose th { color: var(--color-label); font-weight: 650; }
+.prose hr { border: none; border-top: 1px solid var(--color-separator); margin: 2.5rem 0; }
+.prose img { border-radius: var(--radius-md); max-width: 100%; height: auto; }
+
+/* ---------------- Animation ---------------- */
+
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+.animate-rise { animation: rise 0.7s var(--ease-out) both; }
+.animate-fade { animation: fade 0.6s var(--ease-out) both; }
+.stagger > * { animation: rise 0.6s var(--ease-out) both; }
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.12s; }
+.stagger > *:nth-child(3) { animation-delay: 0.19s; }
+.stagger > *:nth-child(4) { animation-delay: 0.26s; }
+.stagger > *:nth-child(5) { animation-delay: 0.33s; }
+.stagger > *:nth-child(6) { animation-delay: 0.40s; }
+
+/* Honor reduced motion (HIG + ui-ux-pro-max) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* ---------------- Scrollbar ---------------- */
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(148, 163, 184, 0.3); border-radius: 5px; border: 2px solid transparent; background-clip: content-box; }
+::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.5); background-clip: content-box; }
+
+/* ---------------- MkDocs content components (rendered via rehype-raw) ---------------- */
+
+.prose .hero { text-align: left; margin-bottom: 1.5rem; }
+.prose .hero h1 { margin: 0; }
+.prose .tagline { font-family: 'Fraunces', serif; font-style: italic; font-size: 1.15rem; color: var(--color-label-2); }
+
+/* Concept wrapper + 6 teaching stages */
+.prose .concept {
+  margin: 2rem 0; padding: 1.25rem 1.35rem;
+  border: 1px solid var(--glass-border); border-radius: var(--radius-lg);
+  background: rgba(17, 25, 42, 0.4);
+}
+/* Teaching-stage labels (inline <span> section markers) */
+.prose .stage {
+  display: inline-block; margin: 2rem 0 0.4rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 0.28rem 0.75rem; border-radius: 999px;
+  color: var(--stage-accent, var(--color-accent));
+  background: color-mix(in oklab, var(--stage-accent, #22d3ee) 14%, transparent);
+  border: 1px solid color-mix(in oklab, var(--stage-accent, #22d3ee) 40%, transparent);
+}
+.prose .stage.reason      { --stage-accent: #38bdf8; }
+.prose .stage.thinking    { --stage-accent: #a78bfa; }
+.prose .stage.execution   { --stage-accent: #34d399; }
+.prose .stage.simulation  { --stage-accent: #fbbf24; }
+.prose .stage.output      { --stage-accent: #22d3ee; }
+.prose .stage.usecase     { --stage-accent: #f472b6; }
+
+/* Mermaid diagrams */
+.prose .mermaid-diagram {
+  margin: 1.75rem 0; padding: 1.25rem; overflow-x: auto;
+  border: 1px solid var(--glass-border); border-radius: var(--radius-lg);
+  background: rgba(5, 8, 15, 0.5); text-align: center;
+}
+.prose .mermaid-diagram svg { max-width: 100%; height: auto; }
+.prose .mermaid-fallback { border-color: rgba(244, 114, 182, 0.3); }
+
+/* Before / during / after flow */
+.prose .flow { display: grid; gap: 0.75rem; grid-template-columns: 1fr; margin: 1.5rem 0; }
+@media (min-width: 640px) { .prose .flow { grid-template-columns: repeat(3, 1fr); } }
+.prose .flow .state { padding: 0.9rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--color-separator); background: rgba(255,255,255,0.02); }
+.prose .flow .state.before { border-top: 2px solid #f472b6; }
+.prose .flow .state.during { border-top: 2px solid #fbbf24; }
+.prose .flow .state.after  { border-top: 2px solid #34d399; }
+
+/* Simulation / usecase / roadmap / metrics / tags */
+.prose .sim { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; background: #05080f; border: 1px solid var(--glass-border); border-radius: var(--radius-md); padding: 1rem 1.1rem; }
+.prose .usecase-card { margin: 1rem 0; padding: 1.1rem 1.25rem; border-radius: var(--radius-lg); border: 1px solid var(--glass-border); background: color-mix(in oklab, #f472b6 8%, transparent); }
+.prose .roadmap { display: grid; gap: 0.6rem; margin: 1.5rem 0; }
+.prose .stop { padding: 0.85rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--color-separator); border-left: 3px solid var(--color-primary); background: rgba(255,255,255,0.02); }
+.prose .metrics { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.25rem 0; }
+.prose .metrics .m, .prose .tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+  padding: 0.3rem 0.7rem; border-radius: 999px; border: 1px solid var(--glass-border);
+  background: rgba(34, 211, 238, 0.06); color: var(--color-label-2);
+}
+.prose .level { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.15rem 0.55rem; border-radius: 999px; }
+.prose .level.beginner { color: var(--level-beginner); background: color-mix(in oklab, var(--level-beginner) 14%, transparent); }
+.prose .level.intermediate { color: var(--level-intermediate); background: color-mix(in oklab, var(--level-intermediate) 14%, transparent); }
+.prose .level.advanced { color: var(--level-advanced); background: color-mix(in oklab, var(--level-advanced) 14%, transparent); }
+.prose .level.expert { color: var(--level-expert); background: color-mix(in oklab, var(--level-expert) 14%, transparent); }
+
+/* Hub tiles */
+.prose .hub { display: grid; gap: 0.75rem; grid-template-columns: 1fr; margin: 1.5rem 0; }
+@media (min-width: 640px) { .prose .hub { grid-template-columns: repeat(2, 1fr); } }
+.prose .tile { display: block; padding: 1rem 1.1rem; border-radius: var(--radius-md); border: 1px solid var(--glass-border); background: rgba(255,255,255,0.02); }
+.prose .arrow { color: var(--color-muted); }
+
